@@ -7,13 +7,17 @@ import {Provider} from 'react-redux'
 import {createStore} from 'redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
-import App from "./component/root/App";
+import App from "./component/app/App";
 
 const store = createStore(app);
 
 window.addEventListener('resize', () => {
-    store.dispatch(screenResized(window.innerHeight, window.innerWidth));
+    store.dispatch(screenResized());
 });
+
+// window.addEventListener('orientationchange', () => {
+//     store.dispatch(screenResized(window.outerHeight, window.outerWidth));
+// });
 
 fetch('/profile', {credentials: 'include'})
     .then(res => res.json())

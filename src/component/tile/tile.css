@@ -1,0 +1,14 @@
+:local .tile {
+    /*margin: 16px 0 0 16px;*/
+    margin: auto;
+    padding: 16px;
+    border-radius: 8px;
+    background: #fffdf1;
+    color: #2879da;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    font-size: large;
+    cursor: pointer;
+}

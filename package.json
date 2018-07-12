@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "lodash": "^4.17.10",
+    "mobile-detect": "^1.4.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",
@@ -12,9 +13,10 @@
   },
   "scripts": {
     "lint": "eslint src --quiet --fix",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "clean": "rm -rf build && mkdir build",
+    "start": "node ./scripts/setup && react-scripts start",
+    "build": "node ./scripts/setup && react-scripts build",
+    "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
