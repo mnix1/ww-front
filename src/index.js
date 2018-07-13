@@ -10,7 +10,7 @@ import {screenResized} from "./redux/reducer/screen";
 import App from "./component/app/App";
 import {APP_NAME, POLISH} from "./lang";
 
-const store = createStore(app);
+const store = createStore(app, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 window.activeLang = POLISH;
 document.title = APP_NAME[window.activeLang];
@@ -18,10 +18,6 @@ document.title = APP_NAME[window.activeLang];
 window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
-
-// window.addEventListener('orientationchange', () => {
-//     store.dispatch(screenResized(window.outerHeight, window.outerWidth));
-// });
 
 fetch('/profile', {credentials: 'include'})
     .then(res => res.json())

@@ -9,23 +9,15 @@ export default class TileGroup extends React.PureComponent {
     }
 
     componentDidMount() {
-        console.log(this.ref.current);
-        console.log(d3);
         this.draw();
     }
 
     componentDidUpdate() {
-        console.log('componentDidUpdate', this.props);
-
         this.redraw();
     }
 
     prepareData() {
-        return this.props.tiles.map(e => ({
-            ...e,
-            x: 0,
-            y: 0
-        }));
+        return this.props.tiles;
     }
 
     get centerWidth() {
@@ -37,6 +29,7 @@ export default class TileGroup extends React.PureComponent {
     }
 
     draw() {
+        const {onClick} = this.props;
         const forceStrength = 0.03;
         this.data = this.prepareData();
         this.view = d3.select('svg').append('g');
@@ -48,6 +41,9 @@ export default class TileGroup extends React.PureComponent {
             .style('stroke', d => d.material.isDark ? d3.rgb(d.material.background).darker() : d3.rgb(d.material.background).brighter())
             .style('stroke-width', 1)
             .style('cursor', 'pointer')
+            .on('click', function (d) {
+                onClick(d.id);
+            })
             .on('mouseover', function (d) {
                 d3.select(this).style('stroke-width', 2)
             })
@@ -73,8 +69,8 @@ export default class TileGroup extends React.PureComponent {
             .text(d => d.label);
         this.simulation = d3.forceSimulation()
             .velocityDecay(0.2)
-            .force('x', d3.forceX().strength(forceStrength).x(d => this.centerWidth + d.tx * this.centerWidth))
-            .force('y', d3.forceY().strength(forceStrength).y(d => this.centerHeight + d.ty * this.centerHeight))
+            .force('x', d3.forceX().strength(forceStrength).x(d => this.centerWidth + d.xTarget * this.centerWidth))
+            .force('y', d3.forceY().strength(forceStrength).y(d => this.centerHeight + d.yTarget * this.centerHeight))
             .force('collide', d3.forceCollide(d => d.a))
             .on('tick', this.onTick);
         this.simulation.stop();

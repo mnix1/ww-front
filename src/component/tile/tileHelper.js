@@ -72,12 +72,41 @@ export function generateTileMaterial() {
 export function tileDimension(screen, factor = 1) {
     const {height, contentWidth, isSmall} = screen;
     factor /= isSmall ? 4 : 8;
-    const dimension = Math.min(factor * contentWidth, factor * height);
-    return dimension;
-    // return {width: dimension, height: dimension};
+    return Math.min(factor * contentWidth, factor * height);
 }
 
 export const TILE_TYPE_BATTLE = 'battle';
 export const TILE_TYPE_TRAINING = 'training';
 export const TILE_TYPE_HISTORY = 'history';
 export const TILE_TYPE_FRIEND = 'friend';
+
+export const TILES = [
+    {
+        id: TILE_TYPE_BATTLE,
+        xTarget: -1 / 4,
+        yTarget: -1 / 4,
+        material: TILE_MATERIALS[1],
+        aFactor: 1,
+    },
+    {
+        id: TILE_TYPE_HISTORY,
+        xTarget: 1 / 4,
+        yTarget: -1 / 4,
+        material: TILE_MATERIALS[21],
+        aFactor: .8,
+    },
+    {
+        id: TILE_TYPE_FRIEND,
+        xTarget: -1 / 4,
+        yTarget: 1 / 4,
+        material: TILE_MATERIALS[12],
+        aFactor: .9,
+    },
+    {
+        id: TILE_TYPE_TRAINING,
+        xTarget: 1 / 4,
+        yTarget: 1 / 4,
+        material: TILE_MATERIALS[6],
+        aFactor: 1.1,
+    }
+];
