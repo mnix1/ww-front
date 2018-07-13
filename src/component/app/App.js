@@ -1,17 +1,51 @@
 import React from 'react';
 import styles from './app.css';
-import Tile from "../tile/Tile";
 import {connect} from 'react-redux';
 import {MEDIUM_PADDING, TOP_BAR_HEIGHT} from "../../util/style/constant";
-import {TILE_MATERIALS} from "../tile/tileHelper";
+import TileGroup from "../tileGroup/TileGroup";
+import {
+    TILE_MATERIALS,
+    TILE_TYPE_BATTLE,
+    TILE_TYPE_FRIEND,
+    TILE_TYPE_HISTORY,
+    TILE_TYPE_TRAINING,
+    tileDimension
+} from "../tile/tileHelper";
+import {APP_NAME, TILE_LABELS} from "../../lang";
 
 class App extends React.PureComponent {
 
-    tileDimension(factor = 1) {
-        const {height, contentWidth, isSmall} = this.props.screen;
-        factor /= isSmall ? 4 : 8;
-        const dimension = Math.min(factor * contentWidth, factor * height);
-        return {width: dimension, height: dimension};
+    get tiles() {
+        return [
+            {
+                id: TILE_TYPE_BATTLE,
+                tx: -1 / 4,
+                ty: -1 / 4,
+                material: TILE_MATERIALS[1],
+                a: tileDimension(this.props.screen, 1)
+            },
+            {
+                id: TILE_TYPE_HISTORY,
+                tx: 1 / 4,
+                ty: -1 / 4,
+                material: TILE_MATERIALS[21],
+                a: tileDimension(this.props.screen, 0.8)
+            },
+            {
+                id: TILE_TYPE_FRIEND,
+                tx: -1 / 4,
+                ty: 1 / 4,
+                material: TILE_MATERIALS[12],
+                a: tileDimension(this.props.screen, 0.9)
+            },
+            {
+                id: TILE_TYPE_TRAINING,
+                tx: 1 / 4,
+                ty: 1 / 4,
+                material: TILE_MATERIALS[6],
+                a: tileDimension(this.props.screen, 1.1)
+            }
+        ].map(e => ({...e, label: TILE_LABELS[window.activeLang][e.id]}));
     }
 
     render() {
@@ -19,19 +53,17 @@ class App extends React.PureComponent {
         return <div className={styles.app}>
             <div className={styles.topBar} style={{height: TOP_BAR_HEIGHT}}>
                 <div className={styles.topBarContent} style={{width: contentWidth}}>
-                    <span style={{lineHeight: TOP_BAR_HEIGHT + 'px', padding: MEDIUM_PADDING}}>Wisdom War</span>
+                    <span style={{
+                        lineHeight: TOP_BAR_HEIGHT + 'px',
+                        padding: MEDIUM_PADDING
+                    }}>{APP_NAME[window.activeLang]}</span>
                 </div>
             </div>
-            <div className={styles.tiles}
-                 style={{width: contentWidth, height: height - TOP_BAR_HEIGHT}}>
-                <div className={styles.tilesGroup} style={{padding: MEDIUM_PADDING}}>
-                    <Tile style={{...this.tileDimension(1), ...TILE_MATERIALS[1]}}>Battle NOW!</Tile>
-                    <Tile style={{...this.tileDimension(0.8), ...TILE_MATERIALS[9]}}>History</Tile>
-                </div>
-                <div className={styles.tilesGroup} style={{padding: MEDIUM_PADDING}}>
-                    <Tile style={{...this.tileDimension(0.8), ...TILE_MATERIALS[12]}}>Friends</Tile>
-                </div>
-            </div>
+            <TileGroup
+                style={{background: '#4ea5c5', margin: 'auto'}}
+                width={contentWidth}
+                height={height - TOP_BAR_HEIGHT}
+                tiles={this.tiles}/>
         </div>;
     }
 }

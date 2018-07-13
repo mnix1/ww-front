@@ -8,8 +8,12 @@ import {createStore} from 'redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
 import App from "./component/app/App";
+import {APP_NAME, POLISH} from "./lang";
 
 const store = createStore(app);
+
+window.activeLang = POLISH;
+document.title = APP_NAME[window.activeLang];
 
 window.addEventListener('resize', () => {
     store.dispatch(screenResized());
