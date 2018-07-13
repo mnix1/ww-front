@@ -1,11 +1,14 @@
 import React from 'react';
 import * as d3 from "d3";
+import _ from 'lodash';
 
 export default class TileGroup extends React.PureComponent {
 
     constructor(props) {
         super(props);
         this.ref = React.createRef();
+        this.containerId = _.uniqueId('tile-group');
+        this.state = {id: props.id};
     }
 
     componentDidMount() {
@@ -17,7 +20,11 @@ export default class TileGroup extends React.PureComponent {
     }
 
     prepareData() {
-        return this.props.tiles;
+        return this.props.tiles.map(e => ({
+            ...e,
+            x: 0,
+            y: 0
+        }));
     }
 
     get centerWidth() {
@@ -30,9 +37,9 @@ export default class TileGroup extends React.PureComponent {
 
     draw() {
         const {onClick} = this.props;
-        const forceStrength = 0.03;
+        const forceStrength = 0.02;
         this.data = this.prepareData();
-        this.view = d3.select('svg').append('g');
+        this.view = d3.select(`#${this.containerId}`).append('g');
         this.nodes = this.view
             .selectAll('g')
             .data(this.data)
@@ -71,16 +78,30 @@ export default class TileGroup extends React.PureComponent {
             .velocityDecay(0.2)
             .force('x', d3.forceX().strength(forceStrength).x(d => this.centerWidth + d.xTarget * this.centerWidth))
             .force('y', d3.forceY().strength(forceStrength).y(d => this.centerHeight + d.yTarget * this.centerHeight))
-            .force('collide', d3.forceCollide(d => d.a))
+            .force('collide', d3.forceCollide(d => d.a * 0.6))
             .on('tick', this.onTick);
         this.simulation.stop();
+        this.restartAnimation();
+    }
+
+    redraw() {
+        if (this.props.id === this.state.id) {
+            this.restartAnimation();
+        } else {
+            this.clear();
+            this.draw();
+            this.setState({id: this.props.id});
+        }
+    }
+
+    restartAnimation() {
         this.simulation.nodes(this.data);
         this.simulation.alpha(1).restart();
     }
 
-    redraw() {
-        this.simulation.nodes(this.data);
-        this.simulation.alpha(1).restart();
+    clear() {
+        this.simulation.stop();
+        this.nodes.remove();
     }
 
     onTick = () => {
@@ -89,6 +110,6 @@ export default class TileGroup extends React.PureComponent {
 
     render() {
         const {width, height, style} = this.props;
-        return <svg ref={this.ref} width={width} height={height} style={style}/>;
+        return <svg id={this.containerId} ref={this.ref} width={width} height={height} style={style}/>;
     }
 }

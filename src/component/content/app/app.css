@@ -1,0 +1,31 @@
+:local .app {
+    width: 100vw;
+    height: 100vh;
+    background: #fffdf1;
+}
+
+:local .topBar {
+    width: 100%;
+    background: #2879da;
+    display: block;
+    color: #fffdf1;
+    font-size: large;
+}
+
+:local .back {
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+}
+
+:local .topBarContent {
+    margin: auto;
+}
+
+:local .contentHeader {
+    position: absolute;
+    text-align: center;
+    color: #fffdf1;
+    font-size: large;
+    margin: 4px auto auto;
+}
