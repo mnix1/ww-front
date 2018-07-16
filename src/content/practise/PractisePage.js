@@ -1,15 +1,17 @@
 import React from 'react';
 import styles from './styles.css';
+import _ from 'lodash';
 import {connect} from 'react-redux';
 import {TOP_BAR_HEIGHT} from "../../util/style/constant";
 import TileGroup from "../../component/tile-group/TileGroup";
 import {CATEGORY_CHOOSE_LABEL, TILE_LABELS} from "../../lang";
-import {categoryChanged} from "../../redux/reducer/rival";
+import {answerIdChanged, categoryChanged} from "../../redux/reducer/rival";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
 import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
 import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
-import PractiseRivalFetch from "./fetch/PractiseRivalFetch";
 import Rival from "../../component/rival/Rival";
+import PractiseRivalStartFetch from "./fetch/PractiseRivalStartFetch";
+import PractiseRivalEndFetch from "./fetch/PractiseRivalEndFetch";
 
 class PractisePage extends React.PureComponent {
 
@@ -22,6 +24,7 @@ class PractisePage extends React.PureComponent {
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
             defaultFontSize={tileFontSize(this.props.screen)}
+            forceCollideStrengthFactor={0.4}
             tiles={tiles.map(e => ({
                 ...e,
                 material: e.material || randomTileMaterial(),
@@ -35,7 +38,7 @@ class PractisePage extends React.PureComponent {
         if (category === undefined) {
             return this.renderChooseCategory();
         }
-        return this.renderRival();
+        return this.renderRivalStart();
     }
 
     renderChooseCategory() {
@@ -46,16 +49,24 @@ class PractisePage extends React.PureComponent {
         </div>;
     }
 
-    renderRival() {
-        const {rival} = this.props;
-        return <Rival {...rival}/>
+    renderRivalStart() {
+        const {rivalStart, rivalEnd, onAnswer} = this.props;
+        return <Rival
+            pending={_.get(rivalStart, 'pending')}
+            rejected={_.get(rivalStart, 'rejected')}
+            fulfilled={_.get(rivalStart, 'fulfilled')}
+            question={_.get(rivalStart, 'value.practise.question')}
+            answers={_.get(rivalStart, 'value.practise.question.answers')}
+            correctAnswerId={_.get(rivalEnd, 'value.correctAnswerId')}
+            onAnswer={onAnswer}/>
     }
 
     render() {
-        const {category} = this.props;
+        const {category, answerId, rivalStart} = this.props;
         return <div>
             {this.renderContent()}
-            <PractiseRivalFetch category={category}/>
+            <PractiseRivalStartFetch category={category}/>
+            <PractiseRivalEndFetch answerId={answerId} rivalStart={rivalStart}/>
         </div>
     }
 }
@@ -64,7 +75,12 @@ export default connect(
     (state) => ({
         screen: state.screen,
         category: state.rival.category,
-        rival: state.repository.practise
+        answerId: state.rival.answerId,
+        rivalStart: state.repository.practiseRivalStart,
+        rivalEnd: state.repository.practiseRivalEnd,
     }),
-    (dispatch) => ({onCategoryChange: (id) => dispatch(categoryChanged(id))})
+    (dispatch) => ({
+        onCategoryChange: (id) => dispatch(categoryChanged(id)),
+        onAnswer: (id) => dispatch(answerIdChanged(id)),
+    })
 )(PractisePage);

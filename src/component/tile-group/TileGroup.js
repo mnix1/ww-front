@@ -12,8 +12,14 @@ export default class TileGroup extends React.PureComponent {
         height: PropTypes.number.isRequired,
         onClick: PropTypes.func,
         style: PropTypes.object,
+        defaultFontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        forceCollideStrengthFactor: PropTypes.number,
+        forceXYStrength: PropTypes.number
     };
+
     static defaultProps = {
+        forceCollideStrengthFactor: 0.1,
+        forceXYStrength: 0.01,
         defaultFontSize: '16px'
     };
 
@@ -21,7 +27,7 @@ export default class TileGroup extends React.PureComponent {
         super(props);
         this.ref = React.createRef();
         this.containerId = _.uniqueId('tile-group');
-        this.state = {id: props.id};
+        this.state = {id: props.id, data: this.prepareData(props.tiles)};
     }
 
     componentDidMount() {
@@ -32,12 +38,23 @@ export default class TileGroup extends React.PureComponent {
         this.redraw();
     }
 
-    prepareData() {
-        return this.props.tiles.map(e => ({
+    prepareData(tiles) {
+        return tiles.map(e => ({
             ...e,
             x: this.centerWidth,
             y: this.centerHeight
         }));
+    }
+
+    updateData() {
+        const stateDataMap = _.keyBy(this.state.data, 'id');
+        return this.props.tiles.map(e => {
+            const oldObj = stateDataMap[e.id];
+            if (oldObj) {
+                return {...e, x: oldObj.x, y: oldObj.y};
+            }
+            return {...e, x: this.centerWidth, y: this.centerHeight};
+        });
     }
 
     get centerWidth() {
@@ -48,14 +65,12 @@ export default class TileGroup extends React.PureComponent {
         return this.props.height / 2;
     }
 
-    draw() {
-        const {onClick} = this.props;
-        const forceStrength = 0.01;
-        this.data = this.prepareData();
+    draw(data = this.state.data) {
+        const {onClick, forceXYStrength, forceCollideStrengthFactor} = this.props;
         this.view = d3.select(`#${this.containerId}`).append('g');
         this.nodes = this.view
             .selectAll('g')
-            .data(this.data)
+            .data(data)
             .enter()
             .append('g')
             .style('stroke', d => d.material.isDark ? d3.rgb(d.material.background).darker() : d3.rgb(d.material.background).brighter())
@@ -82,9 +97,9 @@ export default class TileGroup extends React.PureComponent {
         this.drawNodesText();
         this.simulation = d3.forceSimulation()
             .velocityDecay(0.2)
-            .force('x', d3.forceX().strength(forceStrength).x(d => this.centerWidth + d.xTarget * this.centerWidth))
-            .force('y', d3.forceY().strength(forceStrength).y(d => this.centerHeight + d.yTarget * this.centerHeight))
-            .force('collide', d3.forceCollide(d => d.a * 0.1))
+            .force('x', d3.forceX().strength(forceXYStrength).x(d => this.centerWidth + d.xTarget * this.centerWidth))
+            .force('y', d3.forceY().strength(forceXYStrength).y(d => this.centerHeight + d.yTarget * this.centerHeight))
+            .force('collide', d3.forceCollide(d => d.a * forceCollideStrengthFactor))
             .on('tick', this.onTick);
         this.simulation.stop();
         this.restartAnimation();
@@ -102,7 +117,7 @@ export default class TileGroup extends React.PureComponent {
         this.view.selectAll('text').each(this.drawMultiLineText);
     }
 
-    drawMultiLineText = (d) => {
+    drawMultiLineText(d) {
         if (!_.isArray(d.label)) {
             return;
         }
@@ -120,17 +135,19 @@ export default class TileGroup extends React.PureComponent {
     };
 
     redraw() {
-        if (this.props.id === this.state.id) {
+        const {id} = this.props;
+        if (id === this.state.id) {
             this.restartAnimation();
         } else {
+            const data = this.updateData();
             this.clear();
-            this.draw();
-            this.setState({id: this.props.id});
+            this.draw(data);
+            this.setState({id, data});
         }
     }
 
     restartAnimation() {
-        this.simulation.nodes(this.data);
+        this.simulation.nodes(this.state.data);
         this.simulation.alpha(1).restart();
     }
 

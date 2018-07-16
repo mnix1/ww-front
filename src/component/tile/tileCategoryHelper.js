@@ -1,6 +1,7 @@
 import {TILE_MATERIALS} from "./tileMaterialHelper";
 
 export const TILE_CATEGORY_MATH = 'MATH';
+export const TILE_CATEGORY_MUSIC = 'MUSIC';
 export const TILE_CATEGORY_HISTORY = 'HISTORY';
 export const TILE_CATEGORY_GEOGRAPHY = 'GEOGRAPHY';
 export const TILE_CATEGORY_MEMORY = 'MEMORY';
@@ -12,6 +13,12 @@ export const TILES_CATEGORY = [
         xTarget: 0,
         yTarget: 0,
         material: TILE_MATERIALS[21],
+    },
+    {
+        id: TILE_CATEGORY_MUSIC,
+        xTarget: -1 / 4,
+        yTarget: 0,
+        material: TILE_MATERIALS[61],
     },
     {
         id: TILE_CATEGORY_MATH,

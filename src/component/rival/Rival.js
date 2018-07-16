@@ -1,25 +1,42 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import _ from 'lodash';
 import {getContent} from "../../lang";
 import styles from './styles.css';
-import {randomTileMaterial} from "../tile/tileMaterialHelper";
+import {
+    CORRECT_ANSWER_TILE_MATERIAL,
+    randomTileMaterial,
+    WRONG_ANSWER_TILE_MATERIAL,
+} from "../tile/tileMaterialHelper";
 import {TOP_BAR_HEIGHT} from "../../util/style/constant";
 import {tileFontSize} from "../tile/tileHelper";
 import TileGroup from "../tile-group/TileGroup";
 import {wordsByLength} from "../../util/textHelper";
+import PropTypes from "prop-types";
 
 class Rival extends React.PureComponent {
 
+    static propTypes = {
+        screen: PropTypes.object,
+        pending: PropTypes.bool,
+        rejected: PropTypes.bool,
+        fulfilled: PropTypes.bool,
+        question: PropTypes.object,
+        answers: PropTypes.array,
+        correctAnswerId: PropTypes.number,
+        onAnswer: PropTypes.func,
+    };
+
+    questionMaterial = randomTileMaterial();
+
     prepareQuestionTile() {
         const {isSmall} = this.props.screen;
-        const {question} = this.props.value;
+        const {question} = this.props;
         return {
             label: wordsByLength(getContent(question), 30),
             a: isSmall ? 50 : 200,
             h: isSmall ? 50 : 100,
             w: isSmall ? 200 : 300,
-            material: randomTileMaterial(),
+            material: this.questionMaterial,
             yTarget: -1 / 3,
             xTarget: 0
         };
@@ -27,21 +44,31 @@ class Rival extends React.PureComponent {
 
     prepareAnswerTiles() {
         const {isSmall} = this.props.screen;
-        const {question} = this.props.value;
-        return question.answers.map((ans, i) => ({
+        const {answers} = this.props;
+        return answers.map((ans, i) => ({
+            id: ans.id,
             label: getContent(ans),
             a: isSmall ? 50 : 100,
-            material: randomTileMaterial(),
+            material: this.prepareAnswerMaterial(ans.id),
             yTarget: 1 / 3,
-            xTarget: (2 * i / (question.answers.length - 1) - 1) / 2
+            xTarget: (2 * i / (answers.length - 1) - 1) / 2
         }));
+    }
+
+    prepareAnswerMaterial(id) {
+        const {correctAnswerId} = this.props;
+        if (correctAnswerId === undefined) {
+            return randomTileMaterial();
+        }
+        return correctAnswerId === id ? CORRECT_ANSWER_TILE_MATERIAL : WRONG_ANSWER_TILE_MATERIAL;
     }
 
     renderContent() {
         const {height, contentWidth} = this.props.screen;
+        const {onAnswer, correctAnswerId} = this.props;
         return <TileGroup
-            id={'rival'}
-            onClick={_.noop}
+            id={'rival' + correctAnswerId}
+            onClick={(id) => id && !correctAnswerId && onAnswer(id)}
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
             defaultFontSize={tileFontSize(this.props.screen)}

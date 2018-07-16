@@ -54,6 +54,9 @@ export const TILE_MATERIALS = [
     {"background": "rgb(68,122,110)", "color": "#fffdf1", isDark: true}
 ];
 
+export const CORRECT_ANSWER_TILE_MATERIAL = {"background": "rgb(0,180,0)", "color": "#fffdf1", isDark: true};
+export const WRONG_ANSWER_TILE_MATERIAL = {"background": "rgb(180,0,0)", "color": "#fffdf1", isDark: true};
+
 export function randomTileMaterial() {
     return TILE_MATERIALS[_.random(0, TILE_MATERIALS.length - 1)];
 }

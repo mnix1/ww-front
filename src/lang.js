@@ -3,7 +3,7 @@ import {
     TILE_CATEGORY_GEOGRAPHY,
     TILE_CATEGORY_HISTORY,
     TILE_CATEGORY_MATH,
-    TILE_CATEGORY_MEMORY, TILE_CATEGORY_RANDOM
+    TILE_CATEGORY_MEMORY, TILE_CATEGORY_MUSIC, TILE_CATEGORY_RANDOM
 } from "./component/tile/tileCategoryHelper";
 
 export const POLISH = 'pl';
@@ -37,6 +37,7 @@ export const TILE_LABELS = {
         [TILE_APP_FRIEND]: 'Znajomi',
         [TILE_CATEGORY_RANDOM]: 'Losowa',
         [TILE_CATEGORY_MATH]: 'Matematyka',
+        [TILE_CATEGORY_MUSIC]: 'Muzyka',
         [TILE_CATEGORY_HISTORY]: 'Historia',
         [TILE_CATEGORY_GEOGRAPHY]: 'Geografia',
         [TILE_CATEGORY_MEMORY]: 'Pamięć',
@@ -48,6 +49,7 @@ export const TILE_LABELS = {
         [TILE_APP_FRIEND]: 'Friend',
         [TILE_CATEGORY_RANDOM]: 'Random',
         [TILE_CATEGORY_MATH]: 'Math',
+        [TILE_CATEGORY_MUSIC]: 'Music',
         [TILE_CATEGORY_HISTORY]: 'History',
         [TILE_CATEGORY_GEOGRAPHY]: 'Geography',
         [TILE_CATEGORY_MEMORY]: 'Memory',

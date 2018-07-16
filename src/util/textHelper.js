@@ -6,7 +6,6 @@ export function wordsByLength(string, maxLength) {
     if (_.isEmpty(words)) {
         return result;
     }
-    console.log(words);
     let line = '';
     words.forEach(e => {
         if (line.length + e.length > maxLength) {
