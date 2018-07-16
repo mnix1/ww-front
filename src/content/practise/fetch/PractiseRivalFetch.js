@@ -1,13 +1,12 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
-import {isCategoryId} from "../tile/tileCategoryHelper";
 
-class FetchPractise extends React.PureComponent {
+class PractiseRivalFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {contentId, dispatchPractiseGet} = this.props;
-        if (prevProps.contentId !== contentId && isCategoryId(contentId)) {
-            dispatchPractiseGet(contentId);
+        const {category, dispatchPractiseGet} = this.props;
+        if (category !== undefined && prevProps.category !== category) {
+            dispatchPractiseGet(category);
         }
     }
 
@@ -21,4 +20,4 @@ export default connect([{
     request: (category) => ({
         url: `/practise/start?category=${category}`
     })
-}])(FetchPractise);
+}])(PractiseRivalFetch);

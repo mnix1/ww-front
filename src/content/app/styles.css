@@ -1,0 +1,11 @@
+:local .app {
+    width: 100vw;
+    height: 100vh;
+    background: #fffdf1;
+}
+
+:local .content {
+    background: #4ea5c5;
+    margin: auto auto;
+    position: relative;
+}

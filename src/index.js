@@ -6,7 +6,7 @@ import Login from "./component/auth/Login";
 import {Provider} from 'react-redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
-import App from "./component/content/app/App";
+import App from "./content/app/App";
 import {APP_NAME, POLISH} from "./lang";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
@@ -14,7 +14,7 @@ import {middleware as fetchMiddleware} from 'react-redux-fetch'
 const store = createStore(
     app,
     compose(applyMiddleware(fetchMiddleware),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a)
 );
 
 window.activeLang = POLISH;

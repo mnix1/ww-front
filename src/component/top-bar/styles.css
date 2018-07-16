@@ -1,0 +1,11 @@
+:local .topBar {
+    width: 100%;
+    background: #2879da;
+    display: block;
+    color: #fffdf1;
+    font-size: large;
+}
+
+:local .topBarContent {
+    margin: auto;
+}

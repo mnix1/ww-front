@@ -6,6 +6,7 @@
     "d3": "^5.5.0",
     "lodash": "^4.17.10",
     "mobile-detect": "^1.4.2",
+    "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-icons": "^2.2.7",
