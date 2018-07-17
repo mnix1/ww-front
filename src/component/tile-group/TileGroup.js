@@ -14,12 +14,14 @@ export default class TileGroup extends React.PureComponent {
         style: PropTypes.object,
         defaultFontSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         forceCollideStrengthFactor: PropTypes.number,
-        forceXYStrength: PropTypes.number
+        forceXYStrength: PropTypes.number,
+        addRandomMoving: PropTypes.bool
     };
 
     static defaultProps = {
         forceCollideStrengthFactor: 0.1,
         forceXYStrength: 0.02,
+        addRandomMoving: false,
         defaultFontSize: 16
     };
 
@@ -158,7 +160,14 @@ export default class TileGroup extends React.PureComponent {
     }
 
     onTick = () => {
-        this.nodes.attr('transform', d => `translate(${d.x},${d.y})`);
+        if(this.props.addRandomMoving){
+            const alpha = this.simulation.alpha();
+            const sin = Math.sin(alpha * 2 * Math.PI);
+            const cos = Math.cos(alpha * 6 * Math.PI);
+            this.nodes.attr('transform', d => `translate(${d.x  + d.y / 10* sin + d.x / 40 * cos},${d.y + sin * sin * d.x / 40})`);
+        } else {
+            this.nodes.attr('transform', d => `translate(${d.x},${d.y })`);
+        }
     };
 
     render() {
