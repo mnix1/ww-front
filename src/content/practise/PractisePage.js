@@ -16,14 +16,14 @@ import PractiseRivalEndFetch from "./fetch/PractiseRivalEndFetch";
 class PractisePage extends React.PureComponent {
 
     renderContentTiles(tiles) {
-        const {height, contentWidth} = this.props.screen;
+        const {height, contentWidth, isSmall} = this.props.screen;
         const {category, onCategoryChange} = this.props;
         return <TileGroup
             id={category}
             onClick={onCategoryChange}
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
-            defaultFontSize={tileFontSize(this.props.screen)}
+            defaultFontSize={tileFontSize(isSmall)}
             forceCollideStrengthFactor={0.4}
             tiles={tiles.map(e => ({
                 ...e,
@@ -50,7 +50,7 @@ class PractisePage extends React.PureComponent {
     }
 
     renderRivalStart() {
-        const {rivalStart, rivalEnd, onAnswer} = this.props;
+        const {rivalStart, rivalEnd, answerId, onAnswer} = this.props;
         return <Rival
             pending={_.get(rivalStart, 'pending')}
             rejected={_.get(rivalStart, 'rejected')}
@@ -58,6 +58,7 @@ class PractisePage extends React.PureComponent {
             question={_.get(rivalStart, 'value.practise.question')}
             answers={_.get(rivalStart, 'value.practise.question.answers')}
             correctAnswerId={_.get(rivalEnd, 'value.correctAnswerId')}
+            answerId={answerId}
             onAnswer={onAnswer}/>
     }
 

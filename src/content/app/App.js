@@ -15,14 +15,14 @@ import PractisePage from "../practise/PractisePage";
 class App extends React.PureComponent {
 
     renderContentTiles(tiles) {
-        const {height, contentWidth} = this.props.screen;
+        const {height, contentWidth, isSmall} = this.props.screen;
         const {contentId, onContentIdChange} = this.props;
         return <TileGroup
             id={contentId}
             onClick={onContentIdChange}
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
-            defaultFontSize={tileFontSize(this.props.screen)}
+            defaultFontSize={tileFontSize(isSmall)}
             tiles={tiles.map(e => ({
                 ...e,
                 material: e.material || randomTileMaterial(),
