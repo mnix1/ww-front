@@ -32,11 +32,12 @@ class Rival extends React.PureComponent {
         const {isSmall} = this.props.screen;
         const {question} = this.props;
         return {
-            label: wordsByLength(getContent(question), 30),
+            label: wordsByLength(getContent(question), 40),
             a: isSmall ? 50 : 200,
             h: isSmall ? 50 : 100,
-            w: isSmall ? 200 : 300,
+            w: isSmall ? 200 : 350,
             material: this.questionMaterial,
+            fontSize: tileFontSize(isSmall),
             yTarget: -1 / 3,
             xTarget: 0
         };
@@ -47,9 +48,12 @@ class Rival extends React.PureComponent {
         const {answers} = this.props;
         return answers.map((ans, i) => ({
             id: ans.id,
-            label: getContent(ans),
+            label: wordsByLength(getContent(ans), 20),
             a: isSmall ? 50 : 100,
+            h: isSmall ? 40 : 80,
+            w: isSmall ? 70 : 140,
             material: this.prepareAnswerMaterial(ans.id),
+            fontSize: tileFontSize(isSmall, 0.8),
             yTarget: 1 / 3,
             xTarget: (2 * i / (answers.length - 1) - 1) / 2
         }));
@@ -71,7 +75,6 @@ class Rival extends React.PureComponent {
             onClick={(id) => id && !correctAnswerId && onAnswer(id)}
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
-            defaultFontSize={tileFontSize(this.props.screen)}
             tiles={[this.prepareQuestionTile()].concat(this.prepareAnswerTiles())}/>
     }
 

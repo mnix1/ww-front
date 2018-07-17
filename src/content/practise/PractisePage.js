@@ -16,14 +16,14 @@ import PractiseRivalEndFetch from "./fetch/PractiseRivalEndFetch";
 class PractisePage extends React.PureComponent {
 
     renderContentTiles(tiles) {
-        const {height, contentWidth} = this.props.screen;
+        const {height, contentWidth, isSmall} = this.props.screen;
         const {category, onCategoryChange} = this.props;
         return <TileGroup
             id={category}
             onClick={onCategoryChange}
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
-            defaultFontSize={tileFontSize(this.props.screen)}
+            defaultFontSize={tileFontSize(isSmall)}
             forceCollideStrengthFactor={0.4}
             tiles={tiles.map(e => ({
                 ...e,
