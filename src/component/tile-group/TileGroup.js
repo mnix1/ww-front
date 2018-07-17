@@ -19,8 +19,8 @@ export default class TileGroup extends React.PureComponent {
 
     static defaultProps = {
         forceCollideStrengthFactor: 0.1,
-        forceXYStrength: 0.01,
-        defaultFontSize: '16px'
+        forceXYStrength: 0.02,
+        defaultFontSize: 16
     };
 
     constructor(props) {
@@ -39,8 +39,10 @@ export default class TileGroup extends React.PureComponent {
     }
 
     prepareData(tiles) {
+        const {defaultFontSize} = this.props;
         return tiles.map(e => ({
             ...e,
+            fontSize: _.defaultTo(e.fontSize, defaultFontSize),
             x: this.centerWidth,
             y: this.centerHeight
         }));
@@ -96,7 +98,6 @@ export default class TileGroup extends React.PureComponent {
             .style('fill', d => d.material.background);
         this.drawNodesText();
         this.simulation = d3.forceSimulation()
-            .velocityDecay(0.2)
             .force('x', d3.forceX().strength(forceXYStrength).x(d => this.centerWidth + d.xTarget * this.centerWidth))
             .force('y', d3.forceY().strength(forceXYStrength).y(d => this.centerHeight + d.yTarget * this.centerHeight))
             .force('collide', d3.forceCollide(d => d.a * forceCollideStrengthFactor))
@@ -112,7 +113,7 @@ export default class TileGroup extends React.PureComponent {
             .style('stroke', d => d.material.color)
             .style('stroke-width', 0.4)
             .style('fill', d => d.material.isDark ? d3.rgb(d.material.color).brighter() : d3.rgb(d.material.color).darker())
-            .style('font-size', d => _.defaultTo(d.fontSize, this.props.defaultFontSize))
+            .style('font-size', d => d.fontSize)
             .text(d => d.label);
         this.view.selectAll('text').each(this.drawMultiLineText);
     }
@@ -127,9 +128,9 @@ export default class TileGroup extends React.PureComponent {
         for (let i = 0; i < d.label.length; i++) {
             const tspan = el.append('tspan').text(d.label[i]);
             if (i === 0) {
-                tspan.attr('x', 0).attr('dy', -16 * (d.label.length - 1) / 2 + 6);
+                tspan.attr('x', 0).attr('dy', -d.fontSize * (d.label.length - 1) / 2 + d.fontSize * 0.3);
             } else {
-                tspan.attr('x', 0).attr('dy', 16);
+                tspan.attr('x', 0).attr('dy', d.fontSize);
             }
         }
     };

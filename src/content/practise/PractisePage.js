@@ -24,7 +24,7 @@ class PractisePage extends React.PureComponent {
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
             defaultFontSize={tileFontSize(isSmall)}
-            forceCollideStrengthFactor={0.4}
+            forceCollideStrengthFactor={0.6}
             tiles={tiles.map(e => ({
                 ...e,
                 material: e.material || randomTileMaterial(),

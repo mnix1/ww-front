@@ -73,6 +73,7 @@ class Rival extends React.PureComponent {
         const {onAnswer, correctAnswerId, answerId} = this.props;
         return <TileGroup
             id={'rival' + correctAnswerId}
+            forceXYStrength={0.1}
             onClick={(id) => id && !answerId && onAnswer(id)}
             width={contentWidth}
             height={height - TOP_BAR_HEIGHT}
