@@ -19,8 +19,8 @@ export default class TileGroup extends React.PureComponent {
     };
 
     static defaultProps = {
-        forceCollideStrengthFactor: 0.1,
-        forceXYStrength: 0.02,
+        forceCollideStrengthFactor: 0.6,
+        forceXYStrength: 0.06,
         addRandomMoving: false,
         defaultFontSize: 16
     };

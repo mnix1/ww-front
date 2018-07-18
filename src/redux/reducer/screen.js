@@ -1,16 +1,22 @@
-import {GOLDEN_RATIO_FACTOR} from "../../util/style/constant";
+import {BIG_TOP_BAR_HEIGHT, GOLDEN_RATIO_FACTOR, SMALL_TOP_BAR_HEIGHT} from "../../util/style/constant";
 import MobileDetect from 'mobile-detect';
 export const RESIZE = 'screen/resize';
 
-function isSmall(width) {
-    return width < 1200;
+function isSmall( height, width) {
+    return height < 500 || width < 1200;
 }
 
-function calculateContentWidth(width) {
-    if (isSmall(width)) {
+function calculateContentWidth(height, width) {
+    if (isSmall(height,width)) {
         return width;
     }
     return width * GOLDEN_RATIO_FACTOR;
+}
+function calculateContentHeight(height, width) {
+    if (isSmall(height,width)) {
+        return height - SMALL_TOP_BAR_HEIGHT;
+    }
+    return height - BIG_TOP_BAR_HEIGHT;
 }
 
 const isMobile = new MobileDetect(window.navigator.userAgent).mobile() !== null;
@@ -20,8 +26,9 @@ const initialWidth = isMobile ? window.outerWidth : window.innerWidth;
 const initialState = {
     height: initialHeight,
     width: initialWidth,
-    contentWidth: calculateContentWidth(initialWidth),
-    isSmall: isSmall(initialWidth),
+    contentHeight: calculateContentHeight(initialHeight, initialWidth),
+    contentWidth: calculateContentWidth(initialHeight, initialWidth),
+    isSmall: isSmall(initialHeight, initialWidth),
     isMobile
 };
 
@@ -34,8 +41,9 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 height,
                 width,
-                contentWidth: calculateContentWidth(width),
-                isSmall: isSmall(width)
+                contentHeight: calculateContentHeight(height, width),
+                contentWidth: calculateContentWidth(height, width),
+                isSmall: isSmall(initialHeight, initialWidth),
             };
         }
         default:

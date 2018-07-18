@@ -7,7 +7,6 @@ import {
     randomTileMaterial,
     WRONG_ANSWER_TILE_MATERIAL,
 } from "../tile/tileMaterialHelper";
-import {TOP_BAR_HEIGHT} from "../../util/style/constant";
 import {tileFontSize} from "../tile/tileHelper";
 import TileGroup from "../tile-group/TileGroup";
 import {wordsByLength} from "../../util/textHelper";
@@ -34,9 +33,9 @@ class Rival extends React.PureComponent {
         const {question} = this.props;
         return {
             label: wordsByLength(getContent(question), 40),
-            a: isSmall ? 50 : 200,
-            h: isSmall ? 50 : 100,
-            w: isSmall ? 200 : 350,
+            a: isSmall ? 100 : 200,
+            h: isSmall ? 80 : 100,
+            w: isSmall ? 280 : 350,
             material: this.questionMaterial,
             fontSize: tileFontSize(isSmall),
             yTarget: -1 / 3,
@@ -49,10 +48,10 @@ class Rival extends React.PureComponent {
         const {answers} = this.props;
         return answers.map((ans, i) => ({
             id: ans.id,
-            label: wordsByLength(getContent(ans), 20),
-            a: isSmall ? 50 : 100,
-            h: isSmall ? 40 : 80,
-            w: isSmall ? 70 : 140,
+            label: wordsByLength(getContent(ans), isSmall ? 18 : 20),
+            a: isSmall ? 80 : 100,
+            h: isSmall ? 60 : 80,
+            w: isSmall ? 90 : 140,
             material: this.prepareAnswerMaterial(ans.id),
             fontSize: tileFontSize(isSmall, 0.8),
             yTarget: 1 / 3,
@@ -69,14 +68,14 @@ class Rival extends React.PureComponent {
     }
 
     renderContent() {
-        const {height, contentWidth} = this.props.screen;
+        const {contentHeight, contentWidth} = this.props.screen;
         const {onAnswer, correctAnswerId, answerId} = this.props;
         return <TileGroup
             id={'rival' + correctAnswerId}
             forceXYStrength={0.1}
             onClick={(id) => id && !answerId && onAnswer(id)}
             width={contentWidth}
-            height={height - TOP_BAR_HEIGHT}
+            height={contentHeight}
             tiles={[this.prepareQuestionTile()].concat(this.prepareAnswerTiles())}/>
     }
 

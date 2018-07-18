@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {TOP_BAR_HEIGHT} from "../../util/style/constant";
 import TileGroup from "../../component/tile-group/TileGroup";
 import {CATEGORY_CHOOSE_LABEL, TILE_LABELS} from "../../lang";
 import {answerIdChanged, categoryChanged} from "../../redux/reducer/rival";
@@ -16,13 +15,13 @@ import PractiseRivalEndFetch from "./fetch/PractiseRivalEndFetch";
 class PractisePage extends React.PureComponent {
 
     renderContentTiles(tiles) {
-        const {height, contentWidth, isSmall} = this.props.screen;
+        const {contentHeight, contentWidth, isSmall} = this.props.screen;
         const {category, onCategoryChange} = this.props;
         return <TileGroup
             id={category}
             onClick={onCategoryChange}
             width={contentWidth}
-            height={height - TOP_BAR_HEIGHT}
+            height={contentHeight}
             defaultFontSize={tileFontSize(isSmall)}
             forceCollideStrengthFactor={0.6}
             tiles={tiles.map(e => ({
