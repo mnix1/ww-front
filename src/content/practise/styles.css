@@ -6,3 +6,11 @@
     margin: 4px auto auto;
     width: 100%;
 }
+
+:local .playAgain {
+    text-align: right;
+}
+
+:local .resultMessage {
+    text-align: right;
+}

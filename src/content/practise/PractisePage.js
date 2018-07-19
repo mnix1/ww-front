@@ -3,16 +3,25 @@ import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import TileGroup from "../../component/tile-group/TileGroup";
-import {CATEGORY_CHOOSE_LABEL, TILE_LABELS} from "../../lang";
-import {answerIdChanged, categoryChanged} from "../../redux/reducer/rival";
+import {CATEGORY_CHOOSE_LABEL, CORRECT_ANSWER, PLAY_AGAIN, TILE_LABELS, WRONG_ANSWER} from "../../lang";
+import {answerIdChanged, categoryChanged, cleared} from "../../redux/reducer/rival";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
 import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
 import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
 import Rival from "../../component/rival/Rival";
-import PractiseRivalStartFetch from "./fetch/PractiseRivalStartFetch";
-import PractiseRivalEndFetch from "./fetch/PractiseRivalEndFetch";
+import PractiseRivalStartFetch, {clearPractiseRivalStartFetch} from "./fetch/PractiseRivalStartFetch";
+import PractiseRivalEndFetch, {clearPractiseRivalEndFetch} from "./fetch/PractiseRivalEndFetch";
+import {randomHero} from "../../util/media/HeroHelper";
+import {idChanged} from "../../redux/reducer/content";
+import {TILE_APP_TRAINING} from "../../component/tile/tileAppHelper";
 
 class PractisePage extends React.PureComponent {
+
+    randomHero = randomHero();
+
+    componentDidUpdate() {
+
+    }
 
     renderContentTiles(tiles) {
         const {contentHeight, contentWidth, isSmall} = this.props.screen;
@@ -37,7 +46,7 @@ class PractisePage extends React.PureComponent {
         if (category === undefined) {
             return this.renderChooseCategory();
         }
-        return this.renderRivalStart();
+        return this.renderRival();
     }
 
     renderChooseCategory() {
@@ -48,24 +57,49 @@ class PractisePage extends React.PureComponent {
         </div>;
     }
 
-    renderRivalStart() {
+    renderRival() {
         const {rivalStart, rivalEnd, answerId, onAnswer} = this.props;
-        return <Rival
-            pending={_.get(rivalStart, 'pending')}
-            rejected={_.get(rivalStart, 'rejected')}
-            fulfilled={_.get(rivalStart, 'fulfilled')}
-            question={_.get(rivalStart, 'value.practise.question')}
-            answers={_.get(rivalStart, 'value.practise.question.answers')}
-            correctAnswerId={_.get(rivalEnd, 'value.correctAnswerId')}
-            answerId={answerId}
-            onAnswer={onAnswer}/>
+        const correctAnswerId = _.get(rivalEnd, 'value.correctAnswerId');
+        return <div>
+            {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
+            <Rival key='rival'
+                   pending={_.get(rivalStart, 'pending')}
+                   rejected={_.get(rivalStart, 'rejected')}
+                   fulfilled={_.get(rivalStart, 'fulfilled')}
+                   question={_.get(rivalStart, 'value.practise.question')}
+                   answers={_.get(rivalStart, 'value.practise.question.answers')}
+                   correctAnswerId={_.get(rivalEnd, 'value.correctAnswerId')}
+                   answerId={answerId}
+                   onAnswer={onAnswer}/>
+        </div>
+    }
+
+    renderResult() {
+        const {answerId, rivalEnd} = this.props;
+        const correctAnswerId = _.get(rivalEnd, 'value.correctAnswerId');
+        if (!correctAnswerId) {
+            return null;
+        }
+        const resultMessage = correctAnswerId === answerId ? CORRECT_ANSWER[window.activeLang] : WRONG_ANSWER[window.activeLang];
+        return <div key='result' className={styles.contentHeader}>
+            <span className={styles.resultMessage}>{resultMessage}</span>
+        </div>;
+    }
+
+    renderPlayAgain() {
+        const {onPlayAgain} = this.props;
+        const style = {cursor: 'pointer', marginRight: 4};
+        return <div key='playAgain' className={`${styles.contentHeader} ${styles.playAgain}`}>
+            <div><span onClick={onPlayAgain} style={style}>{PLAY_AGAIN[window.activeLang]}</span></div>
+            <img onClick={onPlayAgain} src={this.randomHero} style={style} height={80}/>
+        </div>;
     }
 
     render() {
         const {category, answerId, rivalStart} = this.props;
         return <div>
             {this.renderContent()}
-            <PractiseRivalStartFetch category={category}/>
+            <PractiseRivalStartFetch category={category} rivalStart={rivalStart}/>
             <PractiseRivalEndFetch answerId={answerId} rivalStart={rivalStart}/>
         </div>
     }
@@ -82,5 +116,10 @@ export default connect(
     (dispatch) => ({
         onCategoryChange: (id) => dispatch(categoryChanged(id)),
         onAnswer: (id) => dispatch(answerIdChanged(id)),
+        onPlayAgain: () => {
+            dispatch(answerIdChanged(undefined));
+            clearPractiseRivalStartFetch(dispatch);
+            clearPractiseRivalEndFetch(dispatch);
+        }
     })
 )(PractisePage);

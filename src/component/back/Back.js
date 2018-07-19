@@ -20,7 +20,7 @@ export default connect(
     (dispatch) => ({
         onClick: () => {
             dispatch(idChanged(undefined));
-            dispatch(cleared(undefined));
+            dispatch(cleared());
         }
     })
 )(Back);

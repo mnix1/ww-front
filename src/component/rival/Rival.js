@@ -11,6 +11,7 @@ import {tileFontSize} from "../tile/tileHelper";
 import TileGroup from "../tile-group/TileGroup";
 import {wordsByLength} from "../../util/textHelper";
 import PropTypes from "prop-types";
+import {CREAME_COLOR} from "../../util/style/constant";
 
 class Rival extends React.PureComponent {
 
@@ -45,18 +46,25 @@ class Rival extends React.PureComponent {
 
     prepareAnswerTiles() {
         const {isSmall} = this.props.screen;
-        const {answers} = this.props;
-        return answers.map((ans, i) => ({
-            id: ans.id,
-            label: wordsByLength(getContent(ans), isSmall ? 18 : 20),
-            a: isSmall ? 80 : 100,
-            h: isSmall ? 60 : 80,
-            w: isSmall ? 90 : 140,
-            material: this.prepareAnswerMaterial(ans.id),
-            fontSize: tileFontSize(isSmall, 0.8),
-            yTarget: 1 / 3,
-            xTarget: (2 * i / (answers.length - 1) - 1) / 2
-        }));
+        const {answers, answerId} = this.props;
+        const w = isSmall ? 90 : 140;
+        const h = isSmall ? 60 : 80;
+        return answers.map((ans, i) => {
+            const isUserAnswer = answerId === ans.id;
+            return {
+                id: ans.id,
+                label: wordsByLength(getContent(ans), isSmall ? 18 : 20),
+                a: isSmall ? 80 : 100,
+                h,
+                w,
+                material: this.prepareAnswerMaterial(ans.id),
+                fontSize: tileFontSize(isSmall, 0.8),
+                yTarget: 1 / 3,
+                xTarget: (2 * i / (answers.length - 1) - 1) / 2,
+                strokeWidthFactor: isUserAnswer ? 3 : undefined,
+                strokeFill: isUserAnswer ? CREAME_COLOR : undefined,
+            }
+        });
     }
 
     prepareAnswerMaterial(id) {

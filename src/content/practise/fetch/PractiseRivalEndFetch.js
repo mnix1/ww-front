@@ -13,7 +13,7 @@ class PractiseRivalEndFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        this.props.dispatch({type: CLEAR, resource: {name: 'practiseRivalEnd'}});
+        clearPractiseRivalEndFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
@@ -27,6 +27,10 @@ class PractiseRivalEndFetch extends React.PureComponent {
     render() {
         return null;
     }
+}
+
+export function clearPractiseRivalEndFetch(dispatch){
+    dispatch({type: CLEAR, resource: {name: 'practiseRivalEnd'}});
 }
 
 export default connect([{

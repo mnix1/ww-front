@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import * as d3 from "d3";
 import _ from 'lodash';
+import {CREAME_COLOR} from "../../util/style/constant";
 
 export default class TileGroup extends React.PureComponent {
 
@@ -44,6 +45,7 @@ export default class TileGroup extends React.PureComponent {
         const {defaultFontSize} = this.props;
         return tiles.map(e => ({
             ...e,
+            strokeWidthFactor: _.defaultTo(e.strokeWidthFactor, 1),
             fontSize: _.defaultTo(e.fontSize, defaultFontSize),
             x: this.centerWidth,
             y: this.centerHeight
@@ -69,6 +71,10 @@ export default class TileGroup extends React.PureComponent {
         return this.props.height / 2;
     }
 
+    static prepareStroke(d){
+        return d.strokeFill ? d.strokeFill : (d.material.isDark ? d3.rgb(d.material.background).darker() : d3.rgb(d.material.background).brighter());
+    }
+
     draw(data = this.state.data) {
         const {onClick, forceXYStrength, forceCollideStrengthFactor} = this.props;
         this.view = d3.select(`#${this.containerId}`).append('g');
@@ -77,17 +83,18 @@ export default class TileGroup extends React.PureComponent {
             .data(data)
             .enter()
             .append('g')
-            .style('stroke', d => d.material.isDark ? d3.rgb(d.material.background).darker() : d3.rgb(d.material.background).brighter())
-            .style('stroke-width', 1)
+            .attr('class', 'node')
+            .style('stroke', TileGroup.prepareStroke)
+            .style('stroke-width', d => d.strokeWidthFactor * 1)
             .style('cursor', 'pointer')
             .on('click', function (d) {
                 onClick(d.id);
             })
             .on('mouseover', function (d) {
-                d3.select(this).style('stroke-width', 2)
+                d3.select(this).style('stroke-width', d.strokeWidthFactor * 2).style('stroke', CREAME_COLOR);
             })
             .on('mouseout', function (d) {
-                d3.select(this).style('stroke-width', 1)
+                d3.select(this).style('stroke-width', d.strokeWidthFactor * 1).style('stroke', TileGroup.prepareStroke)
             });
         this.tiles = this.nodes
             .append('rect')
@@ -99,6 +106,7 @@ export default class TileGroup extends React.PureComponent {
             .attr('ry', 8)
             .style('fill', d => d.material.background);
         this.drawNodesText();
+        this.drawAdditional();
         this.simulation = d3.forceSimulation()
             .force('x', d3.forceX().strength(forceXYStrength).x(d => this.centerWidth + d.xTarget * this.centerWidth))
             .force('y', d3.forceY().strength(forceXYStrength).y(d => this.centerHeight + d.yTarget * this.centerHeight))
@@ -106,6 +114,33 @@ export default class TileGroup extends React.PureComponent {
             .on('tick', this.onTick);
         this.simulation.stop();
         this.restartAnimation();
+    }
+
+    drawAdditional() {
+        this.view.selectAll('.node').each(function (d) {
+            if (!d.additionalContent && !d.additionalLabel) {
+                return;
+            }
+            const el = d3.select(this);
+            if (d.additionalImage) {
+                el.append('image')
+                    .attr('xlink:href', d.additionalContent)
+                    .attr('x', -_.defaultTo(d.w, d.a) / 2)
+                    .attr('y', _.defaultTo(d.h, d.a) / 3)
+                    .attr('width', _.defaultTo(d.w, d.a))
+                    .attr('height', _.defaultTo(d.h, d.a));
+            }
+            if (d.additionalLabel) {
+                el.append('text')
+                    .attr('y', -_.defaultTo(d.h, d.a) / 2 - 8)
+                    .style('text-anchor', 'middle')
+                    .style('font-size', d.fontSize + 10)
+                    .style('fill', d => d.material.isDark ? d3.rgb(d.material.color).brighter() : d3.rgb(d.material.color).darker())
+                    .style('stroke', d => d.material.color)
+                    .style('stroke-width', 0.4)
+                    .text(d.additionalLabel);
+            }
+        });
     }
 
     drawNodesText() {
@@ -160,11 +195,11 @@ export default class TileGroup extends React.PureComponent {
     }
 
     onTick = () => {
-        if(this.props.addRandomMoving){
+        if (this.props.addRandomMoving) {
             const alpha = this.simulation.alpha();
             const sin = Math.sin(alpha * 2 * Math.PI);
             const cos = Math.cos(alpha * 6 * Math.PI);
-            this.nodes.attr('transform', d => `translate(${d.x  + d.y / 10* sin + d.x / 40 * cos},${d.y + sin * sin * d.x / 40})`);
+            this.nodes.attr('transform', d => `translate(${d.x + d.y / 10 * sin + d.x / 40 * cos},${d.y + sin * sin * d.x / 40})`);
         } else {
             this.nodes.attr('transform', d => `translate(${d.x},${d.y })`);
         }

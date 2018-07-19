@@ -13,13 +13,12 @@ class PractiseRivalStartFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        this.props.dispatch({type: CLEAR, resource: {name: 'practiseRivalStart'}});
+        clearPractiseRivalStartFetch(this.props.dispatch);
     }
 
-
     maybeFetch(prevProps) {
-        const {category, dispatchPractiseRivalStartGet} = this.props;
-        if (category !== undefined && prevProps.category !== category) {
+        const {category, rivalStart, dispatchPractiseRivalStartGet} = this.props;
+        if (category !== undefined && (prevProps.category !== category || !rivalStart)) {
             dispatchPractiseRivalStartGet(category);
         }
     }
@@ -27,6 +26,10 @@ class PractiseRivalStartFetch extends React.PureComponent {
     render() {
         return null;
     }
+}
+
+export function clearPractiseRivalStartFetch(dispatch){
+    dispatch({type: CLEAR, resource: {name: 'practiseRivalStart'}});
 }
 
 export default connect([{

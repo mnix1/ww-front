@@ -29,6 +29,21 @@ export const CATEGORY_CHOOSE_LABEL = {
     [ENGLISH]: 'Choose category',
 };
 
+export const PLAY_AGAIN = {
+    [POLISH]: 'Zagraj ponownie',
+    [ENGLISH]: 'Play again',
+};
+
+export const CORRECT_ANSWER = {
+    [POLISH]: 'Gratulacje! Poprawna odpowiedź',
+    [ENGLISH]: 'Congratulations! Correct answer',
+};
+
+export const WRONG_ANSWER = {
+    [POLISH]: 'Niestety, błędna odpowiedź...',
+    [ENGLISH]: 'Unfortunately, the wrong answer ...',
+};
+
 export const TILE_LABELS = {
     [POLISH]: {
         [TILE_APP_BATTLE]: 'Bitwa',
