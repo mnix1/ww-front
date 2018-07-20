@@ -27,8 +27,6 @@ class Rival extends React.PureComponent {
         onAnswer: PropTypes.func,
     };
 
-    questionMaterial = randomTileMaterial();
-
     prepareQuestionTile() {
         const {isSmall} = this.props.screen;
         const {question} = this.props;
@@ -37,11 +35,19 @@ class Rival extends React.PureComponent {
             a: isSmall ? 100 : 200,
             h: isSmall ? 80 : 100,
             w: isSmall ? 280 : 350,
-            material: this.questionMaterial,
+            material: this.prepareQuestionMaterial(),
             fontSize: tileFontSize(isSmall),
             yTarget: -1 / 3,
             xTarget: 0
         };
+    }
+
+    prepareQuestionMaterial() {
+        const {answerId} = this.props;
+        if (!answerId) {
+            this.questionMaterial = randomTileMaterial();
+        }
+        return this.questionMaterial;
     }
 
     prepareAnswerTiles() {
