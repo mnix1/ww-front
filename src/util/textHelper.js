@@ -2,7 +2,7 @@ import _ from 'lodash';
 
 export function wordsByLength(string, maxLength) {
     const result = [];
-    const words = _.words(string, /[^, ]+/g);
+    const words = _.words(string, /[^ ]+/g);
     if (_.isEmpty(words)) {
         return result;
     }
