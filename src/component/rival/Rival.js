@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getContent} from "../../lang";
 import styles from './styles.css';
+import _ from 'lodash';
 import {
     CORRECT_ANSWER_TILE_MATERIAL,
     randomTileMaterial,
@@ -12,6 +13,7 @@ import TileGroup from "../tile-group/TileGroup";
 import {wordsByLength} from "../../util/textHelper";
 import PropTypes from "prop-types";
 import {CREAME_COLOR} from "../../util/style/constant";
+import {getImageFromContent, getTextFromContent, TEXT_TASK_RENDERER} from "../../util/taskRenderer";
 
 class Rival extends React.PureComponent {
 
@@ -27,27 +29,62 @@ class Rival extends React.PureComponent {
         onAnswer: PropTypes.func,
     };
 
-    prepareQuestionTile() {
+    questionMaterial = randomTileMaterial();
+
+    prepareQuestionTiles() {
+        return [this.prepareQuestionTextTile(), this.prepareQuestionImageTile()].filter(e => !_.isNil(e));
+    }
+
+    prepareQuestionTextTile() {
         const {isSmall} = this.props.screen;
         const {question} = this.props;
+        const content = getContent(question);
         return {
-            label: wordsByLength(getContent(question), 40),
+            id: 'questionText',
+            label: wordsByLength(getTextFromContent(content, question.taskRenderer), 40),
             a: isSmall ? 100 : 200,
             h: isSmall ? 80 : 100,
             w: isSmall ? 280 : 350,
-            material: this.prepareQuestionMaterial(),
+            material: this.questionMaterial,
             fontSize: tileFontSize(isSmall),
-            yTarget: -1 / 3,
+            yTarget: isSmall ? -2 / 7 : -1 / 3 - 1 / 10,
             xTarget: 0
         };
     }
 
-    prepareQuestionMaterial() {
-        const {answerId} = this.props;
-        if (!answerId) {
-            this.questionMaterial = randomTileMaterial();
+    prepareQuestionImageTile() {
+        const {question} = this.props;
+        if (question.taskRenderer === TEXT_TASK_RENDERER) {
+            return null;
         }
-        return this.questionMaterial;
+        const {isSmall} = this.props.screen;
+        const content = getContent(question);
+        const imageData = getImageFromContent(content, question.taskRenderer);
+        const a = isSmall ? 100 : 100;
+        return {
+            id: 'questionImage',
+            strokeWidthFactor: 0,
+            imageCreator: (el) => {
+                const image = new Image();
+                image.src = 'data:image/svg+xml;base64, ' + imageData;
+                image.onload = () => {
+                    el.append('image')
+                        .attr('xlink:href', 'data:image/svg+xml;base64, ' + imageData)
+                        .attr('transform', () => {
+                            const scale = Math.min(a / image.width, a / image.height);
+                            const newWidth = scale * image.width;
+                            const newHeight = scale * image.height;
+                            return `translate(${-newWidth / 2},${-newHeight / 2})scale(${scale})`;
+                        })
+                };
+            },
+            a,
+            w: 0,
+            h: 0,
+            material: this.questionMaterial,
+            yTarget: isSmall ? -1 / 7 : -1 / 3,
+            xTarget: 0
+        };
     }
 
     prepareAnswerTiles() {
@@ -65,7 +102,7 @@ class Rival extends React.PureComponent {
                 w,
                 material: this.prepareAnswerMaterial(ans.id),
                 fontSize: tileFontSize(isSmall, 0.8),
-                yTarget: 1 / 3,
+                yTarget: isSmall ? 1 / 3 : 1 / 3,
                 xTarget: (2 * i / (answers.length - 1) - 1) / 2,
                 strokeWidthFactor: isUserAnswer ? 3 : undefined,
                 strokeFill: isUserAnswer ? CREAME_COLOR : undefined,
@@ -90,7 +127,7 @@ class Rival extends React.PureComponent {
             onClick={(id) => id && !answerId && onAnswer(id)}
             width={contentWidth}
             height={contentHeight}
-            tiles={[this.prepareQuestionTile()].concat(this.prepareAnswerTiles())}/>
+            tiles={this.prepareQuestionTiles().concat(this.prepareAnswerTiles())}/>
     }
 
     render() {

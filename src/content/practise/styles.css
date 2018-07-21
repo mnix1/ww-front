@@ -9,6 +9,9 @@
 
 :local .playAgain {
     text-align: right;
+    bottom: 10vh;
+    right: 1vw;
+    width: auto;
 }
 
 :local .resultMessage {

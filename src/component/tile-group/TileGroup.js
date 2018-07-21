@@ -118,17 +118,12 @@ export default class TileGroup extends React.PureComponent {
 
     drawAdditional() {
         this.view.selectAll('.node').each(function (d) {
-            if (!d.additionalContent && !d.additionalLabel) {
+            if (!d.imageCreator && !d.additionalLabel) {
                 return;
             }
             const el = d3.select(this);
-            if (d.additionalImage) {
-                el.append('image')
-                    .attr('xlink:href', d.additionalContent)
-                    .attr('x', -_.defaultTo(d.w, d.a) / 2)
-                    .attr('y', _.defaultTo(d.h, d.a) / 3)
-                    .attr('width', _.defaultTo(d.w, d.a))
-                    .attr('height', _.defaultTo(d.h, d.a));
+            if (d.imageCreator) {
+                d.imageCreator(el, d);
             }
             if (d.additionalLabel) {
                 el.append('text')

@@ -16,10 +16,10 @@ class TopBar extends React.PureComponent {
             <div className={styles.topBarContent} style={{width: contentWidth}}>
                 <div className={styles.topBarContentValue} style={{fontSize: isSmall ? 24 : 48}}>{APP_NAME[window.activeLang]}</div>
                 <img src={robo} height={isSmall ? 80 : 140}/>
-                <img src={szeryf} height={isSmall ? 80 : 140}/>
-                <img src={kitek} height={isSmall ? 80 : 140}/>
-                <img src={zarowa} height={isSmall ? 80 : 140}/>
-                <img src={rumcia} height={isSmall ? 70 : 120}/>
+                {/*<img src={szeryf} height={isSmall ? 80 : 140}/>*/}
+                {/*<img src={kitek} height={isSmall ? 80 : 140}/>*/}
+                {/*<img src={zarowa} height={isSmall ? 80 : 140}/>*/}
+                {/*<img src={rumcia} height={isSmall ? 70 : 120}/>*/}
             </div>
         </div>
     }

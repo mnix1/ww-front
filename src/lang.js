@@ -5,6 +5,7 @@ import {
     TILE_CATEGORY_MATH,
     TILE_CATEGORY_MEMORY, TILE_CATEGORY_MUSIC, TILE_CATEGORY_RANDOM
 } from "./component/tile/tileCategoryHelper";
+import {TEXT_IMAGE_TASK_RENDERER} from "./util/taskRenderer";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
