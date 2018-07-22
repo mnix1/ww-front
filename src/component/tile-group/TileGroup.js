@@ -71,8 +71,10 @@ export default class TileGroup extends React.PureComponent {
         return this.props.height / 2;
     }
 
-    static prepareStroke(d){
-        return d.strokeFill ? d.strokeFill : (d.material.isDark ? d3.rgb(d.material.background).darker() : d3.rgb(d.material.background).brighter());
+    static prepareStroke(d) {
+        return d.strokeFill
+            ? d.strokeFill
+            : (d.material.isDark ? d3.rgb(d.material.background).darker() : (d.material.isBright ? d3.rgb(d.material.background).darker() : d.material.background));
     }
 
     draw(data = this.state.data) {
@@ -91,9 +93,15 @@ export default class TileGroup extends React.PureComponent {
                 onClick(d.id);
             })
             .on('mouseover', function (d) {
+                if(d.customMouseOver){
+                    return d.customMouseOver();
+                }
                 d3.select(this).style('stroke-width', d.strokeWidthFactor * 2).style('stroke', CREAME_COLOR);
             })
             .on('mouseout', function (d) {
+                if(d.customMouseOut){
+                    return d.customMouseOver();
+                }
                 d3.select(this).style('stroke-width', d.strokeWidthFactor * 1).style('stroke', TileGroup.prepareStroke)
             });
         this.tiles = this.nodes
@@ -118,22 +126,22 @@ export default class TileGroup extends React.PureComponent {
 
     drawAdditional() {
         this.view.selectAll('.node').each(function (d) {
-            if (!d.imageCreator && !d.additionalLabel) {
+            if (!d.imageCreator && !d.outsideLabel) {
                 return;
             }
             const el = d3.select(this);
             if (d.imageCreator) {
                 d.imageCreator(el, d);
             }
-            if (d.additionalLabel) {
+            if (d.outsideLabel) {
                 el.append('text')
                     .attr('y', -_.defaultTo(d.h, d.a) / 2 - 8)
                     .style('text-anchor', 'middle')
                     .style('font-size', d.fontSize + 10)
-                    .style('fill', d => d.material.isDark ? d3.rgb(d.material.color).brighter() : d3.rgb(d.material.color).darker())
+                    .style('fill', d => d.material.isDark ? d3.rgb(d.material.color).brighter() : (d.material.isBright ? d3.rgb(d.material.color).darker() : d.material.color))
                     .style('stroke', d => d.material.color)
                     .style('stroke-width', 0.4)
-                    .text(d.additionalLabel);
+                    .text(d.outsideLabel);
             }
         });
     }
@@ -194,7 +202,7 @@ export default class TileGroup extends React.PureComponent {
             const alpha = this.simulation.alpha();
             const sin = Math.sin(alpha * 2 * Math.PI);
             const cos = Math.cos(alpha * 6 * Math.PI);
-            this.nodes.attr('transform', d => `translate(${d.x + d.y / 10 * sin + d.x / 40 * cos},${d.y + sin * sin * d.x / 40})`);
+            this.nodes.attr('transform', d => `translate(${d.x + d.y / 10 * sin + d.x / 10 * cos},${d.y + sin * sin * d.x / 10})`);
         } else {
             this.nodes.attr('transform', d => `translate(${d.x},${d.y })`);
         }

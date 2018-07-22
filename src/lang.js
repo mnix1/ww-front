@@ -25,6 +25,21 @@ export const PLAY_AGAIN = {
     [ENGLISH]: 'Play again',
 };
 
+export const QUESTION = {
+    [POLISH]: 'Oto pytanie:',
+    [ENGLISH]: "That\'s the question",
+};
+
+export const MEMORY_TIP_1 = {
+    [POLISH]: 'Zapamiętaj szczegóły obiektów',
+    [ENGLISH]: 'Remember the details of the objects',
+};
+
+export const MEMORY_TIP_2 = {
+    [POLISH]: 'Kliknij na dowolny aby zobaczyć pytanie',
+    [ENGLISH]: 'Click on any to see the question',
+};
+
 export const CORRECT_ANSWER = {
     [POLISH]: 'Gratulacje! Poprawna odpowiedź',
     [ENGLISH]: 'Congratulations! Correct answer',

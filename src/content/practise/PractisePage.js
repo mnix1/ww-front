@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import TileGroup from "../../component/tile-group/TileGroup";
 import {CATEGORY_CHOOSE_LABEL, CORRECT_ANSWER, PLAY_AGAIN, TILE_LABELS, WRONG_ANSWER} from "../../lang";
-import {answerIdChanged, categoryChanged} from "../../redux/reducer/rival";
+import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redux/reducer/rival";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
 import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
 import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
@@ -50,7 +50,7 @@ class PractisePage extends React.PureComponent {
     renderChooseCategory() {
         const {width} = this.props;
         return <div>
-            <div className={styles.contentHeader} style={{width}}>{CATEGORY_CHOOSE_LABEL[window.activeLang]}</div>
+            <div className="contentHeader" style={{width}}>{CATEGORY_CHOOSE_LABEL[window.activeLang]}</div>
             {this.renderContentTiles(TILES_CATEGORY)}
         </div>;
     }
@@ -79,7 +79,7 @@ class PractisePage extends React.PureComponent {
             return null;
         }
         const resultMessage = correctAnswerId === answerId ? CORRECT_ANSWER[window.activeLang] : WRONG_ANSWER[window.activeLang];
-        return <div key='result' className={styles.contentHeader}>
+        return <div key='result' className="contentHeader">
             <span className={styles.resultMessage}>{resultMessage}</span>
         </div>;
     }
@@ -87,7 +87,7 @@ class PractisePage extends React.PureComponent {
     renderPlayAgain() {
         const {onPlayAgain} = this.props;
         const style = {cursor: 'pointer', marginRight: 4};
-        return <div key='playAgain' className={`${styles.contentHeader} ${styles.playAgain}`}>
+        return <div key='playAgain' className={`contentHeader ${styles.playAgain}`}>
             <div><span onClick={onPlayAgain} style={style}>{PLAY_AGAIN[window.activeLang]}</span></div>
             <img onClick={onPlayAgain} src={this.randomHero} style={style} height={80}/>
         </div>;
@@ -116,6 +116,7 @@ export default connect(
         onAnswer: (id) => dispatch(answerIdChanged(id)),
         onPlayAgain: () => {
             dispatch(answerIdChanged(undefined));
+            dispatch(skipAnimationChanged(false));
             clearPractiseRivalStartFetch(dispatch);
             clearPractiseRivalEndFetch(dispatch);
         }

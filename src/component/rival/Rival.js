@@ -1,18 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import styles from './styles.css';
-import _ from 'lodash';
-import {
-    CORRECT_ANSWER_TILE_MATERIAL,
-    randomTileMaterial,
-    WRONG_ANSWER_TILE_MATERIAL,
-} from "../tile/tileMaterialHelper";
-import {tileFontSize} from "../tile/tileHelper";
+import {randomTileMaterial,} from "../tile/tileMaterialHelper";
 import TileGroup from "../tile-group/TileGroup";
-import {wordsByLength} from "../../util/textHelper";
 import PropTypes from "prop-types";
-import {CREAME_COLOR} from "../../util/style/constant";
-import {getImageContent, getTextContent, TEXT_IMAGE_TASK_RENDERER, TEXT_TASK_RENDERER} from "../../util/taskRenderer";
+import {prepareAnimationTiles, prepareAnswerTiles, prepareQuestionTiles} from "./rivalTiles";
+import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
+import {skipAnimationChanged} from "../../redux/reducer/rival";
+import {MEMORY_TIP_1, MEMORY_TIP_2, QUESTION} from "../../lang";
 
 class Rival extends React.PureComponent {
 
@@ -26,106 +21,56 @@ class Rival extends React.PureComponent {
         answerId: PropTypes.number,
         correctAnswerId: PropTypes.number,
         onAnswer: PropTypes.func,
+        skipAnimation: PropTypes.bool,
+        onSkipAnimationChange: PropTypes.func,
     };
 
     questionMaterial = randomTileMaterial();
 
-    prepareQuestionTiles() {
-        return [this.prepareQuestionTextTile(), this.prepareQuestionImageTile()].filter(e => !_.isNil(e));
+    renderTask() {
+        const {contentHeight, contentWidth} = this.props.screen;
+        const {onAnswer, correctAnswerId, answerId} = this.props;
+        return <div>
+            {!answerId && <div className="contentHeader">{QUESTION[window.activeLang]}</div>}
+            <TileGroup
+                id={'task' + correctAnswerId}
+                forceXYStrength={0.1}
+                onClick={(id) => id && !answerId && onAnswer(id)}
+                width={contentWidth}
+                height={contentHeight}
+                tiles={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}/>
+        </div>
     }
 
-    prepareQuestionTextTile() {
-        const {isSmall} = this.props.screen;
-        const {question} = this.props;
-        const textContent = getTextContent(question);
-        return {
-            id: 'questionText',
-            label: wordsByLength(textContent, 40),
-            a: isSmall ? 100 : 200,
-            h: isSmall ? 80 : 100,
-            w: isSmall ? 280 : 350,
-            material: this.questionMaterial,
-            fontSize: tileFontSize(isSmall),
-            yTarget: isSmall ? -2 / 7 : -1 / 3 - 1 / 10,
-            xTarget: 0
-        };
+    renderAnimation() {
+        const {contentHeight, contentWidth} = this.props.screen;
+        const {onSkipAnimationChange} = this.props;
+        return <div>
+            <div className="contentHeader">
+                {MEMORY_TIP_1[window.activeLang]}
+                <br/>
+                {MEMORY_TIP_2[window.activeLang]}
+            </div>
+            <TileGroup
+                id={'animation'}
+                onClick={() => onSkipAnimationChange(true)}
+                forceCollideStrengthFactor={0.76}
+                width={contentWidth}
+                height={contentHeight}
+                tiles={prepareAnimationTiles(this)}/>
+        </div>
     }
 
-    prepareQuestionImageTile() {
-        const {question} = this.props;
-        if (question.taskRenderer !== TEXT_IMAGE_TASK_RENDERER) {
-            return null;
-        }
-        const {isSmall} = this.props.screen;
-        const imageData = getImageContent(question);
-        const a = isSmall ? 100 : 100;
-        return {
-            id: 'questionImage',
-            strokeWidthFactor: 0,
-            imageCreator: (el) => {
-                const image = new Image();
-                image.src = 'data:image/svg+xml;base64, ' + imageData;
-                image.onload = () => {
-                    el.append('image')
-                        .attr('xlink:href', 'data:image/svg+xml;base64, ' + imageData)
-                        .attr('transform', () => {
-                            const scale = Math.min(a / image.width, a / image.height);
-                            const newWidth = scale * image.width;
-                            const newHeight = scale * image.height;
-                            return `translate(${-newWidth / 2},${-newHeight / 2})scale(${scale})`;
-                        })
-                };
-            },
-            a,
-            w: 0,
-            h: 0,
-            material: this.questionMaterial,
-            yTarget: isSmall ? -1 / 7 : -1 / 3,
-            xTarget: 0
-        };
-    }
-
-    prepareAnswerTiles() {
-        const {isSmall} = this.props.screen;
-        const {answers, answerId} = this.props;
-        const w = isSmall ? 90 : 140;
-        const h = isSmall ? 60 : 80;
-        return answers.map((ans, i) => {
-            const isUserAnswer = answerId === ans.id;
-            return {
-                id: ans.id,
-                label: wordsByLength(getTextContent(ans), isSmall ? 18 : 20),
-                a: isSmall ? 80 : 100,
-                h,
-                w,
-                material: this.prepareAnswerMaterial(ans.id),
-                fontSize: tileFontSize(isSmall, 0.8),
-                yTarget: isSmall ? 1 / 3 : 1 / 3,
-                xTarget: (2 * i / (answers.length - 1) - 1) / 2,
-                strokeWidthFactor: isUserAnswer ? 3 : undefined,
-                strokeFill: isUserAnswer ? CREAME_COLOR : undefined,
-            }
-        });
-    }
-
-    prepareAnswerMaterial(id) {
-        const {correctAnswerId} = this.props;
-        if (correctAnswerId === undefined) {
-            return randomTileMaterial();
-        }
-        return correctAnswerId === id ? CORRECT_ANSWER_TILE_MATERIAL : WRONG_ANSWER_TILE_MATERIAL;
+    shouldShowAnimation() {
+        const {question, skipAnimation} = this.props;
+        return question.taskRenderer === TEXT_ANIMATION_TASK_RENDERER && !skipAnimation;
     }
 
     renderContent() {
-        const {contentHeight, contentWidth} = this.props.screen;
-        const {onAnswer, correctAnswerId, answerId} = this.props;
-        return <TileGroup
-            id={'rival' + correctAnswerId}
-            forceXYStrength={0.1}
-            onClick={(id) => id && !answerId && onAnswer(id)}
-            width={contentWidth}
-            height={contentHeight}
-            tiles={this.prepareQuestionTiles().concat(this.prepareAnswerTiles())}/>
+        if (this.shouldShowAnimation()) {
+            return this.renderAnimation();
+        }
+        return this.renderTask();
     }
 
     render() {
@@ -147,7 +92,10 @@ class Rival extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        screen: state.screen
+        screen: state.screen,
+        skipAnimation: state.rival.skipAnimation
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onSkipAnimationChange: skipAnimation => dispatch(skipAnimationChanged(skipAnimation))
+    })
 )(Rival);

@@ -9,3 +9,12 @@
     margin: auto auto;
     position: relative;
 }
+
+.contentHeader {
+    position: absolute;
+    text-align: center;
+    color: #fffdf1;
+    font-size: large;
+    margin: 4px auto auto;
+    width: 100%;
+}
