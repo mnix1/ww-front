@@ -2,11 +2,11 @@ import React from 'react';
 import styles from './styles.css';
 import {connect} from 'react-redux';
 import {APP_NAME} from "../../lang";
-import robo from '../../media/image/robo.svg';
-import szeryf from '../../media/image/szeryf.svg';
-import kitek from '../../media/image/kitek.svg';
-import rumcia from '../../media/image/rumcia.svg';
-import zarowa from '../../media/image/zarowa.svg';
+import robo from '../../media/image/heroes/robo.svg';
+import szeryf from '../../media/image/heroes/szeryf.svg';
+import kitek from '../../media/image/heroes/kitek.svg';
+import rumcia from '../../media/image/heroes/rumcia.svg';
+import zarowa from '../../media/image/heroes/zarowa.svg';
 
 class TopBar extends React.PureComponent {
 

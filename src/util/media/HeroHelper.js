@@ -1,9 +1,9 @@
 import _ from 'lodash';
-import kitek from './../../media/image/kitek.svg';
-import robo from './../../media/image/robo.svg';
-import rumcia from './../../media/image/rumcia.svg';
-import szeryf from './../../media/image/szeryf.svg';
-import zarowa from './../../media/image/zarowa.svg';
+import kitek from '../../media/image/heroes/kitek.svg';
+import robo from '../../media/image/heroes/robo.svg';
+import rumcia from '../../media/image/heroes/rumcia.svg';
+import szeryf from '../../media/image/heroes/szeryf.svg';
+import zarowa from '../../media/image/heroes/zarowa.svg';
 
 export const HEROES = {
     'kitek': kitek,

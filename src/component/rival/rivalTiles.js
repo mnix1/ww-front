@@ -33,12 +33,12 @@ export function prepareAnimationTiles(rival) {
     const {isSmall} = rival.props.screen;
     const {question} = rival.props;
     const a = isSmall ? 80 : 100;
-    const w = isSmall ? 90 : 140;
-    const h = isSmall ? 60 : 80;
-    const animationContent = JSON.parse(atob(getAnimationContent(question)));
-    const objects = animationContent.objects;
+    const w = 0;//isSmall ? 90 : 140;
+    const h = 0;//isSmall ? 60 : 80;
+    const objects = JSON.parse(atob(getAnimationContent(question)));
     return objects.map((object, i) => {
-        let xTarget = (2 * i / (objects.length - 1) - 1) / 5;
+        let imageData = atob(object.shape);
+        imageData = imageData.replace('svg', `svg fill="${object.backgroundColor}"`);
         return {
             customMouseOver: _.noop,
             customMouseOut: _.noop,
@@ -50,10 +50,22 @@ export function prepareAnimationTiles(rival) {
                 background: object.backgroundColor,
                 color: object.fontColor
             },
-            // strokeFill: object.borderColor,
+            imageCreator: (el) => {
+                const image = new Image();
+                image.src = 'data:image/svg+xml,' + imageData;
+                image.onload = () => {
+                    el.append('image')
+                        .attr('xlink:href', 'data:image/svg+xml,' + imageData)
+                        .attr('transform', () => {
+                            const scale = Math.min(a / image.width, a / image.height);
+                            const newWidth = scale * image.width;
+                            return `translate(${-newWidth / 2},0)scale(${scale})`;
+                        })
+                };
+            },
             fontSize: tileFontSize(isSmall, 2),
             yTarget: (i + 1) % 2 ? -1 / 3 : 1 / 3,
-            xTarget
+            xTarget: (2 * i / (objects.length - 1) - 1) / 5
         };
     })
 }
