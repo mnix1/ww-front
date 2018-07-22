@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getContent} from "../../lang";
 import styles from './styles.css';
 import _ from 'lodash';
 import {
@@ -13,7 +12,7 @@ import TileGroup from "../tile-group/TileGroup";
 import {wordsByLength} from "../../util/textHelper";
 import PropTypes from "prop-types";
 import {CREAME_COLOR} from "../../util/style/constant";
-import {getImageFromContent, getTextFromContent, TEXT_TASK_RENDERER} from "../../util/taskRenderer";
+import {getImageContent, getTextContent, TEXT_IMAGE_TASK_RENDERER, TEXT_TASK_RENDERER} from "../../util/taskRenderer";
 
 class Rival extends React.PureComponent {
 
@@ -38,10 +37,10 @@ class Rival extends React.PureComponent {
     prepareQuestionTextTile() {
         const {isSmall} = this.props.screen;
         const {question} = this.props;
-        const content = getContent(question);
+        const textContent = getTextContent(question);
         return {
             id: 'questionText',
-            label: wordsByLength(getTextFromContent(content, question.taskRenderer), 40),
+            label: wordsByLength(textContent, 40),
             a: isSmall ? 100 : 200,
             h: isSmall ? 80 : 100,
             w: isSmall ? 280 : 350,
@@ -54,12 +53,11 @@ class Rival extends React.PureComponent {
 
     prepareQuestionImageTile() {
         const {question} = this.props;
-        if (question.taskRenderer === TEXT_TASK_RENDERER) {
+        if (question.taskRenderer !== TEXT_IMAGE_TASK_RENDERER) {
             return null;
         }
         const {isSmall} = this.props.screen;
-        const content = getContent(question);
-        const imageData = getImageFromContent(content, question.taskRenderer);
+        const imageData = getImageContent(question);
         const a = isSmall ? 100 : 100;
         return {
             id: 'questionImage',
@@ -96,7 +94,7 @@ class Rival extends React.PureComponent {
             const isUserAnswer = answerId === ans.id;
             return {
                 id: ans.id,
-                label: wordsByLength(getContent(ans), isSmall ? 18 : 20),
+                label: wordsByLength(getTextContent(ans), isSmall ? 18 : 20),
                 a: isSmall ? 80 : 100,
                 h,
                 w,

@@ -10,16 +10,6 @@ import {TEXT_IMAGE_TASK_RENDERER} from "./util/taskRenderer";
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
-export function getContent(obj) {
-    if (window.activeLang === POLISH) {
-        return obj.contentPolish;
-    }
-    if (window.activeLang === ENGLISH) {
-        return obj.contentEnglish;
-    }
-    throw new Error('UNKNOWN LANGUAGE');
-}
-
 export const APP_NAME = {
     [POLISH]: 'Wojna na Wiedzę',
     [ENGLISH]: 'Wisdom War',

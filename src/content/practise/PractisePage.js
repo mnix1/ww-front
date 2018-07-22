@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {connect} from 'react-redux';
 import TileGroup from "../../component/tile-group/TileGroup";
 import {CATEGORY_CHOOSE_LABEL, CORRECT_ANSWER, PLAY_AGAIN, TILE_LABELS, WRONG_ANSWER} from "../../lang";
-import {answerIdChanged, categoryChanged, cleared} from "../../redux/reducer/rival";
+import {answerIdChanged, categoryChanged} from "../../redux/reducer/rival";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
 import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
 import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
@@ -12,8 +12,6 @@ import Rival from "../../component/rival/Rival";
 import PractiseRivalStartFetch, {clearPractiseRivalStartFetch} from "./fetch/PractiseRivalStartFetch";
 import PractiseRivalEndFetch, {clearPractiseRivalEndFetch} from "./fetch/PractiseRivalEndFetch";
 import {randomHero} from "../../util/media/HeroHelper";
-import {idChanged} from "../../redux/reducer/content";
-import {TILE_APP_TRAINING} from "../../component/tile/tileAppHelper";
 
 class PractisePage extends React.PureComponent {
 
