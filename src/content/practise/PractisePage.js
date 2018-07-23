@@ -3,7 +3,14 @@ import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import TileGroup from "../../component/tile-group/TileGroup";
-import {CATEGORY_CHOOSE_LABEL, CORRECT_ANSWER, PLAY_AGAIN, TILE_LABELS, WRONG_ANSWER} from "../../lang";
+import {
+    TIME,
+    CATEGORY_CHOOSE_LABEL,
+    CORRECT_ANSWER,
+    PLAY_AGAIN,
+    TILE_LABELS,
+    WRONG_ANSWER
+} from "../../lang";
 import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redux/reducer/rival";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
 import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
@@ -78,9 +85,13 @@ class PractisePage extends React.PureComponent {
         if (!correctAnswerId) {
             return null;
         }
+        const answerInterval = _.get(rivalEnd, 'value.answerInterval');
+        const answerIntervalMessage = `${TIME[window.activeLang]}${(answerInterval / 1000).toFixed(1)} s`;
         const resultMessage = correctAnswerId === answerId ? CORRECT_ANSWER[window.activeLang] : WRONG_ANSWER[window.activeLang];
         return <div key='result' className="contentHeader">
             <span className={styles.resultMessage}>{resultMessage}</span>
+            <br/>
+            <span className={styles.resultMessage}>{answerIntervalMessage}</span>
         </div>;
     }
 

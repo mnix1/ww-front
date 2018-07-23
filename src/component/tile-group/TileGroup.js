@@ -90,17 +90,20 @@ export default class TileGroup extends React.PureComponent {
             .style('stroke-width', d => d.strokeWidthFactor * 1)
             .style('cursor', 'pointer')
             .on('click', function (d) {
+                if(d.customMouseOver){
+                    return d.customMouseOver(d);
+                }
                 onClick(d.id);
             })
             .on('mouseover', function (d) {
                 if(d.customMouseOver){
-                    return d.customMouseOver();
+                    return d.customMouseOver(d);
                 }
                 d3.select(this).style('stroke-width', d.strokeWidthFactor * 2).style('stroke', CREAME_COLOR);
             })
             .on('mouseout', function (d) {
                 if(d.customMouseOut){
-                    return d.customMouseOver();
+                    return d.customMouseOver(d);
                 }
                 d3.select(this).style('stroke-width', d.strokeWidthFactor * 1).style('stroke', TileGroup.prepareStroke)
             });

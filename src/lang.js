@@ -45,6 +45,11 @@ export const CORRECT_ANSWER = {
     [ENGLISH]: 'Congratulations! Correct answer',
 };
 
+export const TIME = {
+    [POLISH]: 'Czas: ',
+    [ENGLISH]: 'Time: ',
+};
+
 export const WRONG_ANSWER = {
     [POLISH]: 'Niestety, błędna odpowiedź...',
     [ENGLISH]: 'Unfortunately, the wrong answer ...',

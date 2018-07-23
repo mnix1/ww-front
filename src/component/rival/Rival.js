@@ -86,7 +86,6 @@ class Rival extends React.PureComponent {
         if (fulfilled) {
             return <div className={styles.rival}>
                 {this.renderContent()}
-                <Timer work={_.isNil(answerId)}/>
             </div>
         }
         return null;

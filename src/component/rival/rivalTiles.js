@@ -18,6 +18,7 @@ function prepareQuestionTextTile(rival) {
     const textContent = getTextContent(question);
     return {
         id: 'questionText',
+        customMouseClick: _.noop,
         label: wordsByLength(textContent, 40),
         a: isSmall ? 100 : 200,
         h: isSmall ? 80 : 100,
@@ -82,6 +83,7 @@ function prepareQuestionImageTile(rival) {
     const a = isSmall ? 100 : 150;
     return {
         id: 'questionImage',
+        customMouseClick: _.noop,
         strokeWidthFactor: 0,
         imageCreator: (el) => {
             const image = new Image();
