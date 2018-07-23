@@ -90,8 +90,8 @@ export default class TileGroup extends React.PureComponent {
             .style('stroke-width', d => d.strokeWidthFactor * 1)
             .style('cursor', 'pointer')
             .on('click', function (d) {
-                if(d.customMouseOver){
-                    return d.customMouseOver(d);
+                if(d.customMouseClick){
+                    return d.customMouseClick(d);
                 }
                 onClick(d.id);
             })
