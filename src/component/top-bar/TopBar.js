@@ -1,31 +1,39 @@
 import React from 'react';
 import styles from './styles.css';
 import {connect} from 'react-redux';
-import robo from '../../media/image/heroes/robo.svg';
-import szeryf from '../../media/image/heroes/szeryf.svg';
-import kitek from '../../media/image/heroes/kitek.svg';
-import rumcia from '../../media/image/heroes/rumcia.svg';
-import zarowa from '../../media/image/heroes/zarowa.svg';
 import {getText, TEXT_APP_NAME} from "../../lang";
+import robo from '../../media/image/heroes/robo.svg';
+import {Anime} from "../../component/anime/Anime";
 
 class TopBar extends React.PureComponent {
 
     render() {
-        const {contentWidth, isSmall} = this.props.screen;
+        const {screen} = this.props;
+        const {contentWidth, height, contentHeight} = screen;
+        const fontSize = Math.min(contentWidth / 14, height / 14 * 9 / 16);
         return <div className={styles.topBar}>
-            <div className={styles.topBarContent} style={{width: contentWidth}}>
-                <div className={styles.topBarContentValue} style={{fontSize: isSmall ? 24 : 48}}>{getText(TEXT_APP_NAME)}</div>
-                <img src={robo} height={isSmall ? 80 : 140}/>
-                {/*<img src={szeryf} height={isSmall ? 80 : 140}/>*/}
-                {/*<img src={kitek} height={isSmall ? 80 : 140}/>*/}
-                {/*<img src={zarowa} height={isSmall ? 80 : 140}/>*/}
-                {/*<img src={rumcia} height={isSmall ? 70 : 120}/>*/}
+            <div className={styles.topBarContent}>
+                <Anime from={{opacity: 0, fontSize: 0}}
+                       to={{opacity: 1, fontSize}}
+                       config={{duration: 1000}}>
+                    <div className={styles.topBarContentValue}>{getText(TEXT_APP_NAME)}</div>
+                </Anime>
+                <Anime from={{opacity: 0, height: 0}}
+                       to={{opacity: 1, height: height - contentHeight - fontSize * 1.25 - 16}}
+                       config={{duration: 1000, delay: 500}}>
+                    <img src={robo}/>
+                </Anime>
             </div>
-        </div>
+            <div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>
+                S {JSON.stringify(screen)}
+            </div>
+        </div>;
     }
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        screen: state.screen,
+    }),
     (dispatch) => ({})
 )(TopBar);

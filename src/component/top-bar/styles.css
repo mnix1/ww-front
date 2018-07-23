@@ -1,13 +1,6 @@
 :local .topBar {
     padding-top: 4px;
 }
-
-:local .logo {
-    right: 2vw;
-    top: 2vh;
-    position: absolute;
-}
-
 :local .topBarContent {
     box-shadow: 0 0 4px #fffdf1;
     margin: 2px auto;
@@ -15,7 +8,10 @@
     text-align: center;
     display: block;
 }
-
 :local .topBarContentValue {
+    width: 100%;
+    text-align: center;
     font-family: 'Black Ops One', cursive;
+    font-size: 40px;
+    color: #fffdf1;
 }

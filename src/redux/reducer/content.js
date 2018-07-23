@@ -1,7 +1,7 @@
 export const ID_CHANGED = 'content/id/changed';
 
 const initialState = {
-    id: undefined
+    id: undefined,
 };
 
 export default function reducer(state = initialState, action) {

@@ -25,14 +25,14 @@ class PractisePage extends React.PureComponent {
     randomHero = randomHero();
 
     renderContentTiles(tiles) {
-        const {contentHeight, contentWidth, isSmall} = this.props.screen;
+        const {contentHeight, contentWidth, resolution} = this.props.screen;
         const {category, onCategoryChange} = this.props;
         return <TileGroup
             id={category}
             onClick={onCategoryChange}
             width={contentWidth}
             height={contentHeight}
-            defaultFontSize={tileFontSize(isSmall)}
+            defaultFontSize={tileFontSize(resolution)}
             forceCollideStrengthFactor={0.6}
             tiles={tiles.map(e => ({
                 ...e,

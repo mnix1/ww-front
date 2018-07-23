@@ -14,14 +14,14 @@ import {getTileLabel} from "../../lang";
 class App extends React.PureComponent {
 
     renderContentTiles(tiles) {
-        const {contentHeight, contentWidth, isSmall} = this.props.screen;
+        const {contentHeight, contentWidth, resolution} = this.props.screen;
         const {contentId, onContentIdChange} = this.props;
         return <TileGroup
             id={contentId}
             onClick={onContentIdChange}
             width={contentWidth}
             height={contentHeight}
-            defaultFontSize={tileFontSize(isSmall)}
+            defaultFontSize={tileFontSize(resolution)}
             tiles={tiles.map(e => ({
                 ...e,
                 material: e.material || randomTileMaterial(),
@@ -53,7 +53,7 @@ class App extends React.PureComponent {
         const {height, contentWidth} = screen;
         return <div className={styles.app}>
             <div style={{height, width: contentWidth}} className={styles.content}>
-                 <TopBar screen={screen}/>
+                <TopBar/>
                 {this.renderBack()}
                 {this.renderContent()}
             </div>
