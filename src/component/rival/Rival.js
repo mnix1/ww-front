@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import styles from './styles.css';
-import {randomTileMaterial,} from "../tile/tileMaterialHelper";
+import _ from 'lodash';
+import {randomTileMaterial} from "../tile/tileMaterialHelper";
 import TileGroup from "../tile-group/TileGroup";
 import PropTypes from "prop-types";
 import {prepareAnimationTiles, prepareAnswerTiles, prepareQuestionTiles} from "./rivalTiles";
 import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
 import {skipAnimationChanged} from "../../redux/reducer/rival";
 import {MEMORY_TIP_1, MEMORY_TIP_2, QUESTION} from "../../lang";
+import Timer from "../timer/Timer";
 
 class Rival extends React.PureComponent {
 
@@ -74,7 +76,7 @@ class Rival extends React.PureComponent {
     }
 
     render() {
-        const {pending, rejected, fulfilled} = this.props;
+        const {pending, rejected, fulfilled, answerId} = this.props;
         if (pending) {
             return 'LOADING';
         }
@@ -84,6 +86,7 @@ class Rival extends React.PureComponent {
         if (fulfilled) {
             return <div className={styles.rival}>
                 {this.renderContent()}
+                <Timer work={_.isNil(answerId)}/>
             </div>
         }
         return null;

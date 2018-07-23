@@ -1,0 +1,5 @@
+:local .timer {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+}
