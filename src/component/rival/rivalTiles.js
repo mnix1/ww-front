@@ -64,8 +64,10 @@ export function prepareAnimationTiles(rival) {
                 };
             },
             fontSize: tileFontSize(isSmall, 2),
-            yTarget: (i + 1) % 2 ? -1 / 3 : 1 / 3,
-            xTarget: (2 * i / (objects.length - 1) - 1) / 5
+            yTarget: 0,
+            xTarget: (i - 1 / 2) / 3
+            // yTarget: objects.length > 1 ? (i + 1) % 2 ? -1 / 3 : 1 / 3 : 0,
+            // xTarget: objects.length > 1 ? (2 * i / (objects.length - 1) - 1) / 5 : 0
         };
     })
 }

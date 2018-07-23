@@ -26,12 +26,12 @@ export const TILES_CATEGORY = [
         yTarget: -1 / 4,
         material: TILE_MATERIALS[23],
     },
-    {
-        id: TILE_CATEGORY_HISTORY,
-        xTarget: 1 / 4,
-        yTarget: -1 / 4,
-        material: TILE_MATERIALS[49],
-    },
+    // {
+    //     id: TILE_CATEGORY_HISTORY,
+    //     xTarget: 1 / 4,
+    //     yTarget: -1 / 4,
+    //     material: TILE_MATERIALS[49],
+    // },
     {
         id: TILE_CATEGORY_GEOGRAPHY,
         xTarget: -1 / 4,
