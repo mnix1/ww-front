@@ -7,7 +7,7 @@ import {Provider} from 'react-redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
 import App from "./content/app/App";
-import {APP_NAME, POLISH} from "./lang";
+import {APP_NAME, getText, POLISH, TEXT_APP_NAME} from "./lang";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
 
@@ -18,7 +18,7 @@ const store = createStore(
 );
 
 window.activeLang = POLISH;
-document.title = APP_NAME[window.activeLang];
+document.title = getText(TEXT_APP_NAME);
 
 const originalFetch = fetch;
 fetch = function (url, opts) {

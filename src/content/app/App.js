@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles.css';
 import {connect} from 'react-redux';
 import TileGroup from "../../component/tile-group/TileGroup";
-import {TILE_LABELS} from "../../lang";
 import {idChanged} from "../../redux/reducer/content";
 import {TILE_APP_TRAINING, TILES_APP} from "../../component/tile/tileAppHelper";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
@@ -10,6 +9,7 @@ import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
+import {getTileLabel} from "../../lang";
 
 class App extends React.PureComponent {
 
@@ -25,7 +25,7 @@ class App extends React.PureComponent {
             tiles={tiles.map(e => ({
                 ...e,
                 material: e.material || randomTileMaterial(),
-                label: TILE_LABELS[window.activeLang][e.id],
+                label: getTileLabel([e.id]),
                 a: tileDimension(this.props.screen, e.aFactor)
             }))}/>
     }
@@ -53,7 +53,7 @@ class App extends React.PureComponent {
         const {height, contentWidth} = screen;
         return <div className={styles.app}>
             <div style={{height, width: contentWidth}} className={styles.content}>
-                <TopBar screen={screen}/>
+                 <TopBar screen={screen}/>
                 {this.renderBack()}
                 {this.renderContent()}
             </div>

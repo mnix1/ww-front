@@ -3,59 +3,59 @@ import {
     TILE_CATEGORY_GEOGRAPHY,
     TILE_CATEGORY_HISTORY,
     TILE_CATEGORY_MATH,
-    TILE_CATEGORY_MEMORY, TILE_CATEGORY_MUSIC, TILE_CATEGORY_RANDOM
+    TILE_CATEGORY_MEMORY,
+    TILE_CATEGORY_MUSIC,
+    TILE_CATEGORY_RANDOM
 } from "./component/tile/tileCategoryHelper";
-import {TEXT_IMAGE_TASK_RENDERER} from "./util/taskRenderer";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
-export const APP_NAME = {
-    [POLISH]: 'Wojna na Wiedzę',
-    [ENGLISH]: 'Wisdom War',
+export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
+export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
+export const TEXT_QUESTION = 'TEXT_QUESTION';
+export const TEXT_REMEMBER_DETAILS = 'TEXT_REMEMBER_DETAILS';
+export const TEXT_CLICK_ON_ANY = 'TEXT_CLICK_ON_ANY';
+export const TEXT_CORRECT_ANSWER = 'TEXT_CORRECT_ANSWER';
+export const TEXT_TIME = 'TEXT_TIME';
+export const TEXT_WRONG_ANSWER = 'TEXT_WRONG_ANSWER';
+
+export function getText(id) {
+    return TEXTS[window.activeLang][id];
+}
+
+const TEXTS = {
+    [POLISH]: {
+        [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_CHOOSE_CATEGORY]: 'Wybierz kategorię',
+        [TEXT_PLAY_AGAIN]: 'Zagraj ponownie',
+        [TEXT_QUESTION]: 'Oto pytanie:',
+        [TEXT_REMEMBER_DETAILS]: 'Zapamiętaj szczegóły obiektów',
+        [TEXT_CLICK_ON_ANY]: 'Kliknij na dowolny aby zobaczyć pytanie',
+        [TEXT_CORRECT_ANSWER]: 'Gratulacje! Poprawna odpowiedź',
+        [TEXT_TIME]: 'Czas: ',
+        [TEXT_WRONG_ANSWER]: 'Niestety, błędna odpowiedź...',
+
+    },
+    [ENGLISH]: {
+        [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_CHOOSE_CATEGORY]: 'Choose category',
+        [TEXT_PLAY_AGAIN]: 'Play again',
+        [TEXT_QUESTION]: "That's the question:",
+        [TEXT_REMEMBER_DETAILS]: 'Remember the details of the objects',
+        [TEXT_CLICK_ON_ANY]: 'Click on any to see the question',
+        [TEXT_CORRECT_ANSWER]: 'Congratulations! Correct answer',
+        [TEXT_TIME]: 'Time: ',
+        [TEXT_WRONG_ANSWER]: 'Unfortunately, the wrong answer ...',
+    }
 };
 
-export const CATEGORY_CHOOSE_LABEL = {
-    [POLISH]: 'Wybierz kategorię',
-    [ENGLISH]: 'Choose category',
-};
+export function getTileLabel(id) {
+    return TILE_LABELS[window.activeLang][id];
+}
 
-export const PLAY_AGAIN = {
-    [POLISH]: 'Zagraj ponownie',
-    [ENGLISH]: 'Play again',
-};
-
-export const QUESTION = {
-    [POLISH]: 'Oto pytanie:',
-    [ENGLISH]: "That\'s the question",
-};
-
-export const MEMORY_TIP_1 = {
-    [POLISH]: 'Zapamiętaj szczegóły obiektów',
-    [ENGLISH]: 'Remember the details of the objects',
-};
-
-export const MEMORY_TIP_2 = {
-    [POLISH]: 'Kliknij na dowolny aby zobaczyć pytanie',
-    [ENGLISH]: 'Click on any to see the question',
-};
-
-export const CORRECT_ANSWER = {
-    [POLISH]: 'Gratulacje! Poprawna odpowiedź',
-    [ENGLISH]: 'Congratulations! Correct answer',
-};
-
-export const TIME = {
-    [POLISH]: 'Czas: ',
-    [ENGLISH]: 'Time: ',
-};
-
-export const WRONG_ANSWER = {
-    [POLISH]: 'Niestety, błędna odpowiedź...',
-    [ENGLISH]: 'Unfortunately, the wrong answer ...',
-};
-
-export const TILE_LABELS = {
+const TILE_LABELS = {
     [POLISH]: {
         [TILE_APP_BATTLE]: 'Bitwa',
         [TILE_APP_TRAINING]: 'Trening',

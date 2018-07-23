@@ -3,14 +3,6 @@ import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import TileGroup from "../../component/tile-group/TileGroup";
-import {
-    TIME,
-    CATEGORY_CHOOSE_LABEL,
-    CORRECT_ANSWER,
-    PLAY_AGAIN,
-    TILE_LABELS,
-    WRONG_ANSWER
-} from "../../lang";
 import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redux/reducer/rival";
 import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
 import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
@@ -19,14 +11,18 @@ import Rival from "../../component/rival/Rival";
 import PractiseRivalStartFetch, {clearPractiseRivalStartFetch} from "./fetch/PractiseRivalStartFetch";
 import PractiseRivalEndFetch, {clearPractiseRivalEndFetch} from "./fetch/PractiseRivalEndFetch";
 import {randomHero} from "../../util/media/HeroHelper";
+import {
+    getText,
+    getTileLabel,
+    TEXT_CHOOSE_CATEGORY,
+    TEXT_CORRECT_ANSWER, TEXT_PLAY_AGAIN,
+    TEXT_TIME,
+    TEXT_WRONG_ANSWER
+} from "../../lang";
 
 class PractisePage extends React.PureComponent {
 
     randomHero = randomHero();
-
-    componentDidUpdate() {
-
-    }
 
     renderContentTiles(tiles) {
         const {contentHeight, contentWidth, isSmall} = this.props.screen;
@@ -41,7 +37,7 @@ class PractisePage extends React.PureComponent {
             tiles={tiles.map(e => ({
                 ...e,
                 material: e.material || randomTileMaterial(),
-                label: TILE_LABELS[window.activeLang][e.id],
+                label: getTileLabel([e.id]),
                 a: tileDimension(this.props.screen, e.aFactor)
             }))}/>
     }
@@ -57,7 +53,7 @@ class PractisePage extends React.PureComponent {
     renderChooseCategory() {
         const {width} = this.props;
         return <div>
-            <div className="contentHeader" style={{width}}>{CATEGORY_CHOOSE_LABEL[window.activeLang]}</div>
+            <div className="contentHeader" style={{width}}>{getText(TEXT_CHOOSE_CATEGORY)}</div>
             {this.renderContentTiles(TILES_CATEGORY)}
         </div>;
     }
@@ -86,8 +82,8 @@ class PractisePage extends React.PureComponent {
             return null;
         }
         const answerInterval = _.get(rivalEnd, 'value.answerInterval');
-        const answerIntervalMessage = `${TIME[window.activeLang]}${(answerInterval / 1000).toFixed(1)} s`;
-        const resultMessage = correctAnswerId === answerId ? CORRECT_ANSWER[window.activeLang] : WRONG_ANSWER[window.activeLang];
+        const answerIntervalMessage = `${getText(TEXT_TIME)}${(answerInterval / 1000).toFixed(1)} s`;
+        const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
         return <div key='result' className="contentHeader">
             <span className={styles.resultMessage}>{resultMessage}</span>
             <br/>
@@ -99,7 +95,7 @@ class PractisePage extends React.PureComponent {
         const {onPlayAgain} = this.props;
         const style = {cursor: 'pointer', marginRight: 4};
         return <div key='playAgain' className={`contentHeader ${styles.playAgain}`}>
-            <div><span onClick={onPlayAgain} style={style}>{PLAY_AGAIN[window.activeLang]}</span></div>
+            <div><span onClick={onPlayAgain} style={style}>{getText(TEXT_PLAY_AGAIN)}</span></div>
             <img onClick={onPlayAgain} src={this.randomHero} style={style} height={80}/>
         </div>;
     }
