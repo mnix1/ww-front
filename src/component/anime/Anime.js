@@ -50,10 +50,18 @@ export class Anime extends React.PureComponent {
         }
     }
 
-    init() {
+    componentWillUnmount(){
+        this.stop();
+    }
+
+    stop(){
         if (this.anime && !this.anime.completed) {
             this.anime.pause();
         }
+    }
+
+    init() {
+        this.stop();
         this.anime = anime({
             targets: this.target,
             easing: 'linear',

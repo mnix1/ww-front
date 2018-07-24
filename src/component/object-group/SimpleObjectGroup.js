@@ -49,6 +49,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     additionalStyle: {
                         ...o.material,
+                        boxShadow: `0 0 4px #${o.material.isDark ? 'CCC' : '666'}`,
                         lineHeight: `${objectHeight}px`
                     }
                 }

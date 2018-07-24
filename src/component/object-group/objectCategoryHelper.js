@@ -18,7 +18,7 @@ export const OBJECTS_CATEGORY = [
         id: OBJECT_CATEGORY_MUSIC,
         xTarget: 3 / 4,
         yTarget: 1 / 4,
-        material: OBJECT_MATERIALS[61],
+        material: OBJECT_MATERIALS[18],
     },
     {
         id: OBJECT_CATEGORY_MATH,
