@@ -4,19 +4,20 @@ import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {objectFontSize} from "../../component/object-group/objectHelper";
+import {calculateObjectDimension} from "../../component/object-group/objectHelper";
 
 export default class SimpleObjectGroup extends React.PureComponent {
 
     static propTypes = {
         objects: PropTypes.array,
         screen: PropTypes.object,
-        onObjectClick: PropTypes.func,
-        objectWidth: PropTypes.number,
-        objectHeight: PropTypes.number,
+        onObjectClick: PropTypes.func
     };
 
     render() {
-        const {objects, onObjectClick, screen, objectWidth, objectHeight} = this.props;
+        const {objects, onObjectClick, screen} = this.props;
+        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: (objects.length) / 1.5});
+        const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: (objects.length) / 1.5, min: 60});
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
         const rendererTransformerCreator = (o, top, left) => (rendered) => <Anime

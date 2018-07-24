@@ -8,6 +8,7 @@ import {prepareAnimationTiles, prepareAnswerTiles, prepareQuestionTiles} from ".
 import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
 import {skipAnimationChanged} from "../../redux/reducer/rival";
 import {getText, TEXT_CLICK_ON_ANY, TEXT_QUESTION, TEXT_REMEMBER_DETAILS} from "../../lang";
+import SimpleObjectGroup from "../../content/object-group/SimpleObjectGroup";
 
 class Rival extends React.PureComponent {
 
@@ -28,17 +29,14 @@ class Rival extends React.PureComponent {
     questionMaterial = randomTileMaterial();
 
     renderTask() {
-        const {contentHeight, contentWidth} = this.props.screen;
-        const {onAnswer, correctAnswerId, answerId} = this.props;
+        const {onAnswer, correctAnswerId, answerId, screen} = this.props;
         return <div>
             {!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}</div>}
-            <TileGroup
-                id={'task' + correctAnswerId}
-                forceXYStrength={0.1}
-                onClick={(id) => id && !answerId && onAnswer(id)}
-                width={contentWidth}
-                height={contentHeight}
-                tiles={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}/>
+            <SimpleObjectGroup
+                objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
+                onObjectClick={(e) => e.id && !answerId && onAnswer(e.id)}
+                screen={screen}
+            />
         </div>
     }
 

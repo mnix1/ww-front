@@ -1,4 +1,4 @@
-import {OBJECT_MATERIALS} from "./objectMaterialHelper";
+import {OBJECT_MATERIALS} from "../../component/object-group/objectMaterialHelper";
 
 export const OBJECT_CATEGORY_MATH = 'MATH';
 export const OBJECT_CATEGORY_MUSIC = 'MUSIC';

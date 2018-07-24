@@ -5,13 +5,13 @@ import {
     OBJECT_CATEGORY_MEMORY,
     OBJECT_CATEGORY_MUSIC,
     OBJECT_CATEGORY_RANDOM
-} from "./component/object-group/objectCategoryHelper";
+} from "./content/object-group/objectGroupCategory";
 import {
     OBJECT_APP_BATTLE,
     OBJECT_APP_FRIEND,
     OBJECT_APP_HISTORY,
     OBJECT_APP_TRAINING
-} from "./component/object-group/objectAppHelper";
+} from "./content/object-group/objectGroupApp";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';

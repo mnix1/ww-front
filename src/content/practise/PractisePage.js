@@ -15,9 +15,8 @@ import {
     TEXT_TIME,
     TEXT_WRONG_ANSWER
 } from "../../lang";
-import {OBJECTS_CATEGORY} from "../../component/object-group/objectCategoryHelper";
-import SimpleObjectGroup from "../../component/object-group/SimpleObjectGroup";
-import {calculateObjectDimension} from "../../component/object-group/objectHelper";
+import {OBJECTS_CATEGORY} from "../object-group/objectGroupCategory";
+import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 
 class PractisePage extends React.PureComponent {
 
@@ -33,13 +32,9 @@ class PractisePage extends React.PureComponent {
 
     renderChooseCategory() {
         const {screen, onCategoryChange} = this.props;
-        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: 4});
-        const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: 3.5, min: 60});
         return <div>
             <div className="contentHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
-                objectWidth={objectWidth}
-                objectHeight={objectHeight}
                 objects={OBJECTS_CATEGORY}
                 onObjectClick={onCategoryChange}
                 screen={screen}

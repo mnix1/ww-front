@@ -5,20 +5,15 @@ import {idChanged} from "../../redux/reducer/content";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
-import {OBJECT_APP_TRAINING, OBJECTS_APP} from "../../component/object-group/objectAppHelper";
-import SimpleObjectGroup from "../../component/object-group/SimpleObjectGroup";
-import {calculateObjectDimension} from "../../component/object-group/objectHelper";
+import {OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectGroupApp";
+import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 
 class App extends React.PureComponent {
 
     renderContent() {
         const {contentId, screen, onContentIdChange} = this.props;
         if (contentId === undefined) {
-            const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: 3});
-            const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: 3, min: 60});
             return <SimpleObjectGroup
-                objectWidth={objectWidth}
-                objectHeight={objectHeight}
                 objects={OBJECTS_APP}
                 onObjectClick={onContentIdChange}
                 screen={screen}
