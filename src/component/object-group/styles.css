@@ -3,11 +3,18 @@
 }
 
 .objectContainer {
-    display: inline-block;
     position: absolute;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
 }
 
 .objectContent {
     text-align: center;
+    padding: 10%;
+    position: relative;
+    max-height: 100%;
+    max-width: 100%;
 }

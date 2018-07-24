@@ -3,6 +3,7 @@
     bottom: 10vh;
     right: 1vw;
     width: auto;
+    z-index: 1;
 }
 
 :local .resultMessage {

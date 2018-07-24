@@ -5,5 +5,5 @@ export function calculateObjectDimension({dim, count = 2, max = 300, min = 100})
 }
 
 export function objectFontSize(resolution, factor = 1) {
-    return factor * 12 * getResolutionFactor(resolution);
+    return factor * 10 * getResolutionFactor(resolution);
 }

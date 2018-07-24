@@ -16,8 +16,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen} = this.props;
-        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: (objects.length) / 1.5});
         const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: (objects.length) / 1.5, min: 60});
+        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: (objects.length) / 1.5});
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
         const rendererTransformerCreator = (o, top, left) => (rendered) => <Anime
@@ -51,7 +51,6 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     additionalStyle: {
                         ...o.material,
                         boxShadow: `0 0 4px #${o.material.isDark ? 'CCC' : '666'}`,
-                        lineHeight: `${objectHeight}px`
                     }
                 }
             })}

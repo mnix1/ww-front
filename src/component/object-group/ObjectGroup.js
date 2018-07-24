@@ -48,7 +48,7 @@ export class ObjectGroup extends React.PureComponent {
                 onMouseOut: () => onObjectMouseOut(e),
                 containerClassName: objectContainerClassName,
                 contentClassName: objectContentClassName,
-                style: {...objectStyle, ...e.additionalStyle},
+                style: {..._.defaultTo(e.objectStyle, objectStyle), ...e.additionalStyle},
                 ...e,
             }
         });

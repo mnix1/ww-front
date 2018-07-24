@@ -5,7 +5,7 @@ import {idChanged} from "../../redux/reducer/content";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
-import {OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectGroupApp";
+import {OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 
 class App extends React.PureComponent {

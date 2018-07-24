@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import styles from './styles.css';
-import {randomTileMaterial} from "../tile/tileMaterialHelper";
-import TileGroup from "../tile-group/TileGroup";
 import PropTypes from "prop-types";
-import {prepareAnimationTiles, prepareAnswerTiles, prepareQuestionTiles} from "./rivalTiles";
 import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
 import {skipAnimationChanged} from "../../redux/reducer/rival";
 import {getText, TEXT_CLICK_ON_ANY, TEXT_QUESTION, TEXT_REMEMBER_DETAILS} from "../../lang";
-import SimpleObjectGroup from "../../content/object-group/SimpleObjectGroup";
+import TaskObjectGroup from "./TaskObjectGroup";
+import {prepareQuestionTiles} from "./objectsTaskQuestion";
+import {prepareAnswerTiles} from "./objectsTaskAnswer";
+import {prepareAnimationTiles} from "./objectsTaskAnimation";
 
 class Rival extends React.PureComponent {
 
@@ -26,13 +26,11 @@ class Rival extends React.PureComponent {
         onSkipAnimationChange: PropTypes.func,
     };
 
-    questionMaterial = randomTileMaterial();
-
     renderTask() {
-        const {onAnswer, correctAnswerId, answerId, screen} = this.props;
+        const {onAnswer, answerId, screen} = this.props;
         return <div>
             {!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}</div>}
-            <SimpleObjectGroup
+            <TaskObjectGroup
                 objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
                 onObjectClick={(e) => e.id && !answerId && onAnswer(e.id)}
                 screen={screen}
@@ -41,21 +39,18 @@ class Rival extends React.PureComponent {
     }
 
     renderAnimation() {
-        const {contentHeight, contentWidth} = this.props.screen;
-        const {onSkipAnimationChange} = this.props;
+        const {onSkipAnimationChange, screen} = this.props;
         return <div>
             <div className="contentHeader">
                 {getText(TEXT_REMEMBER_DETAILS)}
                 <br/>
                 {getText(TEXT_CLICK_ON_ANY)}
             </div>
-            <TileGroup
-                id={'animation'}
+            <TaskObjectGroup
                 onClick={() => onSkipAnimationChange(true)}
-                forceCollideStrengthFactor={0.76}
-                width={contentWidth}
-                height={contentHeight}
-                tiles={prepareAnimationTiles(this)}/>
+                objects={prepareAnimationTiles(this)}
+                screen={screen}
+            />
         </div>
     }
 

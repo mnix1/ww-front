@@ -15,7 +15,7 @@ import {
     TEXT_TIME,
     TEXT_WRONG_ANSWER
 } from "../../lang";
-import {OBJECTS_CATEGORY} from "../object-group/objectGroupCategory";
+import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 
 class PractisePage extends React.PureComponent {

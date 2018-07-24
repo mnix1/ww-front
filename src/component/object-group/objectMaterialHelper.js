@@ -1,58 +1,87 @@
 import _ from "lodash";
+import {CREAME_COLOR, DARK_BLUE_COLOR} from "../../util/style/constant";
 
 export const OBJECT_MATERIALS = [
-    {"background": "rgb(20,69,127)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(235,242,235)", "color": "#2879da", isBright: true},
-    {"background": "rgb(82,86,103)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(153,216,206)", "color": "#2879da", isBright: true},
-    {"background": "rgb(8,101,128)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(192,197,227)", "color": "#2879da", isBright: true},
-    {"background": "rgb(2,126,78)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(110,30,93)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(204,239,226)", "color": "#2879da", isBright: true},
-    {"background": "rgb(20,35,83)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(117,106,126)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(142,86,16)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(225,178,113)", "color": "#2879da", isBright: true},
-    {"background": "rgb(218,146,217)", "color": "#2879da", isBright: true},
-    {"background": "rgb(59,62,227)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(1,247,175)", "color": "#2879da", isBright: true},
-    {"background": "rgb(253,209,243)", "color": "#2879da", isBright: true},
-    {"background": "rgb(44,53,138)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(80,104,171)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(149,128,12)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(105,212,149)", "color": "#2879da", isBright: true},
-    {"background": "rgb(173,51,64)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(100,127,30)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(245,199,101)", "color": "#2879da", isBright: true},
-    {"background": "rgb(104,249,175)", "color": "#2879da", isBright: true},
-    {"background": "rgb(124,215,107)", "color": "#2879da", isBright: true},
-    {"background": "rgb(179,254,187)", "color": "#2879da", isBright: true},
-    {"background": "rgb(133,30,102)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(53,149,68)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(0,122,189)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(182,24,17)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(217,182,56)", "color": "#2879da", isBright: true},
-    {"background": "rgb(55,33,87)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(136,104,38)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(129,228,140)", "color": "#2879da", isBright: true},
-    {"background": "rgb(90,18,160)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(82,45,11)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(110,141,80)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(60,39,102)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(14,10,80)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(127,240,167)", "color": "#2879da", isBright: true},
-    {"background": "rgb(40,16,128)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(207,102,11)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(7,160,53)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(225,218,39)", "color": "#2879da", isBright: true},
-    {"background": "rgb(218,156,14)", "color": "#2879da", isBright: true},
-    {"background": "rgb(193,45,74)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(140,206,154)", "color": "#2879da", isBright: true},
-    {"background": "rgb(171,217,69)", "color": "#2879da", isBright: true},
-    {"background": "rgb(13,72,143)", "color": "#fffdf1", isDark: true},
-    {"background": "rgb(68,122,110)", "color": "#fffdf1", isDark: true}
+    {"background": "#14457f", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#ebf2eb", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#525667", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#99d8ce", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#086580", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#c0c5e3", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#027e4e", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#6e1e5d", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#ccefe2", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#142353", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#756a7e", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#8e5610", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#e1b271", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#da92d9", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#3b3ee3", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#01f7af", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#fdd1f3", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#2c358a", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#5068ab", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#95800c", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#69d495", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#ad3340", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#647f1e", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#f5c765", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#68f9af", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#7cd76b", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#b3febb", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#851e66", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#359544", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#007abd", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#b61811", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#d9b638", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#372157", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#886826", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#81e48c", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#5a12a0", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#522d0b", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#6e8d50", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#3c2766", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#0e0a50", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#7ff0a7", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#281080", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#cf660b", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#07a035", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#e1da27", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#da9c0e", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#c12d4a", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#8cce9a", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#abd945", "color": DARK_BLUE_COLOR, "isBright": true},
+    {"background": "#0d488f", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#447a6e", "color": CREAME_COLOR, "isDark": true}
 ];
 
-export const CORRECT_ANSWER_TILE_MATERIAL = {"background": "rgb(0,180,0)", "color": "#fffdf1", isDark: true};
-export const WRONG_ANSWER_TILE_MATERIAL = {"background": "rgb(180,0,0)", "color": "#fffdf1", isDark: true};
+export const CORRECT_ANSWER_OBJECT_MATERIAL = {"background": "#00B400", "color": CREAME_COLOR, isDark: true};
+export const WRONG_ANSWER_OBJECT_MATERIAL = {"background": "#B40000", "color": CREAME_COLOR, isDark: true};
+
+export const ANSWER_OBJECT_MATERIALS = [
+    {"background": "#ad7142", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#14548f", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#405766", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#685270", "color": CREAME_COLOR, "isDark": true},
+    {"background": "#c0c5e3", "color": CREAME_COLOR, "isDark": true},
+];
+
+export function randomObjectMaterial() {
+    return OBJECT_MATERIALS[_.random(0, OBJECT_MATERIALS.length - 1)];
+}
+
+export function generateObjectMaterial() {
+    function rgb2hex(red, green, blue) {
+        const rgb = blue | (green << 8) | (red << 16);
+        return '#' + (0x1000000 + rgb).toString(16).slice(1)
+    }
+
+    const r = _.random(0, 255);
+    const g = _.random(0, 255);
+    const b = _.random(0, 255);
+    const lightColor = '#fffdf1';
+    const darkColor = '#2879da';
+    const style = {background: rgb2hex(r, g, b), color: (r + g + b) / 3 <= 128 ? lightColor : darkColor};
+    console.log(JSON.stringify(style));
+    return style;
+}
