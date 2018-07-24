@@ -1,12 +1,17 @@
-import {TILE_APP_BATTLE, TILE_APP_FRIEND, TILE_APP_HISTORY, TILE_APP_TRAINING} from "./component/tile/tileAppHelper";
 import {
-    TILE_CATEGORY_GEOGRAPHY,
-    TILE_CATEGORY_HISTORY,
-    TILE_CATEGORY_MATH,
-    TILE_CATEGORY_MEMORY,
-    TILE_CATEGORY_MUSIC,
-    TILE_CATEGORY_RANDOM
-} from "./component/tile/tileCategoryHelper";
+    OBJECT_CATEGORY_GEOGRAPHY,
+    OBJECT_CATEGORY_HISTORY,
+    OBJECT_CATEGORY_MATH,
+    OBJECT_CATEGORY_MEMORY,
+    OBJECT_CATEGORY_MUSIC,
+    OBJECT_CATEGORY_RANDOM
+} from "./component/object-group/objectCategoryHelper";
+import {
+    OBJECT_APP_BATTLE,
+    OBJECT_APP_FRIEND,
+    OBJECT_APP_HISTORY,
+    OBJECT_APP_TRAINING
+} from "./component/object-group/objectAppHelper";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
@@ -52,32 +57,32 @@ const TEXTS = {
 };
 
 export function getTileLabel(id) {
-    return TILE_LABELS[window.activeLang][id];
+    return OBJECT_LABELS[window.activeLang][id];
 }
 
-const TILE_LABELS = {
+const OBJECT_LABELS = {
     [POLISH]: {
-        [TILE_APP_BATTLE]: 'Bitwa',
-        [TILE_APP_TRAINING]: 'Trening',
-        [TILE_APP_HISTORY]: 'Historia',
-        [TILE_APP_FRIEND]: 'Znajomi',
-        [TILE_CATEGORY_RANDOM]: 'Losowa',
-        [TILE_CATEGORY_MATH]: 'Matematyka',
-        [TILE_CATEGORY_MUSIC]: 'Muzyka',
-        [TILE_CATEGORY_HISTORY]: 'Historia',
-        [TILE_CATEGORY_GEOGRAPHY]: 'Geografia',
-        [TILE_CATEGORY_MEMORY]: 'Pamięć',
+        [OBJECT_APP_BATTLE]: 'Bitwa',
+        [OBJECT_APP_TRAINING]: 'Trening',
+        [OBJECT_APP_HISTORY]: 'Historia',
+        [OBJECT_APP_FRIEND]: 'Znajomi',
+        [OBJECT_CATEGORY_RANDOM]: 'Losowa',
+        [OBJECT_CATEGORY_MATH]: 'Matematyka',
+        [OBJECT_CATEGORY_MUSIC]: 'Muzyka',
+        [OBJECT_CATEGORY_HISTORY]: 'Historia',
+        [OBJECT_CATEGORY_GEOGRAPHY]: 'Geografia',
+        [OBJECT_CATEGORY_MEMORY]: 'Pamięć',
     },
     [ENGLISH]: {
-        [TILE_APP_BATTLE]: 'Battle',
-        [TILE_APP_TRAINING]: 'Training',
-        [TILE_APP_HISTORY]: 'History',
-        [TILE_APP_FRIEND]: 'Friend',
-        [TILE_CATEGORY_RANDOM]: 'Random',
-        [TILE_CATEGORY_MATH]: 'Math',
-        [TILE_CATEGORY_MUSIC]: 'Music',
-        [TILE_CATEGORY_HISTORY]: 'History',
-        [TILE_CATEGORY_GEOGRAPHY]: 'Geography',
-        [TILE_CATEGORY_MEMORY]: 'Memory',
+        [OBJECT_APP_BATTLE]: 'Battle',
+        [OBJECT_APP_TRAINING]: 'Training',
+        [OBJECT_APP_HISTORY]: 'History',
+        [OBJECT_APP_FRIEND]: 'Friend',
+        [OBJECT_CATEGORY_RANDOM]: 'Random',
+        [OBJECT_CATEGORY_MATH]: 'Math',
+        [OBJECT_CATEGORY_MUSIC]: 'Music',
+        [OBJECT_CATEGORY_HISTORY]: 'History',
+        [OBJECT_CATEGORY_GEOGRAPHY]: 'Geography',
+        [OBJECT_CATEGORY_MEMORY]: 'Memory',
     }
 };

@@ -1,41 +1,30 @@
 import React from 'react';
 import styles from './styles.css';
 import {connect} from 'react-redux';
-import TileGroup from "../../component/tile-group/TileGroup";
 import {idChanged} from "../../redux/reducer/content";
-import {TILE_APP_TRAINING, TILES_APP} from "../../component/tile/tileAppHelper";
-import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
-import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
-import {getTileLabel} from "../../lang";
+import {OBJECT_APP_TRAINING, OBJECTS_APP} from "../../component/object-group/objectAppHelper";
+import SimpleObjectGroup from "../../component/object-group/SimpleObjectGroup";
+import {calculateObjectDimension} from "../../component/object-group/objectHelper";
 
 class App extends React.PureComponent {
 
-    renderContentTiles(tiles) {
-        const {contentHeight, contentWidth, resolution} = this.props.screen;
-        const {contentId, onContentIdChange} = this.props;
-        return <TileGroup
-            id={contentId}
-            onClick={onContentIdChange}
-            width={contentWidth}
-            height={contentHeight}
-            defaultFontSize={tileFontSize(resolution)}
-            tiles={tiles.map(e => ({
-                ...e,
-                material: e.material || randomTileMaterial(),
-                label: getTileLabel([e.id]),
-                a: tileDimension(this.props.screen, e.aFactor)
-            }))}/>
-    }
-
     renderContent() {
-        const {contentId} = this.props;
+        const {contentId, screen, onContentIdChange} = this.props;
         if (contentId === undefined) {
-            return this.renderContentTiles(TILES_APP);
+            const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: 3});
+            const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: 3, min: 60});
+            return <SimpleObjectGroup
+                objectWidth={objectWidth}
+                objectHeight={objectHeight}
+                objects={OBJECTS_APP}
+                onObjectClick={onContentIdChange}
+                screen={screen}
+            />;
         }
-        if (contentId === TILE_APP_TRAINING) {
+        if (contentId === OBJECT_APP_TRAINING) {
             return <PractisePage/>
         }
     }
@@ -67,6 +56,6 @@ export default connect(
         contentId: state.content.id,
     }),
     (dispatch) => ({
-        onContentIdChange: (id) => dispatch(idChanged(id)),
+        onContentIdChange: (e) => dispatch(idChanged(e.id)),
     })
 )(App);

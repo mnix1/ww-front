@@ -2,45 +2,26 @@ import React from 'react';
 import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import TileGroup from "../../component/tile-group/TileGroup";
 import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redux/reducer/rival";
-import {tileDimension, tileFontSize} from "../../component/tile/tileHelper";
-import {TILES_CATEGORY} from "../../component/tile/tileCategoryHelper";
-import {randomTileMaterial} from "../../component/tile/tileMaterialHelper";
 import Rival from "../../component/rival/Rival";
 import PractiseRivalStartFetch, {clearPractiseRivalStartFetch} from "./fetch/PractiseRivalStartFetch";
 import PractiseRivalEndFetch, {clearPractiseRivalEndFetch} from "./fetch/PractiseRivalEndFetch";
 import {randomHero} from "../../util/media/HeroHelper";
 import {
     getText,
-    getTileLabel,
     TEXT_CHOOSE_CATEGORY,
-    TEXT_CORRECT_ANSWER, TEXT_PLAY_AGAIN,
+    TEXT_CORRECT_ANSWER,
+    TEXT_PLAY_AGAIN,
     TEXT_TIME,
     TEXT_WRONG_ANSWER
 } from "../../lang";
+import {OBJECTS_CATEGORY} from "../../component/object-group/objectCategoryHelper";
+import SimpleObjectGroup from "../../component/object-group/SimpleObjectGroup";
+import {calculateObjectDimension} from "../../component/object-group/objectHelper";
 
 class PractisePage extends React.PureComponent {
 
     randomHero = randomHero();
-
-    renderContentTiles(tiles) {
-        const {contentHeight, contentWidth, resolution} = this.props.screen;
-        const {category, onCategoryChange} = this.props;
-        return <TileGroup
-            id={category}
-            onClick={onCategoryChange}
-            width={contentWidth}
-            height={contentHeight}
-            defaultFontSize={tileFontSize(resolution)}
-            forceCollideStrengthFactor={0.6}
-            tiles={tiles.map(e => ({
-                ...e,
-                material: e.material || randomTileMaterial(),
-                label: getTileLabel([e.id]),
-                a: tileDimension(this.props.screen, e.aFactor)
-            }))}/>
-    }
 
     renderContent() {
         const {category} = this.props;
@@ -51,10 +32,18 @@ class PractisePage extends React.PureComponent {
     }
 
     renderChooseCategory() {
-        const {width} = this.props;
+        const {screen, onCategoryChange} = this.props;
+        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: 4});
+        const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: 3.5, min: 60});
         return <div>
-            <div className="contentHeader" style={{width}}>{getText(TEXT_CHOOSE_CATEGORY)}</div>
-            {this.renderContentTiles(TILES_CATEGORY)}
+            <div className="contentHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
+            <SimpleObjectGroup
+                objectWidth={objectWidth}
+                objectHeight={objectHeight}
+                objects={OBJECTS_CATEGORY}
+                onObjectClick={onCategoryChange}
+                screen={screen}
+            />
         </div>;
     }
 
@@ -119,7 +108,7 @@ export default connect(
         rivalEnd: state.repository.practiseRivalEnd,
     }),
     (dispatch) => ({
-        onCategoryChange: (id) => dispatch(categoryChanged(id)),
+        onCategoryChange: (e) => dispatch(categoryChanged(e.id)),
         onAnswer: (id) => dispatch(answerIdChanged(id)),
         onPlayAgain: () => {
             dispatch(answerIdChanged(undefined));

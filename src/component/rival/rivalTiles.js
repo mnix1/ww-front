@@ -1,9 +1,9 @@
 import {getAnimationContent, getImageContent, getTextContent, TEXT_IMAGE_TASK_RENDERER} from "../../util/taskRenderer";
 import {wordsByLength} from "../../util/textHelper";
-import {tileFontSize} from "../tile/tileHelper";
 import {CREAME_COLOR} from "../../util/style/constant";
 import {CORRECT_ANSWER_TILE_MATERIAL, randomTileMaterial, WRONG_ANSWER_TILE_MATERIAL} from "../tile/tileMaterialHelper";
 import _ from "lodash";
+import {objectFontSize} from "../object-group/objectHelper";
 
 export function prepareQuestionTiles(rival) {
     return [
@@ -24,7 +24,7 @@ function prepareQuestionTextTile(rival) {
         h: isSmall ? 80 : 100,
         w: isSmall ? 280 : 350,
         material: rival.questionMaterial,
-        fontSize: tileFontSize(isSmall),
+        fontSize: objectFontSize(isSmall),
         yTarget: isSmall ? -2 / 7 : -1 / 3 - 1 / 10,
         xTarget: 0
     };
@@ -64,7 +64,7 @@ export function prepareAnimationTiles(rival) {
                         })
                 };
             },
-            fontSize: tileFontSize(isSmall, 2),
+            fontSize: objectFontSize(isSmall, 2),
             yTarget: 0,
             xTarget: (i - 1 / 2) / 3
             // yTarget: objects.length > 1 ? (i + 1) % 2 ? -1 / 3 : 1 / 3 : 0,
@@ -121,7 +121,7 @@ export function prepareAnswerTiles(rival) {
             label: wordsByLength(getTextContent(ans), isSmall ? 18 : 20),
             a, h, w,
             material: prepareAnswerMaterial(ans.id, correctAnswerId),
-            fontSize: tileFontSize(isSmall, 0.8),
+            fontSize: objectFontSize(isSmall, 0.8),
             yTarget: isSmall ? 1 / 3 : 1 / 3,
             xTarget: (2 * i / (answers.length - 1) - 1) / 2,
             strokeWidthFactor: isUserAnswer ? 3 : undefined,

@@ -1,0 +1,13 @@
+.objectGroup {
+    position: relative;
+}
+
+.objectContainer {
+    display: inline-block;
+    position: absolute;
+    cursor: pointer;
+}
+
+.objectContent {
+    text-align: center;
+}

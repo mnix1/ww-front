@@ -10,12 +10,28 @@ export class Anime extends React.PureComponent {
         to: PropTypes.object,
         config: PropTypes.object,
         playOnlyOnMount: PropTypes.bool,
-        childrenProperty: PropTypes.string,
+        childrenPropsCreator: PropTypes.func,
+        targetTransformer: PropTypes.func,
+        targetAsChildProp: PropTypes.string,
     };
 
     static defaultProps = {
         playOnlyOnMount: false,
-        childrenProperty: 'style'
+        targetAsChildProp: 'style',
+        targetTransformer: (t) => t,
+        childrenPropsCreator: (target, childOriginalProps, animeProps) => {
+            const newChildProps = {...childOriginalProps};
+            const transformedTarget = animeProps.targetTransformer(target);
+            if (newChildProps[animeProps.targetAsChildProp]) {
+                newChildProps[animeProps.targetAsChildProp] = {
+                    ...newChildProps[animeProps.targetAsChildProp],
+                    ...transformedTarget
+                }
+            } else {
+                newChildProps[animeProps.targetAsChildProp] = transformedTarget;
+            }
+            return newChildProps;
+        }
     };
 
     constructor(props) {
@@ -40,21 +56,20 @@ export class Anime extends React.PureComponent {
         }
         this.anime = anime({
             targets: this.target,
+            easing: 'linear',
             ...this.props.to,
             ...this.props.config,
-            easing: 'linear',
             update: () => {
                 this.setState({target: {...this.target}});
             }
         });
-        console.log(this.anime);
     }
 
     render() {
-        const {children, childrenProperty} = this.props;
+        const {children, childrenPropsCreator} = this.props;
         if (_.isArray(children)) {
-            return children.map(e => React.cloneElement(e, {[childrenProperty]: this.state.target}));
+            return children.map(e => React.cloneElement(e, childrenPropsCreator(this.state.target, e.props, this.props)));
         }
-        return React.cloneElement(children, {[childrenProperty]: this.state.target});
+        return React.cloneElement(children, childrenPropsCreator(this.state.target, children.props, this.props));
     }
 }

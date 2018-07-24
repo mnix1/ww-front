@@ -20,7 +20,7 @@ class TopBar extends React.PureComponent {
                 </Anime>
                 <Anime from={{opacity: 0, height: 0}}
                        to={{opacity: 1, height: height - contentHeight - fontSize * 1.25 - 16}}
-                       config={{duration: 1000, delay: 500}}>
+                       config={{duration: 500, delay: 500}}>
                     <img src={robo}/>
                 </Anime>
             </div>

@@ -23,7 +23,7 @@ export function getResolutionFactor(resolution) {
         return 1.4;
     if (MHBW === resolution || BHMW === resolution)
         return 1.6;
-    if (BHBW === resolution || BHBW === resolution)
+    if (BHBW === resolution)
         return 1.8;
 
 }
@@ -32,7 +32,7 @@ function prepareResolution(height, width) {
     let heightPart;
     if (height < 600) {
         heightPart = 'SH';
-    } else if (height < 1000) {
+    } else if (height < 800) {
         heightPart = 'MH';
     } else {
         heightPart = 'BH'
