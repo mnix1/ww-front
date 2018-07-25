@@ -67,7 +67,7 @@ class Rival extends React.PureComponent {
     }
 
     render() {
-        const {pending, rejected, fulfilled, answerId} = this.props;
+        const {pending, rejected, fulfilled} = this.props;
         if (pending) {
             return 'LOADING';
         }

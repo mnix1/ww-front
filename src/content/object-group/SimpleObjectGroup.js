@@ -23,18 +23,12 @@ export default class SimpleObjectGroup extends React.PureComponent {
         const rendererTransformerCreator = (o, top, left) => (rendered) => <Anime
             key={o.id}
             from={{
-                top: top,
-                left: left,
-                height: 0,
                 width: 0,
                 fontSize: 0
             }}
             to={{
-                top: {value: top, duration: 500, delay: 1000},
-                left: {value: left, duration: 500, delay: 1000},
-                height: {value: objectHeight, duration: 500},
-                width: {value: objectWidth, duration: 500},
-                fontSize: {value: fontSize, duration: 500, delay: 500}
+                width: {value: objectWidth, duration: 100},
+                fontSize: {value: fontSize, duration: 100, delay: 100}
             }}
         >{rendered}</Anime>;
         return <ObjectGroup
@@ -50,6 +44,9 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     additionalStyle: {
                         ...o.material,
+                        height: objectHeight,
+                        top,
+                        left,
                         boxShadow: `0 0 4px #${o.material.isDark ? 'CCC' : '666'}`,
                     }
                 }

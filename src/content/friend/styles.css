@@ -1,0 +1,63 @@
+:local .friendList {
+    margin: 30px;
+}
+
+.friendContainer {
+    border-radius: 8px;
+    box-shadow: 0 0 4px #fffdf1;
+    background: #4ea5c5;
+    color: #fffdf1;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.friend {
+    display: flex;
+    width: 140px;
+    justify-content: space-between;
+}
+
+.friend .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    position: relative;
+    /*height: calc(100% - 16px);*/
+}
+
+.friend .details .actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.friend .details .actions svg {
+    cursor: pointer;
+}
+
+.friend .name {
+    font-size: 1rem;
+}
+
+.friend .tag {
+    font-size: 0.8rem;
+}
+
+.addFriend {
+    border-radius: 8px;
+    float: right;
+    /*display: flex;*/
+    color: #fffdf1;
+    padding: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+}
+
+.addFriend svg {
+    cursor: pointer;
+}
+
+.addFriend .addFriendActions {
+    padding-top: 0.25rem;
+    display: flex;
+}

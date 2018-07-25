@@ -5,8 +5,9 @@ import {idChanged} from "../../redux/reducer/content";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
-import {OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
+import {OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
+import FriendPage from "../friend/FriendPage";
 
 class App extends React.PureComponent {
 
@@ -21,6 +22,9 @@ class App extends React.PureComponent {
         }
         if (contentId === OBJECT_APP_TRAINING) {
             return <PractisePage/>
+        }
+        if (contentId === OBJECT_APP_FRIEND) {
+            return <FriendPage/>
         }
     }
 
@@ -40,6 +44,9 @@ class App extends React.PureComponent {
                 <TopBar/>
                 {this.renderBack()}
                 {this.renderContent()}
+                <div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>
+                    {JSON.stringify(screen)}
+                </div>
             </div>
         </div>;
     }

@@ -8,15 +8,20 @@ import {cleared} from "../../redux/reducer/rival";
 class Back extends React.PureComponent {
 
     render() {
-        const {onClick} = this.props;
+        const {onClick, screen} = this.props;
+        const size = screen.isSmallHeight || screen.isSmallWidth
+            ? 20
+            : 30;
         return <div className={styles.back} onClick={onClick}>
-            <MdArrowBack color="#fffdf1" size={30}/>
+            <MdArrowBack color="#fffdf1" size={size}/>
         </div>;
     }
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        screen: state.screen
+    }),
     (dispatch) => ({
         onClick: () => {
             dispatch(idChanged(undefined));

@@ -35,12 +35,12 @@ export default class TaskObjectGroup extends React.PureComponent {
                 fontSize: 0
             }}
             to={{
-                opacity: {value: 1, duration: 1500},
+                opacity: {value: 1, duration: 500},
                 // top: {value: top, duration: 500, delay: 1000},
                 // left: {value: left, duration: 500, delay: 1000},
                 // height: {value: objectHeight, duration: 500},
                 // width: {value: objectWidth, duration: 500},
-                fontSize: {value: fontSize, duration: 500, delay: 500}
+                fontSize: {value: fontSize, duration: 100, delay: 100}
             }}
         >{rendered}</Anime>;
         return <ObjectGroup

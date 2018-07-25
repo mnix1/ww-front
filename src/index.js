@@ -7,9 +7,10 @@ import {Provider} from 'react-redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
 import App from "./content/app/App";
-import {APP_NAME, getText, POLISH, TEXT_APP_NAME} from "./lang";
+import {getText, POLISH, TEXT_APP_NAME} from "./lang";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
+import {profileChanged} from "./redux/reducer/profile";
 
 const store = createStore(
     app,
@@ -33,8 +34,9 @@ window.addEventListener('resize', () => {
 fetch('/profile', {credentials: 'include'})
     .then(res => res.json())
     .then(json => {
-        const profileId = json.profileId;
-        if (_.isNil(profileId)) {
+        store.dispatch(profileChanged(json.profile));
+        const tag = json.profile.tag;
+        if (_.isNil(tag)) {
             return ReactDOM.render(<Login/>, document.getElementById('root'));
         }
         ReactDOM.render(<Provider store={store}>

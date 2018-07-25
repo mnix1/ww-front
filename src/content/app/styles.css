@@ -14,7 +14,16 @@
     position: absolute;
     text-align: center;
     color: #fffdf1;
-    font-size: large;
-    margin: 4px auto auto;
+    font-size: 1rem;
+    padding-top: 0.25rem;
     width: 100%;
+}
+
+.pageHeader {
+    text-align: center;
+    color: #fffdf1;
+    padding-top: 0.25rem;
+    font-size: 1rem;
+    width: 100%;
+
 }

@@ -1,11 +1,15 @@
 import { combineReducers } from 'redux';
 import {reducer as fetchReducer} from 'react-redux-fetch';
+import profile from "./reducer/profile";
+import friend from "./reducer/friend";
 import socket from "./reducer/socket";
 import content from "./reducer/content";
 import rival from "./reducer/rival";
 import screen from "./reducer/screen";
 
 const app = combineReducers({
+    profile,
+    friend,
     socket,
     content,
     rival,
