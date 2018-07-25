@@ -9,7 +9,11 @@ import {checkSmallHeight} from "../../redux/reducer/screen";
 class TopBar extends React.PureComponent {
 
     renderProfile(){
-        return <div></div>
+        const {profile} = this.props;
+        return <div className={styles.topBarProfile}>
+            {/*<div>{profile.name}</div>*/}
+            <div>#{profile.tag}</div>
+        </div>
     }
 
     render() {
@@ -17,9 +21,10 @@ class TopBar extends React.PureComponent {
         const {contentWidth, height, contentHeight} = screen;
         const fontSize = Math.min(contentWidth / 14, height / 14 * 9 / 16);
         if (checkSmallHeight(screen.resolution)) {
-            return null;
+            return this.renderProfile();
         }
         return <div className={styles.topBar}>
+            {this.renderProfile()}
             <div className={styles.topBarContent}>
                 <Anime from={{opacity: 0, fontSize: 0}}
                        to={{opacity: 1, fontSize}}
@@ -39,6 +44,7 @@ class TopBar extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        profile: state.profile.profile,
     }),
     (dispatch) => ({})
 )(TopBar);

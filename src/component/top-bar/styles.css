@@ -15,3 +15,10 @@
     font-size: 40px;
     color: #fffdf1;
 }
+:local .topBarProfile {
+    position: absolute;
+    left: 0;
+    padding: 0.5rem;
+    color: #fffdf1;
+    font-size: 0.8rem;
+}
