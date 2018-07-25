@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {getText, TEXT_APP_NAME} from "../../lang";
 import robo from '../../media/image/heroes/robo.svg';
 import {Anime} from "../../component/anime/Anime";
+import {checkSmallHeight} from "../../redux/reducer/screen";
 
 class TopBar extends React.PureComponent {
 
@@ -11,6 +12,9 @@ class TopBar extends React.PureComponent {
         const {screen} = this.props;
         const {contentWidth, height, contentHeight} = screen;
         const fontSize = Math.min(contentWidth / 14, height / 14 * 9 / 16);
+        if (checkSmallHeight(screen.resolution)) {
+            return null;
+        }
         return <div className={styles.topBar}>
             <div className={styles.topBarContent}>
                 <Anime from={{opacity: 0, fontSize: 0}}

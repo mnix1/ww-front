@@ -1,9 +1,8 @@
 :local .playAgain {
-    text-align: right;
-    bottom: 10vh;
-    right: 1vw;
-    width: auto;
+    right: 8px;
+    width: 80px;
     z-index: 1;
+    text-align: right;
 }
 
 :local .resultMessage {

@@ -23,8 +23,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
         const rendererTransformerCreator = (o, top, left) => (rendered) => <Anime
             key={o.id}
             from={{
-                top: top - contentHeight / 2 < 0 ? 0 : contentHeight - objectHeight,
-                left: left - contentWidth / 2 < 0 ? 0 : contentWidth - objectWidth,
+                top: top,
+                left: left,
                 height: 0,
                 width: 0,
                 fontSize: 0

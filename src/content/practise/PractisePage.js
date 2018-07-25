@@ -76,10 +76,15 @@ class PractisePage extends React.PureComponent {
     }
 
     renderPlayAgain() {
-        const {onPlayAgain} = this.props;
-        const style = {cursor: 'pointer', marginRight: 4};
-        return <div key='playAgain' className={`contentHeader ${styles.playAgain}`}>
-            <div><span onClick={onPlayAgain} style={style}>{getText(TEXT_PLAY_AGAIN)}</span></div>
+        const {onPlayAgain, screen} = this.props;
+        const style = {cursor: 'pointer'};
+        if (screen.contentHeight + 100 > screen.height) {
+            style.top = 0;
+        } else {
+            style.bottom = screen.contentHeight;
+        }
+        return <div key='playAgain' style={style} className={`contentHeader ${styles.playAgain}`}>
+            <div><span onClick={onPlayAgain}>{getText(TEXT_PLAY_AGAIN)}</span></div>
             <img onClick={onPlayAgain} src={this.randomHero} style={style} height={80}/>
         </div>;
     }

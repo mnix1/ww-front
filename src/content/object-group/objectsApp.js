@@ -1,4 +1,3 @@
-import {CREAME_COLOR, DARK_BLUE_COLOR} from "../../util/style/constant";
 import {OBJECT_MATERIALS} from "../../component/object-group/objectMaterialHelper";
 
 export const OBJECT_APP_BATTLE = 'battle';

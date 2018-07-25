@@ -52,7 +52,7 @@ function checkSmallWidth(resolution) {
     return _.includes(resolution, 'SW');
 }
 
-function checkSmallHeight(resolution) {
+export function checkSmallHeight(resolution) {
     return _.includes(resolution, 'SH');
 }
 
@@ -64,9 +64,9 @@ function calculateContentWidth(width, isSmallWidth) {
 }
 
 function calculateContentHeight(height, isSmallHeight) {
-    // if (isSmallHeight) {
-    //     return height - SMALL_TOP_BAR_HEIGHT;
-    // }
+    if (isSmallHeight) {
+        return height;
+    }
     return height * 4 / 6;
 }
 

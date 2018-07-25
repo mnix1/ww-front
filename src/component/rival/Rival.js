@@ -47,7 +47,7 @@ class Rival extends React.PureComponent {
                 {getText(TEXT_CLICK_ON_ANY)}
             </div>
             <TaskObjectGroup
-                onClick={() => onSkipAnimationChange(true)}
+                onObjectClick={() => onSkipAnimationChange(true)}
                 objects={prepareAnimationTiles(this)}
                 screen={screen}
             />

@@ -28,6 +28,7 @@ export class ObjectGroup extends React.PureComponent {
         objectStyle: {
             backgroundColor: CREAME_COLOR,
             color: DARK_BLUE_COLOR,
+            padding: '8px',
             // border: '1px solid rgb(165, 169, 165)',
             // boxShadow: '0 0 4px #444',
             borderRadius: 8

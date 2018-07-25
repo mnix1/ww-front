@@ -48,12 +48,13 @@ export default class TaskObjectGroup extends React.PureComponent {
             width={contentWidth}
             onObjectClick={onObjectClick}
             objects={objects.map(o => {
-                const objectWidth = o.id === 'questionText' ? questionObjectWidth :
-                    o.id === 'questionImage' ? questionObjectWidth / 3 : answerObjectWidth;
+                const objectWidth = (o.id === 'questionText' ? questionObjectWidth :
+                    o.id === 'questionImage' ? questionObjectWidth / 3 : answerObjectWidth) * _.defaultTo(o.widthFactor, 1);
                 const top = o.yTarget * contentHeight - objectHeight / 2;
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     rendererTransformer: rendererTransformerCreator(o, top, left, objectWidth),
+                    ...o,
                     additionalStyle: {
                         ...o.material,
                         border: o.border,
@@ -63,8 +64,8 @@ export default class TaskObjectGroup extends React.PureComponent {
                         left,
                         height: objectHeight,
                         width: objectWidth,
+                        ...o.additionalStyle
                     },
-                    ...o
                 }
             })}
         />
