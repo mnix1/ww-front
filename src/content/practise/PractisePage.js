@@ -43,29 +43,29 @@ class PractisePage extends React.PureComponent {
     }
 
     renderRival() {
-        const {rivalStart, rivalEnd, answerId, onAnswer} = this.props;
-        const correctAnswerId = _.get(rivalEnd, 'value.correctAnswerId');
+        const {practiseRivalStartRep, practiseRivalEndRep, answerId, onAnswer} = this.props;
+        const correctAnswerId = _.get(practiseRivalEndRep, 'value.correctAnswerId');
         return <div>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Rival key='rival'
-                   pending={_.get(rivalStart, 'pending')}
-                   rejected={_.get(rivalStart, 'rejected')}
-                   fulfilled={_.get(rivalStart, 'fulfilled')}
-                   question={_.get(rivalStart, 'value.practise.question')}
-                   answers={_.get(rivalStart, 'value.practise.question.answers')}
-                   correctAnswerId={_.get(rivalEnd, 'value.correctAnswerId')}
+                   pending={_.get(practiseRivalStartRep, 'pending')}
+                   rejected={_.get(practiseRivalStartRep, 'rejected')}
+                   fulfilled={_.get(practiseRivalStartRep, 'fulfilled')}
+                   question={_.get(practiseRivalStartRep, 'value.practise.question')}
+                   answers={_.get(practiseRivalStartRep, 'value.practise.question.answers')}
+                   correctAnswerId={_.get(practiseRivalEndRep, 'value.correctAnswerId')}
                    answerId={answerId}
                    onAnswer={onAnswer}/>
         </div>
     }
 
     renderResult() {
-        const {answerId, rivalEnd} = this.props;
-        const correctAnswerId = _.get(rivalEnd, 'value.correctAnswerId');
+        const {answerId, practiseRivalEndRep} = this.props;
+        const correctAnswerId = _.get(practiseRivalEndRep, 'value.correctAnswerId');
         if (!correctAnswerId) {
             return null;
         }
-        const answerInterval = _.get(rivalEnd, 'value.answerInterval');
+        const answerInterval = _.get(practiseRivalEndRep, 'value.answerInterval');
         const answerIntervalMessage = `${getText(TEXT_TIME)}${(answerInterval / 1000).toFixed(1)} s`;
         const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
         return <div key='result' className="contentHeader">
@@ -90,11 +90,11 @@ class PractisePage extends React.PureComponent {
     }
 
     render() {
-        const {category, answerId, rivalStart} = this.props;
+        const {category, answerId, practiseRivalStartRep} = this.props;
         return <div>
             {this.renderContent()}
-            <PractiseRivalStartFetch category={category} rivalStart={rivalStart}/>
-            <PractiseRivalEndFetch answerId={answerId} rivalStart={rivalStart}/>
+            <PractiseRivalStartFetch category={category} practiseRivalStartRep={practiseRivalStartRep}/>
+            <PractiseRivalEndFetch answerId={answerId} practiseRivalStartRep={practiseRivalStartRep}/>
         </div>
     }
 }
@@ -104,8 +104,8 @@ export default connect(
         screen: state.screen,
         category: state.rival.category,
         answerId: state.rival.answerId,
-        rivalStart: state.repository.practiseRivalStart,
-        rivalEnd: state.repository.practiseRivalEnd,
+        practiseRivalStartRep: state.repository.practiseRivalStart,
+        practiseRivalEndRep: state.repository.practiseRivalEnd,
     }),
     (dispatch) => ({
         onCategoryChange: (e) => dispatch(categoryChanged(e.id)),

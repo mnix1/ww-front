@@ -9,7 +9,7 @@ class FriendListFetch extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        if (!this.props.list) {
+        if (!this.props.friendListRep) {
             this.maybeFetch(prevProps);
         }
     }

@@ -8,6 +8,9 @@ import TopBar from "../../component/top-bar/TopBar";
 import {OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import FriendPage from "../friend/FriendPage";
+import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
+import FriendListFetch from "../friend/fetch/FriendListFetch";
+import BattleFriendPage from "../battle/friend/BattleFriendPage";
 
 class App extends React.PureComponent {
 
@@ -26,6 +29,9 @@ class App extends React.PureComponent {
         if (contentId === OBJECT_APP_FRIEND) {
             return <FriendPage/>
         }
+        if (contentId === OBJECT_BATTLE_FRIEND) {
+            return <BattleFriendPage/>
+        }
     }
 
     renderBack() {
@@ -37,7 +43,7 @@ class App extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
+        const {screen, friendListRep} = this.props;
         const {height, contentWidth} = screen;
         return <div className={styles.app}>
             <div style={{height, width: contentWidth}} className={styles.content}>
@@ -48,6 +54,7 @@ class App extends React.PureComponent {
                     {JSON.stringify(screen)}
                 </div>
             </div>
+            <FriendListFetch friendListRep={friendListRep}/>
         </div>;
     }
 }
@@ -55,6 +62,7 @@ class App extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        friendListRep: state.repository.friendList,
         contentId: state.content.id,
     }),
     (dispatch) => ({

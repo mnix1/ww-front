@@ -17,8 +17,8 @@ class PractiseRivalStartFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {category, rivalStart, dispatchPractiseRivalStartGet} = this.props;
-        if (category !== undefined && (prevProps.category !== category || !rivalStart)) {
+        const {category, practiseRivalStartRep, dispatchPractiseRivalStartGet} = this.props;
+        if (category !== undefined && (prevProps.category !== category || !practiseRivalStartRep)) {
             dispatchPractiseRivalStartGet(category);
         }
     }

@@ -17,9 +17,9 @@ class PractiseRivalEndFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {rivalStart, answerId, dispatchPractiseRivalEndGet} = this.props;
+        const {practiseRivalStartRep, answerId, dispatchPractiseRivalEndGet} = this.props;
         if (answerId !== undefined && prevProps.answerId !== answerId) {
-            const practiseId = rivalStart.value.practise.id;
+            const practiseId = practiseRivalStartRep.value.practise.id;
             dispatchPractiseRivalEndGet(practiseId, answerId);
         }
     }
