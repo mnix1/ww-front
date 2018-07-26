@@ -1,38 +1,47 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import styles from './styles.css';
 import PropTypes from "prop-types";
 import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
-import {skipAnimationChanged} from "../../redux/reducer/rival";
 import {getText, TEXT_CLICK_ON_ANY, TEXT_QUESTION, TEXT_REMEMBER_DETAILS} from "../../lang";
 import TaskObjectGroup from "./TaskObjectGroup";
 import {prepareQuestionTiles} from "./objectsTaskQuestion";
 import {prepareAnswerTiles} from "./objectsTaskAnswer";
 import {prepareAnimationTiles} from "./objectsTaskAnimation";
 
-class Rival extends React.PureComponent {
+export default class Task extends React.PureComponent {
 
     static propTypes = {
         screen: PropTypes.object,
-        pending: PropTypes.bool,
-        rejected: PropTypes.bool,
-        fulfilled: PropTypes.bool,
         question: PropTypes.object,
         answers: PropTypes.array,
         answerId: PropTypes.number,
         correctAnswerId: PropTypes.number,
-        onAnswer: PropTypes.func,
+        onAnswerClick: PropTypes.func,
         skipAnimation: PropTypes.bool,
         onSkipAnimationChange: PropTypes.func,
+        canChangeAnswer: PropTypes.bool,
+        header: PropTypes.node
     };
 
+    static defaultProps = {
+        canChangeAnswer: false,
+    };
+
+    renderTaskHeader() {
+        const {answerId, canChangeAnswer, header} = this.props;
+        if (canChangeAnswer || !answerId) {
+            return header;
+        }
+        return null;
+    }
+
     renderTask() {
-        const {onAnswer, answerId, screen} = this.props;
+        const {onAnswerClick, answerId, screen, canChangeAnswer} = this.props;
         return <div>
-            {!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}</div>}
+            {this.renderTaskHeader()}
             <TaskObjectGroup
                 objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
-                onObjectClick={(e) => e.id && !answerId && onAnswer(e.id)}
+                onObjectClick={(e) => e.id && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
                 screen={screen}
             />
         </div>
@@ -67,28 +76,8 @@ class Rival extends React.PureComponent {
     }
 
     render() {
-        const {pending, rejected, fulfilled} = this.props;
-        if (pending) {
-            return 'LOADING';
-        }
-        if (rejected) {
-            return 'REJECTED';
-        }
-        if (fulfilled) {
-            return <div className={styles.rival}>
-                {this.renderContent()}
-            </div>
-        }
-        return null;
+        return <div className={styles.rival}>
+            {this.renderContent()}
+        </div>
     }
 }
-
-export default connect(
-    (state) => ({
-        screen: state.screen,
-        skipAnimation: state.rival.skipAnimation
-    }),
-    (dispatch) => ({
-        onSkipAnimationChange: skipAnimation => dispatch(skipAnimationChanged(skipAnimation))
-    })
-)(Rival);

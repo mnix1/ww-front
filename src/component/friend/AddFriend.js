@@ -10,13 +10,22 @@ import {
 } from "../../lang";
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import IoAndroidSync from 'react-icons/lib/io/android-sync';
+import PropTypes from "prop-types";
 
 export class AddFriend extends React.PureComponent {
+
+    static propTypes = {
+        friend: PropTypes.object,
+        onAddClick: PropTypes.func,
+        onClearClick: PropTypes.func,
+        addFriendRep: PropTypes.object,
+        screen: PropTypes.object,
+    };
 
     addFriendInputRef = React.createRef();
 
     render() {
-        const {onAddFriendClick, onAddFriendClear, addFriendRep, screen} = this.props;
+        const {onAddClick, onClearClick, addFriendRep, screen} = this.props;
         const fontSize = screen.isSmallHeight || screen.isSmallWidth
             ? 14 : 20;
         if (addFriendRep === undefined) {
@@ -29,7 +38,7 @@ export class AddFriend extends React.PureComponent {
                            maxLength={8}
                            style={{width: 120}}/>
                     <FaPlusCircle color="#fffdf1" size={fontSize + 4}
-                                  onClick={() => onAddFriendClick(this.addFriendInputRef.current.value)}/>
+                                  onClick={() => onAddClick(this.addFriendInputRef.current.value)}/>
                 </div>
             </div>;
         }
@@ -44,7 +53,7 @@ export class AddFriend extends React.PureComponent {
             {code === 1 && <span>{getText(TEXT_REQUEST_SENT)}</span>}
             {code === -2 && <span>{getText(TEXT_WRONG_TAG)}</span>}
             {(code === -1 || code === -3) && <span>{getText(TEXT_ADD_FRIEND_ALREADY)}</span>}
-            <IoAndroidSync size={fontSize} color="#fffdf1" onClick={onAddFriendClear}/>
+            <IoAndroidSync size={fontSize} color="#fffdf1" onClick={onClearClick}/>
         </div>;
     }
 

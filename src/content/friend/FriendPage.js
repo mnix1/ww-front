@@ -12,8 +12,11 @@ import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/battle";
 import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
-import {Friend} from "../../component/friend/Friend";
+import {Friend, STATUS_ACCEPTED, STATUS_REQUESTED} from "../../component/friend/Friend";
 import {AddFriend} from "../../component/friend/AddFriend";
+import FaBan from 'react-icons/lib/fa/ban';
+import FaGavel from 'react-icons/lib/fa/gavel';
+import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 
 class FriendPage extends React.PureComponent {
 
@@ -25,28 +28,32 @@ class FriendPage extends React.PureComponent {
         if (friendListRep.rejected) {
             return 'REJECTED';
         }
-        return <ul className={styles.friendList}>
+        return <div className={styles.friendList}>
             {friendListRep.value.friends.map(e => this.renderFriend(e))}
-        </ul>;
+        </div>;
     }
 
     renderAddFriend() {
-        const {onAddFriendClick, onAddFriendClear, addFriendRep, screen} = this.props;
+        const {onAddFriendClick, onAddFriendClearClick, addFriendRep, screen} = this.props;
         return <AddFriend
             screen={screen}
-            onAddFriendClick={onAddFriendClick}
-            onAddFriendClear={onAddFriendClear}
+            onAddClick={onAddFriendClick}
+            onClearClick={onAddFriendClearClick}
             addFriendRep={addFriendRep}
         />;
     }
 
     renderFriend(friend) {
         const {onAcceptFriendClick, onDeleteFriendClick, onBattleFriendClick} = this.props;
-        return <Friend
+        return <Friend key={friend.tag}
             friend={friend}
-            onAcceptFriendClick={onAcceptFriendClick}
-            onDeleteFriendClick={onDeleteFriendClick}
-            onBattleFriendClick={onBattleFriendClick}
+            actions={<div className='actions'>
+                {friend.status === STATUS_ACCEPTED &&
+                <FaGavel color="#fffdf1" onClick={() => onBattleFriendClick(friend.tag)}/>}
+                {friend.status === STATUS_REQUESTED &&
+                <FaPlusCircle color="#fffdf1" onClick={() => onAcceptFriendClick(friend.tag)}/>}
+                {<FaBan color="#fffdf1" onClick={() => onDeleteFriendClick(friend.tag)}/>}
+            </div>}
         />;
     }
 
@@ -90,7 +97,7 @@ export default connect(
             })
         },
         onAddFriendClick: (tag) => dispatch(tagChanged(tag)),
-        onAddFriendClear: () => {
+        onAddFriendClearClick: () => {
             clearAddFriendFetch(dispatch);
             dispatch(tagChanged(undefined));
         }

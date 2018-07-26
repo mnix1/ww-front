@@ -31,6 +31,9 @@ export const TEXT_ADD_FRIEND_TAG = 'TEXT_ADD_FRIEND_TAG';
 export const TEXT_WRONG_TAG = 'TEXT_WRONG_TAG';
 export const TEXT_REQUEST_SENT = 'TEXT_REQUEST_SENT';
 export const TEXT_ADD_FRIEND_ALREADY = 'TEXT_ADD_FRIEND_ALREADY';
+export const TEXT_BATTLE_ADD_FRIENDS = 'TEXT_BATTLE_ADD_FRIENDS';
+export const TEXT_ADDED = 'TEXT_ADDED';
+export const TEXT_START_BATTLE = 'TEXT_START_BATTLE';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -53,6 +56,9 @@ const TEXTS = {
         [TEXT_WRONG_TAG]: 'nieistniejący tag',
         [TEXT_REQUEST_SENT]: 'wysłano',
         [TEXT_ADD_FRIEND_ALREADY]: 'już wysłano prośbę o dodanie',
+        [TEXT_BATTLE_ADD_FRIENDS]: 'Dodaj znajomych do bitwy',
+        [TEXT_ADDED]: 'Dodano',
+        [TEXT_START_BATTLE]: 'Rozpocznij bitwę!',
 
     },
     [ENGLISH]: {
@@ -71,6 +77,9 @@ const TEXTS = {
         [TEXT_WRONG_TAG]: 'not existing tag',
         [TEXT_REQUEST_SENT]: 'sent',
         [TEXT_ADD_FRIEND_ALREADY]: 'already requested',
+        [TEXT_BATTLE_ADD_FRIENDS]: 'Add friends to battle',
+        [TEXT_ADDED]: 'Added',
+        [TEXT_START_BATTLE]: 'Start battle!',
     }
 };
 

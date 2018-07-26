@@ -3,7 +3,7 @@ import styles from './styles.css';
 import {connect} from 'react-redux';
 import MdArrowBack from 'react-icons/lib/md/arrow-back';
 import {idChanged} from "../../redux/reducer/content";
-import {cleared} from "../../redux/reducer/rival";
+import {cleared} from "../../redux/reducer/practise";
 
 class Back extends React.PureComponent {
 
