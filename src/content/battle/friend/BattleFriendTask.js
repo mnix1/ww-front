@@ -1,23 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import BattleFriendStartFetch from "./fetch/BattleFriendStartFetch";
 import Task from "../../../component/task/Task";
 import {
     questionIdAnswerIdMapChanged,
     questionIdSkipAnimationMapChanged,
-    questionIndexChanged, statusChanged
+    questionIndexChanged,
+    statusChanged
 } from "../../../redux/reducer/battle";
 import {getText, TEXT_QUESTION} from "../../../lang";
 import {BATTLE_STATUS_IN_PROGRESS} from "../../../util/battleHelper";
 
 class BattleFriendTask extends React.PureComponent {
 
-    renderTask(battle) {
+    renderTask({questions}) {
         const {questionIndex, screen, onAnswerClick, questionIdAnswerIdMap, questionIdSkipAnimationMap, onSkipAnimationChange, onNavigateTaskClick, onLastQuestionAnswerClick} = this.props;
-        const question = _.sortBy(battle.questions, 'id')[questionIndex];
-        const nextQuestionIndex = (questionIndex + 1) % battle.questions.length;
-        const headerText = `${getText(TEXT_QUESTION)} ${questionIndex + 1}/${battle.questions.length}`;
+        const question = _.sortBy(questions, 'id')[questionIndex];
+        const nextQuestionIndex = (questionIndex + 1) % questions.length;
+        const headerText = `${getText(TEXT_QUESTION)} ${questionIndex + 1}/${questions.length}`;
         return <Task
             header={<div className="contentHeader">{headerText}</div>}
             answerId={questionIdAnswerIdMap[question.id]}
@@ -40,9 +40,9 @@ class BattleFriendTask extends React.PureComponent {
 
     render() {
         const {battleFriendStartRep} = this.props;
-        const shouldRenderTask =  battleFriendStartRep && battleFriendStartRep.fulfilled;
+        const shouldRenderTask = battleFriendStartRep && battleFriendStartRep.fulfilled;
         return <div>
-            {shouldRenderTask && this.renderTask(battleFriendStartRep.value.battle)}
+            {shouldRenderTask && this.renderTask(battleFriendStartRep.value)}
         </div>;
     }
 }
@@ -56,7 +56,10 @@ export default connect(
         battleFriendStartRep: state.repository.battleFriendStart,
     }),
     (dispatch) => ({
-        onLastQuestionAnswerClick: () => dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS)),
+        onLastQuestionAnswerClick: () => {
+            dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS))
+            dispatch(questionIndexChanged(0));
+        },
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
         onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
         onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))

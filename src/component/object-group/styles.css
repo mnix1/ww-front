@@ -12,6 +12,8 @@
 }
 
 .objectContent {
+    word-break: break-word;
+    overflow-wrap: break-word;
     text-align: center;
     position: relative;
     height: 100%;

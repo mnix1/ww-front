@@ -4,9 +4,9 @@ import _ from 'lodash';
 import {BATTLE_STATUS_IN_PROGRESS, BATTLE_STATUS_OPEN} from "../../../util/battleHelper";
 import BattleFriendInitPage from "./BattleFriendInit";
 import BattleFriendTask from "./BattleFriendTask";
-import BattleFriendResult from "./BattleFriendSolution";
 import BattleFriendStartFetch from "./fetch/BattleFriendStartFetch";
 import BattleFriendEndFetch from "./fetch/BattleFriendEndFetch";
+import BattleFriendSolution from "./BattleFriendSolution";
 
 class BattleFriendPage extends React.PureComponent {
 
@@ -19,7 +19,7 @@ class BattleFriendPage extends React.PureComponent {
             return <BattleFriendTask/>;
         }
         if (status === BATTLE_STATUS_IN_PROGRESS) {
-            return <BattleFriendResult/>;
+            return <BattleFriendSolution/>;
         }
         return null;
     }
@@ -35,7 +35,7 @@ class BattleFriendPage extends React.PureComponent {
             />
             <BattleFriendEndFetch
                 battleFriendEndRep={battleFriendEndRep}
-                battleId={_.get(battleFriendStartRep, 'value.battle.id')}
+                battleId={_.get(battleFriendStartRep, 'value.id')}
                 questionIdAnswerIdMap={questionIdAnswerIdMap}
                 status={status}
             />

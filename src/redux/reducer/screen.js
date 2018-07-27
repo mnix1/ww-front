@@ -52,6 +52,10 @@ function checkSmallWidth(resolution) {
     return _.includes(resolution, 'SW');
 }
 
+function checkMoreHeightThanWidth(height, width) {
+    return height > width;
+}
+
 export function checkSmallHeight(resolution) {
     return _.includes(resolution, 'SH');
 }
@@ -83,6 +87,7 @@ const initialState = {
     resolution,
     isSmallHeight,
     isSmallWidth,
+    moreHeightThanWidth: checkMoreHeightThanWidth(initialHeight, initialWidth),
     contentHeight: calculateContentHeight(initialHeight, isSmallHeight),
     contentWidth: calculateContentWidth(initialWidth, isSmallWidth),
     isMobile
@@ -102,6 +107,7 @@ export default function reducer(state = initialState, action) {
                 width,
                 isSmallHeight,
                 isSmallWidth,
+                moreHeightThanWidth: checkMoreHeightThanWidth(height, width),
                 contentHeight: calculateContentHeight(height, isSmallHeight),
                 contentWidth: calculateContentWidth(width, isSmallWidth),
                 resolution

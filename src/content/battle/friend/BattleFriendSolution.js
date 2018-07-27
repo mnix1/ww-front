@@ -1,28 +1,99 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import './styles.css';
 import _ from 'lodash';
-import BattleFriendStartFetch from "./fetch/BattleFriendStartFetch";
 import Task from "../../../component/task/Task";
+import {questionIndexChanged} from "../../../redux/reducer/battle";
 import {
-    questionIdAnswerIdMapChanged,
-    questionIdSkipAnimationMapChanged,
-    questionIndexChanged, statusChanged
-} from "../../../redux/reducer/battle";
-import {getText, TEXT_QUESTION} from "../../../lang";
-import {BATTLE_STATUS_IN_PROGRESS} from "../../../util/battleHelper";
-import BattleFriendEndFetch from "./fetch/BattleFriendEndFetch";
+    getText,
+    TEXT_ANSWER_FOR_QUESTION,
+    TEXT_NEXT_QUESTION,
+    TEXT_POINTS,
+    TEXT_SUMMARY,
+    TEXT_YOUR_SCORE
+} from "../../../lang";
+import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
+import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 
-class BattleFriendTask extends React.PureComponent {
+class BattleFriendSolution extends React.PureComponent {
 
-    renderTask(battle) {
+    calculateResult(questionIdCorrectAnswerIdMap) {
+        const {questionIdAnswerIdMap, questions} = this.props;
+        let result = 0;
+        questions.forEach(e => {
+            if (questionIdCorrectAnswerIdMap[e.id] === questionIdAnswerIdMap[e.id]) {
+                result++;
+            }
+        });
+        return result;
+    }
+
+    prepareScreenForTask() {
+        const {screen} = this.props;
+        const contentHeight = Math.min(screen.contentHeight / 1.15, screen.contentHeight - 40);
+        return {
+            ...screen,
+            contentHeight
+        }
+    }
+
+    renderActions() {
+        const {screen, questionIndex, onNavigateTaskClick, questions} = this.props;
+        const nextQuestionIndex = (questionIndex + 1) % questions.length;
+        let className = 'actionsToRight';
+        if (screen.moreHeightThanWidth) {
+            className += ' marginTop';
+        }
+        return <div className={className}>
+            <Button
+                material={BUTTON_MATERIAL_BOX_SHADOW}
+                icon={<FaArrowCircleRight/>}
+                onClick={() => onNavigateTaskClick(nextQuestionIndex)}
+            >{getText(TEXT_NEXT_QUESTION)}</Button>
+            <br/>
+            <Button
+                material={BUTTON_MATERIAL_BOX_SHADOW}
+                icon={<FaArrowCircleRight/>}
+                onClick={() => onNavigateTaskClick(nextQuestionIndex)}
+            >{getText(TEXT_SUMMARY)}</Button>
+        </div>;
+    }
+
+    renderHeader({answerInterval, questionIdCorrectAnswerIdMap}) {
+        const {questionIndex} = this.props;
+        return <div className="contentHeader">
+            {`${getText(TEXT_YOUR_SCORE)}: ${this.calculateResult(questionIdCorrectAnswerIdMap)} ${getText(TEXT_POINTS)}, ${prepareAnswerIntervalMessage(answerInterval)}`}
+            <br/>
+            {`${getText(TEXT_ANSWER_FOR_QUESTION)} ${questionIndex + 1}:`}
+            {this.renderActions()}
+        </div>;
+    }
+
+    renderTask({questionIdCorrectAnswerIdMap}) {
+        const {questionIndex, questionIdAnswerIdMap, questions} = this.props;
+        const question = _.sortBy(questions, 'id')[questionIndex];
+        return <Task
+            style={{position: 'absolute', bottom: 0}}
+            answerId={questionIdAnswerIdMap[question.id]}
+            correctAnswerId={questionIdCorrectAnswerIdMap[question.id]}
+            canChangeAnswer={false}
+            screen={this.prepareScreenForTask()}
+            skipAnimation={true}
+            question={question}
+            answers={question.answers}
+            onAnswerClick={_.noop}
+        />;
     }
 
     render() {
         const {battleFriendEndRep} = this.props;
-        const shouldRenderTask =  battleFriendEndRep && battleFriendEndRep.fulfilled;
-        return <div>
-            {shouldRenderTask && this.renderTask(battleFriendEndRep.value.battle)}
-
+        if (!battleFriendEndRep || !battleFriendEndRep.fulfilled) {
+            return null;
+        }
+        return <div className='battleFriendSolution'>
+            {this.renderHeader(battleFriendEndRep.value)}
+            {this.renderTask(battleFriendEndRep.value)}
         </div>;
     }
 }
@@ -30,8 +101,12 @@ class BattleFriendTask extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        questionIndex: state.battle.questionIndex,
+        questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
+        questions: state.repository.battleFriendStart.value.questions,
         battleFriendEndRep: state.repository.battleFriendEnd,
     }),
     (dispatch) => ({
+        onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
     })
-)(BattleFriendTask);
+)(BattleFriendSolution);

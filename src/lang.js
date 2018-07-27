@@ -34,6 +34,11 @@ export const TEXT_ADD_FRIEND_ALREADY = 'TEXT_ADD_FRIEND_ALREADY';
 export const TEXT_BATTLE_ADD_FRIENDS = 'TEXT_BATTLE_ADD_FRIENDS';
 export const TEXT_ADDED = 'TEXT_ADDED';
 export const TEXT_START_BATTLE = 'TEXT_START_BATTLE';
+export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
+export const TEXT_POINTS = 'TEXT_POINTS';
+export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
+export const TEXT_NEXT_QUESTION = 'TEXT_NEXT_QUESTION';
+export const TEXT_SUMMARY = 'TEXT_SUMMARY';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -48,7 +53,7 @@ const TEXTS = {
         [TEXT_REMEMBER_DETAILS]: 'Zapamiętaj szczegóły obiektów',
         [TEXT_CLICK_ON_ANY_TO_CONTINUE]: 'Kliknij na dowolny aby kontynuować',
         [TEXT_CORRECT_ANSWER]: 'Gratulacje! Poprawna odpowiedź',
-        [TEXT_TIME]: 'Czas: ',
+        [TEXT_TIME]: 'Czas',
         [TEXT_WRONG_ANSWER]: 'Niestety, błędna odpowiedź...',
         [TEXT_FRIENDS]: 'Znajomi',
         [TEXT_ADD_FRIEND]: 'Dodaj znajomego',
@@ -59,6 +64,11 @@ const TEXTS = {
         [TEXT_BATTLE_ADD_FRIENDS]: 'Dodaj znajomych do bitwy',
         [TEXT_ADDED]: 'Dodano',
         [TEXT_START_BATTLE]: 'Rozpocznij bitwę!',
+        [TEXT_YOUR_SCORE]: 'Twój wynik',
+        [TEXT_POINTS]: 'pkt',
+        [TEXT_ANSWER_FOR_QUESTION]: 'Odpowiedź dla pytania',
+        [TEXT_NEXT_QUESTION]: 'Następne pytanie',
+        [TEXT_SUMMARY]: 'Podsumowanie',
 
     },
     [ENGLISH]: {
@@ -69,7 +79,7 @@ const TEXTS = {
         [TEXT_REMEMBER_DETAILS]: 'Remember the details of the objects',
         [TEXT_CLICK_ON_ANY_TO_CONTINUE]: 'Click on any to continue',
         [TEXT_CORRECT_ANSWER]: 'Congratulations! Correct answer',
-        [TEXT_TIME]: 'Time: ',
+        [TEXT_TIME]: 'Time',
         [TEXT_WRONG_ANSWER]: 'Unfortunately, the wrong answer ...',
         [TEXT_FRIENDS]: 'Friends',
         [TEXT_ADD_FRIEND]: 'Add friend',
@@ -80,6 +90,11 @@ const TEXTS = {
         [TEXT_BATTLE_ADD_FRIENDS]: 'Add friends to battle',
         [TEXT_ADDED]: 'Added',
         [TEXT_START_BATTLE]: 'Start battle!',
+        [TEXT_YOUR_SCORE]: 'Your score',
+        [TEXT_POINTS]: 'pt',
+        [TEXT_ANSWER_FOR_QUESTION]: 'Answer for question',
+        [TEXT_NEXT_QUESTION]: 'Next question',
+        [TEXT_SUMMARY]: 'Summary view',
     }
 };
 

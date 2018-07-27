@@ -1,7 +1,13 @@
 .button {
     border-radius: 0.5rem;
-    background: #2ea231;
     padding: .5rem;
     display: inline-block;
-    color: #fffdf1;
+}
+
+.button .content {
+    display: flex;
+}
+
+.button .content .icon {
+    margin-left: 0.25rem;
 }

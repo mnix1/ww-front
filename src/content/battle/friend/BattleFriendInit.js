@@ -5,7 +5,7 @@ import styles from './styles.css';
 import {Friend} from "../../../component/friend/Friend";
 import _ from 'lodash';
 import {statusChanged, tagsChanged} from "../../../redux/reducer/battle";
-import {Button} from "../../../component/button/Button";
+import {Button, BUTTON_MATERIAL_ACCEPT, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 import {BATTLE_STATUS_OPEN, MAX_BATTLE_FRIENDS} from "../../../util/battleHelper";
 
 class BattleFriendPage extends React.PureComponent {
@@ -28,11 +28,16 @@ class BattleFriendPage extends React.PureComponent {
         />;
     }
 
+    isFriendAdded(tagsMap, friend) {
+        return !_.isNil(tagsMap[friend.tag]);
+    }
+
     renderFriends() {
         const {tags, friends} = this.props;
         const tagsMap = _.keyBy(tags);
+        const sortedFriends = _.sortBy(friends, (e) => (this.isFriendAdded(tagsMap, e) ? 0 : 1) + _.toLower(e.name));
         return <div className={styles.friendList}>
-            {friends.map(e => this.renderFriend(e, !_.isNil(tagsMap[e.tag])))}
+            {sortedFriends.map(e => this.renderFriend(e, this.isFriendAdded(tagsMap, e)))}
         </div>;
     }
 
@@ -40,7 +45,8 @@ class BattleFriendPage extends React.PureComponent {
         const {onStartBattleClick} = this.props;
         const label = getText(TEXT_START_BATTLE);
         return <Button onClick={onStartBattleClick}
-                       style={{margin: '0.5rem', boxShadow: '0 0 4px #dadada'}}>{label}</Button>;
+                       material={BUTTON_MATERIAL_ACCEPT}
+                       style={{margin: '0.5rem'}}>{label}</Button>;
     }
 
     render() {

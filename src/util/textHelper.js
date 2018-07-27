@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import {getText, TEXT_TIME} from "../lang";
 
 export function wordsByLength(string, maxLength) {
     const result = [];
@@ -19,4 +20,8 @@ export function wordsByLength(string, maxLength) {
         result.push(line);
     }
     return result;
+}
+
+export function prepareAnswerIntervalMessage(answerInterval) {
+    return `${getText(TEXT_TIME)}: ${(answerInterval / 1000).toFixed(1)} s`;
 }

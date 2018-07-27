@@ -19,7 +19,8 @@ export default class Task extends React.PureComponent {
         skipAnimation: PropTypes.bool,
         onSkipAnimationChange: PropTypes.func,
         canChangeAnswer: PropTypes.bool,
-        header: PropTypes.node
+        header: PropTypes.node,
+        style: PropTypes.object,
     };
 
     static defaultProps = {
@@ -27,11 +28,8 @@ export default class Task extends React.PureComponent {
     };
 
     renderTaskHeader() {
-        const {answerId, canChangeAnswer, header} = this.props;
-        if (canChangeAnswer || !answerId) {
-            return header;
-        }
-        return null;
+        const {header} = this.props;
+        return header;
     }
 
     renderTask() {
@@ -65,7 +63,8 @@ export default class Task extends React.PureComponent {
     }
 
     render() {
-        return <div className={styles.rival}>
+        const {style} = this.props;
+        return <div className={styles.task} style={style}>
             {this.renderTaskHeader()}
             {this.renderContent()}
         </div>

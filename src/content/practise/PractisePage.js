@@ -17,6 +17,7 @@ import {
 } from "../../lang";
 import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
+import {prepareAnswerIntervalMessage} from "../../util/textHelper";
 
 class PractisePage extends React.PureComponent {
 
@@ -51,7 +52,7 @@ class PractisePage extends React.PureComponent {
         return <div>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Task key='task'
-                  header={<div className="contentHeader">{getText(TEXT_QUESTION)}:</div>}
+                  header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:</div>}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}
@@ -70,12 +71,11 @@ class PractisePage extends React.PureComponent {
             return null;
         }
         const answerInterval = _.get(practiseEndRep, 'value.answerInterval');
-        const answerIntervalMessage = `${getText(TEXT_TIME)}${(answerInterval / 1000).toFixed(1)} s`;
         const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
         return <div key='result' className="contentHeader">
             <span className={styles.resultMessage}>{resultMessage}</span>
             <br/>
-            <span className={styles.resultMessage}>{answerIntervalMessage}</span>
+            <span className={styles.resultMessage}>{prepareAnswerIntervalMessage(answerInterval)}</span>
         </div>;
     }
 

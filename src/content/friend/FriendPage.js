@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {clearFriendListFetch} from "./fetch/FriendListFetch";
 import styles from './styles.css';
 import request from './../../util/fetchHelper';
+import _ from 'lodash';
 import {
     getText,
     TEXT_FRIENDS,
@@ -29,7 +30,8 @@ class FriendPage extends React.PureComponent {
             return 'REJECTED';
         }
         return <div className={styles.friendList}>
-            {friendListRep.value.friends.map(e => this.renderFriend(e))}
+            {_.sortBy(friendListRep.value.friends, e => _.toLower(e.name))
+                .map(e => this.renderFriend(e))}
         </div>;
     }
 
@@ -45,7 +47,8 @@ class FriendPage extends React.PureComponent {
 
     renderFriend(friend) {
         const {onAcceptFriendClick, onDeleteFriendClick, onBattleFriendClick} = this.props;
-        return <Friend key={friend.tag}
+        return <Friend
+            key={friend.tag}
             friend={friend}
             actions={<div className='actions'>
                 {friend.status === STATUS_ACCEPTED &&
