@@ -1,0 +1,41 @@
+.battleContainer {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+    background: #4ea5c5;
+    color: #fffdf1;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.battle {
+    display: flex;
+    width: 140px;
+    justify-content: space-between;
+}
+
+.battle .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    position: relative;
+    /*height: calc(100% - 16px);*/
+}
+
+.battle .details .actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.battle .details .actions svg {
+    cursor: pointer;
+}
+
+.battle .creatorName {
+    font-size: 1rem;
+}
+
+.battle .creatorTag {
+    font-size: 0.8rem;
+}

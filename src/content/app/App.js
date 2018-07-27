@@ -5,12 +5,14 @@ import {idChanged} from "../../redux/reducer/content";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
-import {OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
+import {OBJECT_APP_BATTLE, OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import FriendPage from "../friend/FriendPage";
-import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
+import {OBJECT_BATTLE_FRIEND, OBJECT_BATTLE_LIST} from "../object-group/objectsBattle";
 import FriendListFetch from "../friend/fetch/FriendListFetch";
 import BattleFriendPage from "../battle/friend/BattleFriendPage";
+import BattlePage from "../battle/BattlePage";
+import BattleListPage from "../battle/list/BattleListPage";
 
 class App extends React.PureComponent {
 
@@ -32,6 +34,12 @@ class App extends React.PureComponent {
         if (contentId === OBJECT_BATTLE_FRIEND) {
             return <BattleFriendPage/>
         }
+        if (contentId === OBJECT_BATTLE_LIST) {
+            return <BattleListPage/>
+        }
+        if (contentId === OBJECT_APP_BATTLE) {
+            return <BattlePage/>
+        }
     }
 
     renderBack() {
@@ -51,7 +59,7 @@ class App extends React.PureComponent {
                 {this.renderBack()}
                 {this.renderContent()}
                 {/*<div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>*/}
-                    {/*{JSON.stringify(screen)}*/}
+                {/*{JSON.stringify(screen)}*/}
                 {/*</div>*/}
             </div>
             <FriendListFetch friendListRep={friendListRep}/>

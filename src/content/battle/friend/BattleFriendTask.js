@@ -57,7 +57,7 @@ export default connect(
     }),
     (dispatch) => ({
         onLastQuestionAnswerClick: () => {
-            dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS))
+            dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
             dispatch(questionIndexChanged(0));
         },
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),

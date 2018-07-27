@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import _ from 'lodash';
 import './styles.css';
-import {CREAME_COLOR, GREEN_COLOR} from "../../util/style/constant";
+import {CREAM_COLOR, GREEN_COLOR} from "../../util/style/constant";
 
 export class Button extends React.PureComponent {
 
@@ -31,9 +31,9 @@ export class Button extends React.PureComponent {
 export const BUTTON_MATERIAL_ACCEPT = {
     background: GREEN_COLOR,
     boxShadow: '0 0 4px',
-    color: CREAME_COLOR
+    color: CREAM_COLOR
 };
 export const BUTTON_MATERIAL_BOX_SHADOW = {
     boxShadow: '0 0 4px',
-    color: CREAME_COLOR
+    color: CREAM_COLOR
 };

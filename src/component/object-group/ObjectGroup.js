@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import './styles.css';
 import PropTypes from "prop-types";
-import {CREAME_COLOR, DARK_BLUE_COLOR} from "../../util/style/constant";
+import {CREAM_COLOR, DARK_BLUE_COLOR} from "../../util/style/constant";
 
 export class ObjectGroup extends React.PureComponent {
 
@@ -26,7 +26,7 @@ export class ObjectGroup extends React.PureComponent {
         objectContainerClassName: 'objectContainer',
         objectContentClassName: 'objectContent',
         objectStyle: {
-            backgroundColor: CREAME_COLOR,
+            backgroundColor: CREAM_COLOR,
             color: DARK_BLUE_COLOR,
             padding: '8px',
             // border: '1px solid rgb(165, 169, 165)',

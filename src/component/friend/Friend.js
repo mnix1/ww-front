@@ -11,9 +11,10 @@ export class Friend extends React.PureComponent {
 
     static propTypes = {
         friend: PropTypes.object,
-        isAdded: PropTypes.bool
+        isAdded: PropTypes.bool,
+        actions: PropTypes.node,
+        children: PropTypes.node,
     };
-
 
     renderActions() {
         const {actions} = this.props;
@@ -21,9 +22,10 @@ export class Friend extends React.PureComponent {
     }
 
     render() {
-        const {friend} = this.props;
+        const {friend, children} = this.props;
         return <div key={friend.tag} className='friendContainer'>
             <div className='friend'>
+                {children}
                 <img src={getHero(friend.avatar)} height={80}/>
                 <div className='details'>
                     {this.renderActions()}

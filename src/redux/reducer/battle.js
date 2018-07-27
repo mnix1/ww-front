@@ -1,5 +1,6 @@
 
 export const TAGS_CHANGED = 'battle/tags/changed';
+export const IN_PROGRESS_ID_CHANGED = 'battle/in-progress-id/changed';
 export const STATUS_CHANGED = 'battle/status/changed';
 export const QUESTION_INDEX_CHANGED = 'battle/question-index/changed';
 export const QUESTION_ID_ANSWER_ID_MAP_CHANGED = 'battle/question-id-answer-id-map/changed';
@@ -7,6 +8,7 @@ export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'battle/question-id-skip-a
 
 const initialState = {
     tags: undefined,
+    inProgressId: undefined,
     questionIndex: 0,
     questionIdAnswerIdMap: {},
     questionIdSkipAnimationMap: {},
@@ -17,6 +19,8 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case TAGS_CHANGED:
             return {...state, tags: action.tags};
+        case IN_PROGRESS_ID_CHANGED:
+            return {...state, inProgressId: action.inProgressId};
         case STATUS_CHANGED:
             return {...state, status: action.status};
         case QUESTION_INDEX_CHANGED:
@@ -32,6 +36,10 @@ export default function reducer(state = initialState, action) {
 
 export function tagsChanged(tags) {
     return {type: TAGS_CHANGED, tags};
+}
+
+export function inProgressIdChanged(inProgressId) {
+    return {type: IN_PROGRESS_ID_CHANGED, inProgressId};
 }
 
 export function statusChanged(status) {

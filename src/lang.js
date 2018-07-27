@@ -12,6 +12,7 @@ import {
     OBJECT_APP_HISTORY,
     OBJECT_APP_TRAINING
 } from "./content/object-group/objectsApp";
+import {OBJECT_BATTLE_LIST} from "./content/object-group/objectsBattle";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
@@ -44,6 +45,8 @@ export const TEXT_SUGGESTED_FRIENDS = 'TEXT_SUGGESTED_FRIENDS';
 export const TEXT_NONE_FRIENDS = 'TEXT_NONE_FRIENDS';
 export const TEXT_ACTUAL_FRIENDS = 'TEXT_ACTUAL_FRIENDS';
 export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
+export const TEXT_NONE_IN_PROGRESS_BATTLES = 'TEXT_NONE_IN_PROGRESS_BATTLES';
+export const TEXT_IN_PROGRESS_BATTLES = 'TEXT_IN_PROGRESS_BATTLES';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -79,6 +82,9 @@ const TEXTS = {
         [TEXT_NONE_FRIENDS]: 'Nie masz jeszcze znajomych',
         [TEXT_ACTUAL_FRIENDS]: 'Twoi znajomi',
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'Nie możemy zaproponować więcej znajomych',
+        [TEXT_NONE_IN_PROGRESS_BATTLES]: 'Nie masz aktywnych wyzwań',
+        [TEXT_IN_PROGRESS_BATTLES]: 'Aktywne wyzwania',
+        [TEXT_IN_PROGRESS_BATTLES]: 'Aktywne wyzwania',
 
     },
     [ENGLISH]: {
@@ -110,6 +116,8 @@ const TEXTS = {
         [TEXT_NONE_FRIENDS]: 'You do not have friends yet',
         [TEXT_ACTUAL_FRIENDS]: 'Actual friends',
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'We can not recommend more friends',
+        [TEXT_NONE_IN_PROGRESS_BATTLES]: 'You do not have active challenges',
+        [TEXT_IN_PROGRESS_BATTLES]: 'Active challenges',
     }
 };
 
@@ -129,17 +137,19 @@ const OBJECT_LABELS = {
         [OBJECT_CATEGORY_HISTORY]: 'Historia',
         [OBJECT_CATEGORY_GEOGRAPHY]: 'Geografia',
         [OBJECT_CATEGORY_MEMORY]: 'Pamięć',
+        [OBJECT_BATTLE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
         [OBJECT_APP_BATTLE]: 'Battle',
         [OBJECT_APP_TRAINING]: 'Training',
         [OBJECT_APP_HISTORY]: 'History',
-        [OBJECT_APP_FRIEND]: 'Friend',
+        [OBJECT_APP_FRIEND]: 'Battle',
         [OBJECT_CATEGORY_RANDOM]: 'Random',
         [OBJECT_CATEGORY_MATH]: 'Math',
         [OBJECT_CATEGORY_MUSIC]: 'Music',
         [OBJECT_CATEGORY_HISTORY]: 'History',
         [OBJECT_CATEGORY_GEOGRAPHY]: 'Geography',
         [OBJECT_CATEGORY_MEMORY]: 'Memory',
+        [OBJECT_BATTLE_LIST]: 'Active challenges',
     }
 };

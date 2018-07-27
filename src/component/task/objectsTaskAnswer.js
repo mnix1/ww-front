@@ -1,5 +1,5 @@
 import {getTextContent} from "../../util/taskRenderer";
-import {CREAME_COLOR} from "../../util/style/constant";
+import {CREAM_COLOR} from "../../util/style/constant";
 import {
     ANSWER_OBJECT_MATERIALS,
     CORRECT_ANSWER_OBJECT_MATERIAL,
@@ -21,7 +21,7 @@ export function prepareAnswerTiles(rival) {
             yTarget: (i % 2) * .25 + .5,
             xTarget: xTargetGenerator(i),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
-            borderColor: isUserAnswer ? CREAME_COLOR : isCorrectAnswer ? CREAME_COLOR : undefined,
+            borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined,
         }
     });
 }

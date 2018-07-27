@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {clearFriendListFetch} from "./fetch/FriendListFetch";
-import styles from './styles.css';
+import './styles.css';
 import request from './../../util/fetchHelper';
 import _ from 'lodash';
 import {
@@ -24,15 +24,15 @@ import FaGavel from 'react-icons/lib/fa/gavel';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
+import {CREAM_COLOR} from "../../util/style/constant";
 
 class FriendPage extends React.PureComponent {
-
 
     renderFriends(friends) {
         if (!friends) {
             return null;
         }
-        return <div className={styles.friendList}>
+        return <div>
             {_.sortBy(friends, e => _.toLower(e.name))
                 .map(e => this.renderFriend(e))}
         </div>;
@@ -41,7 +41,7 @@ class FriendPage extends React.PureComponent {
     renderActualFriends() {
         const {friendListRep} = this.props;
         const friends = _.get(friendListRep, 'value.friends');
-        return <div className='friendsContainer'>
+        return <div className='pageInsideContainer'>
             <div className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
             {this.renderFriends(friends)}
         </div>;
@@ -64,11 +64,11 @@ class FriendPage extends React.PureComponent {
             friend={friend}
             actions={<div className='actions'>
                 {friend.status === STATUS_ACCEPTED &&
-                <FaGavel color="#fffdf1" onClick={() => onBattleFriendClick(friend.tag)}/>}
+                <FaGavel color={CREAM_COLOR} onClick={() => onBattleFriendClick(friend.tag)}/>}
                 {(friend.status === STATUS_REQUESTED || friend.status === STATUS_SUGGESTED) &&
-                <FaPlusCircle color="#fffdf1" onClick={() => onAcceptFriendClick(friend.tag)}/>}
+                <FaPlusCircle color={CREAM_COLOR} onClick={() => onAcceptFriendClick(friend.tag)}/>}
                 {friend.status !== STATUS_SUGGESTED &&
-                <FaBan color="#fffdf1" onClick={() => onDeleteFriendClick(friend.tag)}/>}
+                <FaBan color={CREAM_COLOR} onClick={() => onDeleteFriendClick(friend.tag)}/>}
             </div>}
         />;
     }
@@ -79,9 +79,8 @@ class FriendPage extends React.PureComponent {
         if (!friends) {
             return null;
         }
-        return <div className='friendsContainer suggestedFriendsContainer'>
-            <div
-                className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
+        return <div className='pageInsideContainer suggestedFriendsContainer'>
+            <div className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
             {this.renderFriends(friends)}
         </div>
     }

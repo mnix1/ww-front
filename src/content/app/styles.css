@@ -32,3 +32,8 @@
 .pointer {
     cursor: pointer;
 }
+
+.pageInsideContainer .title {
+    color: #fffdf1;
+    margin: 0.5rem;
+}
