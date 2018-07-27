@@ -39,6 +39,11 @@ export const TEXT_POINTS = 'TEXT_POINTS';
 export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
 export const TEXT_NEXT_QUESTION = 'TEXT_NEXT_QUESTION';
 export const TEXT_SUMMARY = 'TEXT_SUMMARY';
+export const TEXT_SUGGEST_FRIENDS = 'TEXT_SUGGEST_FRIENDS';
+export const TEXT_SUGGESTED_FRIENDS = 'TEXT_SUGGESTED_FRIENDS';
+export const TEXT_NONE_FRIENDS = 'TEXT_NONE_FRIENDS';
+export const TEXT_ACTUAL_FRIENDS = 'TEXT_ACTUAL_FRIENDS';
+export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -69,6 +74,11 @@ const TEXTS = {
         [TEXT_ANSWER_FOR_QUESTION]: 'Odpowiedź dla pytania',
         [TEXT_NEXT_QUESTION]: 'Następne pytanie',
         [TEXT_SUMMARY]: 'Podsumowanie',
+        [TEXT_SUGGEST_FRIENDS]: 'Zaproponuj znajomych',
+        [TEXT_SUGGESTED_FRIENDS]: 'Proponowani znajomi',
+        [TEXT_NONE_FRIENDS]: 'Nie masz jeszcze znajomych',
+        [TEXT_ACTUAL_FRIENDS]: 'Twoi znajomi',
+        [TEXT_NONE_SUGGESTED_FRIENDS]: 'Nie możemy zaproponować więcej znajomych',
 
     },
     [ENGLISH]: {
@@ -95,6 +105,11 @@ const TEXTS = {
         [TEXT_ANSWER_FOR_QUESTION]: 'Answer for question',
         [TEXT_NEXT_QUESTION]: 'Next question',
         [TEXT_SUMMARY]: 'Summary view',
+        [TEXT_SUGGEST_FRIENDS]: 'Suggest friends',
+        [TEXT_SUGGESTED_FRIENDS]: 'Suggested friends',
+        [TEXT_NONE_FRIENDS]: 'You do not have friends yet',
+        [TEXT_ACTUAL_FRIENDS]: 'Actual friends',
+        [TEXT_NONE_SUGGESTED_FRIENDS]: 'We can not recommend more friends',
     }
 };
 

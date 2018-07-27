@@ -50,9 +50,9 @@ class App extends React.PureComponent {
                 <TopBar/>
                 {this.renderBack()}
                 {this.renderContent()}
-                <div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>
-                    {JSON.stringify(screen)}
-                </div>
+                {/*<div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>*/}
+                    {/*{JSON.stringify(screen)}*/}
+                {/*</div>*/}
             </div>
             <FriendListFetch friendListRep={friendListRep}/>
         </div>;

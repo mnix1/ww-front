@@ -1,29 +1,45 @@
 * {
-  margin: 0;
-  padding: 0;
+    margin: 0;
+    padding: 0;
 }
+
 body {
-  font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    background: #4ea5c5;
 }
+
 ul {
-  list-style-type: none;
+    list-style-type: none;
 }
+
 svg {
-  display: inline-block;
+    display: inline-block;
 }
+
 /*@media only screen and (max-width: 1024px) {*/
-  /*html { font-size: 62.5%; }*/
+/*html { font-size: 62.5%; }*/
 /*}*/
 
 @media only screen and (max-height: 800px) {
-  html { font-size: 90%; }
+    html {
+        font-size: 90%;
+    }
 }
+
 @media only screen and (max-width: 1440px) {
-  html { font-size: 90%; }
+    html {
+        font-size: 90%;
+    }
 }
+
 @media only screen and (max-height: 600px) {
-  html { font-size: 80%; }
+    html {
+        font-size: 80%;
+    }
 }
+
 @media only screen and (max-width: 1024px) {
-  html { font-size: 80%; }
+    html {
+        font-size: 80%;
+    }
 }

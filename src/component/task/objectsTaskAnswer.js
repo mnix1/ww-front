@@ -7,7 +7,10 @@ import {
 } from "../object-group/objectMaterialHelper";
 
 export function prepareAnswerTiles(rival) {
-    const {answers, answerId, correctAnswerId} = rival.props;
+    const {answers, answerId, correctAnswerId, screen} = rival.props;
+    const xTargetGenerator = screen.moreHeightThanWidth
+        ? (i) => i < answers.length / 2 ? .2 : .8
+        : (i) => i < answers.length / 2 ? .25 : .75;
     return answers.map((ans, i) => {
         const isUserAnswer = answerId === ans.id;
         const isCorrectAnswer = correctAnswerId === ans.id;
@@ -16,7 +19,7 @@ export function prepareAnswerTiles(rival) {
             content: getTextContent(ans),
             material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
             yTarget: (i % 2) * .25 + .5,
-            xTarget: i < answers.length / 2 ? .25 : .75,
+            xTarget: xTargetGenerator(i),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
             borderColor: isUserAnswer ? CREAME_COLOR : isCorrectAnswer ? CREAME_COLOR : undefined,
         }

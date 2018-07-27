@@ -9,9 +9,7 @@ class FriendListFetch extends React.PureComponent {
     }
 
     componentDidUpdate(prevProps) {
-        if (!this.props.friendListRep) {
-            this.maybeFetch(prevProps);
-        }
+        this.maybeFetch(prevProps);
     }
 
     componentWillUnmount() {
@@ -19,7 +17,9 @@ class FriendListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        this.props.dispatchFriendListGet();
+        if (!this.props.friendListRep) {
+            this.props.dispatchFriendListGet();
+        }
     }
 
     render() {

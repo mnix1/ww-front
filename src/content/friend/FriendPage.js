@@ -6,32 +6,44 @@ import request from './../../util/fetchHelper';
 import _ from 'lodash';
 import {
     getText,
+    TEXT_ACTUAL_FRIENDS,
     TEXT_FRIENDS,
+    TEXT_NONE_FRIENDS, TEXT_NONE_SUGGESTED_FRIENDS,
+    TEXT_SUGGEST_FRIENDS,
+    TEXT_SUGGESTED_FRIENDS,
 } from "../../lang";
-import {tagChanged} from "../../redux/reducer/friend";
+import {suggestChanged, tagChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/battle";
 import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
-import {Friend, STATUS_ACCEPTED, STATUS_REQUESTED} from "../../component/friend/Friend";
+import {Friend, STATUS_ACCEPTED, STATUS_REQUESTED, STATUS_SUGGESTED} from "../../component/friend/Friend";
 import {AddFriend} from "../../component/friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
+import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 
 class FriendPage extends React.PureComponent {
 
-    renderActualFriends() {
-        const {friendListRep} = this.props;
-        if (!friendListRep || friendListRep.pending) {
-            return 'LOADING'
-        }
-        if (friendListRep.rejected) {
-            return 'REJECTED';
+
+    renderFriends(friends) {
+        if (!friends) {
+            return null;
         }
         return <div className={styles.friendList}>
-            {_.sortBy(friendListRep.value.friends, e => _.toLower(e.name))
+            {_.sortBy(friends, e => _.toLower(e.name))
                 .map(e => this.renderFriend(e))}
+        </div>;
+    }
+
+    renderActualFriends() {
+        const {friendListRep} = this.props;
+        const friends = _.get(friendListRep, 'value.friends');
+        return <div className='friendsContainer'>
+            <div className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
+            {this.renderFriends(friends)}
         </div>;
     }
 
@@ -53,26 +65,47 @@ class FriendPage extends React.PureComponent {
             actions={<div className='actions'>
                 {friend.status === STATUS_ACCEPTED &&
                 <FaGavel color="#fffdf1" onClick={() => onBattleFriendClick(friend.tag)}/>}
-                {friend.status === STATUS_REQUESTED &&
+                {(friend.status === STATUS_REQUESTED || friend.status === STATUS_SUGGESTED) &&
                 <FaPlusCircle color="#fffdf1" onClick={() => onAcceptFriendClick(friend.tag)}/>}
-                {<FaBan color="#fffdf1" onClick={() => onDeleteFriendClick(friend.tag)}/>}
+                {friend.status !== STATUS_SUGGESTED &&
+                <FaBan color="#fffdf1" onClick={() => onDeleteFriendClick(friend.tag)}/>}
             </div>}
         />;
     }
 
+    renderSuggestedFriends() {
+        const {friendSuggestRep} = this.props;
+        const friends = _.get(friendSuggestRep, 'value.suggestedFriends');
+        if (!friends) {
+            return null;
+        }
+        return <div className='friendsContainer suggestedFriendsContainer'>
+            <div
+                className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
+            {this.renderFriends(friends)}
+        </div>
+    }
+
     renderContent() {
+        const {onSuggestFriendClick} = this.props;
         return <div>
-            {this.renderAddFriend()}
+            <div className='rightTopContainer'>
+                {this.renderAddFriend()}
+                <Button style={{marginTop: '0.5rem'}} material={BUTTON_MATERIAL_BOX_SHADOW}
+                        onClick={onSuggestFriendClick}>{getText(TEXT_SUGGEST_FRIENDS)}</Button>
+            </div>
             {this.renderActualFriends()}
+            {this.renderSuggestedFriends()}
         </div>;
     }
 
     render() {
-        const {tag} = this.props;
+        const {tag, suggest} = this.props;
         return <div>
             <div className="pageHeader" style={{position: 'relative'}}><span>{getText(TEXT_FRIENDS)}</span></div>
             {this.renderContent()}
             <AddFriendFetch tag={tag}/>
+            <FriendSuggestFetch suggest={suggest}/>
         </div>;
     }
 }
@@ -82,7 +115,9 @@ export default connect(
         screen: state.screen,
         friendListRep: state.repository.friendList,
         addFriendRep: state.repository.addFriend,
+        friendSuggestRep: state.repository.friendSuggest,
         tag: state.friend.tag,
+        suggest: state.friend.suggest,
     }),
     (dispatch) => ({
         onBattleFriendClick: (tag) => {
@@ -103,6 +138,9 @@ export default connect(
         onAddFriendClearClick: () => {
             clearAddFriendFetch(dispatch);
             dispatch(tagChanged(undefined));
+        },
+        onSuggestFriendClick: () => {
+            dispatch(suggestChanged(_.uniqueId('suggest')));
         }
     })
 )(FriendPage);
