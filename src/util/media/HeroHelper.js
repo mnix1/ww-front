@@ -8,16 +8,20 @@ import owl from '../../media/image/hero/owl.svg';
 import panda from '../../media/image/hero/panda.svg';
 
 export const HEROES = {
-    'kitek': kitek,
-    'robo': robo,
-    'rumcia': rumcia,
-    'szeryf': szeryf,
-    // 'zarowa': zarowa,
-    'owl': owl,
-    'panda': panda,
+    'KITEK': kitek,
+    'ROBO': robo,
+    'RUMCIA': rumcia,
+    'SZERYF': szeryf,
+    'ZAROWA': zarowa,
+    'SOWA': owl,
+    'PANDA': panda,
 };
 
 export function randomHero() {
     const heroes = _.map(HEROES);
     return heroes[_.random(heroes.length - 1)];
+}
+
+export function getHero(avatar) {
+    return HEROES[avatar];
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import {randomHero} from "../../util/media/HeroHelper";
+import {getHero, randomHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
 
 export const STATUS_REQUESTED = 'REQUESTED';
@@ -24,7 +24,7 @@ export class Friend extends React.PureComponent {
         const {friend} = this.props;
         return <div key={friend.tag} className='friendContainer'>
             <div className='friend'>
-                <img src={randomHero()} height={80}/>
+                <img src={getHero(friend.avatar)} height={80}/>
                 <div className='details'>
                     {this.renderActions()}
                     <div>
