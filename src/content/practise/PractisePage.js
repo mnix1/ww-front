@@ -51,7 +51,7 @@ class PractisePage extends React.PureComponent {
         return <div>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Task key='task'
-                  header={<div className="contentHeader">{getText(TEXT_QUESTION)}</div>}
+                  header={<div className="contentHeader">{getText(TEXT_QUESTION)}:</div>}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}

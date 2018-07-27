@@ -15,31 +15,18 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen} = this.props;
-        const objectHeight = calculateObjectDimension({
-            dim: screen.contentHeight,
-            count: (objects.length) / 1.5,
-            min: 40
-        });
         const answerObjectWidth = calculateObjectDimension({dim: screen.contentWidth, count: (objects.length) / 1.5});
         const questionObjectWidth = calculateObjectDimension({dim: screen.contentWidth, count: 0.5, max: 400});
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
-        const rendererTransformerCreator = (o, top, left, objectWidth) => (rendered) => <Anime
+        const rendererTransformerCreator = (o) => (rendered) => <Anime
             key={o.id}
             from={{
                 opacity: 0,
-                // top: top - contentHeight / 2 < 0 ? 0 : contentHeight - objectHeight,
-                // left: left - contentWidth / 2 < 0 ? 0 : contentWidth - objectWidth,
-                // height: 0,
-                // width: 0,
                 fontSize: 0
             }}
             to={{
                 opacity: {value: 1, duration: 500},
-                // top: {value: top, duration: 500, delay: 1000},
-                // left: {value: left, duration: 500, delay: 1000},
-                // height: {value: objectHeight, duration: 500},
-                // width: {value: objectWidth, duration: 500},
                 fontSize: {value: fontSize, duration: 100, delay: 100}
             }}
         >{rendered}</Anime>;
@@ -50,10 +37,15 @@ export default class TaskObjectGroup extends React.PureComponent {
             objects={objects.map(o => {
                 const objectWidth = (o.id === 'questionText' ? questionObjectWidth :
                     o.id === 'questionImage' ? questionObjectWidth / 3 : answerObjectWidth) * _.defaultTo(o.widthFactor, 1);
+                const objectHeight = calculateObjectDimension({
+                    dim: screen.contentHeight,
+                    count: (objects.length) / 1.5,
+                    min: 40
+                }) * _.defaultTo(o.heightFactor, 1);
                 const top = o.yTarget * contentHeight - objectHeight / 2;
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
-                    rendererTransformer: rendererTransformerCreator(o, top, left, objectWidth),
+                    rendererTransformer: rendererTransformerCreator(o),
                     ...o,
                     additionalStyle: {
                         ...o.material,

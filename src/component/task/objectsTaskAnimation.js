@@ -2,6 +2,7 @@ import {getAnimationContent} from "../../util/taskRenderer";
 import _ from "lodash";
 import React from 'react';
 import {objectFontSize} from "../object-group/objectHelper";
+import {getText, TEXT_CLICK_ON_ANY_TO_CONTINUE, TEXT_REMEMBER_DETAILS} from "../../lang";
 
 export function prepareAnimationTiles(rival) {
     const {question, screen} = rival.props;
@@ -20,9 +21,20 @@ export function prepareAnimationTiles(rival) {
             objectStyle: {zIndex: 1},
             additionalStyle: {padding: '0'},
             content,
-            yTarget: 0.5,
+            yTarget: 0.6,
             xTarget: (i + 1) / (objects.length + 1),
             widthFactor: 0.7
         };
-    })
+    }).concat([{
+        id: 'desc',
+        yTarget: 0.3,
+        xTarget: 0.5,
+        heightFactor: 0.5,
+        widthFactor: 1.1,
+        content: <div className="taskDescription">
+            {getText(TEXT_REMEMBER_DETAILS)}
+            <br/>
+            {getText(TEXT_CLICK_ON_ANY_TO_CONTINUE)}
+        </div>
+    }])
 }

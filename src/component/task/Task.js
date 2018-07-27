@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './styles.css';
 import PropTypes from "prop-types";
 import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
-import {getText, TEXT_CLICK_ON_ANY, TEXT_QUESTION, TEXT_REMEMBER_DETAILS} from "../../lang";
 import TaskObjectGroup from "./TaskObjectGroup";
 import {prepareQuestionTiles} from "./objectsTaskQuestion";
 import {prepareAnswerTiles} from "./objectsTaskAnswer";
@@ -37,30 +36,20 @@ export default class Task extends React.PureComponent {
 
     renderTask() {
         const {onAnswerClick, answerId, screen, canChangeAnswer} = this.props;
-        return <div>
-            {this.renderTaskHeader()}
-            <TaskObjectGroup
-                objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
-                onObjectClick={(e) => e.id && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
-                screen={screen}
-            />
-        </div>
+        return <TaskObjectGroup
+            objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
+            onObjectClick={(e) => e.id && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
+            screen={screen}
+        />;
     }
 
     renderAnimation() {
         const {onSkipAnimationChange, screen} = this.props;
-        return <div>
-            <div className="contentHeader">
-                {getText(TEXT_REMEMBER_DETAILS)}
-                <br/>
-                {getText(TEXT_CLICK_ON_ANY)}
-            </div>
-            <TaskObjectGroup
-                onObjectClick={() => onSkipAnimationChange(true)}
-                objects={prepareAnimationTiles(this)}
-                screen={screen}
-            />
-        </div>
+        return <TaskObjectGroup
+            onObjectClick={() => onSkipAnimationChange(true)}
+            objects={prepareAnimationTiles(this)}
+            screen={screen}
+        />;
     }
 
     shouldShowAnimation() {
@@ -77,6 +66,7 @@ export default class Task extends React.PureComponent {
 
     render() {
         return <div className={styles.rival}>
+            {this.renderTaskHeader()}
             {this.renderContent()}
         </div>
     }

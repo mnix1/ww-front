@@ -1,5 +1,5 @@
 export const BATTLE_STATUS_OPEN = 'OPEN';
-export const BATTLE_STATUS_IN_PROGRESS = 'IN_PROGGRESS';
+export const BATTLE_STATUS_IN_PROGRESS = 'IN_PROGRESS';
 export const BATTLE_STATUS_CLOSED = 'CLOSED';
 
 export const MAX_BATTLE_FRIENDS = 7;

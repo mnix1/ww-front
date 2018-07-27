@@ -1,6 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
+import {BATTLE_STATUS_OPEN} from "../../../../util/battleHelper";
 
 class BattleFriendStartFetch extends React.PureComponent {
 
@@ -17,8 +18,8 @@ class BattleFriendStartFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {tags, battleFriendStartRep, dispatchBattleFriendStartPost} = this.props;
-        if (!battleFriendStartRep) {
+        const {tags, battleFriendStartRep, status, dispatchBattleFriendStartPost} = this.props;
+        if (!battleFriendStartRep && status === BATTLE_STATUS_OPEN) {
             dispatchBattleFriendStartPost(tags);
         }
     }

@@ -3,32 +3,46 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import BattleFriendStartFetch from "./fetch/BattleFriendStartFetch";
 import Task from "../../../component/task/Task";
-import {questionIdAnswerIdMapChanged, questionIndexChanged} from "../../../redux/reducer/battle";
+import {
+    questionIdAnswerIdMapChanged,
+    questionIdSkipAnimationMapChanged,
+    questionIndexChanged, statusChanged
+} from "../../../redux/reducer/battle";
+import {getText, TEXT_QUESTION} from "../../../lang";
+import {BATTLE_STATUS_IN_PROGRESS} from "../../../util/battleHelper";
 
 class BattleFriendTask extends React.PureComponent {
 
     renderTask(battle) {
-        const {questionIndex, screen, onAnswerClick, questionIdAnswerIdMap} = this.props;
+        const {questionIndex, screen, onAnswerClick, questionIdAnswerIdMap, questionIdSkipAnimationMap, onSkipAnimationChange, onNavigateTaskClick, onLastQuestionAnswerClick} = this.props;
         const question = _.sortBy(battle.questions, 'id')[questionIndex];
-        return <div>
-            <Task
-                answerId={questionIdAnswerIdMap[question.id]}
-                canChangeAnswer={true}
-                screen={screen}
-                skipAnimation={false}
-                onSkipAnimationChange={_.noop}
-                question={question}
-                answers={question.answers}
-                onAnswerClick={(answerId) => onAnswerClick({...questionIdAnswerIdMap, [question.id]: answerId})}
-            />
-        </div>;
+        const nextQuestionIndex = (questionIndex + 1) % battle.questions.length;
+        const headerText = `${getText(TEXT_QUESTION)} ${questionIndex + 1}/${battle.questions.length}`;
+        return <Task
+            header={<div className="contentHeader">{headerText}</div>}
+            answerId={questionIdAnswerIdMap[question.id]}
+            canChangeAnswer={false}
+            screen={screen}
+            skipAnimation={questionIdSkipAnimationMap[question.id] === true}
+            onSkipAnimationChange={() => onSkipAnimationChange({...onSkipAnimationChange, [question.id]: true})}
+            question={question}
+            answers={question.answers}
+            onAnswerClick={(answerId) => {
+                onAnswerClick({...questionIdAnswerIdMap, [question.id]: answerId});
+                if (nextQuestionIndex > questionIndex) {
+                    onNavigateTaskClick(nextQuestionIndex);
+                } else {
+                    onLastQuestionAnswerClick();
+                }
+            }}
+        />;
     }
 
     render() {
-        const {tags, battleFriendStartRep} = this.props;
+        const {battleFriendStartRep} = this.props;
+        const shouldRenderTask =  battleFriendStartRep && battleFriendStartRep.fulfilled;
         return <div>
-            {battleFriendStartRep && battleFriendStartRep.fulfilled && this.renderTask(battleFriendStartRep.value.battle)}
-            <BattleFriendStartFetch battleFriendStartRep={battleFriendStartRep} tags={tags}/>
+            {shouldRenderTask && this.renderTask(battleFriendStartRep.value.battle)}
         </div>;
     }
 }
@@ -36,13 +50,15 @@ class BattleFriendTask extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        tags: state.battle.tags,
         questionIndex: state.battle.questionIndex,
         questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
+        questionIdSkipAnimationMap: state.battle.questionIdSkipAnimationMap,
         battleFriendStartRep: state.repository.battleFriendStart,
     }),
     (dispatch) => ({
+        onLastQuestionAnswerClick: () => dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS)),
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
-        onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap))
+        onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
+        onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))
     })
 )(BattleFriendTask);
