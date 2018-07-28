@@ -3,29 +3,29 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import {BATTLE_STATUS_IN_PROGRESS, BATTLE_STATUS_OPEN} from "../../../util/battleHelper";
 import BattleFriendInitPage from "./BattleFriendInit";
-import BattleFriendTask from "./BattleFriendTask";
+import BattleTask from "../task/BattleTask";
 import BattleFriendStartFetch from "./fetch/BattleFriendStartFetch";
-import BattleFriendEndFetch from "./fetch/BattleFriendEndFetch";
-import BattleFriendSolution from "./BattleFriendSolution";
+import BattleEndFetch from "./fetch/BattleEndFetch";
+import BattleSolution from "../task/BattleSolution";
 
 class BattleFriendPage extends React.PureComponent {
 
     renderPage() {
-        const {status} = this.props;
+        const {status, battleFriendStartRep, battleEndRep} = this.props;
         if (_.isNil(status)) {
             return <BattleFriendInitPage/>;
         }
         if (status === BATTLE_STATUS_OPEN) {
-            return <BattleFriendTask/>;
+            return <BattleTask rep={battleFriendStartRep}/>;
         }
         if (status === BATTLE_STATUS_IN_PROGRESS) {
-            return <BattleFriendSolution/>;
+            return <BattleSolution questions={battleFriendStartRep.value.questions} rep={battleEndRep}/>;
         }
         return null;
     }
 
     render() {
-        const {battleFriendStartRep, battleFriendEndRep, tags, status, questionIdAnswerIdMap} = this.props;
+        const {battleFriendStartRep, battleEndRep, tags, status, questionIdAnswerIdMap} = this.props;
         return <div>
             {this.renderPage()}
             <BattleFriendStartFetch
@@ -33,8 +33,8 @@ class BattleFriendPage extends React.PureComponent {
                 tags={tags}
                 status={status}
             />
-            <BattleFriendEndFetch
-                battleFriendEndRep={battleFriendEndRep}
+            <BattleEndFetch
+                battleEndRep={battleEndRep}
                 battleId={_.get(battleFriendStartRep, 'value.id')}
                 questionIdAnswerIdMap={questionIdAnswerIdMap}
                 status={status}
@@ -49,7 +49,7 @@ export default connect(
         status: state.battle.status,
         questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
         battleFriendStartRep: state.repository.battleFriendStart,
-        battleFriendEndRep: state.repository.battleFriendEnd
+        battleEndRep: state.repository.battleEnd
     }),
     (dispatch) => ({})
 )(BattleFriendPage);

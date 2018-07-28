@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {BATTLE_STATUS_IN_PROGRESS} from "../../../../util/battleHelper";
 
-class BattleFriendEndFetch extends React.PureComponent {
+class BattleEndFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -14,13 +14,13 @@ class BattleFriendEndFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearBattleFriendEndFetch(this.props.dispatch);
+        clearBattleEndFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {battleId, questionIdAnswerIdMap, battleFriendEndRep, status, dispatchBattleFriendEndPost} = this.props;
-        if (!battleFriendEndRep && status === BATTLE_STATUS_IN_PROGRESS) {
-            dispatchBattleFriendEndPost(battleId, questionIdAnswerIdMap);
+        const {battleId, questionIdAnswerIdMap, battleEndRep, status, dispatchBattleEndPost} = this.props;
+        if (!battleEndRep && status === BATTLE_STATUS_IN_PROGRESS) {
+            dispatchBattleEndPost(battleId, questionIdAnswerIdMap);
         }
     }
 
@@ -29,15 +29,15 @@ class BattleFriendEndFetch extends React.PureComponent {
     }
 }
 
-export function clearBattleFriendEndFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'battleFriendEnd'}});
+export function clearBattleEndFetch(dispatch) {
+    dispatch({type: CLEAR, resource: {name: 'battleEnd'}});
 }
 
 export default connect([{
-    resource: 'battleFriendEnd',
+    resource: 'battleEnd',
     method: 'post',
     request: (battleId, questionIdAnswerIdMap) => ({
-        url: `/battle/endFriend`,
+        url: `/battle/end`,
         body: {battleId, questionIdAnswerIdMap}
     })
-}])(BattleFriendEndFetch);
+}])(BattleEndFetch);

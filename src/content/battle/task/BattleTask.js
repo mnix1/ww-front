@@ -11,7 +11,7 @@ import {
 import {getText, TEXT_QUESTION} from "../../../lang";
 import {BATTLE_STATUS_IN_PROGRESS} from "../../../util/battleHelper";
 
-class BattleFriendTask extends React.PureComponent {
+class BattleTask extends React.PureComponent {
 
     renderTask({questions}) {
         const {questionIndex, screen, onAnswerClick, questionIdAnswerIdMap, questionIdSkipAnimationMap, onSkipAnimationChange, onNavigateTaskClick, onLastQuestionAnswerClick} = this.props;
@@ -39,10 +39,10 @@ class BattleFriendTask extends React.PureComponent {
     }
 
     render() {
-        const {battleFriendStartRep} = this.props;
-        const shouldRenderTask = battleFriendStartRep && battleFriendStartRep.fulfilled;
+        const {rep} = this.props;
+        const shouldRenderTask = rep && rep.fulfilled;
         return <div>
-            {shouldRenderTask && this.renderTask(battleFriendStartRep.value)}
+            {shouldRenderTask && this.renderTask(rep.value)}
         </div>;
     }
 }
@@ -53,7 +53,6 @@ export default connect(
         questionIndex: state.battle.questionIndex,
         questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
         questionIdSkipAnimationMap: state.battle.questionIdSkipAnimationMap,
-        battleFriendStartRep: state.repository.battleFriendStart,
     }),
     (dispatch) => ({
         onLastQuestionAnswerClick: () => {
@@ -64,4 +63,4 @@ export default connect(
         onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
         onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))
     })
-)(BattleFriendTask);
+)(BattleTask);

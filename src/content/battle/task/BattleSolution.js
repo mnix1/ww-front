@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './styles.css';
+import '../friend/styles.css';
 import _ from 'lodash';
 import Task from "../../../component/task/Task";
 import {questionIndexChanged} from "../../../redux/reducer/battle";
@@ -16,7 +16,7 @@ import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 
-class BattleFriendSolution extends React.PureComponent {
+class BattleSolution extends React.PureComponent {
 
     calculateResult(questionIdCorrectAnswerIdMap) {
         const {questionIdAnswerIdMap, questions} = this.props;
@@ -87,13 +87,13 @@ class BattleFriendSolution extends React.PureComponent {
     }
 
     render() {
-        const {battleFriendEndRep} = this.props;
-        if (!battleFriendEndRep || !battleFriendEndRep.fulfilled) {
+        const {rep} = this.props;
+        if (!rep || !rep.fulfilled) {
             return null;
         }
-        return <div className='battleFriendSolution'>
-            {this.renderHeader(battleFriendEndRep.value)}
-            {this.renderTask(battleFriendEndRep.value)}
+        return <div className='battleSolution'>
+            {this.renderHeader(rep.value)}
+            {this.renderTask(rep.value)}
         </div>;
     }
 }
@@ -103,10 +103,8 @@ export default connect(
         screen: state.screen,
         questionIndex: state.battle.questionIndex,
         questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
-        questions: state.repository.battleFriendStart.value.questions,
-        battleFriendEndRep: state.repository.battleFriendEnd,
     }),
     (dispatch) => ({
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
     })
-)(BattleFriendSolution);
+)(BattleSolution);

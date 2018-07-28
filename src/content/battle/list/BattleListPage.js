@@ -40,8 +40,7 @@ class BattleListPage extends React.PureComponent {
                 <span>{getText(_.isEmpty(_.get(battleListRep, 'value')) ? TEXT_NONE_IN_PROGRESS_BATTLES : TEXT_IN_PROGRESS_BATTLES)}</span>
             </div>
             {this.renderBattles()}
-            <BattleListFetch battleListRep={battleListRep}
-            />
+            <BattleListFetch battleListRep={battleListRep}/>
         </div>
     }
 }

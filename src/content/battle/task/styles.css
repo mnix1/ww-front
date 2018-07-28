@@ -1,0 +1,15 @@
+.battleSolution .actionsToRight {
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0.5rem;
+}
+
+.battleSolution .actionsToRight .button {
+    float: right;
+    margin-bottom: 0.5rem;
+}
+
+.battleSolution .marginTop {
+    margin-top: 3rem;
+}
