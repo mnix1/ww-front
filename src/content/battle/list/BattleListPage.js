@@ -7,7 +7,7 @@ import FaGavel from "react-icons/lib/fa/gavel";
 import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
 import {getText, TEXT_IN_PROGRESS_BATTLES, TEXT_NONE_IN_PROGRESS_BATTLES} from "../../../lang";
-import {Battle} from "../../../component/battle/Battle";
+import Battle from "../../../component/battle/Battle";
 import {inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/battle";
 import {BATTLE_STATUS_OPEN} from "../../../util/battleHelper";
 import {idChanged} from "../../../redux/reducer/content";
@@ -62,6 +62,7 @@ export default connect(
         },
         onBattleSummaryClick: (id) => {
             dispatch(summaryIdChanged(id));
+            dispatch(idChanged(OBJECT_APP_BATTLE));
         }
     })
 )(BattleListPage);

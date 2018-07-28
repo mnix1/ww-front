@@ -24,7 +24,8 @@ class BattlePage extends React.PureComponent {
                 return <BattleTask rep={battleStartResponseRep}/>;
             }
             if (status === BATTLE_STATUS_IN_PROGRESS) {
-                return <BattleSolution questions={battleStartResponseRep.value.questions} rep={battleEndRep}/>;
+                const repValue = battleStartResponseRep.value;
+                return <BattleSolution questions={repValue.questions} battleId={repValue.id} rep={battleEndRep}/>;
             }
         }
         return <div>

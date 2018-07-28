@@ -3,23 +3,18 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import './styles.css';
 import {getText, TEXT_SUMMARY} from "../../../lang";
-import {Friend} from "../../../component/friend/Friend";
+import Position from "../../../component/position/Position";
 
 class BattleSummaryPage extends React.PureComponent {
 
     renderPositions(positions) {
-        return <ul>
-            {positions.map(e => <li>{this.renderPosition(e)}</li>)}
-        </ul>
+        return <div className='positions'>
+            {positions.map((e, i) => this.renderPosition(e, i))}
+        </div>
     }
 
-    renderPosition(position) {
-        return <div>
-            <div>{position.position}</div>
-            <Friend friend={position.profile}/>
-            <div>{position.score}</div>
-            <div>{position.answerInterval}</div>
-        </div>
+    renderPosition(position, i) {
+        return <Position key={i} position={position}/>;
     }
 
     render() {

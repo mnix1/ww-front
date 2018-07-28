@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {getText, TEXT_TIME} from "../lang";
+import {getText, TEXT_POINTS, TEXT_POSITION, TEXT_SCORE, TEXT_TIME} from "../lang";
 
 export function wordsByLength(string, maxLength) {
     const result = [];
@@ -24,4 +24,12 @@ export function wordsByLength(string, maxLength) {
 
 export function prepareAnswerIntervalMessage(answerInterval) {
     return `${getText(TEXT_TIME)}: ${(answerInterval / 1000).toFixed(1)} s`;
+}
+
+export function prepareScoreMessage(score) {
+    return `${getText(TEXT_SCORE)}: ${score} ${getText(TEXT_POINTS)}`;
+}
+
+export function preparePositionMessage(position) {
+    return `${getText(TEXT_POSITION)}: ${_.defaultTo(position, 'N/A')}`;
 }

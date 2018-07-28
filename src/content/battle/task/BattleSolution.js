@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './styles.css';
 import _ from 'lodash';
 import Task from "../../../component/task/Task";
-import {questionIndexChanged, summaryIdChanged} from "../../../redux/reducer/battle";
+import {battleCleared, questionIndexChanged, summaryIdChanged} from "../../../redux/reducer/battle";
 import {
     getText,
     TEXT_ANSWER_FOR_QUESTION,
@@ -16,6 +16,8 @@ import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
 import FaListOl from 'react-icons/lib/fa/list-ol';
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
+import {OBJECT_APP_BATTLE} from "../../object-group/objectsApp";
+import {idChanged} from "../../../redux/reducer/content";
 
 class BattleSolution extends React.PureComponent {
 
@@ -40,7 +42,7 @@ class BattleSolution extends React.PureComponent {
     }
 
     renderActions() {
-        const {screen, questionIndex, onNavigateTaskClick, onBattleSummaryClick, questions} = this.props;
+        const {screen, questionIndex, onNavigateTaskClick, onBattleSummaryClick, questions, battleId} = this.props;
         const nextQuestionIndex = (questionIndex + 1) % questions.length;
         let className = 'actionsToRight';
         if (screen.moreHeightThanWidth) {
@@ -56,7 +58,7 @@ class BattleSolution extends React.PureComponent {
             <Button
                 material={BUTTON_MATERIAL_BOX_SHADOW}
                 icon={<FaListOl/>}
-                onClick={() => onBattleSummaryClick(nextQuestionIndex)}
+                onClick={() => onBattleSummaryClick(battleId)}
             >{getText(TEXT_SUMMARY)}</Button>
         </div>;
     }
@@ -107,6 +109,10 @@ export default connect(
     }),
     (dispatch) => ({
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
-        onBattleSummaryClick: battleId => dispatch(summaryIdChanged(battleId)),
+        onBattleSummaryClick: battleId => {
+            dispatch(battleCleared());
+            dispatch(summaryIdChanged(battleId));
+            dispatch(idChanged(OBJECT_APP_BATTLE));
+        }
     })
 )(BattleSolution);

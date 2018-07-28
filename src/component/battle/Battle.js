@@ -4,7 +4,7 @@ import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
 
 
-export class Battle extends React.PureComponent {
+export default class Battle extends React.PureComponent {
 
     static propTypes = {
         battle: PropTypes.object,

@@ -1,0 +1,41 @@
+.positionContainer {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+    background: #4ea5c5;
+    color: #fffdf1;
+    margin: 0.5rem;
+    padding: 0.5rem;
+    display: inline-block;
+}
+
+.profile {
+    display: flex;
+    width: 140px;
+    justify-content: space-between;
+}
+
+.position {
+    /*display: flex;*/
+    /*width: 140px;*/
+    /*justify-content: space-between;*/
+}
+.position .details {
+    padding: 0.25rem;
+}
+
+.profile .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 0.5rem;
+    position: relative;
+    /*height: calc(100% - 16px);*/
+}
+
+.profile .name {
+    font-size: 1rem;
+}
+
+.profile .tag {
+    font-size: 0.8rem;
+}

@@ -17,7 +17,7 @@ import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/battle";
 import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
-import {Friend, STATUS_ACCEPTED, STATUS_REQUESTED, STATUS_SUGGESTED} from "../../component/friend/Friend";
+import Friend, {STATUS_ACCEPTED, STATUS_REQUESTED, STATUS_SUGGESTED} from "../../component/friend/Friend";
 import {AddFriend} from "../../component/friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';

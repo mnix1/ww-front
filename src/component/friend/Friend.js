@@ -7,7 +7,7 @@ export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
 export const STATUS_ACCEPTED = 'ACCEPTED';
 
-export class Friend extends React.PureComponent {
+export default class Friend extends React.PureComponent {
 
     static propTypes = {
         friend: PropTypes.object,

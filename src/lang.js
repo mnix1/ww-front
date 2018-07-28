@@ -35,6 +35,7 @@ export const TEXT_ADD_FRIEND_ALREADY = 'TEXT_ADD_FRIEND_ALREADY';
 export const TEXT_BATTLE_ADD_FRIENDS = 'TEXT_BATTLE_ADD_FRIENDS';
 export const TEXT_ADDED = 'TEXT_ADDED';
 export const TEXT_START_BATTLE = 'TEXT_START_BATTLE';
+export const TEXT_SCORE = 'TEXT_SCORE';
 export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
 export const TEXT_POINTS = 'TEXT_POINTS';
 export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
@@ -48,6 +49,9 @@ export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
 export const TEXT_NONE_IN_PROGRESS_BATTLES = 'TEXT_NONE_IN_PROGRESS_BATTLES';
 export const TEXT_IN_PROGRESS_BATTLES = 'TEXT_IN_PROGRESS_BATTLES';
 export const TEXT_INVITES = 'TEXT_INVITES';
+export const TEXT_POSITION = 'TEXT_POSITION';
+export const TEXT_WAITING_FOR_RESPONSE = 'TEXT_WAITING_FOR_RESPONSE';
+export const TEXT_WAITING = 'TEXT_WAITING';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -73,6 +77,7 @@ const TEXTS = {
         [TEXT_BATTLE_ADD_FRIENDS]: 'Dodaj znajomych do bitwy',
         [TEXT_ADDED]: 'Dodano',
         [TEXT_START_BATTLE]: 'Rozpocznij bitwę!',
+        [TEXT_SCORE]: 'Wynik',
         [TEXT_YOUR_SCORE]: 'Twój wynik',
         [TEXT_POINTS]: 'pkt',
         [TEXT_ANSWER_FOR_QUESTION]: 'Odpowiedź dla pytania',
@@ -86,6 +91,9 @@ const TEXTS = {
         [TEXT_NONE_IN_PROGRESS_BATTLES]: 'Nie masz aktywnych wyzwań',
         [TEXT_IN_PROGRESS_BATTLES]: 'Aktywne wyzwania',
         [TEXT_INVITES]: 'Zaproszenia',
+        [TEXT_POSITION]: 'Pozycja',
+        [TEXT_WAITING_FOR_RESPONSE]: 'Oczekiwanie na odpowiedź',
+        [TEXT_WAITING]: 'Oczekiwanie',
 
     },
     [ENGLISH]: {
@@ -107,6 +115,7 @@ const TEXTS = {
         [TEXT_BATTLE_ADD_FRIENDS]: 'Add friends to battle',
         [TEXT_ADDED]: 'Added',
         [TEXT_START_BATTLE]: 'Start battle!',
+        [TEXT_SCORE]: 'Score',
         [TEXT_YOUR_SCORE]: 'Your score',
         [TEXT_POINTS]: 'pt',
         [TEXT_ANSWER_FOR_QUESTION]: 'Answer for question',
@@ -120,6 +129,9 @@ const TEXTS = {
         [TEXT_NONE_IN_PROGRESS_BATTLES]: 'You do not have active challenges',
         [TEXT_IN_PROGRESS_BATTLES]: 'Active challenges',
         [TEXT_INVITES]: 'Invites',
+        [TEXT_POSITION]: 'Position',
+        [TEXT_WAITING_FOR_RESPONSE]: 'Waiting for response',
+        [TEXT_WAITING]: 'Waiting',
     }
 };
 

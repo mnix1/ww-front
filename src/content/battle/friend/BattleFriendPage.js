@@ -19,7 +19,8 @@ class BattleFriendPage extends React.PureComponent {
             return <BattleTask rep={battleFriendStartRep}/>;
         }
         if (status === BATTLE_STATUS_IN_PROGRESS) {
-            return <BattleSolution questions={battleFriendStartRep.value.questions} rep={battleEndRep}/>;
+            const repValue = battleFriendStartRep.value;
+            return <BattleSolution questions={repValue.questions} battleId={repValue.id} rep={battleEndRep}/>;
         }
         return null;
     }
