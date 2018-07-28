@@ -5,7 +5,7 @@ import {BATTLE_STATUS_IN_PROGRESS, BATTLE_STATUS_OPEN} from "../../../util/battl
 import BattleFriendInitPage from "./BattleFriendInit";
 import BattleTask from "../task/BattleTask";
 import BattleFriendStartFetch from "./fetch/BattleFriendStartFetch";
-import BattleEndFetch from "./fetch/BattleEndFetch";
+import BattleEndFetch from "../task/fetch/BattleEndFetch";
 import BattleSolution from "../task/BattleSolution";
 
 class BattleFriendPage extends React.PureComponent {

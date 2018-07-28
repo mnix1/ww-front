@@ -7,13 +7,18 @@ import BattleTask from "./task/BattleTask";
 import {BATTLE_STATUS_IN_PROGRESS, BATTLE_STATUS_OPEN} from "../../util/battleHelper";
 import _ from "lodash";
 import BattleStartResponseFetch from "./task/fetch/BattleStartResponseFetch";
-import BattleEndFetch from "./friend/fetch/BattleEndFetch";
+import BattleEndFetch from "./task/fetch/BattleEndFetch";
 import BattleSolution from "./task/BattleSolution";
+import BattleSummaryPage from "./list/BattleSummaryPage";
+import BattleSummaryFetch from "./task/fetch/BattleSummaryFetch";
 
 class BattlePage extends React.PureComponent {
 
     renderContent() {
-        const {screen, onContentIdChange, inProgressId, battleStartResponseRep, battleEndRep, status} = this.props;
+        const {screen, onContentIdChange, summaryId, inProgressId, battleStartResponseRep, battleEndRep, battleSummaryRep, status} = this.props;
+        if (!_.isNil(summaryId)) {
+            return <BattleSummaryPage rep={battleSummaryRep}/>;
+        }
         if (!_.isNil(inProgressId)) {
             if (status === BATTLE_STATUS_OPEN) {
                 return <BattleTask rep={battleStartResponseRep}/>;
@@ -32,7 +37,7 @@ class BattlePage extends React.PureComponent {
     }
 
     render() {
-        const {battleStartResponseRep, battleEndRep, status, questionIdAnswerIdMap, inProgressId} = this.props;
+        const {battleStartResponseRep, battleEndRep, status, summaryId, questionIdAnswerIdMap, inProgressId} = this.props;
         return <div>
             {this.renderContent()}
             <BattleStartResponseFetch
@@ -46,6 +51,9 @@ class BattlePage extends React.PureComponent {
                 questionIdAnswerIdMap={questionIdAnswerIdMap}
                 status={status}
             />
+            <BattleSummaryFetch
+                battleId={summaryId}
+            />
         </div>;
     }
 }
@@ -53,11 +61,13 @@ class BattlePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        summaryId: state.battle.summaryId,
         inProgressId: state.battle.inProgressId,
         status: state.battle.status,
         questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
         battleStartResponseRep: state.repository.battleStartResponse,
-        battleEndRep: state.repository.battleEnd
+        battleEndRep: state.repository.battleEnd,
+        battleSummaryRep: state.repository.battleSummary
     }),
     (dispatch) => ({
         onContentIdChange: (e) => dispatch(idChanged(e.id)),
