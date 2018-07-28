@@ -9,7 +9,7 @@ import {OBJECT_APP_BATTLE, OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} 
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import FriendPage from "../friend/FriendPage";
 import {OBJECT_BATTLE_FRIEND, OBJECT_BATTLE_LIST} from "../object-group/objectsBattle";
-import FriendListFetch from "../friend/fetch/FriendListFetch";
+import FriendListFetch, {clearFriendListFetch} from "../friend/fetch/FriendListFetch";
 import BattleFriendPage from "../battle/friend/BattleFriendPage";
 import BattlePage from "../battle/BattlePage";
 import BattleListPage from "../battle/list/BattleListPage";
@@ -51,7 +51,7 @@ class App extends React.PureComponent {
     }
 
     render() {
-        const {screen, friendListRep} = this.props;
+        const {screen, friendListRep, contentId} = this.props;
         const {height, contentWidth} = screen;
         return <div className={styles.app}>
             <div style={{height, width: contentWidth}} className={styles.content}>
@@ -62,7 +62,7 @@ class App extends React.PureComponent {
                 {/*{JSON.stringify(screen)}*/}
                 {/*</div>*/}
             </div>
-            <FriendListFetch friendListRep={friendListRep}/>
+            <FriendListFetch contentId={contentId} friendListRep={friendListRep}/>
         </div>;
     }
 }
@@ -74,6 +74,11 @@ export default connect(
         contentId: state.content.id,
     }),
     (dispatch) => ({
-        onContentIdChange: (e) => dispatch(idChanged(e.id)),
+        onContentIdChange: (e) => {
+            if (e.id === OBJECT_APP_FRIEND) {
+                clearFriendListFetch(dispatch);
+            }
+            dispatch(idChanged(e.id));
+        }
     })
 )(App);

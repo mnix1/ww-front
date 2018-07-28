@@ -1,6 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
+import {OBJECT_APP_FRIEND} from "../../object-group/objectsApp";
 
 class FriendListFetch extends React.PureComponent {
 
@@ -17,8 +18,9 @@ class FriendListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        if (!this.props.friendListRep) {
-            this.props.dispatchFriendListGet();
+        const {contentId, friendListRep, dispatchFriendListGet} = this.props;
+        if (!friendListRep && contentId === OBJECT_APP_FRIEND) {
+            dispatchFriendListGet();
         }
     }
 
