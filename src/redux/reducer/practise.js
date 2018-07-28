@@ -36,7 +36,7 @@ export function skipAnimationChanged(skipAnimation) {
     return {type: SKIP_ANIMATION_CHANGED, skipAnimation};
 }
 
-export function cleared() {
+export function practiseCleared() {
     return {type: CLEARED};
 }
 

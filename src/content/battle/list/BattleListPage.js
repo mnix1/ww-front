@@ -7,7 +7,10 @@ import FaGavel from "react-icons/lib/fa/gavel";
 import './styles.css';
 import {getText, TEXT_IN_PROGRESS_BATTLES, TEXT_NONE_IN_PROGRESS_BATTLES} from "../../../lang";
 import {Battle} from "../../../component/battle/Battle";
-import {inProgressIdChanged} from "../../../redux/reducer/battle";
+import {inProgressIdChanged, statusChanged} from "../../../redux/reducer/battle";
+import {BATTLE_STATUS_OPEN} from "../../../util/battleHelper";
+import {idChanged} from "../../../redux/reducer/content";
+import {OBJECT_APP_BATTLE} from "../../object-group/objectsApp";
 
 class BattleListPage extends React.PureComponent {
 
@@ -51,7 +54,9 @@ export default connect(
     }),
     (dispatch) => ({
         onBattleResponseClick: (id) => {
-            dispatch(inProgressIdChanged(id))
+            dispatch(inProgressIdChanged(id));
+            dispatch(statusChanged(BATTLE_STATUS_OPEN));
+            dispatch(idChanged(OBJECT_APP_BATTLE));
         }
     })
 )(BattleListPage);

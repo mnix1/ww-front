@@ -1,4 +1,4 @@
-
+export const CLEARED = 'battle/cleared';
 export const TAGS_CHANGED = 'battle/tags/changed';
 export const IN_PROGRESS_ID_CHANGED = 'battle/in-progress-id/changed';
 export const STATUS_CHANGED = 'battle/status/changed';
@@ -17,6 +17,8 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
+        case CLEARED:
+            return {...state, ...initialState};
         case TAGS_CHANGED:
             return {...state, tags: action.tags};
         case IN_PROGRESS_ID_CHANGED:
@@ -56,5 +58,9 @@ export function questionIdAnswerIdMapChanged(questionIdAnswerIdMap) {
 
 export function questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap) {
     return {type: QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED, questionIdSkipAnimationMap};
+}
+
+export function battleCleared() {
+    return {type: CLEARED};
 }
 
