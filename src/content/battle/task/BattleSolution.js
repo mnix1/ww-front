@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import '../friend/styles.css';
+import './styles.css';
 import _ from 'lodash';
 import Task from "../../../component/task/Task";
 import {questionIndexChanged} from "../../../redux/reducer/battle";

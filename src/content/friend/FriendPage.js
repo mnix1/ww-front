@@ -7,7 +7,7 @@ import _ from 'lodash';
 import {
     getText,
     TEXT_ACTUAL_FRIENDS,
-    TEXT_FRIENDS,
+    TEXT_FRIENDS, TEXT_INVITES,
     TEXT_NONE_FRIENDS, TEXT_NONE_SUGGESTED_FRIENDS,
     TEXT_SUGGEST_FRIENDS,
     TEXT_SUGGESTED_FRIENDS,
@@ -40,9 +40,21 @@ class FriendPage extends React.PureComponent {
 
     renderActualFriends() {
         const {friendListRep} = this.props;
-        const friends = _.get(friendListRep, 'value.friends');
+        const friends = _.filter(_.get(friendListRep, 'value.friends'),e => e.status === STATUS_ACCEPTED);
         return <div className='pageInsideContainer'>
             <div className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
+            {this.renderFriends(friends)}
+        </div>;
+    }
+
+    renderInvites() {
+        const {friendListRep} = this.props;
+        const friends = _.filter(_.get(friendListRep, 'value.friends'), e => e.status === STATUS_REQUESTED);
+        if(_.isEmpty(friends)){
+            return null;
+        }
+        return <div className='pageInsideContainer'>
+            <div className='title'>{getText(TEXT_INVITES)}</div>
             {this.renderFriends(friends)}
         </div>;
     }
@@ -94,6 +106,7 @@ class FriendPage extends React.PureComponent {
                         onClick={onSuggestFriendClick}>{getText(TEXT_SUGGEST_FRIENDS)}</Button>
             </div>
             {this.renderActualFriends()}
+            {this.renderInvites()}
             {this.renderSuggestedFriends()}
         </div>;
     }

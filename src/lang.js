@@ -47,6 +47,7 @@ export const TEXT_ACTUAL_FRIENDS = 'TEXT_ACTUAL_FRIENDS';
 export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
 export const TEXT_NONE_IN_PROGRESS_BATTLES = 'TEXT_NONE_IN_PROGRESS_BATTLES';
 export const TEXT_IN_PROGRESS_BATTLES = 'TEXT_IN_PROGRESS_BATTLES';
+export const TEXT_INVITES = 'TEXT_INVITES';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -84,7 +85,7 @@ const TEXTS = {
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'Nie możemy zaproponować więcej znajomych',
         [TEXT_NONE_IN_PROGRESS_BATTLES]: 'Nie masz aktywnych wyzwań',
         [TEXT_IN_PROGRESS_BATTLES]: 'Aktywne wyzwania',
-        [TEXT_IN_PROGRESS_BATTLES]: 'Aktywne wyzwania',
+        [TEXT_INVITES]: 'Zaproszenia',
 
     },
     [ENGLISH]: {
@@ -118,6 +119,7 @@ const TEXTS = {
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'We can not recommend more friends',
         [TEXT_NONE_IN_PROGRESS_BATTLES]: 'You do not have active challenges',
         [TEXT_IN_PROGRESS_BATTLES]: 'Active challenges',
+        [TEXT_INVITES]: 'Invites',
     }
 };
 
