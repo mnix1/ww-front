@@ -6,15 +6,27 @@ import szeryf from '../../media/image/hero/szeryf.svg';
 import zarowa from '../../media/image/hero/zarowa.svg';
 import owl from '../../media/image/hero/owl.svg';
 import panda from '../../media/image/hero/panda.svg';
+import cat from '../../media/image/hero/cat.svg';
+import osmiornica from '../../media/image/hero/osmiornica.svg';
+import penguin from '../../media/image/hero/penguin.svg';
+import duck from '../../media/image/hero/duck.svg';
+import cow from '../../media/image/hero/cow.svg';
+import gorilla from '../../media/image/hero/gorilla.svg';
 
 export const HEROES = {
+    'CAT': cat,
+    'COW': cow,
+    'DUCK': duck,
+    'GORILLA': gorilla,
     'KITEK': kitek,
+    'OSMIORNICA': osmiornica,
+    'OWL': owl,
+    'PANDA': panda,
+    'PENGUIN': penguin,
     'ROBO': robo,
     'RUMCIA': rumcia,
     'SZERYF': szeryf,
     'ZAROWA': zarowa,
-    'SOWA': owl,
-    'PANDA': panda,
 };
 
 export function randomHero() {
