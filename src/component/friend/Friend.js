@@ -1,7 +1,9 @@
 import React from 'react';
 import './styles.css';
-import {getHero, randomHero} from "../../util/media/HeroHelper";
+import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
+import FaPlug from "react-icons/lib/fa/plug";
+import {DARK_GREEN_COLOR} from "../../util/style/constant";
 
 export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
@@ -29,6 +31,7 @@ export default class Friend extends React.PureComponent {
                 <img src={getHero(friend.avatar)} height={80}/>
                 <div className='details'>
                     {this.renderActions()}
+                    {friend.isOnline && <FaPlug style={{color: DARK_GREEN_COLOR}}/>}
                     <div>
                         <div className='name'>{friend.name}</div>
                         <div className='tag'>#{friend.tag}</div>

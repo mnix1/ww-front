@@ -39,23 +39,23 @@ class FriendPage extends React.PureComponent {
     }
 
     renderActualFriends() {
-        const {friendListRep} = this.props;
-        const friends = _.filter(_.get(friendListRep, 'value.friends'),e => e.status === STATUS_ACCEPTED);
+        const {friends} = this.props;
+        const filteredFriends = _.filter(friends,e => e.status === STATUS_ACCEPTED);
         return <div className='pageInsideContainer'>
-            <div className='title'>{getText(_.isEmpty(friends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
-            {this.renderFriends(friends)}
+            <div className='title'>{getText(_.isEmpty(filteredFriends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
+            {this.renderFriends(filteredFriends)}
         </div>;
     }
 
     renderInvites() {
-        const {friendListRep} = this.props;
-        const friends = _.filter(_.get(friendListRep, 'value.friends'), e => e.status === STATUS_REQUESTED);
-        if(_.isEmpty(friends)){
+        const {friends} = this.props;
+        const filteredFriends = _.filter(friends, e => e.status === STATUS_REQUESTED);
+        if(_.isEmpty(filteredFriends)){
             return null;
         }
         return <div className='pageInsideContainer'>
             <div className='title'>{getText(TEXT_INVITES)}</div>
-            {this.renderFriends(friends)}
+            {this.renderFriends(filteredFriends)}
         </div>;
     }
 
@@ -125,7 +125,7 @@ class FriendPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        friendListRep: state.repository.friendList,
+        friends: state.friend.friends,
         addFriendRep: state.repository.addFriend,
         friendSuggestRep: state.repository.friendSuggest,
         tag: state.friend.tag,

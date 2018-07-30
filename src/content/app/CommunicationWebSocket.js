@@ -1,26 +1,28 @@
 import _ from 'lodash';
-import {clearFriendListFetch} from "../friend/fetch/FriendListFetch";
+import {friendAdded, friendDeleted, friendOffline, friendOnline} from "../../redux/reducer/friend";
 
 export default class CommunicationWebSocket {
     constructor() {
         let socket;
-        if(_.includes(window.location.host, 'localhost')){
+        if (_.includes(window.location.host, 'localhost')) {
             socket = new WebSocket("ws://localhost:8080/websocket");
-        } else if (_.includes(window.location.host, ':3000')){
-            socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host.replace(':3000','') + ":8080/websocket");
+        } else if (_.includes(window.location.host, ':3000')) {
+            socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host.replace(':3000', '') + ":8080/websocket");
         } else {
             socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/websocket");
         }
         socket.addEventListener('message', (e) => {
-            if(e.data === 'FRIEND_RELOAD') {
-                clearFriendListFetch(this.dispatch);
+            const data = JSON.parse(e.data);
+            const id = data.id;
+            if (id === 'FRIEND_ADD') {
+                this.dispatch(friendAdded(JSON.parse(data.content)));
+            } else if (id === 'FRIEND_DELETE') {
+                this.dispatch(friendDeleted(data.content));
+            } else if (id === 'FRIEND_ONLINE') {
+                this.dispatch(friendOnline(data.content));
+            } else if (id === 'FRIEND_OFFLINE') {
+                this.dispatch(friendOffline(data.content));
             }
-            // console.log('onmessage', e, e.data);
-            // if (e.data === 'BATTLE_PREPARING') {
-            //     this.dispatch(battleStatusChanged(BATTLE_STATUS_PREPARING));
-            // } else if (e.data === 'BATTLE_IN_PROGRESS') {
-            //     this.dispatch(battleStatusChanged(BATTLE_STATUS_IN_PROGRESS));
-            // }
         });
         socket.addEventListener('close', (e) => {
             console.log('onclose', e);
