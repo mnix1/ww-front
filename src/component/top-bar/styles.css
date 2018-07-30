@@ -22,4 +22,6 @@
     padding: 0.5rem;
     color: #fffdf1;
     font-size: 0.8rem;
+    display: flex;
+    z-index: 1;
 }

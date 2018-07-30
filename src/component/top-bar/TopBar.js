@@ -7,14 +7,18 @@ import {Anime} from "../../component/anime/Anime";
 import {checkSmallHeight} from "../../redux/reducer/screen";
 import {HEROES} from "../../util/media/HeroHelper";
 import _ from 'lodash';
+import FaSignOut from 'react-icons/lib/fa/sign-out';
+import {CREAM_COLOR} from "../../util/style/constant";
 
 class TopBar extends React.PureComponent {
 
-    renderProfile(){
+    renderProfile() {
         const {profile} = this.props;
+        const style = {marginLeft: 4};
         return <div className={styles.topBarProfile}>
-            {/*<div>{profile.name}</div>*/}
-            <div>#{profile.tag}</div>
+            <div>{profile.name}</div>
+            <div style={style}>#{profile.tag}</div>
+            {/*<a href='/logout'><FaSignOut style={{...style, color: CREAM_COLOR}}/></a>*/}
         </div>
     }
 

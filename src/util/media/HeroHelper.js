@@ -12,19 +12,25 @@ import penguin from '../../media/image/hero/penguin.svg';
 import duck from '../../media/image/hero/duck.svg';
 import cow from '../../media/image/hero/cow.svg';
 import gorilla from '../../media/image/hero/gorilla.svg';
+import sheep from '../../media/image/hero/sheep.svg';
+import crocodile from '../../media/image/hero/crocodile.svg';
+import lion from '../../media/image/hero/lion.svg';
 
 export const HEROES = {
     'CAT': cat,
     'COW': cow,
+    // 'CROCODILE': crocodile,
     'DUCK': duck,
     'GORILLA': gorilla,
     'KITEK': kitek,
+    'LION': lion,
     'OSMIORNICA': osmiornica,
     'OWL': owl,
     'PANDA': panda,
     'PENGUIN': penguin,
     'ROBO': robo,
     'RUMCIA': rumcia,
+    'SHEEP': sheep,
     'SZERYF': szeryf,
     'ZAROWA': zarowa,
 };

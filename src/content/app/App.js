@@ -13,8 +13,14 @@ import FriendListFetch, {clearFriendListFetch} from "../friend/fetch/FriendListF
 import BattleFriendPage from "../battle/friend/BattleFriendPage";
 import BattlePage from "../battle/BattlePage";
 import BattleListPage from "../battle/list/BattleListPage";
+import CommunicationWebSocket from "./CommunicationWebSocket";
+import {socketCreated} from "../../redux/reducer/socket";
 
 class App extends React.PureComponent {
+
+    componentDidMount() {
+        this.props.onInit(new CommunicationWebSocket());
+    }
 
     renderContent() {
         const {contentId, screen, onContentIdChange} = this.props;
@@ -79,6 +85,10 @@ export default connect(
                 clearFriendListFetch(dispatch);
             }
             dispatch(idChanged(e.id));
+        },
+        onInit: (socket) => {
+            socket.setDispatch(dispatch);
+            dispatch(socketCreated(socket));
         }
     })
 )(App);
