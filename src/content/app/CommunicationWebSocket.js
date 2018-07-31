@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
-import {battleInviteCancelled, battleInvited} from "../../redux/reducer/battle";
+import {battleCleared, battleInviteCancelled, battleInvited, battleInviteRejected} from "../../redux/reducer/battle";
+import {clearBattleStartFetch} from "../battle/friend/fetch/BattleStartFetch";
 
 export default class CommunicationWebSocket {
     constructor() {
@@ -27,6 +28,9 @@ export default class CommunicationWebSocket {
                 this.dispatch(battleInvited(JSON.parse(data.content)));
             } else if (id === 'BATTLE_CANCEL_INVITE') {
                 this.dispatch(battleInviteCancelled());
+            } else if (id === 'BATTLE_REJECT_INVITE') {
+                clearBattleStartFetch(this.dispatch);
+                this.dispatch(battleCleared());
             }
         });
         socket.addEventListener('close', (e) => {

@@ -15,9 +15,9 @@ import ChallengePage from "../challenge/ChallengePage";
 import ChallengeListPage from "../challenge/list/ChallengeListPage";
 import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
-import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
-import BattlePage from "../battle/friend/BattlePage";
 import InvitedToBattleBy from "../battle/invite/InvitedToBattleBy";
+import InviteToBattle from "../battle/invite/InviteToBattle";
+import BattleFetchContainer from "../battle/friend/fetch/BattleFetchContainer";
 
 class App extends React.PureComponent {
 
@@ -43,9 +43,6 @@ class App extends React.PureComponent {
         if (contentId === OBJECT_CHALLENGE_FRIEND) {
             return <ChallengeFriendPage/>
         }
-        if (contentId === OBJECT_BATTLE_FRIEND) {
-            return <BattlePage/>
-        }
         if (contentId === OBJECT_CHALLENGE_LIST) {
             return <ChallengeListPage/>
         }
@@ -62,21 +59,29 @@ class App extends React.PureComponent {
         return <Back/>;
     }
 
+    renderFetch() {
+        const {friendListRep, contentId} = this.props;
+        return <div>
+            <FriendListFetch contentId={contentId} friendListRep={friendListRep}/>
+            <BattleFetchContainer/>
+        </div>
+    }
+
     render() {
-        const {screen, friendListRep, contentId} = this.props;
+        const {screen} = this.props;
         const {height, contentWidth} = screen;
         return <div className={styles.app}>
             <InvitedToBattleBy/>
+            <InviteToBattle/>
             <div style={{height, width: contentWidth}} className={styles.content}>
                 <TopBar/>
-
                 {this.renderBack()}
                 {this.renderContent()}
                 {/*<div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>*/}
                 {/*{JSON.stringify(screen)}*/}
                 {/*</div>*/}
             </div>
-            <FriendListFetch contentId={contentId} friendListRep={friendListRep}/>
+            {this.renderFetch()}
         </div>;
     }
 }

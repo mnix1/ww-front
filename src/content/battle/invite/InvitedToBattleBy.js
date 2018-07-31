@@ -1,12 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../../../component/modal/styles.css';
-import {getText, TEXT_ACCEPT, TEXT_REJECT, TEXT_INVITED_TO_BATTLE_BY} from "../../../lang";
+import {getText, TEXT_ACCEPT, TEXT_INVITED_TO_BATTLE_BY, TEXT_REJECT} from "../../../lang";
 import Friend from "../../../component/friend/Friend";
 import {CREAM_COLOR} from "../../../util/style/constant";
 import FaCheckCircle from 'react-icons/lib/fa/check-circle';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import Modal from "../../../component/modal/Modal";
+import {battleInviteRejected, statusChanged} from "../../../redux/reducer/battle";
+import {BATTLE_STATUS_ACCEPTED} from "../../../util/battleHelper";
+import {OBJECT_BATTLE_FRIEND} from "../../object-group/objectsBattle";
+import {idChanged} from "../../../redux/reducer/content";
 
 class InvitedToBattleBy extends React.PureComponent {
 
@@ -30,5 +34,13 @@ export default connect(
     (state) => ({
         invitedToBattleBy: state.battle.invitedBy,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onAccept: () => {
+            dispatch(statusChanged(BATTLE_STATUS_ACCEPTED));
+            dispatch(idChanged(OBJECT_BATTLE_FRIEND));
+        },
+        onReject: () => {
+            dispatch(battleInviteRejected());
+        }
+    })
 )(InvitedToBattleBy);

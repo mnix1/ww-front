@@ -18,8 +18,8 @@ class BattleCancelFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {status, rep, dispatchBattleCancelPost} = this.props;
-        if (!rep && status === BATTLE_STATUS_CANCELED) {
+        const {status, dispatchBattleCancelPost} = this.props;
+        if (prevProps.status !== status && status === BATTLE_STATUS_CANCELED) {
             dispatchBattleCancelPost();
         }
     }

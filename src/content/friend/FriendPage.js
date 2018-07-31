@@ -28,7 +28,7 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button"
 import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
 import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
-import {BATTLE_STATUS_OPEN} from "../../util/battleHelper";
+import {BATTLE_STATUS_OPEN, BATTLE_STATUS_START} from "../../util/battleHelper";
 
 class FriendPage extends React.PureComponent {
 
@@ -142,8 +142,7 @@ export default connect(
     (dispatch) => ({
         onBattleFriendClick: (tag) => {
             dispatch(tagChanged(tag));
-            dispatch(statusChanged(BATTLE_STATUS_OPEN));
-            dispatch(idChanged(OBJECT_BATTLE_FRIEND));
+            dispatch(statusChanged(BATTLE_STATUS_START));
         },
         onChallengeFriendClick: (tag) => {
             dispatch(tagsChanged([tag]));

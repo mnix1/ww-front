@@ -7,13 +7,17 @@ import {CREAM_COLOR} from "../../../util/style/constant";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import Modal from "../../../component/modal/Modal";
 import _ from 'lodash';
-import {statusChanged} from "../../../redux/reducer/battle";
-import {BATTLE_STATUS_CANCELED} from "../../../util/battleHelper";
+import {statusChanged, tagChanged} from "../../../redux/reducer/battle";
+import {BATTLE_STATUS_CANCELED, BATTLE_STATUS_WAITING} from "../../../util/battleHelper";
+import {clearBattleStartFetch} from "../friend/fetch/BattleStartFetch";
 
 class InviteToBattle extends React.PureComponent {
 
     render() {
-        const {tag, friends, onCancel} = this.props;
+        const {status, tag, friends, onCancel} = this.props;
+        if (status !== BATTLE_STATUS_WAITING) {
+            return null;
+        }
         const friend = _.find(friends, e => e.tag === tag);
         const actions = <div className='actions'>
             <div onClick={onCancel}><span>{getText(TEXT_CANCEL)}</span><FaTimesCircle color={CREAM_COLOR}/></div>
@@ -30,9 +34,13 @@ class InviteToBattle extends React.PureComponent {
 export default connect(
     (state) => ({
         tag: state.battle.tag,
+        status: state.battle.status,
         friends: state.friend.friends,
     }),
     (dispatch) => ({
-        onCancel: () => dispatch(statusChanged(BATTLE_STATUS_CANCELED))
+        onCancel: () => {
+            clearBattleStartFetch(dispatch);
+            dispatch(statusChanged(BATTLE_STATUS_CANCELED));
+        }
     })
 )(InviteToBattle);
