@@ -81,9 +81,6 @@ export default connect(
     }),
     (dispatch) => ({
         onContentIdChange: (e) => {
-            // if (e.id === OBJECT_APP_FRIEND) {
-            //     clearFriendListFetch(dispatch);
-            // }
             dispatch(idChanged(e.id));
         },
         onInit: (socket) => {

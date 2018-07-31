@@ -10,7 +10,7 @@
 
 .friend {
     display: flex;
-    width: 140px;
+    min-width: 250px;
     justify-content: space-between;
 }
 
@@ -20,16 +20,24 @@
     justify-content: space-between;
     margin-left: 0.5rem;
     position: relative;
-    /*height: calc(100% - 16px);*/
 }
 
-.friend .details .actions {
+.friend .actions {
+    margin-left: 0.5rem;
+    padding: 0.5rem;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+    box-shadow: 0 0 2px #fffdf1;
+    border-radius: 0.5rem;
+}
+.friend .actions div, .friend .actions svg  {
+    cursor: pointer;
 }
 
-.friend .details .actions svg {
-    cursor: pointer;
+.friend .actions svg {
+    float: right;
+    padding-left: 0.5rem;
 }
 
 .friend .name {
@@ -42,7 +50,6 @@
 
 .addFriend {
     border-radius: 8px;
-    /*display: flex;*/
     color: #fffdf1;
     padding: 0.5rem;
     box-shadow: 0 0 4px #fffdf1;

@@ -33,6 +33,7 @@ export const TEXT_WRONG_TAG = 'TEXT_WRONG_TAG';
 export const TEXT_REQUEST_SENT = 'TEXT_REQUEST_SENT';
 export const TEXT_ADD_FRIEND_ALREADY = 'TEXT_ADD_FRIEND_ALREADY';
 export const TEXT_CHALLENGE_ADD_FRIENDS = 'TEXT_CHALLENGE_ADD_FRIENDS';
+export const TEXT_ADD = 'TEXT_ADD';
 export const TEXT_ADDED = 'TEXT_ADDED';
 export const TEXT_START_CHALLENGE = 'TEXT_START_CHALLENGE';
 export const TEXT_SCORE = 'TEXT_SCORE';
@@ -52,6 +53,10 @@ export const TEXT_INVITES = 'TEXT_INVITES';
 export const TEXT_POSITION = 'TEXT_POSITION';
 export const TEXT_WAITING_FOR_RESPONSE = 'TEXT_WAITING_FOR_RESPONSE';
 export const TEXT_WAITING = 'TEXT_WAITING';
+export const TEXT_BATTLE = 'TEXT_BATTLE';
+export const TEXT_CHALLENGE = 'TEXT_CHALLENGE';
+export const TEXT_DELETE = 'TEXT_DELETE';
+
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -74,9 +79,10 @@ const TEXTS = {
         [TEXT_WRONG_TAG]: 'nieistniejący tag',
         [TEXT_REQUEST_SENT]: 'wysłano',
         [TEXT_ADD_FRIEND_ALREADY]: 'już wysłano prośbę o dodanie',
-        [TEXT_CHALLENGE_ADD_FRIENDS]: 'Dodaj znajomych do bitwy',
+        [TEXT_CHALLENGE_ADD_FRIENDS]: 'Dodaj znajomych do wyzwania',
+        [TEXT_ADD]: 'Dodaj',
         [TEXT_ADDED]: 'Dodano',
-        [TEXT_START_CHALLENGE]: 'Rozpocznij bitwę!',
+        [TEXT_START_CHALLENGE]: 'Rozpocznij wyzwanie!',
         [TEXT_SCORE]: 'Wynik',
         [TEXT_YOUR_SCORE]: 'Twój wynik',
         [TEXT_POINTS]: 'pkt',
@@ -94,7 +100,9 @@ const TEXTS = {
         [TEXT_POSITION]: 'Pozycja',
         [TEXT_WAITING_FOR_RESPONSE]: 'Oczekiwanie na odpowiedź',
         [TEXT_WAITING]: 'Oczekiwanie',
-
+        [TEXT_BATTLE]: 'Bitwa',
+        [TEXT_CHALLENGE]: 'Wyzwanie',
+        [TEXT_DELETE]: 'Usuń',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
@@ -113,6 +121,7 @@ const TEXTS = {
         [TEXT_REQUEST_SENT]: 'sent',
         [TEXT_ADD_FRIEND_ALREADY]: 'already requested',
         [TEXT_CHALLENGE_ADD_FRIENDS]: 'Add friends to challenge',
+        [TEXT_ADD]: 'Add',
         [TEXT_ADDED]: 'Added',
         [TEXT_START_CHALLENGE]: 'Start challenge!',
         [TEXT_SCORE]: 'Score',
@@ -132,6 +141,9 @@ const TEXTS = {
         [TEXT_POSITION]: 'Position',
         [TEXT_WAITING_FOR_RESPONSE]: 'Waiting for response',
         [TEXT_WAITING]: 'Waiting',
+        [TEXT_BATTLE]: 'Battle',
+        [TEXT_CHALLENGE]: 'Challenge',
+        [TEXT_DELETE]: 'Delete',
     }
 };
 

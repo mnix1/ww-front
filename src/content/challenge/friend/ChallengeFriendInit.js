@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_ADDED, TEXT_CHALLENGE_ADD_FRIENDS, TEXT_START_CHALLENGE} from "../../../lang";
+import {getText, TEXT_ADD, TEXT_ADDED, TEXT_CHALLENGE_ADD_FRIENDS, TEXT_START_CHALLENGE} from "../../../lang";
 import styles from './styles.css';
 import Friend from "../../../component/friend/Friend";
 import _ from 'lodash';
@@ -17,8 +17,8 @@ class ChallengeFriendPage extends React.PureComponent {
             friend={friend}
             actions={
                 <div className='actions'>
-                    <label className='pointer'>
-                        {isAdded ? getText(TEXT_ADDED) : ''}
+                    <label className='pointer' style={{display: 'block', minWidth: 60}}>
+                        {isAdded ? getText(TEXT_ADDED) : getText(TEXT_ADD)}
                         <br/>
                         <input className='pointer' type='checkbox' checked={isAdded}
                                onChange={() => onFriendToggle(friend.tag, tags)}/>

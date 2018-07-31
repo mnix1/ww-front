@@ -7,5 +7,6 @@ export const MEDIUM_PADDING = 8;
 export const CREAM_COLOR = '#fffdf1';
 export const GREEN_COLOR = '#2ea231';
 export const DARK_GREEN_COLOR = '#00671f';
+export const DARK_RED_COLOR = '#890006';
 export const LIGHT_BLUE_COLOR = '#4ea5c5';
 export const DARK_BLUE_COLOR = '#2879da';

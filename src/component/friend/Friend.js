@@ -2,8 +2,8 @@ import React from 'react';
 import './styles.css';
 import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
-import FaCircle from "react-icons/lib/fa/circle";
-import {DARK_GREEN_COLOR} from "../../util/style/constant";
+import TiWiFi from "react-icons/lib/ti/wi-fi";
+import {DARK_GREEN_COLOR, DARK_RED_COLOR} from "../../util/style/constant";
 
 export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
@@ -30,13 +30,14 @@ export default class Friend extends React.PureComponent {
                 {children}
                 <img src={getHero(friend.avatar)} height={80}/>
                 <div className='details'>
-                    {this.renderActions()}
-                    {friend.isOnline && <FaCircle style={{color: DARK_GREEN_COLOR}}/>}
+                    {friend.isOnline && <div><TiWiFi style={{color: DARK_GREEN_COLOR}}/></div>}
+                    {friend.isOnline === false && <div><TiWiFi style={{color: DARK_RED_COLOR}}/></div>}
                     <div>
                         <div className='name'>{friend.name}</div>
                         <div className='tag'>#{friend.tag}</div>
                     </div>
                 </div>
+                {this.renderActions()}
             </div>
         </div>
     }

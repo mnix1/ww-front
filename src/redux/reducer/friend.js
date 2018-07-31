@@ -5,12 +5,12 @@ export const FRIEND_ADDED = 'friend/friend/added';
 export const FRIEND_DELETED = 'friend/friend/deleted';
 export const FRIEND_ONLINE = 'friend/friend/online';
 export const FRIEND_OFFLINE = 'friend/friend/offline';
-export const TAG_CHANGED = 'friend/tag/changed';
+export const ADD_TAG_CHANGED = 'friend/add-tag/changed';
 export const SUGGEST_CHANGED = 'friend/suggest/changed';
 
 const initialState = {
     friends: [],
-    tag: undefined,
+    addTag: undefined,
     suggest: undefined,
 };
 
@@ -31,8 +31,8 @@ export default function reducer(state = initialState, action) {
             return {...state, friends: _.map(state.friends, e => e.tag === action.tag ? {...e, isOnline: true} : e)};
         case FRIEND_OFFLINE:
             return {...state, friends: _.map(state.friends, e => e.tag === action.tag ? {...e, isOnline: false} : e)};
-        case TAG_CHANGED:
-            return {...state, tag: action.tag};
+        case ADD_TAG_CHANGED:
+            return {...state, addTag: action.addTag};
         case SUGGEST_CHANGED:
             return {...state, suggest: action.suggest};
         default:
@@ -60,8 +60,8 @@ export function friendOffline(tag) {
     return {type: FRIEND_OFFLINE, tag};
 }
 
-export function tagChanged(tag) {
-    return {type: TAG_CHANGED, tag};
+export function addTagChanged(addTag) {
+    return {type: ADD_TAG_CHANGED, addTag};
 }
 
 export function suggestChanged(suggest) {

@@ -17,9 +17,9 @@ class AddFriendFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {tag, dispatchAddFriendPost} = this.props;
-        if (tag !== undefined && prevProps.tag !== tag) {
-            dispatchAddFriendPost(tag);
+        const {addTag, dispatchAddFriendPost} = this.props;
+        if (addTag !== undefined && prevProps.addTag !== addTag) {
+            dispatchAddFriendPost(addTag);
         }
     }
 
