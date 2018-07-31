@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 export default function request(url, data) {
     const opts = {};
     if (data) {

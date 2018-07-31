@@ -3,8 +3,8 @@ import _ from 'lodash';
 export const FRIENDS_CHANGED = 'friend/friends/changed';
 export const FRIEND_ADDED = 'friend/friend/added';
 export const FRIEND_DELETED = 'friend/friend/deleted';
-export const FRIEND_ONLINE = 'friend/friend/online';
-export const FRIEND_OFFLINE = 'friend/friend/offline';
+export const FRIEND_SIGNED_IN = 'friend/friend/signed-in';
+export const FRIEND_SIGNED_OUT = 'friend/friend/signed-out';
 export const ADD_TAG_CHANGED = 'friend/add-tag/changed';
 export const SUGGEST_CHANGED = 'friend/suggest/changed';
 
@@ -27,9 +27,9 @@ export default function reducer(state = initialState, action) {
             };
         case FRIEND_DELETED:
             return {...state, friends: _.filter(state.friends, e => e.tag !== action.tag)};
-        case FRIEND_ONLINE:
+        case FRIEND_SIGNED_IN:
             return {...state, friends: _.map(state.friends, e => e.tag === action.tag ? {...e, isOnline: true} : e)};
-        case FRIEND_OFFLINE:
+        case FRIEND_SIGNED_OUT:
             return {...state, friends: _.map(state.friends, e => e.tag === action.tag ? {...e, isOnline: false} : e)};
         case ADD_TAG_CHANGED:
             return {...state, addTag: action.addTag};
@@ -52,12 +52,12 @@ export function friendDeleted(tag) {
     return {type: FRIEND_DELETED, tag};
 }
 
-export function friendOnline(tag) {
-    return {type: FRIEND_ONLINE, tag};
+export function friendSignedIn(tag) {
+    return {type: FRIEND_SIGNED_IN, tag};
 }
 
-export function friendOffline(tag) {
-    return {type: FRIEND_OFFLINE, tag};
+export function friendSignedOut(tag) {
+    return {type: FRIEND_SIGNED_OUT, tag};
 }
 
 export function addTagChanged(addTag) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_OPEN} from "../../../../util/challengeHelper";
 
 class ChallengeListFetch extends React.PureComponent {
 

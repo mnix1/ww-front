@@ -26,7 +26,9 @@ import TiFlash from 'react-icons/lib/ti/flash';
 import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {CREAM_COLOR} from "../../util/style/constant";
-import {tagChanged} from "../../redux/reducer/battle";
+import {statusChanged, tagChanged} from "../../redux/reducer/battle";
+import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
+import {BATTLE_STATUS_OPEN} from "../../util/battleHelper";
 
 class FriendPage extends React.PureComponent {
 
@@ -118,12 +120,12 @@ class FriendPage extends React.PureComponent {
     }
 
     render() {
-        const {addTag, suggest} = this.props;
+        const {addTag, addFriendRep,friendSuggestRep, suggest} = this.props;
         return <div>
             <div className="pageHeader" style={{position: 'relative'}}><span>{getText(TEXT_FRIENDS)}</span></div>
             {this.renderContent()}
-            <AddFriendFetch addTag={addTag}/>
-            <FriendSuggestFetch suggest={suggest}/>
+            <AddFriendFetch rep={addFriendRep} addTag={addTag}/>
+            <FriendSuggestFetch rep={friendSuggestRep} suggest={suggest}/>
         </div>;
     }
 }
@@ -140,7 +142,8 @@ export default connect(
     (dispatch) => ({
         onBattleFriendClick: (tag) => {
             dispatch(tagChanged(tag));
-            // dispatch(idChanged(OBJECT_CHALLENGE_FRIEND));
+            dispatch(statusChanged(BATTLE_STATUS_OPEN));
+            dispatch(idChanged(OBJECT_BATTLE_FRIEND));
         },
         onChallengeFriendClick: (tag) => {
             dispatch(tagsChanged([tag]));

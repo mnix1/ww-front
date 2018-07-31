@@ -1,4 +1,4 @@
-import {BIG_TOP_BAR_HEIGHT, GOLDEN_RATIO_FACTOR, SMALL_TOP_BAR_HEIGHT} from "../../util/style/constant";
+import {GOLDEN_RATIO_FACTOR} from "../../util/style/constant";
 import MobileDetect from 'mobile-detect';
 import _ from 'lodash';
 

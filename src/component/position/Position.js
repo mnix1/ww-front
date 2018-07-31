@@ -4,7 +4,7 @@ import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
 import {prepareAnswerIntervalMessage, prepareScoreMessage} from "../../util/textHelper";
 import {CHALLENGE_STATUS_CLOSED} from "../../util/challengeHelper";
-import {getText, TEXT_WAITING, TEXT_WAITING_FOR_RESPONSE} from "../../lang";
+import {getText, TEXT_WAITING} from "../../lang";
 
 
 export default class Position extends React.PureComponent {
@@ -34,7 +34,7 @@ export default class Position extends React.PureComponent {
         return <div key={profile.tag} className='positionContainer'>
             {this.renderPosition()}
             <div className='profile'>
-                <img src={getHero(profile.avatar)} height={80}/>
+                <img alt='' src={getHero(profile.avatar)} height={80}/>
                 <div className='details'>
                     <div>
                         <div className='name'>{profile.name}</div>

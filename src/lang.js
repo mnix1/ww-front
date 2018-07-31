@@ -56,6 +56,11 @@ export const TEXT_WAITING = 'TEXT_WAITING';
 export const TEXT_BATTLE = 'TEXT_BATTLE';
 export const TEXT_CHALLENGE = 'TEXT_CHALLENGE';
 export const TEXT_DELETE = 'TEXT_DELETE';
+export const TEXT_INVITED_TO_BATTLE_BY = 'TEXT_INVITED_TO_BATTLE_BY';
+export const TEXT_INVITE_TO_BATTLE = 'TEXT_INVITE_TO_BATTLE';
+export const TEXT_ACCEPT = 'TEXT_ACCEPT';
+export const TEXT_REJECT = 'TEXT_REJECT';
+export const TEXT_CANCEL = 'TEXT_CANCEL';
 
 
 export function getText(id) {
@@ -103,6 +108,11 @@ const TEXTS = {
         [TEXT_BATTLE]: 'Bitwa',
         [TEXT_CHALLENGE]: 'Wyzwanie',
         [TEXT_DELETE]: 'Usuń',
+        [TEXT_INVITED_TO_BATTLE_BY]: 'Zostałeś zaproszony do bitwy przez',
+        [TEXT_INVITE_TO_BATTLE]: 'Zaprosiłeś do bitwy',
+        [TEXT_ACCEPT]: 'Akceptuj',
+        [TEXT_REJECT]: 'Odrzuć',
+        [TEXT_CANCEL]: 'Anuluj',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
@@ -144,6 +154,11 @@ const TEXTS = {
         [TEXT_BATTLE]: 'Battle',
         [TEXT_CHALLENGE]: 'Challenge',
         [TEXT_DELETE]: 'Delete',
+        [TEXT_INVITED_TO_BATTLE_BY]: 'You have been invited to battle with',
+        [TEXT_INVITE_TO_BATTLE]: 'You invited to battle',
+        [TEXT_ACCEPT]: 'Accept',
+        [TEXT_REJECT]: 'Reject',
+        [TEXT_CANCEL]: 'Cancel',
     }
 };
 

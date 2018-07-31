@@ -12,7 +12,7 @@ export function prepareAnimationTiles(rival) {
         imageData = imageData.replace('svg', `svg fill="${object.backgroundColor}"`);
         const content = <div style={{height: '100%', width: '100%'}}>
             <span style={{fontSize: objectFontSize(screen.resolution, 1, 18)}}>{object.key}</span>
-            <img src={'data:image/svg+xml,' + imageData} height='100%' width='100%'/>
+            <img alt='' src={'data:image/svg+xml,' + imageData} height='100%' width='100%'/>
         </div>;
         return {
             onMouseOver: _.noop,

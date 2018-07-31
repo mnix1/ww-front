@@ -15,7 +15,9 @@ class FriendSuggestFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearFriendSuggestFetch(this.props.dispatch);
+        if (this.props.rep) {
+            clearFriendSuggestFetch(this.props.dispatch);
+        }
     }
 
     maybeFetch(prevProps) {

@@ -24,7 +24,7 @@ export default class Challenge extends React.PureComponent {
         return <div key={creator.tag} className='challengeContainer'>
             <div className='inProgressDate'>{`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}</div>
             <div className='challenge'>
-                <img src={getHero(creator.avatar)} height={80}/>
+                <img alt='' src={getHero(creator.avatar)} height={80}/>
                 <div className='details'>
                     {this.renderActions()}
                     <div>

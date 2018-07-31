@@ -13,7 +13,9 @@ class AddFriendFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearAddFriendFetch(this.props.dispatch);
+        if (this.props.rep) {
+            clearAddFriendFetch(this.props.dispatch);
+        }
     }
 
     maybeFetch(prevProps) {
@@ -34,7 +36,7 @@ export function clearAddFriendFetch(dispatch) {
 
 export default connect([{
     resource: 'addFriend',
-    method:'post',
+    method: 'post',
     request: (tag) => ({
         url: `/friend/add`,
         body: {tag}

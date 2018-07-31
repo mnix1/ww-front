@@ -11,8 +11,8 @@ import {
     getText,
     TEXT_CHOOSE_CATEGORY,
     TEXT_CORRECT_ANSWER,
-    TEXT_PLAY_AGAIN, TEXT_QUESTION,
-    TEXT_TIME,
+    TEXT_PLAY_AGAIN,
+    TEXT_QUESTION,
     TEXT_WRONG_ANSWER
 } from "../../lang";
 import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
@@ -47,7 +47,7 @@ class PractisePage extends React.PureComponent {
     }
 
     renderTask() {
-        const {screen, practiseStartRep, practiseEndRep,skipAnimation, onSkipAnimationChange, answerId, onAnswerClick} = this.props;
+        const {screen, practiseStartRep, practiseEndRep, skipAnimation, onSkipAnimationChange, answerId, onAnswerClick} = this.props;
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
         return <div>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
@@ -89,7 +89,7 @@ class PractisePage extends React.PureComponent {
         }
         return <div key='playAgain' style={style} className={`contentHeader ${styles.playAgain}`}>
             <div><span onClick={onPlayAgainClick}>{getText(TEXT_PLAY_AGAIN)}</span></div>
-            <img onClick={onPlayAgainClick} src={this.randomHero} style={style} height={80}/>
+            <img alt='' onClick={onPlayAgainClick} src={this.randomHero} style={style} height={80}/>
         </div>;
     }
 

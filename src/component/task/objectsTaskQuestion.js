@@ -29,7 +29,7 @@ function prepareQuestionImageTile(rival) {
         return null;
     }
     const imageData = getImageContent(question);
-    const image = <img src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
+    const image = <img alt='' src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
     return {
         id: 'questionImage',
         onClick: _.noop,

@@ -1,0 +1,38 @@
+import React from 'react';
+import {connect} from 'react-redux';
+import '../../../component/modal/styles.css';
+import {getText, TEXT_CANCEL, TEXT_INVITE_TO_BATTLE, TEXT_WAITING_FOR_RESPONSE} from "../../../lang";
+import Friend from "../../../component/friend/Friend";
+import {CREAM_COLOR} from "../../../util/style/constant";
+import FaTimesCircle from 'react-icons/lib/fa/times-circle';
+import Modal from "../../../component/modal/Modal";
+import _ from 'lodash';
+import {statusChanged} from "../../../redux/reducer/battle";
+import {BATTLE_STATUS_CANCELED} from "../../../util/battleHelper";
+
+class InviteToBattle extends React.PureComponent {
+
+    render() {
+        const {tag, friends, onCancel} = this.props;
+        const friend = _.find(friends, e => e.tag === tag);
+        const actions = <div className='actions'>
+            <div onClick={onCancel}><span>{getText(TEXT_CANCEL)}</span><FaTimesCircle color={CREAM_COLOR}/></div>
+        </div>;
+        const content = <div>
+            <div className='justifyCenter'>{getText(TEXT_INVITE_TO_BATTLE)}</div>
+            <Friend friend={friend} actions={actions}/>
+            <div className='justifyCenter'>{getText(TEXT_WAITING_FOR_RESPONSE)}</div>
+        </div>;
+        return <Modal content={content}/>
+    }
+}
+
+export default connect(
+    (state) => ({
+        tag: state.battle.tag,
+        friends: state.friend.friends,
+    }),
+    (dispatch) => ({
+        onCancel: () => dispatch(statusChanged(BATTLE_STATUS_CANCELED))
+    })
+)(InviteToBattle);
