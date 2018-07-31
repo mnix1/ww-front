@@ -8,21 +8,21 @@ class FriendListFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
-        this.store();
+        this.store({});
     }
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        this.store();
+        this.store(prevProps);
     }
 
     componentWillUnmount() {
         clearFriendListFetch(this.props.dispatch);
     }
 
-    store() {
+    store(prevProps) {
         const {friendListRep} = this.props;
-        if (friendListRep && friendListRep.value) {
+        if (friendListRep !== prevProps.friendListRep && friendListRep && friendListRep.value) {
             const value = friendListRep.value;
             this.props.dispatch(friendsChanged(value));
         }

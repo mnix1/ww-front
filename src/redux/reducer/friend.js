@@ -9,7 +9,7 @@ export const TAG_CHANGED = 'friend/tag/changed';
 export const SUGGEST_CHANGED = 'friend/suggest/changed';
 
 const initialState = {
-    friends: undefined,
+    friends: [],
     tag: undefined,
     suggest: undefined,
 };
@@ -26,7 +26,7 @@ export default function reducer(state = initialState, action) {
                 ]
             };
         case FRIEND_DELETED:
-            return {...state, friends: _.filter(e => e.tag === action.tag)};
+            return {...state, friends: _.filter(state.friends, e => e.tag !== action.tag)};
         case FRIEND_ONLINE:
             return {...state, friends: _.map(state.friends, e => e.tag === action.tag ? {...e, isOnline: true} : e)};
         case FRIEND_OFFLINE:

@@ -66,7 +66,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         tags: state.battle.tags,
-        friends: _.get(state.repository.friendList, 'value.friends'),
+        friends: state.friend.friends
     }),
     (dispatch) => ({
         onStartBattleClick: () => {

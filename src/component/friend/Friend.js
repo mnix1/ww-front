@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
-import FaPlug from "react-icons/lib/fa/plug";
+import FaCircle from "react-icons/lib/fa/circle";
 import {DARK_GREEN_COLOR} from "../../util/style/constant";
 
 export const STATUS_REQUESTED = 'REQUESTED';
@@ -31,7 +31,7 @@ export default class Friend extends React.PureComponent {
                 <img src={getHero(friend.avatar)} height={80}/>
                 <div className='details'>
                     {this.renderActions()}
-                    {friend.isOnline && <FaPlug style={{color: DARK_GREEN_COLOR}}/>}
+                    {friend.isOnline && <FaCircle style={{color: DARK_GREEN_COLOR}}/>}
                     <div>
                         <div className='name'>{friend.name}</div>
                         <div className='tag'>#{friend.tag}</div>
