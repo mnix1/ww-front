@@ -5,7 +5,7 @@ import './styles.css';
 import {getText, TEXT_SUMMARY} from "../../../lang";
 import Position from "../../../component/position/Position";
 
-class BattleSummaryPage extends React.PureComponent {
+class ChallengeSummaryPage extends React.PureComponent {
 
     renderPositions(positions) {
         return <div className='positions'>
@@ -35,4 +35,4 @@ class BattleSummaryPage extends React.PureComponent {
 export default connect(
     (state) => ({}),
     (dispatch) => ({})
-)(BattleSummaryPage);
+)(ChallengeSummaryPage);

@@ -1,4 +1,4 @@
-.battleContainer {
+.challengeContainer {
     border-radius: 0.5rem;
     box-shadow: 0 0 4px #fffdf1;
     background: #4ea5c5;
@@ -8,13 +8,13 @@
     display: inline-block;
 }
 
-.battle {
+.challenge {
     display: flex;
     width: 140px;
     justify-content: space-between;
 }
 
-.battle .details {
+.challenge .details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -23,19 +23,19 @@
     /*height: calc(100% - 16px);*/
 }
 
-.battle .details .actions {
+.challenge .details .actions {
     display: flex;
     justify-content: space-between;
 }
 
-.battle .details .actions svg {
+.challenge .details .actions svg {
     cursor: pointer;
 }
 
-.battle .creatorName {
+.challenge .creatorName {
     font-size: 1rem;
 }
 
-.battle .creatorTag {
+.challenge .creatorTag {
     font-size: 0.8rem;
 }

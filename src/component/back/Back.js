@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import MdArrowBack from 'react-icons/lib/md/arrow-back';
 import {idChanged} from "../../redux/reducer/content";
 import {practiseCleared} from "../../redux/reducer/practise";
-import {battleCleared} from "../../redux/reducer/battle";
+import {challengeCleared} from "../../redux/reducer/challenge";
 
 class Back extends React.PureComponent {
 
@@ -27,7 +27,7 @@ export default connect(
         onClick: () => {
             dispatch(idChanged(undefined));
             dispatch(practiseCleared());
-            dispatch(battleCleared());
+            dispatch(challengeCleared());
         }
     })
 )(Back);

@@ -1,13 +1,13 @@
 import {OBJECT_MATERIALS} from "../../component/object-group/objectMaterialHelper";
 
-export const OBJECT_APP_BATTLE = 'battle';
+export const OBJECT_APP_CHALLENGE = 'challenge';
 export const OBJECT_APP_TRAINING = 'training';
 export const OBJECT_APP_HISTORY = 'history';
 export const OBJECT_APP_FRIEND = 'friend';
 
 export const OBJECTS_APP = [
     {
-        id: OBJECT_APP_BATTLE,
+        id: OBJECT_APP_CHALLENGE,
         xTarget: 1 / 4,
         yTarget: 1 / 4,
         material: OBJECT_MATERIALS[1],

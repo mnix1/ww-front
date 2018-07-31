@@ -1,11 +1,11 @@
-export const CLEARED = 'battle/cleared';
-export const TAGS_CHANGED = 'battle/tags/changed';
-export const IN_PROGRESS_ID_CHANGED = 'battle/in-progress-id/changed';
-export const STATUS_CHANGED = 'battle/status/changed';
-export const QUESTION_INDEX_CHANGED = 'battle/question-index/changed';
-export const QUESTION_ID_ANSWER_ID_MAP_CHANGED = 'battle/question-id-answer-id-map/changed';
-export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'battle/question-id-skip-animation-map/changed';
-export const SUMMARY_ID_CHANGED = 'battle/summary-id/changed';
+export const CLEARED = 'challenge/cleared';
+export const TAGS_CHANGED = 'challenge/tags/changed';
+export const IN_PROGRESS_ID_CHANGED = 'challenge/in-progress-id/changed';
+export const STATUS_CHANGED = 'challenge/status/changed';
+export const QUESTION_INDEX_CHANGED = 'challenge/question-index/changed';
+export const QUESTION_ID_ANSWER_ID_MAP_CHANGED = 'challenge/question-id-answer-id-map/changed';
+export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'challenge/question-id-skip-animation-map/changed';
+export const SUMMARY_ID_CHANGED = 'challenge/summary-id/changed';
 
 const initialState = {
     tags: undefined,
@@ -41,7 +41,7 @@ export default function reducer(state = initialState, action) {
 }
 
 
-export function battleCleared() {
+export function challengeCleared() {
     return {type: CLEARED};
 }
 

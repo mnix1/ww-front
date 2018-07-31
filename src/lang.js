@@ -7,12 +7,12 @@ import {
     OBJECT_CATEGORY_RANDOM
 } from "./content/object-group/objectsCategory";
 import {
-    OBJECT_APP_BATTLE,
+    OBJECT_APP_CHALLENGE,
     OBJECT_APP_FRIEND,
     OBJECT_APP_HISTORY,
     OBJECT_APP_TRAINING
 } from "./content/object-group/objectsApp";
-import {OBJECT_BATTLE_LIST} from "./content/object-group/objectsBattle";
+import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
@@ -32,9 +32,9 @@ export const TEXT_ADD_FRIEND_TAG = 'TEXT_ADD_FRIEND_TAG';
 export const TEXT_WRONG_TAG = 'TEXT_WRONG_TAG';
 export const TEXT_REQUEST_SENT = 'TEXT_REQUEST_SENT';
 export const TEXT_ADD_FRIEND_ALREADY = 'TEXT_ADD_FRIEND_ALREADY';
-export const TEXT_BATTLE_ADD_FRIENDS = 'TEXT_BATTLE_ADD_FRIENDS';
+export const TEXT_CHALLENGE_ADD_FRIENDS = 'TEXT_CHALLENGE_ADD_FRIENDS';
 export const TEXT_ADDED = 'TEXT_ADDED';
-export const TEXT_START_BATTLE = 'TEXT_START_BATTLE';
+export const TEXT_START_CHALLENGE = 'TEXT_START_CHALLENGE';
 export const TEXT_SCORE = 'TEXT_SCORE';
 export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
 export const TEXT_POINTS = 'TEXT_POINTS';
@@ -46,8 +46,8 @@ export const TEXT_SUGGESTED_FRIENDS = 'TEXT_SUGGESTED_FRIENDS';
 export const TEXT_NONE_FRIENDS = 'TEXT_NONE_FRIENDS';
 export const TEXT_ACTUAL_FRIENDS = 'TEXT_ACTUAL_FRIENDS';
 export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
-export const TEXT_NONE_IN_PROGRESS_BATTLES = 'TEXT_NONE_IN_PROGRESS_BATTLES';
-export const TEXT_IN_PROGRESS_BATTLES = 'TEXT_IN_PROGRESS_BATTLES';
+export const TEXT_NONE_IN_PROGRESS_CHALLENGES = 'TEXT_NONE_IN_PROGRESS_CHALLENGES';
+export const TEXT_IN_PROGRESS_CHALLENGES = 'TEXT_IN_PROGRESS_CHALLENGES';
 export const TEXT_INVITES = 'TEXT_INVITES';
 export const TEXT_POSITION = 'TEXT_POSITION';
 export const TEXT_WAITING_FOR_RESPONSE = 'TEXT_WAITING_FOR_RESPONSE';
@@ -74,9 +74,9 @@ const TEXTS = {
         [TEXT_WRONG_TAG]: 'nieistniejący tag',
         [TEXT_REQUEST_SENT]: 'wysłano',
         [TEXT_ADD_FRIEND_ALREADY]: 'już wysłano prośbę o dodanie',
-        [TEXT_BATTLE_ADD_FRIENDS]: 'Dodaj znajomych do bitwy',
+        [TEXT_CHALLENGE_ADD_FRIENDS]: 'Dodaj znajomych do bitwy',
         [TEXT_ADDED]: 'Dodano',
-        [TEXT_START_BATTLE]: 'Rozpocznij bitwę!',
+        [TEXT_START_CHALLENGE]: 'Rozpocznij bitwę!',
         [TEXT_SCORE]: 'Wynik',
         [TEXT_YOUR_SCORE]: 'Twój wynik',
         [TEXT_POINTS]: 'pkt',
@@ -88,8 +88,8 @@ const TEXTS = {
         [TEXT_NONE_FRIENDS]: 'Nie masz jeszcze znajomych',
         [TEXT_ACTUAL_FRIENDS]: 'Twoi znajomi',
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'Nie możemy zaproponować więcej znajomych',
-        [TEXT_NONE_IN_PROGRESS_BATTLES]: 'Nie masz aktywnych wyzwań',
-        [TEXT_IN_PROGRESS_BATTLES]: 'Aktywne wyzwania',
+        [TEXT_NONE_IN_PROGRESS_CHALLENGES]: 'Nie masz aktywnych wyzwań',
+        [TEXT_IN_PROGRESS_CHALLENGES]: 'Aktywne wyzwania',
         [TEXT_INVITES]: 'Zaproszenia',
         [TEXT_POSITION]: 'Pozycja',
         [TEXT_WAITING_FOR_RESPONSE]: 'Oczekiwanie na odpowiedź',
@@ -112,9 +112,9 @@ const TEXTS = {
         [TEXT_WRONG_TAG]: 'not existing tag',
         [TEXT_REQUEST_SENT]: 'sent',
         [TEXT_ADD_FRIEND_ALREADY]: 'already requested',
-        [TEXT_BATTLE_ADD_FRIENDS]: 'Add friends to battle',
+        [TEXT_CHALLENGE_ADD_FRIENDS]: 'Add friends to challenge',
         [TEXT_ADDED]: 'Added',
-        [TEXT_START_BATTLE]: 'Start battle!',
+        [TEXT_START_CHALLENGE]: 'Start challenge!',
         [TEXT_SCORE]: 'Score',
         [TEXT_YOUR_SCORE]: 'Your score',
         [TEXT_POINTS]: 'pt',
@@ -126,8 +126,8 @@ const TEXTS = {
         [TEXT_NONE_FRIENDS]: 'You do not have friends yet',
         [TEXT_ACTUAL_FRIENDS]: 'Actual friends',
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'We can not recommend more friends',
-        [TEXT_NONE_IN_PROGRESS_BATTLES]: 'You do not have active challenges',
-        [TEXT_IN_PROGRESS_BATTLES]: 'Active challenges',
+        [TEXT_NONE_IN_PROGRESS_CHALLENGES]: 'You do not have active challenges',
+        [TEXT_IN_PROGRESS_CHALLENGES]: 'Active challenges',
         [TEXT_INVITES]: 'Invites',
         [TEXT_POSITION]: 'Position',
         [TEXT_WAITING_FOR_RESPONSE]: 'Waiting for response',
@@ -141,7 +141,7 @@ export function getTileLabel(id) {
 
 const OBJECT_LABELS = {
     [POLISH]: {
-        [OBJECT_APP_BATTLE]: 'Bitwa',
+        [OBJECT_APP_CHALLENGE]: 'Bitwa',
         [OBJECT_APP_TRAINING]: 'Trening',
         [OBJECT_APP_HISTORY]: 'Historia',
         [OBJECT_APP_FRIEND]: 'Znajomi',
@@ -151,19 +151,19 @@ const OBJECT_LABELS = {
         [OBJECT_CATEGORY_HISTORY]: 'Historia',
         [OBJECT_CATEGORY_GEOGRAPHY]: 'Geografia',
         [OBJECT_CATEGORY_MEMORY]: 'Pamięć',
-        [OBJECT_BATTLE_LIST]: 'Aktywne wyzwania',
+        [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
-        [OBJECT_APP_BATTLE]: 'Battle',
+        [OBJECT_APP_CHALLENGE]: 'Challenge',
         [OBJECT_APP_TRAINING]: 'Training',
         [OBJECT_APP_HISTORY]: 'History',
-        [OBJECT_APP_FRIEND]: 'Battle',
+        [OBJECT_APP_FRIEND]: 'Challenge',
         [OBJECT_CATEGORY_RANDOM]: 'Random',
         [OBJECT_CATEGORY_MATH]: 'Math',
         [OBJECT_CATEGORY_MUSIC]: 'Music',
         [OBJECT_CATEGORY_HISTORY]: 'History',
         [OBJECT_CATEGORY_GEOGRAPHY]: 'Geography',
         [OBJECT_CATEGORY_MEMORY]: 'Memory',
-        [OBJECT_BATTLE_LIST]: 'Active challenges',
+        [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }
 };

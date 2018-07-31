@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './styles.css';
 import _ from 'lodash';
 import Task from "../../../component/task/Task";
-import {battleCleared, questionIndexChanged, summaryIdChanged} from "../../../redux/reducer/battle";
+import {challengeCleared, questionIndexChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {
     getText,
     TEXT_ANSWER_FOR_QUESTION,
@@ -16,10 +16,10 @@ import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
 import FaListOl from 'react-icons/lib/fa/list-ol';
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
-import {OBJECT_APP_BATTLE} from "../../object-group/objectsApp";
+import {OBJECT_APP_CHALLENGE} from "../../object-group/objectsApp";
 import {idChanged} from "../../../redux/reducer/content";
 
-class BattleSolution extends React.PureComponent {
+class ChallengeSolution extends React.PureComponent {
 
     calculateResult(questionIdCorrectAnswerIdMap) {
         const {questionIdAnswerIdMap, questions} = this.props;
@@ -42,7 +42,7 @@ class BattleSolution extends React.PureComponent {
     }
 
     renderActions() {
-        const {screen, questionIndex, onNavigateTaskClick, onBattleSummaryClick, questions, battleId} = this.props;
+        const {screen, questionIndex, onNavigateTaskClick, onChallengeSummaryClick, questions, challengeId} = this.props;
         const nextQuestionIndex = (questionIndex + 1) % questions.length;
         let className = 'actionsToRight';
         if (screen.moreHeightThanWidth) {
@@ -58,7 +58,7 @@ class BattleSolution extends React.PureComponent {
             <Button
                 material={BUTTON_MATERIAL_BOX_SHADOW}
                 icon={<FaListOl/>}
-                onClick={() => onBattleSummaryClick(battleId)}
+                onClick={() => onChallengeSummaryClick(challengeId)}
             >{getText(TEXT_SUMMARY)}</Button>
         </div>;
     }
@@ -94,7 +94,7 @@ class BattleSolution extends React.PureComponent {
         if (!rep || !rep.fulfilled) {
             return null;
         }
-        return <div className='battleSolution'>
+        return <div className='challengeSolution'>
             {this.renderHeader(rep.value)}
             {this.renderTask(rep.value)}
         </div>;
@@ -104,15 +104,15 @@ class BattleSolution extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        questionIndex: state.battle.questionIndex,
-        questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
+        questionIndex: state.challenge.questionIndex,
+        questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
     }),
     (dispatch) => ({
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
-        onBattleSummaryClick: battleId => {
-            dispatch(battleCleared());
-            dispatch(summaryIdChanged(battleId));
-            dispatch(idChanged(OBJECT_APP_BATTLE));
+        onChallengeSummaryClick: challengeId => {
+            dispatch(challengeCleared());
+            dispatch(summaryIdChanged(challengeId));
+            dispatch(idChanged(OBJECT_APP_CHALLENGE));
         }
     })
-)(BattleSolution);
+)(ChallengeSolution);

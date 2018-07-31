@@ -7,11 +7,11 @@ import {
     questionIdSkipAnimationMapChanged,
     questionIndexChanged,
     statusChanged
-} from "../../../redux/reducer/battle";
+} from "../../../redux/reducer/challenge";
 import {getText, TEXT_QUESTION} from "../../../lang";
-import {BATTLE_STATUS_IN_PROGRESS} from "../../../util/battleHelper";
+import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 
-class BattleTask extends React.PureComponent {
+class ChallengeTask extends React.PureComponent {
 
     renderTask({questions}) {
         const {questionIndex, screen, onAnswerClick, questionIdAnswerIdMap, questionIdSkipAnimationMap, onSkipAnimationChange, onNavigateTaskClick, onLastQuestionAnswerClick} = this.props;
@@ -50,17 +50,17 @@ class BattleTask extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        questionIndex: state.battle.questionIndex,
-        questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.battle.questionIdSkipAnimationMap,
+        questionIndex: state.challenge.questionIndex,
+        questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
+        questionIdSkipAnimationMap: state.challenge.questionIdSkipAnimationMap,
     }),
     (dispatch) => ({
         onLastQuestionAnswerClick: () => {
-            dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
+            dispatch(statusChanged(CHALLENGE_STATUS_IN_PROGRESS));
             dispatch(questionIndexChanged(0));
         },
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
         onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
         onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))
     })
-)(BattleTask);
+)(ChallengeTask);

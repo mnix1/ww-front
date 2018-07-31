@@ -4,10 +4,10 @@ import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
 
 
-export default class Battle extends React.PureComponent {
+export default class Challenge extends React.PureComponent {
 
     static propTypes = {
-        battle: PropTypes.object,
+        challenge: PropTypes.object,
         actions: PropTypes.node,
         children: PropTypes.node,
     };
@@ -18,12 +18,12 @@ export default class Battle extends React.PureComponent {
     }
 
     render() {
-        const {battle} = this.props;
-        const creator = battle.creatorProfile;
-        const date = new Date(battle.inProgressDate);
-        return <div key={creator.tag} className='battleContainer'>
+        const {challenge} = this.props;
+        const creator = challenge.creatorProfile;
+        const date = new Date(challenge.inProgressDate);
+        return <div key={creator.tag} className='challengeContainer'>
             <div className='inProgressDate'>{`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}</div>
-            <div className='battle'>
+            <div className='challenge'>
                 <img src={getHero(creator.avatar)} height={80}/>
                 <div className='details'>
                     {this.renderActions()}

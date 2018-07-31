@@ -15,8 +15,8 @@ import {
 import {suggestChanged, tagChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
-import {tagsChanged} from "../../redux/reducer/battle";
-import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
+import {tagsChanged} from "../../redux/reducer/challenge";
+import {OBJECT_CHALLENGE_FRIEND} from "../object-group/objectsChallenge";
 import Friend, {STATUS_ACCEPTED, STATUS_REQUESTED, STATUS_SUGGESTED} from "../../component/friend/Friend";
 import {AddFriend} from "../../component/friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
@@ -70,13 +70,13 @@ class FriendPage extends React.PureComponent {
     }
 
     renderFriend(friend) {
-        const {onAcceptFriendClick, onDeleteFriendClick, onBattleFriendClick} = this.props;
+        const {onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick} = this.props;
         return <Friend
             key={friend.tag}
             friend={friend}
             actions={<div className='actions'>
                 {friend.status === STATUS_ACCEPTED &&
-                <FaGavel color={CREAM_COLOR} onClick={() => onBattleFriendClick(friend.tag)}/>}
+                <FaGavel color={CREAM_COLOR} onClick={() => onChallengeFriendClick(friend.tag)}/>}
                 {(friend.status === STATUS_REQUESTED || friend.status === STATUS_SUGGESTED) &&
                 <FaPlusCircle color={CREAM_COLOR} onClick={() => onAcceptFriendClick(friend.tag)}/>}
                 {friend.status !== STATUS_SUGGESTED &&
@@ -132,9 +132,9 @@ export default connect(
         suggest: state.friend.suggest,
     }),
     (dispatch) => ({
-        onBattleFriendClick: (tag) => {
+        onChallengeFriendClick: (tag) => {
             dispatch(tagsChanged([tag]));
-            dispatch(idChanged(OBJECT_BATTLE_FRIEND));
+            dispatch(idChanged(OBJECT_CHALLENGE_FRIEND));
         },
         onDeleteFriendClick: (tag) => {
             request('/friend/delete', {tag}).then(() => {

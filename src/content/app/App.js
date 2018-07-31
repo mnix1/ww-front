@@ -5,14 +5,14 @@ import {idChanged} from "../../redux/reducer/content";
 import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
-import {OBJECT_APP_BATTLE, OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
+import {OBJECT_APP_CHALLENGE, OBJECT_APP_FRIEND, OBJECT_APP_TRAINING, OBJECTS_APP} from "../object-group/objectsApp";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import FriendPage from "../friend/FriendPage";
-import {OBJECT_BATTLE_FRIEND, OBJECT_BATTLE_LIST} from "../object-group/objectsBattle";
-import FriendListFetch, {clearFriendListFetch} from "../friend/fetch/FriendListFetch";
-import BattleFriendPage from "../battle/friend/BattleFriendPage";
-import BattlePage from "../battle/BattlePage";
-import BattleListPage from "../battle/list/BattleListPage";
+import {OBJECT_CHALLENGE_FRIEND, OBJECT_CHALLENGE_LIST} from "../object-group/objectsChallenge";
+import FriendListFetch from "../friend/fetch/FriendListFetch";
+import ChallengeFriendPage from "../challenge/friend/ChallengeFriendPage";
+import ChallengePage from "../challenge/ChallengePage";
+import ChallengeListPage from "../challenge/list/ChallengeListPage";
 import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
 
@@ -37,14 +37,14 @@ class App extends React.PureComponent {
         if (contentId === OBJECT_APP_FRIEND) {
             return <FriendPage/>
         }
-        if (contentId === OBJECT_BATTLE_FRIEND) {
-            return <BattleFriendPage/>
+        if (contentId === OBJECT_CHALLENGE_FRIEND) {
+            return <ChallengeFriendPage/>
         }
-        if (contentId === OBJECT_BATTLE_LIST) {
-            return <BattleListPage/>
+        if (contentId === OBJECT_CHALLENGE_LIST) {
+            return <ChallengeListPage/>
         }
-        if (contentId === OBJECT_APP_BATTLE) {
-            return <BattlePage/>
+        if (contentId === OBJECT_APP_CHALLENGE) {
+            return <ChallengePage/>
         }
     }
 

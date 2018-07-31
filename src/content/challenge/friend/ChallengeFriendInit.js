@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_ADDED, TEXT_BATTLE_ADD_FRIENDS, TEXT_START_BATTLE} from "../../../lang";
+import {getText, TEXT_ADDED, TEXT_CHALLENGE_ADD_FRIENDS, TEXT_START_CHALLENGE} from "../../../lang";
 import styles from './styles.css';
 import Friend from "../../../component/friend/Friend";
 import _ from 'lodash';
-import {statusChanged, tagsChanged} from "../../../redux/reducer/battle";
+import {statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
-import {BATTLE_STATUS_OPEN, MAX_BATTLE_FRIENDS} from "../../../util/battleHelper";
+import {CHALLENGE_STATUS_OPEN, MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 
-class BattleFriendPage extends React.PureComponent {
+class ChallengeFriendPage extends React.PureComponent {
 
     renderFriend(friend, isAdded) {
         const {tags, onFriendToggle} = this.props;
@@ -41,23 +41,23 @@ class BattleFriendPage extends React.PureComponent {
         </div>;
     }
 
-    renderStartBattle() {
-        const {onStartBattleClick} = this.props;
-        const label = getText(TEXT_START_BATTLE);
-        return <Button onClick={onStartBattleClick}
+    renderStartChallenge() {
+        const {onStartChallengeClick} = this.props;
+        const label = getText(TEXT_START_CHALLENGE);
+        return <Button onClick={onStartChallengeClick}
                        material={BUTTON_MATERIAL_ACCEPT}
                        style={{margin: '0.5rem'}}>{label}</Button>;
     }
 
     render() {
         const {tags, friends} = this.props;
-        const friendsCounter = `(${tags.length}/${Math.min(friends.length, MAX_BATTLE_FRIENDS)})`;
+        const friendsCounter = `(${tags.length}/${Math.min(friends.length, MAX_CHALLENGE_FRIENDS)})`;
         return <div>
             <div className="pageHeader" style={{position: 'relative'}}>
-                <span>{getText(TEXT_BATTLE_ADD_FRIENDS)} {friendsCounter}</span>
+                <span>{getText(TEXT_CHALLENGE_ADD_FRIENDS)} {friendsCounter}</span>
             </div>
             {this.renderFriends()}
-            {this.renderStartBattle()}
+            {this.renderStartChallenge()}
         </div>;
     }
 }
@@ -65,12 +65,12 @@ class BattleFriendPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        tags: state.battle.tags,
+        tags: state.challenge.tags,
         friends: state.friend.friends
     }),
     (dispatch) => ({
-        onStartBattleClick: () => {
-            dispatch(statusChanged(BATTLE_STATUS_OPEN));
+        onStartChallengeClick: () => {
+            dispatch(statusChanged(CHALLENGE_STATUS_OPEN));
         },
         onFriendToggle: (tag, tags) => {
             const newTags = _.filter(tags, (e) => e !== tag);
@@ -81,4 +81,4 @@ export default connect(
             dispatch(tagsChanged(newTags));
         }
     })
-)(BattleFriendPage);
+)(ChallengeFriendPage);
