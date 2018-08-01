@@ -1,4 +1,7 @@
 import _ from 'lodash';
+import alpaka from '../../media/image/hero/alpaka.svg';
+import ant from '../../media/image/hero/ant.svg';
+import bee from '../../media/image/hero/bee.svg';
 import kitek from '../../media/image/hero/kitek.svg';
 import robo from '../../media/image/hero/robo.svg';
 import rumcia from '../../media/image/hero/rumcia.svg';
@@ -14,12 +17,24 @@ import cow from '../../media/image/hero/cow.svg';
 import gorilla from '../../media/image/hero/gorilla.svg';
 import sheep from '../../media/image/hero/sheep.svg';
 import lion from '../../media/image/hero/lion.svg';
+import giraffe from '../../media/image/hero/giraffe.svg';
+import snake from '../../media/image/hero/snake.svg';
+import eagle from '../../media/image/hero/eagle.svg';
+import horse from '../../media/image/hero/horse.svg';
+import skunk from '../../media/image/hero/skunk.svg';
+import zubr from '../../media/image/hero/zubr.svg';
 
 export const HEROES = {
+    'ALPAKA': alpaka,
+    'ANT': ant,
+    'BEE': bee,
     'CAT': cat,
     'COW': cow,
     'DUCK': duck,
+    'EAGLE': eagle,
+    'GIRAFFE': giraffe,
     'GORILLA': gorilla,
+    'HORSE': horse,
     'KITEK': kitek,
     'LION': lion,
     'OSMIORNICA': osmiornica,
@@ -29,8 +44,11 @@ export const HEROES = {
     'ROBO': robo,
     'RUMCIA': rumcia,
     'SHEEP': sheep,
+    'SKUNK': skunk,
+    'SNAKE': snake,
     'SZERYF': szeryf,
     'ZAROWA': zarowa,
+    'ZUBR': zubr,
 };
 
 export function randomHero() {

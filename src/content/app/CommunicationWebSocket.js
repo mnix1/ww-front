@@ -1,10 +1,27 @@
 import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
-import {battleCleared, battleInviteCancelled, battleInvited, battleInviteRejected} from "../../redux/reducer/battle";
+import {battleCleared, battleInviteCancelled, battleInvited, statusChanged} from "../../redux/reducer/battle";
 import {clearBattleStartFetch} from "../battle/friend/fetch/BattleStartFetch";
+import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
+import {idChanged} from "../../redux/reducer/content";
+import {OBJECT_BATTLE} from "../object-group/objectsBattle";
 
 export default class CommunicationWebSocket {
     constructor() {
+        this.init();
+        this.socket.addEventListener('message', this.onMessage);
+        this.socket.addEventListener('close', (e) => {
+            console.log('onclose', e);
+        });
+        this.socket.addEventListener('error', (e) => {
+            console.log('onerror', e);
+        });
+        this.socket.addEventListener('open', (e) => {
+            // console.log('onopen', e)
+        });
+    }
+
+    init() {
         let socket;
         if (_.includes(window.location.host, 'localhost')) {
             socket = new WebSocket("ws://localhost:8080/websocket");
@@ -13,38 +30,39 @@ export default class CommunicationWebSocket {
         } else {
             socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/websocket");
         }
-        socket.addEventListener('message', (e) => {
-            const data = JSON.parse(e.data);
-            const id = data.id;
-            if (id === 'FRIEND_ADD') {
-                this.dispatch(friendAdded(JSON.parse(data.content)));
-            } else if (id === 'FRIEND_DELETE') {
-                this.dispatch(friendDeleted(data.content));
-            } else if (id === 'FRIEND_SIGN_IN') {
-                this.dispatch(friendSignedIn(data.content));
-            } else if (id === 'FRIEND_SIGN_OUT') {
-                this.dispatch(friendSignedOut(data.content));
-            } else if (id === 'BATTLE_INVITE') {
-                this.dispatch(battleInvited(JSON.parse(data.content)));
-            } else if (id === 'BATTLE_CANCEL_INVITE') {
-                this.dispatch(battleInviteCancelled());
-            } else if (id === 'BATTLE_REJECT_INVITE') {
-                clearBattleStartFetch(this.dispatch);
-                this.dispatch(battleCleared());
-            }
-        });
-        socket.addEventListener('close', (e) => {
-            console.log('onclose', e);
-        });
-
-        socket.addEventListener('error', (e) => {
-            console.log('onerror', e);
-        });
-        socket.addEventListener('open', (e) => {
-            // console.log('onopen', e)
-        });
         this.socket = socket;
     }
+
+    processMessage = true;
+
+    onMessage = (e) => {
+        if (!this.processMessage) {
+            return;
+        }
+        const data = JSON.parse(e.data);
+        const id = data.id;
+        if (id === 'FRIEND_ADD') {
+            this.dispatch(friendAdded(JSON.parse(data.content)));
+        } else if (id === 'FRIEND_DELETE') {
+            this.dispatch(friendDeleted(data.content));
+        } else if (id === 'FRIEND_SIGN_IN') {
+            this.dispatch(friendSignedIn(data.content));
+        } else if (id === 'FRIEND_SIGN_OUT') {
+            this.dispatch(friendSignedOut(data.content));
+        } else if (id === 'BATTLE_INVITE') {
+            this.dispatch(battleInvited(JSON.parse(data.content)));
+        } else if (id === 'BATTLE_CANCEL_INVITE') {
+            this.dispatch(battleInviteCancelled());
+        } else if (id === 'BATTLE_REJECT_INVITE') {
+            clearBattleStartFetch(this.dispatch);
+            this.dispatch(battleCleared());
+        } else if (id === 'BATTLE_ACCEPT_INVITE') {
+            clearBattleStartFetch(this.dispatch);
+            this.dispatch(battleCleared());
+            this.dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
+            this.dispatch(idChanged(OBJECT_BATTLE));
+        }
+    };
 
     send(message) {
         this.socket.send(message);

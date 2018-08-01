@@ -1,23 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {socketCreated} from "../../../../redux/reducer/socket";
 import BattleStartFetch from "./BattleStartFetch";
 import BattleCancelFetch from "./BattleCancelFetch";
 import BattleRejectFetch, {clearBattleRejectFetch} from "./BattleRejectFetch";
-import BattleAcceptFetch from "./BattleAcceptFetch";
+import BattleAcceptFetch, {clearBattleAcceptFetch} from "./BattleAcceptFetch";
 import {battleCleared, statusChanged} from "../../../../redux/reducer/battle";
 import {
+    BATTLE_STATUS_ACCEPTED,
     BATTLE_STATUS_CANCELED,
     BATTLE_STATUS_ERROR,
+    BATTLE_STATUS_IN_PROGRESS,
     BATTLE_STATUS_REJECTED,
     BATTLE_STATUS_WAITING
 } from "../../../../util/battleHelper";
 import _ from 'lodash';
+import {idChanged} from "../../../../redux/reducer/content";
+import {OBJECT_BATTLE} from "../../../object-group/objectsBattle";
 
 class BattleFetchContainer extends React.PureComponent {
 
     componentDidUpdate() {
-        const {battleStartRep, battleRejectRep,  battleCancelRep, onStatusChange, status, onClear} = this.props;
+        const {battleStartRep, battleRejectRep, battleCancelRep, battleAcceptRep, onStatusChange, status, onBattleClear, onBattleInProgress} = this.props;
         if (status === BATTLE_STATUS_WAITING) {
             return;
         }
@@ -28,10 +31,13 @@ class BattleFetchContainer extends React.PureComponent {
             onStatusChange(BATTLE_STATUS_WAITING);
         }
         if (status === BATTLE_STATUS_REJECTED && battleRejectRep && battleRejectRep.fulfilled) {
-            onClear();
+            onBattleClear();
         }
         if (status === BATTLE_STATUS_CANCELED && battleCancelRep && battleCancelRep.fulfilled) {
-            onClear();
+            onBattleClear();
+        }
+        if (status === BATTLE_STATUS_ACCEPTED && battleAcceptRep && battleAcceptRep.fulfilled) {
+            onBattleInProgress();
         }
     }
 
@@ -53,18 +59,21 @@ export default connect(
         battleStartRep: state.repository.battleStart,
         battleRejectRep: state.repository.battleReject,
         battleCancelRep: state.repository.battleCancel,
+        battleAcceptRep: state.repository.battleAccept,
     }),
     (dispatch) => ({
-        onClear: () => {
+        onBattleClear: () => {
             clearBattleRejectFetch(dispatch);
-            dispatch(battleCleared())
+            dispatch(battleCleared());
+        },
+        onBattleInProgress: () => {
+            clearBattleAcceptFetch(dispatch);
+            dispatch(battleCleared());
+            dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
+            dispatch(idChanged(OBJECT_BATTLE));
         },
         onStatusChange: (status) => {
             dispatch(statusChanged(status));
-        },
-        onInit: (socket) => {
-            socket.setDispatch(dispatch);
-            dispatch(socketCreated(socket));
         }
     })
 )(BattleFetchContainer);

@@ -1,6 +1,6 @@
 import {OBJECT_MATERIALS} from "../../component/object-group/objectMaterialHelper";
 
-export const OBJECT_BATTLE_FRIEND = 'battle-friend';
+export const OBJECT_BATTLE = 'battle';
 export const OBJECT_CHALLENGE_LIST = 'challenge-list';
 
 export const OBJECTS_CHALLENGE = [

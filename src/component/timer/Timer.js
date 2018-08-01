@@ -8,12 +8,25 @@ class Timer extends React.PureComponent {
 
     static propTypes = {
         work: PropTypes.bool,
+        from: PropTypes.number,
+        to: PropTypes.number,
+        down: PropTypes.bool,
     };
 
-    state = {
-        elapsed: 0,
-        lastTimestamp: undefined
+    static defaultProps = {
+        work: true,
+        down: true,
+        to: 0
     };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: props.from,
+            elapsed: 0,
+            lastTimestamp: undefined
+        };
+    }
 
     componentDidMount() {
         this.start();
@@ -28,13 +41,21 @@ class Timer extends React.PureComponent {
     };
 
     tick = (timestamp) => {
-        if (!this.props.work) {
+        const {elapsed, lastTimestamp, value} = this.state;
+        const {to, down, work} = this.props;
+        if (!work) {
             return this.stop();
         }
-        const delta = timestamp - _.defaultTo(this.state.lastTimestamp, timestamp);
+        const delta = timestamp - _.defaultTo(lastTimestamp, timestamp);
+        let newValue = down ? value - delta : value + delta;
+        if ((down && value < to) || (!down && value > to)) {
+            newValue = to;
+            this.stop();
+        }
         this.setState(
             {
-                elapsed: delta + this.state.elapsed,
+                value: newValue,
+                elapsed: delta + elapsed,
                 lastTimestamp: timestamp
             },
             () => this.frameId = requestAnimationFrame(this.tick)
@@ -47,9 +68,10 @@ class Timer extends React.PureComponent {
 
 
     render() {
-        const elapsed = Math.round(this.state.elapsed / 100);
-        const seconds = (elapsed / 10).toFixed(1);
-        return <div className={styles.timer}>
+        const {value} = this.state;
+        const valueRound = Math.round(value / 100);
+        const seconds = (valueRound / 10).toFixed(1);
+        return <div className='timer'>
             {seconds} s
         </div>
     }

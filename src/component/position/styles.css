@@ -8,9 +8,8 @@
     display: inline-block;
 }
 
-.profile {
+.positionContainer .profile {
     display: flex;
-    width: 140px;
     justify-content: space-between;
 }
 

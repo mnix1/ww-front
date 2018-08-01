@@ -18,6 +18,8 @@ import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../battle/invite/InvitedToBattleBy";
 import InviteToBattle from "../battle/invite/InviteToBattle";
 import BattleFetchContainer from "../battle/friend/fetch/BattleFetchContainer";
+import {OBJECT_BATTLE} from "../object-group/objectsBattle";
+import BattlePage from "../battle/friend/BattlePage";
 
 class App extends React.PureComponent {
 
@@ -33,6 +35,9 @@ class App extends React.PureComponent {
                 onObjectClick={onContentIdChange}
                 screen={screen}
             />;
+        }
+        if (contentId === OBJECT_BATTLE) {
+            return <BattlePage/>
         }
         if (contentId === OBJECT_APP_TRAINING) {
             return <PractisePage/>

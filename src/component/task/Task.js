@@ -6,6 +6,7 @@ import TaskObjectGroup from "./TaskObjectGroup";
 import {prepareQuestionTiles} from "./objectsTaskQuestion";
 import {prepareAnswerTiles} from "./objectsTaskAnswer";
 import {prepareAnimationTiles} from "./objectsTaskAnimation";
+import _ from 'lodash';
 
 export default class Task extends React.PureComponent {
 
@@ -36,7 +37,7 @@ export default class Task extends React.PureComponent {
         const {onAnswerClick, answerId, screen, canChangeAnswer} = this.props;
         return <TaskObjectGroup
             objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
-            onObjectClick={(e) => e.id && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
+            onObjectClick={(e) => !_.isNil(e.id) && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
             screen={screen}
         />;
     }

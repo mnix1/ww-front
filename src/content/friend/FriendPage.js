@@ -6,13 +6,19 @@ import request from './../../util/fetchHelper';
 import _ from 'lodash';
 import {
     getText,
-    TEXT_ACTUAL_FRIENDS, TEXT_ADD, TEXT_BATTLE, TEXT_CHALLENGE, TEXT_DELETE,
-    TEXT_FRIENDS, TEXT_INVITES,
-    TEXT_NONE_FRIENDS, TEXT_NONE_SUGGESTED_FRIENDS,
+    TEXT_ACTUAL_FRIENDS,
+    TEXT_ADD,
+    TEXT_BATTLE,
+    TEXT_CHALLENGE,
+    TEXT_DELETE,
+    TEXT_FRIENDS,
+    TEXT_INVITES,
+    TEXT_NONE_FRIENDS,
+    TEXT_NONE_SUGGESTED_FRIENDS,
     TEXT_SUGGEST_FRIENDS,
     TEXT_SUGGESTED_FRIENDS,
 } from "../../lang";
-import {suggestChanged, addTagChanged} from "../../redux/reducer/friend";
+import {addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/challenge";
@@ -27,8 +33,7 @@ import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
-import {OBJECT_BATTLE_FRIEND} from "../object-group/objectsBattle";
-import {BATTLE_STATUS_OPEN, BATTLE_STATUS_START} from "../../util/battleHelper";
+import {BATTLE_STATUS_START} from "../../util/battleHelper";
 
 class FriendPage extends React.PureComponent {
 

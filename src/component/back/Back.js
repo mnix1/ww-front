@@ -5,11 +5,15 @@ import MdArrowBack from 'react-icons/lib/md/arrow-back';
 import {idChanged} from "../../redux/reducer/content";
 import {practiseCleared} from "../../redux/reducer/practise";
 import {challengeCleared} from "../../redux/reducer/challenge";
+import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
 
 class Back extends React.PureComponent {
 
     render() {
-        const {onClick, screen} = this.props;
+        const {onClick, screen, battleInProgress} = this.props;
+        if (battleInProgress) {
+            return null
+        }
         const size = screen.isSmallHeight || screen.isSmallWidth
             ? 20
             : 30;
@@ -21,7 +25,8 @@ class Back extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        screen: state.screen
+        screen: state.screen,
+        battleInProgress: state.battle.status === BATTLE_STATUS_IN_PROGRESS
     }),
     (dispatch) => ({
         onClick: () => {

@@ -1,0 +1,14 @@
+.battlePage .profiles {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.battlePage .friend {
+    display: inline-block;
+}
+
+.battlePage .contentHeader .timer {
+    display: inline-block;
+}

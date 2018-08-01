@@ -5,6 +5,8 @@ import {getText, TEXT_APP_NAME} from "../../lang";
 import robo from '../../media/image/hero/robo.svg';
 import {Anime} from "../../component/anime/Anime";
 import {checkSmallHeight} from "../../redux/reducer/screen";
+import {HEROES} from "../../util/media/HeroHelper";
+import _ from 'lodash';
 
 class TopBar extends React.PureComponent {
 

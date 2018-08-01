@@ -61,6 +61,9 @@ export const TEXT_INVITE_TO_BATTLE = 'TEXT_INVITE_TO_BATTLE';
 export const TEXT_ACCEPT = 'TEXT_ACCEPT';
 export const TEXT_REJECT = 'TEXT_REJECT';
 export const TEXT_CANCEL = 'TEXT_CANCEL';
+export const TEXT_FOR = 'TEXT_FOR';
+export const TEXT_OPPONENT_CORRECT_ANSWER = 'TEXT_OPPONENT_CORRECT_ANSWER';
+export const TEXT_OPPONENT_WRONG_ANSWER = 'TEXT_OPPONENT_WRONG_ANSWER';
 
 
 export function getText(id) {
@@ -113,6 +116,9 @@ const TEXTS = {
         [TEXT_ACCEPT]: 'Akceptuj',
         [TEXT_REJECT]: 'Odrzuć',
         [TEXT_CANCEL]: 'Anuluj',
+        [TEXT_FOR]: 'za',
+        [TEXT_OPPONENT_CORRECT_ANSWER]: 'Przeciwnik zaznaczył dobrą odpowiedź',
+        [TEXT_OPPONENT_WRONG_ANSWER]: 'Przeciwnik zaznaczył złą odpowiedź',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
@@ -159,7 +165,10 @@ const TEXTS = {
         [TEXT_ACCEPT]: 'Accept',
         [TEXT_REJECT]: 'Reject',
         [TEXT_CANCEL]: 'Cancel',
-    }
+        [TEXT_FOR]: 'for',
+        [TEXT_OPPONENT_CORRECT_ANSWER]: 'The opponent marked a correct answer',
+        [TEXT_OPPONENT_WRONG_ANSWER]: 'The opponent marked a wrong answer',
+    },
 };
 
 export function getTileLabel(id) {
