@@ -23,15 +23,28 @@ import eagle from '../../media/image/hero/eagle.svg';
 import horse from '../../media/image/hero/horse.svg';
 import skunk from '../../media/image/hero/skunk.svg';
 import zubr from '../../media/image/hero/zubr.svg';
+import rabbit from '../../media/image/hero/rabbit.svg';
+import dragon from '../../media/image/hero/dragon.svg';
+import shark from '../../media/image/hero/shark.svg';
+import wolf from '../../media/image/hero/wolf.svg';
+import elephant from '../../media/image/hero/elephant.svg';
+import turkey from '../../media/image/hero/turkey.svg';
+import parrot from '../../media/image/hero/parrot.svg';
+import catTeacher from '../../media/image/hero/catTeacher.svg';
+import fox from '../../media/image/hero/fox.svg';
 
 export const HEROES = {
     'ALPAKA': alpaka,
     'ANT': ant,
     'BEE': bee,
     'CAT': cat,
+    'CAT_TEACHER': catTeacher,
     'COW': cow,
+    'DRAGON': dragon,
     'DUCK': duck,
     'EAGLE': eagle,
+    'ELEPHANT': elephant,
+    'FOX': fox,
     'GIRAFFE': giraffe,
     'GORILLA': gorilla,
     'HORSE': horse,
@@ -40,13 +53,18 @@ export const HEROES = {
     'OSMIORNICA': osmiornica,
     'OWL': owl,
     'PANDA': panda,
+    'PARROT': parrot,
     'PENGUIN': penguin,
+    'RABBIT': rabbit,
     'ROBO': robo,
     'RUMCIA': rumcia,
+    'SHARK': shark,
     'SHEEP': sheep,
     'SKUNK': skunk,
     'SNAKE': snake,
     'SZERYF': szeryf,
+    'TURKEY': turkey,
+    'WOLF': wolf,
     'ZAROWA': zarowa,
     'ZUBR': zubr,
 };
