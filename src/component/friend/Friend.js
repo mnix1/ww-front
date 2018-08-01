@@ -26,8 +26,8 @@ export default class Friend extends React.PureComponent {
     render() {
         const {friend, children} = this.props;
         return <div key={friend.tag} className='friendContainer'>
+            {children}
             <div className='friend'>
-                {children}
                 <img alt='' src={getHero(friend.avatar)} height={80}/>
                 <div className='details'>
                     {friend.isOnline && <div><TiWiFi style={{color: DARK_GREEN_COLOR}}/></div>}

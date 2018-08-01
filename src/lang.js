@@ -18,6 +18,7 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_CATEGORY = 'TEXT_CATEGORY';
 export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
 export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
 export const TEXT_QUESTION = 'TEXT_QUESTION';
@@ -64,7 +65,8 @@ export const TEXT_CANCEL = 'TEXT_CANCEL';
 export const TEXT_FOR = 'TEXT_FOR';
 export const TEXT_OPPONENT_CORRECT_ANSWER = 'TEXT_OPPONENT_CORRECT_ANSWER';
 export const TEXT_OPPONENT_WRONG_ANSWER = 'TEXT_OPPONENT_WRONG_ANSWER';
-
+export const TEXT_BATTLE_OVER = 'TEXT_BATTLE_OVER';
+export const TEXT_THE_WINNER_IS = 'TEXT_THE_WINNER_IS';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -73,6 +75,7 @@ export function getText(id) {
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_CATEGORY]: 'Kategoria',
         [TEXT_CHOOSE_CATEGORY]: 'Wybierz kategorię',
         [TEXT_PLAY_AGAIN]: 'Zagraj ponownie',
         [TEXT_QUESTION]: 'Pytanie',
@@ -119,9 +122,12 @@ const TEXTS = {
         [TEXT_FOR]: 'za',
         [TEXT_OPPONENT_CORRECT_ANSWER]: 'Przeciwnik zaznaczył dobrą odpowiedź',
         [TEXT_OPPONENT_WRONG_ANSWER]: 'Przeciwnik zaznaczył złą odpowiedź',
+        [TEXT_BATTLE_OVER]: 'Koniec bitwy!',
+        [TEXT_THE_WINNER_IS]: 'Zwycięża',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_CATEGORY]: 'Category',
         [TEXT_CHOOSE_CATEGORY]: 'Choose category',
         [TEXT_PLAY_AGAIN]: 'Play again',
         [TEXT_QUESTION]: "Question",
@@ -168,6 +174,8 @@ const TEXTS = {
         [TEXT_FOR]: 'for',
         [TEXT_OPPONENT_CORRECT_ANSWER]: 'The opponent marked a correct answer',
         [TEXT_OPPONENT_WRONG_ANSWER]: 'The opponent marked a wrong answer',
+        [TEXT_BATTLE_OVER]: 'Battle is over',
+        [TEXT_THE_WINNER_IS]: 'The winner is',
     },
 };
 

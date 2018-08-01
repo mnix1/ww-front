@@ -5,11 +5,11 @@ import Friend from "../../../component/friend/Friend";
 import './styles.css';
 import Task from "../../../component/task/Task";
 import {
-    getText,
+    getText, getTileLabel, TEXT_BATTLE_OVER, TEXT_CATEGORY,
     TEXT_CORRECT_ANSWER,
     TEXT_FOR,
     TEXT_NEXT_QUESTION, TEXT_OPPONENT_CORRECT_ANSWER, TEXT_OPPONENT_WRONG_ANSWER,
-    TEXT_QUESTION,
+    TEXT_QUESTION, TEXT_THE_WINNER_IS,
     TEXT_WRONG_ANSWER
 } from "../../../lang";
 import {prepareScoreMessage} from "../../../util/textHelper";
@@ -45,7 +45,9 @@ class BattlePage extends React.PureComponent {
     }
 
     renderProfile(profile, score) {
-        return <Friend friend={profile}><div>{prepareScoreMessage(score)}</div></Friend>
+        return <Friend friend={profile}>
+            <div>{prepareScoreMessage(score)}</div>
+        </Friend>
     }
 
     renderQuestionResult() {
@@ -53,15 +55,19 @@ class BattlePage extends React.PureComponent {
         if (!content || !content.nextQuestionInterval) {
             return null;
         }
-        const {question, nextQuestionInterval, correctAnswerId, markedAnswerId, meAnswered} = content;
+        const {correctAnswerId, markedAnswerId, meAnswered, winner} = content;
         return <div>
             {meAnswered &&
             <div>{markedAnswerId === correctAnswerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER)}</div>}
             {!meAnswered &&
             <div>{markedAnswerId === correctAnswerId ? getText(TEXT_OPPONENT_CORRECT_ANSWER) : getText(TEXT_OPPONENT_WRONG_ANSWER)}</div>}
-            <div>{`${getText(TEXT_NEXT_QUESTION)} ${getText(TEXT_FOR)}:`}
+            {!winner && <div>{`${getText(TEXT_NEXT_QUESTION)} ${getText(TEXT_FOR)}: `}
                 <Timer from={content.nextQuestionInterval}/>
-            </div>
+            </div>}
+            {winner && <div>
+                {getText(TEXT_BATTLE_OVER)}
+                {` ${getText(TEXT_THE_WINNER_IS)}: ${winner}`}
+            </div>}
         </div>
     }
 
@@ -72,14 +78,19 @@ class BattlePage extends React.PureComponent {
         }
         const question = content.question;
         return <div className="contentHeader">
-            {`${getText(TEXT_QUESTION)} ${question.id}`}
+            {`${getText(TEXT_QUESTION)} ${question.id}, ${getText(TEXT_CATEGORY)}: ${getTileLabel(question.category)}`}
             {this.renderQuestionResult()}
         </div>;
     }
 
     prepareScreenForTask() {
         const {screen} = this.props;
-        const contentHeight = Math.min(screen.contentHeight / 1.15, screen.contentHeight - 40);
+        let contentHeight = screen.contentHeight;
+        if (screen.moreHeightThanWidth) {
+            contentHeight = Math.min(screen.contentHeight / 1.3, screen.contentHeight - 40);
+        } else {
+            contentHeight = Math.min(screen.contentHeight / 1.1, screen.contentHeight - 40);
+        }
         return {
             ...screen,
             contentHeight
@@ -87,12 +98,13 @@ class BattlePage extends React.PureComponent {
     }
 
     renderTask() {
-        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap} = this.props;
+        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen} = this.props;
         if (!content) {
             return null;
         }
         const {question, correctAnswerId, markedAnswerId} = content;
         return <Task
+            header={screen.moreHeightThanWidth ? this.renderHeader() : null}
             style={{position: 'absolute', bottom: 0}}
             correctAnswerId={correctAnswerId}
             answerId={markedAnswerId || questionIdAnswerIdMap[question.id]}
@@ -118,8 +130,9 @@ class BattlePage extends React.PureComponent {
     }
 
     render() {
+        const {screen} = this.props;
         return <div className='battlePage'>
-            {this.renderHeader()}
+            {screen.moreHeightThanWidth ? null : this.renderHeader()}
             {this.renderProfiles()}
             {this.renderTask()}
         </div>
