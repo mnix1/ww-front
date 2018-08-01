@@ -38,8 +38,8 @@ class TopBar extends React.PureComponent {
                 <Anime from={{opacity: 0, height: 0}}
                        to={{opacity: 1, height: height - contentHeight - fontSize * 1.25 - 16}}
                        config={{duration: 100, delay: 100}}>
-                    {/*{_.map(HEROES).map(e => <img alt='' src={e}/>)}*/}
-                    <img alt='' src={robo}/>
+                    {_.map(HEROES).map(e => <img alt='' src={e}/>)}
+                    {/*<img alt='' src={robo}/>*/}
                 </Anime>
             </div>
         </div>;

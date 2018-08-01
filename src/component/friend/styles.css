@@ -35,6 +35,11 @@
     cursor: pointer;
 }
 
+.friend .actions div {
+    display: flex;
+    justify-content: space-between;
+}
+
 .friend .actions svg {
     float: right;
     padding-left: 0.5rem;

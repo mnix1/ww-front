@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import alpaka from '../../media/image/hero/alpaka.svg';
+import alpaca from '../../media/image/hero/alpaca.svg';
 import ant from '../../media/image/hero/ant.svg';
 import bee from '../../media/image/hero/bee.svg';
 import kitek from '../../media/image/hero/kitek.svg';
@@ -9,7 +9,7 @@ import szeryf from '../../media/image/hero/szeryf.svg';
 import zarowa from '../../media/image/hero/zarowa.svg';
 import owl from '../../media/image/hero/owl.svg';
 import panda from '../../media/image/hero/panda.svg';
-import cat from '../../media/image/hero/cat.svg';
+import catBlue from '../../media/image/hero/catBlue.svg';
 import osmiornica from '../../media/image/hero/osmiornica.svg';
 import penguin from '../../media/image/hero/penguin.svg';
 import duck from '../../media/image/hero/duck.svg';
@@ -32,14 +32,30 @@ import turkey from '../../media/image/hero/turkey.svg';
 import parrot from '../../media/image/hero/parrot.svg';
 import catTeacher from '../../media/image/hero/catTeacher.svg';
 import fox from '../../media/image/hero/fox.svg';
+import bear from '../../media/image/hero/bear.svg';
+import turtle from '../../media/image/hero/turtle.svg';
+import kangaroo from '../../media/image/hero/kangaroo.svg';
+import tiger from '../../media/image/hero/tiger.svg';
+import catPresenter from '../../media/image/hero/catPresenter.svg';
+import bull from '../../media/image/hero/bull.svg';
+import ostrich from '../../media/image/hero/ostrich.svg';
+import crocodile from '../../media/image/hero/crocodile.svg';
+import polarBear from '../../media/image/hero/polarBear.svg';
+import dog from '../../media/image/hero/dog.svg';
+
 
 export const HEROES = {
-    'ALPAKA': alpaka,
+    'ALPACA': alpaca,
     'ANT': ant,
     'BEE': bee,
-    'CAT': cat,
+    'BEAR': bear,
+    'BULL': bull,
+    'CAT_BLUE': catBlue,
+    'CAT_PRESENTER': catPresenter,
     'CAT_TEACHER': catTeacher,
     'COW': cow,
+    'CROCODILE': crocodile,
+    'DOG': dog,
     'DRAGON': dragon,
     'DUCK': duck,
     'EAGLE': eagle,
@@ -48,13 +64,16 @@ export const HEROES = {
     'GIRAFFE': giraffe,
     'GORILLA': gorilla,
     'HORSE': horse,
+    'KANGAROO': kangaroo,
     'KITEK': kitek,
     'LION': lion,
     'OSMIORNICA': osmiornica,
+    'OSTRICH': ostrich,
     'OWL': owl,
     'PANDA': panda,
     'PARROT': parrot,
     'PENGUIN': penguin,
+    'POLAR_BEAR': polarBear,
     'RABBIT': rabbit,
     'ROBO': robo,
     'RUMCIA': rumcia,
@@ -63,7 +82,9 @@ export const HEROES = {
     'SKUNK': skunk,
     'SNAKE': snake,
     'SZERYF': szeryf,
+    'TIGER': tiger,
     'TURKEY': turkey,
+    'TURTLE': turtle,
     'WOLF': wolf,
     'ZAROWA': zarowa,
     'ZUBR': zubr,
