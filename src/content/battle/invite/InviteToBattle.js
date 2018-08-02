@@ -9,6 +9,7 @@ import _ from 'lodash';
 import {statusChanged} from "../../../redux/reducer/battle";
 import {BATTLE_STATUS_CANCELED, BATTLE_STATUS_WAITING} from "../../../util/battleHelper";
 import {clearBattleStartFetch} from "../friend/fetch/BattleStartFetch";
+import Profile from "../../../component/profile/Profile";
 
 class InviteToBattle extends React.PureComponent {
 
@@ -23,7 +24,7 @@ class InviteToBattle extends React.PureComponent {
         </div>;
         const content = <div>
             <div className='justifyCenter'>{getText(TEXT_INVITE_TO_BATTLE)}</div>
-            <InviteToBattle{...friend} actions={actions}/>
+            <Profile {...friend} actions={actions}/>
             <div className='justifyCenter'>{getText(TEXT_WAITING_FOR_RESPONSE)}</div>
         </div>;
         return <Modal content={content}/>

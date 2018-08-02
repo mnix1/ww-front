@@ -20,6 +20,7 @@ import InviteToBattle from "../battle/invite/InviteToBattle";
 import BattleFetchContainer from "../battle/friend/fetch/BattleFetchContainer";
 import {OBJECT_BATTLE} from "../object-group/objectsBattle";
 import BattlePage from "../battle/friend/BattlePage";
+import background from '../../media/image/background/backgroundWithHeroes.png';
 
 class App extends React.PureComponent {
 
@@ -75,10 +76,11 @@ class App extends React.PureComponent {
     render() {
         const {screen} = this.props;
         const {height, contentWidth} = screen;
-        return <div className={styles.app}>
+        return <div className='app'>
+            <img src={background} height={screen.height} width={screen.width} className="background"/>
             <InvitedToBattleBy/>
             <InviteToBattle/>
-            <div style={{height, width: contentWidth}} className={styles.content}>
+            <div style={{height, width: contentWidth}} className='content'>
                 <TopBar/>
                 {this.renderBack()}
                 {this.renderContent()}

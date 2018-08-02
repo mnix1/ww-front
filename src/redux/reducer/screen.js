@@ -78,6 +78,11 @@ function calculateContentHeight(height, isSmallHeight) {
 }
 
 const isMobile = new MobileDetect(window.navigator.userAgent).mobile() !== null;
+if(isMobile){
+
+}
+window.screen.orientation.lock('landscape');
+
 const initialHeight = isMobile ? window.outerHeight : window.innerHeight;
 const initialWidth = isMobile ? window.outerWidth : window.innerWidth;
 
