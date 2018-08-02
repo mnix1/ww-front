@@ -23,8 +23,7 @@ import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/challenge";
 import {OBJECT_CHALLENGE_FRIEND} from "../object-group/objectsChallenge";
-import Friend, {STATUS_ACCEPTED, STATUS_REQUESTED, STATUS_SUGGESTED} from "../../component/friend/Friend";
-import {AddFriend} from "../../component/friend/AddFriend";
+import {AddFriend} from "../../component/add-friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
@@ -34,6 +33,11 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button"
 import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
 import {BATTLE_STATUS_START} from "../../util/battleHelper";
+import Profile from "../../component/profile/Profile";
+
+export const STATUS_REQUESTED = 'REQUESTED';
+export const STATUS_SUGGESTED = 'SUGGESTED';
+export const STATUS_ACCEPTED = 'ACCEPTED';
 
 class FriendPage extends React.PureComponent {
 
@@ -80,9 +84,9 @@ class FriendPage extends React.PureComponent {
 
     renderFriend(friend) {
         const {onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onBattleFriendClick} = this.props;
-        return <Friend
+        return <Profile
             key={friend.tag}
-            friend={friend}
+            {...friend}
             actions={<div className='actions'>
                 {friend.status === STATUS_ACCEPTED && friend.isOnline &&
                 <div onClick={() => onBattleFriendClick(friend.tag)}><span>{getText(TEXT_BATTLE)}</span><TiFlash color={CREAM_COLOR}/></div>}

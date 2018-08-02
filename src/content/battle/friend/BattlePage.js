@@ -1,22 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import BattleCommunication from "../BattleCommunication";
-import Friend from "../../../component/friend/Friend";
 import './styles.css';
 import Task from "../../../component/task/Task";
 import {
-    getText, getTileLabel, TEXT_BATTLE_OVER, TEXT_CATEGORY,
+    getText,
+    getTileLabel,
+    TEXT_BATTLE_OVER,
+    TEXT_CATEGORY,
     TEXT_CORRECT_ANSWER,
     TEXT_FOR,
-    TEXT_NEXT_QUESTION, TEXT_OPPONENT_CORRECT_ANSWER, TEXT_OPPONENT_WRONG_ANSWER,
-    TEXT_QUESTION, TEXT_THE_WINNER_IS,
+    TEXT_NEXT_QUESTION,
+    TEXT_OPPONENT_CORRECT_ANSWER,
+    TEXT_OPPONENT_WRONG_ANSWER,
+    TEXT_QUESTION,
+    TEXT_THE_WINNER_IS,
     TEXT_WRONG_ANSWER
 } from "../../../lang";
 import {prepareScoreMessage} from "../../../util/textHelper";
-import {questionIdAnswerIdMapChanged} from "../../../redux/reducer/battle";
-import {questionIdSkipAnimationMapChanged} from "../../../redux/reducer/battle";
+import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../redux/reducer/battle";
 import Timer from "../../../component/timer/Timer";
 import _ from 'lodash';
+import Profile from "../../../component/profile/Profile";
 
 class BattlePage extends React.PureComponent {
 
@@ -45,13 +50,13 @@ class BattlePage extends React.PureComponent {
     }
 
     renderProfile(profile, score) {
-        return <Friend friend={profile}>
+        return <Profile {...profile}>
             <div>{prepareScoreMessage(score)}</div>
-        </Friend>
+        </Profile>
     }
 
     renderQuestionResult() {
-        const {content, questionIdAnswerIdMap} = this.props;
+        const {content} = this.props;
         if (!content || !content.nextQuestionInterval) {
             return null;
         }

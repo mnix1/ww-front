@@ -5,8 +5,6 @@ import {getText, TEXT_APP_NAME} from "../../lang";
 import robo from '../../media/image/hero/robo.svg';
 import {Anime} from "../../component/anime/Anime";
 import {checkSmallHeight} from "../../redux/reducer/screen";
-import {HEROES} from "../../util/media/HeroHelper";
-import _ from 'lodash';
 
 class TopBar extends React.PureComponent {
 
@@ -38,8 +36,8 @@ class TopBar extends React.PureComponent {
                 <Anime from={{opacity: 0, height: 0}}
                        to={{opacity: 1, height: height - contentHeight - fontSize * 1.25 - 16}}
                        config={{duration: 100, delay: 100}}>
-                    {_.map(HEROES).map(e => <img alt='' src={e}/>)}
-                    {/*<img alt='' src={robo}/>*/}
+                    {/*{_.map(HEROES).map(e => <img alt='' src={e}/>)}*/}
+                    <img alt='' src={robo}/>
                 </Anime>
             </div>
         </div>;

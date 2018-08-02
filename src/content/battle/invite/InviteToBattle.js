@@ -2,12 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../../../component/modal/styles.css';
 import {getText, TEXT_CANCEL, TEXT_INVITE_TO_BATTLE, TEXT_WAITING_FOR_RESPONSE} from "../../../lang";
-import Friend from "../../../component/friend/Friend";
 import {CREAM_COLOR} from "../../../util/style/constant";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import Modal from "../../../component/modal/Modal";
 import _ from 'lodash';
-import {statusChanged, tagChanged} from "../../../redux/reducer/battle";
+import {statusChanged} from "../../../redux/reducer/battle";
 import {BATTLE_STATUS_CANCELED, BATTLE_STATUS_WAITING} from "../../../util/battleHelper";
 import {clearBattleStartFetch} from "../friend/fetch/BattleStartFetch";
 
@@ -24,7 +23,7 @@ class InviteToBattle extends React.PureComponent {
         </div>;
         const content = <div>
             <div className='justifyCenter'>{getText(TEXT_INVITE_TO_BATTLE)}</div>
-            <Friend friend={friend} actions={actions}/>
+            <InviteToBattle{...friend} actions={actions}/>
             <div className='justifyCenter'>{getText(TEXT_WAITING_FOR_RESPONSE)}</div>
         </div>;
         return <Modal content={content}/>

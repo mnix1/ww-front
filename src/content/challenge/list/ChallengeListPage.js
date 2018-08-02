@@ -6,12 +6,18 @@ import {CREAM_COLOR} from "../../../util/style/constant";
 import FaGavel from "react-icons/lib/fa/gavel";
 import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
-import {getText, TEXT_IN_PROGRESS_CHALLENGES, TEXT_NONE_IN_PROGRESS_CHALLENGES} from "../../../lang";
-import Challenge from "../../../component/challenge/Challenge";
+import {
+    getText, TEXT_ANSWER,
+    TEXT_CHALLENGE,
+    TEXT_IN_PROGRESS_CHALLENGES,
+    TEXT_NONE_IN_PROGRESS_CHALLENGES,
+    TEXT_SUMMARY
+} from "../../../lang";
 import {inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {CHALLENGE_STATUS_OPEN} from "../../../util/challengeHelper";
 import {idChanged} from "../../../redux/reducer/content";
 import {OBJECT_APP_CHALLENGE} from "../../object-group/objectsApp";
+import Profile from "../../../component/profile/Profile";
 
 class ChallengeListPage extends React.PureComponent {
 
@@ -30,11 +36,15 @@ class ChallengeListPage extends React.PureComponent {
 
     renderChallenge(challenge) {
         const {onChallengeResponseClick, onChallengeSummaryClick} = this.props;
+        const creator = challenge.creatorProfile;
+        const date = new Date(challenge.inProgressDate);
         return <div key={challenge.id} className='challenge'>
-            <Challenge challenge={challenge} actions={<div className='actions'>
-                <FaGavel color={CREAM_COLOR} onClick={() => onChallengeResponseClick(challenge.id)}/>
-                <FaListOl color={CREAM_COLOR} onClick={() => onChallengeSummaryClick(challenge.id)}/>
-            </div>}/>
+            <Profile {...creator} actions={<div className='actions'>
+                <div onClick={() => onChallengeResponseClick(challenge.id)}><span>{getText(TEXT_ANSWER)}</span><FaGavel color={CREAM_COLOR} /></div>
+                <div onClick={() => onChallengeSummaryClick(challenge.id)}><span>{getText(TEXT_SUMMARY)}</span><FaListOl color={CREAM_COLOR}/></div>
+            </div>}>
+                <div>{`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}</div>
+            </Profile>
         </div>
     }
 

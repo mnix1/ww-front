@@ -1,0 +1,15 @@
+.addFriend {
+    border-radius: 8px;
+    color: #fffdf1;
+    padding: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+}
+
+.addFriend svg {
+    cursor: pointer;
+}
+
+.addFriend .addFriendActions {
+    padding-top: 0.25rem;
+    display: flex;
+}

@@ -67,6 +67,7 @@ export const TEXT_OPPONENT_CORRECT_ANSWER = 'TEXT_OPPONENT_CORRECT_ANSWER';
 export const TEXT_OPPONENT_WRONG_ANSWER = 'TEXT_OPPONENT_WRONG_ANSWER';
 export const TEXT_BATTLE_OVER = 'TEXT_BATTLE_OVER';
 export const TEXT_THE_WINNER_IS = 'TEXT_THE_WINNER_IS';
+export const TEXT_ANSWER = 'TEXT_ANSWER';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -75,6 +76,7 @@ export function getText(id) {
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CATEGORY]: 'Kategoria',
         [TEXT_CHOOSE_CATEGORY]: 'Wybierz kategorię',
         [TEXT_PLAY_AGAIN]: 'Zagraj ponownie',
@@ -127,6 +129,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_ANSWER]: 'Answer',
         [TEXT_CATEGORY]: 'Category',
         [TEXT_CHOOSE_CATEGORY]: 'Choose category',
         [TEXT_PLAY_AGAIN]: 'Play again',

@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../../../component/modal/styles.css';
 import {getText, TEXT_ACCEPT, TEXT_INVITED_TO_BATTLE_BY, TEXT_REJECT} from "../../../lang";
-import Friend from "../../../component/friend/Friend";
 import {CREAM_COLOR} from "../../../util/style/constant";
 import FaCheckCircle from 'react-icons/lib/fa/check-circle';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import Modal from "../../../component/modal/Modal";
 import {battleInviteAccepted, battleInviteRejected} from "../../../redux/reducer/battle";
+import Profile from "../../../component/profile/Profile";
 
 class InvitedToBattleBy extends React.PureComponent {
 
@@ -22,7 +22,7 @@ class InvitedToBattleBy extends React.PureComponent {
         </div>;
         const content = <div>
             <div className='justifyCenter'>{getText(TEXT_INVITED_TO_BATTLE_BY)}</div>
-            <Friend friend={invitedToBattleBy} actions={actions}/></div>;
+            <Profile {...invitedToBattleBy} actions={actions}/></div>;
         return <Modal content={content}/>
     }
 }

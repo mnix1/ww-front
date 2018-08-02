@@ -2,19 +2,19 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getText, TEXT_ADD, TEXT_ADDED, TEXT_CHALLENGE_ADD_FRIENDS, TEXT_START_CHALLENGE} from "../../../lang";
 import styles from './styles.css';
-import Friend from "../../../component/friend/Friend";
 import _ from 'lodash';
 import {statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
 import {CHALLENGE_STATUS_OPEN, MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
+import Profile from "../../../component/profile/Profile";
 
 class ChallengeFriendPage extends React.PureComponent {
 
     renderFriend(friend, isAdded) {
         const {tags, onFriendToggle} = this.props;
-        return <Friend
+        return <Profile
             key={friend.tag}
-            friend={friend}
+            {...friend}
             actions={
                 <div className='actions'>
                     <label className='pointer' style={{display: 'block', minWidth: 60}}>

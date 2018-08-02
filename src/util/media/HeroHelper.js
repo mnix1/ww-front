@@ -10,7 +10,7 @@ import zarowa from '../../media/image/hero/zarowa.svg';
 import owl from '../../media/image/hero/owl.svg';
 import panda from '../../media/image/hero/panda.svg';
 import catBlue from '../../media/image/hero/catBlue.svg';
-import osmiornica from '../../media/image/hero/osmiornica.svg';
+import octopus from '../../media/image/hero/octopus.svg';
 import penguin from '../../media/image/hero/penguin.svg';
 import duck from '../../media/image/hero/duck.svg';
 import cow from '../../media/image/hero/cow.svg';
@@ -22,7 +22,7 @@ import snake from '../../media/image/hero/snake.svg';
 import eagle from '../../media/image/hero/eagle.svg';
 import horse from '../../media/image/hero/horse.svg';
 import skunk from '../../media/image/hero/skunk.svg';
-import zubr from '../../media/image/hero/zubr.svg';
+import aurochs from '../../media/image/hero/aurochs.svg';
 import rabbit from '../../media/image/hero/rabbit.svg';
 import dragon from '../../media/image/hero/dragon.svg';
 import shark from '../../media/image/hero/shark.svg';
@@ -47,6 +47,7 @@ import dog from '../../media/image/hero/dog.svg';
 export const HEROES = {
     'ALPACA': alpaca,
     'ANT': ant,
+    'AUROCHS': aurochs,
     'BEE': bee,
     'BEAR': bear,
     'BULL': bull,
@@ -65,9 +66,9 @@ export const HEROES = {
     'GORILLA': gorilla,
     'HORSE': horse,
     'KANGAROO': kangaroo,
-    'KITEK': kitek,
+    // 'KITEK': kitek,
     'LION': lion,
-    'OSMIORNICA': osmiornica,
+    'OCTOPUS': octopus,
     'OSTRICH': ostrich,
     'OWL': owl,
     'PANDA': panda,
@@ -76,18 +77,17 @@ export const HEROES = {
     'POLAR_BEAR': polarBear,
     'RABBIT': rabbit,
     'ROBO': robo,
-    'RUMCIA': rumcia,
+    // 'RUMCIA': rumcia,
     'SHARK': shark,
     'SHEEP': sheep,
     'SKUNK': skunk,
     'SNAKE': snake,
-    'SZERYF': szeryf,
+    // 'SZERYF': szeryf,
     'TIGER': tiger,
     'TURKEY': turkey,
     'TURTLE': turtle,
     'WOLF': wolf,
-    'ZAROWA': zarowa,
-    'ZUBR': zubr,
+    // 'ZAROWA': zarowa,
 };
 
 export function randomHero() {

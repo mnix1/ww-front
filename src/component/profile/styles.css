@@ -1,4 +1,4 @@
-.challengeContainer {
+.profileContainer {
     border-radius: 0.5rem;
     box-shadow: 0 0 4px #fffdf1;
     background: #4ea5c5;
@@ -8,34 +8,47 @@
     display: inline-block;
 }
 
-.challenge {
+.profile {
     display: flex;
-    width: 140px;
+    /*min-width: 10rem;*/
     justify-content: space-between;
 }
 
-.challenge .details {
+.profile .details {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin-left: 0.5rem;
     position: relative;
-    /*height: calc(100% - 16px);*/
 }
 
-.challenge .details .actions {
+.profile .actions {
+    margin-left: 0.5rem;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    box-shadow: 0 0 2px #fffdf1;
+    border-radius: 0.5rem;
+}
+.profile .actions div, .profile .actions svg  {
+    cursor: pointer;
+}
+
+.profile .actions div {
     display: flex;
     justify-content: space-between;
 }
 
-.challenge .details .actions svg {
-    cursor: pointer;
+.profile .actions svg {
+    float: right;
+    padding-left: 0.5rem;
 }
 
-.challenge .creatorName {
+.profile .name {
     font-size: 1rem;
 }
 
-.challenge .creatorTag {
+.profile .tag {
     font-size: 0.8rem;
 }
