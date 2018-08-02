@@ -1,12 +1,4 @@
-:local .task {
+.task {
     color: #fffdf1;
     font-size: 1rem;
-}
-
-:local .question {
-
-}
-
-:local .answers {
-
 }

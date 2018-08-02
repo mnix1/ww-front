@@ -14,8 +14,8 @@ import {
     BATTLE_STATUS_WAITING
 } from "../../../../util/battleHelper";
 import _ from 'lodash';
-import {idChanged} from "../../../../redux/reducer/content";
-import {OBJECT_BATTLE} from "../../../object-group/objectsBattle";
+import {BATTLE_ROUTE} from "../../../app/appRoutes";
+import {push} from 'connected-react-router'
 
 class BattleFetchContainer extends React.PureComponent {
 
@@ -70,7 +70,7 @@ export default connect(
             clearBattleAcceptFetch(dispatch);
             dispatch(battleCleared());
             dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
-            dispatch(idChanged(OBJECT_BATTLE));
+            dispatch(push(BATTLE_ROUTE));
         },
         onStatusChange: (status) => {
             dispatch(statusChanged(status));

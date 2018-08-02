@@ -13,7 +13,6 @@ import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {profileChanged} from "./redux/reducer/profile";
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
-import {Route, Switch} from 'react-router' // react-router v4
 
 const history = createBrowserHistory();
 

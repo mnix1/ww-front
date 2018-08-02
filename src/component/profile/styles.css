@@ -1,10 +1,9 @@
 .profileContainer {
     border-radius: 0.5rem;
     box-shadow: 0 0 4px #fffdf1;
-    background: #4ea5c5;
     color: #fffdf1;
-    margin: 0.5rem;
-    padding: 0.5rem;
+    margin: 0.25rem;
+    padding: 0.25rem;
     display: inline-block;
 }
 
@@ -18,17 +17,17 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin-left: 0.5rem;
+    margin-left: 0.25rem;
     position: relative;
 }
 
 .profile .actions {
-    margin-left: 0.5rem;
-    padding: 0.5rem;
+    margin-left: 0.25rem;
+    padding: 0.25rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    box-shadow: 0 0 2px #fffdf1;
+    /*box-shadow: 0 0 4px #fffdf1;*/
     border-radius: 0.5rem;
 }
 .profile .actions div, .profile .actions svg  {
@@ -42,7 +41,7 @@
 
 .profile .actions svg {
     float: right;
-    padding-left: 0.5rem;
+    padding-left: 0.25rem;
 }
 
 .profile .name {

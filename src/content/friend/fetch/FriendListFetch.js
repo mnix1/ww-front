@@ -29,8 +29,8 @@ class FriendListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {contentId, friendListRep, dispatchFriendListGet} = this.props;
-        if (!friendListRep && contentId === FRIEND_ROUTE) {
+        const {path, friendListRep, dispatchFriendListGet} = this.props;
+        if (!friendListRep && path === FRIEND_ROUTE) {
             dispatchFriendListGet();
         }
     }

@@ -5,8 +5,12 @@
     top: 0;
     right: 0;
     text-align: right;
-    box-shadow: 0 0 4px #fffdf1;
-    border-radius: 0.5rem;
     color: #fffdf1;
     margin: 0.25rem;
+
+}
+.playAgain div{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }

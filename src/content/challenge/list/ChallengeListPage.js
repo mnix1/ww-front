@@ -8,15 +8,15 @@ import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
 import {
     getText, TEXT_ANSWER,
-    TEXT_CHALLENGE,
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES,
     TEXT_SUMMARY
 } from "../../../lang";
 import {inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {CHALLENGE_STATUS_OPEN} from "../../../util/challengeHelper";
-import {idChanged} from "../../../redux/reducer/content";
 import Profile from "../../../component/profile/Profile";
+import {push} from 'connected-react-router'
+import {BATTLE_ROUTE} from "../../app/appRoutes";
 
 class ChallengeListPage extends React.PureComponent {
 
@@ -67,11 +67,11 @@ export default connect(
         onChallengeResponseClick: (id) => {
             dispatch(inProgressIdChanged(id));
             dispatch(statusChanged(CHALLENGE_STATUS_OPEN));
-            // dispatch(idChanged(OBJECT_APP_BATTLE));
+            dispatch(push(BATTLE_ROUTE));
         },
         onChallengeSummaryClick: (id) => {
             dispatch(summaryIdChanged(id));
-            // dispatch(idChanged(OBJECT_APP_BATTLE));
+            dispatch(push(BATTLE_ROUTE));
         }
     })
 )(ChallengeListPage);

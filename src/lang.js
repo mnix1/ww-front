@@ -44,6 +44,7 @@ export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
 export const TEXT_POINTS = 'TEXT_POINTS';
 export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
 export const TEXT_NEXT_QUESTION = 'TEXT_NEXT_QUESTION';
+export const TEXT_NEXT = 'TEXT_NEXT';
 export const TEXT_SUMMARY = 'TEXT_SUMMARY';
 export const TEXT_SUGGEST_FRIENDS = 'TEXT_SUGGEST_FRIENDS';
 export const TEXT_SUGGESTED_FRIENDS = 'TEXT_SUGGESTED_FRIENDS';
@@ -128,6 +129,7 @@ const TEXTS = {
         [TEXT_OPPONENT_WRONG_ANSWER]: 'Przeciwnik zaznaczył złą odpowiedź',
         [TEXT_BATTLE_OVER]: 'Koniec bitwy!',
         [TEXT_THE_WINNER_IS]: 'Zwycięża',
+        [TEXT_NEXT]: 'Następne',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
@@ -181,6 +183,7 @@ const TEXTS = {
         [TEXT_OPPONENT_WRONG_ANSWER]: 'The opponent marked a wrong answer',
         [TEXT_BATTLE_OVER]: 'Battle is over',
         [TEXT_THE_WINNER_IS]: 'The winner is',
+        [TEXT_NEXT]: 'Next',
     },
 };
 

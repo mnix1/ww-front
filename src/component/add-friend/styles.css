@@ -1,7 +1,7 @@
 .addFriend {
-    border-radius: 8px;
+    border-radius: 0.5rem;
     color: #fffdf1;
-    padding: 0.5rem;
+    padding: 0.25rem;
     box-shadow: 0 0 4px #fffdf1;
 }
 

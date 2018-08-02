@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
-import Back from "../../component/back/Back";
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
 import FriendPage from "../friend/FriendPage";
@@ -11,7 +10,6 @@ import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../battle/invite/InvitedToBattleBy";
 import InviteToBattle from "../battle/invite/InviteToBattle";
 import BattleFetchContainer from "../battle/friend/fetch/BattleFetchContainer";
-import {OBJECT_BATTLE} from "../object-group/objectsBattle";
 import BattlePage from "../battle/friend/BattlePage";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
 import battle from '../../media/image/icon/battle.svg';
@@ -20,7 +18,7 @@ import practise from '../../media/image/icon/practise.svg';
 import shop from '../../media/image/icon/shop.svg';
 import wisie from '../../media/image/icon/wisie.svg';
 import {getObjectLabel} from "../../lang";
-import {Route, Switch} from 'react-router' // react-router v4
+import {Route, Switch} from 'react-router'
 import {ConnectedRouter, push} from 'connected-react-router'
 import {BATTLE_ROUTE, FRIEND_ROUTE, SHOP_ROUTE, TRAINING_ROUTE, WISIES_ROUTE} from "./appRoutes";
 
@@ -31,9 +29,9 @@ class App extends React.PureComponent {
     }
 
     renderMenuItem(path, imgSrc) {
-        const {screen, onContentIdChange} = this.props;
+        const {screen, onRouteChange} = this.props;
         const iconWidth = Math.max(Math.min(screen.width / 8, 70), 40);
-        return <div onClick={() => onContentIdChange(path)} className='menuItem'>
+        return <div onClick={() => onRouteChange(path)} className='menuItem'>
             <img src={imgSrc} width={iconWidth}/><span>{getObjectLabel(path)}</span>
         </div>
     }
@@ -93,18 +91,10 @@ class App extends React.PureComponent {
         // }
     }
 
-    renderBack() {
-        const {contentId} = this.props;
-        if (contentId === undefined) {
-            return null;
-        }
-        return <Back/>;
-    }
-
     renderFetch() {
-        const {friendListRep, contentId} = this.props;
+        const {friendListRep, path} = this.props;
         return <div>
-            <FriendListFetch contentId={contentId} friendListRep={friendListRep}/>
+            <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
         </div>
     }
@@ -132,9 +122,10 @@ export default connect(
     (state) => ({
         screen: state.screen,
         friendListRep: state.repository.friendList,
+        path: state.router.location.pathname
     }),
     (dispatch) => ({
-        onContentIdChange: (e) => {
+        onRouteChange: (e) => {
             dispatch(push(e));
         },
         onInit: (socket) => {

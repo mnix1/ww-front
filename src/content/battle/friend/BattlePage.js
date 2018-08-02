@@ -110,7 +110,6 @@ class BattlePage extends React.PureComponent {
         const {question, correctAnswerId, markedAnswerId} = content;
         return <Task
             header={screen.moreHeightThanWidth ? this.renderHeader() : null}
-            style={{position: 'absolute', bottom: 0}}
             correctAnswerId={correctAnswerId}
             answerId={markedAnswerId || questionIdAnswerIdMap[question.id]}
             canChangeAnswer={false}
@@ -136,10 +135,13 @@ class BattlePage extends React.PureComponent {
 
     render() {
         const {screen} = this.props;
-        return <div className='battlePage'>
-            {screen.moreHeightThanWidth ? null : this.renderHeader()}
-            {this.renderProfiles()}
-            {this.renderTask()}
+        return <div className='page battlePage'>
+            <div className='pageBackground'/>
+            <div className='pageContent'>
+                {screen.moreHeightThanWidth ? null : this.renderHeader()}
+                {this.renderProfiles()}
+                {this.renderTask()}
+            </div>
         </div>
     }
 }

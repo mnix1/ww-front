@@ -3,8 +3,9 @@ import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../..
 import {battleCleared, battleInviteCancelled, battleInvited, statusChanged} from "../../redux/reducer/battle";
 import {clearBattleStartFetch} from "../battle/friend/fetch/BattleStartFetch";
 import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
-import {idChanged} from "../../redux/reducer/content";
 import {OBJECT_BATTLE} from "../object-group/objectsBattle";
+import {push} from 'connected-react-router'
+import {BATTLE_ROUTE} from "./appRoutes";
 
 export default class CommunicationWebSocket {
     constructor() {
@@ -60,7 +61,7 @@ export default class CommunicationWebSocket {
             clearBattleStartFetch(this.dispatch);
             this.dispatch(battleCleared());
             this.dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
-            this.dispatch(idChanged(OBJECT_BATTLE));
+            this.dispatch(push(BATTLE_ROUTE));
         }
     };
 

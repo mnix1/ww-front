@@ -10,13 +10,19 @@ import {randomHero} from "../../util/media/HeroHelper";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
-    TEXT_CORRECT_ANSWER, TEXT_NEXT_QUESTION,
+    TEXT_CORRECT_ANSWER,
+    TEXT_NEXT,
     TEXT_QUESTION,
     TEXT_WRONG_ANSWER
 } from "../../lang";
 import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import {prepareAnswerIntervalMessage} from "../../util/textHelper";
+import {Route, Switch} from 'react-router'
+import {push} from 'connected-react-router'
+import {TRAINING_ROUTE} from "../app/appRoutes";
+
+const TASK_ROUTE = TRAINING_ROUTE + '/task';
 
 class PractisePage extends React.PureComponent {
 
@@ -24,13 +30,12 @@ class PractisePage extends React.PureComponent {
 
     renderContent() {
         const {category, practiseStartRep} = this.props;
-        if (category === undefined) {
-            return this.renderChooseCategory();
-        }
-        if (practiseStartRep && practiseStartRep.fulfilled) {
-            return this.renderTask();
-        }
-        return null;
+        return <div>
+            <Switch>
+                <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
+                <Route path={TASK_ROUTE} render={() => this.renderTask()}/>
+            </Switch>
+        </div>
     }
 
     renderChooseCategory() {
@@ -47,6 +52,9 @@ class PractisePage extends React.PureComponent {
 
     renderTask() {
         const {screen, practiseStartRep, practiseEndRep, skipAnimation, onSkipAnimationChange, answerId, onAnswerClick} = this.props;
+        if (!practiseStartRep || !practiseStartRep.fulfilled) {
+            return null;
+        }
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
         return <div className='pageContent'>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
@@ -79,10 +87,13 @@ class PractisePage extends React.PureComponent {
     }
 
     renderPlayAgain() {
-        const {onPlayAgainClick, screen} = this.props;
-        return <div key='playAgain'className='playAgain'>
-            <div><span onClick={onPlayAgainClick}>{getText(TEXT_NEXT_QUESTION)}</span></div>
-            <img alt='' onClick={onPlayAgainClick} src={this.randomHero} height={80}/>
+        const {onPlayAgainClick} = this.props;
+        return <div onClick={onPlayAgainClick} key='playAgain' className='playAgain'>
+            <div>
+                <span>{getText(TEXT_NEXT)}</span>
+                <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
+            </div>
+            <img alt='' src={this.randomHero} height={80}/>
         </div>;
     }
 
@@ -105,9 +116,13 @@ export default connect(
         skipAnimation: state.practise.skipAnimation,
         practiseStartRep: state.repository.practiseStart,
         practiseEndRep: state.repository.practiseEnd,
+        path: state.router.location.pathname
     }),
     (dispatch) => ({
-        onCategoryChange: (e) => dispatch(categoryChanged(e.id)),
+        onCategoryChange: (e) => {
+            dispatch(categoryChanged(e.id));
+            dispatch(push(TASK_ROUTE));
+        },
         onAnswerClick: (id) => dispatch(answerIdChanged(id)),
         onPlayAgainClick: () => {
             dispatch(answerIdChanged(undefined));

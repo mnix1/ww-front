@@ -7,11 +7,11 @@ import _ from 'lodash';
 import {
     getText,
     TEXT_ACTUAL_FRIENDS,
-    TEXT_ADD, TEXT_ADDED,
+    TEXT_ADD,
+    TEXT_ADDED,
     TEXT_BATTLE,
     TEXT_CHALLENGE,
     TEXT_DELETE,
-    TEXT_FRIENDS,
     TEXT_INVITES,
     TEXT_NONE_FRIENDS,
     TEXT_NONE_SUGGESTED_FRIENDS,
@@ -20,7 +20,6 @@ import {
 } from "../../lang";
 import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
-import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/challenge";
 import {OBJECT_CHALLENGE_FRIEND} from "../object-group/objectsChallenge";
 import {AddFriend} from "../../component/add-friend/AddFriend";
@@ -35,7 +34,6 @@ import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
 import {BATTLE_STATUS_START} from "../../util/battleHelper";
 import Profile from "../../component/profile/Profile";
-import friend from "../../media/image/icon/friend.svg";
 
 export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
@@ -131,7 +129,7 @@ class FriendPage extends React.PureComponent {
         return <div className="friendContent">
             <div className='rightTopContainer'>
                 {this.renderAddFriend()}
-                <Button style={{marginTop: '0.5rem'}} material={BUTTON_MATERIAL_BOX_SHADOW}
+                <Button style={{marginTop: '0.25rem'}} material={BUTTON_MATERIAL_BOX_SHADOW}
                         onClick={onSuggestFriendClick}>{getText(TEXT_SUGGEST_FRIENDS)}</Button>
             </div>
             {this.renderActualFriends()}
@@ -168,7 +166,7 @@ export default connect(
         },
         onChallengeFriendClick: (tag) => {
             dispatch(tagsChanged([tag]));
-            dispatch(idChanged(OBJECT_CHALLENGE_FRIEND));
+            // dispatch(idChanged(OBJECT_CHALLENGE_FRIEND));
         },
         onDeleteFriendClick: (tag) => {
             request('/friend/delete', {tag}).then(() => {

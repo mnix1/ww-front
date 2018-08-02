@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.css';
+import './styles.css';
 import PropTypes from "prop-types";
 import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
 import TaskObjectGroup from "./TaskObjectGroup";
@@ -65,7 +65,7 @@ export default class Task extends React.PureComponent {
 
     render() {
         const {style} = this.props;
-        return <div className={styles.task} style={style}>
+        return <div className='task' style={style}>
             {this.renderTaskHeader()}
             {this.renderContent()}
         </div>

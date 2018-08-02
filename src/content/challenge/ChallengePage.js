@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {idChanged} from "../../redux/reducer/content";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import {OBJECTS_CHALLENGE} from "../object-group/objectsChallenge";
 import ChallengeTask from "./task/ChallengeTask";
@@ -15,7 +14,7 @@ import ChallengeSummaryFetch from "./task/fetch/ChallengeSummaryFetch";
 class ChallengePage extends React.PureComponent {
 
     renderContent() {
-        const {screen, onContentIdChange, summaryId, inProgressId, challengeStartResponseRep, challengeEndRep, challengeSummaryRep, status} = this.props;
+        const {screen, summaryId, inProgressId, challengeStartResponseRep, challengeEndRep, challengeSummaryRep, status} = this.props;
         if (!_.isNil(summaryId)) {
             return <ChallengeSummaryPage rep={challengeSummaryRep}/>;
         }
@@ -28,13 +27,7 @@ class ChallengePage extends React.PureComponent {
                 return <ChallengeSolution questions={repValue.questions} challengeId={repValue.id} rep={challengeEndRep}/>;
             }
         }
-        return <div>
-            <SimpleObjectGroup
-                objects={OBJECTS_CHALLENGE}
-                onObjectClick={onContentIdChange}
-                screen={screen}
-            />
-        </div>;
+        return 'CHALLENGE PAGE';
     }
 
     render() {
@@ -71,6 +64,6 @@ export default connect(
         challengeSummaryRep: state.repository.challengeSummary
     }),
     (dispatch) => ({
-        onContentIdChange: (e) => dispatch(idChanged(e.id)),
+        onRouteChange: (e) => dispatch(push(e)),
     })
 )(ChallengePage);

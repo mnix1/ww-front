@@ -1,6 +1,5 @@
 .suggestedFriendsContainer {
-    margin-top: 0.5rem;
-    /*box-shadow: 0 0 4px #dadada;*/
+    margin-top: 0.25rem;
     display: inline-block;
 }
 .friendContent {
@@ -9,7 +8,7 @@
 }
 .rightTopContainer {
     float: right;
-    margin: 0.5rem;
+    margin: 0.25rem;
 }
 .rightTopContainer:after {
     content: "";

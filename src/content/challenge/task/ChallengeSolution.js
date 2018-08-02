@@ -16,7 +16,8 @@ import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
 import FaListOl from 'react-icons/lib/fa/list-ol';
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
-import {idChanged} from "../../../redux/reducer/content";
+import {BATTLE_ROUTE} from "../../app/appRoutes";
+import {push} from 'connected-react-router'
 
 class ChallengeSolution extends React.PureComponent {
 
@@ -111,7 +112,7 @@ export default connect(
         onChallengeSummaryClick: challengeId => {
             dispatch(challengeCleared());
             dispatch(summaryIdChanged(challengeId));
-            // dispatch(idChanged(OBJECT_APP_BATTLE));
+            dispatch(push(BATTLE_ROUTE));
         }
     })
 )(ChallengeSolution);

@@ -46,7 +46,7 @@ class ChallengeFriendPage extends React.PureComponent {
         const label = getText(TEXT_START_CHALLENGE);
         return <Button onClick={onStartChallengeClick}
                        material={BUTTON_MATERIAL_ACCEPT}
-                       style={{margin: '0.5rem'}}>{label}</Button>;
+                       style={{margin: '0.25rem'}}>{label}</Button>;
     }
 
     render() {
