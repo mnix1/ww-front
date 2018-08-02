@@ -35,7 +35,7 @@ class PractisePage extends React.PureComponent {
 
     renderChooseCategory() {
         const {screen, onCategoryChange} = this.props;
-        return <div>
+        return <div className='pageContent'>
             <div className="contentHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
                 objects={OBJECTS_CATEGORY}
@@ -48,7 +48,7 @@ class PractisePage extends React.PureComponent {
     renderTask() {
         const {screen, practiseStartRep, practiseEndRep, skipAnimation, onSkipAnimationChange, answerId, onAnswerClick} = this.props;
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
-        return <div>
+        return <div className='pageContent'>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Task key='task'
                   header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:</div>}
@@ -80,21 +80,16 @@ class PractisePage extends React.PureComponent {
 
     renderPlayAgain() {
         const {onPlayAgainClick, screen} = this.props;
-        const style = {cursor: 'pointer'};
-        if (screen.contentHeight + 100 > screen.height) {
-            style.top = 0;
-        } else {
-            style.bottom = screen.contentHeight;
-        }
-        return <div key='playAgain' style={style} className={`contentHeader ${styles.playAgain}`}>
+        return <div key='playAgain'className='playAgain'>
             <div><span onClick={onPlayAgainClick}>{getText(TEXT_NEXT_QUESTION)}</span></div>
-            <img alt='' onClick={onPlayAgainClick} src={this.randomHero} style={style} height={80}/>
+            <img alt='' onClick={onPlayAgainClick} src={this.randomHero} height={80}/>
         </div>;
     }
 
     render() {
         const {category, answerId, practiseStartRep} = this.props;
-        return <div>
+        return <div className='page'>
+            <div className='pageBackground'/>
             {this.renderContent()}
             <PractiseStartFetch category={category} practiseStartRep={practiseStartRep}/>
             <PractiseEndFetch answerId={answerId} practiseStartRep={practiseStartRep}/>

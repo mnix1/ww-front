@@ -3,10 +3,18 @@
     /*box-shadow: 0 0 4px #dadada;*/
     display: inline-block;
 }
-
+.friendContent {
+    overflow: auto;
+    position: relative;
+}
 .rightTopContainer {
     float: right;
-    margin-right: 0.5rem;
+    margin: 0.5rem;
+}
+.rightTopContainer:after {
+    content: "";
+    clear: both;
+    display: block;
 }
 .rightTopContainer .button {
     float: right;

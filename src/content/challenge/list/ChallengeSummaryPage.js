@@ -24,7 +24,7 @@ class ChallengeSummaryPage extends React.PureComponent {
             return null;
         }
         return <div>
-            <div className="pageHeader" style={{position: 'relative'}}>
+            <div className="pageHeader">
                 <span>{getText(TEXT_SUMMARY)}</span>
             </div>
             {this.renderPositions(positions)}

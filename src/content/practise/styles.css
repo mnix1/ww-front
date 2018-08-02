@@ -1,9 +1,12 @@
-:local .playAgain {
-    right: 8px;
-    width: 80px;
+.playAgain {
+    cursor: pointer;
     z-index: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
     text-align: right;
-}
-
-:local .resultMessage {
+    box-shadow: 0 0 4px #fffdf1;
+    border-radius: 0.5rem;
+    color: #fffdf1;
+    margin: 0.25rem;
 }

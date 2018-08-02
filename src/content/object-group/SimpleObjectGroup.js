@@ -1,5 +1,5 @@
 import React from 'react';
-import {getTileLabel} from "../../lang";
+import {getObjectLabel} from "../../lang";
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
@@ -40,7 +40,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     ...o,
-                    content: getTileLabel([o.id]),
+                    content: getObjectLabel([o.id]),
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     additionalStyle: {
                         ...o.material,

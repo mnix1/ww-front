@@ -53,7 +53,7 @@ class ChallengeFriendPage extends React.PureComponent {
         const {tags, friends} = this.props;
         const friendsCounter = `(${tags.length}/${Math.min(friends.length, MAX_CHALLENGE_FRIENDS)})`;
         return <div>
-            <div className="pageHeader" style={{position: 'relative'}}>
+            <div className="pageHeader">
                 <span>{getText(TEXT_CHALLENGE_ADD_FRIENDS)} {friendsCounter}</span>
             </div>
             {this.renderFriends()}

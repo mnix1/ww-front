@@ -6,6 +6,7 @@ import {idChanged} from "../../redux/reducer/content";
 import {practiseCleared} from "../../redux/reducer/practise";
 import {challengeCleared} from "../../redux/reducer/challenge";
 import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
+import back from "../../media/image/icon/back.svg";
 
 class Back extends React.PureComponent {
 
@@ -18,7 +19,8 @@ class Back extends React.PureComponent {
             ? 20
             : 30;
         return <div className={styles.back} onClick={onClick}>
-            <MdArrowBack color="#fffdf1" size={size}/>
+            <img src={back} height={size} style={{padding: '0.25rem'}}/>
+            {/*<MdArrowBack color="#fffdf1" size={size}/>*/}
         </div>;
     }
 }

@@ -35,6 +35,7 @@ import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
 import {BATTLE_STATUS_START} from "../../util/battleHelper";
 import Profile from "../../component/profile/Profile";
+import friend from "../../media/image/icon/friend.svg";
 
 export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
@@ -99,7 +100,8 @@ class FriendPage extends React.PureComponent {
                 <div onClick={() => onAcceptFriendClick(friend.tag)}><span>{getText(TEXT_ADD)}</span><FaPlusCircle
                     color={CREAM_COLOR}/></div>}
                 {friend.status === STATUS_SUGGESTED && _.isNil(addedSuggested[friend.tag]) &&
-                <div onClick={() => onAddSuggestedFriendClick(friend.tag, addedSuggested)}><span>{getText(TEXT_ADD)}</span><FaPlusCircle color={CREAM_COLOR}/></div>}
+                <div onClick={() => onAddSuggestedFriendClick(friend.tag, addedSuggested)}>
+                    <span>{getText(TEXT_ADD)}</span><FaPlusCircle color={CREAM_COLOR}/></div>}
                 {friend.status === STATUS_SUGGESTED && addedSuggested[friend.tag] === true &&
                 <div><span>{getText(TEXT_ADDED)}</span><FaCheckCircle color={CREAM_COLOR}/></div>}
                 {friend.status !== STATUS_SUGGESTED &&
@@ -126,7 +128,7 @@ class FriendPage extends React.PureComponent {
 
     renderContent() {
         const {onSuggestFriendClick} = this.props;
-        return <div>
+        return <div className="friendContent">
             <div className='rightTopContainer'>
                 {this.renderAddFriend()}
                 <Button style={{marginTop: '0.5rem'}} material={BUTTON_MATERIAL_BOX_SHADOW}
@@ -140,8 +142,8 @@ class FriendPage extends React.PureComponent {
 
     render() {
         const {addTag, addFriendRep, friendSuggestRep, suggest} = this.props;
-        return <div>
-            <div className="pageHeader" style={{position: 'relative'}}><span>{getText(TEXT_FRIENDS)}</span></div>
+        return <div className="page">
+            <div className="pageBackground"/>
             {this.renderContent()}
             <AddFriendFetch rep={addFriendRep} addTag={addTag}/>
             <FriendSuggestFetch rep={friendSuggestRep} suggest={suggest}/>
