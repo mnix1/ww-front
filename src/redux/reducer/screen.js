@@ -59,6 +59,9 @@ function checkMoreHeightThanWidth(height, width) {
 export function checkSmallHeight(resolution) {
     return _.includes(resolution, 'SH');
 }
+export function checkNotBitHeight(resolution) {
+    return !_.includes(resolution, 'BH');
+}
 
 function calculateContentWidth(width, isSmallWidth) {
     if (isSmallWidth) {

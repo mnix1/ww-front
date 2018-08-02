@@ -7,11 +7,13 @@ export const FRIEND_SIGNED_IN = 'friend/friend/signed-in';
 export const FRIEND_SIGNED_OUT = 'friend/friend/signed-out';
 export const ADD_TAG_CHANGED = 'friend/add-tag/changed';
 export const SUGGEST_CHANGED = 'friend/suggest/changed';
+export const ADDED_SUGGESTED_CHANGED = 'friend/added-suggested/changed';
 
 const initialState = {
     friends: [],
     addTag: undefined,
     suggest: undefined,
+    addedSuggested: {},
 };
 
 export default function reducer(state = initialState, action) {
@@ -35,6 +37,8 @@ export default function reducer(state = initialState, action) {
             return {...state, addTag: action.addTag};
         case SUGGEST_CHANGED:
             return {...state, suggest: action.suggest};
+        case ADDED_SUGGESTED_CHANGED:
+            return {...state, addedSuggested: action.addedSuggested};
         default:
             return state
     }
@@ -66,5 +70,9 @@ export function addTagChanged(addTag) {
 
 export function suggestChanged(suggest) {
     return {type: SUGGEST_CHANGED, suggest};
+}
+
+export function addedSuggestedChanged(addedSuggested) {
+    return {type: ADDED_SUGGESTED_CHANGED, addedSuggested};
 }
 

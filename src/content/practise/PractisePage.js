@@ -10,8 +10,7 @@ import {randomHero} from "../../util/media/HeroHelper";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
-    TEXT_CORRECT_ANSWER,
-    TEXT_PLAY_AGAIN,
+    TEXT_CORRECT_ANSWER, TEXT_NEXT_QUESTION,
     TEXT_QUESTION,
     TEXT_WRONG_ANSWER
 } from "../../lang";
@@ -88,7 +87,7 @@ class PractisePage extends React.PureComponent {
             style.bottom = screen.contentHeight;
         }
         return <div key='playAgain' style={style} className={`contentHeader ${styles.playAgain}`}>
-            <div><span onClick={onPlayAgainClick}>{getText(TEXT_PLAY_AGAIN)}</span></div>
+            <div><span onClick={onPlayAgainClick}>{getText(TEXT_NEXT_QUESTION)}</span></div>
             <img alt='' onClick={onPlayAgainClick} src={this.randomHero} style={style} height={80}/>
         </div>;
     }

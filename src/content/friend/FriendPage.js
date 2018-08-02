@@ -7,7 +7,7 @@ import _ from 'lodash';
 import {
     getText,
     TEXT_ACTUAL_FRIENDS,
-    TEXT_ADD,
+    TEXT_ADD, TEXT_ADDED,
     TEXT_BATTLE,
     TEXT_CHALLENGE,
     TEXT_DELETE,
@@ -18,7 +18,7 @@ import {
     TEXT_SUGGEST_FRIENDS,
     TEXT_SUGGESTED_FRIENDS,
 } from "../../lang";
-import {addTagChanged, suggestChanged} from "../../redux/reducer/friend";
+import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {idChanged} from "../../redux/reducer/content";
 import {tagsChanged} from "../../redux/reducer/challenge";
@@ -27,6 +27,7 @@ import {AddFriend} from "../../component/add-friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
+import FaCheckCircle from 'react-icons/lib/fa/check-circle';
 import TiFlash from 'react-icons/lib/ti/flash';
 import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
@@ -53,7 +54,7 @@ class FriendPage extends React.PureComponent {
 
     renderActualFriends() {
         const {friends} = this.props;
-        const filteredFriends = _.filter(friends,e => e.status === STATUS_ACCEPTED);
+        const filteredFriends = _.filter(friends, e => e.status === STATUS_ACCEPTED);
         return <div className='pageInsideContainer'>
             <div className='title'>{getText(_.isEmpty(filteredFriends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
             {this.renderFriends(filteredFriends)}
@@ -63,7 +64,7 @@ class FriendPage extends React.PureComponent {
     renderInvites() {
         const {friends} = this.props;
         const filteredFriends = _.filter(friends, e => e.status === STATUS_REQUESTED);
-        if(_.isEmpty(filteredFriends)){
+        if (_.isEmpty(filteredFriends)) {
             return null;
         }
         return <div className='pageInsideContainer'>
@@ -83,19 +84,27 @@ class FriendPage extends React.PureComponent {
     }
 
     renderFriend(friend) {
-        const {onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onBattleFriendClick} = this.props;
+        const {addedSuggested, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onBattleFriendClick} = this.props;
         return <Profile
             key={friend.tag}
             {...friend}
             actions={<div className='actions'>
                 {friend.status === STATUS_ACCEPTED && friend.isOnline &&
-                <div onClick={() => onBattleFriendClick(friend.tag)}><span>{getText(TEXT_BATTLE)}</span><TiFlash color={CREAM_COLOR}/></div>}
+                <div onClick={() => onBattleFriendClick(friend.tag)}><span>{getText(TEXT_BATTLE)}</span><TiFlash
+                    color={CREAM_COLOR}/></div>}
                 {friend.status === STATUS_ACCEPTED &&
-                <div onClick={() => onChallengeFriendClick(friend.tag)}><span>{getText(TEXT_CHALLENGE)}</span><FaGavel color={CREAM_COLOR}/></div>}
-                {(friend.status === STATUS_REQUESTED || friend.status === STATUS_SUGGESTED) &&
-                <div onClick={() => onAcceptFriendClick(friend.tag)}><span>{getText(TEXT_ADD)}</span><FaPlusCircle color={CREAM_COLOR}/></div>}
+                <div onClick={() => onChallengeFriendClick(friend.tag)}><span>{getText(TEXT_CHALLENGE)}</span><FaGavel
+                    color={CREAM_COLOR}/></div>}
+                {friend.status === STATUS_REQUESTED &&
+                <div onClick={() => onAcceptFriendClick(friend.tag)}><span>{getText(TEXT_ADD)}</span><FaPlusCircle
+                    color={CREAM_COLOR}/></div>}
+                {friend.status === STATUS_SUGGESTED && _.isNil(addedSuggested[friend.tag]) &&
+                <div onClick={() => onAddSuggestedFriendClick(friend.tag, addedSuggested)}><span>{getText(TEXT_ADD)}</span><FaPlusCircle color={CREAM_COLOR}/></div>}
+                {friend.status === STATUS_SUGGESTED && addedSuggested[friend.tag] === true &&
+                <div><span>{getText(TEXT_ADDED)}</span><FaCheckCircle color={CREAM_COLOR}/></div>}
                 {friend.status !== STATUS_SUGGESTED &&
-                <div onClick={() => onDeleteFriendClick(friend.tag)}><span>{getText(TEXT_DELETE)}</span><FaBan color={CREAM_COLOR}/></div>}
+                <div onClick={() => onDeleteFriendClick(friend.tag)}><span>{getText(TEXT_DELETE)}</span><FaBan
+                    color={CREAM_COLOR}/></div>}
             </div>}
         />;
     }
@@ -106,10 +115,11 @@ class FriendPage extends React.PureComponent {
         if (!suggestedFriends) {
             return null;
         }
-        const friendsMap = _.keyBy(friends,'tag');
+        const friendsMap = _.keyBy(friends, 'tag');
         const filteredSuggestedFriends = suggestedFriends.filter(e => !friendsMap[e.tag]);
         return <div className='pageInsideContainer suggestedFriendsContainer'>
-            <div className='title'>{getText(_.isEmpty(filteredSuggestedFriends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
+            <div
+                className='title'>{getText(_.isEmpty(filteredSuggestedFriends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
             {this.renderFriends(filteredSuggestedFriends)}
         </div>
     }
@@ -129,7 +139,7 @@ class FriendPage extends React.PureComponent {
     }
 
     render() {
-        const {addTag, addFriendRep,friendSuggestRep, suggest} = this.props;
+        const {addTag, addFriendRep, friendSuggestRep, suggest} = this.props;
         return <div>
             <div className="pageHeader" style={{position: 'relative'}}><span>{getText(TEXT_FRIENDS)}</span></div>
             {this.renderContent()}
@@ -143,6 +153,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         friends: state.friend.friends,
+        addedSuggested: state.friend.addedSuggested,
         addFriendRep: state.repository.addFriend,
         friendSuggestRep: state.repository.friendSuggest,
         addTag: state.friend.addTag,
@@ -163,6 +174,12 @@ export default connect(
             })
         },
         onAcceptFriendClick: (tag) => {
+            request('/friend/add', {tag}).then(() => {
+                clearFriendListFetch(dispatch);
+            })
+        },
+        onAddSuggestedFriendClick: (tag, addedSuggested) => {
+            dispatch(addedSuggestedChanged({...addedSuggested, [tag]: true}));
             request('/friend/add', {tag}).then(() => {
                 clearFriendListFetch(dispatch);
             })

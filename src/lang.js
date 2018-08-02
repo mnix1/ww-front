@@ -129,7 +129,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
-        [TEXT_ANSWER]: 'Answer',
+        [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CATEGORY]: 'Category',
         [TEXT_CHOOSE_CATEGORY]: 'Choose category',
         [TEXT_PLAY_AGAIN]: 'Play again',
