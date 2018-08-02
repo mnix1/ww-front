@@ -1,8 +1,8 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {OBJECT_APP_FRIEND} from "../../object-group/objectsApp";
 import {friendsChanged} from "../../../redux/reducer/friend";
+import {FRIEND_ROUTE} from "../../app/appRoutes";
 
 class FriendListFetch extends React.PureComponent {
 
@@ -30,7 +30,7 @@ class FriendListFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {contentId, friendListRep, dispatchFriendListGet} = this.props;
-        if (!friendListRep && contentId === OBJECT_APP_FRIEND) {
+        if (!friendListRep && contentId === FRIEND_ROUTE) {
             dispatchFriendListGet();
         }
     }

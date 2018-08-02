@@ -16,7 +16,6 @@ import {
 import {inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {CHALLENGE_STATUS_OPEN} from "../../../util/challengeHelper";
 import {idChanged} from "../../../redux/reducer/content";
-import {OBJECT_APP_BATTLE} from "../../object-group/objectsApp";
 import Profile from "../../../component/profile/Profile";
 
 class ChallengeListPage extends React.PureComponent {
@@ -68,11 +67,11 @@ export default connect(
         onChallengeResponseClick: (id) => {
             dispatch(inProgressIdChanged(id));
             dispatch(statusChanged(CHALLENGE_STATUS_OPEN));
-            dispatch(idChanged(OBJECT_APP_BATTLE));
+            // dispatch(idChanged(OBJECT_APP_BATTLE));
         },
         onChallengeSummaryClick: (id) => {
             dispatch(summaryIdChanged(id));
-            dispatch(idChanged(OBJECT_APP_BATTLE));
+            // dispatch(idChanged(OBJECT_APP_BATTLE));
         }
     })
 )(ChallengeListPage);

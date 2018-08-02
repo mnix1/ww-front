@@ -11,10 +11,16 @@ import {getText, POLISH, TEXT_APP_NAME} from "./lang";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {profileChanged} from "./redux/reducer/profile";
+import {createBrowserHistory} from 'history'
+import {connectRouter, routerMiddleware} from 'connected-react-router'
+import {Route, Switch} from 'react-router' // react-router v4
+
+const history = createBrowserHistory();
 
 const store = createStore(
-    app,
+    connectRouter(history)(app), // new root reducer with router state
     compose(applyMiddleware(fetchMiddleware),
+        applyMiddleware(routerMiddleware(history)),
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a)
 );
 
@@ -40,7 +46,7 @@ fetch('/profile', {credentials: 'include'})
             return ReactDOM.render(<Login/>, document.getElementById('root'));
         }
         ReactDOM.render(<Provider store={store}>
-            <App/>
+                <App history={history}/>
         </Provider>, document.getElementById('root'));
     })
     .catch(e => {

@@ -6,13 +6,15 @@ import {
     OBJECT_CATEGORY_MUSIC,
     OBJECT_CATEGORY_RANDOM
 } from "./content/object-group/objectsCategory";
-import {
-    OBJECT_APP_BATTLE,
-    OBJECT_APP_FRIEND,
-    OBJECT_APP_HISTORY, OBJECT_APP_SHOP,
-    OBJECT_APP_TRAINING, OBJECT_APP_WISIES
-} from "./content/object-group/objectsApp";
 import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
+import {
+    BATTLE_ROUTE,
+    FRIEND_ROUTE,
+    HISTORY_ROUTE,
+    SHOP_ROUTE,
+    TRAINING_ROUTE,
+    WISIES_ROUTE
+} from "./content/app/appRoutes";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
@@ -188,12 +190,12 @@ export function getObjectLabel(id) {
 
 const OBJECT_LABELS = {
     [POLISH]: {
-        [OBJECT_APP_BATTLE]: 'Bitwa',
-        [OBJECT_APP_TRAINING]: 'Trening',
-        [OBJECT_APP_HISTORY]: 'Historia',
-        [OBJECT_APP_SHOP]: 'Sklep',
-        [OBJECT_APP_WISIES]: 'Wiedzaki',
-        [OBJECT_APP_FRIEND]: 'Znajomi',
+        [BATTLE_ROUTE]: 'Bitwa',
+        [TRAINING_ROUTE]: 'Trening',
+        [HISTORY_ROUTE]: 'Historia',
+        [SHOP_ROUTE]: 'Sklep',
+        [WISIES_ROUTE]: 'Wiedzaki',
+        [FRIEND_ROUTE]: 'Znajomi',
         [OBJECT_CATEGORY_RANDOM]: 'Losowa',
         [OBJECT_CATEGORY_MATH]: 'Matematyka',
         [OBJECT_CATEGORY_MUSIC]: 'Muzyka',
@@ -203,12 +205,12 @@ const OBJECT_LABELS = {
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
-        [OBJECT_APP_BATTLE]: 'Battle',
-        [OBJECT_APP_TRAINING]: 'Training',
-        [OBJECT_APP_HISTORY]: 'History',
-        [OBJECT_APP_SHOP]: 'Shop',
-        [OBJECT_APP_WISIES]: 'Wisies',
-        [OBJECT_APP_FRIEND]: 'Friends',
+        [BATTLE_ROUTE]: 'Battle',
+        [TRAINING_ROUTE]: 'Training',
+        [HISTORY_ROUTE]: 'History',
+        [SHOP_ROUTE]: 'Shop',
+        [WISIES_ROUTE]: 'Wisies',
+        [FRIEND_ROUTE]: 'Friends',
         [OBJECT_CATEGORY_RANDOM]: 'Random',
         [OBJECT_CATEGORY_MATH]: 'Math',
         [OBJECT_CATEGORY_MUSIC]: 'Music',
