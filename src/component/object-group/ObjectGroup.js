@@ -31,7 +31,7 @@ export class ObjectGroup extends React.PureComponent {
             padding: '8px',
             // border: '1px solid rgb(165, 169, 165)',
             // boxShadow: '0 0 4px #444',
-            borderRadius: 8
+            borderRadius: '0.5rem'
         },
     };
 

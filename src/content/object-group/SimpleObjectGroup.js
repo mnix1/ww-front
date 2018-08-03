@@ -3,8 +3,8 @@ import {getCategoryLabel} from "../../lang";
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
-import {objectFontSize} from "../../component/object-group/objectHelper";
-import {calculateObjectDimension} from "../../component/object-group/objectHelper";
+import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
+import './styles.css';
 
 export default class SimpleObjectGroup extends React.PureComponent {
 
@@ -16,7 +16,11 @@ export default class SimpleObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen} = this.props;
-        const objectHeight = calculateObjectDimension({dim: screen.contentHeight, count: (objects.length) / 1.5, min: 60});
+        const objectHeight = calculateObjectDimension({
+            dim: screen.contentHeight,
+            count: (objects.length) / 1.5,
+            min: 60
+        });
         const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: (objects.length) / 1.5});
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
@@ -40,14 +44,21 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     ...o,
-                    content: getCategoryLabel([o.id]),
+                    content: <div className='simpleGroupObject'>
+                        <div className='simpleGroupObjectBackground'/>
+                        <div className='simpleGroupObjectContent'><img src={o.imgSrc}
+                                                                       height={objectHeight / 2}/><span>{getCategoryLabel([o.id])}</span>
+                        </div>
+                    </div>,
                     rendererTransformer: rendererTransformerCreator(o, top, left),
-                    additionalStyle: {
-                        ...o.material,
+                    objectStyle: {
+                        padding: 0,
+                        background: null,
                         height: objectHeight,
                         top,
                         left,
-                        boxShadow: `0 0 4px #${o.material.isDark ? 'CCC' : '666'}`,
+                        borderRadius: '0.5rem',
+                        boxShadow: `0 0 4px #cccccc`,
                     }
                 }
             })}

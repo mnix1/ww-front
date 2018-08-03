@@ -1,0 +1,17 @@
+.simpleGroupObject {
+}
+.simpleGroupObjectContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.simpleGroupObjectBackground {
+    position: absolute;
+    background: #666;
+    opacity: 0.5;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
