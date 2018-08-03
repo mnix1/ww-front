@@ -1,15 +1,10 @@
 .challengeSolution .actionsToRight {
-    position: absolute;
     right: 0;
     top: 0;
     margin: 0.25rem;
 }
 
 .challengeSolution .actionsToRight .button {
-    float: right;
+    /*float: right;*/
     margin-bottom: 0.25rem;
-}
-
-.challengeSolution .marginTop {
-    margin-top: 3rem;
 }

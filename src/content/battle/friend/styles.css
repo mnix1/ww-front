@@ -1,8 +1,14 @@
 .battlePage .profiles {
-    position: absolute;
+    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.battlePage .pageContent {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .battlePage .contentHeader .timer {

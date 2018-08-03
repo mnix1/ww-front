@@ -47,10 +47,7 @@ class ChallengeSolution extends React.PureComponent {
         const {screen, questionIndex, onNavigateTaskClick, onChallengeSummaryClick, questions, challengeId} = this.props;
         const nextQuestionIndex = (questionIndex + 1) % questions.length;
         let className = 'actionsToRight';
-        if (screen.moreHeightThanWidth) {
-            className += ' marginTop';
-        }
-        return <div className={className}>
+        return <div className={className} style={{position: screen.moreHeightThanWidth ? 'relative' : 'absolute'}}>
             <Button
                 material={BUTTON_MATERIAL_BOX_SHADOW}
                 icon={<FaArrowCircleRight/>}
@@ -69,11 +66,13 @@ class ChallengeSolution extends React.PureComponent {
         const {questionIndex, questions, questionIdAnswerIdMap} = this.props;
         const question = _.sortBy(questions, 'id')[questionIndex];
         return <div className="contentHeader">
-            {`${getText(TEXT_YOUR_SCORE)}: ${this.calculateResult(questionIdCorrectAnswerIdMap)} ${getText(TEXT_POINTS)}, ${prepareAnswerIntervalMessage(answerInterval)}`}
-            <br/>
-            {`${getText(TEXT_ANSWER_FOR_QUESTION)} ${questionIndex + 1}:`}
-            <br/>
-            {questionIdAnswerIdMap[question.id] === questionIdCorrectAnswerIdMap[question.id] ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER)}
+            <div>
+                <span>{`${getText(TEXT_YOUR_SCORE)}: ${this.calculateResult(questionIdCorrectAnswerIdMap)} ${getText(TEXT_POINTS)}, ${prepareAnswerIntervalMessage(answerInterval)}`}</span>
+                <br/>
+                <span>{`${getText(TEXT_ANSWER_FOR_QUESTION)} ${questionIndex + 1}:`}</span>
+                <br/>
+                <span>{questionIdAnswerIdMap[question.id] === questionIdCorrectAnswerIdMap[question.id] ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER)}</span>
+            </div>
             {this.renderActions()}
         </div>;
     }

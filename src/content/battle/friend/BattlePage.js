@@ -35,11 +35,11 @@ class BattlePage extends React.PureComponent {
     }
 
     renderProfiles() {
-        const {profile, content} = this.props;
+        const {profile, content, screen} = this.props;
         if (!content) {
             return;
         }
-        return <div className='profiles'>
+        return <div className='profiles' style={{position: screen.moreHeightThanWidth ? 'relative' : 'absolute'}}>
             <div className='profile'>
                 {this.renderProfile(profile, content.score)}
             </div>
@@ -50,7 +50,7 @@ class BattlePage extends React.PureComponent {
     }
 
     renderProfile(profile, score) {
-        return <Profile {...profile}>
+        return <Profile {...profile} imgHeight={60}>
             <div>{prepareScoreMessage(score)}</div>
         </Profile>
     }
@@ -91,14 +91,17 @@ class BattlePage extends React.PureComponent {
     prepareScreenForTask() {
         const {screen} = this.props;
         let contentHeight = screen.contentHeight;
+        let contentWidth = screen.contentWidth;
         if (screen.moreHeightThanWidth) {
             contentHeight = Math.min(screen.contentHeight / 1.3, screen.contentHeight - 40);
         } else {
-            contentHeight = Math.min(screen.contentHeight / 1.1, screen.contentHeight - 40);
+            contentHeight = Math.min(screen.contentHeight, screen.contentHeight);
+            contentWidth = Math.min(screen.contentWidth / 1.1, screen.contentWidth - 40);
         }
         return {
             ...screen,
-            contentHeight
+            contentHeight,
+            contentWidth
         }
     }
 
@@ -109,6 +112,7 @@ class BattlePage extends React.PureComponent {
         }
         const {question, correctAnswerId, markedAnswerId} = content;
         return <Task
+            style={{display: screen.moreHeightThanWidth ? 'block' : 'flex'}}
             header={screen.moreHeightThanWidth ? this.renderHeader() : null}
             correctAnswerId={correctAnswerId}
             answerId={markedAnswerId || questionIdAnswerIdMap[question.id]}
