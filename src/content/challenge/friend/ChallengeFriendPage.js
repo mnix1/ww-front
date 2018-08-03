@@ -12,7 +12,7 @@ class ChallengeFriendPage extends React.PureComponent {
         if (status === CHALLENGE_STATUS_IN_PROGRESS) {
             return <ChallengeTask rep={challengeFriendStartRep}/>;
         }
-        if (status === CHALLENGE_STATUS_CLOSED && challengeFriendStartRep && challengeFriendStartRep.fulfilled) {
+        if (challengeFriendStartRep && challengeFriendStartRep.fulfilled) {
             const repValue = challengeFriendStartRep.value;
             return <ChallengeSolution questions={repValue.questions} challengeId={repValue.id} rep={challengeEndRep}/>;
         }

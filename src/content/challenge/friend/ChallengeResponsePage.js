@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ChallengeTask from "../task/ChallengeTask";
-import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 import _ from "lodash";
 import ChallengeSolution from "../task/ChallengeSolution";
 
@@ -13,7 +13,7 @@ class ChallengeResponsePage extends React.PureComponent {
             if (status === CHALLENGE_STATUS_IN_PROGRESS) {
                 return <ChallengeTask rep={challengeStartResponseRep}/>;
             }
-            if (status === CHALLENGE_STATUS_CLOSED) {
+            if (challengeStartResponseRep && challengeStartResponseRep.fulfilled) {
                 const repValue = challengeStartResponseRep.value;
                 return <ChallengeSolution questions={repValue.questions}
                                           challengeId={repValue.id}

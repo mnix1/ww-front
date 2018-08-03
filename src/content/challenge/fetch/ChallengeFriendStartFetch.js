@@ -20,7 +20,6 @@ class ChallengeFriendStartFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {tags, path, status, dispatchChallengeFriendStartPost} = this.props;
-        console.log('ChallengeFriendStartFetch', tags, path !== prevProps.path && path === CHALLENGE_FRIEND_ROUTE, status !== prevProps.status && status === CHALLENGE_STATUS_IN_PROGRESS);
         if (path === CHALLENGE_FRIEND_ROUTE
             && status === CHALLENGE_STATUS_IN_PROGRESS
             && (path !== prevProps.path || status !== prevProps.status)) {

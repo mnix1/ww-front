@@ -10,7 +10,7 @@ import {
     TEXT_ANSWER, TEXT_CONTINUE,
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES,
-    TEXT_SUMMARY, TEXT_YOU
+    TEXT_SUMMARY
 } from "../../../lang";
 import {inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
