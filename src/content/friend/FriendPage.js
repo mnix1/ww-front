@@ -21,7 +21,6 @@ import {
 import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {tagsChanged} from "../../redux/reducer/challenge";
-import {OBJECT_CHALLENGE_FRIEND} from "../object-group/objectsChallenge";
 import {AddFriend} from "../../component/add-friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';
@@ -34,6 +33,8 @@ import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
 import {BATTLE_STATUS_START} from "../../util/battleHelper";
 import Profile from "../../component/profile/Profile";
+import {push} from 'connected-react-router'
+import {CHALLENGE_FRIEND_ROUTE, FRIEND_ROUTE} from "../routes";
 
 export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
@@ -54,7 +55,7 @@ class FriendPage extends React.PureComponent {
     renderActualFriends() {
         const {friends} = this.props;
         const filteredFriends = _.filter(friends, e => e.status === STATUS_ACCEPTED);
-        return <div className='pageInsideContainer'>
+        return <div className='contentFragment'>
             <div className='title'>{getText(_.isEmpty(filteredFriends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
             {this.renderFriends(filteredFriends)}
         </div>;
@@ -66,7 +67,7 @@ class FriendPage extends React.PureComponent {
         if (_.isEmpty(filteredFriends)) {
             return null;
         }
-        return <div className='pageInsideContainer'>
+        return <div className='contentFragment'>
             <div className='title'>{getText(TEXT_INVITES)}</div>
             {this.renderFriends(filteredFriends)}
         </div>;
@@ -117,7 +118,7 @@ class FriendPage extends React.PureComponent {
         }
         const friendsMap = _.keyBy(friends, 'tag');
         const filteredSuggestedFriends = suggestedFriends.filter(e => !friendsMap[e.tag]);
-        return <div className='pageInsideContainer suggestedFriendsContainer'>
+        return <div className='contentFragment suggestedFriendsContainer'>
             <div
                 className='title'>{getText(_.isEmpty(filteredSuggestedFriends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
             {this.renderFriends(filteredSuggestedFriends)}
@@ -126,7 +127,7 @@ class FriendPage extends React.PureComponent {
 
     renderContent() {
         const {onSuggestFriendClick} = this.props;
-        return <div className="friendContent">
+        return <div className="pageContent friendContent">
             <div className='rightTopContainer'>
                 {this.renderAddFriend()}
                 <Button style={{marginTop: '0.25rem'}} material={BUTTON_MATERIAL_BOX_SHADOW}
@@ -166,7 +167,7 @@ export default connect(
         },
         onChallengeFriendClick: (tag) => {
             dispatch(tagsChanged([tag]));
-            // dispatch(idChanged(OBJECT_CHALLENGE_FRIEND));
+            dispatch(push(CHALLENGE_FRIEND_ROUTE));
         },
         onDeleteFriendClick: (tag) => {
             request('/friend/delete', {tag}).then(() => {

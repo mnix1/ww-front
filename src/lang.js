@@ -1,3 +1,5 @@
+import React from 'react';
+
 import {
     OBJECT_CATEGORY_GEOGRAPHY,
     OBJECT_CATEGORY_HISTORY,
@@ -8,13 +10,14 @@ import {
 } from "./content/object-group/objectsCategory";
 import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
 import {
-    BATTLE_ROUTE,
+    BATTLE_FAST_ROUTE,
+    BATTLE_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE,
     FRIEND_ROUTE,
-    HISTORY_ROUTE,
+    HISTORY_ROUTE, PLAY_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
     WISIES_ROUTE
-} from "./content/app/appRoutes";
+} from "./content/routes";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
@@ -53,6 +56,8 @@ export const TEXT_ACTUAL_FRIENDS = 'TEXT_ACTUAL_FRIENDS';
 export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
 export const TEXT_NONE_IN_PROGRESS_CHALLENGES = 'TEXT_NONE_IN_PROGRESS_CHALLENGES';
 export const TEXT_IN_PROGRESS_CHALLENGES = 'TEXT_IN_PROGRESS_CHALLENGES';
+export const TEXT_NONE_CLOSED_CHALLENGES = 'TEXT_NONE_CLOSED_CHALLENGES';
+export const TEXT_CLOSED_CHALLENGES = 'TEXT_CLOSED_CHALLENGES';
 export const TEXT_INVITES = 'TEXT_INVITES';
 export const TEXT_POSITION = 'TEXT_POSITION';
 export const TEXT_WAITING_FOR_RESPONSE = 'TEXT_WAITING_FOR_RESPONSE';
@@ -71,6 +76,7 @@ export const TEXT_OPPONENT_WRONG_ANSWER = 'TEXT_OPPONENT_WRONG_ANSWER';
 export const TEXT_BATTLE_OVER = 'TEXT_BATTLE_OVER';
 export const TEXT_THE_WINNER_IS = 'TEXT_THE_WINNER_IS';
 export const TEXT_ANSWER = 'TEXT_ANSWER';
+export const TEXT_YOU = 'TEXT_YOU';
 
 export function getText(id) {
     return TEXTS[window.activeLang][id];
@@ -107,11 +113,13 @@ const TEXTS = {
         [TEXT_SUMMARY]: 'Podsumowanie',
         [TEXT_SUGGEST_FRIENDS]: 'Zaproponuj znajomych',
         [TEXT_SUGGESTED_FRIENDS]: 'Proponowani znajomi',
-        [TEXT_NONE_FRIENDS]: 'Nie masz jeszcze znajomych',
+        [TEXT_NONE_FRIENDS]: 'Nie masz znajomych',
         [TEXT_ACTUAL_FRIENDS]: 'Twoi znajomi',
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'Nie możemy zaproponować więcej znajomych',
         [TEXT_NONE_IN_PROGRESS_CHALLENGES]: 'Nie masz aktywnych wyzwań',
+        [TEXT_NONE_CLOSED_CHALLENGES]: 'Nie miałeś jeszcze wyzwań',
         [TEXT_IN_PROGRESS_CHALLENGES]: 'Aktywne wyzwania',
+        [TEXT_CLOSED_CHALLENGES]: 'Niedawne wyzwania',
         [TEXT_INVITES]: 'Zaproszenia',
         [TEXT_POSITION]: 'Pozycja',
         [TEXT_WAITING_FOR_RESPONSE]: 'Oczekiwanie na odpowiedź',
@@ -130,6 +138,7 @@ const TEXTS = {
         [TEXT_BATTLE_OVER]: 'Koniec bitwy!',
         [TEXT_THE_WINNER_IS]: 'Zwycięża',
         [TEXT_NEXT]: 'Następne',
+        [TEXT_YOU]: 'Ty',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
@@ -161,11 +170,13 @@ const TEXTS = {
         [TEXT_SUMMARY]: 'Summary view',
         [TEXT_SUGGEST_FRIENDS]: 'Suggest friends',
         [TEXT_SUGGESTED_FRIENDS]: 'Suggested friends',
-        [TEXT_NONE_FRIENDS]: 'You do not have friends yet',
+        [TEXT_NONE_FRIENDS]: 'You do not have friends',
         [TEXT_ACTUAL_FRIENDS]: 'Actual friends',
         [TEXT_NONE_SUGGESTED_FRIENDS]: 'We can not recommend more friends',
         [TEXT_NONE_IN_PROGRESS_CHALLENGES]: 'You do not have active challenges',
+        [TEXT_NONE_CLOSED_CHALLENGES]: 'You do not have any challenges yet',
         [TEXT_IN_PROGRESS_CHALLENGES]: 'Active challenges',
+        [TEXT_CLOSED_CHALLENGES]: 'Recent challenges',
         [TEXT_INVITES]: 'Invites',
         [TEXT_POSITION]: 'Position',
         [TEXT_WAITING_FOR_RESPONSE]: 'Waiting for response',
@@ -184,21 +195,49 @@ const TEXTS = {
         [TEXT_BATTLE_OVER]: 'Battle is over',
         [TEXT_THE_WINNER_IS]: 'The winner is',
         [TEXT_NEXT]: 'Next',
+        [TEXT_YOU]: 'You',
     },
 };
 
-export function getObjectLabel(id) {
-    return OBJECT_LABELS[window.activeLang][id];
+
+export function getRouteLabel(id) {
+    return ROUTE_LABELS[window.activeLang][id];
 }
 
-const OBJECT_LABELS = {
+
+const ROUTE_LABELS = {
     [POLISH]: {
+        [PLAY_ROUTE]: 'Graj',
         [BATTLE_ROUTE]: 'Bitwa',
         [TRAINING_ROUTE]: 'Trening',
         [HISTORY_ROUTE]: 'Historia',
         [SHOP_ROUTE]: 'Sklep',
         [WISIES_ROUTE]: 'Wiedzaki',
         [FRIEND_ROUTE]: 'Znajomi',
+        [BATTLE_FAST_ROUTE]: <span>Szybka<br/>bitwa</span>,
+        [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
+        [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
+    },
+    [ENGLISH]: {
+        [PLAY_ROUTE]: 'Play',
+        [BATTLE_ROUTE]: 'Battle',
+        [TRAINING_ROUTE]: 'Training',
+        [HISTORY_ROUTE]: 'History',
+        [SHOP_ROUTE]: 'Shop',
+        [WISIES_ROUTE]: 'Wisies',
+        [FRIEND_ROUTE]: 'Friends',
+        [BATTLE_FAST_ROUTE]: <span>Fast<br/>battle</span>,
+        [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challange</span>,
+        [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,
+    }
+};
+
+export function getCategoryLabel(id) {
+    return CATEGORY_LABELS[window.activeLang][id];
+}
+
+const CATEGORY_LABELS = {
+    [POLISH]: {
         [OBJECT_CATEGORY_RANDOM]: 'Losowa',
         [OBJECT_CATEGORY_MATH]: 'Matematyka',
         [OBJECT_CATEGORY_MUSIC]: 'Muzyka',
@@ -208,12 +247,6 @@ const OBJECT_LABELS = {
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
-        [BATTLE_ROUTE]: 'Battle',
-        [TRAINING_ROUTE]: 'Training',
-        [HISTORY_ROUTE]: 'History',
-        [SHOP_ROUTE]: 'Shop',
-        [WISIES_ROUTE]: 'Wisies',
-        [FRIEND_ROUTE]: 'Friends',
         [OBJECT_CATEGORY_RANDOM]: 'Random',
         [OBJECT_CATEGORY_MATH]: 'Math',
         [OBJECT_CATEGORY_MUSIC]: 'Music',

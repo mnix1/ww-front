@@ -2,23 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {CREAM_COLOR} from "../../../util/style/constant";
-import FaGavel from "react-icons/lib/fa/gavel";
 import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
-import {
-    getText,
-    TEXT_ANSWER,
-    TEXT_IN_PROGRESS_CHALLENGES,
-    TEXT_NONE_IN_PROGRESS_CHALLENGES,
-    TEXT_SUMMARY, TEXT_YOU
-} from "../../../lang";
-import {inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
+import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES, TEXT_SUMMARY} from "../../../lang";
+import {summaryIdChanged} from "../../../redux/reducer/challenge";
 import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_RESPONSE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 
-class ChallengeListPage extends React.PureComponent {
+class ChallengeHistoryPage extends React.PureComponent {
 
     renderChallenges() {
         const {challengeListRep} = this.props;
@@ -34,19 +26,11 @@ class ChallengeListPage extends React.PureComponent {
     }
 
     renderChallenge(challenge) {
-        const {onChallengeResponseClick, onChallengeSummaryClick, profile} = this.props;
+        const {onChallengeSummaryClick} = this.props;
         const creator = challenge.creatorProfile;
-        const isProfileCreator = profile.tag === creator.tag;
         const date = new Date(challenge.inProgressDate);
         return <div key={challenge.id} className='challenge'>
-            <Profile {...{
-                ...creator,
-                tag: isProfileCreator ? null : creator.tag,
-                name: isProfileCreator ? null : creator.name
-            }} actions={<div className='actions'>
-                {!isProfileCreator &&
-                <div onClick={() => onChallengeResponseClick(challenge.id)}><span>{getText(TEXT_ANSWER)}</span><FaGavel
-                    color={CREAM_COLOR}/></div>}
+            <Profile {...creator} actions={<div className='actions'>
                 <div onClick={() => onChallengeSummaryClick(challenge.id)}><span>{getText(TEXT_SUMMARY)}</span><FaListOl
                     color={CREAM_COLOR}/></div>
             </div>}>
@@ -61,7 +45,7 @@ class ChallengeListPage extends React.PureComponent {
             <div className="pageBackground"/>
             <div className="pageContent">
                 <div className="pageHeader">
-                    <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_IN_PROGRESS_CHALLENGES : TEXT_IN_PROGRESS_CHALLENGES)}</span>
+                    <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_CLOSED_CHALLENGES : TEXT_CLOSED_CHALLENGES)}</span>
                 </div>
                 {this.renderChallenges()}
             </div>
@@ -71,18 +55,12 @@ class ChallengeListPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        challengeListRep: state.repository.challengeList,
-        profile: state.profile.profile
+        challengeListRep: state.repository.challengeList
     }),
     (dispatch) => ({
-        onChallengeResponseClick: (id) => {
-            dispatch(inProgressIdChanged(id));
-            dispatch(statusChanged(CHALLENGE_STATUS_IN_PROGRESS));
-            dispatch(push(CHALLENGE_RESPONSE_ROUTE));
-        },
         onChallengeSummaryClick: (id) => {
             dispatch(summaryIdChanged(id));
             dispatch(push(CHALLENGE_SUMMARY_ROUTE));
         }
     })
-)(ChallengeListPage);
+)(ChallengeHistoryPage);

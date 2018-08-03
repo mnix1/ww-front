@@ -4,8 +4,8 @@ import BattleCommunication from "../BattleCommunication";
 import './styles.css';
 import Task from "../../../component/task/Task";
 import {
+    getCategoryLabel,
     getText,
-    getObjectLabel,
     TEXT_BATTLE_OVER,
     TEXT_CATEGORY,
     TEXT_CORRECT_ANSWER,
@@ -83,7 +83,7 @@ class BattlePage extends React.PureComponent {
         }
         const question = content.question;
         return <div className="contentHeader">
-            {`${getText(TEXT_QUESTION)} ${question.id}, ${getText(TEXT_CATEGORY)}: ${getObjectLabel(question.category)}`}
+            {`${getText(TEXT_QUESTION)} ${question.id}, ${getText(TEXT_CATEGORY)}: ${getCategoryLabel(question.category)}`}
             {this.renderQuestionResult()}
         </div>;
     }

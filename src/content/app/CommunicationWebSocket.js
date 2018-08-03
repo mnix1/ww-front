@@ -5,7 +5,7 @@ import {clearBattleStartFetch} from "../battle/friend/fetch/BattleStartFetch";
 import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
 import {OBJECT_BATTLE} from "../object-group/objectsBattle";
 import {push} from 'connected-react-router'
-import {BATTLE_ROUTE} from "./appRoutes";
+import {BATTLE_ROUTE} from "../routes";
 
 export default class CommunicationWebSocket {
     constructor() {

@@ -4,7 +4,6 @@
 }
 .friendContent {
     overflow: auto;
-    position: relative;
 }
 .rightTopContainer {
     float: right;

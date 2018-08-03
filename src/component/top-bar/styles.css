@@ -1,12 +1,12 @@
-:local .topBar {
+.topBar {
     padding-top: 4px;
 }
 
-:local .topBarContent {
+.topBarContent {
     text-align: center;
 }
 
-:local .topBarContentValue {
+.topBarContentValue {
     width: 100%;
     text-align: center;
     font-family: 'Black Ops One', cursive;
@@ -14,7 +14,7 @@
     color: #fffdf1;
 }
 
-:local .topBarProfile {
+.topBarProfile {
     position: fixed;
     right: 0;
     bottom: 0;

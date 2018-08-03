@@ -1,6 +1,8 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
+import {CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../../routes";
+import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 
 class ChallengeListFetch extends React.PureComponent {
 
@@ -17,9 +19,11 @@ class ChallengeListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {challengeListRep, dispatchChallengeListGet} = this.props;
-        if (!challengeListRep) {
-            dispatchChallengeListGet();
+        const {path, dispatchChallengeListPost} = this.props;
+        if (prevProps.path !== path && path === CHALLENGE_HISTORY_ROUTE) {
+            dispatchChallengeListPost(CHALLENGE_STATUS_CLOSED);
+        } else if (prevProps.path !== path && path === CHALLENGE_LIST_ROUTE) {
+            dispatchChallengeListPost(CHALLENGE_STATUS_IN_PROGRESS);
         }
     }
 
@@ -34,7 +38,9 @@ export function clearChallengeListFetch(dispatch) {
 
 export default connect([{
     resource: 'challengeList',
-    request: () => ({
+    method: 'post',
+    request: (status) => ({
         url: `/challenge/list`,
+        body: status ? {status} : {}
     })
 }])(ChallengeListFetch);

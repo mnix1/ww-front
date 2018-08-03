@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {friendsChanged} from "../../../redux/reducer/friend";
-import {FRIEND_ROUTE} from "../../app/appRoutes";
+import {FRIEND_ROUTE} from "../../routes";
 
 class FriendListFetch extends React.PureComponent {
 

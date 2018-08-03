@@ -1,5 +1,5 @@
 import React from 'react';
-import {getObjectLabel} from "../../lang";
+import {getCategoryLabel} from "../../lang";
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
@@ -40,7 +40,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     ...o,
-                    content: getObjectLabel([o.id]),
+                    content: getCategoryLabel([o.id]),
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     additionalStyle: {
                         ...o.material,

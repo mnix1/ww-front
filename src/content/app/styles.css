@@ -18,43 +18,6 @@
     left: 0;
 }
 
-.menu {
-    display: inline-block;
-    position: relative;
-}
-.menu.menuLeft {
-    float: left;
-}
-.menu.menuRight {
-    float: right;
-}
-.menu .menuItems {
-    display: flex;
-}
-.menu .menuBackground{
-    background: #444444;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    position: absolute;
-    border-radius: 0.5rem;
-}
-
-.menu .menuItem {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin: 0.25rem;
-    cursor: pointer;
-}
-
-.menu .menuItem span {
-    width: 100%;
-    text-align: center;
-    font-size: 1rem;
-    color: #fffdf1;
-}
-
 .contentHeader {
     position: relative;
     text-align: center;
@@ -70,7 +33,7 @@
 
 .page .pageBackground {
     background: #444444;
-    opacity: 0.5;
+    opacity: 0.9;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -86,12 +49,6 @@
     width: 100%;
 }
 
-.pageHeaderWithImage {
-    display: flex;
-    justify-content: center;
-    /*flex-direction: column;*/
-}
-
 .pageContent {
     position: relative;
 }
@@ -105,7 +62,7 @@
     justify-content: center;
 }
 
-.pageInsideContainer .title {
+.contentFragment .title {
     color: #fffdf1;
     margin: 0.25rem;
 }

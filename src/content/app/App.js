@@ -10,17 +10,35 @@ import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../battle/invite/InvitedToBattleBy";
 import InviteToBattle from "../battle/invite/InviteToBattle";
 import BattleFetchContainer from "../battle/friend/fetch/BattleFetchContainer";
-import BattlePage from "../battle/friend/BattlePage";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
-import battle from '../../media/image/icon/battle.svg';
+import play from '../../media/image/icon/play.svg';
 import friend from '../../media/image/icon/friend.svg';
 import practise from '../../media/image/icon/practise.svg';
 import shop from '../../media/image/icon/shop.svg';
 import wisie from '../../media/image/icon/wisie.svg';
-import {getObjectLabel} from "../../lang";
 import {Route, Switch} from 'react-router'
 import {ConnectedRouter, push} from 'connected-react-router'
-import {BATTLE_ROUTE, FRIEND_ROUTE, SHOP_ROUTE, TRAINING_ROUTE, WISIES_ROUTE} from "./appRoutes";
+import {
+    BATTLE_FAST_ROUTE,
+    CHALLENGE_ACTIVE_ROUTE,
+    CHALLENGE_FRIEND_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE,
+    CHALLENGE_RESPONSE_ROUTE, CHALLENGE_SUMMARY_ROUTE,
+    FRIEND_ROUTE,
+    PLAY_ROUTE,
+    SHOP_ROUTE,
+    TRAINING_ROUTE,
+    WISIES_ROUTE
+} from "../routes";
+import ChallengeFriendPage from "../challenge/friend/ChallengeFriendPage";
+import ChallengePage from "../challenge/friend/ChallengeResponsePage";
+import Menu from "../../component/menu/Menu";
+import MenuItem from "../../component/menu/MenuItem";
+import PlayPage from "../play/PlayPage";
+import ChallengeListPage from "../challenge/list/ChallengeListPage";
+import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
+import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../util/challengeHelper";
+import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
+import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
 
 class App extends React.PureComponent {
 
@@ -28,67 +46,46 @@ class App extends React.PureComponent {
         this.props.onInit(new CommunicationWebSocket());
     }
 
-    renderMenuItem(path, imgSrc) {
+    renderMenuItem(route, imgSrc) {
         const {screen, onRouteChange} = this.props;
         const iconWidth = Math.max(Math.min(screen.width / 8, 70), 40);
-        return <div onClick={() => onRouteChange(path)} className='menuItem'>
-            <img src={imgSrc} width={iconWidth}/><span>{getObjectLabel(path)}</span>
-        </div>
+        return <MenuItem onClick={onRouteChange} imgSrc={imgSrc} iconWidth={iconWidth} route={route}/>
     }
 
     renderMenu() {
         return <div>
-            <div className='menu menuLeft'>
-                <div className='menuBackground'/>
+            <Menu className='menuLeft'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(BATTLE_ROUTE, battle)}
+                    {this.renderMenuItem(PLAY_ROUTE, play)}
                     {this.renderMenuItem(FRIEND_ROUTE, friend)}
                 </div>
-            </div>
-            <div className='menu menuRight'>
-                <div className='menuBackground'/>
+            </Menu>
+            <Menu className='menuRight'>
                 <div className='menuItems'>
                     {this.renderMenuItem(WISIES_ROUTE, wisie)}
                     {this.renderMenuItem(SHOP_ROUTE, shop)}
                     {this.renderMenuItem(TRAINING_ROUTE, practise)}
                 </div>
-            </div>
+            </Menu>
         </div>;
     }
 
     renderContent() {
-        const {contentId, screen, onContentIdChange, history} = this.props;
-        // if (contentId === undefined) {
-        //     return this.renderMenu();
-        // }
+        const {history} = this.props;
         return <ConnectedRouter history={history}>
-            <div>
-                <Switch>
-                    <Route exact path="/" render={() => this.renderMenu()}/>
-                    <Route path={BATTLE_ROUTE} render={() => <BattlePage/>}/>
-                    <Route path={FRIEND_ROUTE} render={() => <FriendPage/>}/>
-                    <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
-                </Switch>
-            </div>
+            <Switch>
+                <Route exact path="/" render={() => this.renderMenu()}/>
+                <Route exact path={PLAY_ROUTE} render={() => <PlayPage/>}/>
+                <Route exact path={FRIEND_ROUTE} render={() => <FriendPage/>}/>
+                <Route exact path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
+                <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
+                <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengePage/>}/>
+                <Route exact path={BATTLE_FAST_ROUTE} render={() => null}/>
+                <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
+                <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
+                <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
+            </Switch>
         </ConnectedRouter>;
-        // if (contentId === OBJECT_BATTLE) {
-        //     return <BattlePage/>
-        // }
-        // if (contentId === OBJECT_APP_TRAINING) {
-        //     return <PractisePage/>
-        // }
-        // if (contentId === OBJECT_APP_FRIEND) {
-        //     return <FriendPage/>
-        // }
-        // if (contentId === OBJECT_CHALLENGE_FRIEND) {
-        //     return <ChallengeFriendPage/>
-        // }
-        // if (contentId === OBJECT_CHALLENGE_LIST) {
-        //     return <ChallengeListPage/>
-        // }
-        // if (contentId === OBJECT_APP_BATTLE) {
-        //     return <ChallengePage/>
-        // }
     }
 
     renderFetch() {
@@ -96,6 +93,7 @@ class App extends React.PureComponent {
         return <div>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
+            <ChallengeFetchContainer/>
         </div>
     }
 

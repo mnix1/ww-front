@@ -9,7 +9,8 @@
     margin: 0.25rem;
 
 }
-.playAgain div{
+
+.playAgain div {
     display: flex;
     justify-content: center;
     flex-direction: column;

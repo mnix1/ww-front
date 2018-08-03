@@ -20,23 +20,13 @@ import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import {prepareAnswerIntervalMessage} from "../../util/textHelper";
 import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
-import {TRAINING_ROUTE} from "../app/appRoutes";
+import {TRAINING_ROUTE} from "../routes";
 
 const TASK_ROUTE = TRAINING_ROUTE + '/task';
 
 class PractisePage extends React.PureComponent {
 
     randomHero = randomHero();
-
-    renderContent() {
-        const {category, practiseStartRep} = this.props;
-        return <div>
-            <Switch>
-                <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
-                <Route path={TASK_ROUTE} render={() => this.renderTask()}/>
-            </Switch>
-        </div>
-    }
 
     renderChooseCategory() {
         const {screen, onCategoryChange} = this.props;
@@ -101,7 +91,10 @@ class PractisePage extends React.PureComponent {
         const {category, answerId, practiseStartRep} = this.props;
         return <div className='page'>
             <div className='pageBackground'/>
-            {this.renderContent()}
+            <Switch>
+                <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
+                <Route path={TASK_ROUTE} render={() => this.renderTask()}/>
+            </Switch>
             <PractiseStartFetch category={category} practiseStartRep={practiseStartRep}/>
             <PractiseEndFetch answerId={answerId} practiseStartRep={practiseStartRep}/>
         </div>

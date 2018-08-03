@@ -40,7 +40,6 @@ export default function reducer(state = initialState, action) {
     }
 }
 
-
 export function challengeCleared() {
     return {type: CLEARED};
 }

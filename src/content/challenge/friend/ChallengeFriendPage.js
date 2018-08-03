@@ -1,24 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_OPEN} from "../../../util/challengeHelper";
-import ChallengeFriendInitPage from "./ChallengeFriendInit";
+import {
+    CHALLENGE_STATUS_CLOSED,
+    CHALLENGE_STATUS_IN_PROGRESS,
+} from "../../../util/challengeHelper";
+import ChallengeFriendInit from "./ChallengeFriendInit";
 import ChallengeTask from "../task/ChallengeTask";
-import ChallengeFriendStartFetch from "./fetch/ChallengeFriendStartFetch";
-import ChallengeEndFetch from "../task/fetch/ChallengeEndFetch";
+import ChallengeFriendStartFetch from "../fetch/ChallengeFriendStartFetch";
+import ChallengeEndFetch from "../fetch/ChallengeEndFetch";
 import ChallengeSolution from "../task/ChallengeSolution";
 
 class ChallengeFriendPage extends React.PureComponent {
 
-    renderPage() {
-        const {status, challengeFriendStartRep, challengeEndRep} = this.props;
-        if (_.isNil(status)) {
-            return <ChallengeFriendInitPage/>;
-        }
-        if (status === CHALLENGE_STATUS_OPEN) {
-            return <ChallengeTask rep={challengeFriendStartRep}/>;
+    renderContent() {
+        const {status, tags, challengeFriendStartRep, challengeEndRep} = this.props;
+        if (_.isNil(status) && tags) {
+            return <ChallengeFriendInit/>;
         }
         if (status === CHALLENGE_STATUS_IN_PROGRESS) {
+            return <ChallengeTask rep={challengeFriendStartRep}/>;
+        }
+        if (status === CHALLENGE_STATUS_CLOSED && challengeFriendStartRep && challengeFriendStartRep.fulfilled) {
             const repValue = challengeFriendStartRep.value;
             return <ChallengeSolution questions={repValue.questions} challengeId={repValue.id} rep={challengeEndRep}/>;
         }
@@ -27,8 +30,11 @@ class ChallengeFriendPage extends React.PureComponent {
 
     render() {
         const {challengeFriendStartRep, challengeEndRep, tags, status, questionIdAnswerIdMap} = this.props;
-        return <div>
-            {this.renderPage()}
+        return <div className="page">
+            <div className="pageBackground"/>
+            <div className="pageContent">
+                {this.renderContent()}
+            </div>
             <ChallengeFriendStartFetch
                 challengeFriendStartRep={challengeFriendStartRep}
                 tags={tags}

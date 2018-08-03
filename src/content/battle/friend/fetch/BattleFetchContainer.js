@@ -14,7 +14,7 @@ import {
     BATTLE_STATUS_WAITING
 } from "../../../../util/battleHelper";
 import _ from 'lodash';
-import {BATTLE_ROUTE} from "../../../app/appRoutes";
+import {BATTLE_ROUTE} from "../../../routes";
 import {push} from 'connected-react-router'
 
 class BattleFetchContainer extends React.PureComponent {

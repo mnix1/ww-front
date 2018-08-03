@@ -3,20 +3,22 @@ import {connect} from 'react-redux';
 import './styles.css';
 import _ from 'lodash';
 import Task from "../../../component/task/Task";
-import {challengeCleared, questionIndexChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
+import {questionIndexChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {
     getText,
     TEXT_ANSWER_FOR_QUESTION,
+    TEXT_CORRECT_ANSWER,
     TEXT_NEXT_QUESTION,
     TEXT_POINTS,
     TEXT_SUMMARY,
+    TEXT_WRONG_ANSWER,
     TEXT_YOUR_SCORE
 } from "../../../lang";
 import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
 import FaListOl from 'react-icons/lib/fa/list-ol';
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
-import {BATTLE_ROUTE} from "../../app/appRoutes";
+import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {push} from 'connected-react-router'
 
 class ChallengeSolution extends React.PureComponent {
@@ -64,11 +66,14 @@ class ChallengeSolution extends React.PureComponent {
     }
 
     renderHeader({answerInterval, questionIdCorrectAnswerIdMap}) {
-        const {questionIndex} = this.props;
+        const {questionIndex, questions, questionIdAnswerIdMap} = this.props;
+        const question = _.sortBy(questions, 'id')[questionIndex];
         return <div className="contentHeader">
             {`${getText(TEXT_YOUR_SCORE)}: ${this.calculateResult(questionIdCorrectAnswerIdMap)} ${getText(TEXT_POINTS)}, ${prepareAnswerIntervalMessage(answerInterval)}`}
             <br/>
             {`${getText(TEXT_ANSWER_FOR_QUESTION)} ${questionIndex + 1}:`}
+            <br/>
+            {questionIdAnswerIdMap[question.id] === questionIdCorrectAnswerIdMap[question.id] ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER)}
             {this.renderActions()}
         </div>;
     }
@@ -77,7 +82,6 @@ class ChallengeSolution extends React.PureComponent {
         const {questionIndex, questionIdAnswerIdMap, questions} = this.props;
         const question = _.sortBy(questions, 'id')[questionIndex];
         return <Task
-            style={{position: 'absolute', bottom: 0}}
             answerId={questionIdAnswerIdMap[question.id]}
             correctAnswerId={questionIdCorrectAnswerIdMap[question.id]}
             canChangeAnswer={false}
@@ -110,9 +114,9 @@ export default connect(
     (dispatch) => ({
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),
         onChallengeSummaryClick: challengeId => {
-            dispatch(challengeCleared());
+            dispatch(statusChanged(undefined));
             dispatch(summaryIdChanged(challengeId));
-            dispatch(push(BATTLE_ROUTE));
+            dispatch(push(CHALLENGE_SUMMARY_ROUTE));
         }
     })
 )(ChallengeSolution);

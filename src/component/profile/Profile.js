@@ -32,8 +32,8 @@ export default class Profile extends React.PureComponent {
                     {isOnline === true && <div><TiWiFi style={{color: DARK_GREEN_COLOR}}/></div>}
                     {isOnline === false && <div><TiWiFi style={{color: DARK_RED_COLOR}}/></div>}
                     <div>
-                        <div className='name'>{name}</div>
-                        <div className='tag'>#{tag}</div>
+                        {name && <div className='name'>{name}</div>}
+                        {tag && <div className='tag'>#{tag}</div>}
                     </div>
                 </div>
                 {this.renderActions()}

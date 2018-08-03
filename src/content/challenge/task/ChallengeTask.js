@@ -9,7 +9,7 @@ import {
     statusChanged
 } from "../../../redux/reducer/challenge";
 import {getText, TEXT_QUESTION} from "../../../lang";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 
 class ChallengeTask extends React.PureComponent {
 
@@ -56,7 +56,7 @@ export default connect(
     }),
     (dispatch) => ({
         onLastQuestionAnswerClick: () => {
-            dispatch(statusChanged(CHALLENGE_STATUS_IN_PROGRESS));
+            dispatch(statusChanged(CHALLENGE_STATUS_CLOSED));
             dispatch(questionIndexChanged(0));
         },
         onNavigateTaskClick: questionIndex => dispatch(questionIndexChanged(questionIndex)),

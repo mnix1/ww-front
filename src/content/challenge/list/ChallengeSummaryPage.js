@@ -16,18 +16,21 @@ class ChallengeSummaryPage extends React.PureComponent {
     }
 
     renderPosition(position, i) {
+        let content;
         if (position.status !== CHALLENGE_STATUS_CLOSED) {
-            return <div className='position'>
+            content = <div key={i} className='position'>
                 <div className='details'>{getText(TEXT_WAITING)}</div>
                 <div className='details'>ZzzZzzzz...</div>
             </div>
-        }
-        return <Profile key={i} position={position}>
-            <div className='position'>
+        } else {
+            content = <div className='position'>
                 {/*<div className='details'>{preparePositionMessage(position.position)}</div>*/}
                 <div className='details'>{prepareScoreMessage(position.score)}</div>
                 <div className='details'>{prepareAnswerIntervalMessage(position.answerInterval)}</div>
             </div>
+        }
+        return <Profile key={i} {...position.profile}>
+            {content}
         </Profile>;
     }
 
@@ -37,16 +40,22 @@ class ChallengeSummaryPage extends React.PureComponent {
         if (!positions) {
             return null;
         }
-        return <div>
-            <div className="pageHeader">
-                <span>{getText(TEXT_SUMMARY)}</span>
+        return <div className="page">
+            <div className="pageBackground"/>
+            <div className="pageContent">
+                <div className="pageHeader">
+                    <span>{getText(TEXT_SUMMARY)}</span>
+                </div>
+                {this.renderPositions(positions)}
             </div>
-            {this.renderPositions(positions)}
         </div>
     }
 }
 
 export default connect(
-    (state) => ({}),
+    (state) => ({
+        path: state.router.location.pathname,
+        rep: state.repository.challengeSummary,
+    }),
     (dispatch) => ({})
 )(ChallengeSummaryPage);
