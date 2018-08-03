@@ -23,6 +23,7 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_CONTINUE = 'TEXT_CONTINUE';
 export const TEXT_CATEGORY = 'TEXT_CATEGORY';
 export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
 export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
@@ -86,6 +87,7 @@ const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
         [TEXT_ANSWER]: 'Odpowiedz',
+        [TEXT_CONTINUE]: 'Kontynuuj',
         [TEXT_CATEGORY]: 'Kategoria',
         [TEXT_CHOOSE_CATEGORY]: 'Wybierz kategorię',
         [TEXT_PLAY_AGAIN]: 'Zagraj ponownie',
@@ -143,6 +145,7 @@ const TEXTS = {
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
         [TEXT_ANSWER]: 'Odpowiedz',
+        [TEXT_CONTINUE]: 'Continue',
         [TEXT_CATEGORY]: 'Category',
         [TEXT_CHOOSE_CATEGORY]: 'Choose category',
         [TEXT_PLAY_AGAIN]: 'Play again',

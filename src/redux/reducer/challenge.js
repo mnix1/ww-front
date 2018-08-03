@@ -8,7 +8,7 @@ export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'challenge/question-id-ski
 export const SUMMARY_ID_CHANGED = 'challenge/summary-id/changed';
 
 const initialState = {
-    tags: undefined,
+    tags: [],
     inProgressId: undefined,
     questionIndex: 0,
     questionIdAnswerIdMap: {},

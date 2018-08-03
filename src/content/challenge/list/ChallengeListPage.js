@@ -7,7 +7,7 @@ import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
 import {
     getText,
-    TEXT_ANSWER,
+    TEXT_ANSWER, TEXT_CONTINUE,
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES,
     TEXT_SUMMARY, TEXT_YOU
@@ -44,8 +44,9 @@ class ChallengeListPage extends React.PureComponent {
                 tag: isProfileCreator ? null : creator.tag,
                 name: isProfileCreator ? null : creator.name
             }} actions={<div className='actions'>
-                {!isProfileCreator &&
-                <div onClick={() => onChallengeResponseClick(challenge.id)}><span>{getText(TEXT_ANSWER)}</span><FaGavel
+                {challenge.canResponse &&
+                <div onClick={() => onChallengeResponseClick(challenge.id)}>
+                    <span>{getText(isProfileCreator ? TEXT_CONTINUE : TEXT_ANSWER)}</span><FaGavel
                     color={CREAM_COLOR}/></div>}
                 <div onClick={() => onChallengeSummaryClick(challenge.id)}><span>{getText(TEXT_SUMMARY)}</span><FaListOl
                     color={CREAM_COLOR}/></div>
