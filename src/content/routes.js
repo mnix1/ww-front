@@ -8,6 +8,7 @@ export const FRIEND_ROUTE = '/friend';
 export const BATTLE_ROUTE = '/battle';
 export const BATTLE_FAST_ROUTE = '/battleFast';
 
+export const CHALLENGE_FAST_ROUTE = '/challengeFast';
 export const CHALLENGE_FRIEND_ROUTE = '/challengeFriend';
 export const CHALLENGE_RESPONSE_ROUTE = '/challengeResponse';
 export const CHALLENGE_SUMMARY_ROUTE = '/challengeSummary';

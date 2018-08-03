@@ -2,11 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ChallengeListFetch from "./ChallengeListFetch";
 import ChallengeSummaryFetch from "./ChallengeSummaryFetch";
-import _ from "lodash";
 import ChallengeStartResponseFetch from "./ChallengeStartResponseFetch";
 import ChallengeEndFetch from "./ChallengeEndFetch";
-import ChallengeFriendStartFetch from "./ChallengeFriendStartFetch";
-import {CHALLENGE_FRIEND_ROUTE, CHALLENGE_RESPONSE_ROUTE} from "../../routes";
+import ChallengeStartFriendFetch from "./ChallengeStartFriendFetch";
+import ChallengeStartFastFetch from "./ChallengeStartFastFetch";
 
 class ChallengeFetchContainer extends React.PureComponent {
 
@@ -14,7 +13,7 @@ class ChallengeFetchContainer extends React.PureComponent {
     }
 
     render() {
-        const {path, summaryId, tags, inProgressId, status, questionIdAnswerIdMap, challengeStartResponseRep, challengeFriendStartRep, challengeEndRep} = this.props;
+        const {path, summaryId, tags, inProgressId, status, questionIdAnswerIdMap, challengeStartResponseRep, challengeStartFriendRep, challengeStartFastRep, challengeEndRep} = this.props;
         return <div>
             <ChallengeListFetch path={path}/>
             <ChallengeSummaryFetch path={path} challengeId={summaryId}/>
@@ -24,19 +23,21 @@ class ChallengeFetchContainer extends React.PureComponent {
                 challengeId={inProgressId}
                 status={status}
             />
-            <ChallengeFriendStartFetch
+            <ChallengeStartFriendFetch
                 path={path}
+                challengeStartFriendRep={challengeStartFriendRep}
                 tags={tags}
+                status={status}
+            />
+            <ChallengeStartFastFetch
+                path={path}
+                challengeStartFastRep={challengeStartFastRep}
                 status={status}
             />
             <ChallengeEndFetch
                 path={path}
                 challengeEndRep={challengeEndRep}
-                challengeId={path === CHALLENGE_FRIEND_ROUTE
-                    ? _.get(challengeFriendStartRep, 'value.id')
-                    : path === CHALLENGE_RESPONSE_ROUTE
-                        ? _.get(challengeStartResponseRep, 'value.id')
-                        : null}
+                challengeId={inProgressId}
                 questionIdAnswerIdMap={questionIdAnswerIdMap}
                 status={status}
             />
@@ -54,8 +55,9 @@ export default connect(
         questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
         challengeListRep: state.repository.challengeList,
         challengeSummaryRep: state.repository.challengeSummary,
-        challengeFriendStartRep: state.repository.challengeFriendStart,
+        challengeStartFriendRep: state.repository.challengeStartFriend,
         challengeStartResponseRep: state.repository.challengeStartResponse,
+        challengeStartFastRep: state.repository.challengeStartFast,
         challengeEndRep: state.repository.challengeEnd,
     }),
     (dispatch) => ({})

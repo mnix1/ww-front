@@ -11,7 +11,7 @@ import {
 import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
 import {
     BATTLE_FAST_ROUTE,
-    BATTLE_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE,
+    BATTLE_ROUTE, CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE,
     FRIEND_ROUTE,
     HISTORY_ROUTE, PLAY_ROUTE,
     SHOP_ROUTE,
@@ -218,6 +218,7 @@ const ROUTE_LABELS = {
         [WISIES_ROUTE]: 'Wiedzaki',
         [FRIEND_ROUTE]: 'Znajomi',
         [BATTLE_FAST_ROUTE]: <span>Szybka<br/>bitwa</span>,
+        [CHALLENGE_FAST_ROUTE]: <span>Szybkie<br/>wyzwanie</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
     },
@@ -230,7 +231,8 @@ const ROUTE_LABELS = {
         [WISIES_ROUTE]: 'Wisies',
         [FRIEND_ROUTE]: 'Friends',
         [BATTLE_FAST_ROUTE]: <span>Fast<br/>battle</span>,
-        [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challange</span>,
+        [CHALLENGE_FAST_ROUTE]: <span>Fast<br/>challenge</span>,
+        [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challenge</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,
     }
 };

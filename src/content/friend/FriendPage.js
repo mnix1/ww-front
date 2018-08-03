@@ -20,7 +20,7 @@ import {
 } from "../../lang";
 import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
-import {tagsChanged} from "../../redux/reducer/challenge";
+import {challengeCleared, tagsChanged} from "../../redux/reducer/challenge";
 import {AddFriend} from "../../component/add-friend/AddFriend";
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';
@@ -35,7 +35,7 @@ import {BATTLE_STATUS_START} from "../../util/battleHelper";
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_FRIEND_ROUTE, FRIEND_ROUTE} from "../routes";
-import {clearChallengeFriendStartFetch} from "../challenge/fetch/ChallengeFriendStartFetch";
+import {clearChallengeStartFriendFetch} from "../challenge/fetch/ChallengeStartFriendFetch";
 import {clearChallengeEndFetch} from "../challenge/fetch/ChallengeEndFetch";
 
 export const STATUS_REQUESTED = 'REQUESTED';
@@ -168,8 +168,9 @@ export default connect(
             dispatch(statusChanged(BATTLE_STATUS_START));
         },
         onChallengeFriendClick: (tag) => {
-            clearChallengeFriendStartFetch(dispatch);
+            clearChallengeStartFriendFetch(dispatch);
             clearChallengeEndFetch(dispatch);
+            dispatch(challengeCleared());
             dispatch(tagsChanged([tag]));
             dispatch(push(CHALLENGE_FRIEND_ROUTE));
         },

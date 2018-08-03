@@ -8,12 +8,12 @@ import ChallengeSolution from "../task/ChallengeSolution";
 class ChallengeFriendPage extends React.PureComponent {
 
     renderContent() {
-        const {status, challengeFriendStartRep, challengeEndRep} = this.props;
+        const {status, challengeStartFriendRep, challengeEndRep} = this.props;
         if (status === CHALLENGE_STATUS_IN_PROGRESS) {
-            return <ChallengeTask rep={challengeFriendStartRep}/>;
+            return <ChallengeTask rep={challengeStartFriendRep}/>;
         }
-        if (challengeFriendStartRep && challengeFriendStartRep.fulfilled) {
-            const repValue = challengeFriendStartRep.value;
+        if (challengeStartFriendRep && challengeStartFriendRep.fulfilled) {
+            const repValue = challengeStartFriendRep.value;
             return <ChallengeSolution questions={repValue.questions} challengeId={repValue.id} rep={challengeEndRep}/>;
         }
         return <ChallengeFriendInit/>;
@@ -33,7 +33,7 @@ export default connect(
     (state) => ({
         status: state.challenge.status,
         questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
-        challengeFriendStartRep: state.repository.challengeFriendStart,
+        challengeStartFriendRep: state.repository.challengeStartFriend,
         challengeEndRep: state.repository.challengeEnd
     }),
     (dispatch) => ({})

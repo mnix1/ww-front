@@ -1,8 +1,8 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
-import {CHALLENGE_FRIEND_ROUTE, CHALLENGE_RESPONSE_ROUTE} from "../../routes";
+import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
+import {CHALLENGE_FAST_ROUTE, CHALLENGE_FRIEND_ROUTE, CHALLENGE_RESPONSE_ROUTE} from "../../routes";
 
 class ChallengeEndFetch extends React.PureComponent {
 
@@ -20,7 +20,7 @@ class ChallengeEndFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {challengeId, questionIdAnswerIdMap, path, status, dispatchChallengeEndPost} = this.props;
-        if ((path === CHALLENGE_FRIEND_ROUTE || path === CHALLENGE_RESPONSE_ROUTE)
+        if ((path === CHALLENGE_FRIEND_ROUTE || path === CHALLENGE_RESPONSE_ROUTE || path === CHALLENGE_FAST_ROUTE)
             && status === CHALLENGE_STATUS_CLOSED
             && (path !== prevProps.path || status !== prevProps.status)) {
             dispatchChallengeEndPost(challengeId, questionIdAnswerIdMap);

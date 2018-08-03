@@ -4,6 +4,10 @@
     background: #fffdf1;
 }
 
+body {
+    color: #fffdf1;
+}
+
 .content {
     margin: auto auto;
     position: relative;
@@ -21,7 +25,6 @@
 .contentHeader {
     position: relative;
     text-align: center;
-    color: #fffdf1;
     font-size: 1rem;
     padding-top: 0.25rem;
     width: 100%;

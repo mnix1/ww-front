@@ -3,8 +3,10 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 import {CHALLENGE_FRIEND_ROUTE} from "../../routes";
+import {inProgressIdChanged} from "../../../redux/reducer/challenge";
+import _ from "lodash";
 
-class ChallengeFriendStartFetch extends React.PureComponent {
+class ChallengeStartFriendFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -12,18 +14,23 @@ class ChallengeFriendStartFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
+        const lastValue = _.get(prevProps.challengeStartFriendRep, 'value');
+        const newValue = _.get(this.props.challengeStartFriendRep, 'value');
+        if (lastValue !== newValue && !_.isNil(newValue)) {
+            this.props.dispatch(inProgressIdChanged(newValue.id));
+        }
     }
 
     componentWillUnmount() {
-        clearChallengeFriendStartFetch(this.props.dispatch);
+        clearChallengeStartFriendFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {tags, path, status, dispatchChallengeFriendStartPost} = this.props;
+        const {tags, path, status, dispatchChallengeStartFriendPost} = this.props;
         if (path === CHALLENGE_FRIEND_ROUTE
             && status === CHALLENGE_STATUS_IN_PROGRESS
             && (path !== prevProps.path || status !== prevProps.status)) {
-            dispatchChallengeFriendStartPost(tags);
+            dispatchChallengeStartFriendPost(tags);
         }
     }
 
@@ -32,15 +39,15 @@ class ChallengeFriendStartFetch extends React.PureComponent {
     }
 }
 
-export function clearChallengeFriendStartFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'challengeFriendStart'}});
+export function clearChallengeStartFriendFetch(dispatch) {
+    dispatch({type: CLEAR, resource: {name: 'challengeStartFriend'}});
 }
 
 export default connect([{
-    resource: 'challengeFriendStart',
+    resource: 'challengeStartFriend',
     method: 'post',
     request: (tags) => ({
         url: `/challenge/startFriend`,
         body: {tags}
     })
-}])(ChallengeFriendStartFetch);
+}])(ChallengeStartFriendFetch);

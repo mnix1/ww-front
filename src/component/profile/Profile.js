@@ -3,7 +3,7 @@ import './styles.css';
 import {getHero} from "../../util/media/HeroHelper";
 import PropTypes from "prop-types";
 import TiWiFi from "react-icons/lib/ti/wi-fi";
-import {DARK_GREEN_COLOR, DARK_RED_COLOR} from "../../util/style/constant";
+import {DARK_GREEN_COLOR, DARK_RED_COLOR, GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
 
 export default class Profile extends React.PureComponent {
 
@@ -29,8 +29,8 @@ export default class Profile extends React.PureComponent {
             <div className='profile'>
                 <img alt='' src={getHero(avatar)} height={80}/>
                 <div className='details'>
-                    {isOnline === true && <div><TiWiFi style={{color: DARK_GREEN_COLOR}}/></div>}
-                    {isOnline === false && <div><TiWiFi style={{color: DARK_RED_COLOR}}/></div>}
+                    {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
+                    {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
                     <div>
                         {name && <div className='name'>{name}</div>}
                         {tag && <div className='tag'>#{tag}</div>}

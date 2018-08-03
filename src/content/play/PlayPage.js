@@ -3,21 +3,32 @@ import './styles.css';
 import {connect} from 'react-redux';
 import dices from '../../media/image/icon/dices.svg';
 import clock from '../../media/image/icon/clock.svg';
+import rubicCube from '../../media/image/icon/rubicCube.svg';
 import notebook from '../../media/image/icon/notebook.svg';
-import {BATTLE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
+import {BATTLE_FAST_ROUTE, CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
+import {CHALLENGE_STATUS_IN_PROGRESS} from "../../util/challengeHelper";
+import {challengeCleared, inProgressIdChanged, statusChanged} from "../../redux/reducer/challenge";
+import _ from 'lodash';
 
 class PlayPage extends React.PureComponent {
 
-    renderMenuItem(route, imgSrc) {
+    renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
         const iconWidth = Math.max(Math.min(screen.width / 8, 70), 40);
-        return <MenuItem onClick={onRouteChange} imgSrc={imgSrc} iconWidth={iconWidth} route={route}/>
+        return <MenuItem imgSrc={imgSrc}
+                         iconWidth={iconWidth}
+                         route={route}
+                         onClick={(route) => {
+                             onClick();
+                             onRouteChange(route);
+                         }}/>
     }
 
     renderMenu() {
+        const {onChallengeFastClick} = this.props;
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
@@ -26,6 +37,7 @@ class PlayPage extends React.PureComponent {
             </Menu>
             <Menu className='menuRight'>
                 <div className='menuItems'>
+                    {this.renderMenuItem(CHALLENGE_FAST_ROUTE, rubicCube, onChallengeFastClick)}
                     {this.renderMenuItem(CHALLENGE_LIST_ROUTE, clock)}
                     {this.renderMenuItem(CHALLENGE_HISTORY_ROUTE, notebook)}
                 </div>
@@ -53,6 +65,10 @@ export default connect(
         path: state.router.location.pathname
     }),
     (dispatch) => ({
+        onChallengeFastClick: () => {
+            dispatch(challengeCleared());
+            dispatch(statusChanged(CHALLENGE_STATUS_IN_PROGRESS));
+        },
         onRouteChange: (e) => {
             dispatch(push(e));
         },

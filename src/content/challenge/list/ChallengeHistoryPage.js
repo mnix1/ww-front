@@ -5,7 +5,7 @@ import {CREAM_COLOR} from "../../../util/style/constant";
 import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
 import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES, TEXT_SUMMARY} from "../../../lang";
-import {summaryIdChanged} from "../../../redux/reducer/challenge";
+import {challengeCleared, summaryIdChanged} from "../../../redux/reducer/challenge";
 import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_RESPONSE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
@@ -59,6 +59,7 @@ export default connect(
     }),
     (dispatch) => ({
         onChallengeSummaryClick: (id) => {
+            dispatch(challengeCleared());
             dispatch(summaryIdChanged(id));
             dispatch(push(CHALLENGE_SUMMARY_ROUTE));
         }

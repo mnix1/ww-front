@@ -20,9 +20,14 @@ import {Route, Switch} from 'react-router'
 import {ConnectedRouter, push} from 'connected-react-router'
 import {
     BATTLE_FAST_ROUTE,
+    BATTLE_ROUTE,
     CHALLENGE_ACTIVE_ROUTE,
-    CHALLENGE_FRIEND_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE,
-    CHALLENGE_RESPONSE_ROUTE, CHALLENGE_SUMMARY_ROUTE,
+    CHALLENGE_FAST_ROUTE,
+    CHALLENGE_FRIEND_ROUTE,
+    CHALLENGE_HISTORY_ROUTE,
+    CHALLENGE_LIST_ROUTE,
+    CHALLENGE_RESPONSE_ROUTE,
+    CHALLENGE_SUMMARY_ROUTE,
     FRIEND_ROUTE,
     PLAY_ROUTE,
     SHOP_ROUTE,
@@ -30,15 +35,16 @@ import {
     WISIES_ROUTE
 } from "../routes";
 import ChallengeFriendPage from "../challenge/friend/ChallengeFriendPage";
-import ChallengePage from "../challenge/friend/ChallengeResponsePage";
+import ChallengeResponsePage from "../challenge/friend/ChallengeResponsePage";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import PlayPage from "../play/PlayPage";
 import ChallengeListPage from "../challenge/list/ChallengeListPage";
 import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
-import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../util/challengeHelper";
 import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
+import BattlePage from "../battle/friend/BattlePage";
+import ChallengeFastPage from "../challenge/friend/ChallengeFastPage";
 
 class App extends React.PureComponent {
 
@@ -79,8 +85,10 @@ class App extends React.PureComponent {
                 <Route exact path={FRIEND_ROUTE} render={() => <FriendPage/>}/>
                 <Route exact path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
                 <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
-                <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengePage/>}/>
+                <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
+                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage/>}/>
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => null}/>
+                <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
