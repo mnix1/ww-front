@@ -53,6 +53,7 @@ body {
 }
 
 .pageContent {
+    height: 100%;
     position: relative;
 }
 

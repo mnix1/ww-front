@@ -24,7 +24,7 @@ class ChallengeFastPage extends React.PureComponent {
     }
 
     render() {
-        return <div className="page">
+        return <div className="page minHeight">
             <div className="pageBackground"/>
             <div className="pageContent">
                 {this.renderContent()}

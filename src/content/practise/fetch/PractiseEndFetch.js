@@ -18,7 +18,7 @@ class PractiseEndFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {practiseStartRep, answerId, dispatchPractiseEndPost} = this.props;
-        if (answerId !== undefined && prevProps.answerId !== answerId) {
+        if (answerId !== undefined && prevProps.answerId !== answerId && practiseStartRep) {
             const practiseId = practiseStartRep.value.practise.id;
             dispatchPractiseEndPost(practiseId, answerId);
         }

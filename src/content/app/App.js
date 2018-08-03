@@ -34,8 +34,8 @@ import {
     TRAINING_ROUTE,
     WISIES_ROUTE
 } from "../routes";
-import ChallengeFriendPage from "../challenge/friend/ChallengeFriendPage";
-import ChallengeResponsePage from "../challenge/friend/ChallengeResponsePage";
+import ChallengeFriendPage from "../challenge/create/ChallengeFriendPage";
+import ChallengeResponsePage from "../challenge/create/ChallengeResponsePage";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import PlayPage from "../play/PlayPage";
@@ -44,7 +44,7 @@ import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer"
 import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
 import BattlePage from "../battle/friend/BattlePage";
-import ChallengeFastPage from "../challenge/friend/ChallengeFastPage";
+import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
 
 class App extends React.PureComponent {
 
