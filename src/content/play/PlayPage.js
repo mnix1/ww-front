@@ -9,9 +9,13 @@ import {BATTLE_FAST_ROUTE, CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLE
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../util/challengeHelper";
+import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_START} from "../../util/challengeHelper";
 import {challengeCleared, inProgressIdChanged, statusChanged} from "../../redux/reducer/challenge";
 import _ from 'lodash';
+import {clearChallengeEndTaskFetch} from "../challenge/fetch/ChallengeEndTaskFetch";
+import {clearChallengeNextTaskFetch} from "../challenge/fetch/ChallengeNextTaskFetch";
+import {clearChallengeStartFastFetch} from "../challenge/fetch/ChallengeStartFastFetch";
+import {clearChallengeTaskAndStartFetch} from "../challenge/fetch/ChallengeFetchContainer";
 
 class PlayPage extends React.PureComponent {
 
@@ -66,8 +70,9 @@ export default connect(
     }),
     (dispatch) => ({
         onChallengeFastClick: () => {
+            clearChallengeTaskAndStartFetch(dispatch);
             dispatch(challengeCleared());
-            dispatch(statusChanged(CHALLENGE_STATUS_IN_PROGRESS));
+            dispatch(statusChanged(CHALLENGE_STATUS_START));
         },
         onRouteChange: (e) => {
             dispatch(push(e));

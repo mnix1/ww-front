@@ -36,7 +36,7 @@ import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_FRIEND_ROUTE, FRIEND_ROUTE} from "../routes";
 import {clearChallengeStartFriendFetch} from "../challenge/fetch/ChallengeStartFriendFetch";
-import {clearChallengeEndFetch} from "../challenge/fetch/ChallengeEndFetch";
+import {clearChallengeEndTaskFetch} from "../challenge/fetch/ChallengeEndTaskFetch";
 
 export const STATUS_REQUESTED = 'REQUESTED';
 export const STATUS_SUGGESTED = 'SUGGESTED';
@@ -168,8 +168,8 @@ export default connect(
             dispatch(statusChanged(BATTLE_STATUS_START));
         },
         onChallengeFriendClick: (tag) => {
-            clearChallengeStartFriendFetch(dispatch);
-            clearChallengeEndFetch(dispatch);
+            // clearChallengeStartFriendFetch(dispatch);
+            // clearChallengeEndTaskFetch(dispatch);
             dispatch(challengeCleared());
             dispatch(tagsChanged([tag]));
             dispatch(push(CHALLENGE_FRIEND_ROUTE));

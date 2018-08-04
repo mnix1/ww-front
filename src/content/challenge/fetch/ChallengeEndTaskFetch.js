@@ -1,10 +1,10 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_END_TASK} from "../../../util/challengeHelper";
 import {CHALLENGE_FAST_ROUTE, CHALLENGE_FRIEND_ROUTE, CHALLENGE_RESPONSE_ROUTE} from "../../routes";
 
-class ChallengeEndFetch extends React.PureComponent {
+class ChallengeEndTaskTaskFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -15,15 +15,15 @@ class ChallengeEndFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearChallengeEndFetch(this.props.dispatch);
+        clearChallengeEndTaskFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {challengeId, questionIdAnswerIdMap, path, status, dispatchChallengeEndPost} = this.props;
+        const {challengeId, answerId, path, status, dispatchChallengeEndTaskPost} = this.props;
         if ((path === CHALLENGE_FRIEND_ROUTE || path === CHALLENGE_RESPONSE_ROUTE || path === CHALLENGE_FAST_ROUTE)
-            && status === CHALLENGE_STATUS_CLOSED
+            && status === CHALLENGE_STATUS_END_TASK
             && (path !== prevProps.path || status !== prevProps.status)) {
-            dispatchChallengeEndPost(challengeId, questionIdAnswerIdMap);
+            dispatchChallengeEndTaskPost(challengeId, answerId);
         }
     }
 
@@ -32,15 +32,15 @@ class ChallengeEndFetch extends React.PureComponent {
     }
 }
 
-export function clearChallengeEndFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'challengeEnd'}});
+export function clearChallengeEndTaskFetch(dispatch) {
+    dispatch({type: CLEAR, resource: {name: 'challengeEndTask'}});
 }
 
 export default connect([{
-    resource: 'challengeEnd',
+    resource: 'challengeEndTask',
     method: 'post',
-    request: (challengeId, questionIdAnswerIdMap) => ({
-        url: `/challenge/end`,
-        body: {challengeId, questionIdAnswerIdMap}
+    request: (challengeId, answerId) => ({
+        url: `/challenge/endTask`,
+        body: {challengeId, answerId}
     })
-}])(ChallengeEndFetch);
+}])(ChallengeEndTaskTaskFetch);

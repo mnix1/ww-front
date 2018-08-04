@@ -10,13 +10,11 @@ import {
 } from "../../../lang";
 import styles from './styles.css';
 import _ from 'lodash';
-import {statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
+import {challengeCleared, statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
-import {
-    CHALLENGE_STATUS_IN_PROGRESS,
-    MAX_CHALLENGE_FRIENDS
-} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_START, MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
+import {clearChallengeTaskAndStartFetch} from "../fetch/ChallengeFetchContainer";
 
 class ChallengeFriendPage extends React.PureComponent {
 
@@ -83,7 +81,8 @@ export default connect(
     }),
     (dispatch) => ({
         onStartChallengeClick: () => {
-            dispatch(statusChanged(CHALLENGE_STATUS_IN_PROGRESS));
+            clearChallengeTaskAndStartFetch(dispatch);
+            dispatch(statusChanged(CHALLENGE_STATUS_START));
         },
         onFriendToggle: (tag, tags) => {
             const newTags = _.filter(tags, (e) => e !== tag);

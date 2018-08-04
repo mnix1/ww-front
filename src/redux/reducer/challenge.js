@@ -2,17 +2,15 @@ export const CLEARED = 'challenge/cleared';
 export const TAGS_CHANGED = 'challenge/tags/changed';
 export const IN_PROGRESS_ID_CHANGED = 'challenge/in-progress-id/changed';
 export const STATUS_CHANGED = 'challenge/status/changed';
-export const QUESTION_INDEX_CHANGED = 'challenge/question-index/changed';
-export const QUESTION_ID_ANSWER_ID_MAP_CHANGED = 'challenge/question-id-answer-id-map/changed';
-export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'challenge/question-id-skip-animation-map/changed';
+export const ANSWER_ID_CHANGED = 'challenge/answer-id/changed';
+export const SKIP_ANIMATION_CHANGED = 'challenge/skip-animation/changed';
 export const SUMMARY_ID_CHANGED = 'challenge/summary-id/changed';
 
 const initialState = {
     tags: [],
     inProgressId: undefined,
-    questionIndex: 0,
-    questionIdAnswerIdMap: {},
-    questionIdSkipAnimationMap: {},
+    answerId: null,
+    skipAnimation: false,
     status: undefined,
     summaryId: undefined,
 };
@@ -27,12 +25,10 @@ export default function reducer(state = initialState, action) {
             return {...state, inProgressId: action.inProgressId};
         case STATUS_CHANGED:
             return {...state, status: action.status};
-        case QUESTION_INDEX_CHANGED:
-            return {...state, questionIndex: action.questionIndex};
-        case QUESTION_ID_ANSWER_ID_MAP_CHANGED:
-            return {...state, questionIdAnswerIdMap: action.questionIdAnswerIdMap};
-        case QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED:
-            return {...state, questionIdSkipAnimationMap: action.questionIdSkipAnimationMap};
+        case ANSWER_ID_CHANGED:
+            return {...state, answerId: action.answerId};
+        case SKIP_ANIMATION_CHANGED:
+            return {...state, skipAnimation: action.skipAnimation};
         case SUMMARY_ID_CHANGED:
             return {...state, summaryId: action.summaryId};
         default:
@@ -56,16 +52,12 @@ export function statusChanged(status) {
     return {type: STATUS_CHANGED, status};
 }
 
-export function questionIndexChanged(questionIndex) {
-    return {type: QUESTION_INDEX_CHANGED, questionIndex};
+export function answerIdChanged(answerId) {
+    return {type: ANSWER_ID_CHANGED, answerId};
 }
 
-export function questionIdAnswerIdMapChanged(questionIdAnswerIdMap) {
-    return {type: QUESTION_ID_ANSWER_ID_MAP_CHANGED, questionIdAnswerIdMap};
-}
-
-export function questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap) {
-    return {type: QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED, questionIdSkipAnimationMap};
+export function skipAnimationChanged(skipAnimation) {
+    return {type: SKIP_ANIMATION_CHANGED, skipAnimation};
 }
 
 export function summaryIdChanged(summaryId) {

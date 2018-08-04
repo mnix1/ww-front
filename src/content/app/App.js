@@ -21,7 +21,6 @@ import {ConnectedRouter, push} from 'connected-react-router'
 import {
     BATTLE_FAST_ROUTE,
     BATTLE_ROUTE,
-    CHALLENGE_ACTIVE_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_FRIEND_ROUTE,
     CHALLENGE_HISTORY_ROUTE,

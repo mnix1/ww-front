@@ -1,26 +1,23 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ChallengeTask from "../task/ChallengeTask";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 import _ from "lodash";
-import ChallengeSolution from "../task/ChallengeSolution";
 
 class ChallengeResponsePage extends React.PureComponent {
 
     renderContent() {
-        const {inProgressId, challengeStartResponseRep, challengeEndRep, status} = this.props;
-        if (!_.isNil(inProgressId)) {
-            if (status === CHALLENGE_STATUS_IN_PROGRESS) {
-                return <ChallengeTask rep={challengeStartResponseRep}/>;
-            }
-            if (challengeStartResponseRep && challengeStartResponseRep.fulfilled) {
-                const repValue = challengeStartResponseRep.value;
-                return <ChallengeSolution questions={repValue.questions}
-                                          challengeId={repValue.id}
-                                          rep={challengeEndRep}/>;
-            }
+        const {inProgressId, challengeStartResponseRep} = this.props;
+        if (_.isNil(inProgressId)) {
+            return;
+            // if (challengeStartResponseRep && challengeStartResponseRep.fulfilled) {
+            //     const repValue = challengeStartResponseRep.value;
+            //     return <ChallengeSolution questions={repValue.questions}
+            //                               challengeId={repValue.id}
+            //                               rep={challengeEndTaskRep}/>;
+            // }
         }
-        return null;
+        return <ChallengeTask startRep={challengeStartResponseRep}
+                              challengeId={_.get(challengeStartResponseRep, 'value.id')}/>;
     }
 
     render() {
@@ -37,10 +34,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         inProgressId: state.challenge.inProgressId,
-        status: state.challenge.status,
-        questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
         challengeStartResponseRep: state.repository.challengeStartResponse,
-        challengeEndRep: state.repository.challengeEnd,
     }),
     (dispatch) => ({})
 )(ChallengeResponsePage);

@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
 import {CHALLENGE_FAST_ROUTE} from "../../routes";
 import {inProgressIdChanged} from "../../../redux/reducer/challenge";
 import _ from 'lodash';
@@ -27,7 +27,7 @@ class ChallengeStartFastFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {path, status, dispatchChallengeStartFastPost} = this.props;
-        if (status === CHALLENGE_STATUS_IN_PROGRESS && path === CHALLENGE_FAST_ROUTE
+        if (status === CHALLENGE_STATUS_START && path === CHALLENGE_FAST_ROUTE
             && (status !== prevProps.status || path !== prevProps.path)) {
             dispatchChallengeStartFastPost();
         }

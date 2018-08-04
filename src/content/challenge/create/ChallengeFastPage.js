@@ -8,19 +8,11 @@ import ChallengeSolution from "../task/ChallengeSolution";
 class ChallengeFastPage extends React.PureComponent {
 
     renderContent() {
-        const {inProgressId, challengeStartFastRep, challengeEndRep, status} = this.props;
-        if (!_.isNil(inProgressId)) {
-            if (status === CHALLENGE_STATUS_IN_PROGRESS) {
-                return <ChallengeTask rep={challengeStartFastRep}/>;
-            }
-            if (challengeStartFastRep && challengeStartFastRep.fulfilled) {
-                const repValue = challengeStartFastRep.value;
-                return <ChallengeSolution questions={repValue.questions}
-                                          challengeId={repValue.id}
-                                          rep={challengeEndRep}/>;
-            }
+        const {inProgressId, challengeStartFastRep} = this.props;
+        if (_.isNil(inProgressId)) {
+            return null;
         }
-        return null;
+        return <ChallengeTask startRep={challengeStartFastRep} challengeId={_.get(challengeStartFastRep, 'value.id')}/>;
     }
 
     render() {
@@ -38,9 +30,7 @@ export default connect(
         screen: state.screen,
         inProgressId: state.challenge.inProgressId,
         status: state.challenge.status,
-        questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
         challengeStartFastRep: state.repository.challengeStartFast,
-        challengeEndRep: state.repository.challengeEnd,
     }),
     (dispatch) => ({})
 )(ChallengeFastPage);

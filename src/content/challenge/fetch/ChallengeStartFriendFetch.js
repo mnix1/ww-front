@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
 import {CHALLENGE_FRIEND_ROUTE} from "../../routes";
 import {inProgressIdChanged} from "../../../redux/reducer/challenge";
 import _ from "lodash";
@@ -28,7 +28,7 @@ class ChallengeStartFriendFetch extends React.PureComponent {
     maybeFetch(prevProps) {
         const {tags, path, status, dispatchChallengeStartFriendPost} = this.props;
         if (path === CHALLENGE_FRIEND_ROUTE
-            && status === CHALLENGE_STATUS_IN_PROGRESS
+            && status === CHALLENGE_STATUS_START
             && (path !== prevProps.path || status !== prevProps.status)) {
             dispatchChallengeStartFriendPost(tags);
         }

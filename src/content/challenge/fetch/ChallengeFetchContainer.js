@@ -2,10 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ChallengeListFetch from "./ChallengeListFetch";
 import ChallengeSummaryFetch from "./ChallengeSummaryFetch";
-import ChallengeStartResponseFetch from "./ChallengeStartResponseFetch";
-import ChallengeEndFetch from "./ChallengeEndFetch";
-import ChallengeStartFriendFetch from "./ChallengeStartFriendFetch";
-import ChallengeStartFastFetch from "./ChallengeStartFastFetch";
+import ChallengeStartResponseFetch, {clearChallengeStartResponseFetch} from "./ChallengeStartResponseFetch";
+import ChallengeEndTaskFetch, {clearChallengeEndTaskFetch} from "./ChallengeEndTaskFetch";
+import ChallengeStartFriendFetch, {clearChallengeStartFriendFetch} from "./ChallengeStartFriendFetch";
+import ChallengeStartFastFetch, {clearChallengeStartFastFetch} from "./ChallengeStartFastFetch";
+import ChallengeNextTaskFetch, {clearChallengeNextTaskFetch} from "./ChallengeNextTaskFetch";
 
 class ChallengeFetchContainer extends React.PureComponent {
 
@@ -13,7 +14,7 @@ class ChallengeFetchContainer extends React.PureComponent {
     }
 
     render() {
-        const {path, summaryId, tags, inProgressId, status, questionIdAnswerIdMap, challengeStartResponseRep, challengeStartFriendRep, challengeStartFastRep, challengeEndRep} = this.props;
+        const {path, summaryId, tags, inProgressId, status, answerId, challengeStartResponseRep, challengeStartFriendRep, challengeStartFastRep, challengeEndRep} = this.props;
         return <div>
             <ChallengeListFetch path={path}/>
             <ChallengeSummaryFetch path={path} challengeId={summaryId}/>
@@ -34,15 +35,28 @@ class ChallengeFetchContainer extends React.PureComponent {
                 challengeStartFastRep={challengeStartFastRep}
                 status={status}
             />
-            <ChallengeEndFetch
+            <ChallengeEndTaskFetch
                 path={path}
-                challengeEndRep={challengeEndRep}
                 challengeId={inProgressId}
-                questionIdAnswerIdMap={questionIdAnswerIdMap}
+                answerId={answerId}
+                status={status}
+            />
+            <ChallengeNextTaskFetch
+                path={path}
+                challengeId={inProgressId}
+                answerId={answerId}
                 status={status}
             />
         </div>;
     }
+}
+
+export function clearChallengeTaskAndStartFetch(dispatch){
+    clearChallengeEndTaskFetch(dispatch);
+    clearChallengeNextTaskFetch(dispatch);
+    clearChallengeStartFastFetch(dispatch);
+    clearChallengeStartFriendFetch(dispatch);
+    clearChallengeStartResponseFetch(dispatch);
 }
 
 export default connect(
@@ -52,13 +66,10 @@ export default connect(
         summaryId: state.challenge.summaryId,
         tags: state.challenge.tags,
         status: state.challenge.status,
-        questionIdAnswerIdMap: state.challenge.questionIdAnswerIdMap,
-        challengeListRep: state.repository.challengeList,
-        challengeSummaryRep: state.repository.challengeSummary,
+        answerId: state.challenge.answerId,
         challengeStartFriendRep: state.repository.challengeStartFriend,
         challengeStartResponseRep: state.repository.challengeStartResponse,
         challengeStartFastRep: state.repository.challengeStartFast,
-        challengeEndRep: state.repository.challengeEnd,
     }),
     (dispatch) => ({})
 )(ChallengeFetchContainer);
