@@ -29,6 +29,7 @@ import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import './styles.css';
 import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
 import {randomHero} from "../../../util/media/HeroHelper";
+import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 
 class ChallengeTask extends React.PureComponent {
 
@@ -61,11 +62,12 @@ class ChallengeTask extends React.PureComponent {
         const {answerInterval, correctAnswerId, isAllTasksAnswered} = endTaskRep.value;
         const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
         const summary = isAllTasksAnswered ? this.renderSummary() : null;
-        const className = screen.moreHeightThanWidth && screen.isNotBigHeight ? 'alignLeft': 'alignCenter';
+        const className = screen.moreHeightThanWidth && screen.isNotBigHeight ? 'alignLeft' : 'alignCenter';
         return <div className="contentHeader">
             <div>
                 <div className={className}>{resultMessage}</div>
-                {isAllTasksAnswered ? null : <div className={className}>{prepareAnswerIntervalMessage(answerInterval)}</div>}
+                {isAllTasksAnswered ? null :
+                    <div className={className}>{prepareAnswerIntervalMessage(answerInterval)}</div>}
                 {summary}
             </div>
             {this.renderNextTaskButton()}
@@ -142,6 +144,7 @@ export default connect(
         onChallengeSummaryClick: challengeId => {
             dispatch(statusChanged(CHALLENGE_STATUS_CLOSED));
             dispatch(summaryIdChanged(challengeId));
+            clearChallengeSummaryFetch(dispatch);
             dispatch(push(CHALLENGE_SUMMARY_ROUTE));
         }
     })

@@ -42,7 +42,13 @@ import ostrich from '../../media/image/hero/ostrich.svg';
 import crocodile from '../../media/image/hero/crocodile.svg';
 import polarBear from '../../media/image/hero/polarBear.svg';
 import dog from '../../media/image/hero/dog.svg';
-
+import bulldog from '../../media/image/hero/bulldog.svg';
+import camel from '../../media/image/hero/camel.svg';
+import dogFat from '../../media/image/hero/dogFat.svg';
+import dragonBlue from '../../media/image/hero/dragonBlue.svg';
+import dragonFat from '../../media/image/hero/dragonFat.svg';
+import foxMan from '../../media/image/hero/foxMan.svg';
+import pandaEat from '../../media/image/hero/pandaEat.svg';
 
 export const HEROES = {
     'ALPACA': alpaca,
@@ -51,17 +57,23 @@ export const HEROES = {
     'BEE': bee,
     'BEAR': bear,
     'BULL': bull,
+    'BULLDOG': bulldog,
+    'CAMEL': camel,
     'CAT_BLUE': catBlue,
     'CAT_PRESENTER': catPresenter,
     'CAT_TEACHER': catTeacher,
     'COW': cow,
     'CROCODILE': crocodile,
     'DOG': dog,
+    'DOG_FAT': dogFat,
     'DRAGON': dragon,
+    'DRAGON_BLUE': dragonBlue,
+    'DRAGON_FAT': dragonFat,
     'DUCK': duck,
     'EAGLE': eagle,
     'ELEPHANT': elephant,
     'FOX': fox,
+    'FOX_MAN': foxMan,
     'GIRAFFE': giraffe,
     'GORILLA': gorilla,
     'HORSE': horse,
@@ -72,6 +84,7 @@ export const HEROES = {
     'OSTRICH': ostrich,
     'OWL': owl,
     'PANDA': panda,
+    'PANDA_EAT': pandaEat,
     'PARROT': parrot,
     'PENGUIN': penguin,
     'POLAR_BEAR': polarBear,

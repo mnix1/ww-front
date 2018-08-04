@@ -7,16 +7,18 @@ import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
 import {
     getText,
-    TEXT_ANSWER, TEXT_CONTINUE,
+    TEXT_ANSWER,
+    TEXT_CONTINUE,
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES,
     TEXT_SUMMARY
 } from "../../../lang";
 import {challengeCleared, inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
-import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_RESPONSE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
+import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 
 class ChallengeListPage extends React.PureComponent {
 
@@ -84,6 +86,7 @@ export default connect(
         },
         onChallengeSummaryClick: (id) => {
             dispatch(summaryIdChanged(id));
+            clearChallengeSummaryFetch(dispatch);
             dispatch(push(CHALLENGE_SUMMARY_ROUTE));
         }
     })

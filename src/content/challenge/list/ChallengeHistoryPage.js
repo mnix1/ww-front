@@ -8,7 +8,8 @@ import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES, TEXT_SUMMA
 import {challengeCleared, summaryIdChanged} from "../../../redux/reducer/challenge";
 import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
-import {CHALLENGE_RESPONSE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
+import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
+import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 
 class ChallengeHistoryPage extends React.PureComponent {
 
@@ -61,6 +62,7 @@ export default connect(
         onChallengeSummaryClick: (id) => {
             dispatch(challengeCleared());
             dispatch(summaryIdChanged(id));
+            clearChallengeSummaryFetch(dispatch);
             dispatch(push(CHALLENGE_SUMMARY_ROUTE));
         }
     })

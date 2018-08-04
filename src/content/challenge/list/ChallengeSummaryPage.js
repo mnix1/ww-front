@@ -18,7 +18,7 @@ class ChallengeSummaryPage extends React.PureComponent {
     renderPosition(position, i) {
         let content;
         if (position.status !== CHALLENGE_STATUS_CLOSED) {
-            content = <div key={i} className='position'>
+            content = <div className='position'>
                 <div className='details'>{getText(TEXT_WAITING)}</div>
                 <div className='details'>ZzzZzzzz...</div>
             </div>
@@ -29,7 +29,7 @@ class ChallengeSummaryPage extends React.PureComponent {
                 <div className='details'>{prepareAnswerIntervalMessage(position.answerInterval)}</div>
             </div>
         }
-        return <Profile key={i} {...position.profile}>
+        return <Profile key={_.uniqueId('summaryProfile')} {...position.profile}>
             {content}
         </Profile>;
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import _ from 'lodash';
+import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 class ChallengeSummaryFetch extends React.PureComponent {
 
     componentDidMount() {
@@ -17,8 +18,8 @@ class ChallengeSummaryFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {challengeId, dispatchChallengeSummaryPost} = this.props;
-        if (!_.isNil(challengeId) && prevProps.challengeId !== challengeId) {
+        const {challengeId, path, dispatchChallengeSummaryPost} = this.props;
+        if (!_.isNil(challengeId) && path === CHALLENGE_SUMMARY_ROUTE && prevProps.path !== path) {
             dispatchChallengeSummaryPost(challengeId);
         }
     }
