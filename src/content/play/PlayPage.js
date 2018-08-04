@@ -9,13 +9,13 @@ import {BATTLE_FAST_ROUTE, CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLE
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
-import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_START} from "../../util/challengeHelper";
-import {challengeCleared, inProgressIdChanged, statusChanged} from "../../redux/reducer/challenge";
+import {CHALLENGE_STATUS_START} from "../../util/challengeHelper";
+import {challengeCleared, statusChanged as challengeStatusChanged  } from "../../redux/reducer/challenge";
 import _ from 'lodash';
-import {clearChallengeEndTaskFetch} from "../challenge/fetch/ChallengeEndTaskFetch";
-import {clearChallengeNextTaskFetch} from "../challenge/fetch/ChallengeNextTaskFetch";
-import {clearChallengeStartFastFetch} from "../challenge/fetch/ChallengeStartFastFetch";
 import {clearChallengeTaskAndStartFetch} from "../challenge/fetch/ChallengeFetchContainer";
+import {clearBattleStartFastFetch} from "../battle/fetch/BattleStartFastFetch";
+import {battleCleared, statusChanged as battleStatusChanged} from "../../redux/reducer/battle";
+import {BATTLE_STATUS_START_FAST} from "../../util/battleHelper";
 
 class PlayPage extends React.PureComponent {
 
@@ -32,11 +32,11 @@ class PlayPage extends React.PureComponent {
     }
 
     renderMenu() {
-        const {onChallengeFastClick} = this.props;
+        const {onChallengeFastClick, onBattleFastClick} = this.props;
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(BATTLE_FAST_ROUTE, dices)}
+                    {this.renderMenuItem(BATTLE_FAST_ROUTE, dices, onBattleFastClick)}
                 </div>
             </Menu>
             <Menu className='menuRight'>
@@ -72,7 +72,12 @@ export default connect(
         onChallengeFastClick: () => {
             clearChallengeTaskAndStartFetch(dispatch);
             dispatch(challengeCleared());
-            dispatch(statusChanged(CHALLENGE_STATUS_START));
+            dispatch(challengeStatusChanged(CHALLENGE_STATUS_START));
+        },
+        onBattleFastClick: () => {
+            clearBattleStartFastFetch(dispatch);
+            dispatch(battleCleared());
+            dispatch(battleStatusChanged(BATTLE_STATUS_START_FAST));
         },
         onRouteChange: (e) => {
             dispatch(push(e));

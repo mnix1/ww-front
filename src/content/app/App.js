@@ -9,7 +9,7 @@ import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../battle/invite/InvitedToBattleBy";
 import InviteToBattle from "../battle/invite/InviteToBattle";
-import BattleFetchContainer from "../battle/friend/fetch/BattleFetchContainer";
+import BattleFetchContainer from "../battle/fetch/BattleFetchContainer";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
 import play from '../../media/image/icon/play.svg';
 import friend from '../../media/image/icon/friend.svg';
@@ -19,6 +19,7 @@ import wisie from '../../media/image/icon/wisie.svg';
 import {Route, Switch} from 'react-router'
 import {ConnectedRouter, push} from 'connected-react-router'
 import {
+    APP_ROUTE,
     BATTLE_FAST_ROUTE,
     BATTLE_ROUTE,
     CHALLENGE_FAST_ROUTE,
@@ -42,13 +43,36 @@ import ChallengeListPage from "../challenge/list/ChallengeListPage";
 import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
 import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
-import BattlePage from "../battle/friend/BattlePage";
+import BattlePage from "../battle/page/BattlePage";
 import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
+import BattleFastPage from "../battle/fast/BattleFastPage";
+import BattleCommunication from "../battle/BattleCommunication";
+import {
+    BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
+    BATTLE_STATUS_WAITING_FAST,
+} from "../../util/battleHelper";
 
 class App extends React.PureComponent {
 
     componentDidMount() {
-        this.props.onInit(new CommunicationWebSocket());
+        const socket = new CommunicationWebSocket();
+        this.props.onInit(socket);
+        this.communication = new BattleCommunication(socket);
+    }
+
+    componentDidUpdate() {
+        const {path, battleStatus} = this.props;
+        if (path === BATTLE_ROUTE) {
+            if (battleStatus === BATTLE_STATUS_WAITING_FAST) {
+                this.communication.readyFast();
+            } else if (battleStatus === BATTLE_STATUS_READY_TO_BEGIN_FRIEND) {
+                this.communication.ready();
+            }
+        }
+    }
+
+    componentWillUnmount() {
+        this.communication.dispose();
     }
 
     renderMenuItem(route, imgSrc) {
@@ -79,14 +103,14 @@ class App extends React.PureComponent {
         const {history} = this.props;
         return <ConnectedRouter history={history}>
             <Switch>
-                <Route exact path="/" render={() => this.renderMenu()}/>
+                <Route exact path={APP_ROUTE} render={() => this.renderMenu()}/>
                 <Route exact path={PLAY_ROUTE} render={() => <PlayPage/>}/>
                 <Route exact path={FRIEND_ROUTE} render={() => <FriendPage/>}/>
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
                 <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
                 <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
-                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage/>}/>
-                <Route exact path={BATTLE_FAST_ROUTE} render={() => null}/>
+                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.communication}/>}/>
+                <Route exact path={BATTLE_FAST_ROUTE} render={() => <BattleFastPage/>}/>
                 <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
@@ -127,7 +151,8 @@ export default connect(
     (state) => ({
         screen: state.screen,
         friendListRep: state.repository.friendList,
-        path: state.router.location.pathname
+        battleStatus: state.battle.status,
+        path: state.router.location.pathname,
     }),
     (dispatch) => ({
         onRouteChange: (e) => {

@@ -71,6 +71,7 @@ export const TEXT_CHALLENGE = 'TEXT_CHALLENGE';
 export const TEXT_DELETE = 'TEXT_DELETE';
 export const TEXT_INVITED_TO_BATTLE_BY = 'TEXT_INVITED_TO_BATTLE_BY';
 export const TEXT_INVITE_TO_BATTLE = 'TEXT_INVITE_TO_BATTLE';
+export const TEXT_SEARCHING_OPPONENT = 'TEXT_SEARCHING_OPPONENT';
 export const TEXT_ACCEPT = 'TEXT_ACCEPT';
 export const TEXT_REJECT = 'TEXT_REJECT';
 export const TEXT_CANCEL = 'TEXT_CANCEL';
@@ -89,6 +90,7 @@ export function getText(id) {
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_SEARCHING_OPPONENT]: 'Wyszukiwanie godnego przeciwnika',
         [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CONTINUE]: 'Kontynuuj',
         [TEXT_CATEGORY]: 'Kategoria',
@@ -150,6 +152,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_SEARCHING_OPPONENT]: 'Searching for worthy opponent',
         [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CONTINUE]: 'Continue',
         [TEXT_CATEGORY]: 'Category',

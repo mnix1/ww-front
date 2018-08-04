@@ -1,3 +1,5 @@
+export const APP_ROUTE = '/';
+
 export const PLAY_ROUTE = '/play';
 export const TRAINING_ROUTE = '/training';
 export const HISTORY_ROUTE = '/history';

@@ -7,15 +7,15 @@ import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import Modal from "../../../component/modal/Modal";
 import _ from 'lodash';
 import {statusChanged} from "../../../redux/reducer/battle";
-import {BATTLE_STATUS_CANCELED, BATTLE_STATUS_WAITING} from "../../../util/battleHelper";
-import {clearBattleStartFetch} from "../friend/fetch/BattleStartFetch";
+import {BATTLE_STATUS_CANCELED_FRIEND, BATTLE_STATUS_WAITING_FRIEND} from "../../../util/battleHelper";
+import {clearBattleStartFriendFetch} from "../fetch/BattleStartFriendFetch";
 import Profile from "../../../component/profile/Profile";
 
 class InviteToBattle extends React.PureComponent {
 
     render() {
         const {status, tag, friends, onCancel} = this.props;
-        if (status !== BATTLE_STATUS_WAITING) {
+        if (status !== BATTLE_STATUS_WAITING_FRIEND) {
             return null;
         }
         const friend = _.find(friends, e => e.tag === tag);
@@ -39,8 +39,8 @@ export default connect(
     }),
     (dispatch) => ({
         onCancel: () => {
-            clearBattleStartFetch(dispatch);
-            dispatch(statusChanged(BATTLE_STATUS_CANCELED));
+            clearBattleStartFriendFetch(dispatch);
+            dispatch(statusChanged(BATTLE_STATUS_CANCELED_FRIEND));
         }
     })
 )(InviteToBattle);

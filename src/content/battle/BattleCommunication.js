@@ -1,15 +1,21 @@
+import {battleInProgressContent, statusChanged} from "../../redux/reducer/battle";
+import {BATTLE_ROUTE} from "../routes";
+import {push} from 'connected-react-router'
+import {
+    BATTLE_STATUS_CLOSED,
+    BATTLE_STATUS_IN_PROGRESS_FAST,
+    BATTLE_STATUS_IN_PROGRESS_FRIEND
+} from "../../util/battleHelper";
+import {clearBattleStartFastFetch} from "./fetch/BattleStartFastFetch";
 import _ from 'lodash';
-import {battleInProgressContent} from "../../redux/reducer/battle";
 
 export default class BattleCommunication {
     constructor(communicationWebSocket) {
         this.communicationWebSocket = communicationWebSocket;
-        this.communicationWebSocket.processMessage = false;
         this.communicationWebSocket.socket.addEventListener('message', this.onMessage);
     }
 
     dispose() {
-        this.communicationWebSocket.processMessage = true;
         this.communicationWebSocket.socket.removeEventListener('message', this.onMessage);
     }
 
@@ -23,10 +29,23 @@ export default class BattleCommunication {
         if (id === 'BATTLE_START' || id === 'BATTLE_ANSWER' || id === 'BATTLE_NEXT_QUESTION') {
             const content = JSON.parse(data.content);
             this.communicationWebSocket.dispatch(battleInProgressContent(content));
+            if (!_.isNil(content.winner)) {
+                this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_CLOSED));
+            }
+        }
+        if (id === 'BATTLE_START_FAST') {
+            this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         }
     };
 
     ready() {
+        this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS_FRIEND));
+        this.send('BATTLE_READY_FOR_START');
+    }
+
+    readyFast() {
+        clearBattleStartFastFetch(this.communicationWebSocket.dispatch);
+        this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS_FAST));
         this.send('BATTLE_READY_FOR_START');
     }
 

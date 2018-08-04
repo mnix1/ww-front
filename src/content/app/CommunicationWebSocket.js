@@ -1,8 +1,8 @@
 import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
 import {battleCleared, battleInviteCancelled, battleInvited, statusChanged} from "../../redux/reducer/battle";
-import {clearBattleStartFetch} from "../battle/friend/fetch/BattleStartFetch";
-import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
+import {clearBattleStartFriendFetch} from "../battle/fetch/BattleStartFriendFetch";
+import {BATTLE_STATUS_IN_PROGRESS_FRIEND, BATTLE_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/battleHelper";
 import {OBJECT_BATTLE} from "../object-group/objectsBattle";
 import {push} from 'connected-react-router'
 import {BATTLE_ROUTE} from "../routes";
@@ -55,12 +55,12 @@ export default class CommunicationWebSocket {
         } else if (id === 'BATTLE_CANCEL_INVITE') {
             this.dispatch(battleInviteCancelled());
         } else if (id === 'BATTLE_REJECT_INVITE') {
-            clearBattleStartFetch(this.dispatch);
+            clearBattleStartFriendFetch(this.dispatch);
             this.dispatch(battleCleared());
         } else if (id === 'BATTLE_ACCEPT_INVITE') {
-            clearBattleStartFetch(this.dispatch);
+            clearBattleStartFriendFetch(this.dispatch);
             this.dispatch(battleCleared());
-            this.dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS));
+            this.dispatch(statusChanged(BATTLE_STATUS_READY_TO_BEGIN_FRIEND));
             this.dispatch(push(BATTLE_ROUTE));
         }
     };

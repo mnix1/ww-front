@@ -5,7 +5,7 @@
 // import {idChanged} from "../../redux/reducer/content";
 // import {practiseCleared} from "../../redux/reducer/practise";
 // import {challengeCleared} from "../../redux/reducer/challenge";
-// import {BATTLE_STATUS_IN_PROGRESS} from "../../util/battleHelper";
+// import {BATTLE_STATUS_IN_PROGRESS_FRIEND} from "../../util/battleHelper";
 // import back from "../../media/image/icon/back.svg";
 //
 // class Back extends React.PureComponent {
@@ -28,7 +28,7 @@
 // export default connect(
 //     (state) => ({
 //         screen: state.screen,
-//         battleInProgress: state.battle.status === BATTLE_STATUS_IN_PROGRESS
+//         battleInProgress: state.battle.status === BATTLE_STATUS_IN_PROGRESS_FRIEND
 //     }),
 //     (dispatch) => ({
 //         onClick: () => {

@@ -1,7 +1,7 @@
 import {
-    BATTLE_STATUS_ACCEPTED,
-    BATTLE_STATUS_INVITED,
-    BATTLE_STATUS_REJECTED
+    BATTLE_STATUS_ACCEPTED_FRIEND,
+    BATTLE_STATUS_INVITED_FRIEND,
+    BATTLE_STATUS_REJECTED_FRIEND
 } from "../../util/battleHelper";
 
 export const CLEARED = 'battle/cleared';
@@ -41,13 +41,13 @@ export default function reducer(state = initialState, action) {
         case STATUS_CHANGED:
             return {...state, status: action.status};
         case BATTLE_INVITED:
-            return {...state, invitedBy: action.invitedBy, status: BATTLE_STATUS_INVITED};
+            return {...state, invitedBy: action.invitedBy, status: BATTLE_STATUS_INVITED_FRIEND};
         case BATTLE_CANCELLED:
             return {...state, invitedBy: undefined, status: undefined};
         case BATTLE_REJECTED:
-            return {...state, status: BATTLE_STATUS_REJECTED};
+            return {...state, status: BATTLE_STATUS_REJECTED_FRIEND};
         case BATTLE_ACCEPTED:
-            return {...state, status: BATTLE_STATUS_ACCEPTED};
+            return {...state, status: BATTLE_STATUS_ACCEPTED_FRIEND};
         case BATTLE_IN_PROGRESS_CONTENT:
             return {...state, content: {...state.content, ...action.content}};
         case QUESTION_ID_ANSWER_ID_MAP_CHANGED:

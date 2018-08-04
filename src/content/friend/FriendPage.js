@@ -31,7 +31,7 @@ import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {CREAM_COLOR} from "../../util/style/constant";
 import {statusChanged, tagChanged} from "../../redux/reducer/battle";
-import {BATTLE_STATUS_START} from "../../util/battleHelper";
+import {BATTLE_STATUS_START_FRIEND} from "../../util/battleHelper";
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_FRIEND_ROUTE} from "../routes";
@@ -160,7 +160,7 @@ export default connect(
     (dispatch) => ({
         onBattleFriendClick: (tag) => {
             dispatch(tagChanged(tag));
-            dispatch(statusChanged(BATTLE_STATUS_START));
+            dispatch(statusChanged(BATTLE_STATUS_START_FRIEND));
         },
         onChallengeFriendClick: (tag) => {
             // clearChallengeStartFriendFetch(dispatch);

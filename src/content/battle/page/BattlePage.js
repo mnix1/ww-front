@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import BattleCommunication from "../BattleCommunication";
 import './styles.css';
 import Task from "../../../component/task/Task";
 import {
@@ -25,15 +24,6 @@ import Profile from "../../../component/profile/Profile";
 
 class BattlePage extends React.PureComponent {
 
-    componentDidMount() {
-        this.communication = new BattleCommunication(this.props.socket);
-        this.communication.ready();
-    }
-
-    componentWillUnmount() {
-        this.communication.dispose();
-    }
-
     renderProfiles() {
         const {profile, content, screen} = this.props;
         if (!content) {
@@ -57,7 +47,7 @@ class BattlePage extends React.PureComponent {
 
     renderQuestionResult() {
         const {content} = this.props;
-        if (!content || !content.nextQuestionInterval) {
+        if (!content || !content.nextTaskInterval) {
             return null;
         }
         const {correctAnswerId, markedAnswerId, meAnswered, winner} = content;
@@ -67,7 +57,7 @@ class BattlePage extends React.PureComponent {
             {!meAnswered &&
             <div>{markedAnswerId === correctAnswerId ? getText(TEXT_OPPONENT_CORRECT_ANSWER) : getText(TEXT_OPPONENT_WRONG_ANSWER)}</div>}
             {!winner && <div>{`${getText(TEXT_NEXT_QUESTION)} ${getText(TEXT_FOR)}: `}
-                <Timer from={content.nextQuestionInterval}/>
+                <Timer from={content.nextTaskInterval}/>
             </div>}
             {winner && <div>
                 {getText(TEXT_BATTLE_OVER)}
@@ -106,7 +96,7 @@ class BattlePage extends React.PureComponent {
     }
 
     renderTask() {
-        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen} = this.props;
+        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         if (!content) {
             return null;
         }
@@ -131,7 +121,7 @@ class BattlePage extends React.PureComponent {
                 if (!_.isNil(correctAnswerId)) {
                     return;
                 }
-                this.communication.send('BATTLE_ANSWER' + JSON.stringify({answerId}));
+                communication.send('BATTLE_ANSWER' + JSON.stringify({answerId}));
                 onAnswerClick({...questionIdAnswerIdMap, [question.id]: answerId});
             }}
         />;
