@@ -48,6 +48,7 @@ import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
 import BattleFastPage from "../battle/fast/BattleFastPage";
 import BattleCommunication from "../battle/BattleCommunication";
 import {
+    BATTLE_STATUS_IN_PROGRESS,
     BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
     BATTLE_STATUS_WAITING_FAST,
 } from "../../util/battleHelper";
@@ -61,13 +62,15 @@ class App extends React.PureComponent {
     }
 
     componentDidUpdate() {
-        const {path, battleStatus} = this.props;
+        const {path, battleStatus, onRouteChange} = this.props;
         if (path === BATTLE_ROUTE) {
             if (battleStatus === BATTLE_STATUS_WAITING_FAST) {
                 this.communication.readyFast();
             } else if (battleStatus === BATTLE_STATUS_READY_TO_BEGIN_FRIEND) {
                 this.communication.ready();
             }
+        } else if (battleStatus === BATTLE_STATUS_IN_PROGRESS) {
+            onRouteChange(BATTLE_ROUTE);
         }
     }
 

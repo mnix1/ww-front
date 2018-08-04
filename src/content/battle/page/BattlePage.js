@@ -68,7 +68,7 @@ class BattlePage extends React.PureComponent {
 
     renderHeader() {
         const {content} = this.props;
-        if (!content) {
+        if (!content || !content.question) {
             return null;
         }
         const question = content.question;

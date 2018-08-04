@@ -28,15 +28,19 @@ export default class BattleCommunication {
         const id = data.id;
         if (id === 'BATTLE_START' || id === 'BATTLE_ANSWER' || id === 'BATTLE_NEXT_QUESTION') {
             const content = JSON.parse(data.content);
-            this.communicationWebSocket.dispatch(battleInProgressContent(content));
-            if (!_.isNil(content.winner)) {
-                this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_CLOSED));
-            }
+            this.battleInProgress(content);
         }
         if (id === 'BATTLE_START_FAST') {
             this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         }
     };
+
+    battleInProgress(content) {
+        this.communicationWebSocket.dispatch(battleInProgressContent(content));
+        if (!_.isNil(content.winner)) {
+            this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_CLOSED));
+        }
+    }
 
     ready() {
         this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_IN_PROGRESS_FRIEND));

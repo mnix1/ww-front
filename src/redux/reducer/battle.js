@@ -1,5 +1,6 @@
 import {
     BATTLE_STATUS_ACCEPTED_FRIEND,
+    BATTLE_STATUS_IN_PROGRESS,
     BATTLE_STATUS_INVITED_FRIEND,
     BATTLE_STATUS_REJECTED_FRIEND
 } from "../../util/battleHelper";
@@ -49,15 +50,11 @@ export default function reducer(state = initialState, action) {
         case BATTLE_ACCEPTED:
             return {...state, status: BATTLE_STATUS_ACCEPTED_FRIEND};
         case BATTLE_IN_PROGRESS_CONTENT:
-            return {...state, content: {...state.content, ...action.content}};
+            return {...state, content: {...state.content, ...action.content}, status: BATTLE_STATUS_IN_PROGRESS};
         case QUESTION_ID_ANSWER_ID_MAP_CHANGED:
             return {...state, questionIdAnswerIdMap: action.questionIdAnswerIdMap};
         case QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED:
             return {...state, questionIdSkipAnimationMap: action.questionIdSkipAnimationMap};
-        // case BATTLE_IN_PROGRESS_OPPONENT:
-        // return {...state, opponent: action.opponent};
-        // case BATTLE_IN_PROGRESS_QUESTION:
-        //     return {...state, question: action.question};
         default:
             return state
     }
