@@ -1,25 +1,8 @@
-.challengeSolution .actionsToRight {
-    right: 0;
-    top: 0;
-    margin: 0.25rem;
-}
-
-.challengeSolution .actionsToRight .button {
-    /*float: right;*/
-    margin-bottom: 0.25rem;
-}
-
-.challengeTask .challengeSummary {
-    display: flex;
-    justify-content: center;
-    margin-right: 0.25rem;
-    text-align: right;
-    float: right;
-}
-.challengeTask .challengeSummary .button {
+.challengeTask .alignLeft {
+    text-align: left;
     margin-left: 0.25rem;
 }
-.challengeTask .nextTaskButton {
-    float: right;
-    margin-right: 0.25rem;
+
+.challengeTask .contentWithImage .button {
+    margin: 0.25rem;
 }

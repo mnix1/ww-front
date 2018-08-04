@@ -5,13 +5,13 @@ import {answerIdChanged, skipAnimationChanged, statusChanged, summaryIdChanged} 
 import {
     getText,
     TEXT_ANSWER_FOR_QUESTION,
-    TEXT_CHALLENGE_ENDED,
+    TEXT_CHALLENGE_ENDED, TEXT_CORRECT_ANSWER,
     TEXT_IS_CORRECT,
     TEXT_IS_WRONG,
-    TEXT_NEXT_QUESTION,
+    TEXT_NEXT,
     TEXT_POINTS,
     TEXT_QUESTION,
-    TEXT_SUMMARY,
+    TEXT_SUMMARY, TEXT_WRONG_ANSWER,
     TEXT_YOUR_SCORE
 } from "../../../lang";
 import {
@@ -22,14 +22,17 @@ import {
 } from "../../../util/challengeHelper";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
-import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
 import FaListOl from 'react-icons/lib/fa/list-ol';
 import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {push} from 'connected-react-router'
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import './styles.css';
+import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
+import {randomHero} from "../../../util/media/HeroHelper";
 
 class ChallengeTask extends React.PureComponent {
+
+    randomHero = randomHero();
 
     renderTask({question}) {
         const {screen, onAnswerClick, answerId, skipAnimation, onSkipAnimationChange, endTaskRep} = this.props;
@@ -48,48 +51,58 @@ class ChallengeTask extends React.PureComponent {
     }
 
     renderHeader({question, taskIndex, taskCount}) {
-        const {answerId, endTaskRep} = this.props;
+        const {answerId, endTaskRep, screen} = this.props;
+        const headerText = `${getText(TEXT_QUESTION)} ${taskIndex + 1}/${taskCount}`;
         if (!endTaskRep || !endTaskRep.fulfilled || _.isNil(answerId)) {
-            const headerText = `${getText(TEXT_QUESTION)} ${taskIndex + 1}/${taskCount}`;
             return <div className="contentHeader">
                 <div>{headerText}</div>
             </div>;
         }
-        const {challengeInterval, answerInterval, score, correctAnswerId, isAllTasksAnswered} = endTaskRep.value;
-        const summary = isAllTasksAnswered ? <div className='challengeSummary'>
-            <div>
-                <div>{getText(TEXT_CHALLENGE_ENDED)}</div>
-                <div>{`${getText(TEXT_YOUR_SCORE)}: ${score} ${getText(TEXT_POINTS)}, ${prepareAnswerIntervalMessage(challengeInterval)}`}</div>
-            </div>
-            {this.renderSummaryButton()}
-        </div> : null;
+        const {answerInterval, correctAnswerId, isAllTasksAnswered} = endTaskRep.value;
+        const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
+        const summary = isAllTasksAnswered ? this.renderSummary() : null;
+        const className = screen.moreHeightThanWidth && screen.isNotBigHeight ? 'alignLeft': 'alignCenter';
         return <div className="contentHeader">
             <div>
-                <div>{`${getText(TEXT_ANSWER_FOR_QUESTION)} ${taskIndex + 1} ${answerId === correctAnswerId ? getText(TEXT_IS_CORRECT) : getText(TEXT_IS_WRONG)}`}</div>
-                {isAllTasksAnswered ? null : <div>{prepareAnswerIntervalMessage(answerInterval)}</div>}
+                <div className={className}>{resultMessage}</div>
+                {isAllTasksAnswered ? null : <div className={className}>{prepareAnswerIntervalMessage(answerInterval)}</div>}
                 {summary}
             </div>
             {this.renderNextTaskButton()}
         </div>;
     }
 
-    renderSummaryButton() {
-        const {endTaskRep, status, onChallengeSummaryClick, challengeId} = this.props;
-        const renderSummaryButton = (status === CHALLENGE_STATUS_END_TASK || status === CHALLENGE_STATUS_CLOSED)&& _.get(endTaskRep, 'value.isAllTasksAnswered', false);
-        return renderSummaryButton && <Button
-            material={BUTTON_MATERIAL_BOX_SHADOW}
-            icon={<FaListOl/>}
-            onClick={() => onChallengeSummaryClick(challengeId)}
-        >{getText(TEXT_SUMMARY)}</Button>
+    renderSummary() {
+        const {endTaskRep, onChallengeSummaryClick, challengeId} = this.props;
+        const {challengeInterval, score} = endTaskRep.value;
+        return <ContentWithImage imgSrc={this.randomHero}
+                                 onClick={() => onChallengeSummaryClick(challengeId)}
+                                 id='summary'>
+            <div>
+                <div>{getText(TEXT_CHALLENGE_ENDED)}</div>
+                <div>{`${getText(TEXT_YOUR_SCORE)}: ${score} ${getText(TEXT_POINTS)}`}</div>
+                <div>{prepareAnswerIntervalMessage(challengeInterval)}</div>
+            </div>
+            <div>
+                <Button
+                    material={BUTTON_MATERIAL_BOX_SHADOW}
+                    icon={<FaListOl/>}
+                    onClick={() => onChallengeSummaryClick(challengeId)}
+                >{getText(TEXT_SUMMARY)}</Button>
+            </div>
+        </ContentWithImage>;
     }
 
     renderNextTaskButton() {
         const {onNextTaskClick, endTaskRep, status} = this.props;
         const renderNextTaskButton = (status === CHALLENGE_STATUS_END_TASK || status === CHALLENGE_STATUS_CLOSED) && !_.get(endTaskRep, 'value.isAllTasksAnswered', true);
         return renderNextTaskButton &&
-            <Button className='nextTaskButton' material={BUTTON_MATERIAL_BOX_SHADOW}
-                    icon={<FaArrowCircleRight/>}
-                    onClick={onNextTaskClick}>{getText(TEXT_NEXT_QUESTION)}</Button>
+            <ContentWithImage imgSrc={this.randomHero} onClick={onNextTaskClick} id='nextTask'>
+                <div className='flexColumn'>
+                    <span>{getText(TEXT_NEXT)}</span>
+                    <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
+                </div>
+            </ContentWithImage>;
 
     }
 

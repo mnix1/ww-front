@@ -60,7 +60,7 @@ export function checkSmallHeight(resolution) {
     return _.includes(resolution, 'SH');
 }
 
-export function checkNotBitHeight(resolution) {
+export function checkNotBigHeight(resolution) {
     return !_.includes(resolution, 'BH');
 }
 
@@ -92,6 +92,7 @@ const initialWidth = isMobile ? window.outerWidth : window.innerWidth;
 const resolution = prepareResolution(initialHeight, initialWidth);
 const isSmallHeight = checkSmallHeight(resolution);
 const isSmallWidth = checkSmallWidth(resolution);
+const isNotBigHeight = checkNotBigHeight(resolution);
 const moreHeightThanWidth = checkMoreHeightThanWidth(initialHeight, initialWidth);
 const initialState = {
     height: initialHeight,
@@ -99,6 +100,7 @@ const initialState = {
     resolution,
     isSmallHeight,
     isSmallWidth,
+    isNotBigHeight,
     moreHeightThanWidth,
     contentHeight: calculateContentHeight(initialHeight, isSmallHeight, moreHeightThanWidth),
     contentWidth: calculateContentWidth(initialWidth, isSmallWidth, moreHeightThanWidth),
@@ -113,6 +115,7 @@ export default function reducer(state = initialState, action) {
             const resolution = prepareResolution(height, initialWidth);
             const isSmallHeight = checkSmallHeight(resolution);
             const isSmallWidth = checkSmallWidth(resolution);
+            const isNotBigHeight = checkNotBigHeight(resolution);
             const moreHeightThanWidth = checkMoreHeightThanWidth(height, width);
             return {
                 ...state,
@@ -120,6 +123,7 @@ export default function reducer(state = initialState, action) {
                 width,
                 isSmallHeight,
                 isSmallWidth,
+                isNotBigHeight,
                 moreHeightThanWidth,
                 contentHeight: calculateContentHeight(height, isSmallHeight, moreHeightThanWidth),
                 contentWidth: calculateContentWidth(width, isSmallWidth, moreHeightThanWidth),

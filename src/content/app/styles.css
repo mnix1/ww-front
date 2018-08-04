@@ -23,7 +23,7 @@ body {
 }
 
 .contentHeader {
-    position: relative;
+    position: absolute;
     text-align: center;
     font-size: 1rem;
     padding-top: 0.25rem;

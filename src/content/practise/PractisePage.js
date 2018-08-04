@@ -21,6 +21,7 @@ import {prepareAnswerIntervalMessage} from "../../util/textHelper";
 import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
 import {TRAINING_ROUTE} from "../routes";
+import ContentWithImage from "../../component/content-with-image/ContentWithImage";
 
 const TASK_ROUTE = TRAINING_ROUTE + '/task';
 
@@ -78,13 +79,12 @@ class PractisePage extends React.PureComponent {
 
     renderPlayAgain() {
         const {onPlayAgainClick} = this.props;
-        return <div onClick={onPlayAgainClick} key='playAgain' className='playAgain'>
-            <div>
+        return <ContentWithImage imgSrc={this.randomHero} onClick={onPlayAgainClick} id='playAgain'>
+            <div className='flexColumn'>
                 <span>{getText(TEXT_NEXT)}</span>
                 <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
             </div>
-            <img alt='' src={this.randomHero} height={80}/>
-        </div>;
+        </ContentWithImage>;
     }
 
     render() {
