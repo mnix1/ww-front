@@ -55,7 +55,7 @@ class ChallengeTask extends React.PureComponent {
                 <div>{headerText}</div>
             </div>;
         }
-        const {challengeInterval, score, correctAnswerId, isAllTasksAnswered} = endTaskRep.value;
+        const {challengeInterval, answerInterval, score, correctAnswerId, isAllTasksAnswered} = endTaskRep.value;
         const summary = isAllTasksAnswered ? <div className='challengeSummary'>
             <div>
                 <div>{getText(TEXT_CHALLENGE_ENDED)}</div>
@@ -66,6 +66,7 @@ class ChallengeTask extends React.PureComponent {
         return <div className="contentHeader">
             <div>
                 <div>{`${getText(TEXT_ANSWER_FOR_QUESTION)} ${taskIndex + 1} ${answerId === correctAnswerId ? getText(TEXT_IS_CORRECT) : getText(TEXT_IS_WRONG)}`}</div>
+                {isAllTasksAnswered ? null : <div>{prepareAnswerIntervalMessage(answerInterval)}</div>}
                 {summary}
             </div>
             {this.renderNextTaskButton()}
