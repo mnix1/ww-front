@@ -6,7 +6,7 @@ import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redu
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
-import {randomHero} from "../../util/media/HeroHelper";
+import {getHero, randomHero} from "../../util/media/HeroHelper";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
@@ -26,8 +26,6 @@ import ContentWithImage from "../../component/content-with-image/ContentWithImag
 const TASK_ROUTE = TRAINING_ROUTE + '/task';
 
 class PractisePage extends React.PureComponent {
-
-    randomHero = randomHero();
 
     renderChooseCategory() {
         const {screen, onCategoryChange} = this.props;
@@ -78,8 +76,8 @@ class PractisePage extends React.PureComponent {
     }
 
     renderPlayAgain() {
-        const {onPlayAgainClick} = this.props;
-        return <ContentWithImage imgSrc={this.randomHero} onClick={onPlayAgainClick} id='playAgain'>
+        const {onPlayAgainClick,profile} = this.props;
+        return <ContentWithImage imgSrc={getHero(profile.hero)} onClick={onPlayAgainClick} id='playAgain'>
             <div className='flexColumn'>
                 <span>{getText(TEXT_NEXT)}</span>
                 <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
@@ -104,6 +102,7 @@ class PractisePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        profile: state.profile.profile,
         category: state.practise.category,
         answerId: state.practise.answerId,
         skipAnimation: state.practise.skipAnimation,

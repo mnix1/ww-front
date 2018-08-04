@@ -28,12 +28,10 @@ import {push} from 'connected-react-router'
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import './styles.css';
 import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
-import {randomHero} from "../../../util/media/HeroHelper";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
+import {getHero} from "../../../util/media/HeroHelper";
 
 class ChallengeTask extends React.PureComponent {
-
-    randomHero = randomHero();
 
     renderTask({question}) {
         const {screen, onAnswerClick, answerId, skipAnimation, onSkipAnimationChange, endTaskRep} = this.props;
@@ -75,9 +73,9 @@ class ChallengeTask extends React.PureComponent {
     }
 
     renderSummary() {
-        const {endTaskRep, onChallengeSummaryClick, challengeId} = this.props;
+        const {endTaskRep, onChallengeSummaryClick, challengeId, profile} = this.props;
         const {challengeInterval, score} = endTaskRep.value;
-        return <ContentWithImage imgSrc={this.randomHero}
+        return <ContentWithImage imgSrc={getHero(profile.hero)}
                                  onClick={() => onChallengeSummaryClick(challengeId)}
                                  id='summary'>
             <div>
@@ -96,10 +94,10 @@ class ChallengeTask extends React.PureComponent {
     }
 
     renderNextTaskButton() {
-        const {onNextTaskClick, endTaskRep, status} = this.props;
+        const {onNextTaskClick, endTaskRep, status, profile} = this.props;
         const renderNextTaskButton = (status === CHALLENGE_STATUS_END_TASK || status === CHALLENGE_STATUS_CLOSED) && !_.get(endTaskRep, 'value.isAllTasksAnswered', true);
         return renderNextTaskButton &&
-            <ContentWithImage imgSrc={this.randomHero} onClick={onNextTaskClick} id='nextTask'>
+            <ContentWithImage imgSrc={getHero(profile.hero)} onClick={onNextTaskClick} id='nextTask'>
                 <div className='flexColumn'>
                     <span>{getText(TEXT_NEXT)}</span>
                     <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
@@ -124,6 +122,7 @@ class ChallengeTask extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        profile: state.profile.profile,
         status: state.challenge.status,
         answerId: state.challenge.answerId,
         skipAnimation: state.challenge.skipAnimation,

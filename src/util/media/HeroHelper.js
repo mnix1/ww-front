@@ -50,7 +50,7 @@ import dragonFat from '../../media/image/hero/dragonFat.svg';
 import foxMan from '../../media/image/hero/foxMan.svg';
 import pandaEat from '../../media/image/hero/pandaEat.svg';
 
-export const HEROES = {
+export const HERO = {
     'ALPACA': alpaca,
     'ANT': ant,
     'AUROCHS': aurochs,
@@ -104,10 +104,10 @@ export const HEROES = {
 };
 
 export function randomHero() {
-    const heroes = _.map(HEROES);
+    const heroes = _.map(HERO);
     return heroes[_.random(heroes.length - 1)];
 }
 
-export function getHero(avatar) {
-    return HEROES[avatar];
+export function getHero(hero) {
+    return HERO[hero];
 }
