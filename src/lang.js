@@ -31,8 +31,10 @@ export const TEXT_QUESTION = 'TEXT_QUESTION';
 export const TEXT_REMEMBER_DETAILS = 'TEXT_REMEMBER_DETAILS';
 export const TEXT_CLICK_ON_ANY_TO_CONTINUE = 'TEXT_CLICK_ON_ANY_TO_CONTINUE';
 export const TEXT_CORRECT_ANSWER = 'TEXT_CORRECT_ANSWER';
+export const TEXT_IS_CORRECT = 'TEXT_IS_CORRECT';
 export const TEXT_TIME = 'TEXT_TIME';
 export const TEXT_WRONG_ANSWER = 'TEXT_WRONG_ANSWER';
+export const TEXT_IS_WRONG = 'TEXT_IS_WRONG';
 export const TEXT_FRIENDS = 'TEXT_FRIENDS';
 export const TEXT_ADD_FRIEND = 'TEXT_ADD_FRIEND';
 export const TEXT_ADD_FRIEND_TAG = 'TEXT_ADD_FRIEND_TAG';
@@ -44,6 +46,7 @@ export const TEXT_ADD = 'TEXT_ADD';
 export const TEXT_ADDED = 'TEXT_ADDED';
 export const TEXT_START_CHALLENGE = 'TEXT_START_CHALLENGE';
 export const TEXT_SCORE = 'TEXT_SCORE';
+export const TEXT_CHALLENGE_ENDED = 'TEXT_CHALLENGE_ENDED';
 export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
 export const TEXT_POINTS = 'TEXT_POINTS';
 export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
@@ -95,8 +98,10 @@ const TEXTS = {
         [TEXT_REMEMBER_DETAILS]: 'Zapamiętaj szczegóły obiektów',
         [TEXT_CLICK_ON_ANY_TO_CONTINUE]: 'Kliknij na dowolny aby kontynuować',
         [TEXT_CORRECT_ANSWER]: 'Gratulacje! Poprawna odpowiedź',
+        [TEXT_IS_CORRECT]: 'jest poprawna',
         [TEXT_TIME]: 'Czas',
         [TEXT_WRONG_ANSWER]: 'Niestety, błędna odpowiedź...',
+        [TEXT_IS_WRONG]: 'jest błędna',
         [TEXT_FRIENDS]: 'Znajomi',
         [TEXT_ADD_FRIEND]: 'Dodaj znajomego',
         [TEXT_ADD_FRIEND_TAG]: 'wpisz tag tutaj',
@@ -108,6 +113,7 @@ const TEXTS = {
         [TEXT_ADDED]: 'Dodano',
         [TEXT_START_CHALLENGE]: 'Rozpocznij wyzwanie!',
         [TEXT_SCORE]: 'Wynik',
+        [TEXT_CHALLENGE_ENDED]: 'Wyzwanie zakończone',
         [TEXT_YOUR_SCORE]: 'Twój wynik',
         [TEXT_POINTS]: 'pkt',
         [TEXT_ANSWER_FOR_QUESTION]: 'Odpowiedź dla pytania',
@@ -153,8 +159,10 @@ const TEXTS = {
         [TEXT_REMEMBER_DETAILS]: 'Remember the details of the objects',
         [TEXT_CLICK_ON_ANY_TO_CONTINUE]: 'Click on any to continue',
         [TEXT_CORRECT_ANSWER]: 'Congratulations! Correct answer',
+        [TEXT_IS_CORRECT]: 'is correct',
         [TEXT_TIME]: 'Time',
         [TEXT_WRONG_ANSWER]: 'Unfortunately, the wrong answer ...',
+        [TEXT_IS_WRONG]: 'is wrong',
         [TEXT_FRIENDS]: 'Friends',
         [TEXT_ADD_FRIEND]: 'Add friend',
         [TEXT_ADD_FRIEND_TAG]: 'put tag here',
@@ -166,6 +174,7 @@ const TEXTS = {
         [TEXT_ADDED]: 'Added',
         [TEXT_START_CHALLENGE]: 'Start challenge!',
         [TEXT_SCORE]: 'Score',
+        [TEXT_CHALLENGE_ENDED]: 'Challenge ended',
         [TEXT_YOUR_SCORE]: 'Your score',
         [TEXT_POINTS]: 'pt',
         [TEXT_ANSWER_FOR_QUESTION]: 'Answer for question',

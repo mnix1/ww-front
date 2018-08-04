@@ -10,11 +10,12 @@ import {
 } from "../../../lang";
 import styles from './styles.css';
 import _ from 'lodash';
-import {challengeCleared, statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
+import {statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
 import {CHALLENGE_STATUS_START, MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {clearChallengeTaskAndStartFetch} from "../fetch/ChallengeFetchContainer";
+import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
 
 class ChallengeFriendPage extends React.PureComponent {
 
@@ -43,7 +44,7 @@ class ChallengeFriendPage extends React.PureComponent {
     renderFriends() {
         const {tags, friends} = this.props;
         const tagsMap = _.keyBy(tags);
-        const sortedFriends = _.sortBy(friends, (e) => (this.isFriendAdded(tagsMap, e) ? 0 : 1) + _.toLower(e.name));
+        const sortedFriends = _.sortBy(friends.filter(e => e.status === FRIEND_STATUS_ACCEPTED), (e) => (this.isFriendAdded(tagsMap, e) ? 0 : 1) + _.toLower(e.name));
         return <div className={styles.friendList}>
             {sortedFriends.map(e => this.renderFriend(e, this.isFriendAdded(tagsMap, e)))}
         </div>;
@@ -53,13 +54,13 @@ class ChallengeFriendPage extends React.PureComponent {
         const {tags, onStartChallengeClick} = this.props;
         const label = getText(TEXT_START_CHALLENGE);
         return tags.length > 0 && <Button onClick={onStartChallengeClick}
-                       material={BUTTON_MATERIAL_ACCEPT}
-                       style={{margin: '0.25rem'}}>{label}</Button>;
+                                          material={BUTTON_MATERIAL_ACCEPT}
+                                          style={{margin: '0.25rem'}}>{label}</Button>;
     }
 
     render() {
         const {tags, friends} = this.props;
-        if(_.isEmpty(friends)){
+        if (_.isEmpty(friends)) {
             return <div className="pageHeader">{getText(TEXT_NONE_FRIENDS)}</div>;
         }
         const friendsCounter = `(${tags.length}/${Math.min(friends.length, MAX_CHALLENGE_FRIENDS)})`;

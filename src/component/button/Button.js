@@ -11,6 +11,7 @@ export class Button extends React.PureComponent {
         onClick: PropTypes.func,
         style: PropTypes.object,
         icon: PropTypes.node,
+        className: PropTypes.string,
         children: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
     };
 
@@ -20,10 +21,9 @@ export class Button extends React.PureComponent {
     };
 
     render() {
-        const {onClick, children, icon, style, material} = this.props;
-        return <div className='button pointer' onClick={onClick} style={{...material, ...style}}>
+        const {onClick, children, icon, style, material, className} = this.props;
+        return <div className={`button pointer ${className}`} onClick={onClick} style={{...material, ...style}}>
             <div className='content'>{children}{icon && <div className='icon'>{icon}</div>}</div>
-
         </div>
     }
 }

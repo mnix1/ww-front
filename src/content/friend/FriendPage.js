@@ -34,13 +34,8 @@ import {statusChanged, tagChanged} from "../../redux/reducer/battle";
 import {BATTLE_STATUS_START} from "../../util/battleHelper";
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
-import {CHALLENGE_FRIEND_ROUTE, FRIEND_ROUTE} from "../routes";
-import {clearChallengeStartFriendFetch} from "../challenge/fetch/ChallengeStartFriendFetch";
-import {clearChallengeEndTaskFetch} from "../challenge/fetch/ChallengeEndTaskFetch";
-
-export const STATUS_REQUESTED = 'REQUESTED';
-export const STATUS_SUGGESTED = 'SUGGESTED';
-export const STATUS_ACCEPTED = 'ACCEPTED';
+import {CHALLENGE_FRIEND_ROUTE} from "../routes";
+import {FRIEND_STATUS_ACCEPTED, FRIEND_STATUS_REQUESTED, FRIEND_STATUS_SUGGESTED} from "../../util/friendHelper";
 
 class FriendPage extends React.PureComponent {
 
@@ -56,7 +51,7 @@ class FriendPage extends React.PureComponent {
 
     renderActualFriends() {
         const {friends} = this.props;
-        const filteredFriends = _.filter(friends, e => e.status === STATUS_ACCEPTED);
+        const filteredFriends = _.filter(friends, e => e.status === FRIEND_STATUS_ACCEPTED);
         return <div className='contentFragment'>
             <div className='title'>{getText(_.isEmpty(filteredFriends) ? TEXT_NONE_FRIENDS : TEXT_ACTUAL_FRIENDS)}</div>
             {this.renderFriends(filteredFriends)}
@@ -65,7 +60,7 @@ class FriendPage extends React.PureComponent {
 
     renderInvites() {
         const {friends} = this.props;
-        const filteredFriends = _.filter(friends, e => e.status === STATUS_REQUESTED);
+        const filteredFriends = _.filter(friends, e => e.status === FRIEND_STATUS_REQUESTED);
         if (_.isEmpty(filteredFriends)) {
             return null;
         }
@@ -91,21 +86,21 @@ class FriendPage extends React.PureComponent {
             key={friend.tag}
             {...friend}
             actions={<div className='actions'>
-                {friend.status === STATUS_ACCEPTED && friend.isOnline &&
+                {friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline &&
                 <div onClick={() => onBattleFriendClick(friend.tag)}><span>{getText(TEXT_BATTLE)}</span><TiFlash
                     color={CREAM_COLOR}/></div>}
-                {friend.status === STATUS_ACCEPTED &&
+                {friend.status === FRIEND_STATUS_ACCEPTED &&
                 <div onClick={() => onChallengeFriendClick(friend.tag)}><span>{getText(TEXT_CHALLENGE)}</span><FaGavel
                     color={CREAM_COLOR}/></div>}
-                {friend.status === STATUS_REQUESTED &&
+                {friend.status === FRIEND_STATUS_REQUESTED &&
                 <div onClick={() => onAcceptFriendClick(friend.tag)}><span>{getText(TEXT_ADD)}</span><FaPlusCircle
                     color={CREAM_COLOR}/></div>}
-                {friend.status === STATUS_SUGGESTED && _.isNil(addedSuggested[friend.tag]) &&
+                {friend.status === FRIEND_STATUS_SUGGESTED && _.isNil(addedSuggested[friend.tag]) &&
                 <div onClick={() => onAddSuggestedFriendClick(friend.tag, addedSuggested)}>
                     <span>{getText(TEXT_ADD)}</span><FaPlusCircle color={CREAM_COLOR}/></div>}
-                {friend.status === STATUS_SUGGESTED && addedSuggested[friend.tag] === true &&
+                {friend.status === FRIEND_STATUS_SUGGESTED && addedSuggested[friend.tag] === true &&
                 <div><span>{getText(TEXT_ADDED)}</span><FaCheckCircle color={CREAM_COLOR}/></div>}
-                {friend.status !== STATUS_SUGGESTED &&
+                {friend.status !== FRIEND_STATUS_SUGGESTED &&
                 <div onClick={() => onDeleteFriendClick(friend.tag)}><span>{getText(TEXT_DELETE)}</span><FaBan
                     color={CREAM_COLOR}/></div>}
             </div>}
