@@ -26,11 +26,11 @@ export default class BattleCommunication {
     onMessage = (e) => {
         const data = JSON.parse(e.data);
         const id = data.id;
-        if (id === 'BATTLE_START' || id === 'BATTLE_ANSWER' || id === 'BATTLE_NEXT_QUESTION') {
+        if (id === 'BATTLE_START' || id === 'BATTLE_ANSWER' || id === 'BATTLE_NEXT_QUESTION' || id === 'BATTLE_ACTUAL_MODEL') {
             const content = JSON.parse(data.content);
             this.battleInProgress(content);
         }
-        if (id === 'BATTLE_START_FAST') {
+        if (id === 'BATTLE_READY_FAST') {
             this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         }
     };
