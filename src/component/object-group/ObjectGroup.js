@@ -24,6 +24,7 @@ export class ObjectGroup extends React.PureComponent {
         onObjectMouseOver: _.noop,
         onObjectMouseOut: _.noop,
         objectContainerClassName: 'objectContainer',
+
         objectContentClassName: 'objectContent',
         objectStyle: {},
     };
