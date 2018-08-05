@@ -10,6 +10,7 @@
     "lodash": "^4.17.10",
     "mobile-detect": "^1.4.2",
     "prop-types": "^15.6.2",
+    "rc-progress": "^2.2.5",
     "react": "^16.4.1",
     "react-anime": "^2.1.0",
     "react-dom": "^16.4.1",

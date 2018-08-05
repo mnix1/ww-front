@@ -10,7 +10,3 @@
     justify-content: flex-start;
     flex-direction: column;
 }
-
-.battlePage .contentHeader .timer {
-    display: inline-block;
-}

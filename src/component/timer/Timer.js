@@ -1,8 +1,9 @@
 import React from 'react';
-import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import PropTypes from "prop-types";
+import {Line} from "rc-progress";
+import './styles.css';
 
 class Timer extends React.PureComponent {
 
@@ -11,12 +12,16 @@ class Timer extends React.PureComponent {
         from: PropTypes.number,
         to: PropTypes.number,
         down: PropTypes.bool,
+        showSeconds: PropTypes.bool,
+        showChart: PropTypes.bool
     };
 
     static defaultProps = {
         work: true,
         down: true,
-        to: 0
+        to: 0,
+        showSeconds: false,
+        showChart: true
     };
 
     constructor(props) {
@@ -66,13 +71,27 @@ class Timer extends React.PureComponent {
         cancelAnimationFrame(this.frameId);
     };
 
-
-    render() {
+    renderSeconds() {
         const {value} = this.state;
         const valueRound = Math.round(value / 100);
         const seconds = (valueRound / 10).toFixed(1);
+        return <span>{seconds} s</span>
+    }
+
+    renderChart() {
+        const {to, from} = this.props;
+        const {value} = this.state;
+        const percent = value / (from - to) * 100;
+        return <Line style={{width: 80}} percent={percent} strokeWidth="8" strokeColor="#FFFFFF"/>
+    }
+
+    render() {
+        const {showSeconds, showChart} = this.props;
         return <div className='timer'>
-            {seconds} s
+                <div className='timerContent'>
+                    {showSeconds && this.renderSeconds()}
+                    {showChart && this.renderChart()}
+                </div>
         </div>
     }
 }

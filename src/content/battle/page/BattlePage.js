@@ -8,12 +8,12 @@ import {
     TEXT_BATTLE_OVER,
     TEXT_CATEGORY,
     TEXT_CORRECT_ANSWER,
-    TEXT_FOR,
-    TEXT_NEXT_QUESTION,
     TEXT_OPPONENT_CORRECT_ANSWER,
     TEXT_OPPONENT_WRONG_ANSWER,
     TEXT_QUESTION,
+    TEXT_QUESTION_PREPARING,
     TEXT_THE_WINNER_IS,
+    TEXT_WAIT,
     TEXT_WRONG_ANSWER
 } from "../../../lang";
 import {prepareScoreMessage} from "../../../util/textHelper";
@@ -56,7 +56,7 @@ class BattlePage extends React.PureComponent {
             <div>{markedAnswerId === correctAnswerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER)}</div>}
             {!meAnswered &&
             <div>{markedAnswerId === correctAnswerId ? getText(TEXT_OPPONENT_CORRECT_ANSWER) : getText(TEXT_OPPONENT_WRONG_ANSWER)}</div>}
-            {!winner && <div>{`${getText(TEXT_NEXT_QUESTION)} ${getText(TEXT_FOR)}: `}
+            {!winner && <div>{`${getText(TEXT_WAIT)}, ${getText(TEXT_QUESTION_PREPARING).toLowerCase()} `}
                 <Timer from={content.nextTaskInterval}/>
             </div>}
             {winner && <div>

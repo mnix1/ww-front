@@ -50,6 +50,7 @@ export const TEXT_CHALLENGE_ENDED = 'TEXT_CHALLENGE_ENDED';
 export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
 export const TEXT_POINTS = 'TEXT_POINTS';
 export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
+export const TEXT_QUESTION_PREPARING = 'TEXT_QUESTION_PREPARING';
 export const TEXT_NEXT_QUESTION = 'TEXT_NEXT_QUESTION';
 export const TEXT_NEXT = 'TEXT_NEXT';
 export const TEXT_SUMMARY = 'TEXT_SUMMARY';
@@ -76,6 +77,7 @@ export const TEXT_ACCEPT = 'TEXT_ACCEPT';
 export const TEXT_REJECT = 'TEXT_REJECT';
 export const TEXT_CANCEL = 'TEXT_CANCEL';
 export const TEXT_FOR = 'TEXT_FOR';
+export const TEXT_WAIT = 'TEXT_WAIT';
 export const TEXT_OPPONENT_CORRECT_ANSWER = 'TEXT_OPPONENT_CORRECT_ANSWER';
 export const TEXT_OPPONENT_WRONG_ANSWER = 'TEXT_OPPONENT_WRONG_ANSWER';
 export const TEXT_BATTLE_OVER = 'TEXT_BATTLE_OVER';
@@ -91,6 +93,7 @@ const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
         [TEXT_SEARCHING_OPPONENT]: 'Wyszukiwanie godnego przeciwnika',
+        [TEXT_QUESTION_PREPARING]: 'Przygotowywanie pytania',
         [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CONTINUE]: 'Kontynuuj',
         [TEXT_CATEGORY]: 'Kategoria',
@@ -143,6 +146,7 @@ const TEXTS = {
         [TEXT_REJECT]: 'Odrzuć',
         [TEXT_CANCEL]: 'Anuluj',
         [TEXT_FOR]: 'za',
+        [TEXT_WAIT]: 'Poczekaj',
         [TEXT_OPPONENT_CORRECT_ANSWER]: 'Przeciwnik zaznaczył dobrą odpowiedź',
         [TEXT_OPPONENT_WRONG_ANSWER]: 'Przeciwnik zaznaczył złą odpowiedź',
         [TEXT_BATTLE_OVER]: 'Koniec bitwy!',
@@ -153,6 +157,7 @@ const TEXTS = {
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
         [TEXT_SEARCHING_OPPONENT]: 'Searching for worthy opponent',
+        [TEXT_QUESTION_PREPARING]: 'Question preparing',
         [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CONTINUE]: 'Continue',
         [TEXT_CATEGORY]: 'Category',
@@ -205,6 +210,7 @@ const TEXTS = {
         [TEXT_REJECT]: 'Reject',
         [TEXT_CANCEL]: 'Cancel',
         [TEXT_FOR]: 'for',
+        [TEXT_WAIT]: 'Wait',
         [TEXT_OPPONENT_CORRECT_ANSWER]: 'The opponent marked a correct answer',
         [TEXT_OPPONENT_WRONG_ANSWER]: 'The opponent marked a wrong answer',
         [TEXT_BATTLE_OVER]: 'Battle is over',
