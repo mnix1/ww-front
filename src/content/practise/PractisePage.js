@@ -112,6 +112,8 @@ export default connect(
     }),
     (dispatch) => ({
         onCategoryChange: (e) => {
+            clearPractiseStartFetch(dispatch);
+            clearPractiseEndFetch(dispatch);
             dispatch(categoryChanged(e.id));
             dispatch(push(TASK_ROUTE));
         },

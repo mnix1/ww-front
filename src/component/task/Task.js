@@ -7,6 +7,7 @@ import {prepareQuestionTiles} from "./objectsTaskQuestion";
 import {prepareAnswerTiles} from "./objectsTaskAnswer";
 import {prepareAnimationTiles} from "./objectsTaskAnimation";
 import _ from 'lodash';
+import AnimationObjectGroup from "./AnimationObjectGroup";
 
 export default class Task extends React.PureComponent {
 
@@ -36,7 +37,8 @@ export default class Task extends React.PureComponent {
     renderTask() {
         const {onAnswerClick, answerId, screen, canChangeAnswer} = this.props;
         return <TaskObjectGroup
-            objects={prepareQuestionTiles(this).concat(prepareAnswerTiles(this))}
+            questionObjects={prepareQuestionTiles(this)}
+            answerObjects={prepareAnswerTiles(this)}
             onObjectClick={(e) => !_.isNil(e.id) && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
             screen={screen}
         />;
@@ -44,7 +46,7 @@ export default class Task extends React.PureComponent {
 
     renderAnimation() {
         const {onSkipAnimationChange, screen} = this.props;
-        return <TaskObjectGroup
+        return <AnimationObjectGroup
             onObjectClick={() => onSkipAnimationChange(true)}
             objects={prepareAnimationTiles(this)}
             screen={screen}
@@ -64,10 +66,10 @@ export default class Task extends React.PureComponent {
     }
 
     render() {
-        const {style} = this.props;
-        return <div className='task' style={style}>
+        const {style, screen} = this.props;
+        return <div className='task' style={{height: screen.contentHeight,...style}}>
             {this.renderTaskHeader()}
-            {this.renderContent()}
+            <div className='taskContent' >{this.renderContent()}</div>
         </div>
     }
 }

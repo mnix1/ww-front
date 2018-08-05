@@ -75,13 +75,13 @@ function calculateContentWidth(width, isSmallWidth, moreHeightThanWidth) {
 }
 
 function calculateContentHeight(height, isSmallHeight, moreHeightThanWidth) {
-    if (moreHeightThanWidth) {
-        return height * 5 / 6;
-    }
-    if (isSmallHeight) {
-        return height * 4.5 / 6;
-    }
-    return height * 4 / 6;
+    // if (moreHeightThanWidth) {
+        return height * 8 / 10;
+    // }
+    // if (isSmallHeight) {
+    //     return height * 4.5 / 6;
+    // }
+    // return height * 4 / 6;
 }
 
 const isMobile = new MobileDetect(window.navigator.userAgent).mobile() !== null;

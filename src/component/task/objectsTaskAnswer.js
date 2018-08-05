@@ -18,7 +18,7 @@ export function prepareAnswerTiles(rival) {
             id: ans.id,
             content: getTextContent(ans),
             material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
-            yTarget: (i % 2) * .25 + .5,
+            yTarget: (i % 2) * .5 + .25,
             xTarget: xTargetGenerator(i),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
             borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined,
