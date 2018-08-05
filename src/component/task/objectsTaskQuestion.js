@@ -1,7 +1,6 @@
 import React from 'react';
-import {getImageContent, getTextContent, TEXT_IMAGE_TASK_RENDERER, TEXT_TASK_RENDERER} from "../../util/taskRenderer";
+import {getImageContent, getTextContent, TEXT_IMAGE_TASK_RENDERER} from "../../util/taskRenderer";
 import _ from "lodash";
-import {OBJECT_MATERIALS} from "../object-group/objectMaterialHelper";
 
 export function prepareQuestionTiles(rival) {
     return _.flatten([
@@ -20,7 +19,6 @@ function prepareQuestionTextTile(rival) {
         id: 'questionText',
         onClick: _.noop,
         content: textContent,
-        material: OBJECT_MATERIALS[1],
         yTarget: .5,
         xTarget: .5
     };
@@ -36,6 +34,13 @@ function prepareQuestionImageTile(rival) {
     const textContent = getTextContent(question);
     return [
         {
+            id: 'questionText',
+            onClick: _.noop,
+            content: textContent,
+            yTarget: .5,
+            xTarget: .35
+        },
+        {
             id: 'questionImage',
             onClick: _.noop,
             content: image,
@@ -43,13 +48,5 @@ function prepareQuestionImageTile(rival) {
             yTarget: .5,
             xTarget: .7
         },
-        {
-            id: 'questionText',
-            onClick: _.noop,
-            content: textContent,
-            material: OBJECT_MATERIALS[1],
-            yTarget: .5,
-            xTarget: .35
-        }
     ];
 }

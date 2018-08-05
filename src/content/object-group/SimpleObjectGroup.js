@@ -44,7 +44,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     ...o,
-                    content: <div className='simpleGroupObject'>
+                    content: <div >
                         <div className='simpleGroupObjectBackground'/>
                         <div className='simpleGroupObjectContent'><img src={o.imgSrc}
                                                                        height={objectHeight / 2}/><span>{getCategoryLabel([o.id])}</span>
@@ -52,7 +52,6 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     </div>,
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     objectStyle: {
-                        padding: 0,
                         background: null,
                         height: objectHeight,
                         top,

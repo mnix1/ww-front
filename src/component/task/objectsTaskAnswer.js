@@ -28,7 +28,7 @@ export function prepareAnswerTiles(rival) {
 
 function prepareAnswerMaterial(i, id, answerId, correctAnswerId) {
     if (correctAnswerId === undefined || (id !== answerId && id !== correctAnswerId)) {
-        return ANSWER_OBJECT_MATERIALS[i];
+        return  null;
     }
     if (id === correctAnswerId) {
         return CORRECT_ANSWER_OBJECT_MATERIAL;

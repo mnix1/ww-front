@@ -1,11 +1,9 @@
-.simpleGroupObject {
-}
 .simpleGroupObjectContent {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
+     position: relative;
+     display: flex;
+     justify-content: center;
+     flex-direction: column;
+ }
 .simpleGroupObjectBackground {
     position: absolute;
     background: #666;
