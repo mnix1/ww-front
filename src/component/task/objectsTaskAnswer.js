@@ -10,6 +10,7 @@ export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
     const answersCount = answers.length;
     const df = 2 * Math.PI / answersCount;
+    const factor = answersCount === 2 ? 0.25 : 0.3;
     return answers.map((ans, i) => {
         const isUserAnswer = answerId === ans.id;
         const isCorrectAnswer = correctAnswerId === ans.id;
@@ -25,8 +26,8 @@ export function prepareAnswerTiles(rival) {
             material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
             borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined,
-            xTarget: 0.5 + Math.cos(f) * 0.3,
-            yTarget: 0.5 - Math.sin(f) * 0.3
+            xTarget: 0.5 + Math.cos(f) * factor,
+            yTarget: 0.5 - Math.sin(f) * factor
         }
     });
 }
