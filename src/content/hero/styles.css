@@ -1,0 +1,29 @@
+.heroPage {
+    height: 80vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.heroPage .pageContent {
+    height: 100%;
+    overflow: auto;
+}
+
+.heroPage .heroesContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.heroPage .heroes {
+    display: flex;
+    /*justify-content: space-around;*/
+}
+
+.heroPage .hero {
+    display: flex;
+    /*justify-content: center;*/
+}
+
+.heroPage .hero .profileContainer {
+    width: 100%;
+}

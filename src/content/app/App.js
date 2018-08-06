@@ -28,7 +28,7 @@ import {
     CHALLENGE_LIST_ROUTE,
     CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
-    FRIEND_ROUTE,
+    FRIEND_ROUTE, HERO_ROUTE,
     PLAY_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
@@ -52,6 +52,8 @@ import {
     BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
     BATTLE_STATUS_WAITING_FAST,
 } from "../../util/battleHelper";
+import HeroPage from "../hero/HeroPage";
+import HeroListFetch from "../hero/HeroListFetch";
 
 class App extends React.PureComponent {
 
@@ -118,6 +120,7 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
+                <Route exact path={WISIES_ROUTE} render={() => <HeroPage/>}/>
             </Switch>
         </ConnectedRouter>;
     }
@@ -128,6 +131,7 @@ class App extends React.PureComponent {
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
             <ChallengeFetchContainer/>
+            <HeroListFetch path={path}/>
         </div>
     }
 

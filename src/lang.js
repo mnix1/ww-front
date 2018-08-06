@@ -85,10 +85,6 @@ export const TEXT_THE_WINNER_IS = 'TEXT_THE_WINNER_IS';
 export const TEXT_ANSWER = 'TEXT_ANSWER';
 export const TEXT_YOU = 'TEXT_YOU';
 
-export function getText(id) {
-    return TEXTS[window.activeLang][id];
-}
-
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
@@ -255,6 +251,10 @@ const ROUTE_LABELS = {
     }
 };
 
+export function getText(id) {
+    return TEXTS[window.activeLang][id];
+}
+
 export function getCategoryLabel(id) {
     return CATEGORY_LABELS[window.activeLang][id];
 }
@@ -279,3 +279,14 @@ const CATEGORY_LABELS = {
         [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }
 };
+
+
+export function getHeroName(hero) {
+    if(window.activeLang === POLISH){
+        return hero.namePolish;
+    }
+    if(window.activeLang === ENGLISH){
+        return hero.nameEnglish;
+    }
+    return null;
+}

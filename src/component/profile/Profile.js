@@ -10,7 +10,7 @@ export default class Profile extends React.PureComponent {
     static propTypes = {
         tag: PropTypes.string,
         name: PropTypes.string,
-        hero: PropTypes.string,
+        heroType: PropTypes.string,
         isOnline: PropTypes.bool,
         isAdded: PropTypes.bool,
         actions: PropTypes.node,
@@ -28,11 +28,11 @@ export default class Profile extends React.PureComponent {
     }
 
     render() {
-        const {hero, isOnline, name, tag, children, imgHeight} = this.props;
+        const {heroType, isOnline, name, tag, children, imgHeight} = this.props;
         return <div key={tag} className='profileContainer'>
             {children}
             <div className='profile'>
-                <img alt='' src={getHero(hero)} height={imgHeight}/>
+                <img alt='' src={getHero(heroType)} height={imgHeight}/>
                 <div className='details'>
                     {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
                     {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}

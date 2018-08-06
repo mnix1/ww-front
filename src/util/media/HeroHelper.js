@@ -108,6 +108,6 @@ export function randomHero() {
     return heroes[_.random(heroes.length - 1)];
 }
 
-export function getHero(hero) {
-    return HERO[hero];
+export function getHero(heroType) {
+    return HERO[heroType];
 }
