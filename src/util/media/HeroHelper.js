@@ -21,7 +21,7 @@ import giraffe from '../../media/image/hero/giraffe.svg';
 import snake from '../../media/image/hero/snake.svg';
 import eagle from '../../media/image/hero/eagle.svg';
 import horse from '../../media/image/hero/horse.svg';
-import skunk from '../../media/image/hero/skunk.svg';
+import raccoon from '../../media/image/hero/raccoon.svg';
 import aurochs from '../../media/image/hero/aurochs.svg';
 import rabbit from '../../media/image/hero/rabbit.svg';
 import dragon from '../../media/image/hero/dragon.svg';
@@ -89,11 +89,11 @@ export const HERO = {
     'PENGUIN': penguin,
     'POLAR_BEAR': polarBear,
     'RABBIT': rabbit,
+    'RACCOON': raccoon,
     'ROBO': robo,
     // 'RUMCIA': rumcia,
     'SHARK': shark,
     'SHEEP': sheep,
-    'SKUNK': skunk,
     'SNAKE': snake,
     // 'SZERYF': szeryf,
     'TIGER': tiger,
