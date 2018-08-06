@@ -8,27 +8,32 @@ import {
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
-    const xTargetGenerator = screen.moreHeightThanWidth
-        ? (i) => i < answers.length / 2 ? .2 : .8
-        : (i) => i < answers.length / 2 ? .25 : .75;
+    const answersCount = answers.length;
+    const df = 2 * Math.PI / answersCount;
     return answers.map((ans, i) => {
         const isUserAnswer = answerId === ans.id;
         const isCorrectAnswer = correctAnswerId === ans.id;
+        let f = i * df;
+        if (answersCount % 2 === 1) {
+            f -= Math.PI / 2;
+        } else if (answersCount !== 2) {
+            f -= df / 2;
+        }
         return {
             id: ans.id,
             content: getTextContent(ans),
             material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
-            yTarget: (i % 2) * .5 + .25,
-            xTarget: xTargetGenerator(i),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
             borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined,
+            xTarget: 0.5 + Math.cos(f) * 0.3,
+            yTarget: 0.5 - Math.sin(f) * 0.3
         }
     });
 }
 
 function prepareAnswerMaterial(i, id, answerId, correctAnswerId) {
     if (correctAnswerId === undefined || (id !== answerId && id !== correctAnswerId)) {
-        return  null;
+        return null;
     }
     if (id === correctAnswerId) {
         return CORRECT_ANSWER_OBJECT_MATERIAL;

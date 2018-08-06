@@ -11,3 +11,4 @@ export const DARK_RED_COLOR = '#890006';
 export const RED_COLOR = '#d60007';
 export const LIGHT_BLUE_COLOR = '#2879da';
 export const DARK_BLUE_COLOR = '#122f61';
+export const YELLOW_COLOR = '#dad505';

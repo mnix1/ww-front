@@ -6,7 +6,8 @@ import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redu
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
-import {getHero, randomHero} from "../../util/media/HeroHelper";
+import {getHero} from "../../util/media/HeroHelper";
+import renderDifficultyLevelStars from "../../util/taskDifficultyLevel";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
@@ -44,16 +45,17 @@ class PractisePage extends React.PureComponent {
         if (!practiseStartRep || !practiseStartRep.fulfilled) {
             return null;
         }
+        const question = practiseStartRep.value.practise.question;
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
         return <div className='pageContent'>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Task key='task'
-                  header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:</div>}
+                  header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:{renderDifficultyLevelStars(question.taskDifficultyLevel)}</div>}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}
-                  question={practiseStartRep.value.practise.question}
-                  answers={practiseStartRep.value.practise.question.answers}
+                  question={question}
+                  answers={question.answers}
                   correctAnswerId={_.get(practiseEndRep, 'value.correctAnswerId')}
                   answerId={answerId}
                   onAnswerClick={onAnswerClick}/>
