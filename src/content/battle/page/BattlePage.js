@@ -21,6 +21,7 @@ import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from ".
 import Timer from "../../../component/timer/Timer";
 import _ from 'lodash';
 import Profile from "../../../component/profile/Profile";
+import renderDifficultyLevelStars from "../../../util/taskDifficultyLevel";
 
 class BattlePage extends React.PureComponent {
 
@@ -47,9 +48,6 @@ class BattlePage extends React.PureComponent {
 
     renderQuestionResult() {
         const {content} = this.props;
-        if (!content || !content.nextTaskInterval) {
-            return null;
-        }
         const {correctAnswerId, markedAnswerId, meAnswered, winner} = content;
         return <div>
             {meAnswered &&
@@ -74,7 +72,8 @@ class BattlePage extends React.PureComponent {
         const question = content.question;
         return <div className="contentHeader">
             {`${getText(TEXT_QUESTION)} ${question.id}, ${getText(TEXT_CATEGORY)}: ${getCategoryLabel(question.category)}`}
-            {this.renderQuestionResult()}
+            {content.nextTaskInterval && this.renderQuestionResult()}
+            {!content.nextTaskInterval && renderDifficultyLevelStars(content.question.taskDifficultyLevel)}
         </div>;
     }
 

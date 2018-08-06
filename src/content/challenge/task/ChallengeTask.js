@@ -30,6 +30,7 @@ import './styles.css';
 import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 import {getHero} from "../../../util/media/HeroHelper";
+import renderDifficultyLevelStars from "../../../util/taskDifficultyLevel";
 
 class ChallengeTask extends React.PureComponent {
 
@@ -55,6 +56,7 @@ class ChallengeTask extends React.PureComponent {
         if (!endTaskRep || !endTaskRep.fulfilled || _.isNil(answerId)) {
             return <div className="contentHeader">
                 <div>{headerText}</div>
+                {renderDifficultyLevelStars(question.taskDifficultyLevel)}
             </div>;
         }
         const {answerInterval, correctAnswerId, isAllTasksAnswered} = endTaskRep.value;
