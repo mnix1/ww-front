@@ -6,12 +6,14 @@ import challenge from "./reducer/challenge";
 import friend from "./reducer/friend";
 import socket from "./reducer/socket";
 import practise from "./reducer/practise";
+import shop from "./reducer/shop";
 import screen from "./reducer/screen";
 
 const app = combineReducers({
     profile,
     battle,
     challenge,
+    shop,
     friend,
     socket,
     practise,

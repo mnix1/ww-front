@@ -1,0 +1,22 @@
+.shopPage {
+}
+
+.shopPage .chests {
+    display: flex;
+    justify-content: space-around;
+}
+
+.shopPage .chestContainer {
+    cursor: pointer;
+    margin: 0.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+    display: flex;
+    justify-content: center;
+}
+
+.shopPage .chest {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
