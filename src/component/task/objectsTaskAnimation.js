@@ -9,7 +9,8 @@ export function prepareAnimationTiles(rival) {
     const objects = JSON.parse(atob(getAnimationContent(question)));
     return objects.map((object, i) => {
         let imageData = atob(object.shape);
-        imageData = imageData.replace('svg', `svg fill="${object.backgroundColor}"`);
+        imageData = imageData.replace('svg', `svg fill="${object.backgroundColor}"`).replace(/#/g, '%23');
+        console.log(imageData);
         const content = <div style={{height: '100%', width: '100%'}}>
             <span style={{fontSize: objectFontSize(screen.resolution, 1, 18)}}>{object.key}</span>
             <img alt='' src={'data:image/svg+xml,' + imageData} height='100%' width='100%'/>
