@@ -6,6 +6,10 @@
     overflow: auto;
 }
 
+.heroPage .pageContent .contentFragment .title {
+    text-align: center;
+}
+
 .heroPage .heroesContainer {
     display: flex;
     justify-content: center;
@@ -18,6 +22,10 @@
 
 .heroPage .hero {
     display: flex;
+}
+
+.heroPage .hero.notOwned {
+    opacity: 0.5;
 }
 
 .heroPage .hero .profileContainer {
@@ -44,13 +52,11 @@
 
 .heroPage .hero .heroDetails .hobbies {
     display: flex;
-    /*position: relative;*/
 }
 
 .heroPage .hero .heroDetails .background {
     background: #888;
     border-radius: 0.5rem;
-    /*box-shadow: 0 0 4px #fffdf1;*/
     display: inline-block;
     opacity: 0.5;
     position: absolute;
@@ -58,5 +64,5 @@
 
 .heroPage .hero .hobby {
     position: relative;
-    /*padding: 0.25rem;*/
+    padding-left: 0.25rem;
 }

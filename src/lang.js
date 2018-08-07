@@ -83,10 +83,14 @@ export const TEXT_BATTLE_OVER = 'TEXT_BATTLE_OVER';
 export const TEXT_THE_WINNER_IS = 'TEXT_THE_WINNER_IS';
 export const TEXT_ANSWER = 'TEXT_ANSWER';
 export const TEXT_YOU = 'TEXT_YOU';
+export const TEXT_OWNED_WISIES = 'TEXT_OWNED_WISIES';
+export const TEXT_NOT_OWNED_WISIES = 'TEXT_NOT_OWNED_WISIES';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_OWNED_WISIES]: 'Twoje wiedzaki',
+        [TEXT_NOT_OWNED_WISIES]: 'Wiedzaki do odkrycia',
         [TEXT_SEARCHING_OPPONENT]: 'Wyszukiwanie godnego przeciwnika',
         [TEXT_QUESTION_PREPARING]: 'Przygotowywanie pytania',
         [TEXT_ANSWER]: 'Odpowiedz',
@@ -151,6 +155,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_OWNED_WISIES]: 'Owned wisies',
+        [TEXT_NOT_OWNED_WISIES]: 'Wisies to discover',
         [TEXT_SEARCHING_OPPONENT]: 'Searching for worthy opponent',
         [TEXT_QUESTION_PREPARING]: 'Question preparing',
         [TEXT_ANSWER]: 'Odpowiedz',

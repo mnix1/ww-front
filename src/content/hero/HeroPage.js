@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getHeroName} from "../../lang";
+import {getHeroName, getText, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES} from "../../lang";
 import Profile from "../../component/profile/Profile";
 import './styles.css';
 import _ from 'lodash';
@@ -15,14 +15,27 @@ class HeroPage extends React.PureComponent {
 
     }
 
-    renderHeroes() {
+    renderContent() {
         const {heroListRep, screen} = this.props;
         if (!heroListRep || !heroListRep.fulfilled) {
             return null;
         }
         const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
-        const heroes = _.sortBy(heroListRep.value, e => getHeroName(e));
-        const heroesGroups = _.chunk(heroes, groupCount);
+        const ownedHeroes = _.chain(heroListRep.value).filter('isOwned').sortBy(e => getHeroName(e)).value();
+        const notOwnedHeroes = _.chain(heroListRep.value).filter(e => !e.isOwned).sortBy(e => getHeroName(e)).value();
+        return <div>
+            {!_.isEmpty(ownedHeroes) && <div className='contentFragment'>
+                <div className='title'>{getText(TEXT_OWNED_WISIES)}</div>
+                {this.renderHeroes(_.chunk(ownedHeroes, groupCount))}
+            </div>}
+            {!_.isEmpty(notOwnedHeroes) && <div className='contentFragment'>
+                <div className='title'>{getText(TEXT_NOT_OWNED_WISIES)}</div>
+                {this.renderHeroes(_.chunk(notOwnedHeroes, groupCount))}
+            </div>}
+        </div>
+    }
+
+    renderHeroes(heroesGroups) {
         return <div className='heroesContainer'>
             {heroesGroups.map((e, i) => this.renderHeroesGroup(e, i))}
         </div>;
@@ -35,7 +48,8 @@ class HeroPage extends React.PureComponent {
     }
 
     renderHero(hero) {
-        return <div key={hero.type} className='hero' style={{width: this.heroWidth}}>
+        return <div key={hero.type} className={`hero ${hero.isOwned ? 'owned' : 'notOwned'}`}
+                    style={{width: this.heroWidth}}>
             <Profile imgHeight={100} heroType={hero.type}>{this.renderHeroDetails(hero)}</Profile>
         </div>;
     }
@@ -56,7 +70,7 @@ class HeroPage extends React.PureComponent {
         return <div className='page heroPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
             <div className='pageBackground'/>
             <div className='pageContent'>
-                {this.renderHeroes()}
+                {this.renderContent()}
             </div>
         </div>;
     }
