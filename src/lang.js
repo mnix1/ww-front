@@ -1,13 +1,5 @@
 import React from 'react';
 
-import {
-    OBJECT_CATEGORY_GEOGRAPHY,
-    OBJECT_CATEGORY_HISTORY,
-    OBJECT_CATEGORY_MATH,
-    OBJECT_CATEGORY_MEMORY,
-    OBJECT_CATEGORY_MUSIC,
-    OBJECT_CATEGORY_RANDOM
-} from "./content/object-group/objectsCategory";
 import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
 import {
     BATTLE_FAST_ROUTE,
@@ -18,6 +10,13 @@ import {
     TRAINING_ROUTE,
     WISIES_ROUTE
 } from "./content/routes";
+import {
+    CATEGORY_GEOGRAPHY,
+    CATEGORY_HISTORY,
+    CATEGORY_MATH, CATEGORY_MEMORY,
+    CATEGORY_MUSIC,
+    CATEGORY_RANDOM
+} from "./util/categoryHelper";
 
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
@@ -261,21 +260,21 @@ export function getCategoryLabel(id) {
 
 const CATEGORY_LABELS = {
     [POLISH]: {
-        [OBJECT_CATEGORY_RANDOM]: 'Losowa',
-        [OBJECT_CATEGORY_MATH]: 'Matematyka',
-        [OBJECT_CATEGORY_MUSIC]: 'Muzyka',
-        [OBJECT_CATEGORY_HISTORY]: 'Historia',
-        [OBJECT_CATEGORY_GEOGRAPHY]: 'Geografia',
-        [OBJECT_CATEGORY_MEMORY]: 'Pamięć',
+        [CATEGORY_RANDOM]: 'Losowa',
+        [CATEGORY_MATH]: 'Matematyka',
+        [CATEGORY_MUSIC]: 'Muzyka',
+        [CATEGORY_HISTORY]: 'Historia',
+        [CATEGORY_GEOGRAPHY]: 'Geografia',
+        [CATEGORY_MEMORY]: 'Pamięć',
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
-        [OBJECT_CATEGORY_RANDOM]: 'Random',
-        [OBJECT_CATEGORY_MATH]: 'Math',
-        [OBJECT_CATEGORY_MUSIC]: 'Music',
-        [OBJECT_CATEGORY_HISTORY]: 'History',
-        [OBJECT_CATEGORY_GEOGRAPHY]: 'Geography',
-        [OBJECT_CATEGORY_MEMORY]: 'Memory',
+        [CATEGORY_RANDOM]: 'Random',
+        [CATEGORY_MATH]: 'Math',
+        [CATEGORY_MUSIC]: 'Music',
+        [CATEGORY_HISTORY]: 'History',
+        [CATEGORY_GEOGRAPHY]: 'Geography',
+        [CATEGORY_MEMORY]: 'Memory',
         [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }
 };

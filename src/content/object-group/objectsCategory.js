@@ -1,53 +1,47 @@
-import {OBJECT_MATERIALS} from "../../component/object-group/objectMaterialHelper";
-import calculator from '../../media/image/category/calculator.svg';
-import globe from '../../media/image/category/globe.svg';
-import drive from '../../media/image/category/drive.svg';
-import piano from '../../media/image/category/piano.svg';
-import questionMark from '../../media/image/category/questionMark.svg';
-
-export const OBJECT_CATEGORY_MATH = 'MATH';
-export const OBJECT_CATEGORY_MUSIC = 'MUSIC';
-export const OBJECT_CATEGORY_HISTORY = 'HISTORY';
-export const OBJECT_CATEGORY_GEOGRAPHY = 'GEOGRAPHY';
-export const OBJECT_CATEGORY_MEMORY = 'MEMORY';
-export const OBJECT_CATEGORY_RANDOM = 'RANDOM';
+import {
+    CATEGORY_GEOGRAPHY,
+    CATEGORY_MATH, CATEGORY_MEMORY,
+    CATEGORY_MUSIC,
+    CATEGORY_RANDOM,
+    getCategory
+} from "../../util/categoryHelper";
 
 export const OBJECTS_CATEGORY = [
     {
-        id: OBJECT_CATEGORY_RANDOM,
+        id: CATEGORY_RANDOM,
         xTarget: .5,
         yTarget: .5,
-        imgSrc: questionMark
+        imgSrc: getCategory(CATEGORY_RANDOM)
     },
     {
-        id: OBJECT_CATEGORY_MUSIC,
+        id: CATEGORY_MUSIC,
         xTarget: 3 / 4,
         yTarget: 1 / 4,
-        imgSrc: piano
+        imgSrc: getCategory(CATEGORY_MUSIC)
     },
     {
-        id: OBJECT_CATEGORY_MATH,
+        id: CATEGORY_MATH,
         xTarget: 1 / 4,
         yTarget: 1 / 4,
-        imgSrc: calculator
+        imgSrc: getCategory(CATEGORY_MATH)
     },
     // {
-    //     id: OBJECT_CATEGORY_HISTORY,
+    //     id: CATEGORY_HISTORY,
     //     xTarget: 1 / 4,
     //     yTarget: -1 / 4,
     //     material: OBJECT_MATERIALS[49],
     // },
     {
-        id: OBJECT_CATEGORY_GEOGRAPHY,
+        id: CATEGORY_GEOGRAPHY,
         xTarget: 1 / 4,
         yTarget: 3 / 4,
-        imgSrc: globe,
+        imgSrc: getCategory(CATEGORY_GEOGRAPHY)
     },
     {
-        id: OBJECT_CATEGORY_MEMORY,
+        id: CATEGORY_MEMORY,
         xTarget: 3 / 4,
         yTarget: 3 / 4,
-        imgSrc: drive,
+        imgSrc: getCategory(CATEGORY_MEMORY)
     },
 
 ];

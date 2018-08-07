@@ -4,17 +4,23 @@ import {getHeroName} from "../../lang";
 import Profile from "../../component/profile/Profile";
 import './styles.css';
 import _ from 'lodash';
-
-const HERO_WIDTH = 150;
+import {getCategory} from "../../util/categoryHelper";
+import {calculateHeroWidth} from "../../util/heroHelper";
 
 class HeroPage extends React.PureComponent {
+
+    get heroWidth() {
+        const {screen} = this.props;
+        return calculateHeroWidth(screen.contentWidth - 20);
+
+    }
 
     renderHeroes() {
         const {heroListRep, screen} = this.props;
         if (!heroListRep || !heroListRep.fulfilled) {
             return null;
         }
-        const groupCount = Math.floor(screen.contentWidth / HERO_WIDTH);
+        const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
         const heroes = _.sortBy(heroListRep.value, e => getHeroName(e));
         const heroesGroups = _.chunk(heroes, groupCount);
         return <div className='heroesContainer'>
@@ -29,10 +35,20 @@ class HeroPage extends React.PureComponent {
     }
 
     renderHero(hero) {
-        const name = getHeroName(hero);
-        return <div key={hero.type} className='hero' style={{width: HERO_WIDTH}}>
-            <Profile imgHeight={100} heroType={hero.type}>{name}</Profile>
+        return <div key={hero.type} className='hero' style={{width: this.heroWidth}}>
+            <Profile imgHeight={100} heroType={hero.type}>{this.renderHeroDetails(hero)}</Profile>
         </div>;
+    }
+
+    renderHeroDetails(hero) {
+        const name = getHeroName(hero);
+        return <div className='heroDetails'>
+            <div className='background'/>
+            <span className='name'>{name}</span>
+            <div className='hobbies'>
+                {hero.hobbies.map(e => <img className='hobby' key={e} alt='' height={20} src={getCategory(e)}/>)}
+            </div>
+        </div>
     }
 
     render() {

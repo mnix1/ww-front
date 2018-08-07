@@ -6,7 +6,7 @@ import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redu
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
-import {getHero} from "../../util/media/HeroHelper";
+import {getHero} from "../../util/heroHelper";
 import renderDifficultyLevelStars from "../../util/taskDifficultyLevel";
 import {
     getText,

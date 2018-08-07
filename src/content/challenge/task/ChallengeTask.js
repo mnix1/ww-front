@@ -29,7 +29,7 @@ import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import './styles.css';
 import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
-import {getHero} from "../../../util/media/HeroHelper";
+import {getHero} from "../../../util/heroHelper";
 import renderDifficultyLevelStars from "../../../util/taskDifficultyLevel";
 
 class ChallengeTask extends React.PureComponent {
