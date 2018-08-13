@@ -6,19 +6,19 @@ import './styles.css';
 import _ from 'lodash';
 import {getCategory} from "../../util/categoryHelper";
 import {calculateHeroWidth} from "../../util/heroHelper";
+import {Loading} from "../../component/loading/Loading";
 
 class HeroPage extends React.PureComponent {
 
     get heroWidth() {
         const {screen} = this.props;
         return calculateHeroWidth(screen.contentWidth - 20);
-
     }
 
     renderContent() {
         const {heroListRep, screen} = this.props;
         if (!heroListRep || !heroListRep.fulfilled) {
-            return null;
+            return <Loading/>;
         }
         const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
         const ownedHeroes = _.chain(heroListRep.value).filter('isOwned').sortBy(e => getHeroName(e)).value();
