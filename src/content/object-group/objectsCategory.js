@@ -43,5 +43,4 @@ export const OBJECTS_CATEGORY = [
         yTarget: 3 / 4,
         imgSrc: getCategory(CATEGORY_MEMORY)
     },
-
 ];

@@ -1,6 +1,5 @@
 import React from 'react';
 import './styles.css';
-import ReactLoading from 'react-loading';
 import PropTypes from "prop-types";
 
 export class Loading extends React.PureComponent {

@@ -22,6 +22,9 @@ export class Anime extends React.PureComponent {
         childrenPropsCreator: (target, childOriginalProps, animeProps) => {
             const newChildProps = {...childOriginalProps};
             const transformedTarget = animeProps.targetTransformer(target);
+            if (!animeProps.targetAsChildProp) {
+                return {...newChildProps, ...transformedTarget};
+            }
             if (newChildProps[animeProps.targetAsChildProp]) {
                 newChildProps[animeProps.targetAsChildProp] = {
                     ...newChildProps[animeProps.targetAsChildProp],
@@ -50,11 +53,11 @@ export class Anime extends React.PureComponent {
         }
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         this.stop();
     }
 
-    stop(){
+    stop() {
         if (this.anime && !this.anime.completed) {
             this.anime.pause();
         }

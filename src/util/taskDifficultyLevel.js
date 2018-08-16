@@ -3,6 +3,7 @@ import FaStar from 'react-icons/lib/fa/star';
 import FaStarHalfEmpty from 'react-icons/lib/fa/star-half-empty';
 import React from 'react';
 import {YELLOW_COLOR} from "./style/constant";
+import PropTypes from "prop-types";
 
 export const VERY_EASY = 'VERY_EASY';
 export const EASY = 'EASY';
@@ -21,7 +22,7 @@ export const STARS_DIFFICULTY_LEVEL = {
     [EXTREMELY_HARD]: [FaStar, FaStar, FaStar],
 };
 
-export default function renderDifficultyLevelStars(level) {
+export function renderDifficultyLevelStars(level) {
     if (level === NONE) {
         return null;
     }
@@ -29,7 +30,7 @@ export default function renderDifficultyLevelStars(level) {
     if (!stars) {
         return null;
     }
-    return <div>
+    return <div style={{display: 'inline-flex', verticalAlign: 'text-top'}}>
         {stars.map((e, i) => React.createElement(e, {key: i, color: YELLOW_COLOR}))}
     </div>
 }

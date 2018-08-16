@@ -24,6 +24,9 @@ export const ENGLISH = 'en';
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
 export const TEXT_CONTINUE = 'TEXT_CONTINUE';
 export const TEXT_CATEGORY = 'TEXT_CATEGORY';
+export const TEXT_DIFFICULT = 'TEXT_DIFFICULT';
+export const TEXT_DRAW_CATEGORY = 'TEXT_DRAW_CATEGORY';
+export const TEXT_DRAW_DIFFICULT = 'TEXT_DRAW_DIFFICULT';
 export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
 export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
 export const TEXT_QUESTION = 'TEXT_QUESTION';
@@ -93,9 +96,12 @@ const TEXTS = {
         [TEXT_NOT_OWNED_WISIES]: 'Wiedzaki do odkrycia',
         [TEXT_SEARCHING_OPPONENT]: 'Wyszukiwanie godnego przeciwnika',
         [TEXT_QUESTION_PREPARING]: 'Przygotowywanie pytania',
+        [TEXT_DRAW_CATEGORY]: 'Losowanie kategorii',
+        [TEXT_DRAW_DIFFICULT]: 'Losowanie trudności',
         [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CONTINUE]: 'Kontynuuj',
         [TEXT_CATEGORY]: 'Kategoria',
+        [TEXT_DIFFICULT]: 'Trudność',
         [TEXT_CHOOSE_CATEGORY]: 'Wybierz kategorię',
         [TEXT_PLAY_AGAIN]: 'Zagraj ponownie',
         [TEXT_QUESTION]: 'Pytanie',
@@ -159,9 +165,12 @@ const TEXTS = {
         [TEXT_NOT_OWNED_WISIES]: 'Wisies to discover',
         [TEXT_SEARCHING_OPPONENT]: 'Searching for worthy opponent',
         [TEXT_QUESTION_PREPARING]: 'Question preparing',
+        [TEXT_DRAW_CATEGORY]: 'Drawing category',
+        [TEXT_DRAW_DIFFICULT]: 'Drawing difficult',
         [TEXT_ANSWER]: 'Odpowiedz',
         [TEXT_CONTINUE]: 'Continue',
         [TEXT_CATEGORY]: 'Category',
+        [TEXT_DIFFICULT]: 'Difficult',
         [TEXT_CHOOSE_CATEGORY]: 'Choose category',
         [TEXT_PLAY_AGAIN]: 'Play again',
         [TEXT_QUESTION]: "Question",

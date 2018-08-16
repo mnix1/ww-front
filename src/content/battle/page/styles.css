@@ -1,12 +1,47 @@
 .battlePage .profiles {
-    position: relative;
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+
+.battlePage .surrender {
+    position: absolute;
+    cursor: pointer;
+    margin-top: -60px;
+    right: 0px;
+}
+
+.battlePage .profilesAbsolute {
+    position: absolute;
+}
+
+.battlePage .profilesRelative {
+    position: relative;
 }
 
 .battlePage .pageContent {
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+}
+
+.battlePage .introProfiles {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+}
+
+.battlePage .battlePageIntroHeader {
+    font-size: 1rem;
+}
+
+.battlePage .battlePageIntro {
+    min-height: 80vh;
+}
+
+.battlePage .battlePageIntro .introRandomDifficult {
+    min-height: 60px;
+}
+
+.battlePage .battlePageIntro .introRandomCategory {
 }

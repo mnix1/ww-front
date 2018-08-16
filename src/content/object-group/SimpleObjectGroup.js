@@ -5,17 +5,19 @@ import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
 import './styles.css';
+import {LIGHT_BLUE_COLOR} from "../../util/style/constant";
 
 export default class SimpleObjectGroup extends React.PureComponent {
 
     static propTypes = {
         objects: PropTypes.array,
         screen: PropTypes.object,
-        onObjectClick: PropTypes.func
+        onObjectClick: PropTypes.func,
+        selectedId: PropTypes.string
     };
 
     render() {
-        const {objects, onObjectClick, screen} = this.props;
+        const {objects, onObjectClick, screen, selectedId} = this.props;
         const objectHeight = calculateObjectDimension({
             dim: screen.contentHeight,
             count: (objects.length) / 1.5,
@@ -44,7 +46,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     ...o,
-                    content: <div >
+                    content: <div>
                         <div className='simpleGroupObjectBackground'/>
                         <div className='simpleGroupObjectContent'><img src={o.imgSrc}
                                                                        height={objectHeight / 2}/><span>{getCategoryLabel([o.id])}</span>
@@ -52,7 +54,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     </div>,
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     objectStyle: {
-                        background: null,
+                        background: selectedId === o.id ? LIGHT_BLUE_COLOR : null,
                         height: objectHeight,
                         top,
                         left,

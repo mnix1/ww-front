@@ -1,140 +1,57 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
-import Task from "../../../component/task/Task";
-import {
-    getCategoryLabel,
-    getText,
-    TEXT_BATTLE_OVER,
-    TEXT_CATEGORY,
-    TEXT_CORRECT_ANSWER,
-    TEXT_OPPONENT_CORRECT_ANSWER,
-    TEXT_OPPONENT_WRONG_ANSWER,
-    TEXT_QUESTION,
-    TEXT_QUESTION_PREPARING,
-    TEXT_THE_WINNER_IS,
-    TEXT_WAIT,
-    TEXT_WRONG_ANSWER
-} from "../../../lang";
-import {prepareScoreMessage} from "../../../util/textHelper";
 import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../redux/reducer/battle";
-import Timer from "../../../component/timer/Timer";
-import _ from 'lodash';
-import Profile from "../../../component/profile/Profile";
-import renderDifficultyLevelStars from "../../../util/taskDifficultyLevel";
+import BattlePageIntro from "./BattlePageIntro";
+import BattlePageAnswering from "./BattlePageAnswering";
+import BattlePagePreparingNextTask from "./BattlePagePreparingNextTask";
+import flag from '../../../media/image/icon/flag.svg';
+import BattlePageAnswered from "./BattlePageAnswered";
+import BattlePageClosed from "./BattlePageClosed";
 
 class BattlePage extends React.PureComponent {
 
-    renderProfiles() {
-        const {profile, content, screen} = this.props;
+    renderContent() {
+        const {content, communication} = this.props;
         if (!content) {
-            return;
-        }
-        return <div className='profiles' style={{position: screen.moreHeightThanWidth ? 'relative' : 'absolute'}}>
-            <div className='profile'>
-                {this.renderProfile(profile, content.score)}
-            </div>
-            <div className='opponentProfile'>
-                {this.renderProfile(content.opponent, content.opponentScore)}
-            </div>
-        </div>
-    }
-
-    renderProfile(profile, score) {
-        return <Profile {...profile} imgHeight={60}>
-            <div>{prepareScoreMessage(score)}</div>
-        </Profile>
-    }
-
-    renderQuestionResult() {
-        const {content} = this.props;
-        const {correctAnswerId, markedAnswerId, meAnswered, winner} = content;
-        return <div>
-            {meAnswered &&
-            <div>{markedAnswerId === correctAnswerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER)}</div>}
-            {!meAnswered &&
-            <div>{markedAnswerId === correctAnswerId ? getText(TEXT_OPPONENT_CORRECT_ANSWER) : getText(TEXT_OPPONENT_WRONG_ANSWER)}</div>}
-            {!winner && <div>{`${getText(TEXT_WAIT)}, ${getText(TEXT_QUESTION_PREPARING).toLowerCase()} `}
-                <Timer from={content.nextTaskInterval}/>
-            </div>}
-            {winner && <div>
-                {getText(TEXT_BATTLE_OVER)}
-                {` ${getText(TEXT_THE_WINNER_IS)}: ${winner}`}
-            </div>}
-        </div>
-    }
-
-    renderHeader() {
-        const {content} = this.props;
-        if (!content || !content.question) {
             return null;
         }
-        const question = content.question;
-        return <div className="contentHeader">
-            {`${getText(TEXT_QUESTION)} ${question.id}, ${getText(TEXT_CATEGORY)}: ${getCategoryLabel(question.category)}`}
-            {content.nextTaskInterval && this.renderQuestionResult()}
-            {!content.nextTaskInterval && renderDifficultyLevelStars(content.question.taskDifficultyLevel)}
+        const {status} = content;
+        if (status === 'INTRO') {
+            return <BattlePageIntro/>
+        }
+        if (status === 'PREPARING_NEXT_TASK') {
+            return <BattlePagePreparingNextTask/>
+        }
+        if (status === 'ANSWERING') {
+            return <BattlePageAnswering communication={communication}/>
+        }
+        if (status === 'ANSWERED' || status === 'ANSWERING_TIMEOUT') {
+            return <BattlePageAnswered/>
+        }
+        if (status === 'CLOSED') {
+            return <BattlePageClosed/>
+        }
+        return <div className='pageContent'>
         </div>;
     }
 
-    prepareScreenForTask() {
-        const {screen} = this.props;
-        let contentHeight = screen.contentHeight;
-        let contentWidth = screen.contentWidth;
-        if (screen.moreHeightThanWidth) {
-            contentHeight = Math.min(screen.contentHeight / 1.3, screen.contentHeight - 40);
-        } else {
-            contentHeight = Math.min(screen.contentHeight, screen.contentHeight);
-            contentWidth = Math.min(screen.contentWidth / 1.1, screen.contentWidth - 40);
-        }
-        return {
-            ...screen,
-            contentHeight,
-            contentWidth
-        }
-    }
-
-    renderTask() {
-        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
-        if (!content) {
-            return null;
-        }
-        const {question, correctAnswerId, markedAnswerId} = content;
-        return <Task
-            style={{display: screen.moreHeightThanWidth ? 'block' : 'flex'}}
-            header={screen.moreHeightThanWidth ? this.renderHeader() : null}
-            correctAnswerId={correctAnswerId}
-            answerId={markedAnswerId || questionIdAnswerIdMap[question.id]}
-            canChangeAnswer={false}
-            screen={this.prepareScreenForTask()}
-            skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[question.id] === true}
-            onSkipAnimationChange={() => {
-                if (!_.isNil(correctAnswerId)) {
-                    return;
-                }
-                onSkipAnimationChange({...questionIdSkipAnimationMap, [question.id]: true})
-            }}
-            question={question}
-            answers={question.answers}
-            onAnswerClick={(answerId) => {
-                if (!_.isNil(correctAnswerId)) {
-                    return;
-                }
-                communication.send('BATTLE_ANSWER' + JSON.stringify({answerId}));
-                onAnswerClick({...questionIdAnswerIdMap, [question.id]: answerId});
-            }}
-        />;
+    renderSurrender() {
+        const {onSurrenderClick, communication} = this.props;
+        return <div className='surrender'>
+            <img src={flag} height={60} onClick={() => {
+                communication.send('BATTLE_SURRENDER');
+                onSurrenderClick();
+            }}/>
+        </div>
     }
 
     render() {
         const {screen} = this.props;
-        return <div className='page battlePage'>
+        return <div className='page battlePage' style={{height: screen.contentHeight}}>
             <div className='pageBackground'/>
-            <div className='pageContent'>
-                {screen.moreHeightThanWidth ? null : this.renderHeader()}
-                {this.renderProfiles()}
-                {this.renderTask()}
-            </div>
+            {this.renderSurrender()}
+            {this.renderContent()}
         </div>
     }
 }
@@ -152,7 +69,7 @@ export default connect(
         // question: state.battle.question,
     }),
     (dispatch) => ({
-        onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
-        onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))
+        onSurrenderClick: () => {
+        }
     })
 )(BattlePage);

@@ -26,7 +26,7 @@ export default class BattleCommunication {
     onMessage = (e) => {
         const data = JSON.parse(e.data);
         const id = data.id;
-        if (id === 'BATTLE_START' || id === 'BATTLE_ANSWER' || id === 'BATTLE_NEXT_QUESTION' || id === 'BATTLE_ACTUAL_MODEL') {
+        if (id === 'BATTLE_CONTENT') {
             const content = JSON.parse(data.content);
             this.battleInProgress(content);
         }

@@ -15,7 +15,8 @@ export default class Profile extends React.PureComponent {
         isAdded: PropTypes.bool,
         actions: PropTypes.node,
         children: PropTypes.node,
-        imgHeight: PropTypes.number
+        imgHeight: PropTypes.number,
+        style: PropTypes.object
     };
 
     static defaultProps = {
@@ -28,8 +29,8 @@ export default class Profile extends React.PureComponent {
     }
 
     render() {
-        const {heroType, isOnline, name, tag, children, imgHeight} = this.props;
-        return <div key={tag} className='profileContainer'>
+        const {heroType, isOnline, name, tag, children, imgHeight, style} = this.props;
+        return <div key={tag} className='profileContainer' style={style}>
             {children}
             <div className='profile'>
                 <img alt='' src={getHero(heroType)} height={imgHeight}/>

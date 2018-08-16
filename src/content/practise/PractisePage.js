@@ -7,7 +7,7 @@ import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
 import {getHero} from "../../util/heroHelper";
-import renderDifficultyLevelStars from "../../util/taskDifficultyLevel";
+import {renderDifficultyLevelStars} from "../../util/taskDifficultyLevel";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
