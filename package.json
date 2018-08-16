@@ -20,6 +20,7 @@
     "react-redux-fetch": "^0.12.6",
     "react-router": "^4.3.1",
     "react-scripts": "1.1.4",
+    "react-transition-group": "^2.4.0",
     "redux": "^4.0.0",
     "uuid": "^3.3.2"
   },

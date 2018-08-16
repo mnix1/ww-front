@@ -23,10 +23,13 @@ export default class Task extends React.PureComponent {
         canChangeAnswer: PropTypes.bool,
         header: PropTypes.node,
         style: PropTypes.object,
+        anime: PropTypes.bool,
+        className: PropTypes.string,
     };
 
     static defaultProps = {
         canChangeAnswer: false,
+        anime: true,
     };
 
     renderTaskHeader() {
@@ -35,8 +38,9 @@ export default class Task extends React.PureComponent {
     }
 
     renderTask() {
-        const {onAnswerClick, answerId, screen, canChangeAnswer} = this.props;
+        const {onAnswerClick, answerId, screen, canChangeAnswer, anime} = this.props;
         return <TaskObjectGroup
+            anime={anime}
             questionObjects={prepareQuestionTiles(this)}
             answerObjects={prepareAnswerTiles(this)}
             onObjectClick={(e) => !_.isNil(e.id) && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
@@ -66,8 +70,8 @@ export default class Task extends React.PureComponent {
     }
 
     render() {
-        const {style, screen} = this.props;
-        return <div className='task' style={{height: screen.contentHeight,...style}}>
+        const {style, screen, className} = this.props;
+        return <div className={`${className ? className : ''} task`} style={{height: screen.contentHeight,...style}}>
             {this.renderTaskHeader()}
             <div className='taskContent' >{this.renderContent()}</div>
         </div>

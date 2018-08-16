@@ -88,6 +88,9 @@ export const TEXT_ANSWER = 'TEXT_ANSWER';
 export const TEXT_YOU = 'TEXT_YOU';
 export const TEXT_OWNED_WISIES = 'TEXT_OWNED_WISIES';
 export const TEXT_NOT_OWNED_WISIES = 'TEXT_NOT_OWNED_WISIES';
+export const TEXT_ANSWERED = 'TEXT_ANSWERED';
+export const TEXT_CORRECT = 'TEXT_CORRECT';
+export const TEXT_WRONG = 'TEXT_WRONG';
 
 const TEXTS = {
     [POLISH]: {
@@ -99,6 +102,9 @@ const TEXTS = {
         [TEXT_DRAW_CATEGORY]: 'Losowanie kategorii',
         [TEXT_DRAW_DIFFICULT]: 'Losowanie trudności',
         [TEXT_ANSWER]: 'Odpowiedz',
+        [TEXT_ANSWERED]: 'Odpowiedział',
+        [TEXT_CORRECT]: 'Poprawnie',
+        [TEXT_WRONG]: 'Błędnie',
         [TEXT_CONTINUE]: 'Kontynuuj',
         [TEXT_CATEGORY]: 'Kategoria',
         [TEXT_DIFFICULT]: 'Trudność',
@@ -167,7 +173,10 @@ const TEXTS = {
         [TEXT_QUESTION_PREPARING]: 'Question preparing',
         [TEXT_DRAW_CATEGORY]: 'Drawing category',
         [TEXT_DRAW_DIFFICULT]: 'Drawing difficult',
-        [TEXT_ANSWER]: 'Odpowiedz',
+        [TEXT_ANSWER]: 'Answer',
+        [TEXT_ANSWERED]: 'Answered',
+        [TEXT_CORRECT]: 'Correct',
+        [TEXT_WRONG]: 'Wrong',
         [TEXT_CONTINUE]: 'Continue',
         [TEXT_CATEGORY]: 'Category',
         [TEXT_DIFFICULT]: 'Difficult',

@@ -12,18 +12,23 @@ export default class TaskObjectGroup extends React.PureComponent {
         questionObjects: PropTypes.array,
         answerObjects: PropTypes.array,
         screen: PropTypes.object,
-        onObjectClick: PropTypes.func
+        onObjectClick: PropTypes.func,
+        anime: PropTypes.bool,
     };
 
     static defaultProps = {
         questionObjects: [],
         answerObjects: [],
+        anime: true,
     };
 
     rendererTransformerCreator = (o) => {
-        const {screen} = this.props;
+        const {screen, anime} = this.props;
         const {resolution} = screen;
         const fontSize = objectFontSize(resolution);
+        if(!anime){
+            return (rendered) => <div style={{fontSize}}>{rendered}</div>;
+        }
         return (rendered) => <Anime
             key={o.id}
             from={{

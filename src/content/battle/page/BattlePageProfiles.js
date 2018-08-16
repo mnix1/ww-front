@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {prepareScoreMessage} from "../../../util/textHelper";
 import Profile from "../../../component/profile/Profile";
 
-class BattlePageProfiles extends React.PureComponent {
+export class BattlePageProfilesComponent extends React.PureComponent {
 
     get imgHeight() {
         const {screen} = this.props;
@@ -43,4 +43,4 @@ export default connect(
     }),
     (dispatch) => ({
     })
-)(BattlePageProfiles);
+)(BattlePageProfilesComponent);

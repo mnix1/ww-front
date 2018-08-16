@@ -7,7 +7,7 @@ import {
 } from "../object-group/objectMaterialHelper";
 
 export function prepareAnswerTiles(rival) {
-    const {answers, answerId, correctAnswerId, screen} = rival.props;
+    const {answers, answerId, correctAnswerId} = rival.props;
     const answersCount = answers.length;
     const df = 2 * Math.PI / answersCount;
     const factor = answersCount === 2 ? 0.25 : 0.3;

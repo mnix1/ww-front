@@ -45,3 +45,36 @@
 
 .battlePage .battlePageIntro .introRandomCategory {
 }
+
+@keyframes fadein {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeout {
+    0%   { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.battlePage .whoAnswered {
+    opacity: 0;
+    animation: fadein 1s 1s, fadeout 1s 6s;
+    animation-fill-mode: forwards;
+}
+.battlePage .whoAnswered .result {
+    opacity: 0;
+    animation: fadein 1s 4s;
+    animation-fill-mode: forwards;
+}
+
+.battlePage .emptyTask {
+    opacity: 1;
+    animation: fadeout 1s;
+    animation-fill-mode: forwards;
+}
+
+.battlePage .taskWithAnswer {
+    opacity: 0;
+    animation: fadein 1s 6s;
+    animation-fill-mode: forwards;
+}
