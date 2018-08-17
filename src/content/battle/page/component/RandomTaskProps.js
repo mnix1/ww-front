@@ -13,7 +13,7 @@ class RandomTaskProps extends React.PureComponent {
 
     renderRandomCategory() {
         const objectsCategory = _.shuffle(OBJECTS_CATEGORY.filter(e => e.id !== CATEGORY_RANDOM));
-        const {screen, communication, content} = this.props;
+        const {screen, content} = this.props;
         const targetCategory = content.task.category;
         const targetSelectedIdValue = objectsCategory.length * 6;
         return <Anime
@@ -23,10 +23,7 @@ class RandomTaskProps extends React.PureComponent {
             to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 5000, delay: 1000}}}>
             <SimpleObjectGroup
                 objects={objectsCategory}
-                onObjectClick={(id) => {
-                    communication.send('BATTLE_CATEGORY' + JSON.stringify({id}))
-                }}
-                screen={{...screen, contentHeight: screen.contentHeight - 60}}
+                screen={{...screen, contentHeight: screen.contentHeight - 70}}
             />
         </Anime>;
     }
@@ -47,6 +44,7 @@ class RandomTaskProps extends React.PureComponent {
 
     render() {
         return <div>
+            {this.props.children}
             <div className='pageHeader'>
                 <div>{getText(TEXT_DRAW_DIFFICULT)}</div>
                 {this.renderRandomDifficult()}

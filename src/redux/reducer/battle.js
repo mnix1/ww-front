@@ -22,8 +22,7 @@ export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'battle/question-id-skip-a
 export const DIFFICULT_LEVEL_CHANGED = 'battle/difficult-level/changed';
 export const CATEGORY_CHANGED = 'battle/category/changed';
 
-// export const BATTLE_IN_PROGRESS_OPPONENT = 'battle/in-progress/opponent';
-// export const BATTLE_IN_PROGRESS_QUESTION = 'battle/in-progress/question';
+export const SHOW_OPTIONS_CHANGED = 'battle/show-options/changed';
 
 const initialState = {
     tag: undefined,
@@ -34,10 +33,7 @@ const initialState = {
     category: CATEGORY_RANDOM,
     questionIdAnswerIdMap: {},
     questionIdSkipAnimationMap: {},
-    // opponent: undefined,
-    // question: undefined,
-    // score: undefined,
-    // opponentScore: undefined,
+    showOptions: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -66,6 +62,8 @@ export default function reducer(state = initialState, action) {
             return {...state, difficultyLevel: action.difficultyLevel};
         case CATEGORY_CHANGED:
             return {...state, category: action.category};
+        case SHOW_OPTIONS_CHANGED:
+            return {...state, showOptions: action.showOptions};
         default:
             return state
     }
@@ -125,4 +123,8 @@ export function difficultLevelChanged(difficultyLevel) {
 
 export function categoryChanged(category) {
     return {type: CATEGORY_CHANGED, category};
+}
+
+export function showOptionsChanged(showOptions) {
+    return {type: SHOW_OPTIONS_CHANGED, showOptions};
 }

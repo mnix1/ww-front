@@ -22,7 +22,11 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_OPPONENT_SURRENDER = 'TEXT_OPPONENT_SURRENDER';
+export const TEXT_YOU_SURRENDER = 'TEXT_YOU_SURRENDER';
+export const TEXT_SURRENDER = 'TEXT_SURRENDER';
 export const TEXT_OPPONENT_CHOOSING = 'TEXT_OPPONENT_CHOOSING';
+export const TEXT_NOT_CHOSEN_TASK_PROPS = 'TEXT_NOT_CHOSEN_TASK_PROPS';
 export const TEXT_CONTINUE = 'TEXT_CONTINUE';
 export const TEXT_CATEGORY = 'TEXT_CATEGORY';
 export const TEXT_DIFFICULT = 'TEXT_DIFFICULT';
@@ -98,7 +102,11 @@ export const TEXT_WRONG = 'TEXT_WRONG';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_YOU_SURRENDER]: 'Poddałeś się',
+        [TEXT_OPPONENT_SURRENDER]: 'Przeciwnik się poddał',
+        [TEXT_SURRENDER]: 'Poddaj się',
         [TEXT_OPPONENT_CHOOSING]: 'Przeciwnik wybiera kategorię i trudność',
+        [TEXT_NOT_CHOSEN_TASK_PROPS]: 'Nie wybrano kategorii i trudności',
         [TEXT_OWNED_WISIES]: 'Twoje wiedzaki',
         [TEXT_NOT_OWNED_WISIES]: 'Wiedzaki do odkrycia',
         [TEXT_SEARCHING_OPPONENT]: 'Wyszukiwanie godnego przeciwnika',
@@ -173,7 +181,11 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_YOU_SURRENDER]: 'You surrender',
+        [TEXT_OPPONENT_SURRENDER]: 'Your opponent has surrender',
+        [TEXT_SURRENDER]: 'Surrender',
         [TEXT_OPPONENT_CHOOSING]: 'The opponent chooses the category and difficulty',
+        [TEXT_NOT_CHOSEN_TASK_PROPS]: 'Category and difficulty were not selected',
         [TEXT_OWNED_WISIES]: 'Owned wisies',
         [TEXT_NOT_OWNED_WISIES]: 'Wisies to discover',
         [TEXT_SEARCHING_OPPONENT]: 'Searching for worthy opponent',

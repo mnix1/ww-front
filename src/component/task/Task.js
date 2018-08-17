@@ -30,6 +30,7 @@ export default class Task extends React.PureComponent {
     static defaultProps = {
         canChangeAnswer: false,
         anime: true,
+        onAnswerClick: _.noop
     };
 
     renderTaskHeader() {
