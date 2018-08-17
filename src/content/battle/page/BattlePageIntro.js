@@ -46,7 +46,6 @@ class BattlePageIntro extends React.PureComponent {
     }
 
     renderRandom() {
-        const {screen, communication, content} = this.props;
         const {component} = this.state;
         return <Anime
             from={{opacity: 0}}
@@ -85,7 +84,7 @@ class BattlePageIntro extends React.PureComponent {
     }
 
     renderRandomDifficult() {
-        const {screen, communication, content} = this.props;
+        const {content} = this.props;
         const objectsDifficult = _.keys(STARS_DIFFICULTY_LEVEL);
         const targetDifficult = content.task.taskDifficultyLevel;
         const targetSelectedIdValue = objectsDifficult.length * 6;

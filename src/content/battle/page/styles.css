@@ -4,6 +4,10 @@
     justify-content: space-between;
 }
 
+.battlePage .profiles .profile {
+    flex-direction: column;
+}
+
 .battlePage .surrender {
     position: absolute;
     cursor: pointer;
@@ -46,14 +50,48 @@
 .battlePage .battlePageIntro .introRandomCategory {
 }
 
+.battlePage .sleep {
+    vertical-align: middle;
+    margin: 0.25rem;
+}
+
 @keyframes fadein {
-    0%   { opacity: 0; }
-    100% { opacity: 1; }
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 @keyframes fadeout {
-    0%   { opacity: 1; }
-    100% { opacity: 0; }
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.battlePage .choosingTaskProps {
+    display: flex;
+    justify-content: center;
+}
+
+.battlePage .choosingTaskProps .timeWithSeal {
+    z-index: 1;
+    margin-left: 1rem;
+}
+
+.battlePage .choosingTaskProps .timeWithSeal .time {
+    /*padding-left: 1rem;*/
+    z-index: 1;
+}
+
+.battlePage .seal {
+    vertical-align: middle;
+    margin-left: 0.25rem;
+    cursor: pointer;
 }
 
 .battlePage .whoAnswered {
@@ -61,6 +99,11 @@
     animation: fadein 1s 1s, fadeout 1s 6s;
     animation-fill-mode: forwards;
 }
+
+.battlePage .whoAnswered .pageCenterVertical {
+    margin-top: 2rem;
+}
+
 .battlePage .whoAnswered .result {
     opacity: 0;
     animation: fadein 1s 4s;

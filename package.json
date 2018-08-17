@@ -12,6 +12,7 @@
     "prop-types": "^15.6.2",
     "rc-notification": "^3.2.0",
     "rc-progress": "^2.2.5",
+    "rc-slider": "^8.6.1",
     "react": "^16.4.1",
     "react-anime": "^2.1.0",
     "react-dom": "^16.4.1",

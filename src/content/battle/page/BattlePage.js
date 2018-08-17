@@ -1,13 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
-import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../redux/reducer/battle";
 import BattlePageIntro from "./BattlePageIntro";
 import BattlePageAnswering from "./BattlePageAnswering";
 import BattlePagePreparingNextTask from "./BattlePagePreparingNextTask";
 import flag from '../../../media/image/icon/flag.svg';
 import BattlePageAnswered from "./BattlePageAnswered";
 import BattlePageClosed from "./BattlePageClosed";
+import BattlePageChoosingTaskProps from "./BattlePageChoosingTaskProps";
+import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
+import BattlePageChosenTaskProps from "./BattlePageChosenTaskProps";
 
 class BattlePage extends React.PureComponent {
 
@@ -20,14 +22,23 @@ class BattlePage extends React.PureComponent {
         if (status === 'INTRO') {
             return <BattlePageIntro/>
         }
-        if (status === 'PREPARING_NEXT_TASK') {
+        if (status === 'PREPARING_NEXT_TASK' || status === 'CHOSEN_TASK_PROPS') {
             return <BattlePagePreparingNextTask/>
         }
         if (status === 'ANSWERING') {
             return <BattlePageAnswering communication={communication}/>
         }
-        if (status === 'ANSWERED' || status === 'ANSWERING_TIMEOUT') {
+        if (status === 'ANSWERED') {
             return <BattlePageAnswered/>
+        }
+        if (status === 'ANSWERING_TIMEOUT') {
+            return <BattlePageAnsweringTimeout/>
+        }
+        if (status === 'CHOOSING_TASK_PROPS') {
+            return <BattlePageChoosingTaskProps communication={communication}/>
+        }
+        if (status === 'CHOSEN_TASK_PROPS') {
+            return <BattlePageChosenTaskProps/>
         }
         if (status === 'CLOSED') {
             return <BattlePageClosed/>

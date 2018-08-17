@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import Task from "../../../component/task/Task";
 import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../redux/reducer/battle";
-import BattlePageProfiles from "./BattlePageProfiles";
-import BattlePageTaskDescription from "./BattlePageTaskDescription";
+import Profiles from "./component/Profiles";
+import TaskDescription from "./component/TaskDescription";
 import Timer from "../../../component/timer/Timer";
 import {getText, TEXT_TIME} from "../../../lang";
 
@@ -37,8 +37,8 @@ class BattlePageAnswering extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent battlePageAnswering'>
-            <BattlePageTaskDescription className='contentHeader'><div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div></BattlePageTaskDescription>
-            <BattlePageProfiles className={'profilesAbsolute'}/>
+            <TaskDescription className='contentHeader'><div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div></TaskDescription>
+            <Profiles className={'profilesAbsolute'}/>
             {this.renderTask()}
         </div>;
     }

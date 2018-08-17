@@ -76,12 +76,12 @@ function calculateContentWidth(width, isSmallWidth, moreHeightThanWidth) {
 
 function calculateContentHeight(height, isSmallHeight, moreHeightThanWidth) {
     // if (moreHeightThanWidth) {
-        return height * 8 / 10;
+    //     return height * 8 / 10;
     // }
-    // if (isSmallHeight) {
-    //     return height * 4.5 / 6;
-    // }
-    // return height * 4 / 6;
+    if (isSmallHeight) {
+        return height * 8.8 / 10;
+    }
+    return height * 4 / 5;
 }
 
 const isMobile = new MobileDetect(window.navigator.userAgent).mobile() !== null;

@@ -4,22 +4,32 @@ import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
+import {DARK_BLUE_COLOR, LIGHT_BLUE_COLOR} from "../../util/style/constant";
 
 export default class AnimationObjectGroup extends React.PureComponent {
 
     static propTypes = {
-        objects: PropTypes.array,
+        questionObjects: PropTypes.array,
+        animationObjects: PropTypes.array,
         screen: PropTypes.object,
-        onObjectClick: PropTypes.func
+        onObjectClick: PropTypes.func,
+        anime: PropTypes.bool,
     };
 
-    render() {
-        const {objects, onObjectClick, screen} = this.props;
-        const answerObjectWidth = calculateObjectDimension({dim: screen.contentWidth, count: (objects.length) / 1.5});
-        const questionObjectWidth = calculateObjectDimension({dim: screen.contentWidth, count: 0.5, max: 400});
-        const {contentHeight, contentWidth, resolution} = screen;
+    static defaultProps = {
+        questionObjects: [],
+        animationObjects: [],
+        anime: true,
+    };
+
+    rendererTransformerCreator = (o) => {
+        const {screen, anime} = this.props;
+        const {resolution} = screen;
         const fontSize = objectFontSize(resolution);
-        const rendererTransformerCreator = (o) => (rendered) => <Anime
+        if (!anime) {
+            return (rendered) => <div style={{fontSize}}>{rendered}</div>;
+        }
+        return (rendered) => <Anime
             key={o.id}
             from={{
                 opacity: 0,
@@ -30,36 +40,93 @@ export default class AnimationObjectGroup extends React.PureComponent {
                 fontSize: {value: fontSize, duration: 100, delay: 100}
             }}
         >{rendered}</Anime>;
-        return <ObjectGroup
-            height={contentHeight}
-            width={contentWidth}
-            onObjectClick={onObjectClick}
-            objects={objects.map(o => {
-                const objectWidth = (o.id === 'questionText' ? questionObjectWidth :
-                    o.id === 'questionImage' ? questionObjectWidth / 3 : answerObjectWidth) * _.defaultTo(o.widthFactor, 1);
-                const objectHeight = calculateObjectDimension({
-                    dim: screen.contentHeight,
-                    count: (objects.length) / 1.5,
-                    min: 40
-                }) * _.defaultTo(o.heightFactor, 1);
-                const top = o.yTarget * contentHeight - objectHeight / 2;
-                const left = o.xTarget * contentWidth - objectWidth / 2;
-                return {
-                    rendererTransformer: rendererTransformerCreator(o),
-                    ...o,
-                    additionalStyle: {
-                        ...o.material,
-                        border: o.border,
-                        borderColor: o.borderColor,
-                        boxShadow: o.material ? `0 0 4px #${_.get(o, 'material.isDark', true) ? 'CCC' : '666'}` : undefined,
-                        top,
-                        left,
-                        height: objectHeight,
-                        width: objectWidth,
-                        ...o.additionalStyle
-                    },
+    };
+
+    contentHeight() {
+        const {screen} = this.props;
+        const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
+        return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8)
+    }
+
+    questionHeight() {
+        return this.contentHeight() / 6;
+    }
+
+    animationHeight() {
+        return this.contentHeight() * 5 / 6;
+    }
+
+    prepareQuestionObjects() {
+        const {questionObjects, screen} = this.props;
+        const {contentWidth} = screen;
+        const questionObjectWidth = calculateObjectDimension({
+            dim: contentWidth,
+            count: questionObjects.length,
+            max: 400
+        });
+        return questionObjects.map(o => {
+            const objectHeight = this.questionHeight();
+            const top = o.yTarget * this.questionHeight() - objectHeight / 2;
+            const left = o.xTarget * contentWidth - questionObjectWidth / 2;
+            return {
+                rendererTransformer: this.rendererTransformerCreator(o),
+                ...o,
+                objectStyle: {
+                    background: null,
+                    height: objectHeight,
+                    width: questionObjectWidth,
+                    top,
+                    left,
+                    borderRadius: '0.5rem',
                 }
-            })}
-        />
+            }
+        });
+    }
+
+    prepareAnswerObjects() {
+        const {animationObjects, screen} = this.props;
+        const {contentWidth} = screen;
+        const animationObjectWidth = calculateObjectDimension({dim: contentWidth, count: animationObjects.length});
+        return animationObjects.map(o => {
+            const objectHeight = calculateObjectDimension({
+                dim: this.animationHeight(),
+                count: (animationObjects.length) / 1.5,
+                min: 40
+            }) * _.defaultTo(o.heightFactor, 1);
+            const top = o.yTarget * this.animationHeight() - objectHeight / 2 - 20;
+            const left = o.xTarget * contentWidth - animationObjectWidth / 2;
+            return {
+                rendererTransformer: this.rendererTransformerCreator(o),
+                ...o,
+                objectStyle: {
+                    background: null,
+                    height: objectHeight,
+                    width: animationObjectWidth,
+                    top,
+                    left,
+                }
+            }
+        });
+    }
+
+    render() {
+        const {onObjectClick, screen} = this.props;
+        const {contentHeight, contentWidth} = screen;
+        return <div>
+            <ObjectGroup
+                // objectContainerClassName=''
+                height={this.questionHeight()}
+                width={contentWidth}
+                onObjectClick={onObjectClick}
+                objects={this.prepareQuestionObjects()}
+            />
+            <ObjectGroup
+                // objectContainerClassName=''
+                height={this.animationHeight()}
+                width={contentWidth}
+                onObjectClick={onObjectClick}
+                objects={this.prepareAnswerObjects()}
+            />
+        </div>;
     }
 }

@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {prepareScoreMessage} from "../../../util/textHelper";
-import Profile from "../../../component/profile/Profile";
+import {prepareScoreMessage} from "../../../../util/textHelper";
+import Profile from "../../../../component/profile/Profile";
 
-export class BattlePageProfilesComponent extends React.PureComponent {
+export class ProfilesComponent extends React.PureComponent {
 
     get imgHeight() {
         const {screen} = this.props;
@@ -13,23 +13,23 @@ export class BattlePageProfilesComponent extends React.PureComponent {
         return 60;
     }
 
-    renderProfile(profile, score) {
+    renderProfile(profile, score, color) {
         return <Profile {...profile} imgHeight={this.imgHeight}>
-            <div>{prepareScoreMessage(score)}</div>
+            <div style={{color}}>{prepareScoreMessage(score)}</div>
         </Profile>
     }
 
     render() {
-        const {profile, content, className} = this.props;
+        const {profile, content, className, scoreColor, opponentScoreColor} = this.props;
         if (!content) {
             return;
         }
         return <div className={`profiles ${className}`}>
             <div className='profile'>
-                {this.renderProfile(profile, content.score)}
+                {this.renderProfile(profile, content.score, scoreColor)}
             </div>
             <div className='opponentProfile'>
-                {this.renderProfile(content.opponent, content.opponentScore)}
+                {this.renderProfile(content.opponent, content.opponentScore, opponentScoreColor)}
             </div>
         </div>
     }
@@ -41,6 +41,5 @@ export default connect(
         profile: state.profile.profile,
         content: state.battle.content,
     }),
-    (dispatch) => ({
-    })
-)(BattlePageProfilesComponent);
+    (dispatch) => ({})
+)(ProfilesComponent);

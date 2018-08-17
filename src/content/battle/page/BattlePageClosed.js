@@ -1,25 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Profile from "../../../component/profile/Profile";
-import play from '../../../media/image/icon/play.svg';
-import {Anime} from "../../../component/anime/Anime";
-import {
-    getCategoryLabel,
-    getText,
-    TEXT_BATTLE, TEXT_BATTLE_OVER,
-    TEXT_DRAW_CATEGORY,
-    TEXT_DRAW_DIFFICULT,
-    TEXT_QUESTION, TEXT_QUESTION_PREPARING, TEXT_THE_WINNER_IS, TEXT_WAIT
-} from "../../../lang";
-import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
-import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
-import {CATEGORY_RANDOM} from "../../../util/categoryHelper";
-import _ from 'lodash';
-import {renderDifficultyLevelStars, STARS_DIFFICULTY_LEVEL} from "../../../util/taskDifficultyLevel";
-import DifficultLevelStars from "../../../component/difficult/DifficultLevelStars";
-import Timer from "../../../component/timer/Timer";
-import BattlePageTaskDescription from "./BattlePageTaskDescription";
-import BattlePageProfiles from "./BattlePageProfiles";
+import {getText, TEXT_BATTLE_OVER, TEXT_THE_WINNER_IS} from "../../../lang";
+import Profiles from "./component/Profiles";
 
 class BattlePageClosed extends React.PureComponent {
 
@@ -34,7 +16,7 @@ class BattlePageClosed extends React.PureComponent {
                     {` ${getText(TEXT_THE_WINNER_IS)}: ${winner}`}
                 </div>
             </div>
-            <BattlePageProfiles className={'profilesRelative'}/>
+            <Profiles className={'profilesRelative'}/>
         </div>;
     }
 }

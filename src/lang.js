@@ -22,12 +22,14 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_OPPONENT_CHOOSING = 'TEXT_OPPONENT_CHOOSING';
 export const TEXT_CONTINUE = 'TEXT_CONTINUE';
 export const TEXT_CATEGORY = 'TEXT_CATEGORY';
 export const TEXT_DIFFICULT = 'TEXT_DIFFICULT';
 export const TEXT_DRAW_CATEGORY = 'TEXT_DRAW_CATEGORY';
 export const TEXT_DRAW_DIFFICULT = 'TEXT_DRAW_DIFFICULT';
 export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
+export const TEXT_CHOOSE_DIFFICULT = 'TEXT_CHOOSE_DIFFICULT';
 export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
 export const TEXT_QUESTION = 'TEXT_QUESTION';
 export const TEXT_REMEMBER_DETAILS = 'TEXT_REMEMBER_DETAILS';
@@ -89,12 +91,14 @@ export const TEXT_YOU = 'TEXT_YOU';
 export const TEXT_OWNED_WISIES = 'TEXT_OWNED_WISIES';
 export const TEXT_NOT_OWNED_WISIES = 'TEXT_NOT_OWNED_WISIES';
 export const TEXT_ANSWERED = 'TEXT_ANSWERED';
+export const TEXT_NO_ANSWER = 'TEXT_NO_ANSWER';
 export const TEXT_CORRECT = 'TEXT_CORRECT';
 export const TEXT_WRONG = 'TEXT_WRONG';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_OPPONENT_CHOOSING]: 'Przeciwnik wybiera kategorię i trudność',
         [TEXT_OWNED_WISIES]: 'Twoje wiedzaki',
         [TEXT_NOT_OWNED_WISIES]: 'Wiedzaki do odkrycia',
         [TEXT_SEARCHING_OPPONENT]: 'Wyszukiwanie godnego przeciwnika',
@@ -109,6 +113,7 @@ const TEXTS = {
         [TEXT_CATEGORY]: 'Kategoria',
         [TEXT_DIFFICULT]: 'Trudność',
         [TEXT_CHOOSE_CATEGORY]: 'Wybierz kategorię',
+        [TEXT_CHOOSE_DIFFICULT]: 'Wybierz trudność',
         [TEXT_PLAY_AGAIN]: 'Zagraj ponownie',
         [TEXT_QUESTION]: 'Pytanie',
         [TEXT_REMEMBER_DETAILS]: 'Zapamiętaj szczegóły obiektów',
@@ -164,9 +169,11 @@ const TEXTS = {
         [TEXT_THE_WINNER_IS]: 'Zwycięża',
         [TEXT_NEXT]: 'Następne',
         [TEXT_YOU]: 'Ty',
+        [TEXT_NO_ANSWER]: 'Nie udzielono odpowiedzi',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_OPPONENT_CHOOSING]: 'The opponent chooses the category and difficulty',
         [TEXT_OWNED_WISIES]: 'Owned wisies',
         [TEXT_NOT_OWNED_WISIES]: 'Wisies to discover',
         [TEXT_SEARCHING_OPPONENT]: 'Searching for worthy opponent',
@@ -181,6 +188,7 @@ const TEXTS = {
         [TEXT_CATEGORY]: 'Category',
         [TEXT_DIFFICULT]: 'Difficult',
         [TEXT_CHOOSE_CATEGORY]: 'Choose category',
+        [TEXT_CHOOSE_DIFFICULT]: 'Choose difficult',
         [TEXT_PLAY_AGAIN]: 'Play again',
         [TEXT_QUESTION]: "Question",
         [TEXT_REMEMBER_DETAILS]: 'Remember the details of the objects',
@@ -236,6 +244,7 @@ const TEXTS = {
         [TEXT_THE_WINNER_IS]: 'The winner is',
         [TEXT_NEXT]: 'Next',
         [TEXT_YOU]: 'You',
+        [TEXT_NO_ANSWER]: 'No answer',
     },
 };
 

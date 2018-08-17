@@ -5,9 +5,23 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .difficultLevelStars div {
     display: flex;
     justify-content: center;
+}
+
+.chooseDifficultLevelStars {
+    display: flex;
+    justify-content: center;
+
+    cursor: pointer;
+}
+.chooseDifficultLevelStarsContent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100px;
 }

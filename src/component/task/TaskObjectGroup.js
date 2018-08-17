@@ -26,7 +26,7 @@ export default class TaskObjectGroup extends React.PureComponent {
         const {screen, anime} = this.props;
         const {resolution} = screen;
         const fontSize = objectFontSize(resolution);
-        if(!anime){
+        if (!anime) {
             return (rendered) => <div style={{fontSize}}>{rendered}</div>;
         }
         return (rendered) => <Anime
@@ -44,12 +44,11 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     contentHeight() {
         const {screen} = this.props;
-        const {contentHeight} = screen;
-        return contentHeight / 10 * 8
+        const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
+        return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8)
     }
 
     questionHeight() {
-
         return this.contentHeight() / 4;
     }
 
@@ -95,12 +94,14 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
-        const {contentWidth} = screen;
-        const answerObjectWidth = calculateObjectDimension({dim: contentWidth, count: (answerObjects.length) / 1.5});
+        const {contentWidth, isSmallHeight, isSmallWidth} = screen;
+        const factorHeight = isSmallHeight? 1 : 1.5;
+        const factorWidth = isSmallWidth? 1 : 1.2;
+        const answerObjectWidth = calculateObjectDimension({dim: contentWidth, count: (answerObjects.length) / factorWidth});
         return answerObjects.map(o => {
             const objectHeight = calculateObjectDimension({
                 dim: this.answerHeight(),
-                count: (answerObjects.length) / 1.5,
+                count: (answerObjects.length) / factorHeight,
                 min: 40
             }) * _.defaultTo(o.heightFactor, 1);
             const top = o.yTarget * this.answerHeight() - objectHeight / 2;

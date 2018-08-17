@@ -1,0 +1,89 @@
+import React from 'react';
+import {connect} from 'react-redux';
+import {getText, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../../lang";
+import {OBJECTS_CATEGORY} from "../../../object-group/objectsCategory";
+import SimpleObjectGroup from "../../../object-group/SimpleObjectGroup";
+import ChooseDifficultLevelStars from "../../../../component/difficult/ChooseDifficultLevelStars";
+import {categoryChanged} from "../../../../redux/reducer/battle";
+import seal from '../../../../media/image/icon/seal.svg';
+import Timer from "../../../../component/timer/Timer";
+
+class ChoosingTaskProps extends React.PureComponent {
+
+    renderChooseCategory() {
+        const {screen, communication, category, onCategoryChange} = this.props;
+        return <SimpleObjectGroup
+            objects={OBJECTS_CATEGORY}
+            selectedId={category}
+            onObjectClick={onCategoryChange}
+            screen={{...screen, contentHeight: screen.contentHeight - 80}}
+        />
+    }
+
+    renderChooseDifficult() {
+        return <ChooseDifficultLevelStars/>
+    }
+
+    renderHorizontally() {
+        const {content, communication, category, difficultyLevel} = this.props;
+        return <div>
+            <div className='choosingTaskProps'>
+                <div>
+                    <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
+                    {this.renderChooseDifficult()}
+                </div>
+                <div className='timeWithSeal'>
+                    <span className='time'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
+                    <img className='seal' src={seal} height={40} onClick={() => {
+                        communication.send('BATTLE_CHOOSE_TASK_PROPS' + JSON.stringify({category, difficultyLevel}))
+                    }}/>
+                </div>
+            </div>
+            <div className='pageHeader'>
+                <div>{getText(TEXT_CHOOSE_CATEGORY)}</div>
+                {this.renderChooseCategory()}
+            </div>
+        </div>;
+    }
+
+
+    renderVertically() {
+        const {content, communication, category, difficultyLevel} = this.props;
+        return <div>
+            <div className='pageHeader'>
+                <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
+                <img className='seal' src={seal} height={40} onClick={() => {
+                    communication.send('BATTLE_CHOOSE_TASK_PROPS' + JSON.stringify({category, difficultyLevel}))
+                }}/>
+            </div>
+            <div className='pageHeader'>
+                <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
+                {this.renderChooseDifficult()}
+            </div>
+            <div className='pageHeader'>
+                <div>{getText(TEXT_CHOOSE_CATEGORY)}</div>
+                {this.renderChooseCategory()}
+            </div>
+        </div>;
+    }
+
+    render() {
+        const {content, communication, category, difficultyLevel, screen} = this.props;
+        if (screen.moreHeightThanWidth) {
+            return this.renderVertically();
+        }
+        return this.renderHorizontally();
+    }
+}
+
+export default connect(
+    (state) => ({
+        screen: state.screen,
+        content: state.battle.content,
+        category: state.battle.category,
+        difficultyLevel: state.battle.difficultyLevel,
+    }),
+    (dispatch) => ({
+        onCategoryChange: (categoryObject) => dispatch(categoryChanged(categoryObject.id))
+    })
+)(ChoosingTaskProps);

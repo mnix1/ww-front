@@ -5,7 +5,7 @@ import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
 import TaskObjectGroup from "./TaskObjectGroup";
 import {prepareQuestionTiles} from "./objectsTaskQuestion";
 import {prepareAnswerTiles} from "./objectsTaskAnswer";
-import {prepareAnimationTiles} from "./objectsTaskAnimation";
+import {prepareAnimationDescription, prepareAnimationTiles} from "./objectsTaskAnimation";
 import _ from 'lodash';
 import AnimationObjectGroup from "./AnimationObjectGroup";
 
@@ -52,7 +52,8 @@ export default class Task extends React.PureComponent {
         const {onSkipAnimationChange, screen} = this.props;
         return <AnimationObjectGroup
             onObjectClick={() => onSkipAnimationChange(true)}
-            objects={prepareAnimationTiles(this)}
+            questionObjects={prepareAnimationDescription(this)}
+            animationObjects={prepareAnimationTiles(this)}
             screen={screen}
         />;
     }
@@ -71,9 +72,9 @@ export default class Task extends React.PureComponent {
 
     render() {
         const {style, screen, className} = this.props;
-        return <div className={`${className ? className : ''} task`} style={{height: screen.contentHeight,...style}}>
+        return <div className={`${className ? className : ''} task`} style={{height: screen.contentHeight, ...style}}>
             {this.renderTaskHeader()}
-            <div className='taskContent' >{this.renderContent()}</div>
+            <div className='taskContent'>{this.renderContent()}</div>
         </div>
     }
 }
