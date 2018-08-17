@@ -11,6 +11,7 @@ import {
     WISIES_ROUTE
 } from "./content/routes";
 import {
+    CATEGORY_CHEMISTRY,
     CATEGORY_GEOGRAPHY,
     CATEGORY_HISTORY,
     CATEGORY_MATH, CATEGORY_MEMORY,
@@ -311,6 +312,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_HISTORY]: 'Historia',
         [CATEGORY_GEOGRAPHY]: 'Geografia',
         [CATEGORY_MEMORY]: 'Pamięć',
+        [CATEGORY_CHEMISTRY]: 'Chemia',
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
@@ -320,6 +322,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_HISTORY]: 'History',
         [CATEGORY_GEOGRAPHY]: 'Geography',
         [CATEGORY_MEMORY]: 'Memory',
+        [CATEGORY_CHEMISTRY]: 'Chemistry',
         [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }
 };

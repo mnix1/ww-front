@@ -1,12 +1,14 @@
 import {
+    CATEGORY_CHEMISTRY,
     CATEGORY_GEOGRAPHY,
     CATEGORY_MATH, CATEGORY_MEMORY,
     CATEGORY_MUSIC,
     CATEGORY_RANDOM,
     getCategory
 } from "../../util/categoryHelper";
+import _ from "lodash";
 
-export const OBJECTS_CATEGORY = [
+const categories = [
     {
         id: CATEGORY_RANDOM,
         xTarget: .5,
@@ -15,32 +17,34 @@ export const OBJECTS_CATEGORY = [
     },
     {
         id: CATEGORY_MUSIC,
-        xTarget: 3 / 4,
-        yTarget: 1 / 4,
-        imgSrc: getCategory(CATEGORY_MUSIC)
     },
     {
         id: CATEGORY_MATH,
-        xTarget: 1 / 4,
-        yTarget: 1 / 4,
-        imgSrc: getCategory(CATEGORY_MATH)
     },
-    // {
-    //     id: CATEGORY_HISTORY,
-    //     xTarget: 1 / 4,
-    //     yTarget: -1 / 4,
-    //     material: OBJECT_MATERIALS[49],
-    // },
+    {
+        id: CATEGORY_CHEMISTRY,
+    },
     {
         id: CATEGORY_GEOGRAPHY,
-        xTarget: 1 / 4,
-        yTarget: 3 / 4,
-        imgSrc: getCategory(CATEGORY_GEOGRAPHY)
     },
     {
         id: CATEGORY_MEMORY,
-        xTarget: 3 / 4,
-        yTarget: 3 / 4,
-        imgSrc: getCategory(CATEGORY_MEMORY)
     },
 ];
+const length = categories.length - 1;
+const df = 2 * Math.PI / length;
+
+export const OBJECTS_CATEGORY = categories.map((e, i) => {
+    if (e.id === CATEGORY_RANDOM) {
+        return e;
+    }
+    let f = i * df;
+    if (length % 2 === 1) {
+        f -= Math.PI / 2;
+    } else {
+        f -= df / 2;
+    }
+    const xTarget = 0.5 + Math.cos(f) * 0.3;
+    const yTarget = 0.5 - Math.sin(f) * 0.3;
+    return {...e, xTarget, yTarget, imgSrc: getCategory(e.id)}
+});
