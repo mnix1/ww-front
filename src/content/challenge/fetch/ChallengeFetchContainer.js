@@ -14,7 +14,7 @@ class ChallengeFetchContainer extends React.PureComponent {
     }
 
     render() {
-        const {path, summaryId, tags, inProgressId, status, answerId, challengeStartResponseRep, challengeStartFriendRep, challengeStartFastRep, challengeEndRep} = this.props;
+        const {path, summaryId, tags, inProgressId, status, answerId, challengeStartResponseRep, challengeStartFriendRep, challengeStartFastRep} = this.props;
         return <div>
             <ChallengeListFetch path={path}/>
             <ChallengeSummaryFetch path={path} challengeId={summaryId}/>

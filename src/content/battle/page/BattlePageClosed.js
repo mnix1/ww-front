@@ -32,7 +32,7 @@ class BattlePageClosed extends React.PureComponent {
                 <Profile {...winnerProfile}/>
             </div>
             <div className='pageHeader'>
-                <img src={trophy} height={80}/>
+                <img alt='' src={trophy} height={80}/>
             </div>
             <Profiles className={'profilesAbsolute'}/>
         </div>;

@@ -48,7 +48,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     ...o,
                     content: <div>
                         <div className='simpleGroupObjectBackground'/>
-                        <div className='simpleGroupObjectContent'><img src={o.imgSrc}
+                        <div className='simpleGroupObjectContent'><img alt='' src={o.imgSrc}
                                                                        height={objectHeight / 2}/><span>{getCategoryLabel([o.id])}</span>
                         </div>
                     </div>,

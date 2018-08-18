@@ -11,7 +11,7 @@ import Timer from "../../../../component/timer/Timer";
 class ChoosingTaskProps extends React.PureComponent {
 
     renderChooseCategory() {
-        const {screen, communication, category, onCategoryChange} = this.props;
+        const {screen, category, onCategoryChange} = this.props;
         return <SimpleObjectGroup
             objects={OBJECTS_CATEGORY}
             selectedId={category}
@@ -34,7 +34,7 @@ class ChoosingTaskProps extends React.PureComponent {
                 </div>
                 <div className='timeWithSeal'>
                     <span className='time'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
-                    <img className='seal' src={seal} height={30} onClick={() => {
+                    <img alt='' className='seal' src={seal} height={30} onClick={() => {
                         communication.send('BATTLE_CHOOSE_TASK_PROPS' + JSON.stringify({category, difficultyLevel}))
                     }}/>
                 </div>
@@ -52,7 +52,7 @@ class ChoosingTaskProps extends React.PureComponent {
         return <div>
             <div className='pageHeader'>
                 <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
-                <img className='seal' src={seal} height={30} onClick={() => {
+                <img alt='' className='seal' src={seal} height={30} onClick={() => {
                     communication.send('BATTLE_CHOOSE_TASK_PROPS' + JSON.stringify({category, difficultyLevel}))
                 }}/>
             </div>
@@ -68,7 +68,7 @@ class ChoosingTaskProps extends React.PureComponent {
     }
 
     render() {
-        const {content, communication, category, difficultyLevel, screen} = this.props;
+        const {screen} = this.props;
         if (screen.moreHeightThanWidth) {
             return this.renderVertically();
         }

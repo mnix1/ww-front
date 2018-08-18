@@ -39,10 +39,10 @@ class BattlePageAnswered extends React.PureComponent {
                     {this.isCorrectAnswer
                         ? <div>
                             <div>{getText(TEXT_CORRECT)}</div>
-                            <img src={thumbUp} height={imgHeight}/></div>
+                            <img alt='' src={thumbUp} height={imgHeight}/></div>
                         : <div>
                             <div>{getText(TEXT_WRONG)}</div>
-                            <img src={thumbDown} height={imgHeight}/></div>}
+                            <img alt='' src={thumbDown} height={imgHeight}/></div>}
                 </div>
             </div>
         </div>

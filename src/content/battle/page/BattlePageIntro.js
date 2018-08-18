@@ -24,13 +24,13 @@ class BattlePageIntro extends React.PureComponent {
     }
 
     renderProfilesBig() {
-        const {profile, content, screen} = this.props;
+        const {profile, content} = this.props;
         return <Anime
             from={{opacity: 0}}
             to={{opacity: {value: 1, duration: 500, delay: 1000}}}>
             <div className='introProfiles'>
                 <Profile {...profile}/>
-                <img src={play} height={80}/>
+                <img alt='' src={play} height={80}/>
                 <Profile {...content.opponent}/>
             </div>
         </Anime>

@@ -29,7 +29,6 @@ import {
     CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     FRIEND_ROUTE,
-    HERO_ROUTE,
     PLAY_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
@@ -56,7 +55,6 @@ import {
 import HeroPage from "../hero/HeroPage";
 import HeroListFetch from "../hero/HeroListFetch";
 import ShopPage from "../shop/ShopPage";
-import ShopListFetch from "../shop/fetch/ShopListFetch";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
 
 class App extends React.PureComponent {
@@ -145,7 +143,7 @@ class App extends React.PureComponent {
         const {screen} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
-            <img src={background} height={screen.height} width={screen.width} className="background"/>
+            <img alt='' src={background} height={screen.height} width={screen.width} className="background"/>
             <InvitedToBattleBy/>
             <InviteToBattle/>
             <div style={{height, width: contentWidth}} className='content'>

@@ -2,8 +2,7 @@ import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
 import {battleCleared, battleInviteCancelled, battleInvited, statusChanged} from "../../redux/reducer/battle";
 import {clearBattleStartFriendFetch} from "../battle/fetch/BattleStartFriendFetch";
-import {BATTLE_STATUS_IN_PROGRESS_FRIEND, BATTLE_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/battleHelper";
-import {OBJECT_BATTLE} from "../object-group/objectsBattle";
+import {BATTLE_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/battleHelper";
 import {push} from 'connected-react-router'
 import {BATTLE_ROUTE} from "../routes";
 

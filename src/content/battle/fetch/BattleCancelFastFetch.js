@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {BATTLE_STATUS_CANCELED_FAST, BATTLE_STATUS_CANCELED_FRIEND} from "../../../util/battleHelper";
+import {BATTLE_STATUS_CANCELED_FAST} from "../../../util/battleHelper";
 
 class BattleCancelFastFetch extends React.PureComponent {
 

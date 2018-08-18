@@ -18,12 +18,10 @@ import {
     CATEGORY_COUNTRY,
     CATEGORY_ELEMENT,
     CATEGORY_EQUATION,
-    CATEGORY_HISTORY,
     CATEGORY_LYRICS,
     CATEGORY_MEMORY,
     CATEGORY_NUMBER,
     CATEGORY_RANDOM,
-    CATEGORY_WORLD
 } from "./util/categoryHelper";
 
 export const POLISH = 'pl';

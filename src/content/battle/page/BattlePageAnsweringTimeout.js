@@ -14,7 +14,7 @@ class BattlePageAnsweringTimeout extends React.PureComponent {
             <div className='pageBackground'/>
             <div className='pageCenterVertical'>
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
-                <img src={thumbDown} height={60}/>
+                <img alt='' src={thumbDown} height={60}/>
             </div>
         </div>
     }

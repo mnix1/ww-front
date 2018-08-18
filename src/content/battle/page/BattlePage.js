@@ -60,7 +60,7 @@ class BattlePage extends React.PureComponent {
             onShowOptionsChange(false);
         }}>
             <span>{getText(TEXT_SURRENDER)}</span>
-            <img src={flag} height={imgHeight} style={{marginTop: -imgHeight}}/>
+            <img alt='' src={flag} height={imgHeight} style={{marginTop: -imgHeight}}/>
         </div>
     }
 

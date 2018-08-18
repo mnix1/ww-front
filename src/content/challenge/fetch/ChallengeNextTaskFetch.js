@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_NEXT_TASK} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_NEXT_TASK} from "../../../util/challengeHelper";
 import {CHALLENGE_FAST_ROUTE, CHALLENGE_FRIEND_ROUTE, CHALLENGE_RESPONSE_ROUTE} from "../../routes";
 
 class ChallengeNextTaskTaskFetch extends React.PureComponent {

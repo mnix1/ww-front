@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Task from "../../../../component/task/Task";
-import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang";
 
 class TaskWithoutActions extends React.PureComponent {
 

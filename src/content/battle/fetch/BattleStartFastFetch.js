@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {BATTLE_STATUS_START_FAST, BATTLE_STATUS_START_FRIEND} from "../../../util/battleHelper";
+import {BATTLE_STATUS_START_FAST} from "../../../util/battleHelper";
 
 class BattleStartFastFetch extends React.PureComponent {
 

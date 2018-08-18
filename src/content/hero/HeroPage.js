@@ -60,7 +60,7 @@ class HeroPage extends React.PureComponent {
             <div className='background'/>
             <span className='name'>{name}</span>
             <div className='hobbies'>
-                {hero.hobbies.map(e => <img className='hobby' key={e} alt='' height={20} src={getCategory(e)}/>)}
+                {hero.hobbies.map(e => <img alt='' className='hobby' key={e} height={20} src={getCategory(e)}/>)}
             </div>
         </div>
     }

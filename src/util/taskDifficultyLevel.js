@@ -3,7 +3,6 @@ import FaStar from 'react-icons/lib/fa/star';
 import FaStarHalfEmpty from 'react-icons/lib/fa/star-half-empty';
 import React from 'react';
 import {YELLOW_COLOR} from "./style/constant";
-import PropTypes from "prop-types";
 import _ from 'lodash';
 
 export const EXTREMELY_EASY = 'EXTREMELY_EASY';

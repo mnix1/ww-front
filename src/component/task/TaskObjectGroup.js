@@ -132,17 +132,15 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     render() {
         const {onObjectClick, screen} = this.props;
-        const {contentHeight, contentWidth} = screen;
+        const {contentWidth} = screen;
         return <div>
             <ObjectGroup
-                // objectContainerClassName=''
                 height={this.questionHeight()}
                 width={contentWidth}
                 onObjectClick={onObjectClick}
                 objects={this.prepareQuestionObjects()}
             />
             <ObjectGroup
-                // objectContainerClassName=''
                 height={this.answerHeight()}
                 width={contentWidth}
                 onObjectClick={onObjectClick}

@@ -2,7 +2,6 @@ import React from 'react';
 import _ from 'lodash';
 import './styles.css';
 import PropTypes from "prop-types";
-import {CREAM_COLOR, DARK_BLUE_COLOR} from "../../util/style/constant";
 
 export class ObjectGroup extends React.PureComponent {
 

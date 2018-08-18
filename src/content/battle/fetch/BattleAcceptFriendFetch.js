@@ -18,7 +18,7 @@ class BattleAcceptFriendFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {status, rep, dispatchBattleAcceptFriendPost} = this.props;
+        const {status, dispatchBattleAcceptFriendPost} = this.props;
         if (prevProps.status !== status && status === BATTLE_STATUS_ACCEPTED_FRIEND) {
             dispatchBattleAcceptFriendPost();
         }

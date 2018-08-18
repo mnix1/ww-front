@@ -47,7 +47,6 @@ class BattleFastPage extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
         return <div className='page'>
             <div className='pageBackground'/>
             <div className='pageContent'>

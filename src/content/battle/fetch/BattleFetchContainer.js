@@ -6,11 +6,13 @@ import BattleRejectFriendFetch, {clearBattleRejectFriendFetch} from "./BattleRej
 import BattleAcceptFriendFetch, {clearBattleAcceptFriendFetch} from "./BattleAcceptFriendFetch";
 import {battleCleared, statusChanged} from "../../../redux/reducer/battle";
 import {
-    BATTLE_STATUS_ACCEPTED_FRIEND, BATTLE_STATUS_CANCELED_FAST,
-    BATTLE_STATUS_CANCELED_FRIEND, BATTLE_STATUS_ERROR_FAST,
+    BATTLE_STATUS_ACCEPTED_FRIEND,
+    BATTLE_STATUS_CANCELED_FRIEND,
+    BATTLE_STATUS_ERROR_FAST,
     BATTLE_STATUS_ERROR_FRIEND,
-    BATTLE_STATUS_IN_PROGRESS_FRIEND, BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
-    BATTLE_STATUS_REJECTED_FRIEND, BATTLE_STATUS_WAITING_FAST,
+    BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
+    BATTLE_STATUS_REJECTED_FRIEND,
+    BATTLE_STATUS_WAITING_FAST,
     BATTLE_STATUS_WAITING_FRIEND
 } from "../../../util/battleHelper";
 import _ from 'lodash';

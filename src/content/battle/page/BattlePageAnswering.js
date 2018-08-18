@@ -12,7 +12,7 @@ class BattlePageAnswering extends React.PureComponent {
 
     renderTask() {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
-        const {task, correctAnswerId, markedAnswerId} = content;
+        const {task, correctAnswerId} = content;
         return <Task
             screen={screen}
             skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}

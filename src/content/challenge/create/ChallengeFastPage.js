@@ -1,9 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import ChallengeTask from "../task/ChallengeTask";
-import {CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
 import _ from "lodash";
-import ChallengeSolution from "../task/ChallengeSolution";
 
 class ChallengeFastPage extends React.PureComponent {
 

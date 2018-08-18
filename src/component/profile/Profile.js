@@ -3,7 +3,7 @@ import './styles.css';
 import {getHero} from "../../util/heroHelper";
 import PropTypes from "prop-types";
 import TiWiFi from "react-icons/lib/ti/wi-fi";
-import {DARK_GREEN_COLOR, DARK_RED_COLOR, GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
+import {GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
 
 export default class Profile extends React.PureComponent {
 

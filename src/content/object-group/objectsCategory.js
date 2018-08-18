@@ -1,12 +1,13 @@
 import {
-    CATEGORY_ELEMENT,
     CATEGORY_COUNTRY,
-    CATEGORY_EQUATION, CATEGORY_MEMORY,
+    CATEGORY_ELEMENT,
+    CATEGORY_EQUATION,
     CATEGORY_LYRICS,
+    CATEGORY_MEMORY,
+    CATEGORY_NUMBER,
     CATEGORY_RANDOM,
-    getCategory, CATEGORY_NUMBER
+    getCategory
 } from "../../util/categoryHelper";
-import _ from "lodash";
 
 const categories = [
     {

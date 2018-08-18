@@ -2,16 +2,15 @@ import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
 import {
-    NAME_TO_DIFFICULT_LEVEL,
     DIFFICULT_LEVEL_TO_NAME,
     EXTREMELY_EASY,
-    EXTREMELY_HARD
+    EXTREMELY_HARD,
+    NAME_TO_DIFFICULT_LEVEL
 } from "../../util/taskDifficultyLevel";
 import DifficultLevelStars from "./DifficultLevelStars";
 import Slider from 'rc-slider';
 import {connect} from "react-redux";
 import {difficultLevelChanged} from "../../redux/reducer/battle";
-import _ from 'lodash';
 import 'rc-slider/assets/index.css';
 
 export class ChooseDifficultLevelStarsComponent extends React.PureComponent {
@@ -25,7 +24,7 @@ export class ChooseDifficultLevelStarsComponent extends React.PureComponent {
     static defaultProps = {};
 
     render() {
-        const {style, difficultyLevel, onDifficultLevelChange} = this.props;
+        const {difficultyLevel, onDifficultLevelChange} = this.props;
         return <div className='chooseDifficultLevelStars'>
             <div className='chooseDifficultLevelStarsContent '>
             <DifficultLevelStars selectedId={difficultyLevel}/>

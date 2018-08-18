@@ -2,11 +2,7 @@ import _ from 'lodash';
 import alpaca from '../media/image/hero/alpaca.svg';
 import ant from '../media/image/hero/ant.svg';
 import bee from '../media/image/hero/bee.svg';
-import kitek from '../media/image/hero/kitek.svg';
 import robo from '../media/image/hero/robo.svg';
-import rumcia from '../media/image/hero/rumcia.svg';
-import szeryf from '../media/image/hero/szeryf.svg';
-import zarowa from '../media/image/hero/zarowa.svg';
 import owl from '../media/image/hero/owl.svg';
 import panda from '../media/image/hero/panda.svg';
 import catBlue from '../media/image/hero/catBlue.svg';
@@ -78,7 +74,6 @@ export const HERO = {
     'GORILLA': gorilla,
     'HORSE': horse,
     'KANGAROO': kangaroo,
-    // 'KITEK': kitek,
     'LION': lion,
     'OCTOPUS': octopus,
     'OSTRICH': ostrich,
@@ -91,16 +86,13 @@ export const HERO = {
     'RABBIT': rabbit,
     'RACCOON': raccoon,
     'ROBO': robo,
-    // 'RUMCIA': rumcia,
     'SHARK': shark,
     'SHEEP': sheep,
     'SNAKE': snake,
-    // 'SZERYF': szeryf,
     'TIGER': tiger,
     'TURKEY': turkey,
     'TURTLE': turtle,
     'WOLF': wolf,
-    // 'ZAROWA': zarowa,
 };
 
 export function randomHero() {

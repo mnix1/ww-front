@@ -19,14 +19,14 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
                     {getText(TEXT_OPPONENT_CHOOSING)}
                 </div>
             </div>
-            <div className='pageHeader'><img className='sleep' src={sleep} height={80}/></div>
+            <div className='pageHeader'><img alt='' className='sleep' src={sleep} height={80}/></div>
             <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/>
             </div>
         </div>
     }
 
     renderContent() {
-        const {content, communication, profile, screen} = this.props;
+        const {content, communication, profile} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps/>;

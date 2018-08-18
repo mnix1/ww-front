@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_STATUS_IN_PROGRESS, CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
+import {CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
 import {CHALLENGE_FRIEND_ROUTE} from "../../routes";
 import {inProgressIdChanged} from "../../../redux/reducer/challenge";
 import _ from "lodash";

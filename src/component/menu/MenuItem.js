@@ -15,7 +15,7 @@ export default class MenuItem extends React.PureComponent {
     render() {
          const {iconWidth, iconHeight, onClick, imgSrc, route} = this.props;
         return <div key={route} onClick={() => onClick(route)} className='menuItem'>
-            <img src={imgSrc} width={iconWidth} height={iconHeight}/><span>{getRouteLabel(route)}</span>
+            <img alt='' src={imgSrc} width={iconWidth} height={iconHeight}/><span>{getRouteLabel(route)}</span>
         </div>
     }
 

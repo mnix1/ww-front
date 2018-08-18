@@ -4,14 +4,13 @@ import Task from "../../../component/task/Task";
 import {answerIdChanged, skipAnimationChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {
     getText,
-    TEXT_ANSWER_FOR_QUESTION,
-    TEXT_CHALLENGE_ENDED, TEXT_CORRECT_ANSWER,
-    TEXT_IS_CORRECT,
-    TEXT_IS_WRONG,
+    TEXT_CHALLENGE_ENDED,
+    TEXT_CORRECT_ANSWER,
     TEXT_NEXT,
     TEXT_POINTS,
     TEXT_QUESTION,
-    TEXT_SUMMARY, TEXT_WRONG_ANSWER,
+    TEXT_SUMMARY,
+    TEXT_WRONG_ANSWER,
     TEXT_YOUR_SCORE
 } from "../../../lang";
 import {

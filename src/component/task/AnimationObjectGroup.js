@@ -4,7 +4,6 @@ import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
-import {DARK_BLUE_COLOR, LIGHT_BLUE_COLOR} from "../../util/style/constant";
 
 export default class AnimationObjectGroup extends React.PureComponent {
 
@@ -111,17 +110,15 @@ export default class AnimationObjectGroup extends React.PureComponent {
 
     render() {
         const {onObjectClick, screen} = this.props;
-        const {contentHeight, contentWidth} = screen;
+        const {contentWidth} = screen;
         return <div>
             <ObjectGroup
-                // objectContainerClassName=''
                 height={this.questionHeight()}
                 width={contentWidth}
                 onObjectClick={onObjectClick}
                 objects={this.prepareQuestionObjects()}
             />
             <ObjectGroup
-                // objectContainerClassName=''
                 height={this.animationHeight()}
                 width={contentWidth}
                 onObjectClick={onObjectClick}
