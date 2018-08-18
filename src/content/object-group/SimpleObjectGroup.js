@@ -21,7 +21,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
         const objectHeight = calculateObjectDimension({
             dim: screen.contentHeight,
             count: objects.length,
-            min: 60
+            min: !screen.moreHeightThanWidth && screen.isSmallHeight ? 40 : 60
         });
         const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: objects.length});
         const {contentHeight, contentWidth, resolution} = screen;

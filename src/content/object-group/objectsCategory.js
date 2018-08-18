@@ -48,7 +48,7 @@ export const OBJECTS_CATEGORY = categories.map((e, i) => {
     } else {
         f -= df / 2;
     }
-    const xTarget = 0.5 + Math.cos(f) * 0.3;
-    const yTarget = 0.5 - Math.sin(f) * 0.3;
+    const xTarget = 0.5 + Math.cos(f) * 0.35;
+    const yTarget = 0.5 - Math.sin(f) * 0.35;
     return {...e, xTarget, yTarget, imgSrc: getCategory(e.id)}
 });
