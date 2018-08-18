@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     getText,
-    TEXT_BATTLE_OVER,
+    TEXT_BATTLE_OVER, TEXT_DRAW,
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
     TEXT_YOU_SURRENDER
@@ -10,11 +10,22 @@ import {
 import Profiles from "./component/Profiles";
 import Profile from "../../../component/profile/Profile";
 import trophy from '../../../media/image/icon/trophy.svg';
+import _ from 'lodash';
+
 class BattlePageClosed extends React.PureComponent {
 
     render() {
         const {content, profile} = this.props;
         const {winnerTag, resigned} = content;
+        if(_.isNil(winnerTag)){
+            return <div className='pageContent battlePageClosed'>
+                <div className='pageHeader'>
+                    {getText(TEXT_BATTLE_OVER)}
+                    {` ${getText(TEXT_DRAW)}`}
+                </div>
+                <Profiles className={'profilesAbsolute'}/>
+            </div>;
+        }
         const meWinner = winnerTag === profile.tag;
         const winnerProfile = winnerTag === profile.tag ? profile : content.opponent;
         return <div className='pageContent battlePageClosed'>

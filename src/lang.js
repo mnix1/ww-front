@@ -96,6 +96,7 @@ export const TEXT_OPPONENT_CORRECT_ANSWER = 'TEXT_OPPONENT_CORRECT_ANSWER';
 export const TEXT_OPPONENT_WRONG_ANSWER = 'TEXT_OPPONENT_WRONG_ANSWER';
 export const TEXT_BATTLE_OVER = 'TEXT_BATTLE_OVER';
 export const TEXT_THE_WINNER_IS = 'TEXT_THE_WINNER_IS';
+export const TEXT_DRAW = 'TEXT_DRAW';
 export const TEXT_ANSWER = 'TEXT_ANSWER';
 export const TEXT_YOU = 'TEXT_YOU';
 export const TEXT_OWNED_WISIES = 'TEXT_OWNED_WISIES';
@@ -109,6 +110,7 @@ const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
         [TEXT_YOU_SURRENDER]: 'Poddałeś się',
+        [TEXT_DRAW]: 'Remis',
         [TEXT_OPPONENT_SURRENDER]: 'Przeciwnik się poddał',
         [TEXT_SURRENDER]: 'Poddaj się',
         [TEXT_OPPONENT_CHOOSING]: 'Przeciwnik wybiera kategorię i trudność',
@@ -188,6 +190,7 @@ const TEXTS = {
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
         [TEXT_YOU_SURRENDER]: 'You surrender',
+        [TEXT_DRAW]: 'Draw',
         [TEXT_OPPONENT_SURRENDER]: 'Your opponent has surrender',
         [TEXT_SURRENDER]: 'Surrender',
         [TEXT_OPPONENT_CHOOSING]: 'The opponent chooses the category and difficulty',
