@@ -2,15 +2,20 @@ import React from 'react';
 import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
-import {answerIdChanged, categoryChanged, skipAnimationChanged} from "../../redux/reducer/practise";
+import {
+    answerIdChanged,
+    categoryChanged,
+    difficultyLevelChanged,
+    skipAnimationChanged
+} from "../../redux/reducer/practise";
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
 import {getHero} from "../../util/heroHelper";
-import {renderDifficultyLevelStars} from "../../util/taskDifficultyLevel";
+import {DIFFICULT_LEVEL_TO_NAME, renderDifficultyLevelStars} from "../../util/taskDifficultyLevel";
 import {
     getText,
-    TEXT_CHOOSE_CATEGORY,
+    TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT,
     TEXT_CORRECT_ANSWER,
     TEXT_NEXT,
     TEXT_QUESTION,
@@ -23,19 +28,22 @@ import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
 import {TRAINING_ROUTE} from "../routes";
 import ContentWithImage from "../../component/content-with-image/ContentWithImage";
+import {ChooseDifficultLevelStarsComponent} from '../../component/difficult/ChooseDifficultLevelStars';
 
 const TASK_ROUTE = TRAINING_ROUTE + '/task';
 
 class PractisePage extends React.PureComponent {
 
     renderChooseCategory() {
-        const {screen, onCategoryChange} = this.props;
+        const {screen, onCategoryChange, difficultyLevel, onDifficultLevelChange} = this.props;
         return <div className='pageContent'>
-            <div className="contentHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
+            <div className="pageHeader">{getText(TEXT_CHOOSE_DIFFICULT)}</div>
+            <ChooseDifficultLevelStarsComponent difficultyLevel={difficultyLevel} onDifficultLevelChange={onDifficultLevelChange}/>
+            <div className="pageHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
                 objects={OBJECTS_CATEGORY}
                 onObjectClick={onCategoryChange}
-                screen={screen}
+                screen={{...screen, contentHeight: screen.contentHeight - 100}}
             />
         </div>;
     }
@@ -88,14 +96,14 @@ class PractisePage extends React.PureComponent {
     }
 
     render() {
-        const {category, answerId, practiseStartRep} = this.props;
+        const {category, difficultyLevel, answerId, practiseStartRep} = this.props;
         return <div className='page'>
             <div className='pageBackground'/>
             <Switch>
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
                 <Route path={TASK_ROUTE} render={() => this.renderTask()}/>
             </Switch>
-            <PractiseStartFetch category={category} practiseStartRep={practiseStartRep}/>
+            <PractiseStartFetch category={category} difficultyLevel={difficultyLevel} practiseStartRep={practiseStartRep}/>
             <PractiseEndFetch answerId={answerId} practiseStartRep={practiseStartRep}/>
         </div>
     }
@@ -106,6 +114,7 @@ export default connect(
         screen: state.screen,
         profile: state.profile.profile,
         category: state.practise.category,
+        difficultyLevel: state.practise.difficultyLevel,
         answerId: state.practise.answerId,
         skipAnimation: state.practise.skipAnimation,
         practiseStartRep: state.repository.practiseStart,
@@ -118,6 +127,9 @@ export default connect(
             clearPractiseEndFetch(dispatch);
             dispatch(categoryChanged(e.id));
             dispatch(push(TASK_ROUTE));
+        },
+        onDifficultLevelChange: (e) => {
+            dispatch(difficultyLevelChanged(DIFFICULT_LEVEL_TO_NAME[e]));
         },
         onAnswerClick: (id) => dispatch(answerIdChanged(id)),
         onPlayAgainClick: () => {

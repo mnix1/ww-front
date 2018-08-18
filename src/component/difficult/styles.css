@@ -19,9 +19,24 @@
 
     cursor: pointer;
 }
+
 .chooseDifficultLevelStarsContent {
     display: flex;
     justify-content: center;
     flex-direction: column;
     width: 100px;
+}
+
+.rc-slider {
+    height: 20px !important;
+
+}
+
+.rc-slider-rail, .rc-slider-track, .rc-slider-step {
+    height: 10px !important;
+}
+
+.rc-slider-handle {
+    height: 20px !important;
+    width: 20px !important;
 }

@@ -17,9 +17,9 @@ class PractiseStartFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {category, practiseStartRep, dispatchPractiseStartPost} = this.props;
+        const {category, difficultyLevel, practiseStartRep, dispatchPractiseStartPost} = this.props;
         if (category !== undefined && !practiseStartRep) {
-            dispatchPractiseStartPost(category);
+            dispatchPractiseStartPost(category, difficultyLevel);
         }
     }
 
@@ -35,8 +35,8 @@ export function clearPractiseStartFetch(dispatch){
 export default connect([{
     resource: 'practiseStart',
     method:'post',
-    request: (category) => ({
+    request: (category, difficultyLevel) => ({
         url: `/practise/start`,
-        body:{category}
+        body:{category, difficultyLevel}
     })
 }])(PractiseStartFetch);

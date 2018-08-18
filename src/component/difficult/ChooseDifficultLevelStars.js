@@ -14,10 +14,12 @@ import {difficultLevelChanged} from "../../redux/reducer/battle";
 import _ from 'lodash';
 import 'rc-slider/assets/index.css';
 
-class ChooseDifficultLevelStars extends React.PureComponent {
+export class ChooseDifficultLevelStarsComponent extends React.PureComponent {
 
     static propTypes = {
         style: PropTypes.object,
+        difficultyLevel: PropTypes.string,
+        onDifficultLevelChange: PropTypes.func,
     };
 
     static defaultProps = {};
@@ -27,7 +29,6 @@ class ChooseDifficultLevelStars extends React.PureComponent {
         return <div className='chooseDifficultLevelStars'>
             <div className='chooseDifficultLevelStarsContent '>
             <DifficultLevelStars selectedId={difficultyLevel}/>
-
                 <Slider value={NAME_TO_DIFFICULT_LEVEL[difficultyLevel]}
                         min={NAME_TO_DIFFICULT_LEVEL[EXTREMELY_EASY]}
                         max={NAME_TO_DIFFICULT_LEVEL[EXTREMELY_HARD]}
@@ -44,4 +45,4 @@ export default connect(
     (dispatch) => ({
         onDifficultLevelChange: (id) => dispatch(difficultLevelChanged(DIFFICULT_LEVEL_TO_NAME[id]))
     })
-)(ChooseDifficultLevelStars);
+)(ChooseDifficultLevelStarsComponent);

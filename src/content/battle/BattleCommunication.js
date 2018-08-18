@@ -37,7 +37,7 @@ export default class BattleCommunication {
 
     battleInProgress(content) {
         this.communicationWebSocket.dispatch(battleInProgressContent(content));
-        if (!_.isNil(content.winner)) {
+        if (!_.isNil(content.winnerTag)) {
             this.communicationWebSocket.dispatch(statusChanged(BATTLE_STATUS_CLOSED));
         }
     }

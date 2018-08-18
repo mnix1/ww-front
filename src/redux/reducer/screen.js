@@ -30,9 +30,9 @@ export function getResolutionFactor(resolution) {
 
 function prepareResolution(height, width) {
     let heightPart;
-    if (height < 600) {
+    if (height < 800) {
         heightPart = 'SH';
-    } else if (height < 800) {
+    } else if (height < 1000) {
         heightPart = 'MH';
     } else {
         heightPart = 'BH'

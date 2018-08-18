@@ -66,7 +66,7 @@ class BattlePage extends React.PureComponent {
 
     renderShowOptions() {
         const {onShowOptionsChange, screen} = this.props;
-        const imgHeight = screen.isSmallHeight ? 30 : 60;
+        const imgHeight = screen.isSmallHeight ? 30 : 40;
         return <div className='showOptions'><FaCogs size={imgHeight} onClick={onShowOptionsChange}/></div>
     }
 
