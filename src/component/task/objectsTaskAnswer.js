@@ -1,14 +1,12 @@
-import {getTextContent} from "../../util/taskRenderer";
+import {ANSWERS_HTML, getTextContent} from "../../util/taskRenderer";
 import {CREAM_COLOR} from "../../util/style/constant";
-import {
-    ANSWER_OBJECT_MATERIALS,
-    CORRECT_ANSWER_OBJECT_MATERIAL,
-    WRONG_ANSWER_OBJECT_MATERIAL
-} from "../object-group/objectMaterialHelper";
+import {CORRECT_ANSWER_OBJECT_MATERIAL, WRONG_ANSWER_OBJECT_MATERIAL} from "../object-group/objectMaterialHelper";
 import _ from 'lodash';
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
+    const {question} = rival.props;
+    const asContentHTML = _.includes(question.taskRenderer, ANSWERS_HTML);
     const answersCount = answers.length;
     const df = 2 * Math.PI / answersCount;
     const factorX = answersCount === 2 ? 0.25 : 0.35;
@@ -19,7 +17,7 @@ export function prepareAnswerTiles(rival) {
         let f = i * df;
         if (answersCount % 2 === 1) {
             f -= Math.PI / 2;
-        } else  {
+        } else {
             f -= df / 2;
         }
         const sin = Math.sin(f);
@@ -27,7 +25,7 @@ export function prepareAnswerTiles(rival) {
         const v2 = 0.5 - (sin < 0 ? -1 : 1) * factorY;
         return {
             id: ans.id,
-            content: getTextContent(ans),
+            [asContentHTML ? 'contentHTML' : 'content']: getTextContent(ans),
             material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
             borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined,

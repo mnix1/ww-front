@@ -59,7 +59,8 @@ export default class TaskObjectGroup extends React.PureComponent {
     prepareContent(e, background) {
         return <div className='groupObjectContainer'>
             <div className='groupObjectBackground' style={{background}}/>
-            <div className='groupObjectContent'>{e.content}</div>
+            {e.content && <div className='groupObjectContent'>{e.content}</div>}
+            {e.contentHTML && <div className='groupObjectContent' dangerouslySetInnerHTML={{__html: e.contentHTML}}/>}
         </div>;
     }
 
@@ -95,9 +96,12 @@ export default class TaskObjectGroup extends React.PureComponent {
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
         const {contentWidth, isSmallHeight, isSmallWidth} = screen;
-        const factorHeight = isSmallHeight? 1 : 1.5;
-        const factorWidth = isSmallWidth? 1 : 1.2;
-        const answerObjectWidth = calculateObjectDimension({dim: contentWidth, count: (answerObjects.length) / factorWidth});
+        const factorHeight = isSmallHeight ? 1 : 1.5;
+        const factorWidth = isSmallWidth ? 1 : 1.2;
+        const answerObjectWidth = calculateObjectDimension({
+            dim: contentWidth,
+            count: (answerObjects.length) / factorWidth
+        });
         return answerObjects.map(o => {
             const objectHeight = calculateObjectDimension({
                 dim: this.answerHeight(),

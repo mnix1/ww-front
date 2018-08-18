@@ -1,10 +1,10 @@
 import {
-    CATEGORY_CHEMISTRY,
-    CATEGORY_GEOGRAPHY,
-    CATEGORY_MATH, CATEGORY_MEMORY,
-    CATEGORY_MUSIC,
+    CATEGORY_ELEMENT,
+    CATEGORY_COUNTRY,
+    CATEGORY_EQUATION, CATEGORY_MEMORY,
+    CATEGORY_LYRICS,
     CATEGORY_RANDOM,
-    getCategory
+    getCategory, CATEGORY_NUMBER
 } from "../../util/categoryHelper";
 import _ from "lodash";
 
@@ -16,16 +16,19 @@ const categories = [
         imgSrc: getCategory(CATEGORY_RANDOM)
     },
     {
-        id: CATEGORY_MUSIC,
+        id: CATEGORY_LYRICS,
     },
     {
-        id: CATEGORY_MATH,
+        id: CATEGORY_EQUATION,
     },
     {
-        id: CATEGORY_CHEMISTRY,
+        id: CATEGORY_NUMBER,
     },
     {
-        id: CATEGORY_GEOGRAPHY,
+        id: CATEGORY_ELEMENT,
+    },
+    {
+        id: CATEGORY_COUNTRY,
     },
     {
         id: CATEGORY_MEMORY,

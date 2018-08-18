@@ -3,20 +3,27 @@ import React from 'react';
 import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
 import {
     BATTLE_FAST_ROUTE,
-    BATTLE_ROUTE, CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE,
+    BATTLE_ROUTE,
+    CHALLENGE_FAST_ROUTE,
+    CHALLENGE_HISTORY_ROUTE,
+    CHALLENGE_LIST_ROUTE,
     FRIEND_ROUTE,
-    HISTORY_ROUTE, PLAY_ROUTE,
+    HISTORY_ROUTE,
+    PLAY_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
     WISIES_ROUTE
 } from "./content/routes";
 import {
-    CATEGORY_CHEMISTRY,
-    CATEGORY_GEOGRAPHY,
+    CATEGORY_COUNTRY,
+    CATEGORY_ELEMENT,
+    CATEGORY_EQUATION,
     CATEGORY_HISTORY,
-    CATEGORY_MATH, CATEGORY_MEMORY,
-    CATEGORY_MUSIC,
-    CATEGORY_RANDOM
+    CATEGORY_LYRICS,
+    CATEGORY_MEMORY,
+    CATEGORY_NUMBER,
+    CATEGORY_RANDOM,
+    CATEGORY_WORLD
 } from "./util/categoryHelper";
 
 export const POLISH = 'pl';
@@ -307,22 +314,22 @@ export function getCategoryLabel(id) {
 const CATEGORY_LABELS = {
     [POLISH]: {
         [CATEGORY_RANDOM]: 'Losowa',
-        [CATEGORY_MATH]: 'Matematyka',
-        [CATEGORY_MUSIC]: 'Muzyka',
-        [CATEGORY_HISTORY]: 'Historia',
-        [CATEGORY_GEOGRAPHY]: 'Geografia',
+        [CATEGORY_EQUATION]: 'Równania',
+        [CATEGORY_NUMBER]: 'Liczby',
+        [CATEGORY_LYRICS]: 'Teksty piosenek',
+        [CATEGORY_COUNTRY]: 'Państwa',
         [CATEGORY_MEMORY]: 'Pamięć',
-        [CATEGORY_CHEMISTRY]: 'Chemia',
+        [CATEGORY_ELEMENT]: 'Pierwiastki',
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
         [CATEGORY_RANDOM]: 'Random',
-        [CATEGORY_MATH]: 'Math',
-        [CATEGORY_MUSIC]: 'Music',
-        [CATEGORY_HISTORY]: 'History',
-        [CATEGORY_GEOGRAPHY]: 'Geography',
+        [CATEGORY_EQUATION]: 'Equations',
+        [CATEGORY_NUMBER]: 'Numbers',
+        [CATEGORY_LYRICS]: 'Lyrics',
+        [CATEGORY_COUNTRY]: 'Countries',
         [CATEGORY_MEMORY]: 'Memory',
-        [CATEGORY_CHEMISTRY]: 'Chemistry',
+        [CATEGORY_ELEMENT]: 'Elements',
         [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }
 };

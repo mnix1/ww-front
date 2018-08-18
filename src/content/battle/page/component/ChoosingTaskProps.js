@@ -16,7 +16,7 @@ class ChoosingTaskProps extends React.PureComponent {
             objects={OBJECTS_CATEGORY}
             selectedId={category}
             onObjectClick={onCategoryChange}
-            screen={{...screen, contentHeight: screen.contentHeight - 80}}
+            screen={{...screen, contentHeight: screen.contentHeight - 100}}
         />
     }
 
@@ -34,7 +34,7 @@ class ChoosingTaskProps extends React.PureComponent {
                 </div>
                 <div className='timeWithSeal'>
                     <span className='time'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
-                    <img className='seal' src={seal} height={40} onClick={() => {
+                    <img className='seal' src={seal} height={30} onClick={() => {
                         communication.send('BATTLE_CHOOSE_TASK_PROPS' + JSON.stringify({category, difficultyLevel}))
                     }}/>
                 </div>
@@ -52,7 +52,7 @@ class ChoosingTaskProps extends React.PureComponent {
         return <div>
             <div className='pageHeader'>
                 <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
-                <img className='seal' src={seal} height={40} onClick={() => {
+                <img className='seal' src={seal} height={30} onClick={() => {
                     communication.send('BATTLE_CHOOSE_TASK_PROPS' + JSON.stringify({category, difficultyLevel}))
                 }}/>
             </div>
