@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import {TEXT_ANIMATION_TASK_RENDERER} from "../../util/taskRenderer";
+import {TEXT_ANIMATION} from "../../util/taskRenderer";
 import TaskObjectGroup from "./TaskObjectGroup";
 import {prepareQuestionTiles} from "./objectsTaskQuestion";
 import {prepareAnswerTiles} from "./objectsTaskAnswer";
@@ -61,7 +61,7 @@ export default class Task extends React.PureComponent {
 
     shouldShowAnimation() {
         const {question, skipAnimation} = this.props;
-        return question.taskRenderer === TEXT_ANIMATION_TASK_RENDERER && !skipAnimation;
+        return question.taskRenderer === TEXT_ANIMATION && !skipAnimation;
     }
 
     renderContent() {

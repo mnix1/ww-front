@@ -25,7 +25,7 @@ export function prepareAnswerTiles(rival) {
         const v2 = 0.5 - (sin < 0 ? -1 : 1) * factorY;
         return {
             id: ans.id,
-            [asContentHTML ? 'contentHTML' : 'content']: getTextContent(ans),
+            [asContentHTML ? 'contentHtml' : 'content']: getTextContent(ans),
             material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
             border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
             borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined,

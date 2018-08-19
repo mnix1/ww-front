@@ -1,5 +1,5 @@
 import React from 'react';
-import {getImageContent, getTextContent, TEXT_IMAGE_TASK_RENDERER} from "../../util/taskRenderer";
+import {getImageContent, getTextContent, TEXT_IMAGE_PNG, TEXT_IMAGE_SVG} from "../../util/taskRenderer";
 import _ from "lodash";
 
 export function prepareQuestionTiles(rival) {
@@ -11,7 +11,7 @@ export function prepareQuestionTiles(rival) {
 
 function prepareQuestionTextTile(rival) {
     const {question} = rival.props;
-    if (question.taskRenderer === TEXT_IMAGE_TASK_RENDERER) {
+    if (question.taskRenderer === TEXT_IMAGE_SVG || question.taskRenderer === TEXT_IMAGE_PNG) {
         return null;
     }
     const textContent = getTextContent(question);
@@ -26,11 +26,13 @@ function prepareQuestionTextTile(rival) {
 
 function prepareQuestionImageTile(rival) {
     const {question} = rival.props;
-    if (question.taskRenderer !== TEXT_IMAGE_TASK_RENDERER) {
+    const {taskRenderer} = question;
+    if (taskRenderer !== TEXT_IMAGE_SVG && taskRenderer !== TEXT_IMAGE_PNG) {
         return null;
     }
+    const dataPrefix = taskRenderer === TEXT_IMAGE_SVG ? 'data:image/svg+xml;base64, ' : (taskRenderer === TEXT_IMAGE_PNG ? 'data:image/png;base64, ' : '');
     const imageData = getImageContent(question);
-    const image = <img alt='' src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
+    const image = <img alt='' src={dataPrefix + imageData} height='100%' width='100%'/>;
     const textContent = getTextContent(question);
     return [
         {
@@ -38,7 +40,8 @@ function prepareQuestionImageTile(rival) {
             onClick: _.noop,
             content: textContent,
             yTarget: .5,
-            xTarget: .35
+            xTarget: .3,
+            widthFactor: 0.9
         },
         {
             id: 'questionImage',
@@ -46,7 +49,8 @@ function prepareQuestionImageTile(rival) {
             content: image,
             objectStyle: {zIndex: 1},
             yTarget: .5,
-            xTarget: .7
+            xTarget: .65,
+            widthFactor: 1.2
         },
     ];
 }

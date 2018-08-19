@@ -1,8 +1,9 @@
 import {ENGLISH, POLISH} from "../lang";
 
-export const TEXT_TASK_RENDERER = 'TEXT';
-export const TEXT_IMAGE_TASK_RENDERER = 'TEXT_IMAGE';
-export const TEXT_ANIMATION_TASK_RENDERER = 'TEXT_ANIMATION';
+export const TEXT = 'TEXT';
+export const TEXT_IMAGE_SVG = 'TEXT_IMAGE_SVG';
+export const TEXT_IMAGE_PNG = 'TEXT_IMAGE_PNG';
+export const TEXT_ANIMATION = 'TEXT_ANIMATION';
 export const ANSWERS_HTML = 'ANSWERS_HTML';
 
 

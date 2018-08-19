@@ -60,7 +60,7 @@ export default class TaskObjectGroup extends React.PureComponent {
         return <div className='groupObjectContainer'>
             <div className='groupObjectBackground' style={{background}}/>
             {e.content && <div className='groupObjectContent'>{e.content}</div>}
-            {e.contentHTML && <div className='groupObjectContent' dangerouslySetInnerHTML={{__html: e.contentHTML}}/>}
+            {e.contentHtml && <div className='groupObjectContent' dangerouslySetInnerHTML={{__html: e.contentHtml}}/>}
         </div>;
     }
 
@@ -77,6 +77,7 @@ export default class TaskObjectGroup extends React.PureComponent {
             const top = o.yTarget * this.questionHeight() - objectHeight / 2;
             const left = o.xTarget * contentWidth - questionObjectWidth / 2;
             const background = DARK_BLUE_COLOR;
+            const widthFactor = _.defaultTo(o.widthFactor, 1);
             return {
                 rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,
@@ -84,7 +85,7 @@ export default class TaskObjectGroup extends React.PureComponent {
                 objectStyle: {
                     background: null,
                     height: objectHeight,
-                    width: questionObjectWidth,
+                    width: questionObjectWidth * widthFactor,
                     top,
                     left,
                     borderRadius: '0.5rem',

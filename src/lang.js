@@ -21,7 +21,7 @@ import {
     CATEGORY_LYRICS,
     CATEGORY_MEMORY,
     CATEGORY_NUMBER,
-    CATEGORY_RANDOM,
+    CATEGORY_RANDOM, CATEGORY_RIDDLE,
 } from "./util/categoryHelper";
 
 export const POLISH = 'pl';
@@ -321,6 +321,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_COUNTRY]: 'Państwa',
         [CATEGORY_MEMORY]: 'Pamięć',
         [CATEGORY_ELEMENT]: 'Pierwiastki',
+        [CATEGORY_RIDDLE]: 'Zagadki',
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
     [ENGLISH]: {
@@ -331,6 +332,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_COUNTRY]: 'Countries',
         [CATEGORY_MEMORY]: 'Memory',
         [CATEGORY_ELEMENT]: 'Elements',
+        [CATEGORY_RIDDLE]: 'Riddles',
         [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }
 };

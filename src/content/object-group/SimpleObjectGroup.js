@@ -18,12 +18,14 @@ export default class SimpleObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen, selectedId} = this.props;
+        const factorY = screen.isSmallHeight ? 1 : 1.5;
+        const factorX = screen.isSmallWidth ? 1 : 1.5;
         const objectHeight = calculateObjectDimension({
             dim: screen.contentHeight,
-            count: objects.length,
+            count: objects.length / factorY,
             min: !screen.moreHeightThanWidth && screen.isSmallHeight ? 40 : 60
         });
-        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: objects.length});
+        const objectWidth = calculateObjectDimension({dim: screen.contentWidth, count: objects.length / factorX});
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
         const rendererTransformerCreator = (o, top, left) => (rendered) => <Anime
