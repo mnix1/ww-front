@@ -61,7 +61,7 @@ export default class Task extends React.PureComponent {
 
     shouldShowAnimation() {
         const {question, skipAnimation} = this.props;
-        return question.taskRenderer === TEXT_ANIMATION && !skipAnimation;
+        return question.questionRenderer === TEXT_ANIMATION && !skipAnimation;
     }
 
     renderContent() {
