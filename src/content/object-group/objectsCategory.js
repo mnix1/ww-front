@@ -5,7 +5,9 @@ import {
     CATEGORY_LYRICS,
     CATEGORY_MEMORY,
     CATEGORY_NUMBER,
-    CATEGORY_RANDOM, CATEGORY_RIDDLE,
+    CATEGORY_RANDOM,
+    CATEGORY_RIDDLE,
+    CATEGORY_TIME,
     getCategory
 } from "../../util/categoryHelper";
 
@@ -33,6 +35,9 @@ const categories = [
     },
     {
         id: CATEGORY_COUNTRY,
+    },
+    {
+        id: CATEGORY_TIME,
     },
     {
         id: CATEGORY_MEMORY,

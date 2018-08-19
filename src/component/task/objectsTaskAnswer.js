@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    DATE, getDateContent,
     getHtmlContent,
     getImageContent,
     getTextContent,
@@ -9,6 +10,7 @@ import {
 import {CREAM_COLOR} from "../../util/style/constant";
 import {CORRECT_ANSWER_OBJECT_MATERIAL, WRONG_ANSWER_OBJECT_MATERIAL} from "../object-group/objectMaterialHelper";
 import _ from 'lodash';
+import Clock from "react-clock";
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
@@ -18,15 +20,16 @@ export function prepareAnswerTiles(rival) {
     return answers.map((ans, i) => {
         return {
             id: ans.id,
-            ...prepareContent(question.answerRenderer, ans),
+            ...prepareContent(question.answerRenderer, ans, screen),
             ...prepareStyle(ans, i, answerId, correctAnswerId),
             ...positionCreator(i)
         }
     });
 }
 
-function prepareContent(answerRenderer, ans) {
+function prepareContent(answerRenderer, ans, screen) {
     const asContentHtml = answerRenderer === HTML;
+    const asContentDate = answerRenderer === DATE;
     const asContentImageSvg = answerRenderer === IMAGE_SVG;
     let content;
     if (asContentImageSvg) {
@@ -34,6 +37,9 @@ function prepareContent(answerRenderer, ans) {
         content = <img alt='' src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
     } else if (asContentHtml) {
         content = getHtmlContent(ans);
+    } else if (asContentDate) {
+        content = getDateContent(ans);
+        content = <Clock size={screen.isSmallHeight ? 80 : 100} value={new Date(content)}/>
     } else {
         content = getTextContent(ans);
     }

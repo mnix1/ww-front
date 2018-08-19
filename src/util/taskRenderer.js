@@ -2,7 +2,9 @@ import {ENGLISH, POLISH} from "../lang";
 
 export const TEXT = 'TEXT';
 export const HTML = 'HTML';
+export const DATE = 'DATE';
 export const TEXT_HTML = 'TEXT_HTML';
+export const TEXT_DATE = 'TEXT_DATE';
 export const TEXT_IMAGE_SVG = 'TEXT_IMAGE_SVG';
 export const TEXT_IMAGE_PNG = 'TEXT_IMAGE_PNG';
 export const TEXT_ANIMATION = 'TEXT_ANIMATION';
@@ -19,8 +21,13 @@ export function getTextContent(obj) {
     }
     throw new Error('UNKNOWN LANGUAGE');
 }
+
 export function getHtmlContent(obj) {
     return obj.htmlContent;
+}
+
+export function getDateContent(obj) {
+    return obj.dateContent;
 }
 
 export function getImageContent(obj) {
