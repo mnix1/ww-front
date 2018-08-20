@@ -29,9 +29,11 @@ import {
     CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     FRIEND_ROUTE,
-    PLAY_ROUTE, PROFILE_ROUTE,
+    PLAY_ROUTE,
+    PROFILE_ROUTE,
     SHOP_ROUTE,
-    TRAINING_ROUTE, TRAINING_TASK_ROUTE,
+    TRAINING_ROUTE,
+    TRAINING_TASK_ROUTE,
     WISIES_ROUTE
 } from "../routes";
 import ChallengeFriendPage from "../challenge/create/ChallengeFriendPage";
@@ -56,6 +58,8 @@ import HeroPage from "../hero/HeroPage";
 import HeroListFetch from "../hero/HeroListFetch";
 import ShopPage from "../shop/ShopPage";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
+import ProfilePage from "../profile/ProfilePage";
+import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 
 class App extends React.PureComponent {
 
@@ -124,6 +128,7 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
                 <Route exact path={WISIES_ROUTE} render={() => <HeroPage/>}/>
                 <Route exact path={SHOP_ROUTE} render={() => <ShopPage/>}/>
+                <Route exact path={PROFILE_ROUTE} render={() => <ProfilePage/>}/>
             </Switch>
         </ConnectedRouter>;
     }
@@ -136,6 +141,7 @@ class App extends React.PureComponent {
             <ChallengeFetchContainer/>
             <HeroListFetch path={path}/>
             <ShopFetchContainer/>
+            <ProfileFetchContainer/>
         </div>
     }
 

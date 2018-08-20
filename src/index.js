@@ -36,7 +36,7 @@ window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
 
-fetch('/profile', {credentials: 'include'})
+fetch('/profile/profile', {credentials: 'include'})
     .then(res => res.json())
     .then(json => {
         store.dispatch(profileChanged(json.profile));

@@ -1,24 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ShopListFetch from "./ShopListFetch";
-import ShopOpenChestFetch from "./ShopOpenChestFetch";
+import ShopListBooksFetch from "./ShopListBookFetch";
 
 class ShopFetchContainer extends React.PureComponent {
     componentDidUpdate() {
     }
 
     render() {
-        const {path, openChestId} = this.props;
+        const {path} = this.props;
         return <div>
-            <ShopListFetch path={path}/>
-            <ShopOpenChestFetch path={path} openChestId={openChestId}/>
+            <ShopListBooksFetch path={path}/>
         </div>;
     }
 }
 
 export default connect(
     (state) => ({
-        openChestId: state.shop.openChestId,
         path: state.router.location.pathname,
         shopListRep: state.repository.shopList,
     }),

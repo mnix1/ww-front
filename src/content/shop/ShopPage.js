@@ -1,18 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
-import {getChest} from "../../util/chestHelper";
+import {getBook} from "../../util/bookHelper";
 import _ from 'lodash';
-import {openChestIdChanged} from "../../redux/reducer/shop";
+import {buyBookIdChanged} from "../../redux/reducer/shop";
 
 class ShopPage extends React.PureComponent {
 
     renderContent() {
-        const {shopListRep} = this.props;
-        if (!shopListRep || !shopListRep.fulfilled) {
+        const {shopListBookRep} = this.props;
+        if (!shopListBookRep || !shopListBookRep.fulfilled) {
             return null;
         }
-        const chests = _.take(_.flatten([shopListRep.value, _.fill(Array(4), null)]), 4);
+        const chests = _.take(_.flatten([shopListBookRep.value, _.fill(Array(4), null)]), 4);
         return <div>
             {this.renderChests(chests)}
         </div>;
@@ -25,13 +25,13 @@ class ShopPage extends React.PureComponent {
     }
 
     renderChest(chest) {
-        const {onChestClick, screen} = this.props;
+        const {onBookClick, screen} = this.props;
         const width = (screen.contentWidth - 20) / 4;
         return <div style={{width, height: 80}}
                     className='chestContainer'
-                    onClick={() => chest && onChestClick(chest.id)}>
+                    onClick={() => chest && onBookClick(chest.id)}>
             {chest &&
-            <div className='chest'><img height={70} width={width - 4} alt='' src={getChest(chest.type)}/></div>}
+            <div className='chest'><img height={70} width={width - 4} alt='' src={getBook(chest.type)}/></div>}
         </div>;
     }
 
@@ -50,9 +50,9 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
-        shopListRep: state.repository.shopList
+        shopListBookRep: state.repository.shopListBook
     }),
     (dispatch) => ({
-        onChestClick: (id) => dispatch(openChestIdChanged(id))
+        onBookClick: (id) => dispatch(buyBookIdChanged(id))
     })
 )(ShopPage);

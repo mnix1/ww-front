@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {SHOP_ROUTE} from "../../routes";
 
-class ShopListFetch extends React.PureComponent {
+class ShopListBookFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -14,13 +14,13 @@ class ShopListFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearShopListFetch(this.props.dispatch);
+        clearShopListBooksFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchShopListGet} = this.props;
+        const {path, dispatchShopListBookGet} = this.props;
         if (path === SHOP_ROUTE && prevProps.path !== path) {
-            dispatchShopListGet();
+            dispatchShopListBookGet();
         }
     }
 
@@ -29,13 +29,13 @@ class ShopListFetch extends React.PureComponent {
     }
 }
 
-export function clearShopListFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'shopList'}});
+export function clearShopListBooksFetch(dispatch) {
+    dispatch({type: CLEAR, resource: {name: 'shopListBook'}});
 }
 
 export default connect([{
-    resource: 'shopList',
+    resource: 'shopListBook',
     request: () => ({
-        url: `/shop/list`,
+        url: `/shop/listBook`,
     })
-}])(ShopListFetch);
+}])(ShopListBookFetch);
