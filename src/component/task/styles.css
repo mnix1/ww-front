@@ -45,14 +45,15 @@
     margin: 0.25rem;
 }
 
-.task .equation span {
-    /*padding: 0;*/
+.task .equation > span > span {
+    padding: 0 0.2em !important;
 }
 
 .react-clock {
     background-color: white;
     border-radius: 50%;
 }
+
 .react-clock__face {
     border: 3px solid white;
 }
