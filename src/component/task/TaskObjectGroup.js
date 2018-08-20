@@ -49,11 +49,11 @@ export default class TaskObjectGroup extends React.PureComponent {
     }
 
     questionHeight() {
-        return this.contentHeight() / 4;
+        return this.contentHeight() * 13/ 48;
     }
 
     answerHeight() {
-        return this.contentHeight() * 3 / 4;
+        return this.contentHeight() * 35 / 48;
     }
 
     prepareContent(e, background) {
@@ -97,17 +97,17 @@ export default class TaskObjectGroup extends React.PureComponent {
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
         const {contentWidth, isSmallHeight, isSmallWidth} = screen;
-        const factorHeight = isSmallHeight ? 1 : 1.5;
-        const factorWidth = isSmallWidth ? 1 : 1.2;
         const answerObjectWidth = calculateObjectDimension({
             dim: contentWidth,
-            count: (answerObjects.length) / factorWidth
+            count: Math.ceil((answerObjects.length) / (screen.moreHeightThanWidth ? 4 : 2)),
+            max: isSmallWidth ? 150 : 200
         });
         return answerObjects.map(o => {
             const objectHeight = calculateObjectDimension({
                 dim: this.answerHeight(),
-                count: (answerObjects.length) / factorHeight,
-                min: 40
+                count: Math.ceil((answerObjects.length) / (screen.moreHeightThanWidth ? 2 : 4)),
+                min: 40,
+                max: isSmallHeight ? 90 : 100
             }) * _.defaultTo(o.heightFactor, 1);
             const top = o.yTarget * this.answerHeight() - objectHeight / 2;
             const left = o.xTarget * contentWidth - answerObjectWidth / 2;

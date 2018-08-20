@@ -21,7 +21,7 @@ export function prepareAnswerTiles(rival) {
         return {
             id: ans.id,
             ...prepareContent(question.answerRenderer, ans, screen),
-            ...prepareStyle(ans, i, answerId, correctAnswerId),
+            ...prepareStyle(ans, i, answerId, correctAnswerId, question.answerRenderer, screen),
             ...positionCreator(i)
         }
     });
@@ -43,16 +43,16 @@ function prepareContent(answerRenderer, ans, screen) {
     } else {
         content = getTextContent(ans);
     }
-    console.log(content);
     return {
         [asContentHtml ? 'contentHtml' : 'content']: content
     }
 }
 
-function prepareStyle(ans, i, answerId, correctAnswerId) {
+function prepareStyle(ans, i, answerId, correctAnswerId, answerRenderer, screen) {
     const isUserAnswer = answerId === ans.id;
     const isCorrectAnswer = correctAnswerId === ans.id;
     return {
+        // heightFactor: answerRenderer === DATE ? (screen.moreHeightThanWidth ? 1.5 : 1.3) : 1,
         material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
         border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
         borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined
@@ -62,8 +62,9 @@ function prepareStyle(ans, i, answerId, correctAnswerId) {
 function preparePositionTargetCreator(screen, answers) {
     const answersCount = answers.length;
     const df = 2 * Math.PI / answersCount;
-    const factorX = answersCount === 2 ? 0.25 : 0.35;
-    const factorY = 0.20;
+    const factor1 = answersCount * 0.03 + 0.21 + (answersCount % 2 === 0 ? 0.06 : 0.02);
+    // const factor1 = answersCount === 2 ? 0.25 : (answersCount === 20.42);
+    const factor2 = 0.25;
     return (i) => {
         let f = i * df;
         if (answersCount % 2 === 1) {
@@ -72,8 +73,8 @@ function preparePositionTargetCreator(screen, answers) {
             f -= df / 2;
         }
         const sin = Math.sin(f);
-        const v1 = 0.5 + _.toInteger(Math.cos(f) * 4) / 4 * factorX;
-        const v2 = 0.5 - (sin < 0 ? -1 : 1) * factorY;
+        const v1 = 0.5 + _.toInteger(Math.cos(f) * 4) / 4 * factor1;
+        const v2 = 0.5 - (sin < 0 ? -1 : 1) * factor2;
         return {
             xTarget: screen.moreHeightThanWidth || answersCount === 2 ? v2 : v1,
             yTarget: screen.moreHeightThanWidth || answersCount === 2 ? v1 : v2
