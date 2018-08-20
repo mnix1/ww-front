@@ -13,9 +13,9 @@ import BattleFetchContainer from "../battle/fetch/BattleFetchContainer";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
 import play from '../../media/image/icon/play.svg';
 import friend from '../../media/image/icon/friend.svg';
-import practise from '../../media/image/icon/practise.svg';
 import shop from '../../media/image/icon/shop.svg';
 import wisie from '../../media/image/icon/wisie.svg';
+import owl from '../../media/image/icon/owl.svg';
 import {Route, Switch} from 'react-router'
 import {ConnectedRouter, push} from 'connected-react-router'
 import {
@@ -29,7 +29,7 @@ import {
     CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     FRIEND_ROUTE,
-    PLAY_ROUTE,
+    PLAY_ROUTE, PROFILE_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE, TRAINING_TASK_ROUTE,
     WISIES_ROUTE
@@ -94,13 +94,13 @@ class App extends React.PureComponent {
                 <div className='menuItems'>
                     {this.renderMenuItem(PLAY_ROUTE, play)}
                     {this.renderMenuItem(FRIEND_ROUTE, friend)}
+                    {this.renderMenuItem(PROFILE_ROUTE, owl)}
                 </div>
             </Menu>
             <Menu className='menuRight'>
                 <div className='menuItems'>
                     {this.renderMenuItem(WISIES_ROUTE, wisie)}
                     {this.renderMenuItem(SHOP_ROUTE, shop)}
-                    {this.renderMenuItem(TRAINING_ROUTE, practise)}
                 </div>
             </Menu>
         </div>;
@@ -139,7 +139,7 @@ class App extends React.PureComponent {
         </div>
     }
 
-    canRenderInvitedToBattle(){
+    canRenderInvitedToBattle() {
         const {path} = this.props;
         return path !== BATTLE_ROUTE
             && path !== TRAINING_TASK_ROUTE
@@ -172,6 +172,7 @@ export default connect(
         screen: state.screen,
         friendListRep: state.repository.friendList,
         battleStatus: state.battle.status,
+        profile: state.profile.profile,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({

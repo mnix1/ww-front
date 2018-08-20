@@ -13,14 +13,3 @@
     font-family: 'Black Ops One', cursive;
     font-size: 40px;
 }
-
-.topBarProfile {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    padding: 0.25rem;
-    color: #fffdf1;
-    font-size: 0.8rem;
-    display: flex;
-    z-index: 1;
-}

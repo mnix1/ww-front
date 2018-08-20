@@ -5,7 +5,14 @@ import dices from '../../media/image/icon/dices.svg';
 import clock from '../../media/image/category/clock.svg';
 import rubicCube from '../../media/image/icon/rubicCube.svg';
 import notebook from '../../media/image/icon/notebook.svg';
-import {BATTLE_FAST_ROUTE, CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
+import practise from '../../media/image/icon/practise.svg';
+import {
+    BATTLE_FAST_ROUTE,
+    CHALLENGE_FAST_ROUTE,
+    CHALLENGE_HISTORY_ROUTE,
+    CHALLENGE_LIST_ROUTE,
+    TRAINING_ROUTE
+} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
@@ -37,6 +44,7 @@ class PlayPage extends React.PureComponent {
             <Menu className='menuLeft'>
                 <div className='menuItems'>
                     {this.renderMenuItem(BATTLE_FAST_ROUTE, dices, onBattleFastClick)}
+                    {this.renderMenuItem(TRAINING_ROUTE, practise)}
                 </div>
             </Menu>
             <Menu className='menuRight'>

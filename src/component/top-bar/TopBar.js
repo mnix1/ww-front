@@ -8,16 +8,6 @@ import {APP_ROUTE} from "../../content/routes";
 
 class TopBar extends React.PureComponent {
 
-    renderProfile() {
-        const {profile} = this.props;
-        const style = {marginLeft: 4};
-        return <div className='topBarProfile'>
-            <div>{profile.name}</div>
-            <div style={style}>#{profile.tag}</div>
-            {/*<a href='/logout'><FaSignOut style={{...style, color: CREAM_COLOR}}/></a>*/}
-        </div>
-    }
-
     renderLogo() {
         const {screen, onAppNameClick} = this.props;
         const {contentWidth, height} = screen;
@@ -33,7 +23,6 @@ class TopBar extends React.PureComponent {
 
     render() {
         return <div className='topBar'>
-            {this.renderProfile()}
             {this.renderLogo()}
         </div>;
     }
