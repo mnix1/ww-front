@@ -17,6 +17,7 @@
     "react-anime": "^2.1.0",
     "react-clock": "^2.3.0",
     "react-dom": "^16.4.1",
+    "react-equation": "0.0.2",
     "react-icons": "^2.2.7",
     "react-redux": "^5.0.7",
     "react-redux-fetch": "^0.12.6",

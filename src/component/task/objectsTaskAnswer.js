@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    DATE, getDateContent,
+    DATE, EQUATION, getDateContent,
     getHtmlContent,
     getImageContent,
     getTextContent,
@@ -11,6 +11,7 @@ import {CREAM_COLOR} from "../../util/style/constant";
 import {CORRECT_ANSWER_OBJECT_MATERIAL, WRONG_ANSWER_OBJECT_MATERIAL} from "../object-group/objectMaterialHelper";
 import _ from 'lodash';
 import Clock from "react-clock";
+import {Equation} from "react-equation";
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
@@ -30,6 +31,7 @@ export function prepareAnswerTiles(rival) {
 function prepareContent(answerRenderer, ans, screen) {
     const asContentHtml = answerRenderer === HTML;
     const asContentDate = answerRenderer === DATE;
+    const asContentEquation = answerRenderer === EQUATION;
     const asContentImageSvg = answerRenderer === IMAGE_SVG;
     let content;
     if (asContentImageSvg) {
@@ -40,6 +42,9 @@ function prepareContent(answerRenderer, ans, screen) {
     } else if (asContentDate) {
         content = getDateContent(ans);
         content = <Clock size={screen.isSmallHeight ? 80 : 100} value={new Date(content)}/>
+    } else if (asContentEquation) {
+        content = getTextContent(ans);
+        content = <Equation className='equation'>{content}</Equation>
     } else {
         content = getTextContent(ans);
     }
