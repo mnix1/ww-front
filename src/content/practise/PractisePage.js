@@ -15,7 +15,8 @@ import {getHero} from "../../util/heroHelper";
 import {DIFFICULT_LEVEL_TO_NAME, renderDifficultyLevelStars} from "../../util/taskDifficultyLevel";
 import {
     getText,
-    TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT,
+    TEXT_CHOOSE_CATEGORY,
+    TEXT_CHOOSE_DIFFICULT,
     TEXT_CORRECT_ANSWER,
     TEXT_NEXT,
     TEXT_QUESTION,
@@ -26,11 +27,9 @@ import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import {prepareAnswerIntervalMessage} from "../../util/textHelper";
 import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
-import {TRAINING_ROUTE} from "../routes";
+import {TRAINING_ROUTE, TRAINING_TASK_ROUTE} from "../routes";
 import ContentWithImage from "../../component/content-with-image/ContentWithImage";
 import {ChooseDifficultLevelStarsComponent} from '../../component/difficult/ChooseDifficultLevelStars';
-
-const TASK_ROUTE = TRAINING_ROUTE + '/task';
 
 class PractisePage extends React.PureComponent {
 
@@ -101,7 +100,7 @@ class PractisePage extends React.PureComponent {
             <div className='pageBackground'/>
             <Switch>
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
-                <Route path={TASK_ROUTE} render={() => this.renderTask()}/>
+                <Route path={TRAINING_TASK_ROUTE} render={() => this.renderTask()}/>
             </Switch>
             <PractiseStartFetch category={category} difficultyLevel={difficultyLevel} practiseStartRep={practiseStartRep}/>
             <PractiseEndFetch answerId={answerId} practiseStartRep={practiseStartRep}/>
@@ -126,17 +125,17 @@ export default connect(
             clearPractiseStartFetch(dispatch);
             clearPractiseEndFetch(dispatch);
             dispatch(categoryChanged(e.id));
-            dispatch(push(TASK_ROUTE));
+            dispatch(push(TRAINING_TASK_ROUTE));
         },
         onDifficultLevelChange: (e) => {
             dispatch(difficultyLevelChanged(DIFFICULT_LEVEL_TO_NAME[e]));
         },
         onAnswerClick: (id) => dispatch(answerIdChanged(id)),
         onPlayAgainClick: () => {
-            dispatch(answerIdChanged(undefined));
-            dispatch(skipAnimationChanged(false));
             clearPractiseStartFetch(dispatch);
             clearPractiseEndFetch(dispatch);
+            dispatch(answerIdChanged(undefined));
+            dispatch(skipAnimationChanged(false));
         },
         onSkipAnimationChange: skipAnimation => dispatch(skipAnimationChanged(skipAnimation))
     })

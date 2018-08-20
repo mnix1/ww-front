@@ -31,7 +31,7 @@ import {
     FRIEND_ROUTE,
     PLAY_ROUTE,
     SHOP_ROUTE,
-    TRAINING_ROUTE,
+    TRAINING_ROUTE, TRAINING_TASK_ROUTE,
     WISIES_ROUTE
 } from "../routes";
 import ChallengeFriendPage from "../challenge/create/ChallengeFriendPage";
@@ -139,12 +139,21 @@ class App extends React.PureComponent {
         </div>
     }
 
+    canRenderInvitedToBattle(){
+        const {path} = this.props;
+        return path !== BATTLE_ROUTE
+            && path !== TRAINING_TASK_ROUTE
+            && path !== CHALLENGE_FAST_ROUTE
+            && path !== CHALLENGE_RESPONSE_ROUTE
+            && path !== CHALLENGE_FRIEND_ROUTE;
+    }
+
     render() {
         const {screen} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
             <img alt='' src={background} height={screen.height} width={screen.width} className="background"/>
-            <InvitedToBattleBy/>
+            {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
             <div style={{height, width: contentWidth}} className='content'>
                 <TopBar/>

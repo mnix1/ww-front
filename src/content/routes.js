@@ -16,3 +16,5 @@ export const CHALLENGE_RESPONSE_ROUTE = '/challengeResponse';
 export const CHALLENGE_SUMMARY_ROUTE = '/challengeSummary';
 export const CHALLENGE_LIST_ROUTE = '/challengeList';
 export const CHALLENGE_HISTORY_ROUTE = '/challengeHistory';
+
+export const TRAINING_TASK_ROUTE = TRAINING_ROUTE + '/task';
