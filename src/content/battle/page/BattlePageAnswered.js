@@ -64,7 +64,7 @@ class BattlePageAnswered extends React.PureComponent {
                 score: {value: content.newScore, duration: 1000, delay: 7000},
                 opponentScore: {value: content.newOpponentScore, duration: 1000, delay: 7000}
             }}>
-            <ProfilesComponent className={'profilesAbsolute'} profile={profile} screen={screen} scoreColor={scoreColor}
+            <ProfilesComponent className={'absolute'} profile={profile} screen={screen} scoreColor={scoreColor}
                                opponentScoreColor={opponentScoreColor}/>
         </Anime>;
     }

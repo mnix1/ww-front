@@ -1,0 +1,64 @@
+.bookContainer {
+    margin: 0.25rem;
+    padding: 0.25rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+    display: flex;
+    justify-content: center;
+}
+
+.book {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.book .bookInfo {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem;
+    position: relative;
+    margin-bottom: 0.25rem;
+}
+
+.book .bookInfo .background {
+    background: #888;
+    border-radius: 0.5rem;
+    display: inline-block;
+    opacity: 0.5;
+    position: absolute;
+}
+
+.book .bookImgTime {
+    display: flex;
+    justify-content: center;
+}
+
+.book .bookDetails {
+    display: flex;
+    justify-content: space-between;
+}
+
+.book .bookDetailsInside {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 0.25rem;
+}
+
+.book .bookActions {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.25rem;
+}
+
+.book .bookActions .bookAction {
+    min-width: 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.book .bookActions .bookAction .icon svg {
+    vertical-align: bottom !important;
+
+}

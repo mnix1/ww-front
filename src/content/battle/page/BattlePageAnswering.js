@@ -38,7 +38,7 @@ class BattlePageAnswering extends React.PureComponent {
         const {content} = this.props;
         return <div className='pageContent battlePageAnswering'>
             <TaskDescription className='contentHeader'><div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div></TaskDescription>
-            <Profiles className={'profilesAbsolute'}/>
+            <Profiles className='absolute'/>
             {this.renderTask()}
         </div>;
     }

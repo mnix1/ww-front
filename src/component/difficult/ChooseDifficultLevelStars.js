@@ -1,17 +1,17 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import {
-    DIFFICULT_LEVEL_TO_NAME,
-    EXTREMELY_EASY,
-    EXTREMELY_HARD,
-    NAME_TO_DIFFICULT_LEVEL
-} from "../../util/taskDifficultyLevel";
 import DifficultLevelStars from "./DifficultLevelStars";
 import Slider from 'rc-slider';
 import {connect} from "react-redux";
 import {difficultLevelChanged} from "../../redux/reducer/battle";
 import 'rc-slider/assets/index.css';
+import {
+    DIFFICULT_LEVEL_TO_NAME,
+    EXTREMELY_EASY,
+    EXTREMELY_HARD,
+    NAME_TO_DIFFICULT_LEVEL
+} from "../../util/difficultyHelper";
 
 export class ChooseDifficultLevelStarsComponent extends React.PureComponent {
 

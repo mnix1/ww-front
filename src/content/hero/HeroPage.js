@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getHeroName, getText, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES} from "../../lang";
+import {getName, getText, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES} from "../../lang";
 import Profile from "../../component/profile/Profile";
 import './styles.css';
 import _ from 'lodash';
@@ -21,8 +21,8 @@ class HeroPage extends React.PureComponent {
             return <Loading/>;
         }
         const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
-        const ownedHeroes = _.chain(heroListRep.value).filter('isOwned').sortBy(e => getHeroName(e)).value();
-        const notOwnedHeroes = _.chain(heroListRep.value).filter(e => !e.isOwned).sortBy(e => getHeroName(e)).value();
+        const ownedHeroes = _.chain(heroListRep.value).filter('isOwned').sortBy(e => getName(e)).value();
+        const notOwnedHeroes = _.chain(heroListRep.value).filter(e => !e.isOwned).sortBy(e => getName(e)).value();
         return <div>
             {!_.isEmpty(ownedHeroes) && <div className='contentFragment'>
                 <div className='title'>{getText(TEXT_OWNED_WISIES)}</div>
@@ -55,7 +55,7 @@ class HeroPage extends React.PureComponent {
     }
 
     renderHeroDetails(hero) {
-        const name = getHeroName(hero);
+        const name = getName(hero);
         return <div className='heroDetails'>
             <div className='background'/>
             <span className='name'>{name}</span>

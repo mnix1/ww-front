@@ -19,7 +19,7 @@ class BattlePageChoosingTaskPropsTimeout extends React.PureComponent {
 
     render() {
         return <div className='pageContent battlePageChosenTaskProps'>
-            <Profiles className='profilesAbsolute'/>
+            <Profiles className='absolute'/>
             {this.renderContent()}
         </div>;
     }

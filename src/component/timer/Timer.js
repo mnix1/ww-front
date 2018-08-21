@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import PropTypes from "prop-types";
 import {Line} from "rc-progress";
 import './styles.css';
+import Clock from 'react-clock';
 
-class Timer extends React.PureComponent {
+export default class Timer extends React.PureComponent {
 
     static propTypes = {
         work: PropTypes.bool,
@@ -13,7 +14,9 @@ class Timer extends React.PureComponent {
         to: PropTypes.number,
         down: PropTypes.bool,
         showSeconds: PropTypes.bool,
-        showChart: PropTypes.bool
+        showChart: PropTypes.bool,
+        showClock: PropTypes.bool,
+        className: PropTypes.string
     };
 
     static defaultProps = {
@@ -21,7 +24,9 @@ class Timer extends React.PureComponent {
         down: true,
         to: 0,
         showSeconds: false,
-        showChart: true
+        showChart: true,
+        showClock: false,
+        className: '',
     };
 
     constructor(props) {
@@ -78,6 +83,11 @@ class Timer extends React.PureComponent {
         return <span>{seconds} s</span>
     }
 
+    renderClock() {
+        const {value} = this.state;
+        return <Clock size={100} value={new Date(value)}/>;
+    }
+
     renderChart() {
         const {to, from} = this.props;
         const {value} = this.state;
@@ -86,17 +96,14 @@ class Timer extends React.PureComponent {
     }
 
     render() {
-        const {showSeconds, showChart} = this.props;
-        return <div className='timer'>
-                <div className='timerContent'>
-                    {showSeconds && this.renderSeconds()}
-                    {showChart && this.renderChart()}
-                </div>
+        const {showSeconds, showChart, showClock, className} = this.props;
+        const cn = `timer ${className}`;
+        return <div className={cn}>
+            <div className='timerContent'>
+                {showClock && this.renderClock()}
+                {showSeconds && this.renderSeconds()}
+                {showChart && this.renderChart()}
+            </div>
         </div>
     }
 }
-
-export default connect(
-    (state) => ({}),
-    (dispatch) => ({})
-)(Timer);

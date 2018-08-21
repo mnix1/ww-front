@@ -8,7 +8,7 @@ import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
 import {CATEGORY_RANDOM} from "../../../util/categoryHelper";
 import _ from 'lodash';
-import {STARS_DIFFICULTY_LEVEL} from "../../../util/taskDifficultyLevel";
+import {LEVEL_TO_STARS} from "../../../util/starRateHelper";
 import DifficultLevelStars from "../../../component/difficult/DifficultLevelStars";
 
 class BattlePageIntro extends React.PureComponent {
@@ -85,7 +85,7 @@ class BattlePageIntro extends React.PureComponent {
 
     renderRandomDifficult() {
         const {content} = this.props;
-        const objectsDifficult = _.keys(STARS_DIFFICULTY_LEVEL);
+        const objectsDifficult = _.keys(LEVEL_TO_STARS);
         const targetDifficult = content.task.taskDifficultyLevel;
         const targetSelectedIdValue = objectsDifficult.length * 6;
         return <Anime

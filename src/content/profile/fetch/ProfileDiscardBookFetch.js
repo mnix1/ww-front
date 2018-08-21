@@ -4,7 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
 
-class ProfileStartReadBookFetch extends React.PureComponent {
+class ProfileDiscardBookFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -15,15 +15,15 @@ class ProfileStartReadBookFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearProfileStartReadBookFetch(this.props.dispatch);
+        clearProfileDiscardBookFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {path, bookId, dispatchProfileStartReadBookPost} = this.props;
+        const {path, bookId, dispatchProfileDiscardBookPost} = this.props;
         if (path === PROFILE_ROUTE
             && !_.isNil(bookId)
             && (prevProps.path !== path || prevProps.bookId !== bookId)) {
-            dispatchProfileStartReadBookPost(bookId);
+            dispatchProfileDiscardBookPost(bookId);
         }
     }
 
@@ -32,15 +32,15 @@ class ProfileStartReadBookFetch extends React.PureComponent {
     }
 }
 
-export function clearProfileStartReadBookFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'profileStartReadBook'}});
+export function clearProfileDiscardBookFetch(dispatch) {
+    dispatch({type: CLEAR, resource: {name: 'profileDiscardBook'}});
 }
 
 export default connect([{
     method: 'post',
-    resource: 'profileStartReadBook',
+    resource: 'profileDiscardBook',
     request: (id) => ({
-        url: `/profile/startReadBook`,
+        url: `/profile/discardBook`,
         body: {id}
     })
-}])(ProfileStartReadBookFetch);
+}])(ProfileDiscardBookFetch);

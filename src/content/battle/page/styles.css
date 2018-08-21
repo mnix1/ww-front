@@ -28,14 +28,6 @@
     padding: 0.25rem;
 }
 
-.battlePage .profilesAbsolute {
-    position: absolute;
-}
-
-.battlePage .profilesRelative {
-    position: relative;
-}
-
 .battlePage .pageContent {
     display: flex;
     justify-content: flex-start;

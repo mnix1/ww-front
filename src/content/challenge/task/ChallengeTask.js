@@ -29,7 +29,7 @@ import './styles.css';
 import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 import {getHero} from "../../../util/heroHelper";
-import {renderDifficultyLevelStars} from "../../../util/taskDifficultyLevel";
+import {renderDifficultyLevelStars} from "../../../util/difficultyHelper";
 
 class ChallengeTask extends React.PureComponent {
 

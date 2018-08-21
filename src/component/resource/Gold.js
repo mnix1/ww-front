@@ -1,14 +1,10 @@
 import React from 'react';
-import './styles.css';
-import coins from '../../media/image/resource/coins.svg';
+import goldBar from '../../media/image/resource/goldBar.svg';
+import Resource from "./Resource";
 
 export default class Gold extends React.PureComponent {
 
     render() {
-        const {children} = this.props;
-        return <div className='resource'>
-            {children}
-            <img src={coins} height={20}/>
-        </div>
+        return <Resource imgSrc={goldBar} {...this.props}/>
     }
 }

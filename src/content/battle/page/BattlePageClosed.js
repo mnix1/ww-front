@@ -23,7 +23,7 @@ class BattlePageClosed extends React.PureComponent {
                     {getText(TEXT_BATTLE_OVER)}
                     {` ${getText(TEXT_DRAW)}`}
                 </div>
-                <Profiles className={'profilesAbsolute'}/>
+                <Profiles className='absolute'/>
             </div>;
         }
         const meWinner = winnerTag === profile.tag;
@@ -45,7 +45,7 @@ class BattlePageClosed extends React.PureComponent {
             <div className='pageHeader'>
                 <img alt='' src={trophy} height={80}/>
             </div>
-            <Profiles className={'profilesAbsolute'}/>
+            <Profiles className='absolute'/>
         </div>;
     }
 }

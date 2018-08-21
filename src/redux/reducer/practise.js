@@ -1,4 +1,4 @@
-import {NORMAL} from "../../util/taskDifficultyLevel";
+import {NORMAL} from "../../util/difficultyHelper";
 
 export const CLEARED = 'practise/cleared';
 export const CATEGORY_CHANGED = 'practise/category/changed';

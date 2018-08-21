@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import '../styles.css';
 import {getCategoryLabel, getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_POINTS, TEXT_QUESTION} from "../../../../lang";
-import {renderDifficultyLevelStars} from "../../../../util/taskDifficultyLevel";
+import {renderDifficultyLevelStars} from "../../../../util/difficultyHelper";
 
 export class TaskDescription extends React.PureComponent {
 

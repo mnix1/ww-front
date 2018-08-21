@@ -41,7 +41,7 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
         const {content} = this.props;
         const {choosingTaskPropsTag} = content;
         return <div className='pageContent battlePageChoosingTaskProps'>
-            <Profiles className='profilesAbsolute'/>
+            <Profiles className='absolute'/>
             {!_.isNil(choosingTaskPropsTag) && <TaskDescription className='pageHeader' taskId={content.taskId}/>}
             {this.renderContent()}
         </div>;

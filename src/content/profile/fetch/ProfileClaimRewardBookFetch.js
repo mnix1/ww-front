@@ -19,11 +19,11 @@ class ProfileStartReadBookFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, claimRewardBookId, dispatchProfileClaimRewardBookPost} = this.props;
+        const {path, bookId, dispatchProfileClaimRewardBookPost} = this.props;
         if (path === PROFILE_ROUTE
-            && !_.isNil(claimRewardBookId)
-            && (prevProps.path !== path || prevProps.claimRewardBookId !== claimRewardBookId)) {
-            dispatchProfileClaimRewardBookPost(claimRewardBookId);
+            && !_.isNil(bookId)
+            && (prevProps.path !== path || prevProps.bookId !== bookId)) {
+            dispatchProfileClaimRewardBookPost(bookId);
         }
     }
 

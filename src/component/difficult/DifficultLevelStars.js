@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import {renderDifficultyLevelStars} from "../../util/taskDifficultyLevel";
+import {renderDifficultyLevelStars} from "../../util/difficultyHelper";
 
 export default class DifficultLevelStars extends React.PureComponent {
 

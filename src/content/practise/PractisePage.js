@@ -12,7 +12,6 @@ import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
 import {getHero} from "../../util/heroHelper";
-import {DIFFICULT_LEVEL_TO_NAME, renderDifficultyLevelStars} from "../../util/taskDifficultyLevel";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
@@ -30,6 +29,7 @@ import {push} from 'connected-react-router'
 import {TRAINING_ROUTE, TRAINING_TASK_ROUTE} from "../routes";
 import ContentWithImage from "../../component/content-with-image/ContentWithImage";
 import {ChooseDifficultLevelStarsComponent} from '../../component/difficult/ChooseDifficultLevelStars';
+import {DIFFICULT_LEVEL_TO_NAME, renderDifficultyLevelStars} from "../../util/difficultyHelper";
 
 class PractisePage extends React.PureComponent {
 

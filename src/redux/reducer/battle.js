@@ -4,8 +4,8 @@ import {
     BATTLE_STATUS_INVITED_FRIEND,
     BATTLE_STATUS_REJECTED_FRIEND
 } from "../../util/battleHelper";
-import {NORMAL} from "../../util/taskDifficultyLevel";
 import {CATEGORY_RANDOM} from "../../util/categoryHelper";
+import {NORMAL} from "../../util/difficultyHelper";
 
 export const CLEARED = 'battle/cleared';
 export const TAG_CHANGED = 'battle/tag/changed';

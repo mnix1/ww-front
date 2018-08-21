@@ -17,7 +17,7 @@ class BattlePagePreparingNextTask extends React.PureComponent {
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>
-            <Profiles className={'profilesAbsolute'}/>
+            <Profiles className='absolute'/>
         </div>;
     }
 }

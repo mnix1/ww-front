@@ -3,7 +3,7 @@ import './styles.css';
 import {connect} from 'react-redux';
 import Profile from "../profile/Profile";
 import Gold from "../resource/Gold";
-import Diamond from "../resource/Diamond";
+import Crystal from "../resource/Crystal";
 
 class ProfileBar extends React.PureComponent {
 
@@ -20,7 +20,7 @@ class ProfileBar extends React.PureComponent {
         return <div className='profileBarResources'>
             <div className='profileBarBackground'/>
             <Gold>{profile.gold}</Gold>
-            <Diamond>{profile.diamond}</Diamond>
+            <Crystal>{profile.crystal}</Crystal>
         </div>
     }
 

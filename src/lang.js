@@ -105,10 +105,24 @@ export const TEXT_ANSWERED = 'TEXT_ANSWERED';
 export const TEXT_NO_ANSWER = 'TEXT_NO_ANSWER';
 export const TEXT_CORRECT = 'TEXT_CORRECT';
 export const TEXT_WRONG = 'TEXT_WRONG';
+export const TEXT_READ = 'TEXT_READ';
+export const TEXT_STOP_READING = 'TEXT_STOP_READING';
+export const TEXT_DISCARD = 'TEXT_DISCARD';
+export const TEXT_CLAIM_REWARD = 'TEXT_CLAIM_REWARD';
+export const TEXT_AVAILABLE_RESOURCES = 'TEXT_AVAILABLE_RESOURCES';
+export const TEXT_BOOKSHELF = 'TEXT_BOOKSHELF';
+export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_AVAILABLE_RESOURCES]: 'Dostępne zasoby',
+        [TEXT_BOOKSHELF]: 'Dostępne książki',
+        [TEXT_EMPTY_BOOKSHELF]: 'Brak dostępnych książek',
+        [TEXT_READ]: 'Czytaj',
+        [TEXT_STOP_READING]: 'Przestań czytać',
+        [TEXT_DISCARD]: 'Wyrzuć',
+        [TEXT_CLAIM_REWARD]: 'Odbierz nagrodę',
         [TEXT_YOU_SURRENDER]: 'Poddałeś się',
         [TEXT_DRAW]: 'Remis',
         [TEXT_OPPONENT_SURRENDER]: 'Przeciwnik się poddał',
@@ -189,6 +203,13 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_AVAILABLE_RESOURCES]: 'Available resources',
+        [TEXT_BOOKSHELF]: 'Available books',
+        [TEXT_EMPTY_BOOKSHELF]: 'There are no available books',
+        [TEXT_READ]: 'Read',
+        [TEXT_STOP_READING]: 'Stop reading',
+        [TEXT_DISCARD]: 'Discard',
+        [TEXT_CLAIM_REWARD]: 'Claim reward',
         [TEXT_YOU_SURRENDER]: 'You surrender',
         [TEXT_DRAW]: 'Draw',
         [TEXT_OPPONENT_SURRENDER]: 'Your opponent has surrender',
@@ -342,12 +363,12 @@ const CATEGORY_LABELS = {
 };
 
 
-export function getHeroName(hero) {
+export function getName(e) {
     if(window.activeLang === POLISH){
-        return hero.namePolish;
+        return e.namePolish;
     }
     if(window.activeLang === ENGLISH){
-        return hero.nameEnglish;
+        return e.nameEnglish;
     }
     return null;
 }

@@ -6,17 +6,18 @@
     justify-content: space-around;
 }
 
-.profilePage .bookContainer {
-    cursor: pointer;
-    margin: 0.25rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 4px #fffdf1;
+.profilePage .resources {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    max-width: 50%;
 }
 
-.profilePage .book {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.profilePage .resources > div {
+    box-shadow: 0 0 4px #fffdf1;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
+}
+
+.profilePage .contentFragment {
+    padding: 0.25rem;
 }
