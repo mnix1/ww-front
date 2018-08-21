@@ -12,7 +12,7 @@ export function notice(content) {
         content: <div className='relative height100 notice'>
             <div className='absoluteBackgroundMix'/>
             <div className='relative justifyCenter'>
-                <img src={error} height={30}/>
+                <img alt='' src={error} height={30}/>
                 <div className='justifyCenter flexColumn'>{content}</div>
             </div>
         </div>

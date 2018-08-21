@@ -1,4 +1,3 @@
-import React from 'react';
 import {ENGLISH, POLISH} from "./lang";
 import _ from 'lodash';
 

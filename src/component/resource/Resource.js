@@ -27,7 +27,7 @@ export default class Resource extends React.PureComponent {
         return <div className={className}>
             <div className='pageCenterHorizontal'>
                 <div className='pageCenterVertical'>
-                    <img src={imgSrc} height={IMG_HEIGHT[size]}/>
+                    <img alt='' src={imgSrc} height={IMG_HEIGHT[size]}/>
                     {children}
                 </div>
             </div>

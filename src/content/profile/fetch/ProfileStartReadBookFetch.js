@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
-import {startReadBookIdChanged, stopReadBookIdChanged} from "../../../redux/reducer/profile";
+import {startReadBookIdChanged} from "../../../redux/reducer/profile";
 
 class ProfileStartReadBookFetch extends React.PureComponent {
 
