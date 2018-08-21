@@ -7,8 +7,25 @@ import {getText, TEXT_BOOKSHELF} from "../../lang";
 import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
 import {buyBookIdChanged} from "../../redux/reducer/shop";
+import {checkRepValueCode, ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../error";
+import {noticeError} from "../../component/notification/notice";
 
 class ShopPage extends React.PureComponent {
+
+    componentDidUpdate(prevProps) {
+        const {shopBuyBookRep} = this.props;
+        if (!shopBuyBookRep || !shopBuyBookRep.fulfilled) {
+            return;
+        }
+        if (prevProps.shopBuyBookRep && prevProps.shopBuyBookRep.fulfilled) {
+            return;
+        }
+        if (checkRepValueCode(shopBuyBookRep, -3)) {
+            noticeError(ERROR_NOT_ENOUGH_RESOURCES)
+        } else if (checkRepValueCode(shopBuyBookRep, -2)) {
+            noticeError(ERROR_NO_SPACE_FOR_BOOK)
+        }
+    }
 
     get bookWidth() {
         const {screen} = this.props;
@@ -53,7 +70,8 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
-        shopListBookRep: state.repository.shopListBook
+        shopListBookRep: state.repository.shopListBook,
+        shopBuyBookRep: state.repository.shopBuyBook
     }),
     (dispatch) => ({
         onBuyClick: (id) => dispatch(buyBookIdChanged(id))

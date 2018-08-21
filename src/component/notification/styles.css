@@ -1,0 +1,65 @@
+.rc-notification {
+    position: fixed;
+    z-index: 1000;
+}
+
+.rc-notification .absoluteBackgroundMix {
+    background: #111111;
+    opacity: 0.9;
+}
+
+.rc-notification-notice {
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px #fffdf1;
+    display: block;
+    width: auto;
+    vertical-align: middle;
+    position: relative;
+}
+
+.rc-notification-fade-enter {
+    opacity: 0;
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-play-state: paused;
+}
+
+.rc-notification-fade-leave {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+    animation-play-state: paused;
+}
+
+.rc-notification-fade-enter.rc-notification-fade-enter-active {
+    animation-name: rcNotificationFadeIn;
+    animation-play-state: running;
+}
+
+.rc-notification-fade-leave.rc-notification-fade-leave-active {
+    animation-name: rcDialogFadeOut;
+    animation-play-state: running;
+}
+
+.notice {
+    padding: 0.5rem;
+}
+
+@keyframes rcNotificationFadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes rcDialogFadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

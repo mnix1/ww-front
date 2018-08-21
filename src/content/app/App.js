@@ -19,6 +19,7 @@ import shop from '../../media/image/icon/shop.svg';
 import wisie from '../../media/image/icon/wisie.svg';
 import owl from '../../media/image/icon/owl.svg';
 import {Route, Switch} from 'react-router'
+
 import {ConnectedRouter, push} from 'connected-react-router'
 import {
     APP_ROUTE,
