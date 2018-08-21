@@ -1,5 +1,7 @@
 import React from 'react';
 import './styles.css';
+import './commonStyles.css';
+import './pageStyles.css';
 import {connect} from 'react-redux';
 import PractisePage from "../practise/PractisePage";
 import TopBar from "../../component/top-bar/TopBar";
@@ -158,7 +160,7 @@ class App extends React.PureComponent {
         const {screen} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
-            <img alt='' src={background} height={screen.height} width={screen.width} className="background"/>
+            <img alt='' src={background} height={screen.height} width={screen.width} className="fixedBackgroundMix"/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
             <div style={{height, width: contentWidth}} className='content'>

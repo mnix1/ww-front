@@ -6,27 +6,30 @@ import {getLevelFromNumber, renderStars} from "../../util/starRateHelper";
 import Crystal from "../../component/resource/Crystal";
 import Timer from "../../component/timer/Timer";
 import Elixir from "../../component/resource/Elixir";
-import {
-    Button,
-    BUTTON_MATERIAL_ACCEPT,
-    BUTTON_MATERIAL_DANGER,
-    BUTTON_MATERIAL_NORMAL
-} from "../../component/button/Button";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import GoBook from 'react-icons/lib/go/book';
 import FaTrash from 'react-icons/lib/fa/trash';
 import FaBook from 'react-icons/lib/fa/book';
 import Wisdom from "../resource/Wisdom";
 import PropTypes from "prop-types";
-import {BUTTON_MATERIAL_WARNING} from "../button/Button";
 
-export default class Book extends React.PureComponent {
+export default class ProfileBook extends React.PureComponent {
 
     static propTypes = {
         onClaimRewardClick: PropTypes.func,
         onStartReadClick: PropTypes.func,
         onStopReadClick: PropTypes.func,
         onDiscardClick: PropTypes.func,
-        book: PropTypes.object,
+        canClaimReward: PropTypes.bool,
+        isInProgress: PropTypes.bool,
+        level: PropTypes.number,
+        readTime: PropTypes.number,
+        alreadyReadInterval: PropTypes.number,
+        gainCrystal: PropTypes.number,
+        gainWisdom: PropTypes.number,
+        gainElixir: PropTypes.number,
+        type: PropTypes.string,
+        style: PropTypes.object,
     };
 
     static defaultProps = {};
@@ -35,37 +38,36 @@ export default class Book extends React.PureComponent {
         const {onClaimRewardClick, onStartReadClick, onStopReadClick, onDiscardClick, canClaimReward, isInProgress} = this.props;
         return <div className='bookActions'>
             {!canClaimReward && !isInProgress &&
-            <Button onClick={onStartReadClick} className='bookAction' material={BUTTON_MATERIAL_NORMAL}
-                    icon={<GoBook size={20}/>}>{getText(TEXT_READ)}</Button>}
+            <Button onClick={onStartReadClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+                    icon={<GoBook/>}>{getText(TEXT_READ)}</Button>}
             {!canClaimReward && isInProgress &&
-            <Button onClick={onStopReadClick} className='bookAction' material={BUTTON_MATERIAL_WARNING}
-                    icon={<GoBook size={20}/>}>{getText(TEXT_STOP_READING)}</Button>}
+            <Button onClick={onStopReadClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+                    icon={<GoBook/>}>{getText(TEXT_STOP_READING)}</Button>}
             {canClaimReward &&
-            <Button onClick={onClaimRewardClick} className='bookAction' material={BUTTON_MATERIAL_ACCEPT}
-                    icon={<FaBook size={20}/>}>{getText(TEXT_CLAIM_REWARD)}</Button>}
+            <Button onClick={onClaimRewardClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+                    icon={<FaBook/>}>{getText(TEXT_CLAIM_REWARD)}</Button>}
             {!canClaimReward &&
-            <Button onClick={onDiscardClick} className='bookAction' material={BUTTON_MATERIAL_DANGER}
-                    icon={<FaTrash size={20}/>}>{getText(TEXT_DISCARD)}</Button>}
+            <Button onClick={onDiscardClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+                    icon={<FaTrash/>}>{getText(TEXT_DISCARD)}</Button>}
         </div>;
     }
 
     renderInfo() {
         const {level} = this.props;
-        return <div className='bookInfo'>
-            <div className='background'/>
+        return <div className='bookInfo flexColumn'>
+            <div className='absoluteBackgroundMix'/>
             <div className='relative justifyCenter'>{getName(this.props)}</div>
-            <span className='relative justifyCenter flexColumn'>{renderStars(getLevelFromNumber(level))}</span>
+            <span className='relative justifyCenter'>{renderStars(getLevelFromNumber(level))}</span>
         </div>
     }
 
     renderDetails() {
         const {canClaimReward, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
         return <div className='bookDetails'>
-            <img height={200} alt='' src={getBook(type)}/>
+            <img height={150} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside'>
-                {!canClaimReward && isInProgress && <div>
-                    <Timer className='justifyCenter'
-                           showClock={true}
+                {!canClaimReward && isInProgress && <div className='justifyCenter'>
+                    <Timer showClock={true}
                            showChart={false}
                            from={readTime - alreadyReadInterval}
                     />
@@ -80,7 +82,9 @@ export default class Book extends React.PureComponent {
     }
 
     render() {
-        return <div className='bookContainer'>
+        const {style} = this.props;
+        return <div className='bookContainer' style={style}>
+            <div className='absoluteBackgroundMix'/>
             <div className='book'>
                 {this.renderInfo()}
                 {this.renderDetails()}

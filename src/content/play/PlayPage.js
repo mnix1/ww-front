@@ -63,7 +63,7 @@ class PlayPage extends React.PureComponent {
 
     render() {
         return <div className='page'>
-            <div className='pageBackground'/>
+            <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageContent'>
                 {this.renderContent()}
             </div>

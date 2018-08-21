@@ -64,3 +64,31 @@ export function getBook(book) {
     }
     return b;
 }
+
+const MIN_BOOK_WIDTH = 180;
+const MAX_BOOK_WIDTH = 300;
+
+const bookWidthCache = {};
+
+export function calculateBookWidth(contentWidth) {
+    const cacheValue = bookWidthCache[contentWidth];
+    if (cacheValue) {
+        return cacheValue;
+    }
+    let minCount = Math.floor(contentWidth / MAX_BOOK_WIDTH);
+    let maxCount = Math.floor(contentWidth / MIN_BOOK_WIDTH);
+    if (minCount === maxCount) {
+        return MAX_BOOK_WIDTH;
+    }
+    console.log(minCount, maxCount);
+    if (maxCount - minCount > 1) {
+        return contentWidth / ((maxCount + minCount) / 2);
+    }
+    if (minCount === 1) {
+        return contentWidth / maxCount;
+    }
+    if (minCount === 0) {
+        return MIN_BOOK_WIDTH;
+    }
+    return contentWidth / minCount;
+}

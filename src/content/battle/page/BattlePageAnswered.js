@@ -31,7 +31,7 @@ class BattlePageAnswered extends React.PureComponent {
         const answeredProfile = this.meAnswered ? profile : opponent;
         const imgHeight = screen.isSmallHeight ? 40 : 60;
         return <div className='pageCenterHorizontal whoAnswered'>
-            <div className='pageBackground'/>
+            <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
                 <Profile {...answeredProfile}/>
                 <div>{getText(TEXT_ANSWERED)}...</div>

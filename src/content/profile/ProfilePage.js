@@ -2,13 +2,13 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import ProfilePageBook from "./ProfilePageBook";
-import ProfilePageResource from "./ProfilePageResource";
+import AvailableResources from "../../component/resource/AvailableResources";
 
 class ProfilePage extends React.PureComponent {
 
     renderContent() {
         return <div>
-            <ProfilePageResource/>
+            <AvailableResources/>
             <ProfilePageBook/>
         </div>
     }
@@ -16,7 +16,7 @@ class ProfilePage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page profilePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <div className='pageBackground'/>
+            <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageContent'>
                 {this.renderContent()}
             </div>

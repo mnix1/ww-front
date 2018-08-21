@@ -17,15 +17,8 @@
     padding: 0.25rem;
 }
 
-.contentWithImage .background {
+.contentWithImage .absoluteBackgroundMix {
     background: #666666;
-    border-radius: 0.5rem;
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
 }
 
 .contentWithImage .flexColumn {

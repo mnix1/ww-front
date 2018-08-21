@@ -139,7 +139,7 @@ class FriendPage extends React.PureComponent {
     render() {
         const {addTag, addFriendRep, friendSuggestRep, suggest} = this.props;
         return <div className="page">
-            <div className="pageBackground"/>
+            <div className="pageBackground absoluteBackgroundMix"/>
             {this.renderContent()}
             <AddFriendFetch rep={addFriendRep} addTag={addTag}/>
             <FriendSuggestFetch rep={friendSuggestRep} suggest={suggest}/>

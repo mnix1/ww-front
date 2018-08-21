@@ -5,6 +5,7 @@
     box-shadow: 0 0 4px #fffdf1;
     display: flex;
     justify-content: center;
+    position: relative;
 }
 
 .book {
@@ -21,12 +22,8 @@
     margin-bottom: 0.25rem;
 }
 
-.book .bookInfo .background {
+.book .bookInfo .absoluteBackgroundMix {
     background: #888;
-    border-radius: 0.5rem;
-    display: inline-block;
-    opacity: 0.5;
-    position: absolute;
 }
 
 .book .bookImgTime {
@@ -56,9 +53,4 @@
     min-width: 5rem;
     display: flex;
     justify-content: space-between;
-}
-
-.book .bookActions .bookAction .icon svg {
-    vertical-align: bottom !important;
-
 }

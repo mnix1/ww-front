@@ -80,7 +80,7 @@ class BattlePage extends React.PureComponent {
     render() {
         const {screen, showOptions} = this.props;
         return <div className='page battlePage' style={{height: screen.contentHeight}}>
-            <div className='pageBackground'/>
+            <div className='pageBackground absoluteBackgroundMix'/>
             {this.renderShowOptions()}
             {showOptions && this.renderOptions()}
             {this.renderContent()}

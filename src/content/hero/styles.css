@@ -10,12 +10,6 @@
     text-align: center;
 }
 
-.heroPage .heroesContainer {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
 .heroPage .heroes {
     display: flex;
 }
@@ -44,8 +38,6 @@
 }
 
 .heroPage .hero .heroDetails {
-    display: flex;
-    justify-content: space-between;
     padding: 0.25rem;
     position: relative;
 }
@@ -54,12 +46,9 @@
     display: flex;
 }
 
-.heroPage .hero .heroDetails .background {
+.heroPage .hero .heroDetails .absoluteBackgroundMix {
     background: #888;
-    border-radius: 0.5rem;
     display: inline-block;
-    opacity: 0.5;
-    position: absolute;
 }
 
 .heroPage .hero .hobby {

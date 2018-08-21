@@ -43,7 +43,7 @@ class ChallengeHistoryPage extends React.PureComponent {
     render() {
         const {challengeListRep} = this.props;
         return <div className="page">
-            <div className="pageBackground"/>
+            <div className="pageBackground absoluteBackgroundMix"/>
             <div className="pageContent">
                 <div className="pageHeader">
                     <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_CLOSED_CHALLENGES : TEXT_CLOSED_CHALLENGES)}</span>

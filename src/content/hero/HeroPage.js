@@ -36,7 +36,7 @@ class HeroPage extends React.PureComponent {
     }
 
     renderHeroes(heroesGroups) {
-        return <div className='heroesContainer'>
+        return <div className='justifyCenter flexColumn'>
             {heroesGroups.map((e, i) => this.renderHeroesGroup(e, i))}
         </div>;
     }
@@ -56,8 +56,8 @@ class HeroPage extends React.PureComponent {
 
     renderHeroDetails(hero) {
         const name = getName(hero);
-        return <div className='heroDetails'>
-            <div className='background'/>
+        return <div className='heroDetails justifyBetween'>
+            <div className='absoluteBackgroundMix'/>
             <span className='name'>{name}</span>
             <div className='hobbies'>
                 {hero.hobbies.map(e => <img alt='' className='hobby' key={e} height={20} src={getCategory(e)}/>)}
@@ -68,7 +68,7 @@ class HeroPage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page heroPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <div className='pageBackground'/>
+            <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageContent'>
                 {this.renderContent()}
             </div>

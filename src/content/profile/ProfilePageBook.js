@@ -7,7 +7,7 @@ import {
     startReadBookIdChanged,
     stopReadBookIdChanged
 } from "../../redux/reducer/profile";
-import Book from "../../component/book/Book";
+import ProfileBook from "../../component/book/ProfileBook";
 import {getText, TEXT_BOOKSHELF, TEXT_EMPTY_BOOKSHELF} from "../../lang";
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
@@ -17,14 +17,14 @@ class ProfilePage extends React.PureComponent {
         return <div className='contentFragment'>
             <div className='title'>{getText(TEXT_BOOKSHELF)} </div>
             <div className='books'>
-                {books.map(e => this.renderBook(e))}
+                {_.sortBy(books, 'id').map(e => this.renderBook(e))}
             </div>
         </div>;
     }
 
     renderBook(book) {
         const {onClaimRewardClick, onStartReadClick, onStopReadClick, onDiscardClick} = this.props;
-        return <Book
+        return <ProfileBook
             key={book.id}
             {...book}
             onClaimRewardClick={() => onClaimRewardClick(book.id)}

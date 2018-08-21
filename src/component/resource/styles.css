@@ -7,7 +7,19 @@
     width: calc(30px + 1rem);
     height: calc(30px + 1rem);
 }
-.resourceBig{
+
+.resourceBig {
     width: calc(50px + 1rem);
     height: calc(50px + 1rem);
+}
+
+.availableResources .resources {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.availableResources .resource {
+    box-shadow: 0 0 4px #fffdf1;
+    border-radius: 0.5rem;
+    padding: 0.25rem;
 }

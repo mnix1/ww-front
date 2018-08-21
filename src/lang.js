@@ -112,10 +112,12 @@ export const TEXT_CLAIM_REWARD = 'TEXT_CLAIM_REWARD';
 export const TEXT_AVAILABLE_RESOURCES = 'TEXT_AVAILABLE_RESOURCES';
 export const TEXT_BOOKSHELF = 'TEXT_BOOKSHELF';
 export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
+export const TEXT_BUY = 'TEXT_BUY';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_BUY]: 'Kup',
         [TEXT_AVAILABLE_RESOURCES]: 'Dostępne zasoby',
         [TEXT_BOOKSHELF]: 'Dostępne książki',
         [TEXT_EMPTY_BOOKSHELF]: 'Brak dostępnych książek',
@@ -203,6 +205,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_BUY]: 'Buy',
         [TEXT_AVAILABLE_RESOURCES]: 'Available resources',
         [TEXT_BOOKSHELF]: 'Available books',
         [TEXT_EMPTY_BOOKSHELF]: 'There are no available books',

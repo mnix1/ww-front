@@ -97,7 +97,7 @@ class PractisePage extends React.PureComponent {
     render() {
         const {category, difficultyLevel, answerId, practiseStartRep} = this.props;
         return <div className='page'>
-            <div className='pageBackground'/>
+            <div className='pageBackground absoluteBackgroundMix'/>
             <Switch>
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
                 <Route path={TRAINING_TASK_ROUTE} render={() => this.renderTask()}/>

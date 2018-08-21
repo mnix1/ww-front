@@ -1,0 +1,70 @@
+.fixedBackgroundMix {
+    position: fixed;
+    object-fit: cover;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.absoluteBackgroundMix {
+    border-radius: 0.5rem;
+    opacity: 0.5;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.contentHeader {
+    position: absolute;
+    text-align: center;
+    font-size: 1rem;
+    padding-top: 0.25rem;
+    width: 100%;
+    z-index: 1;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.justifyCenter {
+    display: flex;
+    justify-content: center;
+}
+
+.justifyEvenly {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.justifyBetween {
+    display: flex;
+    justify-content: space-between;
+}
+
+.overflowAuto {
+    overflow: auto;
+}
+
+.textAlignCenter {
+    text-align: center;
+}
+
+.flexColumn {
+    flex-direction: column;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.height100 {
+    height: 100%;
+}

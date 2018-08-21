@@ -6,18 +6,9 @@
     justify-content: space-around;
 }
 
-.profilePage .resources {
-    display: flex;
-    justify-content: space-around;
-    max-width: 50%;
-}
-
-.profilePage .resources > div {
-    box-shadow: 0 0 4px #fffdf1;
-    border-radius: 0.5rem;
-    padding: 0.25rem;
-}
-
 .profilePage .contentFragment {
     padding: 0.25rem;
+}
+.profilePage .contentFragment .title {
+    text-align: center;
 }

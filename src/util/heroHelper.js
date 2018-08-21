@@ -125,5 +125,8 @@ export function calculateHeroWidth(contentWidth) {
     if (minCount === 1) {
         return contentWidth / maxCount;
     }
+    if (minCount === 0) {
+        return MIN_HERO_WIDTH;
+    }
     return contentWidth / minCount;
 }

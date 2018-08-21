@@ -41,7 +41,7 @@ class ChallengeSummaryPage extends React.PureComponent {
             return null;
         }
         return <div className="page">
-            <div className="pageBackground"/>
+            <div className="pageBackground absoluteBackgroundMix"/>
             <div className="pageContent">
                 <div className="pageHeader">
                     <span>{getText(TEXT_SUMMARY)}</span>

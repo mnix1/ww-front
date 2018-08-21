@@ -20,7 +20,7 @@ export default class ContentWithImage extends React.PureComponent {
         const {onClick, id, children, imgHeight, imgSrc} = this.props;
         return <div onClick={onClick} key={id} className='contentWithImage'>
             <div className="content">
-                <div className="background"/>
+                <div className="absoluteBackgroundMix"/>
                 <div className='content'>
                     {children}
                     <img alt='' src={imgSrc} height={imgHeight}/>
