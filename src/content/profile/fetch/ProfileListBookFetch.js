@@ -6,7 +6,7 @@ import {PROFILE_ROUTE} from "../../routes";
 class ProfileListBookFetch extends React.PureComponent {
 
     componentDidMount() {
-        this.maybeFetch({});
+        this.maybeFetch({profileListBookFetch: {}});
     }
 
     componentDidUpdate(prevProps) {
@@ -18,8 +18,9 @@ class ProfileListBookFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchProfileListBookGet} = this.props;
-        if (path === PROFILE_ROUTE && prevProps.path !== path) {
+        const {path, profileListBookFetch, dispatchProfileListBookGet} = this.props;
+        if ((path === PROFILE_ROUTE && prevProps.path !== path)
+            || (!profileListBookFetch.fulfilled && prevProps.profileListBookFetch.fulfilled)) {
             dispatchProfileListBookGet();
         }
     }

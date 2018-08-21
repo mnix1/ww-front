@@ -1,13 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import ProfileListBookFetch from "./ProfileListBookFetch";
+import ProfileListBookFetch, {clearProfileListBookFetch} from "./ProfileListBookFetch";
 import ProfileStartReadBookFetch from "./ProfileStartReadBookFetch";
 import ProfileClaimRewardBookFetch from "./ProfileClaimRewardBookFetch";
 import ProfileStopReadBookFetch from "./ProfileStopReadBookFetch";
 import ProfileDiscardBookFetch from "./ProfileDiscardBookFetch";
 
 class ProfileFetchContainer extends React.PureComponent {
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+        const {
+            profileStartReadBookRep, profileStopReadBookRep, profileDiscardBookRep, profileClaimRewardRep,
+            clearListRep
+        } = this.props;
+        if ((profileStartReadBookRep.fulfilled &&
+            !prevProps.profileStartReadBookRep.fulfilled)
+            || (profileStopReadBookRep.fulfilled &&
+                !prevProps.profileStopReadBookRep.fulfilled)
+            || (profileDiscardBookRep.fulfilled &&
+                !prevProps.profileDiscardBookRep.fulfilled)
+            || (profileClaimRewardRep.fulfilled &&
+                !prevProps.profileClaimRewardRep.fulfilled)) {
+            clearListRep();
+        }
     }
 
     render() {
@@ -24,9 +38,18 @@ class ProfileFetchContainer extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        readBookId: state.profile.readBookId,
+        startReadBookId: state.profile.startReadBookId,
+        stopReadBookId: state.profile.stopReadBookId,
+        discardBookId: state.profile.discardBookId,
         claimRewardBookId: state.profile.claimRewardBookId,
+        profileListBookRep: state.repository.profileListBook,
+        profileStartReadBookRep: state.repository.profileStartReadBook || {},
+        profileStopReadBookRep: state.repository.profileStopReadBook || {},
+        profileDiscardBookRep: state.repository.profileDiscardBook || {},
+        profileClaimRewardRep: state.repository.profileClaimReward || {},
         path: state.router.location.pathname,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        clearListRep: () => clearProfileListBookFetch(dispatch)
+    })
 )(ProfileFetchContainer);

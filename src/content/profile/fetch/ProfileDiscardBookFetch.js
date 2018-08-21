@@ -3,6 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
+import {discardBookIdChanged, startReadBookIdChanged} from "../../../redux/reducer/profile";
 
 class ProfileDiscardBookFetch extends React.PureComponent {
 
@@ -12,6 +13,10 @@ class ProfileDiscardBookFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
+        const{profileDiscardBookFetch, dispatch} = this.props;
+        if (profileDiscardBookFetch.fulfilled) {
+            dispatch(discardBookIdChanged(undefined));
+        }
     }
 
     componentWillUnmount() {

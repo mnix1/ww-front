@@ -25,6 +25,7 @@ class ProfilePage extends React.PureComponent {
     renderBook(book) {
         const {onClaimRewardClick, onStartReadClick, onStopReadClick, onDiscardClick} = this.props;
         return <Book
+            key={book.id}
             {...book}
             onClaimRewardClick={() => onClaimRewardClick(book.id)}
             onStartReadClick={() => onStartReadClick(book.id)}
