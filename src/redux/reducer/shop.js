@@ -10,15 +10,12 @@ export default function reducer(state = initialState, action) {
         case CLEARED:
             return {...state, ...initialState};
         case BUY_BOOK_ID_CHANGED:
-            return {...state, openChestId: action.openChestId};
+            return {...state, buyBookId: action.buyBookId};
         default:
             return state
     }
 }
 
-export function buyBookIdChanged(openChestId) {
-    return {type: BUY_BOOK_ID_CHANGED, openChestId};
+export function buyBookIdChanged(buyBookId) {
+    return {type: BUY_BOOK_ID_CHANGED, buyBookId};
 }
-
-
-

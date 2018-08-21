@@ -80,7 +80,6 @@ export function calculateBookWidth(contentWidth) {
     if (minCount === maxCount) {
         return MAX_BOOK_WIDTH;
     }
-    console.log(minCount, maxCount);
     if (maxCount - minCount > 1) {
         return contentWidth / ((maxCount + minCount) / 2);
     }

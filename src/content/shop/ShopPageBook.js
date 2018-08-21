@@ -6,13 +6,13 @@ import {Loading} from "../../component/loading/Loading";
 import {getText, TEXT_BOOKSHELF} from "../../lang";
 import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
+import {buyBookIdChanged} from "../../redux/reducer/shop";
 
 class ShopPage extends React.PureComponent {
 
     get bookWidth() {
         const {screen} = this.props;
-        const w= calculateBookWidth(screen.contentWidth - 20);
-        return w;
+        return calculateBookWidth(screen.contentWidth - 20);
     }
 
     renderBooksGroup(books, i) {
@@ -22,15 +22,12 @@ class ShopPage extends React.PureComponent {
     }
 
     renderBook(book) {
-        const {onClaimRewardClick, onStartReadClick, onStopReadClick, onDiscardClick} = this.props;
+        const {onBuyClick} = this.props;
         return <ShopBook
             style={{width: this.bookWidth}}
             key={book.id}
             {...book}
-            onClaimRewardClick={() => onClaimRewardClick(book.id)}
-            onStartReadClick={() => onStartReadClick(book.id)}
-            onStopReadClick={() => onStopReadClick(book.id)}
-            onDiscardClick={() => onDiscardClick(book.id)}
+            onBuyClick={() => onBuyClick(book.id)}
         />;
     }
 
@@ -58,5 +55,7 @@ export default connect(
         path: state.router.location.pathname,
         shopListBookRep: state.repository.shopListBook
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onBuyClick: (id) => dispatch(buyBookIdChanged(id))
+    })
 )(ShopPage);
