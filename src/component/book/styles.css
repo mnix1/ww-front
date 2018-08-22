@@ -46,7 +46,7 @@
 
 .book .bookActions {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     padding: 0.25rem;
 }
 
@@ -54,4 +54,8 @@
     min-width: 5rem;
     display: flex;
     justify-content: space-between;
+}
+
+.book .bookActions .bookAction:not(:first-child) {
+    margin-left: 0.25rem;
 }

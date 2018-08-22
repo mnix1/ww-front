@@ -59,7 +59,6 @@ export default class Star extends React.Component {
       const className = this.getClassName();
       const firstCharacter = _.includes(className, 'half') || _.includes(className, 'full') ? characterFull : characterEmpty;
       const secondCharacter = _.includes(className, 'half') || _.includes(className, 'zero')  ? characterEmpty : characterFull;
-      console.log(index, className);
       return (
       <li
         className={className}

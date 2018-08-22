@@ -113,6 +113,7 @@ export const TEXT_AVAILABLE_RESOURCES = 'TEXT_AVAILABLE_RESOURCES';
 export const TEXT_BOOKSHELF = 'TEXT_BOOKSHELF';
 export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
 export const TEXT_BUY = 'TEXT_BUY';
+export const TEXT_REWARD = 'TEXT_REWARD';
 
 const TEXTS = {
     [POLISH]: {
@@ -202,6 +203,7 @@ const TEXTS = {
         [TEXT_NEXT]: 'Następne',
         [TEXT_YOU]: 'Ty',
         [TEXT_NO_ANSWER]: 'Nie udzielono odpowiedzi',
+        [TEXT_REWARD]: 'Nagroda',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
@@ -290,6 +292,7 @@ const TEXTS = {
         [TEXT_NEXT]: 'Next',
         [TEXT_YOU]: 'You',
         [TEXT_NO_ANSWER]: 'No answer',
+        [TEXT_REWARD]: 'Reward',
     },
 };
 
