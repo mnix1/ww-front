@@ -1,6 +1,10 @@
 .heroPage {
 }
 
+.heroPage .availableResources {
+    display: inline-block;
+}
+
 .heroPage .pageContent {
     height: 100%;
     overflow: auto;

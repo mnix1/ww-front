@@ -14,3 +14,15 @@ export const LIGHT_BLUE_COLOR = '#2879da';
 export const ORANGE_COLOR = '#dd7515';
 export const DARK_BLUE_COLOR = '#122f61';
 export const YELLOW_COLOR = '#dad505';
+
+export const disabledStyle = {
+    opacity: 0.5, cursor: 'not-allowed'
+};
+
+//if true return disabled style
+export function maybeDisabledStyle(e) {
+    if (e) {
+        return disabledStyle;
+    }
+    return unescape;
+};

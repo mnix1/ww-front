@@ -3,6 +3,11 @@
     position: relative;
 }
 
+.resourceVerySmall {
+    width: calc(15px + 1rem);
+    height: calc(15px + 1rem);
+}
+
 .resourceSmall {
     width: calc(30px + 1rem);
     height: calc(30px + 1rem);

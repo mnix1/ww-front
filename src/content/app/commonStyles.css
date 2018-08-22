@@ -26,13 +26,31 @@
     z-index: 1;
 }
 
+.boxShadow {
+    box-shadow: 0 0 4px #fffdf1;
+    border-radius: 0.5rem;
+}
+
 .pointer {
     cursor: pointer;
+}
+
+.floatRight {
+    float: right;
+}
+
+.inlineBlock {
+    display: inline-block;
 }
 
 .justifyCenter {
     display: flex;
     justify-content: center;
+}
+
+.justifyEnd {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .justifyEvenly {
@@ -75,4 +93,7 @@
 
 .marginRem {
     margin: 0.25rem;
+}
+.paddingRem {
+    padding: 0.25rem;
 }

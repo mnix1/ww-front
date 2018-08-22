@@ -39,10 +39,12 @@ class ShopPage extends React.PureComponent {
     }
 
     renderBook(book) {
-        const {onBuyClick} = this.props;
+        const {onBuyClick, profile} = this.props;
+        console.log(book, profile);
         return <ShopBook
             style={{width: this.bookWidth}}
             key={book.id}
+            isBuyEnable={(book.canBuyByGold && profile.gold >= book.goldCost) || (book.canBuyByCrystal && profile.crystal >= book.crystalCost)}
             {...book}
             onBuyClick={() => onBuyClick(book.id)}
         />;
@@ -70,6 +72,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
+        profile: state.profile.profile,
         shopListBookRep: state.repository.shopListBook,
         shopBuyBookRep: state.repository.shopBuyBook
     }),

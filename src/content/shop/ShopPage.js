@@ -3,12 +3,13 @@ import {connect} from 'react-redux';
 import './styles.css';
 import AvailableResources from "../../component/resource/AvailableResources";
 import ShopPageBook from "./ShopPageBook";
+import {RESOURCE_SMALL} from "../../component/resource/Resource";
 
 class ShopPage extends React.PureComponent {
 
     renderContent() {
         return <div>
-            <AvailableResources/>
+            <AvailableResources size={RESOURCE_SMALL}/>
             <ShopPageBook/>
         </div>
     }

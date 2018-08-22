@@ -11,10 +11,13 @@ import Wisdom from "../resource/Wisdom";
 import PropTypes from "prop-types";
 import Gold from "../resource/Gold";
 import Rating from "../rating/Rating";
+import _ from "lodash";
+import {maybeDisabledStyle} from "../../util/style/constant";
 
 export default class ProfileBook extends React.PureComponent {
 
     static propTypes = {
+        isBuyEnable: PropTypes.bool,
         canBuyByGold: PropTypes.bool,
         level: PropTypes.number,
         gainCrystal: PropTypes.number,
@@ -28,18 +31,20 @@ export default class ProfileBook extends React.PureComponent {
     static defaultProps = {};
 
     renderBuyButtonContent() {
-        const {canBuyByGold, goldCost, canBuyByCrystal, crystalCost} = this.props;
+        const {canBuyByGold, isBuyEnable, goldCost, canBuyByCrystal, crystalCost} = this.props;
         return <div className='justifyCenter'>
-            {canBuyByGold && <Gold>{goldCost}</Gold>}
-            {canBuyByCrystal && <Crystal>{crystalCost}</Crystal>}
+            {canBuyByGold && <Gold notEnough={!isBuyEnable}>{goldCost}</Gold>}
+            {canBuyByCrystal && <Crystal notEnough={!isBuyEnable}>{crystalCost}</Crystal>}
             <div className='justifyCenter flexColumn'>{getText(TEXT_BUY)}</div>
         </div>;
     }
 
     renderActions() {
-        const {onBuyClick} = this.props;
+        const {onBuyClick, isBuyEnable} = this.props;
         return <div className='bookActions'>
-            <Button onClick={onBuyClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+            <Button style={maybeDisabledStyle(!isBuyEnable)} onClick={isBuyEnable ? onBuyClick : _.noop}
+                    className='bookAction'
+                    material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<FaShoppingCart/>}>{this.renderBuyButtonContent()}</Button>
         </div>;
     }

@@ -7,17 +7,34 @@ import Crystal from "../../component/resource/Crystal";
 import Elixir from "../../component/resource/Elixir";
 import Wisdom from "../../component/resource/Wisdom";
 import {RESOURCE_BIG} from "../../component/resource/Resource";
+import PropTypes from "prop-types";
 
 class AvailableResources extends React.PureComponent {
+    static propTypes = {
+        size: PropTypes.string,
+        showGold: PropTypes.bool,
+        showCrystal: PropTypes.bool,
+        showElixir: PropTypes.bool,
+        showWisdom: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        size: RESOURCE_BIG,
+        showGold: true,
+        showCrystal: true,
+        showElixir: true,
+        showWisdom: true,
+    };
+
     render() {
-        const {profile} = this.props;
+        const {profile, size, showGold, showCrystal, showElixir, showWisdom} = this.props;
         return <div className='contentFragment textAlignCenter availableResources'>
             <div className='title'>{getText(TEXT_AVAILABLE_RESOURCES)} </div>
             <div className='resources justifyEvenly'>
-                <Gold size={RESOURCE_BIG}>{profile.gold}</Gold>
-                <Crystal size={RESOURCE_BIG}>{profile.crystal}</Crystal>
-                <Wisdom size={RESOURCE_BIG}>{profile.wisdom}</Wisdom>
-                <Elixir size={RESOURCE_BIG}>{profile.elixir}</Elixir>
+                {showGold && <Gold size={size}>{profile.gold}</Gold>}
+                {showCrystal && <Crystal size={size}>{profile.crystal}</Crystal>}
+                {showElixir && <Wisdom size={size}>{profile.wisdom}</Wisdom>}
+                {showWisdom && <Elixir size={size}>{profile.elixir}</Elixir>}
             </div>
         </div>
     }

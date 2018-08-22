@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {WISIES_ROUTE} from "../routes";
+import {WISIES_ROUTE} from "../../routes";
 
 class ProfileHeroListFetch extends React.PureComponent {
 

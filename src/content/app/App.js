@@ -58,13 +58,12 @@ import {
     BATTLE_STATUS_WAITING_FAST,
 } from "../../util/battleHelper";
 import HeroPage from "../hero/HeroPage";
-import HeroListFetch from "../hero/HeroListFetch";
 import ShopPage from "../shop/ShopPage";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
 import ProfilePage from "../profile/ProfilePage";
 import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./ProfileFetch";
-import ProfileHeroListFetch from "../hero/ProfileHeroListFetch";
+import HeroFetchContainer from "../hero/fetch/HeroFetchContainer";
 
 class App extends React.PureComponent {
 
@@ -145,8 +144,7 @@ class App extends React.PureComponent {
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
             <ChallengeFetchContainer/>
-            <HeroListFetch/>
-            <ProfileHeroListFetch path={path}/>
+            <HeroFetchContainer/>
             <ShopFetchContainer/>
             <ProfileFetchContainer/>
         </div>

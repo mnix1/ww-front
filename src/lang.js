@@ -117,10 +117,14 @@ export const TEXT_REWARD = 'TEXT_REWARD';
 export const TEXT_BOUGHT = 'TEXT_BOUGHT';
 export const TEXT_TIME_LEFT = 'TEXT_TIME_LEFT';
 export const TEXT_READ_FINISHED = 'TEXT_READ_FINISHED';
+export const TEXT_EXPERIMENT = 'TEXT_EXPERIMENT';
+export const TEXT_COST = 'TEXT_COST';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_COST]: 'Koszt',
+        [TEXT_EXPERIMENT]: 'Eksperyment naukowy',
         [TEXT_READ_FINISHED]: 'Przeczytano książkę',
         [TEXT_TIME_LEFT]: 'Pozostało',
         [TEXT_BUY]: 'Kup',
@@ -213,6 +217,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_COST]: 'Cost',
+        [TEXT_EXPERIMENT]: 'Science experiment',
         [TEXT_READ_FINISHED]: 'The book has been read',
         [TEXT_TIME_LEFT]: 'Time left',
         [TEXT_BUY]: 'Buy',
