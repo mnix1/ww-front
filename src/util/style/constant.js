@@ -24,5 +24,5 @@ export function maybeDisabledStyle(e) {
     if (e) {
         return disabledStyle;
     }
-    return unescape;
+    return null;
 };

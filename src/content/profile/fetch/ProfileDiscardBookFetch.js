@@ -13,8 +13,8 @@ class ProfileDiscardBookFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const{profileDiscardBookFetch, dispatch} = this.props;
-        if (profileDiscardBookFetch.fulfilled) {
+        const {profileDiscardBookFetch, bookId, dispatch} = this.props;
+        if (!prevProps.profileDiscardBookFetch.fulfilled && profileDiscardBookFetch.fulfilled && !_.isNil(bookId)) {
             dispatch(discardBookIdChanged(undefined));
         }
     }

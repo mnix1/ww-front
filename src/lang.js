@@ -118,12 +118,16 @@ export const TEXT_BOUGHT = 'TEXT_BOUGHT';
 export const TEXT_TIME_LEFT = 'TEXT_TIME_LEFT';
 export const TEXT_READ_FINISHED = 'TEXT_READ_FINISHED';
 export const TEXT_EXPERIMENT = 'TEXT_EXPERIMENT';
+export const TEXT_EXPERIMENT_SUCCESS = 'TEXT_EXPERIMENT_SUCCESS';
+export const TEXT_WISIE_DISCOVERED = 'TEXT_WISIE_DISCOVERED';
 export const TEXT_COST = 'TEXT_COST';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
         [TEXT_COST]: 'Koszt',
+        [TEXT_EXPERIMENT_SUCCESS]: 'Eksperyment się udał',
+        [TEXT_WISIE_DISCOVERED]: 'Odkryłeś wiedzaka',
         [TEXT_EXPERIMENT]: 'Eksperyment naukowy',
         [TEXT_READ_FINISHED]: 'Przeczytano książkę',
         [TEXT_TIME_LEFT]: 'Pozostało',
@@ -218,6 +222,8 @@ const TEXTS = {
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
         [TEXT_COST]: 'Cost',
+        [TEXT_EXPERIMENT_SUCCESS]: 'Experiment finished with success',
+        [TEXT_WISIE_DISCOVERED]: 'Wisie discovered',
         [TEXT_EXPERIMENT]: 'Science experiment',
         [TEXT_READ_FINISHED]: 'The book has been read',
         [TEXT_TIME_LEFT]: 'Time left',

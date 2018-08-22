@@ -87,7 +87,6 @@ export default connect(
         },
         onFriendToggle: (tag, tags) => {
             const newTags = _.filter(tags, (e) => e !== tag);
-            console.log(tag, tags, newTags);
             if (newTags.length === tags.length) {
                 newTags.push(tag);
             }

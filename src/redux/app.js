@@ -8,6 +8,7 @@ import socket from "./reducer/socket";
 import practise from "./reducer/practise";
 import shop from "./reducer/shop";
 import screen from "./reducer/screen";
+import hero from "./reducer/hero";
 
 const app = combineReducers({
     profile,
@@ -16,6 +17,7 @@ const app = combineReducers({
     shop,
     friend,
     socket,
+    hero,
     practise,
     screen,
     repository: fetchReducer

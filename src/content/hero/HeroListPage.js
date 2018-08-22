@@ -50,10 +50,14 @@ class HeroListPage extends React.PureComponent {
         if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
             return <Loading/>;
         }
-        const ownedHeroesMap = _.keyBy(profileHeroListRep, 'type');
+        const ownedHeroesMap = _.keyBy(profileHeroListRep.value, 'type');
         const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
         const heroes = _.groupBy(heroListRep.value, e => ownedHeroesMap[e.type] ? 'owned' : 'notOwned');
-        const ownedHeroes = _.chain(heroes.owned).defaultTo([]).sortBy(e => getName(e)).map(e => ({...e, ...ownedHeroesMap[e.type]})).value();
+        const ownedHeroes = _.chain(heroes.owned).defaultTo([])
+            .sortBy(e => getName(e))
+            .map(e => ({...e, ...ownedHeroesMap[e.type], isOwned: true}))
+            .value();
+        console.log(heroes, ownedHeroesMap, ownedHeroes);
         const notOwnedHeroes = _.chain(heroes.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
         return <div>
             {!_.isEmpty(ownedHeroes) && <div className='contentFragment'>

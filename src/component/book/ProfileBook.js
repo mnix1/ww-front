@@ -82,10 +82,10 @@ export default class ProfileBook extends React.PureComponent {
                         <Timer
                             className={isFinished ? 'none' : ''}
                             onDone={onReadingDone}
-                            work={!canClaimReward && isInProgress}
+                            work={!isFinished && !canClaimReward && isInProgress}
                             showDigital={true}
                             showChart={false}
-                            from={Math.max(0, readTime - alreadyReadInterval)}
+                            from={readTime - alreadyReadInterval}
                         />
                     </div>
                 </div>

@@ -82,6 +82,5 @@ export function generateObjectMaterial() {
     const lightColor = '#fffdf1';
     const darkColor = '#2879da';
     const style = {background: rgb2hex(r, g, b), color: (r + g + b) / 3 <= 128 ? lightColor : darkColor};
-    console.log(JSON.stringify(style));
     return style;
 }

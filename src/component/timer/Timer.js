@@ -63,6 +63,7 @@ export default class Timer extends React.PureComponent {
             newValue = to;
             onDone();
             this.stop();
+            return;
         }
         this.setState(
             {
@@ -79,8 +80,9 @@ export default class Timer extends React.PureComponent {
     };
 
     renderDigital() {
+        const {down} = this.props;
         const {value} = this.state;
-        const valueSeconds = value / 1000;
+        const valueSeconds = down ? Math.ceil(value / 1000) : Math.floor(value / 1000);
         const hours = Math.floor(valueSeconds / 3600);
         const minutes = Math.floor((valueSeconds - hours * 3600) / 60);
         const seconds = Math.floor(valueSeconds - hours * 3600 - minutes * 60);

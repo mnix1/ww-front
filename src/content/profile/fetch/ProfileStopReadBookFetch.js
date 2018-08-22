@@ -13,8 +13,8 @@ class ProfileStopReadBookFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const{profileStopReadBookFetch, dispatch} = this.props;
-        if (profileStopReadBookFetch.fulfilled) {
+        const{profileStopReadBookFetch,bookId, dispatch} = this.props;
+        if (!prevProps.profileStopReadBookFetch.fulfilled && profileStopReadBookFetch.fulfilled && !_.isNil(bookId)) {
             dispatch(stopReadBookIdChanged(undefined));
         }
     }

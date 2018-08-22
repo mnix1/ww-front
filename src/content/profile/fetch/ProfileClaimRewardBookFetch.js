@@ -14,10 +14,10 @@ class ProfileClaimRewardBookFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {profileClaimRewardBookFetch, dispatch} = this.props;
-        if (!prevProps.profileClaimRewardBookFetch.fulfilled && profileClaimRewardBookFetch.fulfilled) {
+        const {profileClaimRewardBookFetch, bookId, dispatch} = this.props;
+        if (!prevProps.profileClaimRewardBookFetch.fulfilled && profileClaimRewardBookFetch.fulfilled && !_.isNil(bookId)) {
             dispatch(claimRewardBookIdChanged(undefined));
-            if(profileClaimRewardBookFetch.value.code === 1){
+            if (profileClaimRewardBookFetch.value.code === 1) {
                 clearProfileFetch(dispatch);
             }
         }

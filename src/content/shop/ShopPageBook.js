@@ -7,8 +7,9 @@ import {getText, TEXT_BOOKSHELF} from "../../lang";
 import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
 import {buyBookIdChanged} from "../../redux/reducer/shop";
-import {checkRepValueCode, ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../error";
+import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../error";
 import {noticeError} from "../../component/notification/noticeError";
+import {checkRepValueCode} from "../../util/responseHelper";
 
 class ShopPage extends React.PureComponent {
 
@@ -40,7 +41,6 @@ class ShopPage extends React.PureComponent {
 
     renderBook(book) {
         const {onBuyClick, profile} = this.props;
-        console.log(book, profile);
         return <ShopBook
             style={{width: this.bookWidth}}
             key={book.id}

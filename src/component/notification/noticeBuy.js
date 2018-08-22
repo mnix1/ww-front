@@ -14,7 +14,7 @@ export function noticeBuy(bookType) {
                 </div>
             </div>
             <div className='justifyCenter marginRem'>
-                <img src={getBook(bookType)} height={80}/>
+                <img alt='' src={getBook(bookType)} height={80}/>
             </div>
         </div>
     );

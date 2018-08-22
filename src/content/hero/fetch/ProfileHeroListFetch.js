@@ -2,11 +2,12 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {WISIES_ROUTE} from "../../routes";
+import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
 
 class ProfileHeroListFetch extends React.PureComponent {
 
     componentDidMount() {
-        this.maybeFetch({});
+        this.maybeFetch({profileHeroListFetch: {}});
     }
 
     componentDidUpdate(prevProps) {
@@ -18,8 +19,8 @@ class ProfileHeroListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchProfileHeroListGet} = this.props;
-        if (path === WISIES_ROUTE && prevProps.path !== path) {
+        const {path, profileHeroListFetch, dispatchProfileHeroListGet} = this.props;
+        if (fetchOnPathAndIfNotExists(prevProps.path, path, WISIES_ROUTE, prevProps.profileHeroListFetch, profileHeroListFetch)) {
             dispatchProfileHeroListGet();
         }
     }

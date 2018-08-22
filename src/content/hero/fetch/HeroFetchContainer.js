@@ -2,16 +2,18 @@ import React from 'react';
 import {connect} from 'react-redux';
 import HeroListFetch from "./HeroListFetch";
 import ProfileHeroListFetch from "./ProfileHeroListFetch";
+import HeroExperimentFetch from "./HeroExperimentFetch";
 
 class HeroFetchContainer extends React.PureComponent {
     componentDidUpdate(prevProps) {
     }
 
     render() {
-        const {path, } = this.props;
+        const {path, experiment} = this.props;
         return <div>
             <HeroListFetch/>
             <ProfileHeroListFetch path={path}/>
+            <HeroExperimentFetch experiment={experiment}/>
         </div>;
     }
 }
@@ -19,6 +21,7 @@ class HeroFetchContainer extends React.PureComponent {
 export default connect(
     (state) => ({
         path: state.router.location.pathname,
+        experiment: state.hero.experiment,
     }),
     (dispatch) => ({
     })
