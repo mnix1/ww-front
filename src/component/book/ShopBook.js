@@ -41,9 +41,9 @@ export default class ProfileBook extends React.PureComponent {
 
     renderActions() {
         const {onBuyClick, isBuyEnable} = this.props;
-        return <div className='bookActions'>
+        return <div className='bookActions paddingRem justifyEvenly paddingRem'>
             <Button style={maybeDisabledStyle(!isBuyEnable)} onClick={isBuyEnable ? onBuyClick : _.noop}
-                    className='bookAction'
+                    className='bookAction justifyBetween'
                     material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<FaShoppingCart/>}>{this.renderBuyButtonContent()}</Button>
         </div>;
@@ -51,7 +51,7 @@ export default class ProfileBook extends React.PureComponent {
 
     renderInfo() {
         const {level} = this.props;
-        return <div className='bookInfo flexColumn'>
+        return <div className='bookInfo justifyBetween relative flexColumn'>
             <div className='absoluteBackgroundMix'/>
             <div className='relative justifyCenter'>{getName(this.props)}</div>
             <span className='relative justifyCenter'><Rating value={level / 2}/></span>
@@ -60,9 +60,9 @@ export default class ProfileBook extends React.PureComponent {
 
     renderDetails() {
         const {canClaimReward, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
-        return <div className='bookDetails'>
+        return <div className='bookDetails justifyBetween'>
             <img height={110} alt='' src={getBook(type)}/>
-            <div className='bookDetailsInside relative'>
+            <div className='bookDetailsInside relative justifyBetween flexColumn paddingRem'>
                 {!canClaimReward && isInProgress && <div className='justifyCenter'>
                     <Timer showClock={true}
                            showChart={false}
@@ -80,9 +80,9 @@ export default class ProfileBook extends React.PureComponent {
 
     render() {
         const {style} = this.props;
-        return <div className='bookContainer' style={style}>
+        return <div className='bookContainer marginRem paddingRem boxShadow relative justifyCenter' style={style}>
             <div className='absoluteBackgroundMix'/>
-            <div className='book'>
+            <div className='book justifyCenter flexColumn'>
                 {this.renderInfo()}
                 {this.renderDetails()}
                 {this.renderActions()}

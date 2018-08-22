@@ -35,12 +35,20 @@
     cursor: pointer;
 }
 
-.floatRight {
+.right {
     float: right;
+}
+
+.left {
+    float: left;
 }
 
 .inlineBlock {
     display: inline-block;
+}
+
+.flex {
+    display: flex;
 }
 
 .justifyCenter {
@@ -63,16 +71,20 @@
     justify-content: space-between;
 }
 
+.flexColumn {
+    flex-direction: column;
+}
+
+.flexWrap {
+    flex-wrap: wrap;
+}
+
 .overflowAuto {
     overflow: auto;
 }
 
 .textAlignCenter {
     text-align: center;
-}
-
-.flexColumn {
-    flex-direction: column;
 }
 
 .relative {
@@ -87,6 +99,10 @@
     height: 100%;
 }
 
+.width100 {
+    width: 100%;
+}
+
 .none {
     display: none !important;
 }
@@ -94,6 +110,10 @@
 .marginRem {
     margin: 0.25rem;
 }
+
 .paddingRem {
     padding: 0.25rem;
+}
+.borderRadiusRem {
+    border-radius: 0.5rem;
 }

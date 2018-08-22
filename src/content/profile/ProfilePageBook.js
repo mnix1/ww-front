@@ -14,9 +14,9 @@ import {Loading} from "../../component/loading/Loading";
 
 class ProfilePage extends React.PureComponent {
     renderBooks(books) {
-        return <div className='contentFragment'>
-            <div className='title'>{getText(TEXT_BOOKSHELF)} </div>
-            <div className='books'>
+        return <div className='contentFragment paddingRem'>
+            <div className='title textAlignCenter'>{getText(TEXT_BOOKSHELF)} </div>
+            <div className='books justifyEvenly flexWrap'>
                 {_.sortBy(books, 'id').map(e => this.renderBook(e))}
             </div>
         </div>;
@@ -36,8 +36,8 @@ class ProfilePage extends React.PureComponent {
     }
 
     renderEmpty() {
-        return <div className='contentFragment'>
-            <div className='title'>{getText(TEXT_EMPTY_BOOKSHELF)}</div>
+        return <div className='contentFragment paddingRem'>
+            <div className='title textAlignCenter'>{getText(TEXT_EMPTY_BOOKSHELF)}</div>
         </div>;
     }
 

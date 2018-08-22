@@ -1,8 +1,3 @@
-.resource {
-    display: inline-block;
-    position: relative;
-}
-
 .resourceVerySmall {
     width: calc(15px + 1rem);
     height: calc(15px + 1rem);
@@ -16,11 +11,6 @@
 .resourceBig {
     width: calc(50px + 1rem);
     height: calc(50px + 1rem);
-}
-
-.availableResources .resources {
-    display: flex;
-    justify-content: space-evenly;
 }
 
 .availableResources .resource {

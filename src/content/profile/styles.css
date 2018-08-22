@@ -1,14 +1,2 @@
 .profilePage {
 }
-
-.profilePage .books {
-    display: flex;
-    justify-content: space-around;
-}
-
-.profilePage .contentFragment {
-    padding: 0.25rem;
-}
-.profilePage .contentFragment .title {
-    text-align: center;
-}

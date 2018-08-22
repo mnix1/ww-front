@@ -36,11 +36,11 @@ class HeroListPage extends React.PureComponent {
 
     renderHeroDetails(hero) {
         const name = getName(hero);
-        return <div className='heroDetails justifyBetween'>
+        return <div className='heroDetails paddingRem relative justifyBetween'>
             <div className='absoluteBackgroundMix'/>
             <span className='name'>{name}</span>
             <div className='hobbies'>
-                {hero.hobbies.map(e => <img alt='' className='hobby' key={e} height={20} src={getCategory(e)}/>)}
+                {hero.hobbies.map(e => <img alt='' className='hobby relative' key={e} height={20} src={getCategory(e)}/>)}
             </div>
         </div>
     }
@@ -61,11 +61,11 @@ class HeroListPage extends React.PureComponent {
         const notOwnedHeroes = _.chain(heroes.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
         return <div>
             {!_.isEmpty(ownedHeroes) && <div className='contentFragment'>
-                <div className='title'>{getText(TEXT_OWNED_WISIES)}</div>
+                <div className='title textAlignCenter'>{getText(TEXT_OWNED_WISIES)}</div>
                 {this.renderHeroes(_.chunk(ownedHeroes, groupCount))}
             </div>}
             {!_.isEmpty(notOwnedHeroes) && <div className='contentFragment'>
-                <div className='title'>{getText(TEXT_NOT_OWNED_WISIES)}</div>
+                <div className='title textAlignCenter'>{getText(TEXT_NOT_OWNED_WISIES)}</div>
                 {this.renderHeroes(_.chunk(notOwnedHeroes, groupCount))}
             </div>}
         </div>;

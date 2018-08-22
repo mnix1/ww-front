@@ -45,25 +45,25 @@ export default class ProfileBook extends React.PureComponent {
 
     renderActions() {
         const {onClaimRewardClick, onStartReadClick, onStopReadClick, onDiscardClick, canClaimReward, isInProgress} = this.props;
-        return <div className='bookActions'>
+        return <div className='bookActions paddingRem justifyEvenly paddingRem'>
             {!canClaimReward && !isInProgress &&
-            <Button onClick={onStartReadClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+            <Button onClick={onStartReadClick} className='bookAction justifyBetween' material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<GoBook/>}>{getText(TEXT_READ)}</Button>}
             {!canClaimReward && isInProgress &&
-            <Button onClick={onStopReadClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+            <Button onClick={onStopReadClick} className='bookAction justifyBetween' material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<GoBook/>}>{getText(TEXT_STOP_READING)}</Button>}
             {canClaimReward &&
-            <Button onClick={onClaimRewardClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+            <Button onClick={onClaimRewardClick} className='bookAction justifyBetween' material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<FaBook/>}>{getText(TEXT_CLAIM_REWARD)}</Button>}
             {!canClaimReward &&
-            <Button onClick={onDiscardClick} className='bookAction' material={BUTTON_MATERIAL_BOX_SHADOW}
+            <Button onClick={onDiscardClick} className='bookAction justifyBetween' material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<FaTrash/>}>{getText(TEXT_DISCARD)}</Button>}
         </div>;
     }
 
     renderInfo() {
         const {level} = this.props;
-        return <div className='bookInfo flexColumn'>
+        return <div className='bookInfo justifyBetween relative flexColumn'>
             <div className='absoluteBackgroundMix'/>
             <div className='relative justifyCenter'>{getName(this.props)}</div>
             <span className='relative justifyCenter'><Rating value={level / 2}/></span>
@@ -73,9 +73,9 @@ export default class ProfileBook extends React.PureComponent {
     renderDetails() {
         const {canClaimReward, onReadingDone, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
         const isFinished = readTime - alreadyReadInterval <= 0;
-        return <div className='bookDetails'>
+        return <div className='bookDetails justifyBetween'>
             <img height={150} alt='' src={getBook(type)}/>
-            <div className='bookDetailsInside'>
+            <div className='bookDetailsInside justifyBetween flexColumn paddingRem'>
                 <div className='justifyCenter flexColumn'>
                     <div className='justifyCenter'>{getText(isFinished ? TEXT_READ_FINISHED : TEXT_TIME_LEFT)}</div>
                     <div className='justifyCenter'>
@@ -100,9 +100,9 @@ export default class ProfileBook extends React.PureComponent {
 
     render() {
         const {style} = this.props;
-        return <div className='bookContainer' style={style}>
+        return <div className='bookContainer marginRem paddingRem boxShadow relative justifyCenter' style={style}>
             <div className='absoluteBackgroundMix'/>
-            <div className='book'>
+            <div className='book justifyCenter flexColumn'>
                 {this.renderInfo()}
                 {this.renderDetails()}
                 {this.renderActions()}

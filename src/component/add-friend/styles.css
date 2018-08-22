@@ -1,9 +1,3 @@
-.addFriend {
-    border-radius: 0.5rem;
-    padding: 0.25rem;
-    box-shadow: 0 0 4px #fffdf1;
-}
-
 .addFriend svg {
     cursor: pointer;
 }

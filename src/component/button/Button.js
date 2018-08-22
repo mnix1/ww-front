@@ -22,8 +22,8 @@ export class Button extends React.PureComponent {
 
     render() {
         const {onClick, children, icon, style, material, className} = this.props;
-        return <div className={`button pointer ${className}`} onClick={onClick} style={{...material, ...style}}>
-            <div className='content'>{children}{icon && <div className='icon justifyCenter flexColumn'>{icon}</div>}</div>
+        return <div className={`button borderRadiusRem paddingRem inlineBlock pointer ${className}`} onClick={onClick} style={{...material, ...style}}>
+            <div className='content flex'>{children}{icon && <div className='icon justifyCenter flexColumn'>{icon}</div>}</div>
         </div>
     }
 }

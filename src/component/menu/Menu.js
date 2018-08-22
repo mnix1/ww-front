@@ -11,8 +11,8 @@ export default class Menu extends React.PureComponent {
 
     render() {
         const {children, className} = this.props;
-        return  <div className={`menu ${className}`}>
-            <div className='menuBackground'/>
+        return  <div className={`menu inlineBlock relative ${className}`}>
+            <div className='absoluteBackgroundMix menuBackground'/>
                 {children}
         </div>;
     }

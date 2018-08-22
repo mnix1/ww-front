@@ -18,9 +18,8 @@ export class Loading extends React.PureComponent {
 
     render() {
         const {height, width, color} = this.props;
-        return <div className='loading' style={{color}}>
-            <div>
-                {/*<span>Loading...</span>*/}
+        return <div className='loading paddingRem justifyCenter' style={{color}}>
+            <div className='justifyCenter height100'>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" height={height} width={width} fill={color}>
                     <circle cx="16" cy="3" r="0">
                         <animate attributeName="r" values="0;3;0;0" dur="1s" repeatCount="indefinite" begin="0"

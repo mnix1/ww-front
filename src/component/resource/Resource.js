@@ -28,7 +28,7 @@ export default class Resource extends React.PureComponent {
 
     render() {
         const {notEnough, children, imgSrc, size} = this.props;
-        const className = `resource ${size}`;
+        const className = `resource inlineBlock relative ${size}`;
         const style = notEnough ? {color: RED_COLOR} : undefined;
         return <div className={className}>
             <div className='pageCenterHorizontal'>

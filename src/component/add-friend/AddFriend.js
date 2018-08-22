@@ -29,7 +29,7 @@ export class AddFriend extends React.PureComponent {
         const fontSize = screen.isSmallHeight || screen.isSmallWidth
             ? 14 : 20;
         if (addFriendRep === undefined) {
-            return <div className='addFriend'>
+            return <div className='addFriend boxShadow paddingRem'>
                 <div>{getText(TEXT_ADD_FRIEND)}</div>
                 <div className='addFriendActions'>
                     <input ref={this.addFriendInputRef}

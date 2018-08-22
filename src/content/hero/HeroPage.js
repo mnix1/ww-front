@@ -12,7 +12,7 @@ class HeroPage extends React.PureComponent {
         const {screen} = this.props;
         return <div className='page heroPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
             <div className='pageBackground absoluteBackgroundMix'/>
-            <div className='pageContent'>
+            <div className='pageContent overflowAuto'>
                 <div className='justifyEvenly'>
                     <AvailableResources showGold={false} size={RESOURCE_SMALL}/>
                     <HeroExperimentPage/>

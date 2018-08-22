@@ -5,15 +5,6 @@
     display: inline-block;
 }
 
-.heroPage .pageContent {
-    height: 100%;
-    overflow: auto;
-}
-
-.heroPage .pageContent .contentFragment .title {
-    text-align: center;
-}
-
 .heroPage .heroes {
     display: flex;
 }
@@ -41,11 +32,6 @@
     flex-direction: column;
 }
 
-.heroPage .hero .heroDetails {
-    padding: 0.25rem;
-    position: relative;
-}
-
 .heroPage .hero .heroDetails .hobbies {
     display: flex;
 }
@@ -56,6 +42,5 @@
 }
 
 .heroPage .hero .hobby {
-    position: relative;
     padding-left: 0.25rem;
 }
