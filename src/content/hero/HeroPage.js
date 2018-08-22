@@ -16,13 +16,15 @@ class HeroPage extends React.PureComponent {
     }
 
     renderContent() {
-        const {heroListRep, screen} = this.props;
-        if (!heroListRep || !heroListRep.fulfilled) {
+        const {heroListRep, profileHeroListRep, screen} = this.props;
+        if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
             return <Loading/>;
         }
+        const ownedHeroesMap = _.keyBy(profileHeroListRep, 'type');
         const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
-        const ownedHeroes = _.chain(heroListRep.value).filter('isOwned').sortBy(e => getName(e)).value();
-        const notOwnedHeroes = _.chain(heroListRep.value).filter(e => !e.isOwned).sortBy(e => getName(e)).value();
+        const heroes = _.groupBy(heroListRep.value, e => ownedHeroesMap[e.type] ? 'owned' : 'notOwned');
+        const ownedHeroes = _.chain(heroes.owned).defaultTo([]).sortBy(e => getName(e)).map(e => ({...e, ...ownedHeroesMap[e.type]})).value();
+        const notOwnedHeroes = _.chain(heroes.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
         return <div>
             {!_.isEmpty(ownedHeroes) && <div className='contentFragment'>
                 <div className='title'>{getText(TEXT_OWNED_WISIES)}</div>
@@ -80,7 +82,8 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
-        heroListRep: state.repository.heroList
+        heroListRep: state.repository.heroList,
+        profileHeroListRep: state.repository.profileHeroList
     }),
     (dispatch) => ({})
 )(HeroPage);

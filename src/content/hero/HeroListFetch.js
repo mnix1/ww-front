@@ -1,7 +1,6 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {WISIES_ROUTE} from "../routes";
 
 class HeroListFetch extends React.PureComponent {
 
@@ -18,8 +17,8 @@ class HeroListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchHeroListGet} = this.props;
-        if (path === WISIES_ROUTE && prevProps.path !== path) {
+        const {dispatchHeroListGet, heroListFetch} = this.props;
+        if (!heroListFetch.fulfilled && !heroListFetch.pending) {
             dispatchHeroListGet();
         }
     }

@@ -64,6 +64,7 @@ import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
 import ProfilePage from "../profile/ProfilePage";
 import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./ProfileFetch";
+import ProfileHeroListFetch from "../hero/ProfileHeroListFetch";
 
 class App extends React.PureComponent {
 
@@ -144,7 +145,8 @@ class App extends React.PureComponent {
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
             <ChallengeFetchContainer/>
-            <HeroListFetch path={path}/>
+            <HeroListFetch/>
+            <ProfileHeroListFetch path={path}/>
             <ShopFetchContainer/>
             <ProfileFetchContainer/>
         </div>
