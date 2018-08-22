@@ -69,6 +69,10 @@
     height: 100%;
 }
 
+.none {
+    display: none !important;
+}
+
 .marginRem {
     margin: 0.25rem;
 }

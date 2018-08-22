@@ -9,13 +9,13 @@ import presentSvg from '../../media/image/icon/present.svg';
 export function noticeReward(reward) {
     notice(
         <div className='relative justifyCenter flexColumn'>
-            <div className='justifyBetween'>
+            <div className='justifyEvenly'>
                 <img alt='' src={presentSvg} height={30}/>
                 <div className='justifyCenter flexColumn'>
                     {getText(TEXT_REWARD)}
                 </div>
             </div>
-            <div className='justifyCenter marginRem'>
+            <div className='justifyEvenly marginRem'>
                 {reward.gainGold && <Gold>{reward.gainGold}</Gold>}
                 {reward.bookType && <img src={getBook(reward.bookType)} height={80}/>}
             </div>

@@ -5,7 +5,7 @@ import {getError} from "../../error";
 
 export function noticeError(error) {
     notice(
-        <div className='relative justifyCenter'>
+        <div className='relative justifyEvenly'>
             <img alt='' src={errorSvg} height={30}/>
             <div className='justifyCenter flexColumn'>{getError(error)}</div>
         </div>

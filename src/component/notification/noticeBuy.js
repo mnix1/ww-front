@@ -2,13 +2,13 @@ import React from 'react';
 import {notice} from "./notice";
 import {getText, TEXT_BOUGHT} from "../../lang";
 import {getBook} from "../../util/bookHelper";
-import cashRegister from '../../media/image/icon/cashRegister.svg';
+import shoppingCart from '../../media/image/icon/shoppingCart.svg';
 
 export function noticeBuy(bookType) {
     notice(
         <div className='relative justifyCenter flexColumn'>
-            <div className='justifyBetween'>
-                <img alt='' src={cashRegister} height={30}/>
+            <div className='justifyEvenly'>
+                <img alt='' src={shoppingCart} height={30}/>
                 <div className='justifyCenter flexColumn'>
                     {getText(TEXT_BOUGHT)}
                 </div>

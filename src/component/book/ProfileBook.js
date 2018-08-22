@@ -72,20 +72,21 @@ export default class ProfileBook extends React.PureComponent {
 
     renderDetails() {
         const {canClaimReward, onReadingDone, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
-        const isFinished = readTime - alreadyReadInterval >= 0;
+        const isFinished = readTime - alreadyReadInterval <= 0;
         return <div className='bookDetails'>
             <img height={150} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside'>
                 <div className='justifyCenter flexColumn'>
                     <div className='justifyCenter'>{getText(isFinished ? TEXT_READ_FINISHED : TEXT_TIME_LEFT)}</div>
                     <div className='justifyCenter'>
-                        {!isFinished && <Timer
+                        <Timer
+                            className={isFinished ? 'none' : ''}
                             onDone={onReadingDone}
                             work={!canClaimReward && isInProgress}
                             showDigital={true}
                             showChart={false}
-                            from={readTime - alreadyReadInterval}
-                        />}
+                            from={Math.max(0, readTime - alreadyReadInterval)}
+                        />
                     </div>
                 </div>
                 <div className='bookGain justifyCenter'>
