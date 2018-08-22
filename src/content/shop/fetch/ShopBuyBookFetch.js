@@ -13,8 +13,8 @@ class ShopBuyBookFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {shopBuyBookFetch, dispatch} = this.props;
-        if (shopBuyBookFetch.fulfilled) {
+        const {shopBuyBookFetch, dispatch, bookId} = this.props;
+        if (shopBuyBookFetch.fulfilled && bookId !== undefined) {
             dispatch(buyBookIdChanged(undefined));
         }
     }

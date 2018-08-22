@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import '../styles.css';
 import {getCategoryLabel, getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_POINTS, TEXT_QUESTION} from "../../../../lang";
 import {renderDifficultyLevelStars} from "../../../../util/difficultyHelper";
+import Rating from "../../../../component/rating/Rating";
 
 export class TaskDescription extends React.PureComponent {
 
@@ -15,7 +16,7 @@ export class TaskDescription extends React.PureComponent {
         return  <div className={className}>
             <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}/${content.taskCount}`}</div>
             {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)}`}</div>}
-            {task.taskDifficultyLevel &&<div>{`${getText(TEXT_DIFFICULT)}:`} {renderDifficultyLevelStars(task.taskDifficultyLevel)} {`(${task.points} ${getText(TEXT_POINTS)})`}</div>}
+            {task.difficultyLevel &&<div>{`${getText(TEXT_DIFFICULT)}:`} <Rating valueString={task.difficultyLevel}/> {`(${task.points} ${getText(TEXT_POINTS)})`}</div>}
             {children}
         </div>
     }

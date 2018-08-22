@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 import {getBook} from "../../util/bookHelper";
 import {getName, getText, TEXT_BUY} from "../../lang";
-import {getLevelFromNumber, renderStars} from "../../util/starRateHelper";
 import Crystal from "../../component/resource/Crystal";
 import Timer from "../../component/timer/Timer";
 import Elixir from "../../component/resource/Elixir";
@@ -11,6 +10,7 @@ import FaShoppingCart from 'react-icons/lib/fa/shopping-cart';
 import Wisdom from "../resource/Wisdom";
 import PropTypes from "prop-types";
 import Gold from "../resource/Gold";
+import Rating from "../rating/Rating";
 
 export default class ProfileBook extends React.PureComponent {
 
@@ -49,7 +49,7 @@ export default class ProfileBook extends React.PureComponent {
         return <div className='bookInfo flexColumn'>
             <div className='absoluteBackgroundMix'/>
             <div className='relative justifyCenter'>{getName(this.props)}</div>
-            <span className='relative justifyCenter'>{renderStars(getLevelFromNumber(level))}</span>
+            <span className='relative justifyCenter'><Rating value={level / 2}/></span>
         </div>
     }
 

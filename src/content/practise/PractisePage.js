@@ -28,8 +28,10 @@ import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
 import {TRAINING_ROUTE, TRAINING_TASK_ROUTE} from "../routes";
 import ContentWithImage from "../../component/content-with-image/ContentWithImage";
-import {ChooseDifficultLevelStarsComponent} from '../../component/difficult/ChooseDifficultLevelStars';
-import {DIFFICULT_LEVEL_TO_NAME, renderDifficultyLevelStars} from "../../util/difficultyHelper";
+import {
+    DIFFICULT_LEVEL_TO_NAME,
+} from "../../util/difficultyHelper";
+import Rating from "../../component/rating/Rating";
 
 class PractisePage extends React.PureComponent {
 
@@ -37,7 +39,7 @@ class PractisePage extends React.PureComponent {
         const {screen, onCategoryChange, difficultyLevel, onDifficultLevelChange} = this.props;
         return <div className='pageContent'>
             <div className="pageHeader">{getText(TEXT_CHOOSE_DIFFICULT)}</div>
-            <ChooseDifficultLevelStarsComponent difficultyLevel={difficultyLevel} onDifficultLevelChange={onDifficultLevelChange}/>
+            <div className="pageHeader"><Rating valueString={difficultyLevel} onChange={onDifficultLevelChange}/></div>
             <div className="pageHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
                 objects={OBJECTS_CATEGORY}
@@ -57,7 +59,8 @@ class PractisePage extends React.PureComponent {
         return <div className='pageContent'>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Task key='task'
-                  header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:{renderDifficultyLevelStars(question.taskDifficultyLevel)}</div>}
+                  header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:
+                      <span><Rating style={{paddingLeft:'0.25rem'}} valueString={question.difficultyLevel} onHoverChange={_.noop}/></span></div>}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}
@@ -85,8 +88,9 @@ class PractisePage extends React.PureComponent {
     }
 
     renderPlayAgain() {
-        const {onPlayAgainClick,profile} = this.props;
-        return <ContentWithImage key='playAgain' imgSrc={getHero(profile.heroType)} onClick={onPlayAgainClick} id='playAgain'>
+        const {onPlayAgainClick, profile} = this.props;
+        return <ContentWithImage key='playAgain' imgSrc={getHero(profile.heroType)} onClick={onPlayAgainClick}
+                                 id='playAgain'>
             <div className='flexColumn'>
                 <span>{getText(TEXT_NEXT)}</span>
                 <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
@@ -102,7 +106,8 @@ class PractisePage extends React.PureComponent {
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
                 <Route path={TRAINING_TASK_ROUTE} render={() => this.renderTask()}/>
             </Switch>
-            <PractiseStartFetch category={category} difficultyLevel={difficultyLevel} practiseStartRep={practiseStartRep}/>
+            <PractiseStartFetch category={category} difficultyLevel={difficultyLevel}
+                                practiseStartRep={practiseStartRep}/>
             <PractiseEndFetch answerId={answerId} practiseStartRep={practiseStartRep}/>
         </div>
     }
@@ -124,6 +129,8 @@ export default connect(
         onCategoryChange: (e) => {
             clearPractiseStartFetch(dispatch);
             clearPractiseEndFetch(dispatch);
+            dispatch(answerIdChanged(undefined));
+            dispatch(skipAnimationChanged(false));
             dispatch(categoryChanged(e.id));
             dispatch(push(TRAINING_TASK_ROUTE));
         },

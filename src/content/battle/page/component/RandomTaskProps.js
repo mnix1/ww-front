@@ -6,8 +6,8 @@ import {OBJECTS_CATEGORY} from "../../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../../object-group/SimpleObjectGroup";
 import {CATEGORY_RANDOM} from "../../../../util/categoryHelper";
 import _ from 'lodash';
-import {LEVEL_TO_STARS} from "../../../../util/starRateHelper";
-import DifficultLevelStars from "../../../../component/difficult/DifficultLevelStars";
+import Rating from "../../../../component/rating/Rating";
+import {DIFFICULTY_LEVELS, NAME_TO_DIFFICULT_LEVEL} from "../../../../util/difficultyHelper";
 
 class RandomTaskProps extends React.PureComponent {
 
@@ -30,15 +30,15 @@ class RandomTaskProps extends React.PureComponent {
 
     renderRandomDifficult() {
         const {content} = this.props;
-        const objectsDifficult = _.keys(LEVEL_TO_STARS);
-        const targetDifficult = content.task.taskDifficultyLevel;
+        const objectsDifficult = DIFFICULTY_LEVELS;
+        const targetDifficult = NAME_TO_DIFFICULT_LEVEL[content.task.difficultyLevel];
         const targetSelectedIdValue = objectsDifficult.length * 6;
         return <Anime
             targetAsChildProp={null}
-            targetTransformer={(t) => ({selectedId: targetSelectedIdValue <= t.selectedId ? targetDifficult : objectsDifficult[Math.floor((t.selectedId) % objectsDifficult.length)]})}
-            from={{selectedId: 0}}
-            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 5000, delay: 0}}}>
-            {<DifficultLevelStars/>}
+            targetTransformer={(t) => ({value: targetSelectedIdValue <= t.value ? targetDifficult : objectsDifficult[Math.floor((t.value) % objectsDifficult.length)]})}
+            from={{value: 0}}
+            to={{value: {value: targetSelectedIdValue * 1.5, duration: 5000, delay: 0}}}>
+            {<Rating/>}
         </Anime>;
     }
 

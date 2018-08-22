@@ -1,13 +1,12 @@
 * {
     margin: 0;
     padding: 0;
+    outline: none;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    /*background: #4ea5c5;*/
 }
-
 ul {
     list-style-type: none;
 }

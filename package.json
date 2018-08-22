@@ -20,7 +20,7 @@
     "react-equation": "0.0.2",
     "react-icons": "^2.2.7",
     "react-redux": "^5.0.7",
-    "react-redux-fetch": "^0.12.6",
+    "react-redux-fetch": "^0.13.0",
     "react-router": "^4.3.1",
     "react-scripts": "1.1.4",
     "react-transition-group": "^2.4.0",
