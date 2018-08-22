@@ -1,7 +1,15 @@
 import React from 'react';
 import './styles.css';
 import {getBook} from "../../util/bookHelper";
-import {getName, getText, TEXT_CLAIM_REWARD, TEXT_DISCARD, TEXT_READ, TEXT_STOP_READING} from "../../lang";
+import {
+    getName,
+    getText,
+    TEXT_CLAIM_REWARD,
+    TEXT_DISCARD,
+    TEXT_READ, TEXT_READ_FINISHED,
+    TEXT_STOP_READING,
+    TEXT_TIME_LEFT
+} from "../../lang";
 import Crystal from "../../component/resource/Crystal";
 import Timer from "../../component/timer/Timer";
 import Elixir from "../../component/resource/Elixir";
@@ -16,6 +24,7 @@ import Rating from "../rating/Rating";
 export default class ProfileBook extends React.PureComponent {
 
     static propTypes = {
+        onReadingDone: PropTypes.func,
         onClaimRewardClick: PropTypes.func,
         onStartReadClick: PropTypes.func,
         onStopReadClick: PropTypes.func,
@@ -62,16 +71,23 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderDetails() {
-        const {canClaimReward, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
+        const {canClaimReward, onReadingDone, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
+        const isFinished = readTime - alreadyReadInterval >= 0;
         return <div className='bookDetails'>
             <img height={150} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside'>
-                {!canClaimReward && isInProgress && <div className='justifyCenter'>
-                    <Timer showClock={true}
-                           showChart={false}
-                           from={readTime - alreadyReadInterval}
-                    />
-                </div>}
+                <div className='justifyCenter flexColumn'>
+                    <div className='justifyCenter'>{getText(isFinished ? TEXT_READ_FINISHED : TEXT_TIME_LEFT)}</div>
+                    <div className='justifyCenter'>
+                        {!isFinished && <Timer
+                            onDone={onReadingDone}
+                            work={!canClaimReward && isInProgress}
+                            showDigital={true}
+                            showChart={false}
+                            from={readTime - alreadyReadInterval}
+                        />}
+                    </div>
+                </div>
                 <div className='bookGain justifyCenter'>
                     {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}
                     {gainWisdom > 0 && <Wisdom>{gainWisdom}</Wisdom>}

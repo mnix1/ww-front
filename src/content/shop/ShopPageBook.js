@@ -8,7 +8,7 @@ import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
 import {buyBookIdChanged} from "../../redux/reducer/shop";
 import {checkRepValueCode, ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../error";
-import {noticeError} from "../../component/notification/notice";
+import {noticeError} from "../../component/notification/noticeError";
 
 class ShopPage extends React.PureComponent {
 

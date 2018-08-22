@@ -9,7 +9,7 @@ import ProfileDiscardBookFetch from "./ProfileDiscardBookFetch";
 class ProfileFetchContainer extends React.PureComponent {
     componentDidUpdate(prevProps) {
         const {
-            profileStartReadBookRep, profileStopReadBookRep, profileDiscardBookRep, profileClaimRewardRep,
+            profileStartReadBookRep, profileStopReadBookRep, profileDiscardBookRep, profileClaimRewardBookRep,
             clearListRep
         } = this.props;
         if ((profileStartReadBookRep.fulfilled &&
@@ -18,8 +18,8 @@ class ProfileFetchContainer extends React.PureComponent {
                 !prevProps.profileStopReadBookRep.fulfilled)
             || (profileDiscardBookRep.fulfilled &&
                 !prevProps.profileDiscardBookRep.fulfilled)
-            || (profileClaimRewardRep.fulfilled &&
-                !prevProps.profileClaimRewardRep.fulfilled)) {
+            || (profileClaimRewardBookRep.fulfilled &&
+                !prevProps.profileClaimRewardBookRep.fulfilled)) {
             clearListRep();
         }
     }
@@ -46,7 +46,7 @@ export default connect(
         profileStartReadBookRep: state.repository.profileStartReadBook || {},
         profileStopReadBookRep: state.repository.profileStopReadBook || {},
         profileDiscardBookRep: state.repository.profileDiscardBook || {},
-        profileClaimRewardRep: state.repository.profileClaimReward || {},
+        profileClaimRewardBookRep: state.repository.profileClaimRewardBook || {},
         path: state.router.location.pathname,
     }),
     (dispatch) => ({

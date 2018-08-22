@@ -20,7 +20,7 @@ class ProfileListBookFetch extends React.PureComponent {
     maybeFetch(prevProps) {
         const {path, profileListBookFetch, dispatchProfileListBookGet} = this.props;
         if ((path === PROFILE_ROUTE && prevProps.path !== path)
-            || (!profileListBookFetch.fulfilled && prevProps.profileListBookFetch.fulfilled)) {
+            || (!profileListBookFetch.fulfilled && !profileListBookFetch.pending && prevProps.profileListBookFetch.fulfilled)) {
             dispatchProfileListBookGet();
         }
     }

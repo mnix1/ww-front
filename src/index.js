@@ -10,7 +10,7 @@ import App from "./content/app/App";
 import {getText, POLISH, TEXT_APP_NAME} from "./lang";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
-import {profileChanged} from "./redux/reducer/profile";
+import {profileTagChanged} from "./redux/reducer/profile";
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 
@@ -36,16 +36,16 @@ window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
 
-fetch('/profile/profile', {credentials: 'include'})
+fetch('/profile/profileTag', {credentials: 'include'})
     .then(res => res.json())
     .then(json => {
-        store.dispatch(profileChanged(json.profile));
-        const tag = json.profile.tag;
+        const tag = json.profileTag;
         if (_.isNil(tag)) {
             return ReactDOM.render(<Login/>, document.getElementById('root'));
         }
+        store.dispatch(profileTagChanged(json.profileTag));
         ReactDOM.render(<Provider store={store}>
-                <App history={history}/>
+            <App history={history}/>
         </Provider>, document.getElementById('root'));
     })
     .catch(e => {

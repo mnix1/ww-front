@@ -23,10 +23,11 @@ class ProfilePage extends React.PureComponent {
     }
 
     renderBook(book) {
-        const {onClaimRewardClick, onStartReadClick, onStopReadClick, onDiscardClick} = this.props;
+        const {onClaimRewardClick, onReadingDone, onStartReadClick, onStopReadClick, onDiscardClick} = this.props;
         return <ProfileBook
             key={book.id}
             {...book}
+            onReadingDone={() => onReadingDone(book.id)}
             onClaimRewardClick={() => onClaimRewardClick(book.id)}
             onStartReadClick={() => onStartReadClick(book.id)}
             onStopReadClick={() => onStopReadClick(book.id)}
@@ -60,6 +61,7 @@ export default connect(
         profileListBookRep: state.repository.profileListBook
     }),
     (dispatch) => ({
+        onReadingDone: (id) => dispatch(stopReadBookIdChanged(id)),
         onClaimRewardClick: (id) => dispatch(claimRewardBookIdChanged(id)),
         onStartReadClick: (id) => dispatch(startReadBookIdChanged(id)),
         onStopReadClick: (id) => dispatch(stopReadBookIdChanged(id)),

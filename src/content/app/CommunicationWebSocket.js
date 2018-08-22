@@ -5,7 +5,8 @@ import {clearBattleStartFriendFetch} from "../battle/fetch/BattleStartFriendFetc
 import {BATTLE_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/battleHelper";
 import {push} from 'connected-react-router'
 import {BATTLE_ROUTE} from "../routes";
-import {noticeReward} from "../../component/notification/notice";
+import {noticeReward} from "../../component/notification/noticeReward";
+import {clearProfileFetch} from "./ProfileFetch";
 
 export default class CommunicationWebSocket {
     constructor() {
@@ -53,7 +54,8 @@ export default class CommunicationWebSocket {
         } else if (id === 'BATTLE_INVITE') {
             this.dispatch(battleInvited(JSON.parse(data.content)));
         } else if (id === 'REWARD') {
-            noticeReward(JSON.parse(data.content))
+            noticeReward(JSON.parse(data.content));
+            clearProfileFetch(this.dispatch);
         } else if (id === 'BATTLE_CANCEL_INVITE') {
             this.dispatch(battleInviteCancelled());
         } else if (id === 'BATTLE_REJECT_INVITE') {

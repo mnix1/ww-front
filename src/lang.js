@@ -114,11 +114,17 @@ export const TEXT_BOOKSHELF = 'TEXT_BOOKSHELF';
 export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
 export const TEXT_BUY = 'TEXT_BUY';
 export const TEXT_REWARD = 'TEXT_REWARD';
+export const TEXT_BOUGHT = 'TEXT_BOUGHT';
+export const TEXT_TIME_LEFT = 'TEXT_TIME_LEFT';
+export const TEXT_READ_FINISHED = 'TEXT_READ_FINISHED';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_READ_FINISHED]: 'Przeczytano książkę',
+        [TEXT_TIME_LEFT]: 'Pozostało',
         [TEXT_BUY]: 'Kup',
+        [TEXT_BOUGHT]: 'Kupiono',
         [TEXT_AVAILABLE_RESOURCES]: 'Dostępne zasoby',
         [TEXT_BOOKSHELF]: 'Dostępne książki',
         [TEXT_EMPTY_BOOKSHELF]: 'Brak dostępnych książek',
@@ -207,7 +213,10 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_READ_FINISHED]: 'The book has been read',
+        [TEXT_TIME_LEFT]: 'Time left',
         [TEXT_BUY]: 'Buy',
+        [TEXT_BOUGHT]: 'Bought',
         [TEXT_AVAILABLE_RESOURCES]: 'Available resources',
         [TEXT_BOOKSHELF]: 'Available books',
         [TEXT_EMPTY_BOOKSHELF]: 'There are no available books',

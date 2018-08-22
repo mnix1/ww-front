@@ -4,8 +4,9 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
 import {claimRewardBookIdChanged} from "../../../redux/reducer/profile";
+import {clearProfileFetch} from "../../app/ProfileFetch";
 
-class ProfileStartReadBookFetch extends React.PureComponent {
+class ProfileClaimRewardBookFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -14,8 +15,11 @@ class ProfileStartReadBookFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {profileClaimRewardBookFetch, dispatch} = this.props;
-        if (profileClaimRewardBookFetch.fulfilled) {
+        if (!prevProps.profileClaimRewardBookFetch.fulfilled && profileClaimRewardBookFetch.fulfilled) {
             dispatch(claimRewardBookIdChanged(undefined));
+            if(profileClaimRewardBookFetch.value.code === 1){
+                clearProfileFetch(dispatch);
+            }
         }
     }
 
@@ -48,4 +52,4 @@ export default connect([{
         url: `/profile/claimRewardBook`,
         body: {id}
     })
-}])(ProfileStartReadBookFetch);
+}])(ProfileClaimRewardBookFetch);

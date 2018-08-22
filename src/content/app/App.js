@@ -63,6 +63,7 @@ import ShopPage from "../shop/ShopPage";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
 import ProfilePage from "../profile/ProfilePage";
 import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
+import ProfileFetch from "./ProfileFetch";
 
 class App extends React.PureComponent {
 
@@ -101,12 +102,12 @@ class App extends React.PureComponent {
                 <div className='menuItems'>
                     {this.renderMenuItem(PLAY_ROUTE, play)}
                     {this.renderMenuItem(FRIEND_ROUTE, friend)}
-                    {this.renderMenuItem(PROFILE_ROUTE, owl)}
+                    {this.renderMenuItem(PROFILE_ROUTE, wisie)}
                 </div>
             </Menu>
             <Menu className='menuRight'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(WISIES_ROUTE, wisie)}
+                    {this.renderMenuItem(WISIES_ROUTE, owl)}
                     {this.renderMenuItem(SHOP_ROUTE, shop)}
                 </div>
             </Menu>
@@ -139,6 +140,7 @@ class App extends React.PureComponent {
     renderFetch() {
         const {friendListRep, path} = this.props;
         return <div>
+            <ProfileFetch/>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
             <ChallengeFetchContainer/>

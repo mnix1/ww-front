@@ -18,8 +18,8 @@ class ShopListBookFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchShopListBookGet} = this.props;
-        if (path === SHOP_ROUTE && prevProps.path !== path) {
+        const {path, dispatchShopListBookGet, shopListBookFetch} = this.props;
+        if (!shopListBookFetch.fulfilled && path === SHOP_ROUTE && prevProps.path !== path) {
             dispatchShopListBookGet();
         }
     }
