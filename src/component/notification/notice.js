@@ -9,7 +9,7 @@ import {getText, TEXT_REWARD} from "../../lang";
 import {getBook} from "../../util/bookHelper";
 
 let notification = null;
-Notification.newInstance({style: {left: '10%', top: '1rem'}}, n => notification = n);
+Notification.newInstance({style: {right: 0, top: '1rem'}}, n => notification = n);
 
 export function notice(content) {
     notification.notice({

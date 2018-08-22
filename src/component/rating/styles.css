@@ -47,10 +47,10 @@
 .rc-rate-star-half .rc-rate-star-second {
     opacity: 1;
 }
-.rc-rate-star-half,
-.rc-rate-star-zero{
-    transform: translate(0px,1px)scale(0.96);
-}
+/*.rc-rate-star-half,*/
+/*.rc-rate-star-zero{*/
+    /*transform: translate(0px,1px)scale(0.96);*/
+/*}*/
 .rc-rate-star-half .rc-rate-star-first,
 .rc-rate-star-full .rc-rate-star-second {
     color: #dad505;

@@ -38,7 +38,7 @@ export default class Rate extends React.Component {
     style: {},
     prefixCls: 'rc-rate',
     onChange: noop,
-    characterEmpty: '✰',
+    characterEmpty: '☆',
     characterFull: '★',
     onHoverChange: noop,
     tabIndex: 0,
