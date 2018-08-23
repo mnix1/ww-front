@@ -12,6 +12,7 @@ export const TEXT_IMAGE_PNG = 'TEXT_IMAGE_PNG';
 export const TEXT_ANIMATION = 'TEXT_ANIMATION';
 export const IMAGE_SVG = 'IMAGE_SVG';
 export const IMAGE_PNG = 'IMAGE_PNG';
+export const IMAGE_PNG_TEXT_IMAGE_PNG = 'IMAGE_PNG_TEXT_IMAGE_PNG';
 
 
 export function getTextContent(obj) {

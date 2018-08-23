@@ -73,11 +73,11 @@ export default class TaskObjectGroup extends React.PureComponent {
             max: 400
         });
         return questionObjects.map(o => {
+            const widthFactor = _.defaultTo(o.widthFactor, 1);
             const objectHeight = this.questionHeight();
             const top = o.yTarget * this.questionHeight() - objectHeight / 2;
-            const left = o.xTarget * contentWidth - questionObjectWidth / 2;
+            const left = o.xTarget * contentWidth - (questionObjectWidth * widthFactor) / 2;
             const background = DARK_BLUE_COLOR;
-            const widthFactor = _.defaultTo(o.widthFactor, 1);
             return {
                 rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,

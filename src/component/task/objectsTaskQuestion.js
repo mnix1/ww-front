@@ -3,7 +3,7 @@ import {
     getDateContent,
     getHtmlContent,
     getImageContent,
-    getTextContent,
+    getTextContent, IMAGE_PNG_TEXT_IMAGE_PNG,
     TEXT, TEXT_ANIMATION, TEXT_DATE, TEXT_EQUATION,
     TEXT_HTML,
     TEXT_IMAGE_PNG,
@@ -19,7 +19,8 @@ export function prepareQuestionTiles(rival) {
         prepareQuestionTextHtmlTile(rival),
         prepareQuestionTextEquationTile(rival),
         prepareQuestionTextDateTile(rival),
-        prepareQuestionImageTile(rival)
+        prepareQuestionImageTile(rival),
+        prepareQuestionImagesTile(rival)
     ]).filter(e => !_.isNil(e));
 }
 
@@ -138,6 +139,47 @@ function prepareQuestionImageTile(rival) {
             yTarget: .5,
             xTarget: .65,
             widthFactor: 1.2
+        },
+    ];
+}
+
+function prepareQuestionImagesTile(rival) {
+    const {question} = rival.props;
+    const {questionRenderer} = question;
+    if (questionRenderer !== IMAGE_PNG_TEXT_IMAGE_PNG) {
+        return null;
+    }
+    const dataPrefix = 'data:image/png;base64, ';
+    const imagesData = getImageContent(question).split('^_^');
+    const imageLeft = <img alt='' src={dataPrefix + imagesData[0]} height='100%' width='100%'/>;
+    const imageRight = <img alt='' src={dataPrefix + imagesData[1]} height='100%' width='100%'/>;
+    const textContent = getTextContent(question);
+    return [
+        {
+            id: 'questionImageLeft',
+            onClick: _.noop,
+            content: imageLeft,
+            objectStyle: {zIndex: 1},
+            yTarget: .5,
+            xTarget: .2,
+            widthFactor: 1
+        },
+        {
+            id: 'questionText',
+            onClick: _.noop,
+            content: textContent,
+            yTarget: .5,
+            xTarget: .5,
+            widthFactor: 0.85
+        },
+        {
+            id: 'questionImageRight',
+            onClick: _.noop,
+            content: imageRight,
+            objectStyle: {zIndex: 1},
+            yTarget: .5,
+            xTarget: .8,
+            widthFactor: 1
         },
     ];
 }
