@@ -23,7 +23,7 @@ class InvitedToBattleBy extends React.PureComponent {
         const content = <div>
             <div className='justifyCenter'>{getText(TEXT_INVITED_TO_BATTLE_BY)}</div>
             <Profile {...invitedToBattleBy} actions={actions}/></div>;
-        return <Modal content={content}/>
+        return <Modal renderExit={false} content={content}/>
     }
 }
 

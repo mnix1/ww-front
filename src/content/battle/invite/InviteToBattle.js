@@ -27,7 +27,7 @@ class InviteToBattle extends React.PureComponent {
             <Profile {...friend} actions={actions}/>
             <div className='justifyCenter'>{getText(TEXT_WAITING_FOR_RESPONSE)}</div>
         </div>;
-        return <Modal content={content}/>
+        return <Modal renderExit={false} content={content}/>
     }
 }
 

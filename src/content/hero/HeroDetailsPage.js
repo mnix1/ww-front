@@ -16,7 +16,7 @@ import {
     REFLEX
 } from "../../util/heroStatHelper";
 import Hero from "../../component/hero/Hero";
-import {MAX_HERO_WIDTH} from "../../util/heroHelper";
+import {heroDetailsChanged} from "../../redux/reducer/hero";
 
 class HeroDetailsPage extends React.PureComponent {
 
@@ -47,11 +47,11 @@ class HeroDetailsPage extends React.PureComponent {
     }
 
     render() {
-        const {heroDetails} = this.props;
+        const {heroDetails, onExitClick} = this.props;
         if (!heroDetails) {
             return null;
         }
-        return <Modal>
+        return <Modal onExitClick={onExitClick}>
             {this.renderHero(heroDetails)}
         </Modal>;
     }
@@ -64,5 +64,7 @@ export default connect(
         heroDetails: state.hero.heroDetails,
         path: state.router.location.pathname,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onExitClick: () => dispatch(heroDetailsChanged(undefined)),
+    })
 )(HeroDetailsPage);

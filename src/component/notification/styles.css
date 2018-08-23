@@ -16,7 +16,24 @@
     vertical-align: middle;
     position: relative;
 }
-
+.rc-notification-notice-closable {
+}
+.rc-notification-notice-close {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    color: #fffdf1;
+    cursor: pointer;
+    outline: none;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    filter: alpha(opacity=20);
+    text-decoration: none;
+}
+.rc-notification-notice-close-x:after {
+    content: '×';
+}
 .rc-notification-fade-enter {
     opacity: 0;
     animation-duration: 0.3s;

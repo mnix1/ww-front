@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {OBJECT_CHALLENGE_LIST} from "../content/object-group/objectsChallenge";
 import {
     CATEGORY_COUNTRY,

@@ -43,7 +43,7 @@ class BattleFastPage extends React.PureComponent {
             <div className='justifyCenter'>{getText(TEXT_SEARCHING_OPPONENT)}...</div>
             <Profile {...profile} actions={actions}/>
         </div>;
-        return <Modal content={content}/>;
+        return <Modal renderExit={false} content={content}/>;
     }
 
     render() {

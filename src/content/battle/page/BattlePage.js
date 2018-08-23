@@ -74,7 +74,7 @@ class BattlePage extends React.PureComponent {
         const content = <div>
             {this.renderSurrender()}
         </div>;
-        return <Modal content={content}/>
+        return <Modal renderExit={false} content={content}/>
     }
 
     render() {

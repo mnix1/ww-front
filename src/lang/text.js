@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
