@@ -10,6 +10,7 @@ import {
     CATEGORY_NUMBER,
     CATEGORY_RANDOM,
     CATEGORY_RIDDLE,
+    CATEGORY_COLOR,
     CATEGORY_TIME,
 } from "../util/categoryHelper";
 import {ENGLISH, POLISH} from "./text";
@@ -28,6 +29,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_MEMORY]: 'Pamięć',
         [CATEGORY_ELEMENT]: 'Pierwiastki',
         [CATEGORY_RIDDLE]: 'Zagadki',
+        [CATEGORY_COLOR]: 'Colory',
         [CATEGORY_TIME]: 'Czas',
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },
@@ -40,6 +42,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_MEMORY]: 'Memory',
         [CATEGORY_ELEMENT]: 'Elements',
         [CATEGORY_RIDDLE]: 'Riddles',
+        [CATEGORY_COLOR]: 'Colors',
         [CATEGORY_TIME]: 'Time',
         [OBJECT_CHALLENGE_LIST]: 'Active challenges',
     }

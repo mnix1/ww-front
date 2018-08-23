@@ -7,6 +7,7 @@ import {
     CATEGORY_NUMBER,
     CATEGORY_RANDOM,
     CATEGORY_RIDDLE,
+    CATEGORY_COLOR,
     CATEGORY_TIME,
     getCategory
 } from "../../util/categoryHelper";
@@ -35,6 +36,9 @@ const categories = [
     },
     {
         id: CATEGORY_COUNTRY,
+    },
+    {
+        id: CATEGORY_COLOR,
     },
     {
         id: CATEGORY_TIME,
