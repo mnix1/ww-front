@@ -2,7 +2,14 @@ import React from 'react';
 import PropTypes from "prop-types";
 import _ from 'lodash';
 import './styles.css';
-import {CREAM_COLOR, GREEN_COLOR, LIGHT_BLUE_COLOR, ORANGE_COLOR, RED_COLOR} from "../../util/style/constant";
+import {
+    CREAM_COLOR,
+    GREEN_COLOR,
+    LIGHT_BLUE_COLOR, maybeDisabledClassName,
+    maybeDisabledStyle,
+    ORANGE_COLOR,
+    RED_COLOR
+} from "../../util/style/constant";
 
 export class Button extends React.PureComponent {
 
@@ -12,17 +19,19 @@ export class Button extends React.PureComponent {
         style: PropTypes.object,
         icon: PropTypes.node,
         className: PropTypes.string,
+        disabled: PropTypes.bool,
         children: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
     };
 
     static defaultProps = {
         material: BUTTON_MATERIAL_ACCEPT,
+        disabled: false,
         onClick: _.noop,
     };
 
     render() {
-        const {onClick, children, icon, style, material, className} = this.props;
-        return <div className={`button borderRadiusRem paddingRem inlineBlock pointer ${className}`} onClick={onClick} style={{...material, ...style}}>
+        const {onClick, children, icon, style, material, className, disabled} = this.props;
+        return <div className={`${maybeDisabledClassName(disabled)} button borderRadiusRem paddingRem inlineBlock pointer ${className}`} onClick={onClick} style={{...material, ...style}}>
             <div className='content flex'>{children}{icon && <div className='icon justifyCenter flexColumn'>{icon}</div>}</div>
         </div>
     }

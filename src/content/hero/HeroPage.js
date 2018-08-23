@@ -6,6 +6,7 @@ import HeroExperimentPage from "./HeroExperimentPage";
 import AvailableResources from "../../component/resource/AvailableResources";
 import {RESOURCE_SMALL} from "../../component/resource/Resource";
 import HeroDetailsPage from "./HeroDetailsPage";
+import HeroTeamPage from "./HeroTeamPage";
 
 class HeroPage extends React.PureComponent {
 
@@ -19,6 +20,7 @@ class HeroPage extends React.PureComponent {
                     <AvailableResources showGold={false} size={RESOURCE_SMALL}/>
                     <HeroExperimentPage/>
                 </div>
+                <HeroTeamPage/>
                 <HeroListPage/>
             </div>
         </div>;

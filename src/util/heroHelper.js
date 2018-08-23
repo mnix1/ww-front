@@ -79,6 +79,8 @@ export const HERO = {
     'WOLF': wolf,
 };
 
+export const HERO_TEAM_COUNT = 4;
+
 export function randomHero() {
     const heroes = _.map(HERO);
     return heroes[_.random(heroes.length - 1)];

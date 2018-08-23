@@ -27,3 +27,10 @@ export function maybeDisabledStyle(e) {
     }
     return null;
 };
+//if true return disabled className
+export function maybeDisabledClassName(e) {
+    if (e) {
+        return 'disabled';
+    }
+    return '';
+};

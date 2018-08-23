@@ -98,10 +98,14 @@ export const TEXT_COST = 'TEXT_COST';
 export const TEXT_SKILL = 'TEXT_SKILL';
 export const TEXT_SHOW = 'TEXT_SHOW';
 export const TEXT_HIDE= 'TEXT_HIDE';
+export const TEXT_WISIES_TEAM= 'TEXT_WISIES_TEAM';
+export const TEXT_EDIT= 'TEXT_EDIT';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_EDIT]: 'Edytuj',
+        [TEXT_WISIES_TEAM]: 'Drużyna Wiedzaków',
         [TEXT_SHOW]: 'Pokaż',
         [TEXT_HIDE]: 'Ukryj',
         [TEXT_SKILL]: 'Umiejętności',
@@ -201,6 +205,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_EDIT]: 'Edit',
+        [TEXT_WISIES_TEAM]: 'Wisies team',
         [TEXT_SHOW]: 'Show',
         [TEXT_HIDE]: 'Hide',
         [TEXT_SKILL]: 'Skill',

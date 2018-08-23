@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Modal from "../../component/modal/Modal";
 import HeroStat from "../../component/hero/HeroStat";
+import FaPlusCircle from "react-icons/lib/fa/plus-circle";
 import {
     CHARISMA,
     COMBINING_FACTS,
@@ -17,6 +18,7 @@ import {
 } from "../../util/heroStatHelper";
 import Hero from "../../component/hero/Hero";
 import {heroDetailsChanged} from "../../redux/reducer/hero";
+import {Button} from "../../component/button/Button";
 
 class HeroDetailsPage extends React.PureComponent {
 
@@ -46,12 +48,19 @@ class HeroDetailsPage extends React.PureComponent {
         </div>;
     }
 
+    renderModalHeader() {
+        return null;
+        // <div className='left'>
+            /*<Button icon={<FaPlusCircle/>}>Dodaj do drużyny</Button>*/
+        // </div>
+    }
+
     render() {
         const {heroDetails, onExitClick} = this.props;
         if (!heroDetails) {
             return null;
         }
-        return <Modal onExitClick={onExitClick}>
+        return <Modal header={this.renderModalHeader()} onExitClick={onExitClick}>
             {this.renderHero(heroDetails)}
         </Modal>;
     }

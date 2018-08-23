@@ -118,6 +118,12 @@
 .paddingRem {
     padding: 0.25rem;
 }
+
 .borderRadiusRem {
     border-radius: 0.5rem;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed !important;
 }
