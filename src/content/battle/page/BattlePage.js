@@ -13,7 +13,7 @@ import BattlePageChoosingTaskPropsTimeout from "./BattlePageChoosingTaskPropsTim
 import FaCogs from "react-icons/lib/fa/cogs";
 import {showOptionsChanged} from "../../../redux/reducer/battle";
 import Modal from "../../../component/modal/Modal";
-import {getText, TEXT_SURRENDER} from "../../../lang";
+import {getText, TEXT_SURRENDER} from "../../../lang/text";
 import _ from 'lodash';
 
 class BattlePage extends React.PureComponent {

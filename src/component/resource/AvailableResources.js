@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../../content/profile/styles.css';
-import {getText, TEXT_AVAILABLE_RESOURCES} from "../../lang";
+import {getText, TEXT_AVAILABLE_RESOURCES} from "../../lang/text";
 import Gold from "../../component/resource/Gold";
 import Crystal from "../../component/resource/Crystal";
 import Elixir from "../../component/resource/Elixir";

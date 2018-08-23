@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import {getBook} from "../../util/bookHelper";
-import {getName, getText, TEXT_BUY} from "../../lang";
+import {getName, getText, TEXT_BUY} from "../../lang/text";
 import Crystal from "../../component/resource/Crystal";
 import Timer from "../../component/timer/Timer";
 import Elixir from "../../component/resource/Elixir";

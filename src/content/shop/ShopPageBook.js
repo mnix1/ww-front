@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 import './styles.css';
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
-import {getText, TEXT_BOOKSHELF} from "../../lang";
+import {getText, TEXT_BOOKSHELF} from "../../lang/text";
 import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
 import {buyBookIdChanged} from "../../redux/reducer/shop";
-import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../error";
+import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../lang/error";
 import {noticeError} from "../../component/notification/noticeError";
 import {checkRepValueCode} from "../../util/responseHelper";
 

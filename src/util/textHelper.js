@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {getText, TEXT_POINTS, TEXT_POSITION, TEXT_SCORE, TEXT_TIME} from "../lang";
+import {getText, TEXT_POINTS, TEXT_POSITION, TEXT_SCORE, TEXT_TIME} from "../lang/text";
 
 export function wordsByLength(string, maxLength) {
     const result = [];
@@ -32,4 +32,11 @@ export function prepareScoreMessage(score) {
 
 export function preparePositionMessage(position) {
     return `${getText(TEXT_POSITION)}: ${_.defaultTo(position, 'N/A')}`;
+}
+
+export function round2(n){
+    return _.round(n, 2);
+}
+export function toFixed2(n){
+    return _.isNumber(n) ? n.toFixed(2) : n;
 }

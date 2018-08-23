@@ -2,7 +2,7 @@ import {getAnimationContent} from "../../util/taskRenderer";
 import _ from "lodash";
 import React from 'react';
 import {objectFontSize} from "../object-group/objectHelper";
-import {getText, TEXT_CLICK_ON_ANY_TO_CONTINUE, TEXT_REMEMBER_DETAILS} from "../../lang";
+import {getText, TEXT_CLICK_ON_ANY_TO_CONTINUE, TEXT_REMEMBER_DETAILS} from "../../lang/text";
 
 export function prepareAnimationTiles(rival) {
     const {question, screen} = rival.props;

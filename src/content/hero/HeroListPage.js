@@ -1,18 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES} from "../../lang";
-import Profile from "../../component/profile/Profile";
+import {getName, getText, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
-import {getCategory} from "../../util/categoryHelper";
 import {calculateHeroWidth} from "../../util/heroHelper";
 import {Loading} from "../../component/loading/Loading";
+import {heroDetailsChanged} from "../../redux/reducer/hero";
+import Hero from "../../component/hero/Hero";
 
 class HeroListPage extends React.PureComponent {
 
     get heroWidth() {
         const {screen} = this.props;
-        return calculateHeroWidth(screen.contentWidth - 20);
+        return calculateHeroWidth(screen.contentWidth - 20) + 8;
     }
 
     renderHeroes(heroesGroups) {
@@ -22,27 +22,16 @@ class HeroListPage extends React.PureComponent {
     }
 
     renderHeroesGroup(heroes, i) {
-        return <div key={i} className='heroes'>
+        return <div key={i} className='heroes justifyEvenly'>
             {heroes.map(e => this.renderHero(e))}
         </div>;
     }
 
     renderHero(hero) {
-        return <div key={hero.type} className={`hero ${hero.isOwned ? 'owned' : 'notOwned'}`}
-                    style={{width: this.heroWidth}}>
-            <Profile imgHeight={100} heroType={hero.type}>{this.renderHeroDetails(hero)}</Profile>
-        </div>;
-    }
-
-    renderHeroDetails(hero) {
-        const name = getName(hero);
-        return <div className='heroDetails paddingRem relative justifyBetween'>
-            <div className='absoluteBackgroundMix'/>
-            <span className='name'>{name}</span>
-            <div className='hobbies'>
-                {hero.hobbies.map(e => <img alt='' className='hobby relative' key={e} height={20} src={getCategory(e)}/>)}
-            </div>
-        </div>
+        const {onHeroDetailsClick} = this.props;
+        return <Hero key={hero.type} style={{width: this.heroWidth}} {...hero}
+                     className={hero.isOwned ? 'pointer' : ''}
+                     onClick={hero.isOwned ? () => onHeroDetailsClick(hero) : _.noop}/>;
     }
 
     render() {
@@ -57,7 +46,6 @@ class HeroListPage extends React.PureComponent {
             .sortBy(e => getName(e))
             .map(e => ({...e, ...ownedHeroesMap[e.type], isOwned: true}))
             .value();
-        console.log(heroes, ownedHeroesMap, ownedHeroes);
         const notOwnedHeroes = _.chain(heroes.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
         return <div>
             {!_.isEmpty(ownedHeroes) && <div className='contentFragment'>
@@ -80,5 +68,7 @@ export default connect(
         heroListRep: state.repository.heroList,
         profileHeroListRep: state.repository.profileHeroList
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onHeroDetailsClick: (hero) => dispatch(heroDetailsChanged(hero))
+    })
 )(HeroListPage);

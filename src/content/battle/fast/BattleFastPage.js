@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../../lang";
+import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../../lang/text";
 import {statusChanged} from "../../../redux/reducer/battle";
 import {clearBattleStartFastFetch} from "../fetch/BattleStartFastFetch";
 import {

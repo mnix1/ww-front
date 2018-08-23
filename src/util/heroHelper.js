@@ -105,7 +105,7 @@ export function getHero(heroType) {
 }
 
 const MIN_HERO_WIDTH = 150;
-const MAX_HERO_WIDTH = 230;
+export const MAX_HERO_WIDTH = 230;
 
 const heroWidthCache = {};
 

@@ -15,12 +15,12 @@
     top: 0;
     width: 100vw;
     height: 100vh;
-    background: #444444;
+    background: #000000;
     opacity: 0.4;
 }
 
 .modal {
-    background: #444444;
+    background: #111;
     padding: 1rem;
     margin: auto;
     z-index: 1;

@@ -6,7 +6,7 @@ import _ from 'lodash';
 import {startReadBookIdChanged} from "../../../redux/reducer/profile";
 import {checkRepValueCode} from "../../../util/responseHelper";
 import {noticeError} from "../../../component/notification/noticeError";
-import {ERROR_READING_ANHOTHER_BOOK} from "../../../error";
+import {ERROR_READING_ANHOTHER_BOOK} from "../../../lang/error";
 
 class ProfileStartReadBookFetch extends React.PureComponent {
 

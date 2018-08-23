@@ -1,46 +1,7 @@
-.heroPage {
+.heroPage .heroes:not(:first-child) {
+    margin-top: 0.25rem;
 }
 
 .heroPage .availableResources {
     display: inline-block;
-}
-
-.heroPage .heroes {
-    display: flex;
-}
-
-.heroPage .hero {
-    display: flex;
-}
-
-.heroPage .hero.notOwned {
-    opacity: 0.5;
-}
-
-.heroPage .hero .profileContainer {
-    width: 100%;
-}
-
-.heroPage .hero .profile {
-    justify-content: center;
-}
-
-.heroPage .hero .name {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.heroPage .hero .heroDetails .hobbies {
-    display: flex;
-}
-
-.heroPage .hero .heroDetails .absoluteBackgroundMix {
-    background: #888;
-    display: inline-block;
-}
-
-.heroPage .hero .hobby {
-    padding-left: 0.25rem;
 }

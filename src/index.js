@@ -7,7 +7,7 @@ import {Provider} from 'react-redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
 import App from "./content/app/App";
-import {getText, POLISH, TEXT_APP_NAME} from "./lang";
+import {getText, POLISH, TEXT_APP_NAME} from "./lang/text";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {profileTagChanged} from "./redux/reducer/profile";

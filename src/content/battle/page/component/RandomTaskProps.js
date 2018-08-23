@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Anime} from "../../../../component/anime/Anime";
-import {getText, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT} from "../../../../lang";
+import {getText, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT} from "../../../../lang/text";
 import {OBJECTS_CATEGORY} from "../../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../../object-group/SimpleObjectGroup";
 import {CATEGORY_RANDOM} from "../../../../util/categoryHelper";

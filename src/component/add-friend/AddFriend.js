@@ -7,7 +7,7 @@ import {
     TEXT_ADD_FRIEND_TAG,
     TEXT_REQUEST_SENT,
     TEXT_WRONG_TAG
-} from "../../lang";
+} from "../../lang/text";
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
 import IoAndroidSync from 'react-icons/lib/io/android-sync';
 import PropTypes from "prop-types";

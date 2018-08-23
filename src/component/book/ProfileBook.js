@@ -9,7 +9,7 @@ import {
     TEXT_READ, TEXT_READ_FINISHED,
     TEXT_STOP_READING,
     TEXT_TIME_LEFT
-} from "../../lang";
+} from "../../lang/text";
 import Crystal from "../../component/resource/Crystal";
 import Timer from "../../component/timer/Timer";
 import Elixir from "../../component/resource/Elixir";

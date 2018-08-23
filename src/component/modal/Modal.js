@@ -7,14 +7,15 @@ export default class Modal extends React.PureComponent {
     static propTypes = {
         shouldRender: PropTypes.bool,
         content: PropTypes.node,
+        children: PropTypes.node,
     };
 
     static defaultProps = {
-        shouldRender: true
+        shouldRender: true,
     };
 
     render() {
-        const {shouldRender, content} = this.props;
+        const {shouldRender, content, children} = this.props;
         if (!shouldRender) {
             return null;
         }
@@ -22,6 +23,7 @@ export default class Modal extends React.PureComponent {
             <div className='modalBackground'/>
             <div className='modal'>
                 {content}
+                {children}
             </div>
         </div>
     }

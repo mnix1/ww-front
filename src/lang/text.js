@@ -1,29 +1,5 @@
 import React from 'react';
 
-import {OBJECT_CHALLENGE_LIST} from "./content/object-group/objectsChallenge";
-import {
-    BATTLE_FAST_ROUTE,
-    BATTLE_ROUTE,
-    CHALLENGE_FAST_ROUTE,
-    CHALLENGE_HISTORY_ROUTE,
-    CHALLENGE_LIST_ROUTE,
-    FRIEND_ROUTE,
-    HISTORY_ROUTE,
-    PLAY_ROUTE, PROFILE_ROUTE,
-    SHOP_ROUTE,
-    TRAINING_ROUTE,
-    WISIES_ROUTE
-} from "./content/routes";
-import {
-    CATEGORY_COUNTRY,
-    CATEGORY_ELEMENT,
-    CATEGORY_EQUATION,
-    CATEGORY_LYRICS,
-    CATEGORY_MEMORY,
-    CATEGORY_NUMBER,
-    CATEGORY_RANDOM, CATEGORY_RIDDLE, CATEGORY_TIME,
-} from "./util/categoryHelper";
-
 export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
@@ -121,10 +97,12 @@ export const TEXT_EXPERIMENT = 'TEXT_EXPERIMENT';
 export const TEXT_EXPERIMENT_SUCCESS = 'TEXT_EXPERIMENT_SUCCESS';
 export const TEXT_WISIE_DISCOVERED = 'TEXT_WISIE_DISCOVERED';
 export const TEXT_COST = 'TEXT_COST';
+export const TEXT_SKILL = 'TEXT_SKILL';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_SKILL]: 'Umiejętności',
         [TEXT_COST]: 'Koszt',
         [TEXT_EXPERIMENT_SUCCESS]: 'Eksperyment się udał',
         [TEXT_WISIE_DISCOVERED]: 'Odkryłeś wiedzaka',
@@ -221,6 +199,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_SKILL]: 'Skill',
         [TEXT_COST]: 'Cost',
         [TEXT_EXPERIMENT_SUCCESS]: 'Experiment finished with success',
         [TEXT_WISIE_DISCOVERED]: 'Wisie discovered',
@@ -317,78 +296,9 @@ const TEXTS = {
     },
 };
 
-
-export function getRouteLabel(id) {
-    return ROUTE_LABELS[window.activeLang][id];
-}
-
-
-const ROUTE_LABELS = {
-    [POLISH]: {
-        [PLAY_ROUTE]: 'Graj',
-        [BATTLE_ROUTE]: 'Bitwa',
-        [TRAINING_ROUTE]: 'Trening',
-        [HISTORY_ROUTE]: 'Historia',
-        [SHOP_ROUTE]: 'Sklep',
-        [WISIES_ROUTE]: 'Wiedzaki',
-        [FRIEND_ROUTE]: 'Znajomi',
-        [PROFILE_ROUTE]: 'Profil',
-        [BATTLE_FAST_ROUTE]: <span>Szybka<br/>bitwa</span>,
-        [CHALLENGE_FAST_ROUTE]: <span>Szybkie<br/>wyzwanie</span>,
-        [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
-        [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
-    },
-    [ENGLISH]: {
-        [PLAY_ROUTE]: 'Play',
-        [BATTLE_ROUTE]: 'Battle',
-        [TRAINING_ROUTE]: 'Training',
-        [HISTORY_ROUTE]: 'History',
-        [SHOP_ROUTE]: 'Shop',
-        [WISIES_ROUTE]: 'Wisies',
-        [FRIEND_ROUTE]: 'Friends',
-        [PROFILE_ROUTE]: 'Profile',
-        [BATTLE_FAST_ROUTE]: <span>Fast<br/>battle</span>,
-        [CHALLENGE_FAST_ROUTE]: <span>Fast<br/>challenge</span>,
-        [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challenge</span>,
-        [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,
-    }
-};
-
 export function getText(id) {
     return TEXTS[window.activeLang][id];
 }
-
-export function getCategoryLabel(id) {
-    return CATEGORY_LABELS[window.activeLang][id];
-}
-
-const CATEGORY_LABELS = {
-    [POLISH]: {
-        [CATEGORY_RANDOM]: 'Losowa',
-        [CATEGORY_EQUATION]: 'Równania',
-        [CATEGORY_NUMBER]: 'Liczby',
-        [CATEGORY_LYRICS]: 'Teksty piosenek',
-        [CATEGORY_COUNTRY]: 'Państwa',
-        [CATEGORY_MEMORY]: 'Pamięć',
-        [CATEGORY_ELEMENT]: 'Pierwiastki',
-        [CATEGORY_RIDDLE]: 'Zagadki',
-        [CATEGORY_TIME]: 'Czas',
-        [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
-    },
-    [ENGLISH]: {
-        [CATEGORY_RANDOM]: 'Random',
-        [CATEGORY_EQUATION]: 'Equations',
-        [CATEGORY_NUMBER]: 'Numbers',
-        [CATEGORY_LYRICS]: 'Lyrics',
-        [CATEGORY_COUNTRY]: 'Countries',
-        [CATEGORY_MEMORY]: 'Memory',
-        [CATEGORY_ELEMENT]: 'Elements',
-        [CATEGORY_RIDDLE]: 'Riddles',
-        [CATEGORY_TIME]: 'Time',
-        [OBJECT_CHALLENGE_LIST]: 'Active challenges',
-    }
-};
-
 
 export function getName(e) {
     if(window.activeLang === POLISH){

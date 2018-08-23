@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import {getRouteLabel} from "../../lang";
+import {getRouteLabel} from "../../lang/route";
 
 export default class MenuItem extends React.PureComponent {
 

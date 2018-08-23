@@ -20,7 +20,7 @@ import {
     TEXT_NEXT,
     TEXT_QUESTION,
     TEXT_WRONG_ANSWER
-} from "../../lang";
+} from "../../lang/text";
 import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import {prepareAnswerIntervalMessage} from "../../util/textHelper";

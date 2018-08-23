@@ -1,0 +1,10 @@
+.hero .notOwned {
+    opacity: 0.5;
+}
+.hero .heroDetails .absoluteBackgroundMix {
+    background: #888;
+}
+
+.hero .hobby {
+    padding-left: 0.25rem;
+}

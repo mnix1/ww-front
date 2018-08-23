@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import RandomTaskProps from "./component/RandomTaskProps";
 import Profiles from "./component/Profiles";
-import {getText, TEXT_NOT_CHOSEN_TASK_PROPS} from "../../../lang";
+import {getText, TEXT_NOT_CHOSEN_TASK_PROPS} from "../../../lang/text";
 
 class BattlePageChoosingTaskPropsTimeout extends React.PureComponent {
 

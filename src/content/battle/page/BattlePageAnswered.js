@@ -4,7 +4,7 @@ import Profile from "../../../component/profile/Profile";
 import {Anime} from "../../../component/anime/Anime";
 import {ProfilesComponent} from "./component/Profiles";
 import TaskDescription from "./component/TaskDescription";
-import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../lang";
+import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../lang/text";
 import thumbUp from '../../../media/image/icon/thumbUp.svg';
 import thumbDown from '../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "./component/TaskWithoutActions";

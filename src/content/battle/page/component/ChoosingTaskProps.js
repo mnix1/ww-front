@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../../lang";
+import {getText, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../../lang/text";
 import {OBJECTS_CATEGORY} from "../../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../../object-group/SimpleObjectGroup";
 import {categoryChanged, difficultLevelChanged} from "../../../../redux/reducer/battle";

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
-import {getText, TEXT_APP_NAME} from "../../lang";
+import {getText, TEXT_APP_NAME} from "../../lang/text";
 import {Anime} from "../../component/anime/Anime";
 import {push} from "connected-react-router";
 import {APP_ROUTE} from "../../content/routes";

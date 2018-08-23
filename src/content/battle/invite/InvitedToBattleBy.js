@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import '../../../component/modal/styles.css';
-import {getText, TEXT_ACCEPT, TEXT_INVITED_TO_BATTLE_BY, TEXT_REJECT} from "../../../lang";
+import {getText, TEXT_ACCEPT, TEXT_INVITED_TO_BATTLE_BY, TEXT_REJECT} from "../../../lang/text";
 import {CREAM_COLOR} from "../../../util/style/constant";
 import FaCheckCircle from 'react-icons/lib/fa/check-circle';
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';

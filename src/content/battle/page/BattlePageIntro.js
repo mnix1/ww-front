@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Profile from "../../../component/profile/Profile";
 import play from '../../../media/image/icon/play.svg';
 import {Anime} from "../../../component/anime/Anime";
-import {getText, TEXT_BATTLE, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT, TEXT_QUESTION} from "../../../lang";
+import {getText, TEXT_BATTLE, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT, TEXT_QUESTION} from "../../../lang/text";
 import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
 import {CATEGORY_RANDOM} from "../../../util/categoryHelper";

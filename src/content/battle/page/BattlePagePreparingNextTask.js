@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_QUESTION_PREPARING} from "../../../lang";
+import {getText, TEXT_QUESTION_PREPARING} from "../../../lang/text";
 import Timer from "../../../component/timer/Timer";
 import TaskDescription from "./component/TaskDescription";
 import Profiles from "./component/Profiles";

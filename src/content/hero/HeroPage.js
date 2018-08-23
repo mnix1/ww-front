@@ -5,6 +5,7 @@ import HeroListPage from "./HeroListPage";
 import HeroExperimentPage from "./HeroExperimentPage";
 import AvailableResources from "../../component/resource/AvailableResources";
 import {RESOURCE_SMALL} from "../../component/resource/Resource";
+import HeroDetailsPage from "./HeroDetailsPage";
 
 class HeroPage extends React.PureComponent {
 
@@ -13,6 +14,7 @@ class HeroPage extends React.PureComponent {
         return <div className='page heroPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageContent overflowAuto'>
+                <HeroDetailsPage/>
                 <div className='justifyEvenly'>
                     <AvailableResources showGold={false} size={RESOURCE_SMALL}/>
                     <HeroExperimentPage/>
