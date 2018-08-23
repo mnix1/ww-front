@@ -78,7 +78,7 @@ export default class Hero extends React.PureComponent {
             <div onClick={onClick} key={type}>
                 <div className=' justifyCenter flexColumn'>
                     {isOwned ? this.renderHeroDetailsOwned() : this.renderHeroDetailsNotOwned()}
-                    <img alt='' src={getHero(type)} height={imgHeight}/>
+                    <div className='justifyCenter'><img alt='' src={getHero(type)} height={imgHeight}/></div>
                     {stats}
                     {children}
                 </div>

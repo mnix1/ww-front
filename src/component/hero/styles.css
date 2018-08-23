@@ -1,4 +1,4 @@
-.hero .notOwned {
+.hero.notOwned {
     opacity: 0.5;
 }
 

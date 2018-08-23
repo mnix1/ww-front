@@ -98,10 +98,14 @@ export const TEXT_EXPERIMENT_SUCCESS = 'TEXT_EXPERIMENT_SUCCESS';
 export const TEXT_WISIE_DISCOVERED = 'TEXT_WISIE_DISCOVERED';
 export const TEXT_COST = 'TEXT_COST';
 export const TEXT_SKILL = 'TEXT_SKILL';
+export const TEXT_SHOW = 'TEXT_SHOW';
+export const TEXT_HIDE= 'TEXT_HIDE';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_SHOW]: 'Pokaż',
+        [TEXT_HIDE]: 'Ukryj',
         [TEXT_SKILL]: 'Umiejętności',
         [TEXT_COST]: 'Koszt',
         [TEXT_EXPERIMENT_SUCCESS]: 'Eksperyment się udał',
@@ -199,6 +203,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_SHOW]: 'Show',
+        [TEXT_HIDE]: 'Hide',
         [TEXT_SKILL]: 'Skill',
         [TEXT_COST]: 'Cost',
         [TEXT_EXPERIMENT_SUCCESS]: 'Experiment finished with success',

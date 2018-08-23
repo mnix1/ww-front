@@ -1,12 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES} from "../../lang/text";
+import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
 import {calculateHeroWidth} from "../../util/heroHelper";
 import {Loading} from "../../component/loading/Loading";
-import {heroDetailsChanged} from "../../redux/reducer/hero";
+import {heroDetailsChanged, showNotOwnedChanged} from "../../redux/reducer/hero";
 import Hero from "../../component/hero/Hero";
+import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
+import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
 
 class HeroListPage extends React.PureComponent {
 
@@ -35,7 +37,7 @@ class HeroListPage extends React.PureComponent {
     }
 
     render() {
-        const {heroListRep, profileHeroListRep, screen} = this.props;
+        const {heroListRep, profileHeroListRep, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
         if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
             return <Loading/>;
         }
@@ -53,8 +55,16 @@ class HeroListPage extends React.PureComponent {
                 {this.renderHeroes(_.chunk(ownedHeroes, groupCount))}
             </div>}
             {!_.isEmpty(notOwnedHeroes) && <div className='contentFragment'>
-                <div className='title textAlignCenter'>{getText(TEXT_NOT_OWNED_WISIES)}</div>
-                {this.renderHeroes(_.chunk(notOwnedHeroes, groupCount))}
+                <div className='title justifyCenter'>
+                    <div className='pointer'
+                         onClick={() => onToggleShowNotOwnedClick(showNotOwned)}>
+                        {`${getText(showNotOwned ? TEXT_HIDE : TEXT_SHOW)} ${getText(TEXT_NOT_OWNED_WISIES).toLowerCase()}`}
+                        <span style={{paddingLeft: '0.25rem'}}>{showNotOwned ? <FaMinusSquareO/> :
+                            <FaPlusSquareO/>}</span>
+                    </div>
+                </div>
+
+                {showNotOwned && this.renderHeroes(_.chunk(notOwnedHeroes, groupCount))}
             </div>}
         </div>;
     }
@@ -64,11 +74,13 @@ class HeroListPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        showNotOwned: state.hero.showNotOwned,
         path: state.router.location.pathname,
         heroListRep: state.repository.heroList,
         profileHeroListRep: state.repository.profileHeroList
     }),
     (dispatch) => ({
-        onHeroDetailsClick: (hero) => dispatch(heroDetailsChanged(hero))
+        onHeroDetailsClick: (hero) => dispatch(heroDetailsChanged(hero)),
+        onToggleShowNotOwnedClick: (showNotOwned) => dispatch(showNotOwnedChanged(!showNotOwned))
     })
 )(HeroListPage);
