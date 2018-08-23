@@ -12,6 +12,8 @@ import {
 import _ from "lodash";
 import Clock from "react-clock";
 import {Equation} from "react-equation";
+import {CATEGORY_RIDDLE} from "../../util/categoryHelper";
+import {RIDDLE_BLUE_COLOR} from "../../util/style/constant";
 
 export function prepareQuestionTiles(rival) {
     return _.flatten([
@@ -105,7 +107,6 @@ function prepareQuestionTextDateTile(rival) {
         id: 'questionDate',
         onClick: _.noop,
         content: <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(dateContent)}/>,
-        objectStyle: {zIndex: 1},
         yTarget: .5,
         xTarget: .65,
         widthFactor: 1.2
@@ -114,13 +115,14 @@ function prepareQuestionTextDateTile(rival) {
 
 function prepareQuestionImageTile(rival) {
     const {question} = rival.props;
-    const {questionRenderer} = question;
+    const {questionRenderer, category} = question;
     if (questionRenderer !== TEXT_IMAGE_SVG && questionRenderer !== TEXT_IMAGE_PNG) {
         return null;
     }
     const dataPrefix = questionRenderer === TEXT_IMAGE_SVG ? 'data:image/svg+xml;base64, ' : (questionRenderer === TEXT_IMAGE_PNG ? 'data:image/png;base64, ' : '');
     const imageData = getImageContent(question);
     const image = <img alt='' src={dataPrefix + imageData} height='100%' width='100%'/>;
+    const background = category === CATEGORY_RIDDLE ? RIDDLE_BLUE_COLOR : undefined;
     const textContent = getTextContent(question);
     return [
         {
@@ -128,24 +130,24 @@ function prepareQuestionImageTile(rival) {
             onClick: _.noop,
             content: textContent,
             yTarget: .5,
-            xTarget: .3,
+            xTarget: .25,
             widthFactor: 0.9
         },
         {
             id: 'questionImage',
+            background,
             onClick: _.noop,
             content: image,
-            objectStyle: {zIndex: 1},
             yTarget: .5,
-            xTarget: .65,
-            widthFactor: 1.2
+            xTarget: .7,
+            widthFactor: 1.4
         },
     ];
 }
 
 function prepareQuestionImagesTile(rival) {
     const {question} = rival.props;
-    const {questionRenderer} = question;
+    const {questionRenderer, category} = question;
     if (questionRenderer !== IMAGE_PNG_TEXT_IMAGE_PNG) {
         return null;
     }
@@ -153,16 +155,17 @@ function prepareQuestionImagesTile(rival) {
     const imagesData = getImageContent(question).split('^_^');
     const imageLeft = <img alt='' src={dataPrefix + imagesData[0]} height='100%' width='100%'/>;
     const imageRight = <img alt='' src={dataPrefix + imagesData[1]} height='100%' width='100%'/>;
+    const background = category === CATEGORY_RIDDLE ? RIDDLE_BLUE_COLOR : undefined;
     const textContent = getTextContent(question);
     return [
         {
             id: 'questionImageLeft',
             onClick: _.noop,
             content: imageLeft,
-            objectStyle: {zIndex: 1},
+            background,
             yTarget: .5,
             xTarget: .2,
-            widthFactor: 1
+            widthFactor:  1.2
         },
         {
             id: 'questionText',
@@ -176,10 +179,10 @@ function prepareQuestionImagesTile(rival) {
             id: 'questionImageRight',
             onClick: _.noop,
             content: imageRight,
-            objectStyle: {zIndex: 1},
+            background,
             yTarget: .5,
             xTarget: .8,
-            widthFactor: 1
+            widthFactor: 1.2
         },
     ];
 }

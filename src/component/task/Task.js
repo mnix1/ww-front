@@ -39,8 +39,9 @@ export default class Task extends React.PureComponent {
     }
 
     renderTask() {
-        const {onAnswerClick, answerId, screen, canChangeAnswer, anime} = this.props;
+        const {onAnswerClick, answerId, contentHeightCalculator, screen, canChangeAnswer, anime} = this.props;
         return <TaskObjectGroup
+            contentHeightCalculator={contentHeightCalculator}
             anime={anime}
             questionObjects={prepareQuestionTiles(this)}
             answerObjects={prepareAnswerTiles(this)}
@@ -50,8 +51,9 @@ export default class Task extends React.PureComponent {
     }
 
     renderAnimation() {
-        const {onSkipAnimationChange, screen} = this.props;
+        const {onSkipAnimationChange, contentHeightCalculator, screen} = this.props;
         return <AnimationObjectGroup
+            contentHeightCalculator={contentHeightCalculator}
             onObjectClick={() => onSkipAnimationChange(true)}
             questionObjects={prepareAnimationDescription(this)}
             animationObjects={prepareAnimationTiles(this)}

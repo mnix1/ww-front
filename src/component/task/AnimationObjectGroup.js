@@ -13,12 +13,17 @@ export default class AnimationObjectGroup extends React.PureComponent {
         screen: PropTypes.object,
         onObjectClick: PropTypes.func,
         anime: PropTypes.bool,
+        contentHeightCalculator: PropTypes.func
     };
 
     static defaultProps = {
         questionObjects: [],
         animationObjects: [],
         anime: true,
+        contentHeightCalculator: (screen) => {
+            const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
+            return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
+        }
     };
 
     rendererTransformerCreator = (o) => {
@@ -42,9 +47,8 @@ export default class AnimationObjectGroup extends React.PureComponent {
     };
 
     contentHeight() {
-        const {screen} = this.props;
-        const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
-        return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8)
+        const {screen, contentHeightCalculator} = this.props;
+        return contentHeightCalculator(screen);
     }
 
     questionHeight() {

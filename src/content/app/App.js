@@ -15,7 +15,7 @@ import BattleFetchContainer from "../battle/fetch/BattleFetchContainer";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
 import play from '../../media/image/icon/play.svg';
 import friend from '../../media/image/icon/friend.svg';
-import shop from '../../media/image/icon/shop.svg';
+import shop from '../../media/image/icon/shop.png';
 import wisie from '../../media/image/icon/wisie.svg';
 import owl from '../../media/image/icon/owl.svg';
 import {Route, Switch} from 'react-router'

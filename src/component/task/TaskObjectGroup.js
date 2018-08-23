@@ -14,12 +14,17 @@ export default class TaskObjectGroup extends React.PureComponent {
         screen: PropTypes.object,
         onObjectClick: PropTypes.func,
         anime: PropTypes.bool,
+        contentHeightCalculator: PropTypes.func
     };
 
     static defaultProps = {
         questionObjects: [],
         answerObjects: [],
         anime: true,
+        contentHeightCalculator: (screen) => {
+            const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
+            return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
+        }
     };
 
     rendererTransformerCreator = (o) => {
@@ -43,13 +48,12 @@ export default class TaskObjectGroup extends React.PureComponent {
     };
 
     contentHeight() {
-        const {screen} = this.props;
-        const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
-        return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8)
+        const {contentHeightCalculator, screen} = this.props;
+        return contentHeightCalculator(screen);
     }
 
     questionHeight() {
-        return this.contentHeight() * 13/ 48;
+        return this.contentHeight() * 13 / 48;
     }
 
     answerHeight() {
@@ -77,7 +81,7 @@ export default class TaskObjectGroup extends React.PureComponent {
             const objectHeight = this.questionHeight();
             const top = o.yTarget * this.questionHeight() - objectHeight / 2;
             const left = o.xTarget * contentWidth - (questionObjectWidth * widthFactor) / 2;
-            const background = DARK_BLUE_COLOR;
+            const background = _.defaultTo(o.background, DARK_BLUE_COLOR);
             return {
                 rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,

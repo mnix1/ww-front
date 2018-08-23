@@ -1,13 +1,13 @@
-import calculator from '../media/image/category/calculator.svg';
-import number from '../media/image/category/number.svg';
-import globe from '../media/image/category/globe.svg';
-import hardDrive from '../media/image/category/hardDrive.svg';
-import piano from '../media/image/category/piano.svg';
+import calculator from '../media/image/category/calculator.png';
+import number from '../media/image/category/number.png';
+import globe from '../media/image/category/globe.png';
+import hardDrive from '../media/image/category/hardDrive.png';
+import piano from '../media/image/category/piano.png';
 import atom from '../media/image/category/atom.svg';
 import puzzle from '../media/image/category/puzzle.svg';
-import clock from '../media/image/category/clock.svg';
+import clock from '../media/image/category/clock.png';
 import questionMark from '../media/image/category/questionMark.svg';
-import colors from '../media/image/category/colors.svg';
+import colors from '../media/image/category/colors.png';
 
 export const CATEGORY_EQUATION = 'EQUATION';
 export const CATEGORY_NUMBER = 'NUMBER';

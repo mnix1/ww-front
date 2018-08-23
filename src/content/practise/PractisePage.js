@@ -59,8 +59,13 @@ class PractisePage extends React.PureComponent {
         return <div className='pageContent'>
             {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
             <Task key='task'
+                  contentHeightCalculator={(screen) => {
+                      const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
+                      return contentHeight / 9 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
+                  }}
                   header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:
-                      <span><Rating style={{paddingLeft:'0.25rem'}} valueString={question.difficultyLevel} onHoverChange={_.noop}/></span></div>}
+                      <span><Rating style={{paddingLeft: '0.25rem'}} valueString={question.difficultyLevel}
+                                    onHoverChange={_.noop}/></span></div>}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}

@@ -13,6 +13,7 @@ export const RED_COLOR = '#d60007';
 export const LIGHT_BLUE_COLOR = '#2879da';
 export const ORANGE_COLOR = '#dd7515';
 export const DARK_BLUE_COLOR = '#122f61';
+export const RIDDLE_BLUE_COLOR = '#3ca1ff';
 export const YELLOW_COLOR = '#dad505';
 
 export const disabledStyle = {
