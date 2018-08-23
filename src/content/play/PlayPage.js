@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
 import dices from '../../media/image/icon/dices.svg';
-import clock from '../../media/image/category/clock.svg';
+import clock from '../../media/image/category/clock.png';
 import rubicCube from '../../media/image/icon/rubicCube.svg';
 import notebook from '../../media/image/icon/notebook.svg';
 import practise from '../../media/image/icon/practise.svg';

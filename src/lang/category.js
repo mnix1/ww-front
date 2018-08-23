@@ -29,7 +29,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_MEMORY]: 'Pamięć',
         [CATEGORY_ELEMENT]: 'Pierwiastki',
         [CATEGORY_RIDDLE]: 'Zagadki',
-        [CATEGORY_COLOR]: 'Colory',
+        [CATEGORY_COLOR]: 'Kolory',
         [CATEGORY_TIME]: 'Czas',
         [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
     },

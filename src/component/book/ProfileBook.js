@@ -102,7 +102,7 @@ export default class ProfileBook extends React.PureComponent {
         const {style} = this.props;
         return <div className='bookContainer marginRem paddingRem boxShadow relative justifyCenter' style={style}>
             <div className='absoluteBackgroundMix'/>
-            <div className='book justifyCenter flexColumn'>
+            <div className='book relative justifyCenter flexColumn'>
                 {this.renderInfo()}
                 {this.renderDetails()}
                 {this.renderActions()}

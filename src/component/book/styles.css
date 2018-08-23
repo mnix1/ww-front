@@ -3,6 +3,10 @@
     margin-bottom: 0.25rem;
 }
 
+.bookContainer > .absoluteBackgroundMix {
+    background: #111111;
+}
+
 .book .bookInfo .absoluteBackgroundMix {
     background: #666;
 }
