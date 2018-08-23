@@ -1,21 +1,41 @@
-import colorfulMagazine from '../media/image/book/colorfulMagazine.svg';
-import fairyTale from '../media/image/book/fairyTale.svg';
-import sportMagazine from '../media/image/book/sportMagazine.svg';
-import tvGuide from '../media/image/book/tvGuide.svg';
-import newspaper from '../media/image/book/newspaper.svg';
-import leaflet from '../media/image/book/leaflet.svg';
-import romanceNovel from '../media/image/book/romanceNovel.svg';
-import userManual from '../media/image/book/userManual.svg';
-import biography from '../media/image/book/biography.svg';
-import historicalNovel from '../media/image/book/historicalNovel.svg';
-import crossword from '../media/image/book/crossword.svg';
-import financialStatement from '../media/image/book/financialStatement.svg';
-import worldAtlas from '../media/image/book/worldAtlas.svg';
-import studentBook from '../media/image/book/studentBook.svg';
-import encyclopedia from '../media/image/book/encyclopedia.svg';
-import scienceArticle from '../media/image/book/scienceArticle.svg';
-import mysteriousBook from '../media/image/book/mysteriousBook.svg';
-import secretBook from '../media/image/book/secretBook.svg';
+import colorfulMagazineEn from '../media/image/book/en/colorfulMagazine.png';
+import fairyTaleEn from '../media/image/book/en/fairyTale.png';
+import sportMagazineEn from '../media/image/book/en/sportMagazine.png';
+import tvGuideEn from '../media/image/book/en/tvGuide.png';
+import newspaperEn from '../media/image/book/en/newspaper.svg';
+import leafletEn from '../media/image/book/en/leaflet.png';
+import romanceNovelEn from '../media/image/book/en/romanceNovel.png';
+import userManualEn from '../media/image/book/en/userManual.svg';
+import biographyEn from '../media/image/book/en/biography.svg';
+import historicalNovelEn from '../media/image/book/en/historicalNovel.png';
+import crosswordEn from '../media/image/book/en/crossword.svg';
+import financialStatementEn from '../media/image/book/en/financialStatement.svg';
+import worldAtlasEn from '../media/image/book/en/worldAtlas.png';
+import studentBookEn from '../media/image/book/en/studentBook.png';
+import encyclopediaEn from '../media/image/book/en/encyclopedia.png';
+import scienceArticleEn from '../media/image/book/en/scienceArticle.svg';
+import mysteriousBookEn from '../media/image/book/en/mysteriousBook.png';
+import secretBookEn from '../media/image/book/en/secretBook.png';
+
+import colorfulMagazinePl from '../media/image/book/pl/colorfulMagazine.png';
+import fairyTalePl from '../media/image/book/pl/fairyTale.png';
+import sportMagazinePl from '../media/image/book/pl/sportMagazine.png';
+import tvGuidePl from '../media/image/book/pl/tvGuide.png';
+import newspaperPl from '../media/image/book/pl/newspaper.svg';
+import leafletPl from '../media/image/book/pl/leaflet.png';
+import romanceNovelPl from '../media/image/book/pl/romanceNovel.png';
+import userManualPl from '../media/image/book/pl/userManual.svg';
+import biographyPl from '../media/image/book/pl/biography.svg';
+import historicalNovelPl from '../media/image/book/pl/historicalNovel.png';
+import crosswordPl from '../media/image/book/pl/crossword.svg';
+import financialStatementPl from '../media/image/book/pl/financialStatement.svg';
+import worldAtlasPl from '../media/image/book/pl/worldAtlas.png';
+import studentBookPl from '../media/image/book/pl/studentBook.png';
+import encyclopediaPl from '../media/image/book/pl/encyclopedia.png';
+import scienceArticlePl from '../media/image/book/pl/scienceArticle.svg';
+import mysteriousBookPl from '../media/image/book/pl/mysteriousBook.png';
+import secretBookPl from '../media/image/book/pl/secretBook.png';
+import {ENGLISH, POLISH} from "../lang/text";
 
 export const BOOK_LEAFLET = 'LEAFLET';
 export const BOOK_FAIRY_TALE = 'FAIRY_TALE';
@@ -36,28 +56,53 @@ export const BOOK_SCIENCE_ARTICLE = 'SCIENCE_ARTICLE';
 export const BOOK_MYSTERIOUS_BOOK = 'MYSTERIOUS_BOOK';
 export const BOOK_SECRET_BOOK = 'SECRET_BOOK';
 
-const BOOK = {
-    [BOOK_LEAFLET]: leaflet,
-    [BOOK_FAIRY_TALE]: fairyTale,
-    [BOOK_TV_GUIDE]: tvGuide,
-    [BOOK_COLORFUL_MAGAZINE]: colorfulMagazine,
-    [BOOK_SPORT_MAGAZINE]: sportMagazine,
-    [BOOK_NEWSPAPER]: newspaper,
-    [BOOK_ROMANCE_NOVEL]: romanceNovel,
-    [BOOK_USER_MANUAL]: userManual,
-    [BOOK_BIOGRAPHY]: biography,
-    [BOOK_HISTORICAL_NOVEL]: historicalNovel,
-    [BOOK_CROSSWORD]: crossword,
-    [BOOK_FINANCIAL_STATEMENT]: financialStatement,
-    [BOOK_WORLD_ATLAS]: worldAtlas,
-    [BOOK_STUDENT_BOOK]: studentBook,
-    [BOOK_ENCYCLOPEDIA]: encyclopedia,
-    [BOOK_SCIENCE_ARTICLE]: scienceArticle,
-    [BOOK_MYSTERIOUS_BOOK]: mysteriousBook,
-    [BOOK_SECRET_BOOK]: secretBook,
+const BOOK_EN = {
+    [BOOK_LEAFLET]: leafletEn,
+    [BOOK_FAIRY_TALE]: fairyTaleEn,
+    [BOOK_TV_GUIDE]: tvGuideEn,
+    [BOOK_COLORFUL_MAGAZINE]: colorfulMagazineEn,
+    [BOOK_SPORT_MAGAZINE]: sportMagazineEn,
+    [BOOK_NEWSPAPER]: newspaperEn,
+    [BOOK_ROMANCE_NOVEL]: romanceNovelEn,
+    [BOOK_USER_MANUAL]: userManualEn,
+    [BOOK_BIOGRAPHY]: biographyEn,
+    [BOOK_HISTORICAL_NOVEL]: historicalNovelEn,
+    [BOOK_CROSSWORD]: crosswordEn,
+    [BOOK_FINANCIAL_STATEMENT]: financialStatementEn,
+    [BOOK_WORLD_ATLAS]: worldAtlasEn,
+    [BOOK_STUDENT_BOOK]: studentBookEn,
+    [BOOK_ENCYCLOPEDIA]: encyclopediaEn,
+    [BOOK_SCIENCE_ARTICLE]: scienceArticleEn,
+    [BOOK_MYSTERIOUS_BOOK]: mysteriousBookEn,
+    [BOOK_SECRET_BOOK]: secretBookEn,
+};
+
+const BOOK_PL = {
+    [BOOK_LEAFLET]: leafletPl,
+    [BOOK_FAIRY_TALE]: fairyTalePl,
+    [BOOK_TV_GUIDE]: tvGuidePl,
+    [BOOK_COLORFUL_MAGAZINE]: colorfulMagazinePl,
+    [BOOK_SPORT_MAGAZINE]: sportMagazinePl,
+    [BOOK_NEWSPAPER]: newspaperPl,
+    [BOOK_ROMANCE_NOVEL]: romanceNovelPl,
+    [BOOK_USER_MANUAL]: userManualPl,
+    [BOOK_BIOGRAPHY]: biographyPl,
+    [BOOK_HISTORICAL_NOVEL]: historicalNovelPl,
+    [BOOK_CROSSWORD]: crosswordPl,
+    [BOOK_FINANCIAL_STATEMENT]: financialStatementPl,
+    [BOOK_WORLD_ATLAS]: worldAtlasPl,
+    [BOOK_STUDENT_BOOK]: studentBookPl,
+    [BOOK_ENCYCLOPEDIA]: encyclopediaPl,
+    [BOOK_SCIENCE_ARTICLE]: scienceArticlePl,
+    [BOOK_MYSTERIOUS_BOOK]: mysteriousBookPl,
+    [BOOK_SECRET_BOOK]: secretBookPl,
 };
 
 export function getBook(book) {
+    let BOOK = BOOK_EN;
+    if (window.activeLang === POLISH) {
+        BOOK = BOOK_PL;
+    }
     const b = BOOK[book];
     if (b == null) {
         return BOOK[BOOK_FAIRY_TALE];
