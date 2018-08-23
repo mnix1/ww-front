@@ -27,7 +27,7 @@ export default class Hero extends React.PureComponent {
         onClick: _.noop
     };
 
-    renderHeroDetails() {
+    renderHeroDetailsNotOwned() {
         const {hobbies} = this.props;
         const name = getName(this.props);
         return <div className='heroDetails paddingRem relative justifyBetween'>
@@ -46,21 +46,38 @@ export default class Hero extends React.PureComponent {
         </div>;
     }
 
+    renderHeroDetailsOwned() {
+        const {hobbies} = this.props;
+        const name = getName(this.props);
+        return <div className='heroDetails paddingRem justifyBetween'>
+            <div className='justifyCenter flexColumn'>
+                <span className='name flexColumn justifyCenter'>{name}</span>
+                {this.renderValue()}
+            </div>
+            <div className='hobbies justifyCenter '>
+                {hobbies.map(e => <img alt='' className='hobby' key={e} height={20}
+                                       src={getCategory(e)}/>)}
+            </div>
+
+        </div>;
+    }
+
     renderValue() {
         const {value, isOwned} = this.props;
         return isOwned &&
-            <div className='' style={{fontSize: '0.8em'}}>
+            <div className='' style={{fontSize: '0.8em', color: '#999'}}>
                 {toFixed2(value)}
             </div>;
     }
 
     render() {
         const {onClick, style, type, isOwned, imgHeight, stats, children, className} = this.props;
-        return <div className={`hero marginRem paddingRem borderBox inlineBlock boxShadow ${className}`} style={style}>
-            <div onClick={onClick} key={type}
-                 className={`${isOwned ? 'owned' : 'notOwned'}`}>
+        return <div
+            className={`hero marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'}`}
+            style={style}>
+            <div onClick={onClick} key={type}>
                 <div className=' justifyCenter flexColumn'>
-                    {this.renderHeroDetails()}
+                    {isOwned ? this.renderHeroDetailsOwned() : this.renderHeroDetailsNotOwned()}
                     <img alt='' src={getHero(type)} height={imgHeight}/>
                     {stats}
                     {children}
