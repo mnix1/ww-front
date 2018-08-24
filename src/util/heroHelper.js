@@ -37,6 +37,14 @@ import dragonBlue from '../media/image/hero/dragonBlue.png';
 import dragonFat from '../media/image/hero/dragonFat.png';
 import foxMan from '../media/image/hero/foxMan.png';
 import pandaEat from '../media/image/hero/pandaEat.png';
+import lampard from '../media/image/hero/lampard.png';
+import dragonRed from '../media/image/hero/dragonRed.png';
+import dogSweet from '../media/image/hero/dogSweet.png';
+import squirrel from '../media/image/hero/squirrel.png';
+import frog from '../media/image/hero/frog.svg';
+import owl from '../media/image/hero/owl.png';
+import penguin from '../media/image/hero/penguin.svg';
+import walrus from '../media/image/hero/walrus.svg';
 
 export const HERO = {
     'ANT': ant,
@@ -52,30 +60,38 @@ export const HERO = {
     'CROCODILE': crocodile,
     'DOG': dog,
     'DOG_FAT': dogFat,
+    'DOG_SWEET': dogSweet,
     'DRAGON': dragon,
     'DRAGON_BLUE': dragonBlue,
     'DRAGON_FAT': dragonFat,
+    'DRAGON_RED': dragonRed,
     'EAGLE': eagle,
     'ELEPHANT': elephant,
     'FOX': fox,
     'FOX_MAN': foxMan,
+    'FROG': frog,
     'GORILLA': gorilla,
     'HORSE': horse,
     'KANGAROO': kangaroo,
+    'LAMPARD': lampard,
     'LION': lion,
     'OCTOPUS': octopus,
     'OSTRICH': ostrich,
+    'OWL': owl,
     'PANDA_EAT': pandaEat,
     'PARROT': parrot,
+    'PENGUIN': penguin,
     'POLAR_BEAR': polarBear,
     'RABBIT': rabbit,
     'RACCOON': raccoon,
     'SHARK': shark,
     'SHEEP': sheep,
     'SNAKE': snake,
+    'SQUIRREL': squirrel,
     'TIGER': tiger,
     'TURKEY': turkey,
     'TURTLE': turtle,
+    'WALRUS': walrus,
     'WOLF': wolf,
 };
 

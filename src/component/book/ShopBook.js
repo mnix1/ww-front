@@ -51,10 +51,9 @@ export default class ProfileBook extends React.PureComponent {
 
     renderInfo() {
         const {level} = this.props;
-        return <div className='bookInfo justifyBetween relative flexColumn'>
-            <div className='absoluteBackgroundMix'/>
-            <div className='relative justifyCenter'>{getName(this.props)}</div>
-            <span className='relative justifyCenter'><Rating value={level / 2}/></span>
+        return <div className='bookInfo justifyBetween flexColumn'>
+            <div className='justifyCenter'>{getName(this.props)}</div>
+            <span className='justifyCenter'><Rating value={level / 2}/></span>
         </div>
     }
 
