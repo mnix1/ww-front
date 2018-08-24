@@ -119,7 +119,7 @@ const TEXTS = {
         [TEXT_SKILL]: 'Umiejętności',
         [TEXT_COST]: 'Koszt',
         [TEXT_EXPERIMENT_SUCCESS]: 'Eksperyment się udał',
-        [TEXT_WISIE_DISCOVERED]: 'Odkryłeś wiedzaka',
+        [TEXT_WISIE_DISCOVERED]: 'Odkryto wiedzaka',
         [TEXT_EXPERIMENT]: 'Eksperyment naukowy',
         [TEXT_READ_FINISHED]: 'Przeczytano książkę',
         [TEXT_TIME_LEFT]: 'Pozostało',

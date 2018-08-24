@@ -35,14 +35,14 @@ class HeroTeamPage extends React.PureComponent {
     }
 
     renderEmptySlot(i) {
-        return <div key={i} className='boxShadow' style={{minWidth: 40, minHeight: 40}}>
+        return <div key={i} className='boxShadow marginRem' style={{minWidth: 40, minHeight: 40}}>
         </div>;
     }
 
-    renderTeamActions() {
-        const {onRouteChange, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
+    renderTeamActions(inTeamHeroes) {
+        const {onTeamEditClick, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
         if (!edit) {
-            return <Button onClick={() => onRouteChange(WISIES_TEAM_EDIT_ROUTE)} icon={<FaEdit size={16}/>}/>;
+            return <Button onClick={() => onTeamEditClick(inTeamHeroes)} icon={<FaEdit size={16}/>}/>;
         }
         return <div>
             <Button onClick={onRouteBack} icon={<FaTimesCircle size={16}/>}/>
@@ -54,7 +54,7 @@ class HeroTeamPage extends React.PureComponent {
     render() {
         const {heroListRep, profileHeroListRep, edit, team} = this.props;
         if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
-            return <Loading/>;
+            return null;
         }
         if (profileHeroListRep.value.length < HERO_TEAM_COUNT) {
             return null;
@@ -69,7 +69,7 @@ class HeroTeamPage extends React.PureComponent {
         return <div>
             <div className='title textAlignCenter paddingRem'>
                 {getText(TEXT_WISIES_TEAM)}
-                {this.renderTeamActions()}
+                {this.renderTeamActions(inTeamHeroes)}
             </div>
             {this.renderHeroes(heroes)}
         </div>;
@@ -86,8 +86,9 @@ export default connect(
         profileHeroListRep: state.repository.profileHeroList
     }),
     (dispatch) => ({
-        onRouteChange: (e) => {
-            dispatch(push(e));
+        onTeamEditClick: (team) => {
+            dispatch(teamChanged(team));
+            dispatch(push(WISIES_TEAM_EDIT_ROUTE));
         },
         onRouteBack: () => {
             dispatch(goBack());
@@ -97,6 +98,7 @@ export default connect(
         },
         onTeamSaveClick: () => {
             dispatch(teamSaveChanged(true));
+            // dispatch(goBack());
         },
         onTeamRemoveClick: (team, hero) => {
             const newTeam = team.filter(e => e.id !== hero.id);

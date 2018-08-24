@@ -9,7 +9,7 @@ export function noticeExperiment(heroType) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <img alt='' src={experiment} height={30}/>
-                <div className='justifyCenter flexColumn'>
+                <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_WISIE_DISCOVERED)}
                 </div>
             </div>

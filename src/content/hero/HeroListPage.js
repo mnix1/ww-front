@@ -48,12 +48,12 @@ class HeroListPage extends React.PureComponent {
             <div className='left'>
                 {!isInTeam && <Button onClick={() => onTeamAddClick(team, hero)}
                                       disabled={team.length >= HERO_TEAM_COUNT}
-                                      icon={<FaPlusCircle/>}>{getText(TEXT_TEAM_ADD)}</Button>
+                                      icon={<FaPlusCircle size={16}/>}/>
                 }
                 {isInTeam && <Button onClick={() => onTeamRemoveClick(team, hero)}
-                                     icon={<FaMinusCircle/>}>{getText(TEXT_TEAM_REMOVE)}</Button>
+                                     icon={<FaMinusCircle size={16}/>}/>
                 }
-                <Button onClick={() => onHeroDetailsClick(hero)} icon={<MdDescription/>}>{getText(TEXT_SHOW_DETAILS)}</Button>
+                <Button onClick={() => onHeroDetailsClick(hero)} icon={<MdDescription size={16}/>}/>
             </div>
         </Hero>
     }
@@ -95,7 +95,6 @@ class HeroListPage extends React.PureComponent {
                             <FaPlusSquareO/>}</span>
                     </div>
                 </div>
-
                 {showNotOwned && this.renderHeroes(_.chunk(notOwnedHeroes, groupCount))}
             </div>}
         </div>;

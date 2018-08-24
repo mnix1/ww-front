@@ -11,7 +11,7 @@ export function noticeReward(reward) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <img alt='' src={presentSvg} height={30}/>
-                <div className='justifyCenter flexColumn'>
+                <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_REWARD)}
                 </div>
             </div>
