@@ -100,10 +100,18 @@ export const TEXT_SHOW = 'TEXT_SHOW';
 export const TEXT_HIDE= 'TEXT_HIDE';
 export const TEXT_WISIES_TEAM= 'TEXT_WISIES_TEAM';
 export const TEXT_EDIT= 'TEXT_EDIT';
+export const TEXT_ALREADY_IN_TEAM= 'TEXT_ALREADY_IN_TEAM';
+export const TEXT_TEAM_ADD= 'TEXT_TEAM_ADD';
+export const TEXT_TEAM_REMOVE= 'TEXT_TEAM_REMOVE';
+export const TEXT_SHOW_DETAILS= 'TEXT_SHOW_DETAILS';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_TEAM_ADD]: 'Dodaj do drużyny',
+        [TEXT_TEAM_REMOVE]: 'Usuń z drużyny',
+        [TEXT_SHOW_DETAILS]: 'Pokaż szczegóły',
+        [TEXT_ALREADY_IN_TEAM]: 'Jest w drużynie',
         [TEXT_EDIT]: 'Edytuj',
         [TEXT_WISIES_TEAM]: 'Drużyna Wiedzaków',
         [TEXT_SHOW]: 'Pokaż',
@@ -205,6 +213,10 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_TEAM_ADD]: 'Add to team',
+        [TEXT_TEAM_REMOVE]: 'Remove from team',
+        [TEXT_SHOW_DETAILS]: 'Show details',
+        [TEXT_ALREADY_IN_TEAM]: 'Already in team',
         [TEXT_EDIT]: 'Edit',
         [TEXT_WISIES_TEAM]: 'Wisies team',
         [TEXT_SHOW]: 'Show',

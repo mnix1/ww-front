@@ -3,12 +3,14 @@ export const EXPERIMENT_CHANGED = 'hero/experiment/changed';
 export const HERO_DETAILS_CHANGED = 'hero/hero-details/changed';
 export const SHOW_NOT_OWNED_CHANGED = 'hero/show-not-owned/changed';
 export const TEAM_CHANGED = 'hero/team/changed';
+export const TEAM_SAVE_CHANGED = 'hero/team-save/changed';
 
 const initialState = {
     experiment: false,
     heroDetails: undefined,
     showNotOwned: false,
     team: [],
+    teamSave: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -23,6 +25,8 @@ export default function reducer(state = initialState, action) {
             return {...state, showNotOwned: action.showNotOwned};
         case TEAM_CHANGED:
             return {...state, team: action.team};
+        case TEAM_SAVE_CHANGED:
+            return {...state, teamSave: action.teamSave};
         default:
             return state
     }
@@ -42,4 +46,8 @@ export function showNotOwnedChanged(showNotOwned) {
 
 export function teamChanged(team) {
     return {type: TEAM_CHANGED, team};
+}
+
+export function teamSaveChanged(teamSave) {
+    return {type: TEAM_SAVE_CHANGED, teamSave};
 }

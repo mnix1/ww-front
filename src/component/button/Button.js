@@ -31,8 +31,12 @@ export class Button extends React.PureComponent {
 
     render() {
         const {onClick, children, icon, style, material, className, disabled} = this.props;
-        return <div className={`${maybeDisabledClassName(disabled)} button borderRadiusRem paddingRem inlineBlock pointer ${className}`} onClick={onClick} style={{...material, ...style}}>
-            <div className='content flex'>{children}{icon && <div className='icon justifyCenter flexColumn'>{icon}</div>}</div>
+        return <div
+            className={`${maybeDisabledClassName(disabled)} button borderRadiusRem paddingRem inlineBlock pointer ${className}`}
+            onClick={disabled ? _.noop : onClick}
+            style={{...material, ...style}}>
+            <div className='content flex'>{children}{icon &&
+            <div className='icon justifyCenter flexColumn'>{icon}</div>}</div>
         </div>
     }
 }

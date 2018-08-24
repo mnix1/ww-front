@@ -6,6 +6,8 @@ import {getName} from "../../lang/text";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
 import {toFixed2} from "../../util/textHelper";
+import FaPlusCircle from "react-icons/lib/fa/plus-circle";
+import FaMinusCircle from "react-icons/lib/fa/minus-circle";
 
 export default class Hero extends React.PureComponent {
 
@@ -19,9 +21,13 @@ export default class Hero extends React.PureComponent {
         style: PropTypes.object,
         onClick: PropTypes.func,
         stats: PropTypes.node,
+        renderHobbies: PropTypes.bool,
+        renderDetails: PropTypes.bool,
     };
 
     static defaultProps = {
+        renderHobbies: true,
+        renderDetails: true,
         imgHeight: 100,
         className: '',
         onClick: _.noop
@@ -47,17 +53,17 @@ export default class Hero extends React.PureComponent {
     }
 
     renderHeroDetailsOwned() {
-        const {hobbies} = this.props;
+        const {hobbies, renderHobbies} = this.props;
         const name = getName(this.props);
         return <div className='heroDetails paddingRem justifyBetween'>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter'>{name}</span>
                 {this.renderValue()}
             </div>
-            <div className='hobbies justifyCenter '>
+            {renderHobbies && <div className='hobbies justifyCenter '>
                 {hobbies.map(e => <img alt='' className='hobby' key={e} height={20}
                                        src={getCategory(e)}/>)}
-            </div>
+            </div>}
 
         </div>;
     }
@@ -71,13 +77,13 @@ export default class Hero extends React.PureComponent {
     }
 
     render() {
-        const {onClick, style, type, isOwned, imgHeight, stats, children, className} = this.props;
+        const {onClick, style, type, isOwned, imgHeight, stats, children, className, renderDetails} = this.props;
         return <div
             className={`hero marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'}`}
             style={style}>
             <div onClick={onClick} key={type}>
                 <div className=' justifyCenter flexColumn'>
-                    {isOwned ? this.renderHeroDetailsOwned() : this.renderHeroDetailsNotOwned()}
+                    {renderDetails && (isOwned ? this.renderHeroDetailsOwned() : this.renderHeroDetailsNotOwned())}
                     <div className='justifyCenter'><img alt='' src={getHero(type)} height={imgHeight}/></div>
                     {stats}
                     {children}

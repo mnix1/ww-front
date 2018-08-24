@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import Modal from "../../component/modal/Modal";
 import HeroStat from "../../component/hero/HeroStat";
 import FaPlusCircle from "react-icons/lib/fa/plus-circle";
+import FaMinusCircle from "react-icons/lib/fa/minus-circle";
 import {
     CHARISMA,
     COMBINING_FACTS,
@@ -17,8 +18,11 @@ import {
     REFLEX
 } from "../../util/heroStatHelper";
 import Hero from "../../component/hero/Hero";
-import {heroDetailsChanged} from "../../redux/reducer/hero";
+import {heroDetailsChanged, teamChanged} from "../../redux/reducer/hero";
 import {Button} from "../../component/button/Button";
+import {HERO_TEAM_COUNT} from "../../util/heroHelper";
+import {getText, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE} from "../../lang/text";
+import _ from 'lodash';
 
 class HeroDetailsPage extends React.PureComponent {
 
@@ -49,10 +53,21 @@ class HeroDetailsPage extends React.PureComponent {
     }
 
     renderModalHeader() {
-        return null;
-        // <div className='left'>
-            /*<Button icon={<FaPlusCircle/>}>Dodaj do drużyny</Button>*/
-        // </div>
+        const {team, edit, heroDetails, onTeamAddClick, onTeamRemoveClick} = this.props;
+        if (!edit) {
+            return null;
+        }
+        const isInTeam = _.some(team, (e) => e.id === heroDetails.id);
+        return <div className='left'>
+            {!isInTeam && <Button onClick={() => onTeamAddClick(team, heroDetails)}
+                                  disabled={team.length >= HERO_TEAM_COUNT}
+                                  icon={<FaPlusCircle/>}>{getText(TEXT_TEAM_ADD)}</Button>
+            }
+            {isInTeam && <Button onClick={() => onTeamRemoveClick(team, heroDetails)}
+                                 icon={<FaMinusCircle/>}>{getText(TEXT_TEAM_REMOVE)}</Button>
+            }
+
+        </div>;
     }
 
     render() {
@@ -70,10 +85,19 @@ class HeroDetailsPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        team: state.hero.team,
         heroDetails: state.hero.heroDetails,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
         onExitClick: () => dispatch(heroDetailsChanged(undefined)),
+        onTeamAddClick: (team, hero) => {
+            const newTeam = team.concat([hero]);
+            dispatch(teamChanged(newTeam))
+        },
+        onTeamRemoveClick: (team, hero) => {
+            const newTeam = team.filter(e => e.id !== hero.id);
+            dispatch(teamChanged(newTeam))
+        }
     })
 )(HeroDetailsPage);

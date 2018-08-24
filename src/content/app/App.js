@@ -130,7 +130,7 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
-                <Route exact path={WISIES_ROUTE} render={() => <HeroPage/>}/>
+                <Route path={WISIES_ROUTE} render={() => <HeroPage/>}/>
                 <Route exact path={SHOP_ROUTE} render={() => <ShopPage/>}/>
                 <Route exact path={PROFILE_ROUTE} render={() => <ProfilePage/>}/>
             </Switch>

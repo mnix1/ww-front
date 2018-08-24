@@ -1,14 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/text";
+import {
+    getName,
+    getText,
+    TEXT_HIDE,
+    TEXT_NOT_OWNED_WISIES,
+    TEXT_OWNED_WISIES,
+    TEXT_SHOW, TEXT_SHOW_DETAILS,
+    TEXT_TEAM_ADD, TEXT_TEAM_REMOVE
+} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
-import {calculateHeroWidth} from "../../util/heroHelper";
+import {calculateHeroWidth, HERO_TEAM_COUNT} from "../../util/heroHelper";
 import {Loading} from "../../component/loading/Loading";
-import {heroDetailsChanged, showNotOwnedChanged} from "../../redux/reducer/hero";
+import {heroDetailsChanged, showNotOwnedChanged, teamChanged} from "../../redux/reducer/hero";
 import Hero from "../../component/hero/Hero";
 import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
+import {Button} from "../../component/button/Button";
+import FaPlusCircle from "react-icons/lib/fa/plus-circle";
+import FaMinusCircle from "react-icons/lib/fa/minus-circle";
+import MdDescription from 'react-icons/lib/md/description';
 
 class HeroListPage extends React.PureComponent {
 
@@ -29,8 +41,28 @@ class HeroListPage extends React.PureComponent {
         </div>;
     }
 
+    renderHeroEdit(hero) {
+        const {team, onTeamAddClick, onHeroDetailsClick, onTeamRemoveClick} = this.props;
+        const isInTeam = _.some(team, (e) => e.id === hero.id);
+        return <Hero key={hero.type} style={{width: this.heroWidth}} {...hero}>
+            <div className='left'>
+                {!isInTeam && <Button onClick={() => onTeamAddClick(team, hero)}
+                                      disabled={team.length >= HERO_TEAM_COUNT}
+                                      icon={<FaPlusCircle/>}>{getText(TEXT_TEAM_ADD)}</Button>
+                }
+                {isInTeam && <Button onClick={() => onTeamRemoveClick(team, hero)}
+                                     icon={<FaMinusCircle/>}>{getText(TEXT_TEAM_REMOVE)}</Button>
+                }
+                <Button onClick={() => onHeroDetailsClick(hero)} icon={<MdDescription/>}>{getText(TEXT_SHOW_DETAILS)}</Button>
+            </div>
+        </Hero>
+    }
+
     renderHero(hero) {
-        const {onHeroDetailsClick} = this.props;
+        const {onHeroDetailsClick, edit} = this.props;
+        if (edit) {
+            return this.renderHeroEdit(hero);
+        }
         return <Hero key={hero.type} style={{width: this.heroWidth}} {...hero}
                      className={hero.isOwned ? 'pointer' : ''}
                      onClick={hero.isOwned ? () => onHeroDetailsClick(hero) : _.noop}/>;
@@ -74,6 +106,7 @@ class HeroListPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        team: state.hero.team,
         showNotOwned: state.hero.showNotOwned,
         path: state.router.location.pathname,
         heroListRep: state.repository.heroList,
@@ -81,6 +114,14 @@ export default connect(
     }),
     (dispatch) => ({
         onHeroDetailsClick: (hero) => dispatch(heroDetailsChanged(hero)),
-        onToggleShowNotOwnedClick: (showNotOwned) => dispatch(showNotOwnedChanged(!showNotOwned))
+        onToggleShowNotOwnedClick: (showNotOwned) => dispatch(showNotOwnedChanged(!showNotOwned)),
+        onTeamAddClick: (team, hero) => {
+            const newTeam = team.concat([hero]);
+            dispatch(teamChanged(newTeam))
+        },
+        onTeamRemoveClick: (team, hero) => {
+            const newTeam = team.filter(e => e.id !== hero.id);
+            dispatch(teamChanged(newTeam))
+        }
     })
 )(HeroListPage);

@@ -37,6 +37,6 @@ export function clearProfileHeroListFetch(dispatch) {
 export default connect([{
     resource: 'profileHeroList',
     request: () => ({
-        url: `/profile/listHero`,
+        url: `/hero/listProfileHero`,
     })
 }])(ProfileHeroListFetch);

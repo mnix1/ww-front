@@ -1,45 +1,65 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_EDIT, TEXT_WISIES_TEAM,} from "../../lang/text";
+import {getName, getText, TEXT_WISIES_TEAM,} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
 import Hero from "../../component/hero/Hero";
 import {HERO_TEAM_COUNT} from "../../util/heroHelper";
 import FaEdit from "react-icons/lib/fa/edit";
+import FaEraser from "react-icons/lib/fa/eraser";
+import MdSave from "react-icons/lib/md/save";
+import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import {Button} from "../../component/button/Button";
+import {push, goBack} from "connected-react-router";
+import {WISIES_TEAM_EDIT_ROUTE} from "../routes";
+import {teamChanged, teamSaveChanged} from "../../redux/reducer/hero";
 
 class HeroTeamPage extends React.PureComponent {
     renderHeroes(heroes) {
         const maybeEmptyHeroes = _.take(_.flatten([heroes, _.fill(Array(HERO_TEAM_COUNT), null)]), HERO_TEAM_COUNT);
         return <div className='justifyCenter'>
-            {maybeEmptyHeroes.map(e => _.isNil(e) ? this.renderEmptySlot() : this.renderHero(e))}
+            {maybeEmptyHeroes.map((e, i) => _.isNil(e) ? this.renderEmptySlot(i) : this.renderHero(e))}
         </div>;
     }
 
     renderHero(hero) {
-        const {onHeroDetailsClick} = this.props;
-        return <Hero key={hero.type} {...hero}
-                     className={hero.isOwned ? 'pointer' : ''}
-                     onClick={hero.isOwned ? () => onHeroDetailsClick(hero) : _.noop}/>;
+        const {edit, onTeamRemoveClick, team} = this.props;
+        return <Hero
+            key={hero.type}
+            imgHeight={80}
+            className={edit ? 'pointer' : ''}
+            onClick={edit ? () => onTeamRemoveClick(team, hero) : _.noop}
+            renderDetails={false}
+            {...hero}/>;
     }
 
-    renderEmptySlot(hero) {
-        const {onHeroDetailsClick} = this.props;
-        return <div className='boxShadow' style={{minWidth: 100, minHeight: 100}}>
-
+    renderEmptySlot(i) {
+        return <div key={i} className='boxShadow' style={{minWidth: 40, minHeight: 40}}>
         </div>;
     }
 
+    renderTeamActions() {
+        const {onRouteChange, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
+        if (!edit) {
+            return <Button onClick={() => onRouteChange(WISIES_TEAM_EDIT_ROUTE)} icon={<FaEdit size={16}/>}/>;
+        }
+        return <div>
+            <Button onClick={onRouteBack} icon={<FaTimesCircle size={16}/>}/>
+            <Button onClick={onEraseTeamClick} icon={<FaEraser size={16}/>}/>
+            <Button onClick={onTeamSaveClick} icon={<MdSave size={16}/>}/>
+        </div>
+    }
+
     render() {
-        const {heroListRep, profileHeroListRep} = this.props;
+        const {heroListRep, profileHeroListRep, edit, team} = this.props;
         if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
             return <Loading/>;
         }
         if (profileHeroListRep.value.length < HERO_TEAM_COUNT) {
             return null;
         }
-        const inTeamHeroes = profileHeroListRep.value.filter(e => e.inTeam);
+        const inTeamHeroes = edit ? team : profileHeroListRep.value.filter(e => e.inTeam);
         const inTeamHeroesMap = _.keyBy(inTeamHeroes, 'type');
         const heroes = _.chain(heroListRep.value.filter(e => inTeamHeroesMap[e.type]))
             .defaultTo([])
@@ -47,9 +67,9 @@ class HeroTeamPage extends React.PureComponent {
             .map(e => ({...e, ...inTeamHeroesMap[e.type], isOwned: true}))
             .value();
         return <div>
-            <div className='title textAlignCenter'>
+            <div className='title textAlignCenter paddingRem'>
                 {getText(TEXT_WISIES_TEAM)}
-                <Button icon={<FaEdit size={14}/>}/>
+                {this.renderTeamActions()}
             </div>
             {this.renderHeroes(heroes)}
         </div>;
@@ -61,8 +81,26 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
+        team: state.hero.team,
         heroListRep: state.repository.heroList,
         profileHeroListRep: state.repository.profileHeroList
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onRouteChange: (e) => {
+            dispatch(push(e));
+        },
+        onRouteBack: () => {
+            dispatch(goBack());
+        },
+        onEraseTeamClick: () => {
+            dispatch(teamChanged([]));
+        },
+        onTeamSaveClick: () => {
+            dispatch(teamSaveChanged(true));
+        },
+        onTeamRemoveClick: (team, hero) => {
+            const newTeam = team.filter(e => e.id !== hero.id);
+            dispatch(teamChanged(newTeam))
+        }
+    })
 )(HeroTeamPage);
