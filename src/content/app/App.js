@@ -64,6 +64,7 @@ import ProfilePage from "../profile/ProfilePage";
 import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./ProfileFetch";
 import HeroFetchContainer from "../hero/fetch/HeroFetchContainer";
+import WakeLock from "../../component/wake-lock/WakeLock";
 
 class App extends React.PureComponent {
 
@@ -173,6 +174,7 @@ class App extends React.PureComponent {
                 {/*{JSON.stringify(screen)}*/}
                 {/*</div>*/}
             </div>
+            <WakeLock/>
             {this.renderFetch()}
         </div>;
     }
