@@ -49,6 +49,10 @@
     padding: 0 0.2em !important;
 }
 
+.task .equation > span > span[style*="border-top: 0.06em"]{
+    border-top: 1px solid currentColor !important;
+}
+
 .react-clock {
     background-color: white;
     border-radius: 50%;
