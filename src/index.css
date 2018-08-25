@@ -18,6 +18,9 @@ svg {
 /*@media only screen and (max-width: 1024px) {*/
 /*html { font-size: 62.5%; }*/
 /*}*/
+/*html {*/
+    /*font-size: 20px;*/
+/*}*/
 
 @media only screen and (max-height: 800px) {
     html {

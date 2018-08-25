@@ -38,7 +38,7 @@ export default class Profile extends React.PureComponent {
         return <div onClick={onClick} key={tag} className={`profileContainer inlineBlock marginRem paddingRem boxShadow ${className}`} style={style}>
             {children}
             <div className='profile justifyBetween'>
-                <img alt='' src={getHero(heroType)} height={imgHeight}/>
+                <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
                 <div className='details justifyBetween relative flexColumn'>
                     {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
                     {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
