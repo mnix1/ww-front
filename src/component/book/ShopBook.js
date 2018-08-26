@@ -50,24 +50,31 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderInfo() {
-        const {level} = this.props;
+        const {level, readTime} = this.props;
         return <div className='bookInfo justifyBetween flexColumn'>
             <div className='justifyCenter'>{getName(this.props)}</div>
-            <span className='justifyCenter'><Rating value={level / 2}/></span>
+            <div className='justifyCenter'><Rating value={level / 2}/>
+                <div className='justifyCenter flexColumn marginRem'>
+                    <div className='justifyCenter'>
+                        (<Timer work={false}
+                                digitalFillHours0={false}
+                                digitalMinutes={false}
+                                digitalSeconds={false}
+                                showChart={false}
+                                showDigital={true}
+                                from={readTime}
+                    />)
+                    </div>
+                </div>
+            </div>
         </div>
     }
 
     renderDetails() {
-        const {canClaimReward, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
+        const {gainCrystal, gainWisdom, gainElixir, type} = this.props;
         return <div className='bookDetails justifyBetween'>
             <img height={110} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside relative justifyBetween flexColumn paddingRem'>
-                {!canClaimReward && isInProgress && <div className='justifyCenter'>
-                    <Timer showClock={true}
-                           showChart={false}
-                           from={readTime - alreadyReadInterval}
-                    />
-                </div>}
                 <div className='bookGain justifyBetween flexColumn height100'>
                     {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}
                     {gainWisdom > 0 && <Wisdom>{gainWisdom}</Wisdom>}

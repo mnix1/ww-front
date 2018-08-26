@@ -64,6 +64,8 @@ export const TEXT_SEARCHING_OPPONENT = 'TEXT_SEARCHING_OPPONENT';
 export const TEXT_ACCEPT = 'TEXT_ACCEPT';
 export const TEXT_REJECT = 'TEXT_REJECT';
 export const TEXT_CANCEL = 'TEXT_CANCEL';
+export const TEXT_CLEAR = 'TEXT_CLEAR';
+export const TEXT_SAVE = 'TEXT_SAVE';
 export const TEXT_FOR = 'TEXT_FOR';
 export const TEXT_WAIT = 'TEXT_WAIT';
 export const TEXT_OPPONENT_CORRECT_ANSWER = 'TEXT_OPPONENT_CORRECT_ANSWER';
@@ -108,12 +110,14 @@ export const TEXT_SHOW_DETAILS= 'TEXT_SHOW_DETAILS';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_SAVE]: 'Zapisz',
+        [TEXT_CLEAR]: 'Wyczyść',
         [TEXT_TEAM_ADD]: 'Dodaj do drużyny',
         [TEXT_TEAM_REMOVE]: 'Usuń z drużyny',
         [TEXT_SHOW_DETAILS]: 'Pokaż szczegóły',
         [TEXT_ALREADY_IN_TEAM]: 'Jest w drużynie',
         [TEXT_EDIT]: 'Edytuj',
-        [TEXT_WISIES_TEAM]: 'Drużyna Wiedzaków',
+        [TEXT_WISIES_TEAM]: 'Drużyna wiedzaków',
         [TEXT_SHOW]: 'Pokaż',
         [TEXT_HIDE]: 'Ukryj',
         [TEXT_SKILL]: 'Umiejętności',
@@ -213,6 +217,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_SAVE]: 'Save',
+        [TEXT_CLEAR]: 'Clear',
         [TEXT_TEAM_ADD]: 'Add to team',
         [TEXT_TEAM_REMOVE]: 'Remove from team',
         [TEXT_SHOW_DETAILS]: 'Show details',

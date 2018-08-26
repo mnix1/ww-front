@@ -15,6 +15,9 @@ export default class Timer extends React.PureComponent {
         showDigital: PropTypes.bool,
         showChart: PropTypes.bool,
         showAnalog: PropTypes.bool,
+        digitalFillHours0: PropTypes.bool,
+        digitalSeconds: PropTypes.bool,
+        digitalMinutes: PropTypes.bool,
         className: PropTypes.string,
         onDone: PropTypes.func
     };
@@ -23,6 +26,9 @@ export default class Timer extends React.PureComponent {
         work: true,
         down: true,
         to: 0,
+        digitalFillHours0: true,
+        digitalSeconds: true,
+        digitalMinutes: true,
         showDigital: false,
         showChart: true,
         showAnalog: false,
@@ -80,14 +86,17 @@ export default class Timer extends React.PureComponent {
     };
 
     renderDigital() {
-        const {down} = this.props;
+        const {down, digitalMinutes, digitalSeconds, digitalFillHours0} = this.props;
         const {value} = this.state;
         const valueSeconds = down ? Math.ceil(value / 1000) : Math.floor(value / 1000);
         const hours = Math.floor(valueSeconds / 3600);
         const minutes = Math.floor((valueSeconds - hours * 3600) / 60);
         const seconds = Math.floor(valueSeconds - hours * 3600 - minutes * 60);
         const formatter = (e) => e === 0 ? '00' : e < 10 ? `0${e}` : e;
-        return <span>{formatter(hours)}h {formatter(minutes)}m {formatter(seconds)}s</span>
+        const h = <span>{digitalFillHours0 ? formatter(hours) : hours}h</span>;
+        const m = digitalMinutes && <span>{formatter(minutes)}m</span>;
+        const s = digitalSeconds && <span>{formatter(seconds)}s</span>;
+        return <span>{h} {m} {s}</span>
     }
 
     renderAnalog() {

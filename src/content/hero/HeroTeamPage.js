@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_WISIES_TEAM,} from "../../lang/text";
+import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
@@ -10,7 +10,7 @@ import FaEdit from "react-icons/lib/fa/edit";
 import FaEraser from "react-icons/lib/fa/eraser";
 import MdSave from "react-icons/lib/md/save";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
-import {Button} from "../../component/button/Button";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {push, goBack} from "connected-react-router";
 import {WISIES_TEAM_EDIT_ROUTE} from "../routes";
 import {teamChanged, teamSaveChanged} from "../../redux/reducer/hero";
@@ -18,7 +18,7 @@ import {teamChanged, teamSaveChanged} from "../../redux/reducer/hero";
 class HeroTeamPage extends React.PureComponent {
     renderHeroes(heroes) {
         const maybeEmptyHeroes = _.take(_.flatten([heroes, _.fill(Array(HERO_TEAM_COUNT), null)]), HERO_TEAM_COUNT);
-        return <div className='justifyCenter'>
+        return <div className='justifyCenter flexWrap'>
             {maybeEmptyHeroes.map((e, i) => _.isNil(e) ? this.renderEmptySlot(i) : this.renderHero(e))}
         </div>;
     }
@@ -45,9 +45,12 @@ class HeroTeamPage extends React.PureComponent {
             return <Button onClick={() => onTeamEditClick(inTeamHeroes)} icon={<FaEdit size={16}/>}/>;
         }
         return <div>
-            <Button onClick={onRouteBack} icon={<FaTimesCircle size={16}/>}/>
-            <Button onClick={onEraseTeamClick} icon={<FaEraser size={16}/>}/>
-            <Button onClick={onTeamSaveClick} icon={<MdSave size={16}/>}/>
+            <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onRouteBack}
+                    icon={<FaTimesCircle size={16}/>}>{getText(TEXT_CANCEL)}</Button>
+            <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEraseTeamClick}
+                    icon={<FaEraser size={16}/>}>{getText(TEXT_CLEAR)}</Button>
+            <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onTeamSaveClick}
+                    icon={<MdSave size={16}/>}>{getText(TEXT_SAVE)}</Button>
         </div>
     }
 

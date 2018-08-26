@@ -44,13 +44,25 @@ class HeroListPage extends React.PureComponent {
     renderHeroEdit(hero) {
         const {team, onTeamAddClick, onHeroDetailsClick, onTeamRemoveClick} = this.props;
         const isInTeam = _.some(team, (e) => e.id === hero.id);
-        return <Hero key={hero.type} style={{width: this.heroWidth}} {...hero}>
+        return <Hero key={hero.type} className='pointer' style={{width: this.heroWidth}}
+                     onClick={() => isInTeam
+                         ? onTeamRemoveClick(team, hero)
+                         : team.length < HERO_TEAM_COUNT
+                             ? onTeamAddClick(team, hero)
+                             : _.noop}
+                     {...hero}>
             <div className='left'>
-                {!isInTeam && <Button onClick={() => onTeamAddClick(team, hero)}
+                {!isInTeam && <Button onClick={(e) => {
+                    e.stopPropagation();
+                    onTeamAddClick(team, hero);
+                }}
                                       disabled={team.length >= HERO_TEAM_COUNT}
                                       icon={<FaPlusCircle size={16}/>}/>
                 }
-                {isInTeam && <Button onClick={() => onTeamRemoveClick(team, hero)}
+                {isInTeam && <Button onClick={(e) => {
+                    e.stopPropagation();
+                    onTeamRemoveClick(team, hero);
+                }}
                                      icon={<FaMinusCircle size={16}/>}/>
                 }
                 <Button onClick={() => onHeroDetailsClick(hero)} icon={<MdDescription size={16}/>}/>
@@ -69,7 +81,7 @@ class HeroListPage extends React.PureComponent {
     }
 
     render() {
-        const {heroListRep, profileHeroListRep, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
+        const {heroListRep, edit, profileHeroListRep, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
         if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
             return <Loading/>;
         }
@@ -86,7 +98,7 @@ class HeroListPage extends React.PureComponent {
                 <div className='title textAlignCenter'>{getText(TEXT_OWNED_WISIES)}</div>
                 {this.renderHeroes(_.chunk(ownedHeroes, groupCount))}
             </div>}
-            {!_.isEmpty(notOwnedHeroes) && <div className='contentFragment'>
+            {!_.isEmpty(notOwnedHeroes) && !edit && <div className='contentFragment'>
                 <div className='title justifyCenter'>
                     <div className='pointer'
                          onClick={() => onToggleShowNotOwnedClick(showNotOwned)}>
