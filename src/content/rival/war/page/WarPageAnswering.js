@@ -3,15 +3,16 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import Task from "../../../../component/task/Task";
 import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/war";
-import Profiles from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import Timer from "../../../../component/timer/Timer";
 import {getText, TEXT_TIME} from "../../../../lang/text";
 import ActiveHeroes from "../../component/ActiveHeroes";
+import Hero from "../../../../component/hero/Hero";
+import Profile from "../../../../component/profile/Profile";
 
 class WarPageAnswering extends React.PureComponent {
 
-    renderTask() {
+    renderTaskActive() {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
         return <Task
@@ -35,12 +36,35 @@ class WarPageAnswering extends React.PureComponent {
         />;
     }
 
+    renderTaskNotActive() {
+        const {content, screen} = this.props;
+        const {task, team, activeIndex, opponentTeam, opponentActiveIndex} = content;
+        return <div>
+            <div className='pageHeader'>
+                <Hero {...team[activeIndex - 1]} renderDetails={true} renderHobbies={false} isOwned={true}/>
+                {opponentActiveIndex === 0
+                    ? <Profile {...content.opponent}/>
+                    : <Hero {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true} renderHobbies={false}
+                            isOwned={true}/>
+                }
+            </div>
+            <Task
+                screen={{...screen, contentHeight: screen.contentHeight - 200}}
+                skipAnimation={true}
+                question={task}
+                answers={task.answers}
+            />
+        </div>;
+    }
+
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnswering'>
-            <TaskDescription content={content} className='contentHeader'><div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div></TaskDescription>
+            <TaskDescription content={content} className='pageHeader'>
+                <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
+            </TaskDescription>
             <ActiveHeroes content={content} className='absolute'/>
-            {this.renderTask()}
+            {content.activeIndex === 0 ? this.renderTaskActive() : this.renderTaskNotActive()}
         </div>;
     }
 }

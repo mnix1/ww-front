@@ -17,7 +17,7 @@ class BattlePageClosed extends React.PureComponent {
     render() {
         const {content, profile} = this.props;
         const {winnerTag, resigned} = content;
-        if(_.isNil(winnerTag)){
+        if(_.isNil(winnerTag) || winnerTag === ''){
             return <div className='pageContent battlePageClosed'>
                 <div className='pageHeader'>
                     {getText(TEXT_BATTLE_OVER)}

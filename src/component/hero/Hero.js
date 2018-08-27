@@ -36,7 +36,7 @@ export default class Hero extends React.PureComponent {
     };
 
     renderHeroDetailsNotOwned() {
-        const {hobbies} = this.props;
+        const {hobbies, renderHobbies} = this.props;
         const name = getName(this.props);
         return <div className='heroDetails paddingRem relative justifyBetween'>
             <div className='absoluteBackgroundMix inlineBlock'/>
@@ -45,10 +45,10 @@ export default class Hero extends React.PureComponent {
                 {this.renderValue()}
             </div>
             <div className='hobbies justifyCenter flexColumn relative'>
-                <div className='hobbies justifyCenter '>
+                {renderHobbies && <div className='hobbies justifyCenter '>
                     {hobbies.map(e => <img alt='' className='hobby' key={e} height={20}
                                            src={getCategory(e)}/>)}
-                </div>
+                </div>}
             </div>
 
         </div>;
