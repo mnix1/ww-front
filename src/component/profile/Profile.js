@@ -19,12 +19,14 @@ export default class Profile extends React.PureComponent {
         children: PropTypes.node,
         imgHeight: PropTypes.number,
         style: PropTypes.object,
-        onClick: PropTypes.func
+        onClick: PropTypes.func,
+        isActive: PropTypes.bool,
     };
 
     static defaultProps = {
         imgHeight: 80,
         className: '',
+        isActive: false,
         onClick: _.noop
     };
 
@@ -34,8 +36,10 @@ export default class Profile extends React.PureComponent {
     }
 
     render() {
-        const {heroType, onClick, isOnline, name, tag, children, imgHeight, className, style} = this.props;
-        return <div onClick={onClick} key={tag} className={`profileContainer inlineBlock marginRem paddingRem boxShadow ${className}`} style={style}>
+        const {heroType, onClick, isOnline, name, tag, children, imgHeight, className, style, isActive} = this.props;
+        return <div onClick={onClick} key={tag}
+                    className={`profileContainer inlineBlock marginRem paddingRem boxShadow ${isActive ? 'active' : ''} ${className}`}
+                    style={style}>
             {children}
             <div className='profile justifyBetween'>
                 <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>

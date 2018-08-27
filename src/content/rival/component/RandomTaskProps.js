@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Anime} from "../../../component/anime/Anime";
-import {getText, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT} from "../../../lang/text";
+import {getText, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT, TEXT_QUESTION} from "../../../lang/text";
 import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
 import {CATEGORY_RANDOM} from "../../../util/categoryHelper";
@@ -20,7 +20,7 @@ class RandomTaskProps extends React.PureComponent {
             targetAsChildProp={null}
             targetTransformer={(t) => ({selectedId: targetSelectedIdValue <= t.selectedId ? targetCategory : objectsCategory[Math.floor((t.selectedId) % objectsCategory.length)].id})}
             from={{selectedId: 0}}
-            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 5000, delay: 1000}}}>
+            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 4000, delay: 500}}}>
             <SimpleObjectGroup
                 objects={objectsCategory}
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
@@ -37,13 +37,14 @@ class RandomTaskProps extends React.PureComponent {
             targetAsChildProp={null}
             targetTransformer={(t) => ({value: targetSelectedIdValue <= t.value ? targetDifficult : objectsDifficult[Math.floor((t.value) % objectsDifficult.length)]})}
             from={{value: 0}}
-            to={{value: {value: targetSelectedIdValue * 1.5, duration: 5000, delay: 0}}}>
+            to={{value: {value: targetSelectedIdValue * 1.5, duration: 4000, delay: 500}}}>
             {<Rating/>}
         </Anime>;
     }
 
     render() {
-        return <div>
+        const {className} = this.props;
+        return <div className={className}>
             {this.props.children}
             <div className='pageHeader'>
                 <div>{getText(TEXT_DRAW_DIFFICULT)}</div>

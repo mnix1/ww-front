@@ -23,11 +23,13 @@ export default class Hero extends React.PureComponent {
         stats: PropTypes.node,
         renderHobbies: PropTypes.bool,
         renderDetails: PropTypes.bool,
+        isActive: PropTypes.bool
     };
 
     static defaultProps = {
         renderHobbies: true,
         renderDetails: true,
+        isActive: false,
         imgHeight: 100,
         className: '',
         onClick: _.noop
@@ -77,9 +79,9 @@ export default class Hero extends React.PureComponent {
     }
 
     render() {
-        const {onClick, style, type, isOwned, imgHeight, stats, children, className, renderDetails} = this.props;
+        const {onClick, style, type, isOwned, imgHeight, stats, children, className, renderDetails, isActive} = this.props;
         return <div
-            className={`hero marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'}`}
+            className={`hero marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'} ${isActive ? 'active' : ''}`}
             style={style}>
             <div onClick={onClick} key={type}>
                 <div className=' justifyCenter flexColumn'>

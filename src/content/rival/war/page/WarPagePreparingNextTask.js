@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/text";
 import Timer from "../../../../component/timer/Timer";
 import TaskDescription from "../../component/TaskDescription";
-import Profiles from "../../component/Profiles";
+import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPagePreparingNextTask extends React.PureComponent {
 
@@ -17,7 +17,7 @@ class WarPagePreparingNextTask extends React.PureComponent {
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>
-            <Profiles content={content} className='absolute'/>
+            <ActiveHeroes content={content} className='absolute'/>
         </div>;
     }
 }

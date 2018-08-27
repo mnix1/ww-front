@@ -24,14 +24,14 @@ export class ProfilesComponent extends React.PureComponent {
         if (!content) {
             return;
         }
-        return <div className={`profiles ${className}`}>
+        return <div className={`profiles width100 justifyBetween ${className}`}>
             <div className='profile'>
                 {this.renderProfile(profile, content.score, scoreColor)}
             </div>
             <div className='opponentProfile'>
                 {this.renderProfile(content.opponent, content.opponentScore, opponentScoreColor)}
             </div>
-        </div>
+        </div>;
     }
 }
 

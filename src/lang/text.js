@@ -10,6 +10,7 @@ export const TEXT_NOT_CHOSEN_TASK_PROPS = 'TEXT_NOT_CHOSEN_TASK_PROPS';
 export const TEXT_CONTINUE = 'TEXT_CONTINUE';
 export const TEXT_CATEGORY = 'TEXT_CATEGORY';
 export const TEXT_DIFFICULT = 'TEXT_DIFFICULT';
+export const TEXT_DRAW_WHO_ANSWER = 'TEXT_DRAW_WHO_ANSWER';
 export const TEXT_DRAW_CATEGORY = 'TEXT_DRAW_CATEGORY';
 export const TEXT_DRAW_DIFFICULT = 'TEXT_DRAW_DIFFICULT';
 export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
@@ -112,6 +113,7 @@ export const TEXT_WAR_OVER= 'TEXT_WAR_OVER';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_DRAW_WHO_ANSWER]: 'Losowanie odpowiadającego',
         [TEXT_WAR]: 'Wojna',
         [TEXT_WAR_OVER]: 'Koniec wojny!',
         [TEXT_SAVE]: 'Zapisz',
@@ -221,6 +223,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_DRAW_WHO_ANSWER]: 'Drawing of the responder',
         [TEXT_WAR]: 'War',
         [TEXT_WAR_OVER]: 'War is over',
         [TEXT_SAVE]: 'Save',

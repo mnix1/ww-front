@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Profiles from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_NO_ANSWER} from "../../../../lang/text";
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import TaskWithoutActions from "../../component/TaskWithoutActions";
+import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPageAnsweringTimeout extends React.PureComponent {
 
@@ -23,7 +23,7 @@ class WarPageAnsweringTimeout extends React.PureComponent {
         const {content} = this.props;
         return <div className='pageContent warPageAnsweringTimeout'>
             <TaskDescription content={content} className='contentHeader'/>
-            <Profiles content={content} className='absolute'/>
+            <ActiveHeroes content={content} className='absolute'/>
             {this.renderNoAnswer()}
             <TaskWithoutActions content={content}/>
             <TaskMarkedAnswer content={content}/>

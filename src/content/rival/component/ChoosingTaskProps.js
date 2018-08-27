@@ -29,7 +29,7 @@ class ChoosingTaskProps extends React.PureComponent {
     renderHorizontally() {
         const {content, communication, category, acceptMsg, difficultyLevel} = this.props;
         return <div>
-            <div className='choosingTaskProps'>
+            <div className='choosingTaskProps justifyCenter'>
                 <div>
                     <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
                     {this.renderChooseDifficult()}

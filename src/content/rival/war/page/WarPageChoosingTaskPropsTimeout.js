@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
 import {getText, TEXT_NOT_CHOSEN_TASK_PROPS} from "../../../../lang/text";
+import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPageChoosingTaskPropsTimeout extends React.PureComponent {
 
@@ -20,7 +21,7 @@ class WarPageChoosingTaskPropsTimeout extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageChosenTaskProps'>
-            <Profiles content={content} className='absolute'/>
+            <ActiveHeroes content={content} className='absolute'/>
             {this.renderContent()}
         </div>;
     }

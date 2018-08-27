@@ -2,6 +2,10 @@
     /*opacity: 0.5;*/
 }
 
+.hero.active {
+    background: rgb(40, 121, 218);
+}
+
 .hero .heroDetails .absoluteBackgroundMix {
     background: #888;
 }

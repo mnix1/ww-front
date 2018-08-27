@@ -61,8 +61,8 @@ class BattlePageAnswered extends React.PureComponent {
             targetAsChildProp={null}
             from={{score: content.score, opponentScore: content.opponentScore, opponent: content.opponent}}
             to={{
-                score: {value: content.newScore, duration: 1000, delay: 7000},
-                opponentScore: {value: content.newOpponentScore, duration: 1000, delay: 7000}
+                score: {value: content.newScore, duration: 1500, delay: 5000},
+                opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 5000}
             }}>
             <ProfilesComponent content={content} className={'absolute'} profile={profile} screen={screen} scoreColor={scoreColor}
                                opponentScoreColor={opponentScoreColor}/>

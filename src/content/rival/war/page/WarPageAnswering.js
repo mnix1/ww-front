@@ -7,6 +7,7 @@ import Profiles from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import Timer from "../../../../component/timer/Timer";
 import {getText, TEXT_TIME} from "../../../../lang/text";
+import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPageAnswering extends React.PureComponent {
 
@@ -38,7 +39,7 @@ class WarPageAnswering extends React.PureComponent {
         const {content} = this.props;
         return <div className='pageContent warPageAnswering'>
             <TaskDescription content={content} className='contentHeader'><div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div></TaskDescription>
-            <Profiles content={content} className='absolute'/>
+            <ActiveHeroes content={content} className='absolute'/>
             {this.renderTask()}
         </div>;
     }

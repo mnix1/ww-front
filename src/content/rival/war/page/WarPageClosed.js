@@ -11,6 +11,7 @@ import Profiles from "../../component/Profiles";
 import Profile from "../../../../component/profile/Profile";
 import trophy from '../../../../media/image/icon/trophy.svg';
 import _ from 'lodash';
+import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPageClosed extends React.PureComponent {
 
@@ -23,7 +24,7 @@ class WarPageClosed extends React.PureComponent {
                     {getText(TEXT_WAR_OVER)}
                     {` ${getText(TEXT_DRAW)}`}
                 </div>
-                <Profiles content={content} className='absolute'/>
+                <ActiveHeroes content={content} className='absolute'/>
             </div>;
         }
         const meWinner = winnerTag === profile.tag;

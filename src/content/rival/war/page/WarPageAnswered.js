@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Profile from "../../../../component/profile/Profile";
 import {Anime} from "../../../../component/anime/Anime";
-import {ProfilesComponent} from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/text";
 import thumbUp from '../../../../media/image/icon/thumbUp.svg';
@@ -10,6 +9,7 @@ import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
+import Profiles from "../../component/Profiles";
 
 class WarPageAnswered extends React.PureComponent {
 
@@ -61,10 +61,10 @@ class WarPageAnswered extends React.PureComponent {
             targetAsChildProp={null}
             from={{score: content.score, opponentScore: content.opponentScore, opponent: content.opponent}}
             to={{
-                score: {value: content.newScore, duration: 1000, delay: 7000},
-                opponentScore: {value: content.newOpponentScore, duration: 1000, delay: 7000}
+                score: {value: content.newScore, duration: 1500, delay: 5000},
+                opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 5000}
             }}>
-            <ProfilesComponent content={content} className={'absolute'} profile={profile} screen={screen} scoreColor={scoreColor}
+            <Profiles content={content} className={'absolute'} profile={profile} screen={screen} scoreColor={scoreColor}
                                opponentScoreColor={opponentScoreColor}/>
         </Anime>;
     }

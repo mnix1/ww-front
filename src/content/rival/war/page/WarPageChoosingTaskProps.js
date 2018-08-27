@@ -10,6 +10,7 @@ import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
 import {categoryChanged, difficultLevelChanged} from "../../../../redux/reducer/war";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
+import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPageChoosingTaskProps extends React.PureComponent {
 
@@ -51,7 +52,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
         const {content} = this.props;
         const {choosingTaskPropsTag} = content;
         return <div className='pageContent warPageChoosingTaskProps'>
-            <Profiles content={content} className='absolute'/>
+            <ActiveHeroes content={content} className='absolute'/>
             {!_.isNil(choosingTaskPropsTag) && <TaskDescription content={content} className='pageHeader' taskId={content.taskId}/>}
             {this.renderContent()}
         </div>;

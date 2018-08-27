@@ -1,7 +1,7 @@
-.warPage .profiles {
-    width: 100%;
+.warPage .pageContent {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    flex-direction: column;
 }
 
 .warPage .profiles .profile {
@@ -20,6 +20,7 @@
     /*padding: 0.25rem;*/
     /*border-radius: 0.5rem;*/
 }
+
 .warPage .showOptions {
     position: fixed;
     cursor: pointer;
@@ -28,36 +29,28 @@
     padding: 0.25rem;
 }
 
-.warPage .pageContent {
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-}
-
-.warPage .introProfiles {
-    display: flex;
-    justify-content: center;
-    margin-top: 0.5rem;
-}
-
 .warPage .warPageIntroHeader {
     font-size: 1rem;
-}
-
-.warPage .warPageIntro {
-    min-height: 80vh;
-}
-
-.warPage .warPageIntro .introRandomDifficult {
-    min-height: 60px;
-}
-
-.warPage .warPageIntro .introRandomCategory {
 }
 
 .warPage .sleep {
     vertical-align: middle;
     margin: 0.25rem;
+}
+
+.warPage .choosingTaskProps .timeWithSeal {
+    z-index: 1;
+    margin-left: 1rem;
+}
+
+.warPage .choosingTaskProps .timeWithSeal .time {
+    z-index: 1;
+}
+
+.warPage .seal {
+    vertical-align: middle;
+    margin-left: 0.25rem;
+    cursor: pointer;
 }
 
 @keyframes fadein {
@@ -78,30 +71,62 @@
     }
 }
 
-.warPage .choosingTaskProps {
-    display: flex;
-    justify-content: center;
+.warPage .warPageIntro .title {
+    opacity: 0;
+    animation: fadein 0.5s 0s, fadeout 0.5s 5s;
+    animation-fill-mode: forwards;
 }
 
-.warPage .choosingTaskProps .timeWithSeal {
-    z-index: 1;
-    margin-left: 1rem;
+.warPage .warPageIntro .team {
+    opacity: 0;
+    animation: fadein 0.5s 1s, fadeout 0.5s 5s;
+    animation-fill-mode: forwards;
 }
 
-.warPage .choosingTaskProps .timeWithSeal .time {
-    /*padding-left: 1rem;*/
-    z-index: 1;
+.warPage .warPageIntro .task {
+    opacity: 0;
+    animation: fadein 0.5s 0s, fadeout 0.5s 9s;
+    animation-fill-mode: forwards;
 }
 
-.warPage .seal {
-    vertical-align: middle;
-    margin-left: 0.25rem;
-    cursor: pointer;
+.warPage .warPageIntro .drawWhoAnswer {
+    opacity: 0;
+    animation: fadein 0.5s 1s, fadeout 0.5s 9s;
+    animation-fill-mode: forwards;
+}
+
+.warPage .warPageIntro .randomTeamHero1 {
+    opacity: 0;
+    animation: fadein 0.5s 2s, fadeout 0.5s 9s;
+    animation-fill-mode: forwards;
+}
+.warPage .warPageIntro .randomTeamHero2 {
+    opacity: 0;
+    animation: fadein 0.5s 5s, fadeout 0.5s 9s;
+    animation-fill-mode: forwards;
+}
+
+.warPage .warPageIntro .profiles {
+    opacity: 0;
+    animation: fadein 0.5s 0s;
+    animation-fill-mode: forwards;
+}
+
+.warPage .warPageIntro .taskProps {
+    opacity: 0;
+    animation: fadein 0.5s 0s;
+    animation-fill-mode: forwards;
+}
+
+.warPage .taskProps .profiles {
+    opacity: 0;
+    animation: fadein 0.5s 0s;
+    animation-fill-mode: forwards;
 }
 
 .warPage .whoAnswered {
     opacity: 0;
-    animation: fadein 1s 1s, fadeout 1s 6s;
+    animation: fadein 0.5s 0.5s, fadeout 0.5s 4s;
     animation-fill-mode: forwards;
 }
 
@@ -111,18 +136,18 @@
 
 .warPage .whoAnswered .result {
     opacity: 0;
-    animation: fadein 1s 4s;
+    animation: fadein 0.5s 2s;
     animation-fill-mode: forwards;
 }
 
 .warPage .emptyTask {
     opacity: 1;
-    animation: fadeout 1s;
+    animation: fadeout 0.5s;
     animation-fill-mode: forwards;
 }
 
 .warPage .taskWithAnswer {
     opacity: 0;
-    animation: fadein 1s 6s;
+    animation: fadein 0.5s 4s;
     animation-fill-mode: forwards;
 }
