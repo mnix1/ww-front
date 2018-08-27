@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import {reducer as fetchReducer} from 'react-redux-fetch';
 import profile from "./reducer/profile";
 import battle from "./reducer/battle";
+import war from "./reducer/war";
 import challenge from "./reducer/challenge";
 import friend from "./reducer/friend";
 import socket from "./reducer/socket";
@@ -13,6 +14,7 @@ import hero from "./reducer/hero";
 const app = combineReducers({
     profile,
     battle,
+    war,
     challenge,
     shop,
     friend,

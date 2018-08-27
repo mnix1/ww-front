@@ -21,6 +21,7 @@ export const TEXT_CLICK_ON_ANY_TO_CONTINUE = 'TEXT_CLICK_ON_ANY_TO_CONTINUE';
 export const TEXT_CORRECT_ANSWER = 'TEXT_CORRECT_ANSWER';
 export const TEXT_IS_CORRECT = 'TEXT_IS_CORRECT';
 export const TEXT_TIME = 'TEXT_TIME';
+export const TEXT_WAR = 'TEXT_WAR';
 export const TEXT_WRONG_ANSWER = 'TEXT_WRONG_ANSWER';
 export const TEXT_IS_WRONG = 'TEXT_IS_WRONG';
 export const TEXT_FRIENDS = 'TEXT_FRIENDS';
@@ -106,10 +107,13 @@ export const TEXT_ALREADY_IN_TEAM= 'TEXT_ALREADY_IN_TEAM';
 export const TEXT_TEAM_ADD= 'TEXT_TEAM_ADD';
 export const TEXT_TEAM_REMOVE= 'TEXT_TEAM_REMOVE';
 export const TEXT_SHOW_DETAILS= 'TEXT_SHOW_DETAILS';
+export const TEXT_WAR_OVER= 'TEXT_WAR_OVER';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_WAR]: 'Wojna',
+        [TEXT_WAR_OVER]: 'Koniec wojny!',
         [TEXT_SAVE]: 'Zapisz',
         [TEXT_CLEAR]: 'Wyczyść',
         [TEXT_TEAM_ADD]: 'Dodaj do drużyny',
@@ -217,6 +221,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_WAR]: 'War',
+        [TEXT_WAR_OVER]: 'War is over',
         [TEXT_SAVE]: 'Save',
         [TEXT_CLEAR]: 'Clear',
         [TEXT_TEAM_ADD]: 'Add to team',

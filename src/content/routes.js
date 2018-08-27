@@ -11,6 +11,9 @@ export const PROFILE_ROUTE = '/profile';
 export const BATTLE_ROUTE = '/battle';
 export const BATTLE_FAST_ROUTE = '/battleFast';
 
+export const WAR_ROUTE = '/war';
+export const WAR_FAST_ROUTE = '/warFast';
+
 export const CHALLENGE_FAST_ROUTE = '/challengeFast';
 export const CHALLENGE_FRIEND_ROUTE = '/challengeFriend';
 export const CHALLENGE_RESPONSE_ROUTE = '/challengeResponse';

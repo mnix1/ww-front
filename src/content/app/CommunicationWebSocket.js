@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
 import {battleCleared, battleInviteCancelled, battleInvited, statusChanged} from "../../redux/reducer/battle";
-import {clearBattleStartFriendFetch} from "../battle/fetch/BattleStartFriendFetch";
+import {clearBattleStartFriendFetch} from "../rival/battle/fetch/BattleStartFriendFetch";
 import {BATTLE_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/battleHelper";
 import {push} from 'connected-react-router'
 import {BATTLE_ROUTE} from "../routes";

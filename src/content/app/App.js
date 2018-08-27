@@ -9,9 +9,9 @@ import FriendPage from "../friend/FriendPage";
 import FriendListFetch from "../friend/fetch/FriendListFetch";
 import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
-import InvitedToBattleBy from "../battle/invite/InvitedToBattleBy";
-import InviteToBattle from "../battle/invite/InviteToBattle";
-import BattleFetchContainer from "../battle/fetch/BattleFetchContainer";
+import InvitedToBattleBy from "../rival/battle/invite/InvitedToBattleBy";
+import InviteToBattle from "../rival/battle/invite/InviteToBattle";
+import BattleFetchContainer from "../rival/battle/fetch/BattleFetchContainer";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
 import play from '../../media/image/icon/play.svg';
 import friend from '../../media/image/icon/friend.svg';
@@ -37,6 +37,8 @@ import {
     SHOP_ROUTE,
     TRAINING_ROUTE,
     TRAINING_TASK_ROUTE,
+    WAR_FAST_ROUTE,
+    WAR_ROUTE,
     WISIES_ROUTE
 } from "../routes";
 import ChallengeFriendPage from "../challenge/create/ChallengeFriendPage";
@@ -48,10 +50,10 @@ import ChallengeListPage from "../challenge/list/ChallengeListPage";
 import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
 import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
-import BattlePage from "../battle/page/BattlePage";
+import BattlePage from "../rival/battle/page/BattlePage";
 import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
-import BattleFastPage from "../battle/fast/BattleFastPage";
-import BattleCommunication from "../battle/BattleCommunication";
+import BattleFastPage from "../rival/battle/fast/BattleFastPage";
+import BattleCommunication from "../rival/battle/BattleCommunication";
 import {
     BATTLE_STATUS_IN_PROGRESS,
     BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
@@ -65,30 +67,45 @@ import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./ProfileFetch";
 import HeroFetchContainer from "../hero/fetch/HeroFetchContainer";
 import WakeLock from "../../component/wake-lock/WakeLock";
+import WarFastPage from "../rival/war/fast/WarFastPage";
+import {WAR_STATUS_IN_PROGRESS, WAR_STATUS_READY_TO_BEGIN_FRIEND, WAR_STATUS_WAITING_FAST} from "../../util/warHelper";
+import WarFetchContainer from "../rival/war/fetch/WarFetchContainer";
+import WarCommunication from "../rival/war/WarCommunication";
+import WarPage from "../rival/war/page/WarPage";
 
 class App extends React.PureComponent {
 
     componentDidMount() {
         const socket = new CommunicationWebSocket();
         this.props.onInit(socket);
-        this.communication = new BattleCommunication(socket);
+        this.battleCommunication = new BattleCommunication(socket);
+        this.warCommunication = new WarCommunication(socket);
     }
 
     componentDidUpdate() {
-        const {path, battleStatus, onRouteChange} = this.props;
+        const {path, battleStatus, warStatus, onRouteChange} = this.props;
         if (path === BATTLE_ROUTE) {
             if (battleStatus === BATTLE_STATUS_WAITING_FAST) {
-                this.communication.readyFast();
+                this.battleCommunication.readyFast();
             } else if (battleStatus === BATTLE_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.communication.ready();
+                this.battleCommunication.ready();
             }
         } else if (battleStatus === BATTLE_STATUS_IN_PROGRESS) {
             onRouteChange(BATTLE_ROUTE);
+        } else if (path === WAR_ROUTE) {
+            if (warStatus === WAR_STATUS_WAITING_FAST) {
+                this.warCommunication.readyFast();
+            } else if (warStatus === WAR_STATUS_READY_TO_BEGIN_FRIEND) {
+                this.warCommunication.ready();
+            }
+        } else if (warStatus === WAR_STATUS_IN_PROGRESS) {
+            onRouteChange(WAR_ROUTE);
         }
     }
 
     componentWillUnmount() {
-        this.communication.dispose();
+        this.battleCommunication.dispose();
+        this.warCommunication.dispose();
     }
 
     renderMenuItem(route, imgSrc) {
@@ -125,8 +142,12 @@ class App extends React.PureComponent {
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
                 <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
                 <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
-                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.communication}/>}/>
+                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.battleCommunication}/>}/>
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <BattleFastPage/>}/>
+
+                <Route exact path={WAR_ROUTE} render={() => <WarPage communication={this.warCommunication}/>}/>
+                <Route exact path={WAR_FAST_ROUTE} render={() => <WarFastPage/>}/>
+
                 <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
@@ -144,6 +165,7 @@ class App extends React.PureComponent {
             <ProfileFetch/>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <BattleFetchContainer/>
+            <WarFetchContainer/>
             <ChallengeFetchContainer/>
             <HeroFetchContainer/>
             <ShopFetchContainer/>
@@ -154,6 +176,7 @@ class App extends React.PureComponent {
     canRenderInvitedToBattle() {
         const {path} = this.props;
         return path !== BATTLE_ROUTE
+            && path !== WAR_ROUTE
             && path !== TRAINING_TASK_ROUTE
             && path !== CHALLENGE_FAST_ROUTE
             && path !== CHALLENGE_RESPONSE_ROUTE
@@ -185,6 +208,7 @@ export default connect(
         screen: state.screen,
         friendListRep: state.repository.friendList,
         battleStatus: state.battle.status,
+        warStatus: state.war.status,
         profile: state.profile.profile,
         path: state.router.location.pathname,
     }),

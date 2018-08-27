@@ -6,12 +6,13 @@ import clock from '../../media/image/category/clock.png';
 import rubicCube from '../../media/image/icon/rubicCube.svg';
 import notebook from '../../media/image/icon/notebook.svg';
 import practise from '../../media/image/icon/practise.svg';
+import granade from '../../media/image/icon/granade.svg';
 import {
     BATTLE_FAST_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_LIST_ROUTE,
-    TRAINING_ROUTE
+    TRAINING_ROUTE, WAR_FAST_ROUTE
 } from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
@@ -20,9 +21,12 @@ import {CHALLENGE_STATUS_START} from "../../util/challengeHelper";
 import {challengeCleared, statusChanged as challengeStatusChanged  } from "../../redux/reducer/challenge";
 import _ from 'lodash';
 import {clearChallengeTaskAndStartFetch} from "../challenge/fetch/ChallengeFetchContainer";
-import {clearBattleStartFastFetch} from "../battle/fetch/BattleStartFastFetch";
+import {clearBattleStartFastFetch} from "../rival/battle/fetch/BattleStartFastFetch";
 import {battleCleared, statusChanged as battleStatusChanged} from "../../redux/reducer/battle";
 import {BATTLE_STATUS_START_FAST} from "../../util/battleHelper";
+import {warCleared, statusChanged as warStatusChanged} from "../../redux/reducer/war";
+import {clearWarStartFastFetch} from "../rival/war/fetch/WarStartFastFetch";
+import {WAR_STATUS_START_FAST} from "../../util/warHelper";
 
 class PlayPage extends React.PureComponent {
 
@@ -39,10 +43,11 @@ class PlayPage extends React.PureComponent {
     }
 
     renderMenu() {
-        const {onChallengeFastClick, onBattleFastClick} = this.props;
+        const {onChallengeFastClick, onBattleFastClick, onWarFastClick} = this.props;
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
+                    {this.renderMenuItem(WAR_FAST_ROUTE, granade, onWarFastClick)}
                     {this.renderMenuItem(BATTLE_FAST_ROUTE, dices, onBattleFastClick)}
                     {this.renderMenuItem(TRAINING_ROUTE, practise)}
                 </div>
@@ -86,6 +91,11 @@ export default connect(
             clearBattleStartFastFetch(dispatch);
             dispatch(battleCleared());
             dispatch(battleStatusChanged(BATTLE_STATUS_START_FAST));
+        },
+        onWarFastClick: () => {
+            clearWarStartFastFetch(dispatch);
+            dispatch(warCleared());
+            dispatch(warStatusChanged(WAR_STATUS_START_FAST));
         },
         onRouteChange: (e) => {
             dispatch(push(e));
