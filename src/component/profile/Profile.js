@@ -21,12 +21,16 @@ export default class Profile extends React.PureComponent {
         style: PropTypes.object,
         onClick: PropTypes.func,
         isActive: PropTypes.bool,
+        renderDetailsHorizontal: PropTypes.bool,
+        blackBackground: PropTypes.bool,
     };
 
     static defaultProps = {
         imgHeight: 80,
         className: '',
         isActive: false,
+        renderDetailsHorizontal: false,
+        blackBackground: false,
         onClick: _.noop
     };
 
@@ -35,24 +39,41 @@ export default class Profile extends React.PureComponent {
         return actions;
     }
 
+    renderDetails() {
+        const {isOnline, name, tag} = this.props;
+        return <div className='details justifyBetween relative flexColumn'>
+            {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
+            {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
+            <div>
+                {name && <div className='name'>{name}</div>}
+                {tag && <div className='tag'>#{tag}</div>}
+            </div>
+        </div>;
+    }
+
+    renderContent() {
+        const {heroType, imgHeight, renderDetailsHorizontal} = this.props;
+        if (renderDetailsHorizontal) {
+            return <div className='profile justifyBetween flexColumn'>
+                {this.renderDetails()}
+                <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
+                {this.renderActions()}
+            </div>;
+        }
+        return <div className='profile justifyBetween'>
+            <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
+            {this.renderDetails()}
+            {this.renderActions()}
+        </div>;
+    }
+
     render() {
-        const {heroType, onClick, isOnline, name, tag, children, imgHeight, className, style, isActive} = this.props;
+        const {onClick, tag, children, className, style, isActive, blackBackground} = this.props;
         return <div onClick={onClick} key={tag}
-                    className={`profileContainer inlineBlock marginRem paddingRem boxShadow ${isActive ? 'active' : ''} ${className}`}
+                    className={`profileContainer inlineBlock marginRem paddingRem boxShadow ${isActive ? 'active' : ''} ${blackBackground ? 'blackBackground' : ''} ${className}`}
                     style={style}>
             {children}
-            <div className='profile justifyBetween'>
-                <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
-                <div className='details justifyBetween relative flexColumn'>
-                    {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
-                    {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
-                    <div>
-                        {name && <div className='name'>{name}</div>}
-                        {tag && <div className='tag'>#{tag}</div>}
-                    </div>
-                </div>
-                {this.renderActions()}
-            </div>
+            {this.renderContent()}
         </div>
     }
 

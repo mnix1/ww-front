@@ -3,7 +3,7 @@
 }
 
 .hero.active {
-    background: rgb(40, 121, 218);
+    background: rgb(40, 121, 218) !important;
 }
 
 .hero .heroDetails .absoluteBackgroundMix {

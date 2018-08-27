@@ -64,6 +64,10 @@
     display: flex;
     justify-content: flex-end;
 }
+.justifyStart {
+    display: flex;
+    justify-content: flex-start;
+}
 
 .justifyEvenly {
     display: flex;

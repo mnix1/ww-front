@@ -14,35 +14,37 @@ class ActiveHeroes extends React.PureComponent {
         return 60;
     }
 
-    renderProfile(profile, score, color) {
+    renderProfile(profile) {
         return <Profile {...profile} imgHeight={this.imgHeight}>
         </Profile>
     }
 
-    renderHero(hero, score, color) {
+    renderHero(hero) {
         return <Hero
+            isOwned={true}
+            renderHobbies={false}
             key={hero.type}
             imgHeight={this.imgHeight}
-            renderDetails={false}
+            renderDetails={true}
             {...hero}>
         </Hero>;
     }
 
-    renderProfileOrHero(profile, team, activeIndex, score, color) {
+    renderProfileOrHero(profile, team, activeIndex) {
         if (activeIndex === 0) {
-            return this.renderProfile(profile, score, color);
+            return this.renderProfile(profile);
         }
-        return this.renderHero(team[activeIndex - 1], score, color);
+        return this.renderHero(team[activeIndex - 1]);
     }
 
     render() {
-        const {profile, content, className, scoreColor, opponentScoreColor} = this.props;
+        const {profile, content, className} = this.props;
         return <div className={`profiles width100 justifyBetween ${className}`}>
             <div className='profile'>
-                {this.renderProfileOrHero(profile, content.team, content.activeIndex, content.score, scoreColor)}
+                {this.renderProfileOrHero(profile, content.team, content.activeIndex)}
             </div>
             <div className='opponentProfile'>
-                {this.renderProfileOrHero(content.opponent, content.opponentTeam, content.opponentActiveIndex, content.opponentScore, opponentScoreColor)}
+                {this.renderProfileOrHero(content.opponent, content.opponentTeam, content.opponentActiveIndex)}
             </div>
         </div>;
     }

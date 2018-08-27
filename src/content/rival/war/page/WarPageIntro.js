@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Profile from "../../../../component/profile/Profile";
 import play from '../../../../media/image/icon/play.svg';
 import {getText, TEXT_DRAW_WHO_ANSWER, TEXT_QUESTION, TEXT_WAR} from "../../../../lang/text";
 import RandomTaskProps from "../../component/RandomTaskProps";
@@ -37,9 +36,10 @@ class WarPageIntro extends React.PureComponent {
     renderTeamBig() {
         const {profile, content} = this.props;
         return <div className='team justifyCenter flexColumn'>
-            <Team profile={profile} team={content.team}/>
+            <Team profile={profile} presentIndexes={content.presentIndexes} team={content.team}/>
             <img alt='' src={play} height={80}/>
-            <Team profile={content.opponent} team={content.opponentTeam}/>
+            <Team profile={content.opponent} presentIndexes={content.opponentPresentIndexes}
+                  team={content.opponentTeam}/>
         </div>;
     }
 
@@ -57,16 +57,18 @@ class WarPageIntro extends React.PureComponent {
                 <div className='pageHeader drawWhoAnswer'>{getText(TEXT_DRAW_WHO_ANSWER)}</div>
                 <RandomTeamHero
                     className='randomTeamHero1'
+                    presentIndexes={content.presentIndexes}
                     profile={profile}
                     team={content.team}
-                    targetId={content.activeIndex}
+                    targetIndex={content.activeIndex}
                     delay={3000} duration={2500}
                 />
                 <RandomTeamHero
                     className='randomTeamHero2'
+                    presentIndexes={content.opponentPresentIndexes}
                     profile={content.opponent}
                     team={content.opponentTeam}
-                    targetId={content.opponentActiveIndex}
+                    targetIndex={content.opponentActiveIndex}
                     delay={6000}
                     duration={2500}
                 />

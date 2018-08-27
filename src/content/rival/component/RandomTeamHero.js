@@ -12,17 +12,22 @@ import Team from "./Team";
 
 class RandomTeamHero extends React.PureComponent {
 
+    static defaultProps = {
+        presentIndexes: []
+    };
+
     renderRandomHero() {
-        const ids = [0, 1, 2, 3, 4];
-        const {screen, profile, team, targetId, delay, duration} = this.props;
+        const {screen, profile, team, targetIndex, presentIndexes, delay, duration} = this.props;
+        const ids = presentIndexes;
         const targetSelectedIdValue = ids.length * 7;
         return <Anime
             targetAsChildProp={null}
-            targetTransformer={(t) => ({activeId: targetSelectedIdValue <= t.activeId ? targetId : ids[Math.floor((t.activeId) % ids.length)]})}
-            from={{activeId: 0}}
-            to={{activeId: {value: targetSelectedIdValue * 1.5, duration: duration, delay: delay}}}>
+            targetTransformer={(t) => ({activeIndex: targetSelectedIdValue <= t.activeIndex ? targetIndex : ids[Math.floor((t.activeIndex) % ids.length)]})}
+            from={{activeIndex: 0}}
+            to={{activeIndex: {value: targetSelectedIdValue * 1.5, duration: duration, delay: delay}}}>
             <Team
                 profile={profile}
+                presentIndexes={presentIndexes}
                 team={team}
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
             />

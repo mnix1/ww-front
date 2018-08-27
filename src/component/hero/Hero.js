@@ -57,7 +57,7 @@ export default class Hero extends React.PureComponent {
     renderHeroDetailsOwned() {
         const {hobbies, renderHobbies} = this.props;
         const name = getName(this.props);
-        return <div className='heroDetails paddingRem justifyBetween'>
+        return <div className='heroDetails justifyBetween'>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter'>{name}</span>
                 {this.renderValue()}
@@ -73,7 +73,7 @@ export default class Hero extends React.PureComponent {
     renderValue() {
         const {value, isOwned} = this.props;
         return isOwned &&
-            <div className='' style={{fontSize: '0.8em', color: '#999'}}>
+            <div className='justifyStart' style={{fontSize: '0.8em', color: '#999'}}>
                 {toFixed2(value)}
             </div>;
     }
