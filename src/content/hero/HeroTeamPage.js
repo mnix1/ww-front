@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/text";
+import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_EDIT, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
-import {Loading} from "../../component/loading/Loading";
 import Hero from "../../component/hero/Hero";
 import {HERO_TEAM_COUNT} from "../../util/heroHelper";
 import FaEdit from "react-icons/lib/fa/edit";
@@ -11,7 +10,7 @@ import FaEraser from "react-icons/lib/fa/eraser";
 import MdSave from "react-icons/lib/md/save";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
-import {push, goBack} from "connected-react-router";
+import {goBack, push} from "connected-react-router";
 import {WISIES_TEAM_EDIT_ROUTE} from "../routes";
 import {teamChanged, teamSaveChanged} from "../../redux/reducer/hero";
 
@@ -42,7 +41,7 @@ class HeroTeamPage extends React.PureComponent {
     renderTeamActions(inTeamHeroes) {
         const {onTeamEditClick, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
         if (!edit) {
-            return <Button onClick={() => onTeamEditClick(inTeamHeroes)} icon={<FaEdit size={16}/>}/>;
+            return <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={() => onTeamEditClick(inTeamHeroes)} icon={<FaEdit size={16}/>}>{getText(TEXT_EDIT)}</Button>;
         }
         return <div>
             <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onRouteBack}
