@@ -135,7 +135,7 @@
 
 .warPage .whoAnswered {
     opacity: 0;
-    animation: fadein 0.5s 0.5s, fadeout 0.5s 4s;
+    animation: fadein 0.5s 0.5s, fadeout 0.5s 5s;
     animation-fill-mode: forwards;
 }
 
@@ -145,7 +145,7 @@
 
 .warPage .whoAnswered .wrongAnswer {
     opacity: 1;
-    animation: fadeouthalf 1s 2s;
+    animation: fadeouthalf 1s 3s;
     animation-fill-mode: forwards;
 }
 
@@ -157,12 +157,12 @@
 
 .warPage .emptyTask {
     opacity: 1;
-    animation: fadeout 0.5s;
+    animation: fadeout 0.6s;
     animation-fill-mode: forwards;
 }
 
 .warPage .taskWithAnswer {
     opacity: 0;
-    animation: fadein 0.5s 4s;
+    animation: fadein 0.5s 5s;
     animation-fill-mode: forwards;
 }

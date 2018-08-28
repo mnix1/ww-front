@@ -22,25 +22,36 @@ class WarPageAnswered extends React.PureComponent {
         return meAnswered;
     }
 
-    renderWhoAnswered() {
-        const {content, profile, screen} = this.props;
-        const answeredProps = this.meAnswered
+    prepareAnsweredProps(forAnswered) {
+        const {content, profile} = this.props;
+        let meAnswered = this.meAnswered;
+        if (!forAnswered) {
+            meAnswered = !meAnswered;
+        }
+        return meAnswered
             ? {profile, activeIndex: content.activeIndex, team: content.team}
             : {profile: content.opponent, activeIndex: content.opponentActiveIndex, team: content.opponentTeam};
+    }
+
+    renderWhoAnswered() {
+        const {screen} = this.props;
         const imgHeight = screen.isSmallHeight ? 40 : 60;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
-                <ActiveHero className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...answeredProps}/>
+                <ActiveHero className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...this.prepareAnsweredProps(true)}/>
                 <div>{getText(TEXT_ANSWERED)}...</div>
                 <div className='result'>
                     {this.isCorrectAnswer
                         ? <div>
                             <div>{getText(TEXT_CORRECT)}</div>
-                            <img alt='' src={thumbUp} height={imgHeight}/></div>
+                            <img alt='' src={thumbUp} height={imgHeight}/>
+                            <ActiveHero className='wrongAnswer' {...this.prepareAnsweredProps(false)}/>
+                        </div>
                         : <div>
                             <div>{getText(TEXT_WRONG)}</div>
-                            <img alt='' src={thumbDown} height={imgHeight}/></div>}
+                            <img alt='' src={thumbDown} height={imgHeight}/>
+                        </div>}
                 </div>
             </div>
         </div>
