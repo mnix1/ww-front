@@ -6,8 +6,8 @@ export const COMBINING_FACTS = 'combiningFacts';
 export const PATTERN_RECOGNITION = 'patternRecognition';
 export const IMAGINATION = 'imagination';
 
+export const SPEED = 'speed';
 export const REFLEX = 'reflex';
 export const CONCENTRATION = 'concentration';
-export const LEADERSHIP = 'leadership';
-export const CHARISMA = 'charisma';
+export const CONFIDENCE = 'confidence';
 export const INTUITION = 'intuition';

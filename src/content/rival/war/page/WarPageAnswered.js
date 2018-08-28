@@ -1,16 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Profile from "../../../../component/profile/Profile";
-import {Anime} from "../../../../component/anime/Anime";
-import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/text";
 import thumbUp from '../../../../media/image/icon/thumbUp.svg';
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
-import Profiles from "../../component/Profiles";
 import WarTaskDescription from "../../component/WarTaskDescription";
+import ActiveHero from "../../component/ActiveHero";
 
 class WarPageAnswered extends React.PureComponent {
 
@@ -28,13 +24,14 @@ class WarPageAnswered extends React.PureComponent {
 
     renderWhoAnswered() {
         const {content, profile, screen} = this.props;
-        const {opponent} = content;
-        const answeredProfile = this.meAnswered ? profile : opponent;
+        const answeredProps = this.meAnswered
+            ? {profile, activeIndex: content.activeIndex, team: content.team}
+            : {profile: content.opponent, activeIndex: content.opponentActiveIndex, team: content.opponentTeam};
         const imgHeight = screen.isSmallHeight ? 40 : 60;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
-                <Profile {...answeredProfile}/>
+                <ActiveHero className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...answeredProps}/>
                 <div>{getText(TEXT_ANSWERED)}...</div>
                 <div className='result'>
                     {this.isCorrectAnswer
@@ -49,33 +46,12 @@ class WarPageAnswered extends React.PureComponent {
         </div>
     }
 
-    renderProfilesWithNewScore() {
-        const {content, profile, screen} = this.props;
-        const scoreColor = this.meAnswered ? (this.isCorrectAnswer ? GREEN_COLOR : RED_COLOR) : undefined;
-        const opponentScoreColor = this.meAnswered ? undefined : (this.isCorrectAnswer ? GREEN_COLOR : RED_COLOR);
-        return <Anime
-            targetTransformer={t => ({
-                content: {score: t.score, opponentScore: t.opponentScore, opponent: t.opponent},
-                scoreColor: t.score !== content.score ? scoreColor : undefined,
-                opponentScoreColor: t.opponentScore !== content.opponentScore ? opponentScoreColor : undefined,
-            })}
-            targetAsChildProp={null}
-            from={{score: content.score, opponentScore: content.opponentScore, opponent: content.opponent}}
-            to={{
-                score: {value: content.newScore, duration: 1500, delay: 5000},
-                opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 5000}
-            }}>
-            <Profiles content={content} className={'absolute'} profile={profile} screen={screen} scoreColor={scoreColor}
-                               opponentScoreColor={opponentScoreColor}/>
-        </Anime>;
-    }
-
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnswered'>
             {this.renderWhoAnswered()}
             <WarTaskDescription content={content} className='pageHeader'/>
-            {this.renderProfilesWithNewScore()}
+            {/*{this.renderProfilesWithNewScore()}*/}
             <TaskWithoutActions content={content}/>
             <TaskMarkedAnswer content={content}/>
         </div>;

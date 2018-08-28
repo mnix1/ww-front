@@ -3,48 +3,18 @@ import Hero from "../../../component/hero/Hero";
 import Profile from "../../../component/profile/Profile";
 import {prepareScoreMessage} from "../../../util/textHelper";
 import {connect} from "react-redux";
+import ActiveHero from "./ActiveHero";
 
 class ActiveHeroes extends React.PureComponent {
 
-    get imgHeight() {
-        const {screen} = this.props;
-        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
-            return 40;
-        }
-        return 60;
-    }
-
-    renderProfile(profile) {
-        return <Profile  blackBackground={true} renderDetailsHorizontal={true} {...profile} imgHeight={this.imgHeight}>
-        </Profile>
-    }
-
-    renderHero(hero) {
-        return <Hero
-            isOwned={true}
-            renderHobbies={false}
-            key={hero.type}
-            imgHeight={this.imgHeight}
-            renderDetails={true}
-            {...hero}>
-        </Hero>;
-    }
-
-    renderProfileOrHero(profile, team, activeIndex) {
-        if (activeIndex === 0) {
-            return this.renderProfile(profile);
-        }
-        return this.renderHero(team[activeIndex - 1]);
-    }
-
     render() {
-        const {profile, content, className} = this.props;
-        return <div className={`profiles width100 justifyBetween ${className}`}>
-            <div className='profile'>
-                {this.renderProfileOrHero(profile, content.team, content.activeIndex)}
+        const {profile, content, heroClassName, className} = this.props;
+        return <div className={`width100 justifyBetween ${className}`}>
+            <div>
+                <ActiveHero className={heroClassName} profile={profile} team={content.team} activeIndex={content.activeIndex}/>
             </div>
-            <div className='opponentProfile'>
-                {this.renderProfileOrHero(content.opponent, content.opponentTeam, content.opponentActiveIndex)}
+            <div>
+                <ActiveHero className={heroClassName} profile={content.opponent} team={content.opponentTeam} activeIndex={content.opponentActiveIndex}/>
             </div>
         </div>;
     }

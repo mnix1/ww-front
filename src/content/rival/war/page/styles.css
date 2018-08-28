@@ -71,6 +71,15 @@
     }
 }
 
+@keyframes fadeouthalf {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.2;
+    }
+}
+
 .warPage .warPageIntro .title {
     opacity: 0;
     animation: fadein 0.5s 0s, fadeout 0.5s 5s;
@@ -132,6 +141,12 @@
 
 .warPage .whoAnswered .pageCenterVertical {
     margin-top: 2rem;
+}
+
+.warPage .whoAnswered .wrongAnswer {
+    opacity: 1;
+    animation: fadeouthalf 1s 2s;
+    animation-fill-mode: forwards;
 }
 
 .warPage .whoAnswered .result {

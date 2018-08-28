@@ -11,9 +11,11 @@ import WarTaskDescription from "../../component/WarTaskDescription";
 class WarPageAnsweringTimeout extends React.PureComponent {
 
     renderNoAnswer() {
+        const {content} = this.props;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
+                <ActiveHeroes content={content} heroClassName='wrongAnswer'/>
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
                 <img alt='' src={thumbDown} height={60}/>
             </div>

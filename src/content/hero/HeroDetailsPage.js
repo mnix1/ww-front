@@ -5,17 +5,17 @@ import HeroStat from "../../component/hero/HeroStat";
 import FaPlusCircle from "react-icons/lib/fa/plus-circle";
 import FaMinusCircle from "react-icons/lib/fa/minus-circle";
 import {
-    CHARISMA,
     COMBINING_FACTS,
     CONCENTRATION,
+    CONFIDENCE,
     COUNTING,
     IMAGINATION,
     INTUITION,
-    LEADERSHIP,
     MEMORY,
     PATTERN_RECOGNITION,
     PERCEPTIVITY,
-    REFLEX
+    REFLEX,
+    SPEED
 } from "../../util/heroStatHelper";
 import Hero from "../../component/hero/Hero";
 import {heroDetailsChanged, teamChanged} from "../../redux/reducer/hero";
@@ -43,10 +43,10 @@ class HeroDetailsPage extends React.PureComponent {
                 <HeroStat hero={hero} stat={IMAGINATION}/>
             </div>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
+                <HeroStat hero={hero} stat={SPEED}/>
                 <HeroStat hero={hero} stat={REFLEX}/>
                 <HeroStat hero={hero} stat={CONCENTRATION}/>
-                <HeroStat hero={hero} stat={LEADERSHIP}/>
-                <HeroStat hero={hero} stat={CHARISMA}/>
+                <HeroStat hero={hero} stat={CONFIDENCE}/>
                 <HeroStat hero={hero} stat={INTUITION}/>
             </div>
         </div>;

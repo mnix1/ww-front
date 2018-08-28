@@ -10,47 +10,59 @@ import ActiveHeroes from "../../component/ActiveHeroes";
 import Hero from "../../../../component/hero/Hero";
 import Profile from "../../../../component/profile/Profile";
 import WarTaskDescription from "../../component/WarTaskDescription";
+import HeroActions from "../../../../component/hero/HeroActions";
 
 class WarPageAnswering extends React.PureComponent {
 
     renderTaskActive() {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
-        return <Task
-            screen={screen}
-            skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
-            onSkipAnimationChange={() => {
-                if (!_.isNil(correctAnswerId)) {
-                    return;
-                }
-                onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
-            }}
-            question={task}
-            answers={task.answers}
-            onAnswerClick={(answerId) => {
-                if (!_.isNil(correctAnswerId)) {
-                    return;
-                }
-                communication.send('WAR_ANSWER' + JSON.stringify({answerId}));
-                onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
-            }}
-        />;
+        return <div className='width100 height100 absolute'>
+            <ActiveHeroes content={content} className='absolute'/>
+            <Task
+                screen={screen}
+                skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
+                onSkipAnimationChange={() => {
+                    if (!_.isNil(correctAnswerId)) {
+                        return;
+                    }
+                    onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
+                }}
+                question={task}
+                answers={task.answers}
+                onAnswerClick={(answerId) => {
+                    if (!_.isNil(correctAnswerId)) {
+                        return;
+                    }
+                    communication.send('WAR_ANSWER' + JSON.stringify({answerId}));
+                    onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+                }}
+            />
+        </div>;
     }
 
     renderTaskNotActive() {
         const {content, screen} = this.props;
         const {task, team, activeIndex, opponentTeam, opponentActiveIndex} = content;
-        return <div>
-            <div className='pageHeader'>
-                <Hero {...team[activeIndex - 1]} renderDetails={true} renderHobbies={false} isOwned={true}/>
-                {opponentActiveIndex === 0
-                    ? <Profile renderDetailsHorizontal={true} {...content.opponent}/>
+        return <div className='width100 height100 absolute'>
+            <div className='width100 justifyBetween absolute'>
+                <div>
+                    <Hero {...team[activeIndex - 1]} renderDetails={true} renderHobbies={false} isOwned={true}>
+                        <HeroActions actions={content.heroActions}/>
+                    </Hero>
+                </div>
+                <div>
+                    {opponentActiveIndex === 0
+                    ? <Profile imgHeight={100} blackBackground={true}
+                               renderDetailsHorizontal={true} {...content.opponent}/>
                     : <Hero {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true} renderHobbies={false}
-                            isOwned={true}/>
-                }
+                            isOwned={true}>
+                        <HeroActions actions={content.opponentHeroActions}/>
+                    </Hero>}
+                </div>
             </div>
             <Task
-                screen={{...screen, contentHeight: screen.contentHeight - 200}}
+                screen={{...screen, contentHeight: screen.contentHeight - 120}}
                 skipAnimation={true}
                 question={task}
                 answers={task.answers}
@@ -64,7 +76,6 @@ class WarPageAnswering extends React.PureComponent {
             <WarTaskDescription content={content} className='pageHeader'>
                 <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
             </WarTaskDescription>
-            <ActiveHeroes content={content} className='absolute'/>
             {content.activeIndex === 0 ? this.renderTaskActive() : this.renderTaskNotActive()}
         </div>;
     }

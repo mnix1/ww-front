@@ -1,13 +1,12 @@
 import {ENGLISH, POLISH} from "./text";
 import {
-    CHARISMA,
     COMBINING_FACTS, CONCENTRATION,
     COUNTING,
-    IMAGINATION, INTUITION, LEADERSHIP,
+    IMAGINATION, INTUITION, CONFIDENCE,
     LOGIC,
     MEMORY,
     PATTERN_RECOGNITION,
-    PERCEPTIVITY, REFLEX
+    PERCEPTIVITY, REFLEX, SPEED
 } from "../util/heroStatHelper";
 
 export function getHeroStatLabel(id) {
@@ -23,10 +22,10 @@ const HERO_STAT_LABELS = {
         [COMBINING_FACTS]: 'Łączenie faktów',
         [PATTERN_RECOGNITION]: 'Rozpoznawanie wzorców',
         [IMAGINATION]: 'Wyobraźnia',
+        [SPEED]: 'Szybkość',
         [REFLEX]: 'Refleks',
         [CONCENTRATION]: 'Koncentracja',
-        [LEADERSHIP]: 'Przewodnictwo',
-        [CHARISMA]: 'Charyzma',
+        [CONFIDENCE]: 'Pewność siebie',
         [INTUITION]: 'Intuicja',
     },
     [ENGLISH]: {
@@ -37,10 +36,10 @@ const HERO_STAT_LABELS = {
         [COMBINING_FACTS]: 'Combining facts',
         [PATTERN_RECOGNITION]: 'Pattern recognition',
         [IMAGINATION]: 'Imagination',
+        [SPEED]: 'Speed',
         [REFLEX]: 'Reflex',
         [CONCENTRATION]: 'Concentration',
-        [LEADERSHIP]: 'Leadership',
-        [CHARISMA]: 'Charisma',
+        [CONFIDENCE]: 'Confidence',
         [INTUITION]: 'Intuition',
     }
 };
