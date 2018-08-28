@@ -9,6 +9,7 @@ import {getText, TEXT_TIME} from "../../../../lang/text";
 import ActiveHeroes from "../../component/ActiveHeroes";
 import Hero from "../../../../component/hero/Hero";
 import Profile from "../../../../component/profile/Profile";
+import WarTaskDescription from "../../component/WarTaskDescription";
 
 class WarPageAnswering extends React.PureComponent {
 
@@ -43,7 +44,7 @@ class WarPageAnswering extends React.PureComponent {
             <div className='pageHeader'>
                 <Hero {...team[activeIndex - 1]} renderDetails={true} renderHobbies={false} isOwned={true}/>
                 {opponentActiveIndex === 0
-                    ? <Profile {...content.opponent}/>
+                    ? <Profile renderDetailsHorizontal={true} {...content.opponent}/>
                     : <Hero {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true} renderHobbies={false}
                             isOwned={true}/>
                 }
@@ -60,9 +61,9 @@ class WarPageAnswering extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnswering'>
-            <TaskDescription content={content} className='pageHeader'>
+            <WarTaskDescription content={content} className='pageHeader'>
                 <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
-            </TaskDescription>
+            </WarTaskDescription>
             <ActiveHeroes content={content} className='absolute'/>
             {content.activeIndex === 0 ? this.renderTaskActive() : this.renderTaskNotActive()}
         </div>;

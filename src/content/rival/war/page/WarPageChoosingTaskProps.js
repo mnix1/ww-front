@@ -5,55 +5,80 @@ import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
 import ChoosingTaskProps from "../../component/ChoosingTaskProps";
 import TaskDescription from "../../component/TaskDescription";
-import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/text";
+import {
+    getText,
+    TEXT_DRAW_WHO_ANSWER,
+    TEXT_OPPONENT_CHOOSING,
+    TEXT_QUESTION,
+    TEXT_TIME,
+    TEXT_WAR
+} from "../../../../lang/text";
 import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
 import {categoryChanged, difficultLevelChanged} from "../../../../redux/reducer/war";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
 import ActiveHeroes from "../../component/ActiveHeroes";
+import RandomTeamHero from "../../component/RandomTeamHero";
 
 class WarPageChoosingTaskProps extends React.PureComponent {
 
-    renderOpponentChoosing(){
-        const {content, screen} = this.props;
-        return <div>
-            <div className='pageHeader justifyCenter'>
-                <div style={{width: screen.contentWidth / 3}}>
-                    {getText(TEXT_OPPONENT_CHOOSING)}
-                </div>
-            </div>
-            <div className='pageHeader'><img alt='' className='sleep' src={sleep} height={80}/></div>
-            <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/>
-            </div>
-        </div>
+    state = {component: 0, waiting: false};
+
+    componentDidMount() {
+        this.componentDidUpdate();
+    }
+
+    componentDidUpdate() {
+        const {component, waiting} = this.state;
+        if (component === 0 && !waiting) {
+            this.nextComponentRender(1, 10000);
+        }
+    }
+
+    nextComponentRender(component, interval) {
+        this.setState({waiting: true});
+        setInterval(() => {
+            if (this.state.waiting && component !== this.state.component) {
+                this.setState({component, waiting: false});
+            }
+        }, interval);
     }
 
     renderContent() {
-        const {content, communication, profile, difficultyLevel, category, onCategoryChange, onDifficultLevelChange} = this.props;
-        const {choosingTaskPropsTag} = content;
-        if (_.isNil(choosingTaskPropsTag)) {
-            return <RandomTaskProps content={content}/>;
-        }
-        if (choosingTaskPropsTag === profile.tag) {
-            return <ChoosingTaskProps
-                acceptMsg='WAR_CHOOSE_TASK_PROPS'
-                content={content}
-                onCategoryChange={onCategoryChange}
-                onDifficultLevelChange={onDifficultLevelChange}
-                category={category}
-                difficultyLevel={difficultyLevel}
-                communication={communication}
-            />
-        }
-        return this.renderOpponentChoosing();
+        const {component} = this.state;
+        const {content, profile} = this.props;
+        return <div className='pageContent warPageIntro'>
+            {component === 0 && <div>
+                <div
+                    className='pageHeader task'>{`${getText(TEXT_QUESTION)} ${content.task.id}`}</div>
+                <div className='pageHeader drawWhoAnswer'>{getText(TEXT_DRAW_WHO_ANSWER)}</div>
+                <RandomTeamHero
+                    className='randomTeamHero1'
+                    presentIndexes={content.presentIndexes}
+                    profile={profile}
+                    team={content.team}
+                    targetIndex={content.activeIndex}
+                    delay={3000} duration={2500}
+                />
+                <RandomTeamHero
+                    className='randomTeamHero2'
+                    presentIndexes={content.opponentPresentIndexes}
+                    profile={content.opponent}
+                    team={content.opponentTeam}
+                    targetIndex={content.opponentActiveIndex}
+                    delay={6000}
+                    duration={2500}
+                />
+            </div>}
+            {component === 1 && <div>
+                <ActiveHeroes content={content} className='absolute'/>
+                <RandomTaskProps className='taskProps' content={content}/>
+            </div>}
+        </div>;
     }
 
     render() {
-        const {content} = this.props;
-        const {choosingTaskPropsTag} = content;
         return <div className='pageContent warPageChoosingTaskProps'>
-            <ActiveHeroes content={content} className='absolute'/>
-            {!_.isNil(choosingTaskPropsTag) && <TaskDescription content={content} className='pageHeader' taskId={content.taskId}/>}
             {this.renderContent()}
         </div>;
     }
@@ -63,12 +88,8 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.war.content,
-        category: state.war.category,
-        difficultyLevel: state.war.difficultyLevel,
         profile: state.profile.profile,
     }),
     (dispatch) => ({
-        onCategoryChange: (categoryObject) => dispatch(categoryChanged(categoryObject.id)),
-        onDifficultLevelChange: (id) => dispatch(difficultLevelChanged(DIFFICULT_LEVEL_TO_NAME[id]))
     })
 )(WarPageChoosingTaskProps);

@@ -9,7 +9,6 @@ import WarPageAnswered from "./WarPageAnswered";
 import WarPageClosed from "./WarPageClosed";
 import WarPageChoosingTaskProps from "./WarPageChoosingTaskProps";
 import WarPageAnsweringTimeout from "./WarPageAnsweringTimeout";
-import WarPageChoosingTaskPropsTimeout from "./WarPageChoosingTaskPropsTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
 import {showOptionsChanged} from "../../../../redux/reducer/war";
 import Modal from "../../../../component/modal/Modal";
@@ -41,9 +40,6 @@ class WarPage extends React.PureComponent {
         }
         if (status === 'CHOOSING_TASK_PROPS') {
             return <WarPageChoosingTaskProps communication={communication}/>
-        }
-        if (status === 'CHOOSING_TASK_PROPS_TIMEOUT') {
-            return <WarPageChoosingTaskPropsTimeout/>
         }
         if (status === 'CLOSED') {
             return <WarPageClosed/>

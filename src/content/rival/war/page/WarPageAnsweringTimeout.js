@@ -6,6 +6,7 @@ import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import TaskWithoutActions from "../../component/TaskWithoutActions";
 import ActiveHeroes from "../../component/ActiveHeroes";
+import WarTaskDescription from "../../component/WarTaskDescription";
 
 class WarPageAnsweringTimeout extends React.PureComponent {
 
@@ -22,7 +23,7 @@ class WarPageAnsweringTimeout extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnsweringTimeout'>
-            <TaskDescription content={content} className='contentHeader'/>
+            <WarTaskDescription content={content} className='contentHeader'/>
             <ActiveHeroes content={content} className='absolute'/>
             {this.renderNoAnswer()}
             <TaskWithoutActions content={content}/>

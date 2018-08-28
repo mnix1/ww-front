@@ -1,0 +1,24 @@
+import React from 'react';
+import '../battle/page/styles.css';
+import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_POINTS, TEXT_QUESTION} from "../../../lang/text";
+import {getCategoryLabel} from "../../../lang/category";
+import Rating from "../../../component/rating/Rating";
+
+export default class WarTaskDescription extends React.PureComponent {
+
+    render() {
+        const {content, className, children, taskId} = this.props;
+        let {task} = content;
+        if (!task) {
+            task = {};
+        }
+        return <div className={className}>
+            <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}`}</div>
+            {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)}`}</div>}
+            {task.difficultyLevel && <div>{`${getText(TEXT_DIFFICULT)}:`} <Rating
+                valueString={task.difficultyLevel}/>
+            </div>}
+            {children}
+        </div>
+    }
+}

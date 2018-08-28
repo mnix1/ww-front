@@ -15,7 +15,7 @@ class ActiveHeroes extends React.PureComponent {
     }
 
     renderProfile(profile) {
-        return <Profile {...profile} imgHeight={this.imgHeight}>
+        return <Profile  blackBackground={true} renderDetailsHorizontal={true} {...profile} imgHeight={this.imgHeight}>
         </Profile>
     }
 

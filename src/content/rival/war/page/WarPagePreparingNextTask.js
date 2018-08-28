@@ -2,15 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/text";
 import Timer from "../../../../component/timer/Timer";
-import TaskDescription from "../../component/TaskDescription";
 import ActiveHeroes from "../../component/ActiveHeroes";
+import WarTaskDescription from "../../component/WarTaskDescription";
 
 class WarPagePreparingNextTask extends React.PureComponent {
 
     render() {
         const {content} = this.props;
         return <div className='pageContent warPagePreparingNextTask'>
-            <TaskDescription content={content} className='pageHeader'/>
+            <WarTaskDescription content={content} className='pageHeader'/>
             <div className='pageHeader'>
                 <div>{getText(TEXT_QUESTION_PREPARING) + ' '}
                 <br/>

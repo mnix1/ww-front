@@ -53,7 +53,7 @@ class WarPageIntro extends React.PureComponent {
             </div>}
             {component === 1 && <div>
                 <div
-                    className='pageHeader task'>{`${getText(TEXT_QUESTION)} ${content.task.id}/${content.taskCount}`}</div>
+                    className='pageHeader task'>{`${getText(TEXT_QUESTION)} ${content.task.id}`}</div>
                 <div className='pageHeader drawWhoAnswer'>{getText(TEXT_DRAW_WHO_ANSWER)}</div>
                 <RandomTeamHero
                     className='randomTeamHero1'

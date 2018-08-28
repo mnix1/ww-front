@@ -10,6 +10,7 @@ import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
 import Profiles from "../../component/Profiles";
+import WarTaskDescription from "../../component/WarTaskDescription";
 
 class WarPageAnswered extends React.PureComponent {
 
@@ -73,7 +74,7 @@ class WarPageAnswered extends React.PureComponent {
         const {content} = this.props;
         return <div className='pageContent warPageAnswered'>
             {this.renderWhoAnswered()}
-            <TaskDescription content={content} className='pageHeader'/>
+            <WarTaskDescription content={content} className='pageHeader'/>
             {this.renderProfilesWithNewScore()}
             <TaskWithoutActions content={content}/>
             <TaskMarkedAnswer content={content}/>
