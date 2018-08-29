@@ -166,3 +166,8 @@
     animation: fadein 0.5s 5s;
     animation-fill-mode: forwards;
 }
+.warPage .warPageAnsweringTimeout .activeHeroes {
+    opacity: 1;
+    animation: fadeout 0.5s 2s;
+    animation-fill-mode: forwards;
+}

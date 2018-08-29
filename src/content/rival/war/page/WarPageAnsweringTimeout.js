@@ -26,9 +26,9 @@ class WarPageAnsweringTimeout extends React.PureComponent {
         const {content} = this.props;
         return <div className='pageContent warPageAnsweringTimeout'>
             <WarTaskDescription content={content} className='contentHeader'/>
-            <ActiveHeroes content={content} className='absolute'/>
+            <ActiveHeroes content={content} className='absolute activeHeroes'/>
             {this.renderNoAnswer()}
-            <TaskWithoutActions content={content}/>
+            {/*<TaskWithoutActions content={content}/>*/}
             <TaskMarkedAnswer content={content}/>
         </div>;
     }
