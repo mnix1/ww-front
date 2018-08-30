@@ -14,7 +14,7 @@ import {
     NO_FOUND_ANSWER_LOOKING_FOR,
     FOUND_ANSWER_LOOKING_FOR,
     NOT_SURE_OF_ANSWER,
-    READING_ANSWERS,
+    RECOGNIZING_ANSWERS,
     SURRENDER,
     WILL_GIVE_RANDOM_ANSWER,
     WONT_GIVE_RANDOM_ANSWER,
@@ -38,7 +38,7 @@ const HERO_ACTION_LABELS = {
         [FOUND_ANSWER_LOOKING_FOR]: 'Znalazł odpowiedź',
 
         [NOT_SURE_OF_ANSWER]: 'Nie jest pewny odpowiedzi',
-        [READING_ANSWERS]: 'Poznaje odpowiedzi',
+        [RECOGNIZING_ANSWERS]: 'Poznaje odpowiedzi',
 
         [ANSWERED]: 'Odpowiada',
         [SURRENDER]: 'Poddaje się',
@@ -67,7 +67,7 @@ const HERO_ACTION_LABELS = {
         [FOUND_ANSWER_LOOKING_FOR]: 'Found answer',
 
         [NOT_SURE_OF_ANSWER]: 'Not sure of answer',
-        [READING_ANSWERS]: 'Recognizing answers',
+        [RECOGNIZING_ANSWERS]: 'Recognizing answers',
 
         [ANSWERED]: 'Answering',
         [SURRENDER]: 'Surrender',
