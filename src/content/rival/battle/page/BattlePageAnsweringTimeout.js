@@ -22,7 +22,7 @@ class BattlePageAnsweringTimeout extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent battlePageAnsweringTimeout'>
-            <TaskDescription content={content} className='contentHeader'/>
+            <TaskDescription content={content} className='justifyCenter flexColumn contentHeader'/>
             <Profiles content={content} className='absolute'/>
             {this.renderNoAnswer()}
             <TaskWithoutActions content={content}/>

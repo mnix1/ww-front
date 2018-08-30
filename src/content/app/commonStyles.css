@@ -17,15 +17,6 @@
     left: 0;
 }
 
-.contentHeader {
-    position: absolute;
-    text-align: center;
-    font-size: 1rem;
-    padding-top: 0.25rem;
-    width: 100%;
-    z-index: 1;
-}
-
 .borderBox {
     box-sizing: border-box;
 }

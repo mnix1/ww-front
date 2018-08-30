@@ -4,6 +4,7 @@ import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_POINTS, TEXT_QUESTION} from
 import {getCategoryLabel} from "../../../lang/category";
 import Rating from "../../../component/rating/Rating";
 import {getCategory} from "../../../util/categoryHelper";
+import {prepareRatingPointsMessage} from "../../../util/textHelper";
 
 export default class TaskDescription extends React.PureComponent {
 
@@ -13,14 +14,16 @@ export default class TaskDescription extends React.PureComponent {
         if (!task) {
             task = {};
         }
-        return <div className={className}>
+        return <div className={`${className}`}>
             <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}/${content.taskCount}`}</div>
             {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)} `}
                 <img alt='' key={task.category} height={20}
-                      src={getCategory(task.category)}/>
+                     src={getCategory(task.category)}/>
             </div>}
-            {task.difficultyLevel && <div>{`${getText(TEXT_DIFFICULT)}:`} <Rating
-                valueString={task.difficultyLevel}/> {`(${task.points} ${getText(TEXT_POINTS)})`}</div>}
+            {task.difficultyLevel && <div className='justifyCenter'><div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT)}:`}</div>
+                &nbsp;<Rating valueString={task.difficultyLevel}/>
+                &nbsp;<div className='justifyCenter flexColumn'>{prepareRatingPointsMessage(task.points)}</div>
+            </div>}
             {children}
         </div>
     }

@@ -10,7 +10,7 @@ class BattlePagePreparingNextTask extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent battlePagePreparingNextTask'>
-            <TaskDescription content={content} className='pageHeader'/>
+            <TaskDescription content={content} className='justifyCenter flexColumn pageHeader'/>
             <div className='pageHeader'>
                 <div>{getText(TEXT_QUESTION_PREPARING) + ' '}
                 <br/>

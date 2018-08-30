@@ -19,9 +19,6 @@ export const BATTLE_IN_PROGRESS_CONTENT = 'battle/in-progress/content';
 export const QUESTION_ID_ANSWER_ID_MAP_CHANGED = 'battle/question-id-answer-id-map/changed';
 export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'battle/question-id-skip-animation-map/changed';
 
-export const DIFFICULT_LEVEL_CHANGED = 'battle/difficult-level/changed';
-export const CATEGORY_CHANGED = 'battle/category/changed';
-
 export const SHOW_OPTIONS_CHANGED = 'battle/show-options/changed';
 
 const initialState = {
@@ -29,8 +26,6 @@ const initialState = {
     status: undefined,
     invitedBy: undefined,
     content: undefined,
-    difficultyLevel: EXTREMELY_EASY,
-    category: CATEGORY_RANDOM,
     questionIdAnswerIdMap: {},
     questionIdSkipAnimationMap: {},
     showOptions: false,
@@ -58,10 +53,6 @@ export default function reducer(state = initialState, action) {
             return {...state, questionIdAnswerIdMap: action.questionIdAnswerIdMap};
         case QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED:
             return {...state, questionIdSkipAnimationMap: action.questionIdSkipAnimationMap};
-        case DIFFICULT_LEVEL_CHANGED:
-            return {...state, difficultyLevel: action.difficultyLevel};
-        case CATEGORY_CHANGED:
-            return {...state, category: action.category};
         case SHOW_OPTIONS_CHANGED:
             return {...state, showOptions: action.showOptions};
         default:
@@ -101,28 +92,12 @@ export function battleInProgressContent(content) {
     return {type: BATTLE_IN_PROGRESS_CONTENT, content};
 }
 
-// export function battleInProgressOpponent(opponent) {
-//     return {type: BATTLE_IN_PROGRESS_OPPONENT, opponent};
-// }
-//
-// export function battleInProgressQuestion(question) {
-//     return {type: BATTLE_IN_PROGRESS_QUESTION, question};
-// }
-
 export function questionIdAnswerIdMapChanged(questionIdAnswerIdMap) {
     return {type: QUESTION_ID_ANSWER_ID_MAP_CHANGED, questionIdAnswerIdMap};
 }
 
 export function questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap) {
     return {type: QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED, questionIdSkipAnimationMap};
-}
-
-export function difficultLevelChanged(difficultyLevel) {
-    return {type: DIFFICULT_LEVEL_CHANGED, difficultyLevel};
-}
-
-export function categoryChanged(category) {
-    return {type: CATEGORY_CHANGED, category};
 }
 
 export function showOptionsChanged(showOptions) {

@@ -34,6 +34,10 @@ export function preparePositionMessage(position) {
     return `${getText(TEXT_POSITION)}: ${_.defaultTo(position, 'N/A')}`;
 }
 
+export function prepareRatingPointsMessage(points) {
+    return `(${points} ${getText(TEXT_POINTS)})`;
+}
+
 export function round2(n){
     return _.round(n, 2);
 }

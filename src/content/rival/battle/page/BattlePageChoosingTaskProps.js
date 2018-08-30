@@ -8,7 +8,7 @@ import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/text";
 import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
-import {categoryChanged, difficultLevelChanged} from "../../../../redux/reducer/battle";
+import {battleInProgressContent} from "../../../../redux/reducer/battle";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
 
 class BattlePageChoosingTaskProps extends React.PureComponent {
@@ -28,7 +28,7 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
     }
 
     renderContent() {
-        const {content, communication, profile, difficultyLevel, category, onCategoryChange, onDifficultLevelChange} = this.props;
+        const {content, communication, profile, difficultyLevel, category, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps content={content}/>;
@@ -39,6 +39,7 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}
+                onDifficultLevelAcceptChange={onDifficultLevelAcceptChange}
                 category={category}
                 difficultyLevel={difficultyLevel}
                 communication={communication}
@@ -53,7 +54,7 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
         return <div className='pageContent battlePageChoosingTaskProps'>
             <Profiles content={content} className='absolute'/>
             {!_.isNil(choosingTaskPropsTag) &&
-            <TaskDescription content={content} className='pageHeader' taskId={content.taskId}/>}
+            <TaskDescription content={content} className='justifyCenter flexColumn pageHeader' taskId={content.taskId}/>}
             {this.renderContent()}
         </div>;
     }
@@ -68,7 +69,14 @@ export default connect(
         profile: state.profile.profile,
     }),
     (dispatch) => ({
-        onCategoryChange: (categoryObject) => dispatch(categoryChanged(categoryObject.id)),
-        onDifficultLevelChange: (id) => dispatch(difficultLevelChanged(DIFFICULT_LEVEL_TO_NAME[id]))
+        onCategoryChange: (categoryObject) => dispatch(battleInProgressContent({
+            chosenCategory: categoryObject.id,
+        })),
+        onDifficultLevelChange: (id) => dispatch(battleInProgressContent({
+            chosenDifficulty: DIFFICULT_LEVEL_TO_NAME[id],
+        })),
+        onDifficultLevelAcceptChange: (accept) => dispatch(battleInProgressContent({
+            isChosenDifficulty: accept,
+        }))
     })
 )(BattlePageChoosingTaskProps);
