@@ -14,6 +14,7 @@ import {showOptionsChanged} from "../../../../redux/reducer/war";
 import Modal from "../../../../component/modal/Modal";
 import {getText, TEXT_SURRENDER} from "../../../../lang/text";
 import _ from 'lodash';
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 
 class WarPage extends React.PureComponent {
 
@@ -50,14 +51,15 @@ class WarPage extends React.PureComponent {
 
     renderSurrender() {
         const {onShowOptionsChange, communication, screen} = this.props;
-        const imgHeight = screen.isSmallHeight ? 30 : 60;
-        return <div className='surrender' onClick={() => {
+        const imgHeight = screen.isSmallHeight ? 20 : 30;
+        return <div className='justifyCenter surrender' onClick={() => {
             communication.send('WAR_SURRENDER');
             onShowOptionsChange(false);
         }}>
-            <span>{getText(TEXT_SURRENDER)}</span>
-            <img alt='' src={flag} height={imgHeight} style={{marginTop: -imgHeight}}/>
-        </div>
+            <Button material={BUTTON_MATERIAL_BOX_SHADOW} icon={<img alt='' src={flag} height={imgHeight}/>}>
+                <div className='justifyCenter flexColumn'>{getText(TEXT_SURRENDER)}</div>
+            </Button>
+        </div>;
     }
 
     renderShowOptions() {

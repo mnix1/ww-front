@@ -8,19 +8,6 @@
     flex-direction: column;
 }
 
-.battlePage .surrender {
-    /*position: fixed;*/
-    /*cursor: pointer;*/
-    /*left: 0;*/
-    /*display: flex;*/
-    /*justify-content: center;*/
-    /*flex-direction: column;*/
-    /*font-size: 0.6rem;*/
-    /*background: #444444;*/
-    /*padding: 0.25rem;*/
-    /*border-radius: 0.5rem;*/
-}
-
 .battlePage .showOptions {
     position: fixed;
     cursor: pointer;
