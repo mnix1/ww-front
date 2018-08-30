@@ -4,7 +4,7 @@ import {
     DREAMING_ABOUT_VACATION,
     HUNG_UP,
     NEED_GO_TO_TOILET,
-    READING_QUESTION,
+    RECOGNIZING_QUESTION,
     SCRATCHING,
     LOOKING_FOR_ANSWER,
     THINK_KNOW_ANSWER,
@@ -28,7 +28,7 @@ export function getHeroActionLabel(id) {
 const HERO_ACTION_LABELS = {
     [POLISH]: {
         [WAITING_FOR_QUESTION]: 'Czeka na pytanie',
-        [READING_QUESTION]: 'Poznaje pytanie',
+        [RECOGNIZING_QUESTION]: 'Poznaje pytanie',
         [THINKING]: 'Myśli',
 
         [THINK_KNOW_ANSWER]: 'Uważa, że zna odpowiedź',
@@ -57,7 +57,7 @@ const HERO_ACTION_LABELS = {
     },
     [ENGLISH]: {
         [WAITING_FOR_QUESTION]: 'Waiting for question',
-        [READING_QUESTION]: 'Recognizing question',
+        [RECOGNIZING_QUESTION]: 'Recognizing question',
         [THINKING]: 'Thinking',
 
         [THINK_KNOW_ANSWER]: 'Think, that know the answer',

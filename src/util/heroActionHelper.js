@@ -1,5 +1,5 @@
 export const WAITING_FOR_QUESTION = 'WAITING_FOR_QUESTION';
-export const READING_QUESTION = 'READING_QUESTION';
+export const RECOGNIZING_QUESTION = 'RECOGNIZING_QUESTION';
 export const THINKING = 'THINKING';
 
 export const THINK_KNOW_ANSWER = 'THINK_KNOW_ANSWER';
@@ -26,3 +26,4 @@ export const SCRATCHING = 'SCRATCHING';
 export const YAWNING = 'YAWNING';
 export const HUNG_UP = 'HUNG_UP';
 export const NEED_GO_TO_TOILET = 'NEED_GO_TO_TOILET';
+
