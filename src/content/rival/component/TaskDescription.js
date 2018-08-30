@@ -8,14 +8,19 @@ import {prepareRatingPointsMessage} from "../../../util/textHelper";
 
 export default class TaskDescription extends React.PureComponent {
 
+    static defaultProps = {
+        renderTaskCount: true
+    };
+
     render() {
-        const {content, className, children, taskId} = this.props;
+        const {content, className, children, taskId, renderTaskCount} = this.props;
         let {task} = content;
         if (!task) {
             task = {};
         }
+        const taskCount = renderTaskCount ? `/${content.taskCount}` : '';
         return <div className={`${className}`}>
-            <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}/${content.taskCount}`}</div>
+            <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>
             {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)} `}
                 <img alt='' key={task.category} height={20}
                      src={getCategory(task.category)}/>

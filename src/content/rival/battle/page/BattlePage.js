@@ -9,7 +9,6 @@ import BattlePageAnswered from "./BattlePageAnswered";
 import BattlePageClosed from "./BattlePageClosed";
 import BattlePageChoosingTaskProps from "./BattlePageChoosingTaskProps";
 import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
-import BattlePageChoosingTaskPropsTimeout from "./BattlePageChoosingTaskPropsTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
 import {showOptionsChanged} from "../../../../redux/reducer/battle";
 import Modal from "../../../../component/modal/Modal";
@@ -42,9 +41,6 @@ class BattlePage extends React.PureComponent {
         }
         if (status === 'CHOOSING_TASK_PROPS') {
             return <BattlePageChoosingTaskProps communication={communication}/>
-        }
-        if (status === 'CHOOSING_TASK_PROPS_TIMEOUT') {
-            return <BattlePageChoosingTaskPropsTimeout/>
         }
         if (status === 'CLOSED') {
             return <BattlePageClosed/>

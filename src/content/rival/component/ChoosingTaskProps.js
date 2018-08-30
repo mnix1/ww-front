@@ -11,6 +11,10 @@ import {NAME_TO_POINTS} from "../../../util/difficultyHelper";
 
 class ChoosingTaskProps extends React.PureComponent {
 
+    static defaultProps = {
+        renderPoints: true
+    };
+
     renderChooseCategory() {
         const {screen, content, communication, acceptMsg, onCategoryChange} = this.props;
         return <SimpleObjectGroup
@@ -25,11 +29,11 @@ class ChoosingTaskProps extends React.PureComponent {
     }
 
     renderChooseDifficult() {
-        const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, acceptMsg} = this.props;
+        const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, acceptMsg, renderPoints} = this.props;
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter'>
                 <Rating onChange={onDifficultLevelChange} valueString={content.chosenDifficulty}/>
-                <div className='justifyCenter flexColumn'>&nbsp;{prepareRatingPointsMessage(NAME_TO_POINTS[content.chosenDifficulty])}</div>
+                {renderPoints && <div className='justifyCenter flexColumn'>&nbsp;{prepareRatingPointsMessage(NAME_TO_POINTS[content.chosenDifficulty])}</div>}
             </div>
             <div className='justifyCenter'>
                 <Button onClick={() => {
@@ -38,7 +42,6 @@ class ChoosingTaskProps extends React.PureComponent {
                 }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
             <div className='justifyCenter'>
-
             </div>
         </div>;
     }
