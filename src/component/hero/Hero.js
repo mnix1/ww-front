@@ -5,9 +5,6 @@ import _ from 'lodash';
 import {getName} from "../../lang/text";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
-import {toFixed2} from "../../util/textHelper";
-import FaPlusCircle from "react-icons/lib/fa/plus-circle";
-import FaMinusCircle from "react-icons/lib/fa/minus-circle";
 
 export default class Hero extends React.PureComponent {
 
@@ -74,7 +71,7 @@ export default class Hero extends React.PureComponent {
         const {value, isOwned} = this.props;
         return isOwned &&
             <div className='justifyStart' style={{fontSize: '0.8em', color: '#999'}}>
-                {toFixed2(value)}
+                {value}
             </div>;
     }
 
