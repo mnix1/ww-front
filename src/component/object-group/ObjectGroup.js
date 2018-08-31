@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export class ObjectGroup extends React.PureComponent {
 
     static propTypes = {
-        height: PropTypes.number,
+        height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         width: PropTypes.number,
         objects: PropTypes.array,
         onObjectClick: PropTypes.func,

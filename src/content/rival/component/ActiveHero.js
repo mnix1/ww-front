@@ -1,7 +1,6 @@
 import React from 'react';
 import Hero from "../../../component/hero/Hero";
 import Profile from "../../../component/profile/Profile";
-import {prepareScoreMessage} from "../../../util/textHelper";
 import {connect} from "react-redux";
 
 class ActiveHero extends React.PureComponent {

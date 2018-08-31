@@ -13,11 +13,16 @@ export default class SimpleObjectGroup extends React.PureComponent {
         objects: PropTypes.array,
         screen: PropTypes.object,
         onObjectClick: PropTypes.func,
-        selectedId: PropTypes.string
+        selectedId: PropTypes.string,
+        setHeight: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        setHeight: true
     };
 
     render() {
-        const {objects, onObjectClick, screen, selectedId} = this.props;
+        const {objects, onObjectClick, screen, setHeight, selectedId} = this.props;
         const factorY = screen.isSmallHeight ? 1 : 1.5;
         const factorX = screen.isSmallWidth ? 1 : 1.5;
         const objectHeight = calculateObjectDimension({
@@ -40,7 +45,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
             }}
         >{rendered}</Anime>;
         return <ObjectGroup
-            height={contentHeight}
+            height={setHeight ? contentHeight : 'auto'}
             width={contentWidth}
             onObjectClick={onObjectClick}
             objects={objects.map(o => {

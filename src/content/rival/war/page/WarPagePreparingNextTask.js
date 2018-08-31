@@ -3,17 +3,22 @@ import {connect} from 'react-redux';
 import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/text";
 import Timer from "../../../../component/timer/Timer";
 import ActiveHeroes from "../../component/ActiveHeroes";
-import WarTaskDescription from "../../component/WarTaskDescription";
+import TaskDescription from "../../component/TaskDescription";
 
 class WarPagePreparingNextTask extends React.PureComponent {
 
     render() {
         const {content} = this.props;
         return <div className='pageContent warPagePreparingNextTask'>
-            <WarTaskDescription content={content} className='pageHeader'/>
+            <TaskDescription
+                content={content}
+                renderTaskPoints={false}
+                renderTaskCount={false}
+                className='justifyCenter flexColumn pageHeader'
+            />
             <div className='pageHeader'>
                 <div>{getText(TEXT_QUESTION_PREPARING) + ' '}
-                <br/>
+                    <br/>
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>

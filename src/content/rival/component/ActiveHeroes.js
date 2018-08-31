@@ -1,7 +1,4 @@
 import React from 'react';
-import Hero from "../../../component/hero/Hero";
-import Profile from "../../../component/profile/Profile";
-import {prepareScoreMessage} from "../../../util/textHelper";
 import {connect} from "react-redux";
 import ActiveHero from "./ActiveHero";
 
@@ -23,7 +20,6 @@ class ActiveHeroes extends React.PureComponent {
 export default connect(
     (state) => ({
         profile: state.profile.profile,
-        screen: state.screen,
     }),
     (dispatch) => ({})
 )(ActiveHeroes);

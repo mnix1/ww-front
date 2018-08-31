@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Profile from "../../../../component/profile/Profile";
 import play from '../../../../media/image/icon/play.svg';
-import {getText, TEXT_BATTLE, TEXT_QUESTION} from "../../../../lang/text";
+import {getText, TEXT_BATTLE} from "../../../../lang/text";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
 

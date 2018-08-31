@@ -23,6 +23,7 @@ export const TEXT_CORRECT_ANSWER = 'TEXT_CORRECT_ANSWER';
 export const TEXT_IS_CORRECT = 'TEXT_IS_CORRECT';
 export const TEXT_TIME = 'TEXT_TIME';
 export const TEXT_WAR = 'TEXT_WAR';
+export const TEXT_CHOOSE_WHO_ANSWER = 'TEXT_CHOOSE_WHO_ANSWER';
 export const TEXT_WRONG_ANSWER = 'TEXT_WRONG_ANSWER';
 export const TEXT_IS_WRONG = 'TEXT_IS_WRONG';
 export const TEXT_FRIENDS = 'TEXT_FRIENDS';
@@ -115,6 +116,7 @@ export const TEXT_OPPONENT_TEAM= 'TEXT_OPPONENT_TEAM';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_CHOOSE_WHO_ANSWER]: 'Wybierz odpowiadającego',
         [TEXT_YOUR_TEAM]: 'Twoja drużyna',
         [TEXT_OPPONENT_TEAM]: 'Drużyna przeciwnika',
         [TEXT_DRAW_WHO_ANSWER]: 'Losowanie odpowiadającego',
@@ -227,6 +229,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_CHOOSE_WHO_ANSWER]: 'Choose responder',
         [TEXT_DRAW_WHO_ANSWER]: 'Drawing of the responder',
         [TEXT_WAR]: 'War',
         [TEXT_WAR_OVER]: 'War is over',

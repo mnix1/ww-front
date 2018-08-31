@@ -1,16 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {Anime} from "../../../component/anime/Anime";
-import {getText, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT, TEXT_DRAW_WHO_ANSWER} from "../../../lang/text";
-import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
-import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
-import {CATEGORY_RANDOM} from "../../../util/categoryHelper";
-import _ from 'lodash';
-import Rating from "../../../component/rating/Rating";
-import {DIFFICULTY_LEVELS, NAME_TO_DIFFICULT_LEVEL} from "../../../util/difficultyHelper";
 import Team from "./Team";
 
-class RandomTeamHero extends React.PureComponent {
+export default class RandomTeamHero extends React.PureComponent {
 
     static defaultProps = {
         presentIndexes: []
@@ -43,9 +35,3 @@ class RandomTeamHero extends React.PureComponent {
         </div>;
     }
 }
-
-export default connect(
-    (state) => ({
-    }),
-    (dispatch) => ({})
-)(RandomTeamHero);

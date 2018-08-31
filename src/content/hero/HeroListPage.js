@@ -1,14 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-    getName,
-    getText,
-    TEXT_HIDE,
-    TEXT_NOT_OWNED_WISIES,
-    TEXT_OWNED_WISIES,
-    TEXT_SHOW, TEXT_SHOW_DETAILS,
-    TEXT_TEAM_ADD, TEXT_TEAM_REMOVE
-} from "../../lang/text";
+import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/text";
 import './styles.css';
 import _ from 'lodash';
 import {calculateHeroWidth, HERO_TEAM_COUNT} from "../../util/heroHelper";

@@ -15,6 +15,7 @@ import Modal from "../../../../component/modal/Modal";
 import {getText, TEXT_SURRENDER} from "../../../../lang/text";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
+import WarPageChoosingWhoAnswer from "./WarPageChoosingWhoAnswer";
 
 class WarPage extends React.PureComponent {
 
@@ -41,6 +42,9 @@ class WarPage extends React.PureComponent {
         }
         if (status === 'CHOOSING_TASK_PROPS') {
             return <WarPageChoosingTaskProps communication={communication}/>
+        }
+        if (status === 'CHOOSING_WHO_ANSWER') {
+            return <WarPageChoosingWhoAnswer communication={communication}/>
         }
         if (status === 'CLOSED') {
             return <WarPageClosed/>

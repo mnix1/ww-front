@@ -5,8 +5,8 @@ import './styles.css';
 import {
     CREAM_COLOR,
     GREEN_COLOR,
-    LIGHT_BLUE_COLOR, maybeDisabledClassName,
-    maybeDisabledStyle,
+    LIGHT_BLUE_COLOR,
+    maybeDisabledClassName,
     ORANGE_COLOR,
     RED_COLOR
 } from "../../util/style/constant";

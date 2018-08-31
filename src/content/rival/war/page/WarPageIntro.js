@@ -1,18 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import play from '../../../../media/image/icon/play.svg';
-import {
-    getText,
-    TEXT_DRAW_WHO_ANSWER,
-    TEXT_OPPONENT_TEAM,
-    TEXT_QUESTION,
-    TEXT_WAR,
-    TEXT_YOUR_TEAM
-} from "../../../../lang/text";
+import {getText, TEXT_OPPONENT_TEAM, TEXT_WAR, TEXT_YOUR_TEAM} from "../../../../lang/text";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Team from "../../component/Team";
-import RandomTeamHero from "../../component/RandomTeamHero";
-import ActiveHeroes from "../../component/ActiveHeroes";
 
 class WarPageIntro extends React.PureComponent {
 
@@ -26,8 +17,6 @@ class WarPageIntro extends React.PureComponent {
         const {component, waiting} = this.state;
         if (component === 0 && !waiting) {
             this.nextComponentRender(1, 6000);
-        } else if (component === 1 && !waiting) {
-            this.nextComponentRender(2, 10000);
         }
     }
 
@@ -54,38 +43,13 @@ class WarPageIntro extends React.PureComponent {
 
     render() {
         const {component} = this.state;
-        const {content, profile} = this.props;
+        const {content} = this.props;
         return <div className='pageContent warPageIntro'>
             {component === 0 && <div>
                 <div className='pageHeader title'>{getText(TEXT_WAR)}</div>
                 {this.renderTeamBig()}
             </div>}
             {component === 1 && <div>
-                <div
-                    className='pageHeader task'>{`${getText(TEXT_QUESTION)} ${content.task.id}`}</div>
-                <div className='pageHeader drawWhoAnswer'>{getText(TEXT_DRAW_WHO_ANSWER)}</div>
-                <div className='pageHeader randomTeamHero1'>{getText(TEXT_YOUR_TEAM)}</div>
-                <RandomTeamHero
-                    className='randomTeamHero1'
-                    presentIndexes={content.presentIndexes}
-                    profile={profile}
-                    team={content.team}
-                    targetIndex={content.activeIndex}
-                    delay={3000} duration={2500}
-                />
-                <div className='pageHeader randomTeamHero2'>{getText(TEXT_OPPONENT_TEAM)}</div>
-                <RandomTeamHero
-                    className='randomTeamHero2'
-                    presentIndexes={content.opponentPresentIndexes}
-                    profile={content.opponent}
-                    team={content.opponentTeam}
-                    targetIndex={content.opponentActiveIndex}
-                    delay={6000}
-                    duration={2500}
-                />
-            </div>}
-            {component === 2 && <div>
-                <ActiveHeroes content={content} className='absolute'/>
                 <RandomTaskProps className='taskProps' content={content}/>
             </div>}
         </div>;

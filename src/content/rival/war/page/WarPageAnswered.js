@@ -5,8 +5,8 @@ import thumbUp from '../../../../media/image/icon/thumbUp.svg';
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import WarTaskDescription from "../../component/WarTaskDescription";
 import ActiveHero from "../../component/ActiveHero";
+import TaskDescription from "../../component/TaskDescription";
 
 class WarPageAnswered extends React.PureComponent {
 
@@ -63,7 +63,11 @@ class WarPageAnswered extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnswered'>
-            <WarTaskDescription content={content} className='pageHeader warTaskDescription'/>
+            <TaskDescription
+                content={content}
+                renderTaskPoints={false}
+                renderTaskCount={false}
+                className='pageHeader warTaskDescription'/>
             {this.renderWhoAnswered()}
             <TaskWithoutActions content={content}/>
             <TaskMarkedAnswer content={content}/>

@@ -9,7 +9,6 @@ import {getText, TEXT_TIME} from "../../../../lang/text";
 import ActiveHeroes from "../../component/ActiveHeroes";
 import Hero from "../../../../component/hero/Hero";
 import Profile from "../../../../component/profile/Profile";
-import WarTaskDescription from "../../component/WarTaskDescription";
 import HeroActions from "../../../../component/hero/HeroActions";
 
 class WarPageAnswering extends React.PureComponent {
@@ -88,9 +87,14 @@ class WarPageAnswering extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnswering'>
-            <WarTaskDescription content={content} className='pageHeader'>
+            <TaskDescription
+                content={content}
+                renderTaskPoints={false}
+                renderTaskCount={false}
+                className='justifyCenter flexColumn pageHeader'
+            >
                 <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
-            </WarTaskDescription>
+            </TaskDescription>
             {content.activeIndex === 0 ? this.renderTaskActive() : this.renderTaskNotActive()}
         </div>;
     }

@@ -61,7 +61,8 @@ class WarFetchContainer extends React.PureComponent {
     }
 
     render() {
-        const {tag, status} = this.props;
+        // const {tag, status} = this.props;
+        const {status} = this.props;
         return <div>
             {/*<WarStartFriendFetch status={status} tag={tag}/>*/}
             {/*<WarCancelFriendFetch status={status}/>*/}

@@ -4,9 +4,7 @@ import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_NO_ANSWER} from "../../../../lang/text";
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import TaskWithoutActions from "../../component/TaskWithoutActions";
 import ActiveHeroes from "../../component/ActiveHeroes";
-import WarTaskDescription from "../../component/WarTaskDescription";
 
 class WarPageAnsweringTimeout extends React.PureComponent {
 
@@ -25,7 +23,12 @@ class WarPageAnsweringTimeout extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnsweringTimeout'>
-            <WarTaskDescription content={content} className='contentHeader'/>
+            <TaskDescription
+                content={content}
+                renderTaskPoints={false}
+                renderTaskCount={false}
+                className='justifyCenter flexColumn contentHeader'
+            />
             <ActiveHeroes content={content} className='absolute activeHeroes'/>
             {this.renderNoAnswer()}
             {/*<TaskWithoutActions content={content}/>*/}

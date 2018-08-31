@@ -1,6 +1,6 @@
 import React from 'react';
 import '../battle/page/styles.css';
-import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_POINTS, TEXT_QUESTION} from "../../../lang/text";
+import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_QUESTION} from "../../../lang/text";
 import {getCategoryLabel} from "../../../lang/category";
 import Rating from "../../../component/rating/Rating";
 import {getCategory} from "../../../util/categoryHelper";
@@ -9,11 +9,12 @@ import {prepareRatingPointsMessage} from "../../../util/textHelper";
 export default class TaskDescription extends React.PureComponent {
 
     static defaultProps = {
-        renderTaskCount: true
+        renderTaskCount: true,
+        renderTaskPoints: true
     };
 
     render() {
-        const {content, className, children, taskId, renderTaskCount} = this.props;
+        const {content, className, children, taskId, renderTaskCount, renderTaskPoints} = this.props;
         let {task} = content;
         if (!task) {
             task = {};
@@ -22,12 +23,15 @@ export default class TaskDescription extends React.PureComponent {
         return <div className={`${className}`}>
             <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>
             {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)} `}
-                <img alt='' key={task.category} height={20}
+                <img alt='' key={task.category} height={12}
                      src={getCategory(task.category)}/>
             </div>}
-            {task.difficultyLevel && <div className='justifyCenter'><div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT)}:`}</div>
-                &nbsp;<Rating valueString={task.difficultyLevel}/>
-                &nbsp;<div className='justifyCenter flexColumn'>{prepareRatingPointsMessage(task.points)}</div>
+            {task.difficultyLevel && <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT)}:`}</div>
+                &nbsp;<Rating valueString={task.difficultyLevel}/>&nbsp;
+                {renderTaskPoints && <div className='justifyCenter flexColumn'>
+                    {prepareRatingPointsMessage(task.points)}
+                </div>}
             </div>}
             {children}
         </div>

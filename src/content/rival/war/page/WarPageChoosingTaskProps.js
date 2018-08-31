@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import RandomTaskProps from "../../component/RandomTaskProps";
-import Profiles from "../../component/Profiles";
 import ChoosingTaskProps from "../../component/ChoosingTaskProps";
 import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_OPPONENT_CHOOSING, TEXT_OPPONENT_TEAM, TEXT_TIME, TEXT_YOUR_TEAM} from "../../../../lang/text";
@@ -40,7 +39,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
 
     renderTeams() {
         const {content, profile, screen} = this.props;
-        let renderImg = screen.contentHeight - 40 < 40 * 5;
+        const renderImg = screen.contentHeight - 40 > 480;
         return <div className='contentHeader justifyBetween fontSize07Rem' style={{zIndex: 0}}>
             <div style={{marginLeft: '0.25rem'}}>
                 <div>{getText(TEXT_YOUR_TEAM)}</div>
@@ -69,7 +68,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
         }
         if (choosingTaskPropsTag === profile.tag) {
             return <ChoosingTaskProps
-                screen={{...screen, contentHeight: screen.contentHeight - 60, contentWidth: screen.contentWidth - 80}}
+                screen={{...screen, contentHeight: screen.contentHeight - 80, contentWidth: screen.contentWidth - 80}}
                 renderPoints={false}
                 acceptMsg='WAR_CHOOSE_TASK_PROPS'
                 content={content}

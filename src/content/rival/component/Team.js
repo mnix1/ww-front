@@ -8,6 +8,7 @@ class Team extends React.PureComponent {
 
     static defaultProps = {
         className: 'justifyCenter',
+        heroClassName: '',
         contentClassName: '',
         renderHobbies: false,
         renderImg: true,
@@ -15,7 +16,7 @@ class Team extends React.PureComponent {
 
     get imgHeight() {
         const {screen, imgHeight} = this.props;
-        if(imgHeight){
+        if (imgHeight) {
             return imgHeight;
         }
         if (screen.isSmallHeight || screen.moreHeightThanWidth) {
@@ -25,13 +26,15 @@ class Team extends React.PureComponent {
     }
 
     renderHeroes(heroes, activeIndex, presentIndexes) {
-        return heroes.map((e, i) => this.renderHero(e, i + 1 === activeIndex, !_.includes(presentIndexes, i + 1)));
+        return heroes.map((e, i) => this.renderHero(e, i + 1, i + 1 === activeIndex, !_.includes(presentIndexes, i + 1)));
     }
 
-    renderHero(hero, isActive, isDisabled) {
-        const {renderHobbies, imgHobbyHeight, renderImg} = this.props;
+    renderHero(hero, index, isActive, isDisabled) {
+        const {renderHobbies, onClick, imgHobbyHeight, renderImg, heroClassName} = this.props;
+        const className = `${heroClassName} ${isDisabled ? 'disabled' : ''}`;
         return <Hero
-            className={isDisabled ? 'disabled' : ''}
+            onClick={isDisabled ? _.noop : () => onClick(index)}
+            className={className}
             key={hero.type}
             isActive={isActive}
             imgHeight={this.imgHeight}
@@ -44,12 +47,16 @@ class Team extends React.PureComponent {
     }
 
     render() {
-        const {profile, team, activeIndex, presentIndexes, contentClassName, className} = this.props;
+        const {profile, team, onClick, activeIndex, presentIndexes, contentClassName, className} = this.props;
+        const isProfileDisabled = _.head(presentIndexes) !== 0;
         return <div className={className}>
             <div className={`justifyCenter ${contentClassName}`}>
-                <Profile blackBackground={true} renderDetailsHorizontal={true} isActive={activeIndex === 0} {...profile}
+                <Profile onClick={isProfileDisabled ? _.noop : () => onClick(0)}
+                         blackBackground={true}
+                         renderDetailsHorizontal={true}
+                         isActive={activeIndex === 0} {...profile}
                          imgHeight={this.imgHeight + 4}
-                         className={_.head(presentIndexes) === 0 ? '' : 'disabled'}/>
+                         className={isProfileDisabled ? 'disabled' : ''}/>
                 {this.renderHeroes(team, activeIndex, presentIndexes)}
             </div>
         </div>

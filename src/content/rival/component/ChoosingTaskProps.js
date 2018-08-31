@@ -14,19 +14,6 @@ export default class ChoosingTaskProps extends React.PureComponent {
         renderPoints: true
     };
 
-    renderChooseCategory() {
-        const {screen, content, communication, acceptMsg, onCategoryChange} = this.props;
-        return <SimpleObjectGroup
-            objects={OBJECTS_CATEGORY}
-            selectedId={content.chosenCategory}
-            onObjectClick={(categoryObject) => {
-                communication.send(acceptMsg + JSON.stringify({category: categoryObject.id}))
-                onCategoryChange(categoryObject);
-            }}
-            screen={screen}
-        />
-    }
-
     renderChooseDifficult() {
         const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, acceptMsg, renderPoints} = this.props;
         return <div className='justifyCenter flexColumn'>
@@ -45,8 +32,22 @@ export default class ChoosingTaskProps extends React.PureComponent {
         </div>;
     }
 
+    renderChooseCategory() {
+        const {screen, content, communication, acceptMsg, onCategoryChange} = this.props;
+        return <SimpleObjectGroup
+            setHeight={false}
+            objects={OBJECTS_CATEGORY}
+            selectedId={content.chosenCategory}
+            onObjectClick={(categoryObject) => {
+                communication.send(acceptMsg + JSON.stringify({category: categoryObject.id}))
+                onCategoryChange(categoryObject);
+            }}
+            screen={screen}
+        />
+    }
+
     render() {
-        const {content, children} = this.props;
+        const {content} = this.props;
         return <div>
             <div className='pageHeader'>
                 <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
@@ -55,7 +56,6 @@ export default class ChoosingTaskProps extends React.PureComponent {
                 <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
                 {this.renderChooseDifficult()}
             </div>}
-            {children}
             {!content.isChosenCategory && content.isChosenDifficulty && <div className='pageHeader'>
                 <div>{getText(TEXT_CHOOSE_CATEGORY)}</div>
                 {this.renderChooseCategory()}

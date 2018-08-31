@@ -2,16 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     getText,
-    TEXT_WAR_OVER, TEXT_DRAW,
+    TEXT_DRAW,
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
+    TEXT_WAR_OVER,
     TEXT_YOU_SURRENDER
 } from "../../../../lang/text";
-import Profiles from "../../component/Profiles";
-import Profile from "../../../../component/profile/Profile";
 import trophy from '../../../../media/image/icon/trophy.svg';
 import _ from 'lodash';
-import ActiveHeroes from "../../component/ActiveHeroes";
 import Team from "../../component/Team";
 
 class WarPageClosed extends React.PureComponent {
