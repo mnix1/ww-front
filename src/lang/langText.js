@@ -62,7 +62,9 @@ export const TEXT_BATTLE = 'TEXT_BATTLE';
 export const TEXT_CHALLENGE = 'TEXT_CHALLENGE';
 export const TEXT_DELETE = 'TEXT_DELETE';
 export const TEXT_INVITED_TO_BATTLE_BY = 'TEXT_INVITED_TO_BATTLE_BY';
+export const TEXT_INVITED_TO_WAR_BY = 'TEXT_INVITED_TO_WAR_BY';
 export const TEXT_INVITE_TO_BATTLE = 'TEXT_INVITE_TO_BATTLE';
+export const TEXT_INVITE_TO_WAR = 'TEXT_INVITE_TO_WAR';
 export const TEXT_SEARCHING_OPPONENT = 'TEXT_SEARCHING_OPPONENT';
 export const TEXT_ACCEPT = 'TEXT_ACCEPT';
 export const TEXT_REJECT = 'TEXT_REJECT';
@@ -212,7 +214,9 @@ const TEXTS = {
         [TEXT_CHALLENGE]: 'Wyzwanie',
         [TEXT_DELETE]: 'Usuń',
         [TEXT_INVITED_TO_BATTLE_BY]: 'Zostałeś zaproszony do bitwy przez',
+        [TEXT_INVITED_TO_WAR_BY]: 'Zostałeś zaproszony do wojny przez',
         [TEXT_INVITE_TO_BATTLE]: 'Zaprosiłeś do bitwy',
+        [TEXT_INVITE_TO_WAR]: 'Zaprosiłeś do wojny',
         [TEXT_ACCEPT]: 'Akceptuj',
         [TEXT_REJECT]: 'Odrzuć',
         [TEXT_CANCEL]: 'Anuluj',
@@ -323,7 +327,9 @@ const TEXTS = {
         [TEXT_CHALLENGE]: 'Challenge',
         [TEXT_DELETE]: 'Delete',
         [TEXT_INVITED_TO_BATTLE_BY]: 'You have been invited to battle with',
+        [TEXT_INVITED_TO_WAR_BY]: 'You have been invited to war with',
         [TEXT_INVITE_TO_BATTLE]: 'You invited to battle',
+        [TEXT_INVITE_TO_WAR]: 'You invited to war',
         [TEXT_ACCEPT]: 'Accept',
         [TEXT_REJECT]: 'Reject',
         [TEXT_CANCEL]: 'Cancel',

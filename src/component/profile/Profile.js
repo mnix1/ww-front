@@ -63,7 +63,7 @@ export default class Profile extends React.PureComponent {
             </div>;
         }
         return <div className='profile justifyBetween'>
-            <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
+            <div className='justifyCenter marginRem'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;

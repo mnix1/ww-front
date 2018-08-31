@@ -1,10 +1,10 @@
 import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
-import {battleCleared, battleInviteCancelled, battleInvited, statusChanged} from "../../redux/reducer/battle";
-import {clearBattleStartFriendFetch} from "../rival/battle/fetch/BattleStartFriendFetch";
-import {BATTLE_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/battleHelper";
+import {rivalCleared, rivalInviteCancelled, rivalInvited, statusChanged} from "../../redux/reducer/rival";
+import {clearRivalStartFriendFetch} from "../rival/fetch/RivalStartFriendFetch";
+import {RIVAL_STATUS_READY_TO_BEGIN_FRIEND, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
 import {push} from 'connected-react-router'
-import {BATTLE_ROUTE} from "../routes";
+import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
 import {noticeReward} from "../../component/notification/noticeReward";
 import {clearProfileFetch} from "./ProfileFetch";
 
@@ -51,21 +51,26 @@ export default class CommunicationWebSocket {
             this.dispatch(friendSignedIn(data.content));
         } else if (id === 'FRIEND_SIGN_OUT') {
             this.dispatch(friendSignedOut(data.content));
-        } else if (id === 'BATTLE_INVITE') {
-            this.dispatch(battleInvited(JSON.parse(data.content)));
+        } else if (id === 'RIVAL_INVITE') {
+            this.dispatch(rivalInvited(JSON.parse(data.content)));
         } else if (id === 'REWARD') {
             noticeReward(JSON.parse(data.content));
             clearProfileFetch(this.dispatch);
-        } else if (id === 'BATTLE_CANCEL_INVITE') {
-            this.dispatch(battleInviteCancelled());
-        } else if (id === 'BATTLE_REJECT_INVITE') {
-            clearBattleStartFriendFetch(this.dispatch);
-            this.dispatch(battleCleared());
-        } else if (id === 'BATTLE_ACCEPT_INVITE') {
-            clearBattleStartFriendFetch(this.dispatch);
-            this.dispatch(battleCleared());
-            this.dispatch(statusChanged(BATTLE_STATUS_READY_TO_BEGIN_FRIEND));
-            this.dispatch(push(BATTLE_ROUTE));
+        } else if (id === 'RIVAL_CANCEL_INVITE') {
+            this.dispatch(rivalInviteCancelled());
+        } else if (id === 'RIVAL_REJECT_INVITE') {
+            clearRivalStartFriendFetch(this.dispatch);
+            this.dispatch(rivalCleared());
+        } else if (id === 'RIVAL_ACCEPT_INVITE') {
+            clearRivalStartFriendFetch(this.dispatch);
+            this.dispatch(rivalCleared());
+            this.dispatch(statusChanged(RIVAL_STATUS_READY_TO_BEGIN_FRIEND));
+            if (data.content === RIVAL_TYPE_BATTLE) {
+                this.dispatch(push(BATTLE_ROUTE));
+            } else if (data.content === RIVAL_TYPE_WAR) {
+                this.dispatch(push(WAR_ROUTE));
+            }
+
         }
     };
 

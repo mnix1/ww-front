@@ -17,11 +17,13 @@ import {
     TEXT_NONE_SUGGESTED_FRIENDS,
     TEXT_SUGGEST_FRIENDS,
     TEXT_SUGGESTED_FRIENDS,
+    TEXT_WAR,
 } from "../../lang/langText";
 import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {challengeCleared, tagsChanged} from "../../redux/reducer/challenge";
 import {AddFriend} from "../../component/add-friend/AddFriend";
+import FaQq from 'react-icons/lib/fa/qq';
 import FaBan from 'react-icons/lib/fa/ban';
 import FaGavel from 'react-icons/lib/fa/gavel';
 import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
@@ -30,8 +32,8 @@ import TiFlash from 'react-icons/lib/ti/flash';
 import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {CREAM_COLOR} from "../../util/style/constant";
-import {statusChanged, tagChanged} from "../../redux/reducer/battle";
-import {BATTLE_STATUS_START_FRIEND} from "../../util/battleHelper";
+import {statusChanged, tagChanged, rivalTypeChanged} from "../../redux/reducer/rival";
+import {RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_FRIEND_ROUTE} from "../routes";
@@ -81,13 +83,18 @@ class FriendPage extends React.PureComponent {
     }
 
     renderFriend(friend) {
-        const {addedSuggested, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onBattleFriendClick} = this.props;
+        const {addedSuggested, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick} = this.props;
         return <Profile
             key={friend.tag}
             {...friend}
-            actions={<div className='actions'>
+            actions={<div className='actions fontSize08Rem'>
                 {friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline &&
-                <div onClick={() => onBattleFriendClick(friend.tag)}><span>{getText(TEXT_BATTLE)}</span><TiFlash
+                <div onClick={() => onRivalFriendClick(friend.tag, RIVAL_TYPE_WAR)}>
+                    <span>{getText(TEXT_WAR)}</span><FaQq
+                    color={CREAM_COLOR}/></div>}
+                {friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline &&
+                <div onClick={() => onRivalFriendClick(friend.tag, RIVAL_TYPE_BATTLE)}>
+                    <span>{getText(TEXT_BATTLE)}</span><TiFlash
                     color={CREAM_COLOR}/></div>}
                 {friend.status === FRIEND_STATUS_ACCEPTED &&
                 <div onClick={() => onChallengeFriendClick(friend.tag)}><span>{getText(TEXT_CHALLENGE)}</span><FaGavel
@@ -158,9 +165,10 @@ export default connect(
         suggest: state.friend.suggest,
     }),
     (dispatch) => ({
-        onBattleFriendClick: (tag) => {
+        onRivalFriendClick: (tag, type) => {
             dispatch(tagChanged(tag));
-            dispatch(statusChanged(BATTLE_STATUS_START_FRIEND));
+            dispatch(rivalTypeChanged(type));
+            dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
         },
         onChallengeFriendClick: (tag) => {
             // clearChallengeStartFriendFetch(dispatch);
