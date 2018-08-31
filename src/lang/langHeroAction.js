@@ -32,16 +32,16 @@ const HERO_ACTION_LABELS = {
         [THINKING]: 'Myślę',
 
         [THINK_KNOW_ANSWER]: 'Znam odpowiedź',
-        [LOOKING_FOR_ANSWER]: 'Szukam odpowiedzi',
+        [LOOKING_FOR_ANSWER]: 'Tylko która to?',
 
-        [NO_FOUND_ANSWER_LOOKING_FOR]: 'Nie ma tej odpowiedzi',
+        [NO_FOUND_ANSWER_LOOKING_FOR]: 'Nie ma takiej',
         [FOUND_ANSWER_LOOKING_FOR]: 'Znalazłem odpowiedź',
 
-        [NOT_SURE_OF_ANSWER]: 'Nie znam odpowiedzi',
+        [NOT_SURE_OF_ANSWER]: 'Ale o co chodzi?',
         [RECOGNIZING_ANSWERS]: 'Poznaję odpowiedzi',
 
         [ANSWERED]: 'Odpowiadam',
-        [SURRENDER]: 'Poddaję się',
+        [SURRENDER]: 'Nie, poddaję się',
 
         [WILL_GIVE_RANDOM_ANSWER]: 'Będę strzelać',
         [WONT_GIVE_RANDOM_ANSWER]: 'Nie będę strzelać',
