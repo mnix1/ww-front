@@ -41,14 +41,18 @@ class HeroTeamPage extends React.PureComponent {
     renderTeamActions(inTeamHeroes) {
         const {onTeamEditClick, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
         if (!edit) {
-            return <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={() => onTeamEditClick(inTeamHeroes)} icon={<FaEdit size={16}/>}>{getText(TEXT_EDIT)}</Button>;
+            return <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW}
+                           onClick={() => onTeamEditClick(inTeamHeroes)}
+                           icon={<FaEdit size={16}/>}>{getText(TEXT_EDIT)}</Button>;
         }
+        const saveDisabled = inTeamHeroes.length !== HERO_TEAM_COUNT;
         return <div>
             <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onRouteBack}
                     icon={<FaTimesCircle size={16}/>}>{getText(TEXT_CANCEL)}</Button>
             <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEraseTeamClick}
                     icon={<FaEraser size={16}/>}>{getText(TEXT_CLEAR)}</Button>
-            <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onTeamSaveClick}
+            <Button className='marginRem' disabled={saveDisabled} material={BUTTON_MATERIAL_BOX_SHADOW}
+                    onClick={saveDisabled ? _.noop : onTeamSaveClick}
                     icon={<MdSave size={16}/>}>{getText(TEXT_SAVE)}</Button>
         </div>
     }
