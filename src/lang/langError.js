@@ -1,4 +1,4 @@
-import {ENGLISH, POLISH} from "./text";
+import {ENGLISH, POLISH} from "./langText";
 
 export const ERROR_NOT_ENOUGH_RESOURCES = 'ERROR_NOT_ENOUGH_RESOURCES';
 export const ERROR_NO_SPACE_FOR_BOOK = 'ERROR_NO_SPACE_FOR_BOOK';

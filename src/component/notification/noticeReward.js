@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import Gold from "../resource/Gold";
-import {getText, TEXT_REWARD} from "../../lang/text";
+import {getText, TEXT_REWARD} from "../../lang/langText";
 import {getBook} from "../../util/bookHelper";
 import {notice} from "./notice";
 import presentSvg from '../../media/image/icon/present.svg';

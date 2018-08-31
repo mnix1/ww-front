@@ -2,7 +2,7 @@ import React from 'react';
 import {getHero} from "../../util/heroHelper";
 import PropTypes from "prop-types";
 import _ from 'lodash';
-import {getName} from "../../lang/text";
+import {getName} from "../../lang/langText";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
 
@@ -47,7 +47,7 @@ export default class Hero extends React.PureComponent {
                 {this.renderValue()}
             </div>
             <div className='hobbies justifyCenter flexColumn relative'>
-                {renderHobbies && <div className='hobbies justifyCenter'>
+                {renderHobbies && !_.isEmpty(hobbies) && <div className='hobbies justifyCenter'>
                     {hobbies.map(e => <img alt='' className='hobby' key={e} height={imgHobbyHeight}
                                            src={getCategory(e)}/>)}
                 </div>}

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/text";
+import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/langText";
 import Timer from "../../../../component/timer/Timer";
 import ActiveHeroes from "../../component/ActiveHeroes";
 import TaskDescription from "../../component/TaskDescription";

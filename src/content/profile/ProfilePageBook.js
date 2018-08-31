@@ -8,7 +8,7 @@ import {
     stopReadBookIdChanged
 } from "../../redux/reducer/profile";
 import ProfileBook from "../../component/book/ProfileBook";
-import {getText, TEXT_BOOKSHELF, TEXT_EMPTY_BOOKSHELF} from "../../lang/text";
+import {getText, TEXT_BOOKSHELF, TEXT_EMPTY_BOOKSHELF} from "../../lang/langText";
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
 

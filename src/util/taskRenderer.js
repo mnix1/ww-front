@@ -1,4 +1,4 @@
-import {ENGLISH, POLISH} from "../lang/text";
+import {ENGLISH, POLISH} from "../lang/langText";
 
 export const TEXT = 'TEXT';
 export const HTML = 'HTML';

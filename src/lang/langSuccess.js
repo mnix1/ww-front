@@ -1,4 +1,4 @@
-import {ENGLISH, POLISH} from "./text";
+import {ENGLISH, POLISH} from "./langText";
 
 export const SUCCESS_TEAM_SAVED = 'SUCCESS_TEAM_SAVED';
 

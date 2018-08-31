@@ -14,7 +14,7 @@ class HeroPage extends React.PureComponent {
 
     renderContentList() {
         return <div className='pageContent overflowAuto'>
-            <HeroDetailsPage/>
+            <HeroDetailsPage upgrade={true}/>
             <div className='justifyEvenly'>
                 <AvailableResources showGold={false} size={RESOURCE_SMALL}/>
                 <HeroExperimentPage/>

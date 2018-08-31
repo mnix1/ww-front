@@ -1,5 +1,5 @@
 import React from 'react';
-import {getCategoryLabel} from "../../lang/category";
+import {getCategoryLabel} from "../../lang/langCategory";
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";

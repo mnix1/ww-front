@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import play from '../../../../media/image/icon/play.svg';
-import {getText, TEXT_OPPONENT_TEAM, TEXT_WAR, TEXT_YOUR_TEAM} from "../../../../lang/text";
+import {getText, TEXT_OPPONENT_TEAM, TEXT_WAR, TEXT_YOUR_TEAM} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Team from "../../component/Team";
 

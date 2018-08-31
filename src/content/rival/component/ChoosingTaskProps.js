@@ -1,5 +1,5 @@
 import React from 'react';
-import {getText, TEXT_ACCEPT, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../lang/text";
+import {getText, TEXT_ACCEPT, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../lang/langText";
 import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
 import Timer from "../../../component/timer/Timer";

@@ -12,7 +12,7 @@ import {
     TEXT_SUMMARY,
     TEXT_WRONG_ANSWER,
     TEXT_YOUR_SCORE
-} from "../../../lang/text";
+} from "../../../lang/langText";
 import {
     CHALLENGE_STATUS_CLOSED,
     CHALLENGE_STATUS_END_TASK,

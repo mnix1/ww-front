@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Modal from "../../component/modal/Modal";
-import HeroStat from "../../component/hero/HeroStat";
+import HeroAttribute from "../../component/hero/HeroAttribute";
 import FaPlusCircle from "react-icons/lib/fa/plus-circle";
 import FaMinusCircle from "react-icons/lib/fa/minus-circle";
 import {
@@ -10,45 +10,95 @@ import {
     CONFIDENCE,
     COUNTING,
     IMAGINATION,
-    INTUITION,
+    INTUITION, LOGIC,
     MEMORY,
     PATTERN_RECOGNITION,
     PERCEPTIVITY,
     REFLEX,
     SPEED
-} from "../../util/heroStatHelper";
+} from "../../util/heroAttributeHelper";
 import Hero from "../../component/hero/Hero";
-import {heroDetailsChanged, teamChanged} from "../../redux/reducer/hero";
+import {heroDetailsChanged, teamChanged, upgradePropsChanged} from "../../redux/reducer/hero";
 import {Button} from "../../component/button/Button";
 import {HERO_TEAM_COUNT} from "../../util/heroHelper";
-import {getText, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE} from "../../lang/text";
+import {getText, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE} from "../../lang/langText";
 import _ from 'lodash';
+import {GREEN_COLOR} from "../../util/style/constant";
+import Wisdom from "../../component/resource/Wisdom";
+import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
+import {clearHeroUpgradeFetch} from "./fetch/HeroUpgradeFetch";
 
 class HeroDetailsPage extends React.PureComponent {
 
+    get pending() {
+        const {heroUpgradeRep} = this.props;
+        return _.get(heroUpgradeRep, 'pending');
+    }
+
+    get change() {
+        const {heroUpgradeRep} = this.props;
+        return _.get(heroUpgradeRep, 'value.attributeChange');
+    }
+
     renderHero(hero) {
         return <Hero {...hero} style={{}}>
-            {this.renderHeroStats(hero)}
+            {this.renderHeroAttributes(hero)}
         </Hero>;
     }
 
-    renderHeroStats(hero) {
+    renderUpgradeCost(cost) {
+        const {profile} = this.props;
+        return <div className='justifyCenter' style={{marginLeft: '0.25rem'}}>
+            (<Wisdom notEnough={profile.wisdom < cost} margin={false} column={false}
+                     size={RESOURCE_VERY_SMALL}>{cost}</Wisdom>)
+        </div>;
+    }
+
+    renderHeroAttributes(hero) {
+        const {upgrade} = this.props;
         return <div className='justifyEvenly' style={{fontSize: '0.8em'}}>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
-                <HeroStat hero={hero} stat={MEMORY}/>
-                <HeroStat hero={hero} stat={PERCEPTIVITY}/>
-                <HeroStat hero={hero} stat={COUNTING}/>
-                <HeroStat hero={hero} stat={COMBINING_FACTS}/>
-                <HeroStat hero={hero} stat={PATTERN_RECOGNITION}/>
-                <HeroStat hero={hero} stat={IMAGINATION}/>
+                <div className='justifyCenter'>
+                    Wiedza
+                    {upgrade && !this.pending && this.renderUpgradeCost(1)}
+                </div>
+                {this.renderHeroAttribute(hero, MEMORY, 1)}
+                {this.renderHeroAttribute(hero, LOGIC, 1)}
+                {this.renderHeroAttribute(hero, PERCEPTIVITY, 1)}
+                {this.renderHeroAttribute(hero, COUNTING, 1)}
+                {this.renderHeroAttribute(hero, COMBINING_FACTS, 1)}
+                {this.renderHeroAttribute(hero, PATTERN_RECOGNITION, 1)}
+                {this.renderHeroAttribute(hero, IMAGINATION, 1)}
             </div>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
-                <HeroStat hero={hero} stat={SPEED}/>
-                <HeroStat hero={hero} stat={REFLEX}/>
-                <HeroStat hero={hero} stat={CONCENTRATION}/>
-                <HeroStat hero={hero} stat={CONFIDENCE}/>
-                <HeroStat hero={hero} stat={INTUITION}/>
+                <div className='justifyCenter'>
+                    Mentalność
+                    {upgrade && !this.pending && this.renderUpgradeCost(2)}
+                </div>
+                {this.renderHeroAttribute(hero, SPEED, 2)}
+                {this.renderHeroAttribute(hero, REFLEX, 2)}
+                {this.renderHeroAttribute(hero, CONCENTRATION, 2)}
+                {this.renderHeroAttribute(hero, CONFIDENCE, 2)}
+                {this.renderHeroAttribute(hero, INTUITION, 2)}
             </div>
+        </div>;
+    }
+
+    renderHeroAttribute(hero, attribute, cost) {
+        const {upgrade, profile, onUpgradeClick, upgradeProps} = this.props;
+        let change = undefined;
+        if (hero.id === _.get(upgradeProps, 'id') && upgradeProps.attribute === attribute && !this.pending) {
+            change = <span style={{color: GREEN_COLOR, paddingRight: '0.25rem'}}>(+{this.change})</span>;
+        }
+
+        return <div className='justifyBetween'>
+            <div className='width100'>
+                <HeroAttribute change={change} hero={hero} attribute={attribute}/>
+            </div>
+            {upgrade && !this.pending && cost <= profile.wisdom && <div className='justifyCenter flexColumn'>
+                <FaPlusCircle className='pointer' color={GREEN_COLOR}
+                              onClick={() => onUpgradeClick(hero, attribute)}/>
+            </div>}
         </div>;
     }
 
@@ -85,8 +135,11 @@ class HeroDetailsPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        profile: state.profile.profile,
         team: state.hero.team,
         heroDetails: state.hero.heroDetails,
+        heroUpgradeRep: state.repository.heroUpgrade,
+        upgradeProps: state.hero.upgradeProps,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
@@ -98,6 +151,12 @@ export default connect(
         onTeamRemoveClick: (team, hero) => {
             const newTeam = team.filter(e => e.id !== hero.id);
             dispatch(teamChanged(newTeam))
+        },
+        onUpgradeClick: (hero, attribute) => {
+            dispatch(upgradePropsChanged({id: hero.id, attribute}));
+            clearHeroUpgradeFetch(dispatch);
+            // const newTeam = team.filter(e => e.id !== hero.id);
+            // dispatch(teamChanged(newTeam))
         }
     })
 )(HeroDetailsPage);

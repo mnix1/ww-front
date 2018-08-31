@@ -12,7 +12,7 @@ import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
 import {showOptionsChanged} from "../../../../redux/reducer/battle";
 import Modal from "../../../../component/modal/Modal";
-import {getText, TEXT_SURRENDER} from "../../../../lang/text";
+import {getText, TEXT_SURRENDER} from "../../../../lang/langText";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 

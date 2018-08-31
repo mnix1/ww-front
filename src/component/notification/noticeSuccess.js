@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.css';
 import {notice} from "./notice";
 import successSvg from '../../media/image/icon/success.svg';
-import {getSuccess} from "../../lang/success";
+import {getSuccess} from "../../lang/langSuccess";
 
 export function noticeSuccess(success) {
     notice(

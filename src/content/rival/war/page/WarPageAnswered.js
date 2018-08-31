@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/text";
+import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/langText";
 import thumbUp from '../../../../media/image/icon/thumbUp.svg';
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "../../component/TaskWithoutActions";

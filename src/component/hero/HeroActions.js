@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {getHeroActionLabel} from "../../lang/heroAction";
+import {getHeroActionLabel} from "../../lang/langHeroAction";
 import _ from 'lodash';
 
 export default class HeroActions extends React.PureComponent {

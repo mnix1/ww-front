@@ -4,7 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {teamSaveChanged} from "../../../redux/reducer/hero";
 import {isRepValueCode1} from "../../../util/responseHelper";
 import {noticeSuccess} from "../../../component/notification/noticeSuccess";
-import {SUCCESS_TEAM_SAVED} from "../../../lang/success";
+import {SUCCESS_TEAM_SAVED} from "../../../lang/langSuccess";
 
 class HeroTeamSaveFetch extends React.PureComponent {
 

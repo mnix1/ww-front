@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import './styles.css';
-import {getText, TEXT_SUMMARY, TEXT_WAITING} from "../../../lang/text";
+import {getText, TEXT_SUMMARY, TEXT_WAITING} from "../../../lang/langText";
 import Profile from "../../../component/profile/Profile";
 import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
 import {prepareAnswerIntervalMessage, prepareScoreMessage} from "../../../util/textHelper";

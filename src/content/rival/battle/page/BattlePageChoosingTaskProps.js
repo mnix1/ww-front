@@ -5,7 +5,7 @@ import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
 import ChoosingTaskProps from "../../component/ChoosingTaskProps";
 import TaskDescription from "../../component/TaskDescription";
-import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/text";
+import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/langText";
 import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
 import {battleInProgressContent} from "../../../../redux/reducer/battle";

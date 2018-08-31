@@ -13,7 +13,7 @@ import {
     TRAINING_ROUTE, WAR_FAST_ROUTE,
     WISIES_ROUTE
 } from "../content/routes";
-import {ENGLISH, POLISH} from "./text";
+import {ENGLISH, POLISH} from "./langText";
 
 export function getRouteLabel(id) {
     return ROUTE_LABELS[window.activeLang][id];

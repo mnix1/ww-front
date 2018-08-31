@@ -12,7 +12,7 @@ import {
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES,
     TEXT_SUMMARY
-} from "../../../lang/text";
+} from "../../../lang/langText";
 import {challengeCleared, inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";

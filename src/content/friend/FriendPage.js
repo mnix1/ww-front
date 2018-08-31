@@ -17,7 +17,7 @@ import {
     TEXT_NONE_SUGGESTED_FRIENDS,
     TEXT_SUGGEST_FRIENDS,
     TEXT_SUGGESTED_FRIENDS,
-} from "../../lang/text";
+} from "../../lang/langText";
 import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/reducer/friend";
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {challengeCleared, tagsChanged} from "../../redux/reducer/challenge";

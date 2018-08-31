@@ -7,7 +7,7 @@ import {
     TEXT_CHALLENGE_ADD_FRIENDS,
     TEXT_NONE_FRIENDS,
     TEXT_START_CHALLENGE
-} from "../../../lang/text";
+} from "../../../lang/langText";
 import styles from './styles.css';
 import _ from 'lodash';
 import {statusChanged, tagsChanged} from "../../../redux/reducer/challenge";

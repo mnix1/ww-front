@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import experiment from '../../media/image/icon/experiment.svg';
-import {getText, TEXT_COST, TEXT_EXPERIMENT} from "../../lang/text";
+import {getText, TEXT_COST, TEXT_EXPERIMENT} from "../../lang/langText";
 import Crystal from "../../component/resource/Crystal";
 import Wisdom from "../../component/resource/Wisdom";
 import Elixir from "../../component/resource/Elixir";

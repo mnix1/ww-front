@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_ACCEPT, TEXT_CHOOSE_WHO_ANSWER, TEXT_TIME} from "../../../../lang/text";
+import {getText, TEXT_ACCEPT, TEXT_CHOOSE_WHO_ANSWER, TEXT_TIME} from "../../../../lang/langText";
 import Team from "../../component/Team";
 import {warInProgressContent} from "../../../../redux/reducer/war";
 import TaskDescription from "../../component/TaskDescription";

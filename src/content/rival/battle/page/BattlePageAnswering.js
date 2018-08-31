@@ -6,7 +6,7 @@ import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from ".
 import Profiles from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import Timer from "../../../../component/timer/Timer";
-import {getText, TEXT_TIME} from "../../../../lang/text";
+import {getText, TEXT_TIME} from "../../../../lang/langText";
 
 class BattlePageAnswering extends React.PureComponent {
 

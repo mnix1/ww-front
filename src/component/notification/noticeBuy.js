@@ -1,6 +1,6 @@
 import React from 'react';
 import {notice} from "./notice";
-import {getText, TEXT_BOUGHT} from "../../lang/text";
+import {getText, TEXT_BOUGHT} from "../../lang/langText";
 import {getBook} from "../../util/bookHelper";
 import shoppingCart from '../../media/image/icon/shoppingCart.svg';
 

@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import {getText, TEXT_POINTS, TEXT_POSITION, TEXT_SCORE, TEXT_TIME} from "../lang/text";
+import {getText, TEXT_POINTS, TEXT_POSITION, TEXT_SCORE, TEXT_TIME} from "../lang/langText";
 
 export function wordsByLength(string, maxLength) {
     const result = [];

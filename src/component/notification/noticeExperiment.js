@@ -1,6 +1,6 @@
 import React from 'react';
 import {notice} from "./notice";
-import {getText, TEXT_WISIE_DISCOVERED} from "../../lang/text";
+import {getText, TEXT_WISIE_DISCOVERED} from "../../lang/langText";
 import experiment from '../../media/image/icon/experiment.svg';
 import {getHero} from "../../util/heroHelper";
 

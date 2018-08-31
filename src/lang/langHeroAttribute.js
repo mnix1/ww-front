@@ -1,4 +1,4 @@
-import {ENGLISH, POLISH} from "./text";
+import {ENGLISH, POLISH} from "./langText";
 import {
     COMBINING_FACTS, CONCENTRATION,
     COUNTING,
@@ -7,13 +7,13 @@ import {
     MEMORY,
     PATTERN_RECOGNITION,
     PERCEPTIVITY, REFLEX, SPEED
-} from "../util/heroStatHelper";
+} from "../util/heroAttributeHelper";
 
-export function getHeroStatLabel(id) {
-    return HERO_STAT_LABELS[window.activeLang][id];
+export function getHeroAttributeLabel(id) {
+    return HERO_ATTRIBUTE_LABELS[window.activeLang][id];
 }
 
-const HERO_STAT_LABELS = {
+const HERO_ATTRIBUTE_LABELS = {
     [POLISH]: {
         [MEMORY]: 'Pamięć',
         [LOGIC]: 'Logika',

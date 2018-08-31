@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_EDIT, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/text";
+import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_EDIT, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/langText";
 import './styles.css';
 import _ from 'lodash';
 import Hero from "../../component/hero/Hero";
@@ -54,14 +54,14 @@ class HeroTeamPage extends React.PureComponent {
     }
 
     render() {
-        const {heroListRep, profileHeroListRep, edit, team} = this.props;
-        if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
+        const {heroListRep, profileHeroes, edit, team} = this.props;
+        if (!heroListRep || !heroListRep.fulfilled) {
             return null;
         }
-        if (profileHeroListRep.value.length < HERO_TEAM_COUNT) {
+        if (profileHeroes.length < HERO_TEAM_COUNT) {
             return null;
         }
-        const inTeamHeroes = edit ? team : profileHeroListRep.value.filter(e => e.inTeam);
+        const inTeamHeroes = edit ? team : profileHeroes.filter(e => e.inTeam);
         const inTeamHeroesMap = _.keyBy(inTeamHeroes, 'type');
         const heroes = _.chain(heroListRep.value.filter(e => inTeamHeroesMap[e.type]))
             .defaultTo([])
@@ -85,7 +85,7 @@ export default connect(
         path: state.router.location.pathname,
         team: state.hero.team,
         heroListRep: state.repository.heroList,
-        profileHeroListRep: state.repository.profileHeroList
+        profileHeroes: state.hero.profileHeroes
     }),
     (dispatch) => ({
         onTeamEditClick: (team) => {

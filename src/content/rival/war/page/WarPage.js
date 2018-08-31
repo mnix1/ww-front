@@ -12,7 +12,7 @@ import WarPageAnsweringTimeout from "./WarPageAnsweringTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
 import {showOptionsChanged} from "../../../../redux/reducer/war";
 import Modal from "../../../../component/modal/Modal";
-import {getText, TEXT_SURRENDER} from "../../../../lang/text";
+import {getText, TEXT_SURRENDER} from "../../../../lang/langText";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import WarPageChoosingWhoAnswer from "./WarPageChoosingWhoAnswer";

@@ -7,7 +7,7 @@ import {
     TEXT_THE_WINNER_IS,
     TEXT_WAR_OVER,
     TEXT_YOU_SURRENDER
-} from "../../../../lang/text";
+} from "../../../../lang/langText";
 import trophy from '../../../../media/image/icon/trophy.svg';
 import _ from 'lodash';
 import Team from "../../component/Team";

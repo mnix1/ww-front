@@ -4,7 +4,7 @@ import _ from 'lodash';
 import RandomTaskProps from "../../component/RandomTaskProps";
 import ChoosingTaskProps from "../../component/ChoosingTaskProps";
 import TaskDescription from "../../component/TaskDescription";
-import {getText, TEXT_OPPONENT_CHOOSING, TEXT_OPPONENT_TEAM, TEXT_TIME, TEXT_YOUR_TEAM} from "../../../../lang/text";
+import {getText, TEXT_OPPONENT_CHOOSING, TEXT_OPPONENT_TEAM, TEXT_TIME, TEXT_YOUR_TEAM} from "../../../../lang/langText";
 import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";

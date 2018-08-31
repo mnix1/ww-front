@@ -11,7 +11,7 @@ import {
     CATEGORY_COLOR,
     CATEGORY_TIME,
 } from "../util/categoryHelper";
-import {ENGLISH, POLISH} from "./text";
+import {ENGLISH, POLISH} from "./langText";
 
 export function getCategoryLabel(id) {
     return CATEGORY_LABELS[window.activeLang][id];

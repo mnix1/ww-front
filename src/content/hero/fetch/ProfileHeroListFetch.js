@@ -3,6 +3,10 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {WISIES_ROUTE} from "../../routes";
 import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
+import {isRepValueCode1} from "../../../util/responseHelper";
+import {noticeSuccess} from "../../../component/notification/noticeSuccess";
+import {profileHeroesChanged, teamSaveChanged} from "../../../redux/reducer/hero";
+import {SUCCESS_TEAM_SAVED} from "../../../lang/langSuccess";
 
 class ProfileHeroListFetch extends React.PureComponent {
 
@@ -12,6 +16,10 @@ class ProfileHeroListFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
+        const {profileHeroListFetch, dispatch} = this.props;
+        if (!prevProps.profileHeroListFetch.fulfilled && profileHeroListFetch.fulfilled) {
+            dispatch(profileHeroesChanged(profileHeroListFetch.value));
+        }
     }
 
     componentWillUnmount() {

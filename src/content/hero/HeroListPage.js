@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/text";
+import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/langText";
 import './styles.css';
 import _ from 'lodash';
 import {calculateHeroWidth, HERO_TEAM_COUNT} from "../../util/heroHelper";
@@ -73,11 +73,11 @@ class HeroListPage extends React.PureComponent {
     }
 
     render() {
-        const {heroListRep, edit, profileHeroListRep, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
+        const {heroListRep, edit, profileHeroListRep, profileHeroes, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
         if (!heroListRep || !heroListRep.fulfilled || !profileHeroListRep || !profileHeroListRep.fulfilled) {
             return <Loading/>;
         }
-        const ownedHeroesMap = _.keyBy(profileHeroListRep.value, 'type');
+        const ownedHeroesMap = _.keyBy(profileHeroes, 'type');
         const groupCount = Math.floor(screen.contentWidth / this.heroWidth);
         const heroes = _.groupBy(heroListRep.value, e => ownedHeroesMap[e.type] ? 'owned' : 'notOwned');
         const ownedHeroes = _.chain(heroes.owned).defaultTo([])
@@ -113,6 +113,7 @@ export default connect(
         showNotOwned: state.hero.showNotOwned,
         path: state.router.location.pathname,
         heroListRep: state.repository.heroList,
+        profileHeroes: state.hero.profileHeroes,
         profileHeroListRep: state.repository.profileHeroList
     }),
     (dispatch) => ({

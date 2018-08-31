@@ -5,7 +5,7 @@ import Task from "../../../../component/task/Task";
 import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/war";
 import TaskDescription from "../../component/TaskDescription";
 import Timer from "../../../../component/timer/Timer";
-import {getText, TEXT_TIME} from "../../../../lang/text";
+import {getText, TEXT_TIME} from "../../../../lang/langText";
 import ActiveHeroes from "../../component/ActiveHeroes";
 import Hero from "../../../../component/hero/Hero";
 import Profile from "../../../../component/profile/Profile";

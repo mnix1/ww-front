@@ -1,4 +1,4 @@
-import {ENGLISH, POLISH} from "./text";
+import {ENGLISH, POLISH} from "./langText";
 import {
     ANSWERED,
     DREAMING_ABOUT_VACATION,

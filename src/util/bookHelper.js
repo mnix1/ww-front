@@ -35,7 +35,7 @@ import encyclopediaPl from '../media/image/book/pl/encyclopedia.png';
 import scienceArticlePl from '../media/image/book/pl/scienceArticle.svg';
 import mysteriousBookPl from '../media/image/book/pl/mysteriousBook.png';
 import secretBookPl from '../media/image/book/pl/secretBook.png';
-import {POLISH} from "../lang/text";
+import {POLISH} from "../lang/langText";
 
 export const BOOK_LEAFLET = 'LEAFLET';
 export const BOOK_FAIRY_TALE = 'FAIRY_TALE';

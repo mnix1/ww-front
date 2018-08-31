@@ -1,7 +1,7 @@
 import React from 'react';
 import '../battle/page/styles.css';
-import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_QUESTION} from "../../../lang/text";
-import {getCategoryLabel} from "../../../lang/category";
+import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_QUESTION} from "../../../lang/langText";
+import {getCategoryLabel} from "../../../lang/langCategory";
 import Rating from "../../../component/rating/Rating";
 import {getCategory} from "../../../util/categoryHelper";
 import {prepareRatingPointsMessage} from "../../../util/textHelper";

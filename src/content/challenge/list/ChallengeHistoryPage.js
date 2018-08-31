@@ -4,7 +4,7 @@ import _ from 'lodash';
 import {CREAM_COLOR} from "../../../util/style/constant";
 import FaListOl from "react-icons/lib/fa/list-ol";
 import './styles.css';
-import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES, TEXT_SUMMARY} from "../../../lang/text";
+import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES, TEXT_SUMMARY} from "../../../lang/langText";
 import {challengeCleared, summaryIdChanged} from "../../../redux/reducer/challenge";
 import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'

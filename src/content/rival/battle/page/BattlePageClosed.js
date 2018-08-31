@@ -6,7 +6,7 @@ import {
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
     TEXT_YOU_SURRENDER
-} from "../../../../lang/text";
+} from "../../../../lang/langText";
 import Profiles from "../../component/Profiles";
 import Profile from "../../../../component/profile/Profile";
 import trophy from '../../../../media/image/icon/trophy.svg';

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../../../lang/text";
+import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../../../lang/langText";
 import {statusChanged} from "../../../../redux/reducer/war";
 import Modal from "../../../../component/modal/Modal";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
