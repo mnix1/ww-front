@@ -109,10 +109,14 @@ export const TEXT_TEAM_ADD= 'TEXT_TEAM_ADD';
 export const TEXT_TEAM_REMOVE= 'TEXT_TEAM_REMOVE';
 export const TEXT_SHOW_DETAILS= 'TEXT_SHOW_DETAILS';
 export const TEXT_WAR_OVER= 'TEXT_WAR_OVER';
+export const TEXT_YOUR_TEAM= 'TEXT_YOUR_TEAM';
+export const TEXT_OPPONENT_TEAM= 'TEXT_OPPONENT_TEAM';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_YOUR_TEAM]: 'Twoja drużyna',
+        [TEXT_OPPONENT_TEAM]: 'Drużyna przeciwnika',
         [TEXT_DRAW_WHO_ANSWER]: 'Losowanie odpowiadającego',
         [TEXT_WAR]: 'Wojna',
         [TEXT_WAR_OVER]: 'Koniec wojny!',

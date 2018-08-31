@@ -19,21 +19,26 @@ export default class Hero extends React.PureComponent {
         onClick: PropTypes.func,
         stats: PropTypes.node,
         renderHobbies: PropTypes.bool,
+        renderImg: PropTypes.bool,
+        imgHobbyHeight: PropTypes.number,
         renderDetails: PropTypes.bool,
-        isActive: PropTypes.bool
+        isActive: PropTypes.bool,
+        hobbies: PropTypes.array
     };
 
     static defaultProps = {
         renderHobbies: true,
         renderDetails: true,
+        renderImg: true,
         isActive: false,
         imgHeight: 100,
+        imgHobbyHeight: 20,
         className: '',
         onClick: _.noop
     };
 
     renderHeroDetailsNotOwned() {
-        const {hobbies, renderHobbies} = this.props;
+        const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
         return <div className='heroDetails paddingRem relative justifyBetween'>
             <div className='absoluteBackgroundMix inlineBlock'/>
@@ -42,8 +47,8 @@ export default class Hero extends React.PureComponent {
                 {this.renderValue()}
             </div>
             <div className='hobbies justifyCenter flexColumn relative'>
-                {renderHobbies && <div className='hobbies justifyCenter '>
-                    {hobbies.map(e => <img alt='' className='hobby' key={e} height={20}
+                {renderHobbies && <div className='hobbies justifyCenter'>
+                    {hobbies.map(e => <img alt='' className='hobby' key={e} height={imgHobbyHeight}
                                            src={getCategory(e)}/>)}
                 </div>}
             </div>
@@ -52,7 +57,7 @@ export default class Hero extends React.PureComponent {
     }
 
     renderHeroDetailsOwned() {
-        const {hobbies, renderHobbies} = this.props;
+        const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
         return <div className='heroDetails justifyBetween'>
             <div className='justifyCenter flexColumn'>
@@ -60,7 +65,7 @@ export default class Hero extends React.PureComponent {
                 {this.renderValue()}
             </div>
             {renderHobbies && <div className='hobbies justifyCenter '>
-                {hobbies.map(e => <img alt='' className='hobby' key={e} height={20}
+                {hobbies.map(e => <img alt='' className='hobby' key={e} height={imgHobbyHeight}
                                        src={getCategory(e)}/>)}
             </div>}
 
@@ -76,14 +81,14 @@ export default class Hero extends React.PureComponent {
     }
 
     render() {
-        const {onClick, style, type, isOwned, imgHeight, stats, children, className, renderDetails, isActive} = this.props;
+        const {onClick, style, type, isOwned, imgHeight, stats, children, renderImg, className, renderDetails, isActive} = this.props;
         return <div
             className={`hero marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'} ${isActive ? 'active' : ''}`}
             style={style}>
             <div onClick={onClick} key={type}>
                 <div className=' justifyCenter flexColumn'>
                     {renderDetails && (isOwned ? this.renderHeroDetailsOwned() : this.renderHeroDetailsNotOwned())}
-                    <div className='justifyCenter'><img alt='' src={getHero(type)} height={imgHeight}/></div>
+                    {renderImg && <div className='justifyCenter'><img alt='' src={getHero(type)} height={imgHeight}/></div>}
                     {stats}
                     {children}
                 </div>

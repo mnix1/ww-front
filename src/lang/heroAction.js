@@ -27,40 +27,40 @@ export function getHeroActionLabel(id) {
 }
 const HERO_ACTION_LABELS = {
     [POLISH]: {
-        [WAITING_FOR_QUESTION]: 'Czeka na pytanie',
-        [RECOGNIZING_QUESTION]: 'Poznaje pytanie',
-        [THINKING]: 'Myśli',
+        [WAITING_FOR_QUESTION]: 'Czekam na pytanie',
+        [RECOGNIZING_QUESTION]: 'Poznaję pytanie',
+        [THINKING]: 'Myślę',
 
-        [THINK_KNOW_ANSWER]: 'Uważa, że zna odpowiedź',
-        [LOOKING_FOR_ANSWER]: 'Szuka odpowiedzi',
+        [THINK_KNOW_ANSWER]: 'Znam odpowiedź',
+        [LOOKING_FOR_ANSWER]: 'Szukam odpowiedzi',
 
-        [NO_FOUND_ANSWER_LOOKING_FOR]: 'Nie znalazł odpowiedzi',
-        [FOUND_ANSWER_LOOKING_FOR]: 'Znalazł odpowiedź',
+        [NO_FOUND_ANSWER_LOOKING_FOR]: 'Nie ma tej odpowiedzi',
+        [FOUND_ANSWER_LOOKING_FOR]: 'Znalazłem odpowiedź',
 
-        [NOT_SURE_OF_ANSWER]: 'Nie jest pewny odpowiedzi',
-        [RECOGNIZING_ANSWERS]: 'Poznaje odpowiedzi',
+        [NOT_SURE_OF_ANSWER]: 'Nie znam odpowiedzi',
+        [RECOGNIZING_ANSWERS]: 'Poznaję odpowiedzi',
 
-        [ANSWERED]: 'Odpowiada',
-        [SURRENDER]: 'Poddaje się',
+        [ANSWERED]: 'Odpowiadam',
+        [SURRENDER]: 'Poddaję się',
 
-        [WILL_GIVE_RANDOM_ANSWER]: 'Będzie strzelał',
-        [WONT_GIVE_RANDOM_ANSWER]: 'Nie będzie strzelał',
+        [WILL_GIVE_RANDOM_ANSWER]: 'Będę strzelać',
+        [WONT_GIVE_RANDOM_ANSWER]: 'Nie będę strzelać',
 
-        [THINKING_WHICH_ANSWER_MATCH]: "Myśli, która odpowiedź pasuje",
-        [THINKING_IF_GIVE_RANDOM_ANSWER]: "Myśli czy strzelać",
+        [THINKING_WHICH_ANSWER_MATCH]: "Która odpowiedź pasuje?",
+        [THINKING_IF_GIVE_RANDOM_ANSWER]: "Może będę strzelać?",
 
-        [DREAMING_ABOUT_VACATION]: 'Marzy o wakacjach...',
-        [SCRATCHING]: 'Drapie się...',
-        [YAWNING]: 'Ziewa...',
-        [HUNG_UP]: 'Zawiesił się...',
-        [NEED_GO_TO_TOILET]: 'Musi do toalety...',
+        [DREAMING_ABOUT_VACATION]: '(Marzy o wakacjach...)',
+        [SCRATCHING]: '(Drapie się...)',
+        [YAWNING]: '(Ziewa...)',
+        [HUNG_UP]: '(Zawiesił się...)',
+        [NEED_GO_TO_TOILET]: '(Musi do toalety...)',
     },
     [ENGLISH]: {
         [WAITING_FOR_QUESTION]: 'Waiting for question',
         [RECOGNIZING_QUESTION]: 'Recognizing question',
         [THINKING]: 'Thinking',
 
-        [THINK_KNOW_ANSWER]: 'Think, that know the answer',
+        [THINK_KNOW_ANSWER]: 'Know the answer',
         [LOOKING_FOR_ANSWER]: 'Searching for answer',
 
         [NO_FOUND_ANSWER_LOOKING_FOR]: 'No found answer',
@@ -75,13 +75,13 @@ const HERO_ACTION_LABELS = {
         [WILL_GIVE_RANDOM_ANSWER]: 'Will give random answer',
         [WONT_GIVE_RANDOM_ANSWER]: "Won't give random answer",
 
-        [THINKING_WHICH_ANSWER_MATCH]: "Thinking which answer match",
-        [THINKING_IF_GIVE_RANDOM_ANSWER]: "Thinking if give random answer",
+        [THINKING_WHICH_ANSWER_MATCH]: "Which answer match?",
+        [THINKING_IF_GIVE_RANDOM_ANSWER]: "Give random answer?",
 
-        [DREAMING_ABOUT_VACATION]: 'Dreaming about vacation...',
-        [SCRATCHING]: 'Scratching...',
-        [YAWNING]: 'Yawning...',
-        [HUNG_UP]: 'Hung up...',
-        [NEED_GO_TO_TOILET]: 'Need go to toilet...',
+        [DREAMING_ABOUT_VACATION]: '(Dreaming...)',
+        [SCRATCHING]: '(Scratching...)',
+        [YAWNING]: '(Yawning...)',
+        [HUNG_UP]: '(Hung up...)',
+        [NEED_GO_TO_TOILET]: '(Need go to toilet...)',
     }
 };

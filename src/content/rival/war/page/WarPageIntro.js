@@ -1,7 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import play from '../../../../media/image/icon/play.svg';
-import {getText, TEXT_DRAW_WHO_ANSWER, TEXT_QUESTION, TEXT_WAR} from "../../../../lang/text";
+import {
+    getText,
+    TEXT_DRAW_WHO_ANSWER,
+    TEXT_OPPONENT_TEAM,
+    TEXT_QUESTION,
+    TEXT_WAR,
+    TEXT_YOUR_TEAM
+} from "../../../../lang/text";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Team from "../../component/Team";
 import RandomTeamHero from "../../component/RandomTeamHero";
@@ -36,8 +43,10 @@ class WarPageIntro extends React.PureComponent {
     renderTeamBig() {
         const {profile, content} = this.props;
         return <div className='team justifyCenter flexColumn'>
+            <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}</div>
             <Team profile={profile} presentIndexes={content.presentIndexes} team={content.team}/>
             <img alt='' src={play} height={80}/>
+            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
             <Team profile={content.opponent} presentIndexes={content.opponentPresentIndexes}
                   team={content.opponentTeam}/>
         </div>;
@@ -55,6 +64,7 @@ class WarPageIntro extends React.PureComponent {
                 <div
                     className='pageHeader task'>{`${getText(TEXT_QUESTION)} ${content.task.id}`}</div>
                 <div className='pageHeader drawWhoAnswer'>{getText(TEXT_DRAW_WHO_ANSWER)}</div>
+                <div className='pageHeader randomTeamHero1'>{getText(TEXT_YOUR_TEAM)}</div>
                 <RandomTeamHero
                     className='randomTeamHero1'
                     presentIndexes={content.presentIndexes}
@@ -63,6 +73,7 @@ class WarPageIntro extends React.PureComponent {
                     targetIndex={content.activeIndex}
                     delay={3000} duration={2500}
                 />
+                <div className='pageHeader randomTeamHero2'>{getText(TEXT_OPPONENT_TEAM)}</div>
                 <RandomTeamHero
                     className='randomTeamHero2'
                     presentIndexes={content.opponentPresentIndexes}

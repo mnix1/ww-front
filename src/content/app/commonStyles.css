@@ -122,3 +122,15 @@
     opacity: 0.5;
     cursor: not-allowed !important;
 }
+.fontSize09Rem {
+    font-size: .9rem;
+}
+.fontSize08Rem {
+    font-size: .8rem;
+}
+.fontSize07Rem {
+    font-size: .7rem;
+}
+.fontSize06Rem {
+    font-size: .6rem;
+}

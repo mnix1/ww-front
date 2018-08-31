@@ -28,13 +28,14 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
     }
 
     renderContent() {
-        const {content, communication, profile, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
+        const {content, screen, communication, profile, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps content={content}/>;
         }
         if (choosingTaskPropsTag === profile.tag) {
             return <ChoosingTaskProps
+                screen={{...screen, contentHeight: screen.contentHeight - 100}}
                 acceptMsg='BATTLE_CHOOSE_TASK_PROPS'
                 content={content}
                 onCategoryChange={onCategoryChange}

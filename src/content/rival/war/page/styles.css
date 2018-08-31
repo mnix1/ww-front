@@ -16,10 +16,6 @@
     padding: 0.25rem;
 }
 
-.warPage .warPageIntroHeader {
-    font-size: 1rem;
-}
-
 .warPage .sleep {
     vertical-align: middle;
     margin: 0.25rem;
@@ -32,12 +28,6 @@
 
 .warPage .choosingTaskProps .timeWithSeal .time {
     z-index: 1;
-}
-
-.warPage .seal {
-    vertical-align: middle;
-    margin-left: 0.25rem;
-    cursor: pointer;
 }
 
 @keyframes fadein {
@@ -139,6 +129,18 @@
 .warPage .whoAnswered .result {
     opacity: 0;
     animation: fadein 0.5s 2s;
+    animation-fill-mode: forwards;
+}
+
+.warPage .opponentHeroFadeOut {
+    opacity: 0;
+    animation: fadein 0.5s 2.75s;
+    animation-fill-mode: forwards;
+}
+
+.warPage .warTaskDescription {
+    opacity: 1;
+    animation: fadeout 0.5s .25s, fadein 0.5s 5.25s;
     animation-fill-mode: forwards;
 }
 

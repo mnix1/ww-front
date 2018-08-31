@@ -7,23 +7,27 @@ import {connect} from "react-redux";
 class ActiveHero extends React.PureComponent {
 
     get imgHeight() {
-        const {screen} = this.props;
-        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
-            return 40;
+        const {imgHeight, screen} = this.props;
+        if(imgHeight) {
+            return imgHeight;
         }
-        return 60;
+        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
+            return 50;
+        }
+        return 70;
     }
 
     renderProfile(profile) {
-        return <Profile  blackBackground={true} renderDetailsHorizontal={true} {...profile} imgHeight={this.imgHeight}/>;
+        return <Profile blackBackground={true} renderDetailsHorizontal={true} {...profile} imgHeight={this.imgHeight}/>;
     }
 
     renderHero(hero) {
         return <Hero
             isOwned={true}
-            renderHobbies={false}
+            renderHobbies={true}
             key={hero.type}
             imgHeight={this.imgHeight}
+            imgHobbyHeight={this.imgHeight / 3}
             renderDetails={true}
             {...hero}>
         </Hero>;

@@ -14,6 +14,17 @@ import HeroActions from "../../../../component/hero/HeroActions";
 
 class WarPageAnswering extends React.PureComponent {
 
+    get imgHeight() {
+        const {screen, imgHeight} = this.props;
+        if (imgHeight) {
+            return imgHeight;
+        }
+        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
+            return 50;
+        }
+        return 70;
+    }
+
     renderTaskActive() {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
@@ -44,25 +55,29 @@ class WarPageAnswering extends React.PureComponent {
     renderTaskNotActive() {
         const {content, screen} = this.props;
         const {task, team, activeIndex, opponentTeam, opponentActiveIndex} = content;
+        const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
                 <div>
-                    <Hero {...team[activeIndex - 1]} renderDetails={true} isOwned={true}>
+                    <Hero imgHobbyHeight={imgHeight / 3} imgHeight={imgHeight} {...team[activeIndex - 1]}
+                          renderDetails={true} isOwned={true}>
                         <HeroActions actions={content.heroActions}/>
                     </Hero>
                 </div>
                 <div>
                     {opponentActiveIndex === 0
-                    ? <Profile imgHeight={100} blackBackground={true}
-                               renderDetailsHorizontal={true} {...content.opponent}/>
-                    : <Hero {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
-                            isOwned={true}>
-                        <HeroActions actions={content.opponentHeroActions}/>
-                    </Hero>}
+                        ? <Profile imgHeight={imgHeight + 4} blackBackground={true}
+                                   renderDetailsHorizontal={true} {...content.opponent}/>
+                        : <Hero imgHobbyHeight={imgHeight / 3}
+                                imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
+                                isOwned={true}>
+                            <HeroActions actions={content.opponentHeroActions}/>
+                        </Hero>}
                 </div>
             </div>
             <Task
-                screen={{...screen, contentHeight: screen.contentHeight - 120}}
+                screen={{...screen, contentHeight: screen.contentHeight - 40}}
+                // screen={screen}
                 skipAnimation={true}
                 question={task}
                 answers={task.answers}

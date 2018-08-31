@@ -34,12 +34,6 @@
     z-index: 1;
 }
 
-.battlePage .seal {
-    vertical-align: middle;
-    margin-left: 0.25rem;
-    cursor: pointer;
-}
-
 @keyframes fadein {
     0% {
         opacity: 0;

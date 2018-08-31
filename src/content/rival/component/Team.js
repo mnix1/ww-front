@@ -6,8 +6,18 @@ import {connect} from "react-redux";
 
 class Team extends React.PureComponent {
 
+    static defaultProps = {
+        className: 'justifyCenter',
+        contentClassName: '',
+        renderHobbies: false,
+        renderImg: true,
+    };
+
     get imgHeight() {
-        const {screen} = this.props;
+        const {screen, imgHeight} = this.props;
+        if(imgHeight){
+            return imgHeight;
+        }
         if (screen.isSmallHeight || screen.moreHeightThanWidth) {
             return 60;
         }
@@ -19,21 +29,24 @@ class Team extends React.PureComponent {
     }
 
     renderHero(hero, isActive, isDisabled) {
+        const {renderHobbies, imgHobbyHeight, renderImg} = this.props;
         return <Hero
             className={isDisabled ? 'disabled' : ''}
             key={hero.type}
             isActive={isActive}
             imgHeight={this.imgHeight}
+            renderImg={renderImg}
             renderDetails={true}
-            renderHobbies={false}
+            renderHobbies={renderHobbies}
+            imgHobbyHeight={imgHobbyHeight}
             isOwned={true}
             {...hero}/>;
     }
 
     render() {
-        const {profile, team, activeIndex, presentIndexes} = this.props;
-        return <div className='justifyCenter'>
-            <div className='justifyCenter'>
+        const {profile, team, activeIndex, presentIndexes, contentClassName, className} = this.props;
+        return <div className={className}>
+            <div className={`justifyCenter ${contentClassName}`}>
                 <Profile blackBackground={true} renderDetailsHorizontal={true} isActive={activeIndex === 0} {...profile}
                          imgHeight={this.imgHeight + 4}
                          className={_.head(presentIndexes) === 0 ? '' : 'disabled'}/>

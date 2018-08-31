@@ -16,7 +16,7 @@ export default class WarTaskDescription extends React.PureComponent {
         return <div className={className}>
             <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}`}</div>
             {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)} `}
-                <img alt='' key={task.category} height={20}
+                <img alt='' key={task.category} height={12}
                      src={getCategory(task.category)}/>
             </div>}
             {task.difficultyLevel && <div>{`${getText(TEXT_DIFFICULT)}:`} <Rating

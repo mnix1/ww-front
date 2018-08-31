@@ -36,23 +36,26 @@ class WarPageAnswered extends React.PureComponent {
     renderWhoAnswered() {
         const {screen} = this.props;
         const imgHeight = screen.isSmallHeight ? 40 : 60;
-        return <div className='pageCenterHorizontal whoAnswered'>
-            <div className='pageBackground absoluteBackgroundMix'/>
-            <div className='pageCenterVertical'>
-                <ActiveHero className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...this.prepareAnsweredProps(true)}/>
-                <div>{getText(TEXT_ANSWERED)}...</div>
-                <div className='result'>
-                    {this.isCorrectAnswer
-                        ? <div>
-                            <div>{getText(TEXT_CORRECT)}</div>
-                            <img alt='' src={thumbUp} height={imgHeight}/>
-                            <ActiveHero className='wrongAnswer' {...this.prepareAnsweredProps(false)}/>
-                        </div>
-                        : <div>
-                            <div>{getText(TEXT_WRONG)}</div>
-                            <img alt='' src={thumbDown} height={imgHeight}/>
-                        </div>}
+        return <div className='whoAnswered textAlignCenter'>
+            <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>
+                    <ActiveHero
+                        className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...this.prepareAnsweredProps(true)}/>
+                    <div>{getText(TEXT_ANSWERED)}...</div>
+                    <div className='result'>
+                        {this.isCorrectAnswer
+                            ? <div>
+                                <div>{getText(TEXT_CORRECT)}</div>
+                                <img alt='' src={thumbUp} height={imgHeight}/>
+                            </div>
+                            : <div>
+                                <div>{getText(TEXT_WRONG)}</div>
+                                <img alt='' src={thumbDown} height={imgHeight}/>
+                            </div>}
+                    </div>
                 </div>
+                {this.isCorrectAnswer && <div className='opponentHeroFadeOut'><ActiveHero
+                    className='wrongAnswer' {...this.prepareAnsweredProps(false)}/></div>}
             </div>
         </div>
     }
@@ -60,9 +63,8 @@ class WarPageAnswered extends React.PureComponent {
     render() {
         const {content} = this.props;
         return <div className='pageContent warPageAnswered'>
+            <WarTaskDescription content={content} className='pageHeader warTaskDescription'/>
             {this.renderWhoAnswered()}
-            <WarTaskDescription content={content} className='pageHeader'/>
-            {/*{this.renderProfilesWithNewScore()}*/}
             <TaskWithoutActions content={content}/>
             <TaskMarkedAnswer content={content}/>
         </div>;

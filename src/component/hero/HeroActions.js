@@ -21,8 +21,8 @@ export default class HeroActions extends React.PureComponent {
 
     render() {
         const {actions} = this.props;
-        return <div className='heroActions justifyCenter flexColumn'>
-            {_.takeRight(actions, 3).map(e => this.renderAction(e))}
+        return <div className='heroActions fontSize08Rem justifyCenter flexColumn'>
+            {_.takeRight(actions, 2).map(e => this.renderAction(e))}
         </div>;
     }
 

@@ -23,6 +23,7 @@ export default class Profile extends React.PureComponent {
         isActive: PropTypes.bool,
         renderDetailsHorizontal: PropTypes.bool,
         blackBackground: PropTypes.bool,
+        detailsClassName: PropTypes.string,
     };
 
     static defaultProps = {
@@ -31,7 +32,8 @@ export default class Profile extends React.PureComponent {
         isActive: false,
         renderDetailsHorizontal: false,
         blackBackground: false,
-        onClick: _.noop
+        onClick: _.noop,
+        detailsClassName: 'justifyStart',
     };
 
     renderActions() {
@@ -40,13 +42,13 @@ export default class Profile extends React.PureComponent {
     }
 
     renderDetails() {
-        const {isOnline, name, tag} = this.props;
+        const {isOnline, name, tag, detailsClassName} = this.props;
         return <div className='details justifyBetween relative flexColumn'>
             {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
             {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
             <div>
-                {name && <div className='name'>{name}</div>}
-                {tag && <div className='tag'>#{tag}</div>}
+                {name && <div className={`name ${detailsClassName}`}>{name}</div>}
+                {tag && <div className={`tag ${detailsClassName}`}>#{tag}</div>}
             </div>
         </div>;
     }

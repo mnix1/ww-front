@@ -17,7 +17,7 @@ class RandomTeamHero extends React.PureComponent {
     };
 
     renderRandomHero() {
-        const {screen, profile, team, targetIndex, presentIndexes, delay, duration} = this.props;
+        const {profile, team, targetIndex, presentIndexes, delay, duration} = this.props;
         const ids = presentIndexes;
         const targetSelectedIdValue = ids.length * 7;
         return <Anime
@@ -29,7 +29,6 @@ class RandomTeamHero extends React.PureComponent {
                 profile={profile}
                 presentIndexes={presentIndexes}
                 team={team}
-                screen={{...screen, contentHeight: screen.contentHeight - 70}}
             />
         </Anime>;
     }
@@ -47,7 +46,6 @@ class RandomTeamHero extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        screen: state.screen,
     }),
     (dispatch) => ({})
 )(RandomTeamHero);

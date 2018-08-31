@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import {getText, TEXT_ACCEPT, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../lang/text";
 import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
@@ -9,7 +8,7 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Butt
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
 import {NAME_TO_POINTS} from "../../../util/difficultyHelper";
 
-class ChoosingTaskProps extends React.PureComponent {
+export default class ChoosingTaskProps extends React.PureComponent {
 
     static defaultProps = {
         renderPoints: true
@@ -24,18 +23,18 @@ class ChoosingTaskProps extends React.PureComponent {
                 communication.send(acceptMsg + JSON.stringify({category: categoryObject.id}))
                 onCategoryChange(categoryObject);
             }}
-            screen={{...screen, contentHeight: screen.contentHeight - 100}}
+            screen={screen}
         />
     }
 
     renderChooseDifficult() {
         const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, acceptMsg, renderPoints} = this.props;
         return <div className='justifyCenter flexColumn'>
-            <div className='justifyCenter'>
+            <div className='justifyCenter marginRem'>
                 <Rating onChange={onDifficultLevelChange} valueString={content.chosenDifficulty}/>
                 {renderPoints && <div className='justifyCenter flexColumn'>&nbsp;{prepareRatingPointsMessage(NAME_TO_POINTS[content.chosenDifficulty])}</div>}
             </div>
-            <div className='justifyCenter'>
+            <div className='justifyCenter marginRem'>
                 <Button onClick={() => {
                     communication.send(acceptMsg + JSON.stringify({difficultyLevel: content.chosenDifficulty}));
                     onDifficultLevelAcceptChange(true);
@@ -47,7 +46,7 @@ class ChoosingTaskProps extends React.PureComponent {
     }
 
     render() {
-        const {content} = this.props;
+        const {content, children} = this.props;
         return <div>
             <div className='pageHeader'>
                 <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
@@ -56,6 +55,7 @@ class ChoosingTaskProps extends React.PureComponent {
                 <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
                 {this.renderChooseDifficult()}
             </div>}
+            {children}
             {!content.isChosenCategory && content.isChosenDifficulty && <div className='pageHeader'>
                 <div>{getText(TEXT_CHOOSE_CATEGORY)}</div>
                 {this.renderChooseCategory()}
@@ -63,10 +63,3 @@ class ChoosingTaskProps extends React.PureComponent {
         </div>;
     }
 }
-
-export default connect(
-    (state) => ({
-        screen: state.screen,
-    }),
-    (dispatch) => ({})
-)(ChoosingTaskProps);
