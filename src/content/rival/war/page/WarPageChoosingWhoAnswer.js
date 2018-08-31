@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getText, TEXT_ACCEPT, TEXT_CHOOSE_WHO_ANSWER, TEXT_TIME} from "../../../../lang/langText";
 import Team from "../../component/Team";
-import {warInProgressContent} from "../../../../redux/reducer/war";
+import {rivalInProgressContent} from "../../../../redux/reducer/rival";
 import TaskDescription from "../../component/TaskDescription";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import _ from 'lodash';
@@ -55,11 +55,11 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        content: state.war.content,
+        content: state.rival.content,
         profile: state.profile.profile,
     }),
     (dispatch) => ({
-        onTeamHeroClick: (index) => dispatch(warInProgressContent({activeIndex: index})),
-        onTeamHeroAcceptClick: (accept) => dispatch(warInProgressContent({isChosenActiveIndex: accept}))
+        onTeamHeroClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),
+        onTeamHeroAcceptClick: (accept) => dispatch(rivalInProgressContent({isChosenActiveIndex: accept}))
     })
 )(WarPageChoosingWhoAnswer);

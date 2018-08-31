@@ -53,7 +53,7 @@ class BattlePageClosed extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        content: state.battle.content,
+        content: state.rival.content,
         profile: state.profile.profile,
     }),
     (dispatch) => ({})

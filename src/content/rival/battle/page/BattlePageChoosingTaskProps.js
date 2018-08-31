@@ -8,8 +8,8 @@ import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/langText";
 import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
-import {battleInProgressContent} from "../../../../redux/reducer/battle";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
+import {rivalInProgressContent} from "../../../../redux/reducer/rival";
 
 class BattlePageChoosingTaskProps extends React.PureComponent {
 
@@ -62,17 +62,17 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        content: state.battle.content,
+        content: state.rival.content,
         profile: state.profile.profile,
     }),
     (dispatch) => ({
-        onCategoryChange: (categoryObject) => dispatch(battleInProgressContent({
+        onCategoryChange: (categoryObject) => dispatch(rivalInProgressContent({
             chosenCategory: categoryObject.id,
         })),
-        onDifficultLevelChange: (id) => dispatch(battleInProgressContent({
+        onDifficultLevelChange: (id) => dispatch(rivalInProgressContent({
             chosenDifficulty: DIFFICULT_LEVEL_TO_NAME[id],
         })),
-        onDifficultLevelAcceptChange: (accept) => dispatch(battleInProgressContent({
+        onDifficultLevelAcceptChange: (accept) => dispatch(rivalInProgressContent({
             isChosenDifficulty: accept,
         }))
     })

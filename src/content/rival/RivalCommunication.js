@@ -1,16 +1,9 @@
-import {battleInProgressContent, statusChanged as battleStatusChanged} from "../../redux/reducer/battle";
-import {warInProgressContent, statusChanged as warStatusChanged} from "../../redux/reducer/war";
-import {statusChanged as rivalStatusChanged} from "../../redux/reducer/rival";
-import {BATTLE_ROUTE} from "../routes";
+import {rivalInProgressContent, rivalTypeChanged, statusChanged as rivalStatusChanged} from "../../redux/reducer/rival";
+import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
-import {
-    BATTLE_STATUS_CLOSED, BATTLE_STATUS_IN_PROGRESS,
-} from "../../util/battleHelper";
-import {clearBattleStartFastFetch} from "./battle/fetch/BattleStartFastFetch";
 import _ from 'lodash';
-import {WAR_ROUTE} from "../routes";
-import {WAR_STATUS_CLOSED, WAR_STATUS_IN_PROGRESS} from "../../util/warHelper";
-import {RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
+import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
+import {clearRivalStartFastFetch} from "./fetch/RivalStartFastFetch";
 
 export default class RivalCommunication {
     constructor(communicationWebSocket) {
@@ -31,52 +24,45 @@ export default class RivalCommunication {
         const id = data.id;
         if (id === 'BATTLE_CONTENT') {
             const content = JSON.parse(data.content);
-            this.battleInProgress(content);
+            this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
+            this.rivalInProgress(content)
         } else if (id === 'BATTLE_READY_FAST') {
             this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         } else if (id === 'WAR_CONTENT') {
             const content = JSON.parse(data.content);
-            this.warInProgress(content);
+            this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_WAR));
+            this.rivalInProgress(content);
         } else if (id === 'WAR_READY_FAST') {
             this.communicationWebSocket.dispatch(push(WAR_ROUTE));
         }
     };
 
-    battleInProgress(content) {
-        this.communicationWebSocket.dispatch(battleInProgressContent(content));
+    rivalInProgress(content) {
+        this.communicationWebSocket.dispatch(rivalInProgressContent(content));
         if (!_.isNil(content.winnerTag)) {
-            this.communicationWebSocket.dispatch(battleStatusChanged(BATTLE_STATUS_CLOSED));
-        }
-    }
-
-    warInProgress(content) {
-        this.communicationWebSocket.dispatch(warInProgressContent(content));
-        if (!_.isNil(content.winnerTag)) {
-            this.communicationWebSocket.dispatch(warStatusChanged(WAR_STATUS_CLOSED));
+            this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_CLOSED));
         }
     }
 
     battleReady() {
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
-        this.communicationWebSocket.dispatch(battleStatusChanged(BATTLE_STATUS_IN_PROGRESS));
         this.send('BATTLE_READY_FOR_START');
     }
 
     warReady() {
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
-        this.communicationWebSocket.dispatch(warStatusChanged(WAR_STATUS_IN_PROGRESS));
         this.send('WAR_READY_FOR_START');
     }
 
     battleReadyFast() {
-        clearBattleStartFastFetch(this.communicationWebSocket.dispatch);
-        this.communicationWebSocket.dispatch(battleStatusChanged(BATTLE_STATUS_IN_PROGRESS));
+        clearRivalStartFastFetch(this.communicationWebSocket.dispatch);
+        this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('BATTLE_READY_FOR_START');
     }
 
     warReadyFast() {
-        clearBattleStartFastFetch(this.communicationWebSocket.dispatch);
-        this.communicationWebSocket.dispatch(warStatusChanged(WAR_STATUS_IN_PROGRESS));
+        clearRivalStartFastFetch(this.communicationWebSocket.dispatch);
+        this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('WAR_READY_FOR_START');
     }
 

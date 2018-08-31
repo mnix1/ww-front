@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {rivalCleared, statusChanged} from "../../../redux/reducer/rival";
 import {
     RIVAL_STATUS_ACCEPTED_FRIEND,
-    RIVAL_STATUS_CANCELED_FRIEND,
+    RIVAL_STATUS_CANCELED_FRIEND, RIVAL_STATUS_ERROR_FAST,
     RIVAL_STATUS_ERROR_FRIEND,
     RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
-    RIVAL_STATUS_REJECTED_FRIEND,
+    RIVAL_STATUS_REJECTED_FRIEND, RIVAL_STATUS_WAITING_FAST,
     RIVAL_STATUS_WAITING_FRIEND,
     RIVAL_TYPE_BATTLE,
     RIVAL_TYPE_WAR
@@ -18,8 +18,23 @@ import RivalStartFriendFetch from "./RivalStartFriendFetch";
 import RivalCancelFriendFetch from "./RivalCancelFriendFetch";
 import RivalRejectFriendFetch, {clearRivalRejectFriendFetch} from "./RivalRejectFriendFetch";
 import RivalAcceptFriendFetch, {clearRivalAcceptFriendFetch} from "./RivalAcceptFriendFetch";
+import RivalStartFastFetch from "./RivalStartFastFetch";
+import RivalCancelFastFetch from "./RivalCancelFastFetch";
 
 class RivalFetchContainer extends React.PureComponent {
+
+    resolveFast(){
+        const {rivalStartFastRep, onStatusChange, status} = this.props;
+        if (status === RIVAL_STATUS_WAITING_FAST) {
+            return;
+        }
+        const code = _.get(rivalStartFastRep, 'value.code');
+        if (code === -1) {
+            onStatusChange(RIVAL_STATUS_ERROR_FAST);
+        } else if (code === 1) {
+            onStatusChange(RIVAL_STATUS_WAITING_FAST);
+        }
+    }
 
     resolveFriend() {
         const {
@@ -47,6 +62,7 @@ class RivalFetchContainer extends React.PureComponent {
     }
 
     componentDidUpdate() {
+        this.resolveFast();
         this.resolveFriend();
     }
 
@@ -57,6 +73,9 @@ class RivalFetchContainer extends React.PureComponent {
             <RivalCancelFriendFetch status={status}/>
             <RivalRejectFriendFetch status={status}/>
             <RivalAcceptFriendFetch status={status}/>
+
+            <RivalStartFastFetch status={status} rivalType={rivalType}/>
+            <RivalCancelFastFetch status={status} rivalType={rivalType}/>
         </div>;
     }
 }
@@ -66,10 +85,14 @@ export default connect(
         status: state.rival.status,
         tag: state.rival.tag,
         rivalType: state.rival.rivalType,
+
         rivalStartFriendRep: state.repository.rivalStartFriend,
         rivalRejectFriendRep: state.repository.rivalRejectFriend,
         rivalCancelFriendRep: state.repository.rivalCancelFriend,
         rivalAcceptFriendRep: state.repository.rivalAcceptFriend,
+
+        rivalStartFastRep: state.repository.rivalStartFast,
+        rivalCancelFastRep: state.repository.rivalCancelFast,
     }),
     (dispatch) => ({
         onRivalFriendClear: () => {

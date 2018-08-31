@@ -11,7 +11,6 @@ import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
-import BattleFetchContainer from "../rival/battle/fetch/BattleFetchContainer";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
 import play from '../../media/image/icon/play.svg';
 import friend from '../../media/image/icon/friend.svg';
@@ -52,11 +51,6 @@ import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
 import BattlePage from "../rival/battle/page/BattlePage";
 import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
-import BattleFastPage from "../rival/battle/fast/BattleFastPage";
-import {
-    BATTLE_STATUS_IN_PROGRESS,
-    BATTLE_STATUS_WAITING_FAST,
-} from "../../util/battleHelper";
 import HeroPage from "../hero/HeroPage";
 import ShopPage from "../shop/ShopPage";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
@@ -65,13 +59,17 @@ import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./ProfileFetch";
 import HeroFetchContainer from "../hero/fetch/HeroFetchContainer";
 import WakeLock from "../../component/wake-lock/WakeLock";
-import WarFastPage from "../rival/war/fast/WarFastPage";
-import {WAR_STATUS_IN_PROGRESS, WAR_STATUS_WAITING_FAST} from "../../util/warHelper";
-import WarFetchContainer from "../rival/war/fetch/WarFetchContainer";
 import WarPage from "../rival/war/page/WarPage";
 import RivalCommunication from "../rival/RivalCommunication";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
-import {RIVAL_STATUS_READY_TO_BEGIN_FRIEND} from "../../util/rivalHelper";
+import {
+    RIVAL_STATUS_IN_PROGRESS,
+    RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
+    RIVAL_STATUS_WAITING_FAST,
+    RIVAL_TYPE_BATTLE,
+    RIVAL_TYPE_WAR
+} from "../../util/rivalHelper";
+import RivalFastPage from "../rival/RivalFastPage";
 
 class App extends React.PureComponent {
 
@@ -82,22 +80,22 @@ class App extends React.PureComponent {
     }
 
     componentDidUpdate() {
-        const {path, rivalStatus, battleStatus, warStatus, onRouteChange} = this.props;
+        const {path, rivalStatus, rivalType, onRouteChange} = this.props;
         if (path === BATTLE_ROUTE) {
-            if (battleStatus === BATTLE_STATUS_WAITING_FAST) {
+            if (rivalStatus === RIVAL_STATUS_WAITING_FAST) {
                 this.rivalCommunication.battleReadyFast();
             } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND) {
                 this.rivalCommunication.battleReady();
             }
-        } else if (battleStatus === BATTLE_STATUS_IN_PROGRESS) {
+        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_BATTLE) {
             onRouteChange(BATTLE_ROUTE);
         } else if (path === WAR_ROUTE) {
-            if (warStatus === WAR_STATUS_WAITING_FAST) {
+            if (rivalStatus === RIVAL_STATUS_WAITING_FAST) {
                 this.rivalCommunication.warReadyFast();
             } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND) {
                 this.rivalCommunication.warReady();
             }
-        } else if (warStatus === WAR_STATUS_IN_PROGRESS) {
+        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_WAR) {
             onRouteChange(WAR_ROUTE);
         }
     }
@@ -141,10 +139,10 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
                 <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
                 <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.rivalCommunication}/>}/>
-                <Route exact path={BATTLE_FAST_ROUTE} render={() => <BattleFastPage/>}/>
+                <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalFastPage/>}/>
 
                 <Route exact path={WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
-                <Route exact path={WAR_FAST_ROUTE} render={() => <WarFastPage/>}/>
+                <Route exact path={WAR_FAST_ROUTE} render={() => <RivalFastPage/>}/>
 
                 <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
@@ -163,8 +161,6 @@ class App extends React.PureComponent {
             <ProfileFetch/>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <RivalFetchContainer/>
-            <BattleFetchContainer/>
-            <WarFetchContainer/>
             <ChallengeFetchContainer/>
             <HeroFetchContainer/>
             <ShopFetchContainer/>
@@ -207,8 +203,7 @@ export default connect(
         screen: state.screen,
         friendListRep: state.repository.friendList,
         rivalStatus: state.rival.status,
-        battleStatus: state.battle.status,
-        warStatus: state.war.status,
+        rivalType: state.rival.rivalType,
         profile: state.profile.profile,
         path: state.router.location.pathname,
     }),

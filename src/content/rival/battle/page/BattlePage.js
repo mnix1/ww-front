@@ -10,11 +10,11 @@ import BattlePageClosed from "./BattlePageClosed";
 import BattlePageChoosingTaskProps from "./BattlePageChoosingTaskProps";
 import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
-import {showOptionsChanged} from "../../../../redux/reducer/battle";
 import Modal from "../../../../component/modal/Modal";
 import {getText, TEXT_SURRENDER} from "../../../../lang/langText";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
+import {showOptionsChanged} from "../../../../redux/reducer/rival";
 
 class BattlePage extends React.PureComponent {
 
@@ -92,10 +92,10 @@ export default connect(
         socket: state.socket.socket,
         // opponentProfile: state.battle.opponent,
         profile: state.profile.profile,
-        content: state.battle.content,
-        showOptions: state.battle.showOptions,
-        questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.battle.questionIdSkipAnimationMap,
+        content: state.rival.content,
+        showOptions: state.rival.showOptions,
+        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
+        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
 
         // question: state.battle.question,
     }),

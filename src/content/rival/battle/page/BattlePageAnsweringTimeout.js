@@ -34,7 +34,7 @@ class BattlePageAnsweringTimeout extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        content: state.battle.content,
+        content: state.rival.content,
         socket: state.socket.socket,
         profile: state.profile.profile,
     }),

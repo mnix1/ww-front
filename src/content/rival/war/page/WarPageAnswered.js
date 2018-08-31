@@ -80,9 +80,9 @@ export default connect(
         screen: state.screen,
         socket: state.socket.socket,
         profile: state.profile.profile,
-        content: state.war.content,
-        questionIdAnswerIdMap: state.war.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.war.questionIdSkipAnimationMap,
+        content: state.rival.content,
+        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
+        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),
     (dispatch) => ({})
 )(WarPageAnswered);

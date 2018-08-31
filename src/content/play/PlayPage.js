@@ -12,21 +12,19 @@ import {
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_LIST_ROUTE,
-    TRAINING_ROUTE, WAR_FAST_ROUTE
+    TRAINING_ROUTE,
+    WAR_FAST_ROUTE
 } from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import {CHALLENGE_STATUS_START} from "../../util/challengeHelper";
-import {challengeCleared, statusChanged as challengeStatusChanged  } from "../../redux/reducer/challenge";
+import {challengeCleared, statusChanged as challengeStatusChanged} from "../../redux/reducer/challenge";
 import _ from 'lodash';
 import {clearChallengeTaskAndStartFetch} from "../challenge/fetch/ChallengeFetchContainer";
-import {clearBattleStartFastFetch} from "../rival/battle/fetch/BattleStartFastFetch";
-import {battleCleared, statusChanged as battleStatusChanged} from "../../redux/reducer/battle";
-import {BATTLE_STATUS_START_FAST} from "../../util/battleHelper";
-import {warCleared, statusChanged as warStatusChanged} from "../../redux/reducer/war";
-import {clearWarStartFastFetch} from "../rival/war/fetch/WarStartFastFetch";
-import {WAR_STATUS_START_FAST} from "../../util/warHelper";
+import {clearRivalStartFastFetch} from "../rival/fetch/RivalStartFastFetch";
+import {RIVAL_STATUS_START_FAST, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
+import {rivalCleared, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
 
 class PlayPage extends React.PureComponent {
 
@@ -88,14 +86,16 @@ export default connect(
             dispatch(challengeStatusChanged(CHALLENGE_STATUS_START));
         },
         onBattleFastClick: () => {
-            clearBattleStartFastFetch(dispatch);
-            dispatch(battleCleared());
-            dispatch(battleStatusChanged(BATTLE_STATUS_START_FAST));
+            clearRivalStartFastFetch(dispatch);
+            dispatch(rivalCleared());
+            dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
+            dispatch(statusChanged(RIVAL_STATUS_START_FAST));
         },
         onWarFastClick: () => {
-            clearWarStartFastFetch(dispatch);
-            dispatch(warCleared());
-            dispatch(warStatusChanged(WAR_STATUS_START_FAST));
+            clearRivalStartFastFetch(dispatch);
+            dispatch(rivalCleared());
+            dispatch(rivalTypeChanged(RIVAL_TYPE_WAR));
+            dispatch(statusChanged(RIVAL_STATUS_START_FAST));
         },
         onRouteChange: (e) => {
             dispatch(push(e));

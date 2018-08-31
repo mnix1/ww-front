@@ -1,35 +1,35 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../../../lang/langText";
-import {statusChanged} from "../../../../redux/reducer/war";
-import Modal from "../../../../component/modal/Modal";
+import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../lang/langText";
+import {clearRivalStartFastFetch} from "./fetch/RivalStartFastFetch";
+import {CREAM_COLOR} from "../../util/style/constant";
+import Modal from "../../component/modal/Modal";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
-import Profile from "../../../../component/profile/Profile";
+import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
-import {APP_ROUTE, PLAY_ROUTE} from "../../../routes";
-import {WAR_STATUS_CANCELED_FAST, WAR_STATUS_CLOSED, WAR_STATUS_WAITING_FAST} from "../../../../util/warHelper";
-import {CREAM_COLOR} from "../../../../util/style/constant";
-import {clearWarStartFastFetch} from "../fetch/WarStartFastFetch";
+import {APP_ROUTE, PLAY_ROUTE} from "../routes";
+import {statusChanged} from "../../redux/reducer/rival";
+import {RIVAL_STATUS_CANCELED_FAST, RIVAL_STATUS_CLOSED, RIVAL_STATUS_WAITING_FAST} from "../../util/rivalHelper";
 
-class WarFastPage extends React.PureComponent {
+class RivalFastPage extends React.PureComponent {
 
     componentDidMount() {
         const {status, goToMainScreen} = this.props;
-        if (status === WAR_STATUS_CLOSED || status === WAR_STATUS_CANCELED_FAST) {
+        if (status === RIVAL_STATUS_CLOSED || status === RIVAL_STATUS_CANCELED_FAST) {
             goToMainScreen();
         }
     }
 
     componentWillUnmount() {
         const {status, onCancel} = this.props;
-        if (status === WAR_STATUS_WAITING_FAST) {
+        if (status === RIVAL_STATUS_WAITING_FAST) {
             onCancel(false);
         }
     }
 
     renderContent() {
         const {status, onCancel, profile} = this.props;
-        if (status !== WAR_STATUS_WAITING_FAST) {
+        if (status !== RIVAL_STATUS_WAITING_FAST) {
             return null;
         }
         const actions = <div className='actions'>
@@ -56,19 +56,19 @@ export default connect(
     (state) => ({
         screen: state.screen,
         profile: state.profile.profile,
-        status: state.war.status,
+        status: state.rival.status,
     }),
     (dispatch) => ({
         goToMainScreen: () => {
             dispatch(push(APP_ROUTE));
         },
         onCancel: (withMoveToPlay = true) => {
-            clearWarStartFastFetch(dispatch);
-            dispatch(statusChanged(WAR_STATUS_CANCELED_FAST));
+            clearRivalStartFastFetch(dispatch);
+            dispatch(statusChanged(RIVAL_STATUS_CANCELED_FAST));
             if (withMoveToPlay) {
                 dispatch(push(PLAY_ROUTE))
             }
 
         }
     })
-)(WarFastPage);
+)(RivalFastPage);

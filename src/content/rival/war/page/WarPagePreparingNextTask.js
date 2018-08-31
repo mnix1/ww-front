@@ -30,7 +30,7 @@ class WarPagePreparingNextTask extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        content: state.war.content,
+        content: state.rival.content,
         profile: state.profile.profile,
     }),
     (dispatch) => ({})

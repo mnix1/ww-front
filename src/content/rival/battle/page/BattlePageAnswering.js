@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import Task from "../../../../component/task/Task";
-import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/battle";
+import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/rival";
 import Profiles from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import Timer from "../../../../component/timer/Timer";
@@ -52,9 +52,9 @@ export default connect(
         socket: state.socket.socket,
         // opponentProfile: state.battle.opponent,
         profile: state.profile.profile,
-        content: state.battle.content,
-        questionIdAnswerIdMap: state.battle.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.battle.questionIdSkipAnimationMap,
+        content: state.rival.content,
+        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
+        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),
     (dispatch) => ({
         onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),

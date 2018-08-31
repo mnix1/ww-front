@@ -10,12 +10,12 @@ import WarPageClosed from "./WarPageClosed";
 import WarPageChoosingTaskProps from "./WarPageChoosingTaskProps";
 import WarPageAnsweringTimeout from "./WarPageAnsweringTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
-import {showOptionsChanged} from "../../../../redux/reducer/war";
 import Modal from "../../../../component/modal/Modal";
 import {getText, TEXT_SURRENDER} from "../../../../lang/langText";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import WarPageChoosingWhoAnswer from "./WarPageChoosingWhoAnswer";
+import {showOptionsChanged} from "../../../../redux/reducer/rival";
 
 class WarPage extends React.PureComponent {
 
@@ -96,10 +96,10 @@ export default connect(
         socket: state.socket.socket,
         // opponentProfile: state.war.opponent,
         profile: state.profile.profile,
-        content: state.war.content,
-        showOptions: state.war.showOptions,
-        questionIdAnswerIdMap: state.war.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.war.questionIdSkipAnimationMap,
+        content: state.rival.content,
+        showOptions: state.rival.showOptions,
+        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
+        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
 
         // question: state.war.question,
     }),
