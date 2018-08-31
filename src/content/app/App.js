@@ -53,7 +53,6 @@ import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
 import BattlePage from "../rival/battle/page/BattlePage";
 import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
 import BattleFastPage from "../rival/battle/fast/BattleFastPage";
-import BattleCommunication from "../rival/battle/BattleCommunication";
 import {
     BATTLE_STATUS_IN_PROGRESS,
     BATTLE_STATUS_READY_TO_BEGIN_FRIEND,
@@ -70,33 +69,32 @@ import WakeLock from "../../component/wake-lock/WakeLock";
 import WarFastPage from "../rival/war/fast/WarFastPage";
 import {WAR_STATUS_IN_PROGRESS, WAR_STATUS_READY_TO_BEGIN_FRIEND, WAR_STATUS_WAITING_FAST} from "../../util/warHelper";
 import WarFetchContainer from "../rival/war/fetch/WarFetchContainer";
-import WarCommunication from "../rival/war/WarCommunication";
 import WarPage from "../rival/war/page/WarPage";
+import RivalCommunication from "../rival/RivalCommunication";
 
 class App extends React.PureComponent {
 
     componentDidMount() {
         const socket = new CommunicationWebSocket();
         this.props.onInit(socket);
-        this.battleCommunication = new BattleCommunication(socket);
-        this.warCommunication = new WarCommunication(socket);
+        this.rivalCommunication = new RivalCommunication(socket);
     }
 
     componentDidUpdate() {
         const {path, battleStatus, warStatus, onRouteChange} = this.props;
         if (path === BATTLE_ROUTE) {
             if (battleStatus === BATTLE_STATUS_WAITING_FAST) {
-                this.battleCommunication.readyFast();
+                this.rivalCommunication.battleReadyFast();
             } else if (battleStatus === BATTLE_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.battleCommunication.ready();
+                this.rivalCommunication.battleReady();
             }
         } else if (battleStatus === BATTLE_STATUS_IN_PROGRESS) {
             onRouteChange(BATTLE_ROUTE);
         } else if (path === WAR_ROUTE) {
             if (warStatus === WAR_STATUS_WAITING_FAST) {
-                this.warCommunication.readyFast();
+                this.rivalCommunication.warReadyFast();
             } else if (warStatus === WAR_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.warCommunication.ready();
+                this.rivalCommunication.warReady();
             }
         } else if (warStatus === WAR_STATUS_IN_PROGRESS) {
             onRouteChange(WAR_ROUTE);
@@ -104,8 +102,7 @@ class App extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        this.battleCommunication.dispose();
-        this.warCommunication.dispose();
+        this.rivalCommunication.dispose();
     }
 
     renderMenuItem(route, imgSrc) {
@@ -142,10 +139,10 @@ class App extends React.PureComponent {
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
                 <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
                 <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
-                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.battleCommunication}/>}/>
+                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.rivalCommunication}/>}/>
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <BattleFastPage/>}/>
 
-                <Route exact path={WAR_ROUTE} render={() => <WarPage communication={this.warCommunication}/>}/>
+                <Route exact path={WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
                 <Route exact path={WAR_FAST_ROUTE} render={() => <WarFastPage/>}/>
 
                 <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
