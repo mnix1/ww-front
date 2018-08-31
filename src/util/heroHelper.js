@@ -132,37 +132,3 @@ export function calculateHeroWidth(contentWidth) {
     }
     return contentWidth / minCount;
 }
-
-
-// function testFunc(wS, c, d, h) {
-//     const k = (wS + c) / 2;
-//     const l = (4 - d) * 0.05 + (k - 0.5) * 4 / 5 + 0.5 + (h ? 0.1 : 0);
-//     const r = _.random(0, 1, true);
-//     const knowAnswer = l > r;
-//     // console.log('left', l1 + l2, 'right', r, 'knowAnswer', knowAnswer);
-//     return knowAnswer;
-// }
-//
-// function testFunc2(wS, i, d, h) {
-//     const k = (2*wS + i)/2;
-//     const l = (4 - d) * 0.1 + (k - 0.5) * 4 / 5 + 0.5 + (h ? 0.1 : 0);
-//     const r = _.random(0, 1, true);
-//     const knowAnswer = l > r;
-//     // console.log('left', l1 + l2, 'right', r, 'knowAnswer', knowAnswer);
-//     return knowAnswer;
-// }
-//
-// function test() {
-//     let k = 0;
-//     let n = 0;
-//     for (let i = 0; i < 10000; i++) {
-//         if (testFunc2(0.2, 0.2, 1, false)) {
-//             k++;
-//         } else {
-//             n++;
-//         }
-//     }
-//     console.log('sum', k * 100 / (k + n));
-// }
-//
-// test();
