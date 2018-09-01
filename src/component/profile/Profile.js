@@ -43,7 +43,7 @@ export default class Profile extends React.PureComponent {
 
     renderDetails() {
         const {isOnline, name, tag, detailsClassName} = this.props;
-        return <div className='details justifyBetween relative flexColumn'>
+        return <div className='details fontSize08Rem justifyBetween relative flexColumn'>
             {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
             {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
             <div>

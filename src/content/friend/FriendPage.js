@@ -83,12 +83,12 @@ class FriendPage extends React.PureComponent {
     }
 
     renderFriend(friend) {
-        const {addedSuggested, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick} = this.props;
+        const {addedSuggested, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick, profile} = this.props;
         return <Profile
             key={friend.tag}
             {...friend}
-            actions={<div className='actions fontSize08Rem'>
-                {friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline &&
+            actions={<div className='actions'>
+                {profile.teamInitialized && friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline && friend.teamInitialized &&
                 <div onClick={() => onRivalFriendClick(friend.tag, RIVAL_TYPE_WAR)}>
                     <span>{getText(TEXT_WAR)}</span><FaQq
                     color={CREAM_COLOR}/></div>}
@@ -163,6 +163,7 @@ export default connect(
         friendSuggestRep: state.repository.friendSuggest,
         addTag: state.friend.addTag,
         suggest: state.friend.suggest,
+        profile: state.profile.profile,
     }),
     (dispatch) => ({
         onRivalFriendClick: (tag, type) => {

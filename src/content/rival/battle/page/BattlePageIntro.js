@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Profile from "../../../../component/profile/Profile";
-import play from '../../../../media/image/icon/play.svg';
+import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText, TEXT_BATTLE} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
@@ -24,7 +24,7 @@ class BattlePageIntro extends React.PureComponent {
         const {profile, content} = this.props;
         return <div className='profilesBig justifyCenter'>
             <Profile {...profile}/>
-            <img alt='' src={play} height={80}/>
+            <img alt='' src={swordShield} height={80}/>
             <Profile {...content.opponent}/>
         </div>;
     }

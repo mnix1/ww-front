@@ -1,74 +1,74 @@
 import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
-import dices from '../../media/image/icon/dices.svg';
-import clock from '../../media/image/category/clock.png';
-import rubicCube from '../../media/image/icon/rubicCube.svg';
-import notebook from '../../media/image/icon/notebook.svg';
-import practise from '../../media/image/icon/practise.svg';
-import granade from '../../media/image/icon/granade.svg';
-import {
-    BATTLE_FAST_ROUTE,
-    CHALLENGE_FAST_ROUTE,
-    CHALLENGE_HISTORY_ROUTE,
-    CHALLENGE_LIST_ROUTE,
-    TRAINING_ROUTE,
-    WAR_FAST_ROUTE
-} from "../routes";
+import battle from '../../media/image/menu/bowling.svg';
+import practise from '../../media/image/menu/practise.svg';
+import challenge from '../../media/image/menu/rubicCube.svg';
+import war from '../../media/image/menu/chessBoard.svg';
+import {PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE, PLAY_WAR_ROUTE, TRAINING_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
-import {CHALLENGE_STATUS_START} from "../../util/challengeHelper";
-import {challengeCleared, statusChanged as challengeStatusChanged} from "../../redux/reducer/challenge";
 import _ from 'lodash';
-import {clearChallengeTaskAndStartFetch} from "../challenge/fetch/ChallengeFetchContainer";
-import {clearRivalStartFastFetch} from "../rival/fetch/RivalStartFastFetch";
-import {RIVAL_STATUS_START_FAST, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
-import {rivalCleared, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
+import {TEXT_WISIES_TEAM} from "../../lang/langText";
+import Requirement from "../../component/requirement/Requirement";
 
 class PlayPage extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
-        const iconWidth = Math.max(Math.min(screen.width / 8, 70), 40);
-        return <MenuItem imgSrc={imgSrc}
-                         iconWidth={iconWidth}
-                         route={route}
-                         onClick={(route) => {
-                             onClick();
-                             onRouteChange(route);
-                         }}/>
+        const iconWidth = Math.max(Math.min(screen.width / 8, 90), 60);
+        return <MenuItem
+            imgSrc={imgSrc}
+            iconWidth={iconWidth}
+            route={route}
+            onClick={(route) => {
+                onClick();
+                onRouteChange(route);
+            }}/>;
     }
 
-    renderMenu() {
-        const {onChallengeFastClick, onBattleFastClick, onWarFastClick} = this.props;
-        return <div>
-            <Menu className='menuLeft'>
-                <div className='menuItems'>
-                    {this.renderMenuItem(WAR_FAST_ROUTE, granade, onWarFastClick)}
-                    {this.renderMenuItem(BATTLE_FAST_ROUTE, dices, onBattleFastClick)}
-                    {this.renderMenuItem(TRAINING_ROUTE, practise)}
-                </div>
-            </Menu>
-            <Menu className='menuRight'>
-                <div className='menuItems'>
-                    {this.renderMenuItem(CHALLENGE_FAST_ROUTE, rubicCube, onChallengeFastClick)}
-                    {this.renderMenuItem(CHALLENGE_LIST_ROUTE, clock)}
-                    {this.renderMenuItem(CHALLENGE_HISTORY_ROUTE, notebook)}
-                </div>
-            </Menu>
+    renderWarMenuItem(route, imgSrc) {
+        const {screen, onRouteChange, profile} = this.props;
+        const disabled = !profile.teamInitialized;
+        const iconWidth = Math.max(Math.min(screen.width / 8, 90), 60);
+        const menuItem = <MenuItem
+            className={disabled ? 'disabled' : ''}
+            imgSrc={imgSrc}
+            iconWidth={iconWidth}
+            route={route}
+            onClick={(route) => {
+                if (!disabled) {
+                    onRouteChange(route);
+                }
+            }}/>;
+        if (!disabled) {
+            return menuItem;
+        }
+        return <div className='relative'>
+            {menuItem}
+            <Requirement text={TEXT_WISIES_TEAM}/>
         </div>;
     }
 
-    renderContent() {
-        return this.renderMenu();
+    renderMenu() {
+        return <div>
+            <Menu className='menuLeft'>
+                <div className='menuItems relative'>
+                    {this.renderWarMenuItem(PLAY_WAR_ROUTE, war)}
+                    {this.renderMenuItem(PLAY_BATTLE_ROUTE, battle)}
+                    {this.renderMenuItem(PLAY_CHALLENGE_ROUTE, challenge)}
+                    {this.renderMenuItem(TRAINING_ROUTE, practise)}
+                </div>
+            </Menu>
+        </div>;
     }
 
     render() {
         return <div className='page'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageContent'>
-                {this.renderContent()}
+                {this.renderMenu()}
             </div>
         </div>;
     }
@@ -76,27 +76,11 @@ class PlayPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        profile: state.profile.profile,
         screen: state.screen,
         path: state.router.location.pathname
     }),
     (dispatch) => ({
-        onChallengeFastClick: () => {
-            clearChallengeTaskAndStartFetch(dispatch);
-            dispatch(challengeCleared());
-            dispatch(challengeStatusChanged(CHALLENGE_STATUS_START));
-        },
-        onBattleFastClick: () => {
-            clearRivalStartFastFetch(dispatch);
-            dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
-            dispatch(statusChanged(RIVAL_STATUS_START_FAST));
-        },
-        onWarFastClick: () => {
-            clearRivalStartFastFetch(dispatch);
-            dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_WAR));
-            dispatch(statusChanged(RIVAL_STATUS_START_FAST));
-        },
         onRouteChange: (e) => {
             dispatch(push(e));
         },

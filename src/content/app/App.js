@@ -12,11 +12,11 @@ import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
 import background from '../../media/image/background/backgroundWithHeroesProd.png';
-import play from '../../media/image/icon/play.svg';
-import friend from '../../media/image/icon/friend.svg';
-import shop from '../../media/image/icon/shop.png';
-import wisie from '../../media/image/icon/wisie.svg';
-import owl from '../../media/image/icon/owl.svg';
+import play from '../../media/image/menu/swordShield.svg';
+import friend from '../../media/image/menu/friend.svg';
+import shop from '../../media/image/menu/shop.png';
+import wisie from '../../media/image/menu/wisie.svg';
+import owl from '../../media/image/menu/owl.svg';
 import {Route, Switch} from 'react-router'
 
 import {ConnectedRouter, push} from 'connected-react-router'
@@ -30,8 +30,8 @@ import {
     CHALLENGE_LIST_ROUTE,
     CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
-    FRIEND_ROUTE,
-    PLAY_ROUTE,
+    FRIEND_ROUTE, PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE,
+    PLAY_ROUTE, PLAY_TRAINING_ROUTE, PLAY_WAR_ROUTE,
     PROFILE_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
@@ -70,6 +70,9 @@ import {
     RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
 import RivalFastPage from "../rival/RivalFastPage";
+import PlayWarPage from "../play/PlayWarPage";
+import PlayBattlePage from "../play/PlayBattlePage";
+import PlayChallengePage from "../play/PlayChallengePage";
 
 class App extends React.PureComponent {
 
@@ -135,22 +138,30 @@ class App extends React.PureComponent {
                 <Route exact path={APP_ROUTE} render={() => this.renderMenu()}/>
                 <Route exact path={PLAY_ROUTE} render={() => <PlayPage/>}/>
                 <Route exact path={FRIEND_ROUTE} render={() => <FriendPage/>}/>
-                <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
-                <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
-                <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
-                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.rivalCommunication}/>}/>
-                <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalFastPage/>}/>
+                <Route exact path={PROFILE_ROUTE} render={() => <ProfilePage/>}/>
+                <Route path={WISIES_ROUTE} render={() => <HeroPage/>}/>
+                <Route exact path={SHOP_ROUTE} render={() => <ShopPage/>}/>
+
+                <Route exact path={PLAY_WAR_ROUTE} render={() => <PlayWarPage/>}/>
+                <Route exact path={PLAY_BATTLE_ROUTE} render={() => <PlayBattlePage/>}/>
+                <Route exact path={PLAY_CHALLENGE_ROUTE} render={() => <PlayChallengePage/>}/>
+                {/*<Route exact path={PLAY_TRAINING_ROUTE} render={() => <PlayTrainingPage/>}/>*/}
 
                 <Route exact path={WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
                 <Route exact path={WAR_FAST_ROUTE} render={() => <RivalFastPage/>}/>
+
+                <Route exact path={BATTLE_ROUTE} render={() => <BattlePage communication={this.rivalCommunication}/>}/>
+                <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalFastPage/>}/>
+
+                <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
+
+                <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
+                <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
 
                 <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
-                <Route path={WISIES_ROUTE} render={() => <HeroPage/>}/>
-                <Route exact path={SHOP_ROUTE} render={() => <ShopPage/>}/>
-                <Route exact path={PROFILE_ROUTE} render={() => <ProfilePage/>}/>
             </Switch>
         </ConnectedRouter>;
     }

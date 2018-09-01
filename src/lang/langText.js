@@ -2,6 +2,7 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_REQUIREMENT = 'TEXT_REQUIREMENT';
 export const TEXT_OPPONENT_SURRENDER = 'TEXT_OPPONENT_SURRENDER';
 export const TEXT_YOU_SURRENDER = 'TEXT_YOU_SURRENDER';
 export const TEXT_SURRENDER = 'TEXT_SURRENDER';
@@ -118,6 +119,7 @@ export const TEXT_OPPONENT_TEAM= 'TEXT_OPPONENT_TEAM';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_REQUIREMENT]: 'Wymaganie',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Wybierz odpowiadającego',
         [TEXT_YOUR_TEAM]: 'Twoja drużyna',
         [TEXT_OPPONENT_TEAM]: 'Drużyna przeciwnika',
@@ -233,6 +235,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_REQUIREMENT]: 'Requirement',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Choose responder',
         [TEXT_DRAW_WHO_ANSWER]: 'Drawing of the responder',
         [TEXT_WAR]: 'War',

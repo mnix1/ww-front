@@ -1,5 +1,6 @@
 .profile .actions {
-    padding: 0.25rem;
+    padding-left: 0.25rem;
+    font-size: 0.8rem;
     display: flex;
     justify-content: space-between;
     flex-direction: column;

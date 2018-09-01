@@ -10,12 +10,21 @@ export default class MenuItem extends React.PureComponent {
         iconWidth: PropTypes.number,
         iconHeight: PropTypes.number,
         onClick: PropTypes.func,
+        className: PropTypes.string,
+        route: PropTypes.string,
+    };
+
+    static defaultProps = {
+        className: ''
     };
 
     render() {
-         const {iconWidth, iconHeight, onClick, imgSrc, route} = this.props;
-        return <div key={route} onClick={() => onClick(route)} className='menuItem flexColumn flex marginRem relative pointer' style={{fontSize: '0.9rem'}}>
-            <img alt='' src={imgSrc} width={iconWidth} height={iconHeight}/><span className='textAlignCenter width100'>{getRouteLabel(route)}</span>
+        const {iconWidth, iconHeight, onClick, imgSrc, route, className} = this.props;
+        return <div key={route} onClick={() => onClick(route)}
+                    className={`menuItem flexColumn flex marginRem relative pointer ${className}`}
+                    style={{fontSize: '0.9rem'}}>
+            <img className='marginWidthAuto' alt='' src={imgSrc} width={iconWidth} height={iconHeight}/>
+            <span className='textAlignCenter width100'>{getRouteLabel(route)}</span>
         </div>
     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import play from '../../../../media/image/icon/play.svg';
+import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText, TEXT_OPPONENT_TEAM, TEXT_WAR, TEXT_YOUR_TEAM} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Team from "../../component/Team";
@@ -34,7 +34,7 @@ class WarPageIntro extends React.PureComponent {
         return <div className='team justifyCenter flexColumn'>
             <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}</div>
             <Team profile={profile} presentIndexes={content.presentIndexes} team={content.team}/>
-            <img alt='' src={play} height={80}/>
+            <img alt='' src={swordShield} height={80}/>
             <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
             <Team profile={content.opponent} presentIndexes={content.opponentPresentIndexes}
                   team={content.opponentTeam}/>

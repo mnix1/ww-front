@@ -109,6 +109,19 @@
 .marginRem {
     margin: 0.25rem;
 }
+.marginAuto {
+    margin: auto;
+}
+
+.marginWidthAuto {
+    margin: 0 auto;
+}
+.right0 {
+    right: 0;
+}
+.top0 {
+    top: 0;
+}
 
 .paddingRem {
     padding: 0.25rem;
@@ -120,6 +133,9 @@
 
 .disabled {
     opacity: 0.5;
+    cursor: not-allowed !important;
+}
+.notAllowed {
     cursor: not-allowed !important;
 }
 .fontSize09Rem {
