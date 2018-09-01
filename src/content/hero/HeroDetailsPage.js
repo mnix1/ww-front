@@ -60,7 +60,7 @@ class HeroDetailsPage extends React.PureComponent {
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
                 <div className='justifyCenter'>
                     Wiedza
-                    {upgrade && !this.pending && this.renderUpgradeCost(1)}
+                    {upgrade && this.renderUpgradeCost(1)}
                 </div>
                 {this.renderHeroAttribute(hero, MEMORY, 1)}
                 {this.renderHeroAttribute(hero, LOGIC, 1)}
@@ -73,7 +73,7 @@ class HeroDetailsPage extends React.PureComponent {
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
                 <div className='justifyCenter'>
                     Mentalność
-                    {upgrade && !this.pending && this.renderUpgradeCost(2)}
+                    {upgrade && this.renderUpgradeCost(2)}
                 </div>
                 {this.renderHeroAttribute(hero, SPEED, 2)}
                 {this.renderHeroAttribute(hero, REFLEX, 2)}
@@ -87,17 +87,19 @@ class HeroDetailsPage extends React.PureComponent {
     renderHeroAttribute(hero, attribute, cost) {
         const {upgrade, profile, onUpgradeClick, upgradeProps} = this.props;
         let change = undefined;
-        if (hero.id === _.get(upgradeProps, 'id') && upgradeProps.attribute === attribute && !this.pending) {
-            change = <span style={{color: GREEN_COLOR, paddingRight: '0.25rem'}}>(+{this.change})</span>;
+        const pending = this.pending;
+        if (!pending && hero.id === _.get(upgradeProps, 'id') && upgradeProps.attribute === attribute) {
+            change = <div style={{color: GREEN_COLOR, paddingRight: '0.25rem'}}>(+{this.change})</div>;
+        } else {
+            change = <div style={{opacity: 0, paddingRight: '0.25rem'}}>(+0.00)</div>
         }
-
         return <div className='justifyBetween'>
             <div className='width100'>
                 <HeroAttribute change={change} hero={hero} attribute={attribute}/>
             </div>
-            {upgrade && !this.pending && cost <= profile.wisdom && <div className='justifyCenter flexColumn'>
-                <FaPlusCircle className='pointer' color={GREEN_COLOR}
-                              onClick={() => onUpgradeClick(hero, attribute)}/>
+            {upgrade && cost <= profile.wisdom && <div className='justifyCenter flexColumn'>
+                <FaPlusCircle className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
+                              onClick={pending ? _.noop : () => onUpgradeClick(hero, attribute)}/>
             </div>}
         </div>;
     }
