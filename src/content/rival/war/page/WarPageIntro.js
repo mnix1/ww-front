@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import swordShield from '../../../../media/image/menu/swordShield.svg';
-import {getText, TEXT_OPPONENT_TEAM, TEXT_WAR, TEXT_YOUR_TEAM} from "../../../../lang/langText";
+import {getText, TEXT_WAR} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
-import Team from "../../component/Team";
+import Teams from "../../component/Teams";
 
 class WarPageIntro extends React.PureComponent {
 
@@ -30,14 +30,9 @@ class WarPageIntro extends React.PureComponent {
     }
 
     renderTeamBig() {
-        const {profile, content, screen} = this.props;
+        const {content, screen} = this.props;
         return <div className='team justifyCenter flexColumn'>
-            <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}</div>
-            <Team profile={profile} presentIndexes={content.presentIndexes} team={content.team}/>
-            <img alt='' src={swordShield} height={screen.heroImgHeight}/>
-            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
-            <Team profile={content.opponent} presentIndexes={content.opponentPresentIndexes}
-                  team={content.opponentTeam}/>
+            <Teams content={content}><img alt='' src={swordShield} height={screen.heroImgHeight}/></Teams>
         </div>;
     }
 
@@ -60,7 +55,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
-        profile: state.profile.profile,
     }),
     (dispatch) => ({})
 )(WarPageIntro);

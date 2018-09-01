@@ -23,7 +23,7 @@ export default class TaskDescription extends React.PureComponent {
         return <div className={`${className}`}>
             <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>
             {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)} `}
-                <img alt='' key={task.category} height={12}
+                <img alt='' key={task.category} height={14}
                      src={getCategory(task.category)}/>
             </div>}
             {task.difficultyLevel && <div className='justifyCenter'>

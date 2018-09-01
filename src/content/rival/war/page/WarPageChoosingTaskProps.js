@@ -4,18 +4,12 @@ import _ from 'lodash';
 import RandomTaskProps from "../../component/RandomTaskProps";
 import ChoosingTaskProps from "../../component/ChoosingTaskProps";
 import TaskDescription from "../../component/TaskDescription";
-import {
-    getText,
-    TEXT_OPPONENT_CHOOSING,
-    TEXT_OPPONENT_TEAM,
-    TEXT_TIME,
-    TEXT_YOUR_TEAM
-} from "../../../../lang/langText";
+import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/langText";
 import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
 import {rivalInProgressContent} from "../../../../redux/reducer/rival";
-import Team from "../../component/Team";
+import Teams from "../../component/Teams";
 
 class WarPageChoosingTaskProps extends React.PureComponent {
 
@@ -30,52 +24,8 @@ class WarPageChoosingTaskProps extends React.PureComponent {
             <div className='pageHeader'><img alt='' className='sleep' src={sleep} height={screen.heroImgHeight}/></div>
             <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/>
             </div>
-            {this.renderTeamsOpponentChoosing()}
+            <Teams content={content}/>
         </div>
-    }
-
-    renderTeamsOpponentChoosing() {
-        const {content, profile, screen} = this.props;
-        if (screen.isSmallHeight && !screen.moreHeightThanWidth) {
-            return this.renderTeams();
-        }
-        return <div>
-            <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}</div>
-            <div className='pageHeader fontSize08Rem'>
-                <Team renderHobbies={true} profile={profile} team={content.team}
-                      presentIndexes={content.presentIndexes}/>
-            </div>
-            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
-            <div className='pageHeader fontSize08Rem'>
-                <Team renderHobbies={true} profile={content.opponent} team={content.opponentTeam}
-                      presentIndexes={content.opponentPresentIndexes}/>
-            </div>
-        </div>
-    }
-
-    renderTeams() {
-        const {content, profile, screen} = this.props;
-        const renderImg = screen.contentHeight - 40 > 480;
-        return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
-            <div style={{marginLeft: '0.25rem'}}>
-                <div>{getText(TEXT_YOUR_TEAM)}</div>
-                <div>
-                    <Team renderImg={renderImg} renderHobbies={true} imgHeight={40}
-                          contentClassName='flexColumn'
-                          className='justifyStart' profile={profile} team={content.team}
-                          presentIndexes={content.presentIndexes}/>
-                </div>
-            </div>
-            <div style={{marginRight: '0.25rem'}}>
-                <div>{getText(TEXT_OPPONENT_TEAM)}</div>
-                <div>
-                    <Team renderImg={renderImg} renderHobbies={true} imgHeight={40}
-                          contentClassName='flexColumn'
-                          className='justifyEnd' profile={content.opponent} team={content.opponentTeam}
-                          presentIndexes={content.opponentPresentIndexes}/>
-                </div>
-            </div>
-        </div>;
     }
 
     renderContent() {
@@ -103,7 +53,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
         const {content, profile} = this.props;
         const {choosingTaskPropsTag} = content;
         return <div className='pageContent warPageChoosingTaskProps'>
-            {choosingTaskPropsTag === profile.tag && this.renderTeams()}
+            {choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
             {!_.isNil(choosingTaskPropsTag) &&
             <TaskDescription content={content} className='justifyCenter flexColumn pageHeader' taskId={content.taskId}
                              renderTaskCount={false}/>}

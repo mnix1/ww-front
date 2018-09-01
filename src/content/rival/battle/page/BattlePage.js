@@ -4,17 +4,14 @@ import './styles.css';
 import BattlePageIntro from "./BattlePageIntro";
 import BattlePageAnswering from "./BattlePageAnswering";
 import BattlePagePreparingNextTask from "./BattlePagePreparingNextTask";
-import flag from '../../../../media/image/icon/flag.svg';
 import BattlePageAnswered from "./BattlePageAnswered";
 import BattlePageClosed from "./BattlePageClosed";
 import BattlePageChoosingTaskProps from "./BattlePageChoosingTaskProps";
 import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
 import FaCogs from "react-icons/lib/fa/cogs";
-import Modal from "../../../../component/modal/Modal";
-import {getText, TEXT_SURRENDER} from "../../../../lang/langText";
 import _ from 'lodash';
-import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import {showOptionsChanged} from "../../../../redux/reducer/rival";
+import Options from "../../component/Options";
 
 class BattlePage extends React.PureComponent {
 
@@ -49,39 +46,23 @@ class BattlePage extends React.PureComponent {
         </div>;
     }
 
-    renderSurrender() {
-        const {onShowOptionsChange, communication, screen} = this.props;
-        const imgHeight = screen.isSmallHeight ? 20 : 30;
-        return <div className='justifyCenter surrender' onClick={() => {
-            communication.send('BATTLE_SURRENDER');
-            onShowOptionsChange(false);
-        }}>
-            <Button material={BUTTON_MATERIAL_BOX_SHADOW} icon={<img alt='' src={flag} height={imgHeight}/>}>
-                <div className='justifyCenter flexColumn'>{getText(TEXT_SURRENDER)}</div>
-            </Button>
-        </div>;
-    }
-
     renderShowOptions() {
         const {onShowOptionsChange, screen} = this.props;
         const imgHeight = screen.isSmallHeight ? 30 : 40;
         return <div className='showOptions'><FaCogs size={imgHeight} onClick={onShowOptionsChange}/></div>
     }
 
-    renderOptions() {
-        const {onShowOptionsChange} = this.props;
-        const content = <div>
-            {this.renderSurrender()}
-        </div>;
-        return <Modal renderExit={true} content={content} onExitClick={() => onShowOptionsChange(false)}/>
-    }
-
     render() {
-        const {screen, showOptions} = this.props;
+        const {screen, showOptions, onShowOptionsChange, communication} = this.props;
         return <div className='page battlePage' style={{height: screen.contentHeight}}>
             <div className='pageBackground absoluteBackgroundMix'/>
             {this.renderShowOptions()}
-            {showOptions && this.renderOptions()}
+            {showOptions && <Options
+                onShowOptionsChange={onShowOptionsChange}
+                communication={communication}
+                surrenderMsg='BATTLE_SURRENDER'
+                screen={screen}
+            />}
             {this.renderContent()}
         </div>
     }
