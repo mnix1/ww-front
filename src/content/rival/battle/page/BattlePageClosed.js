@@ -9,15 +9,15 @@ import {
 } from "../../../../lang/langText";
 import Profiles from "../../component/Profiles";
 import Profile from "../../../../component/profile/Profile";
-import trophy from '../../../../media/image/icon/trophy.svg';
+// import trophy from '../../../../media/image/icon/trophy.svg';
 import _ from 'lodash';
 
 class BattlePageClosed extends React.PureComponent {
 
     render() {
-        const {content, profile} = this.props;
+        const {content, screen, profile} = this.props;
         const {winnerTag, resigned} = content;
-        if(_.isNil(winnerTag) || winnerTag === ''){
+        if (_.isNil(winnerTag) || winnerTag === '') {
             return <div className='pageContent battlePageClosed'>
                 <div className='pageHeader'>
                     {getText(TEXT_BATTLE_OVER)}
@@ -40,11 +40,11 @@ class BattlePageClosed extends React.PureComponent {
                 {` ${getText(TEXT_THE_WINNER_IS)}:`}
             </div>
             <div className='pageHeader'>
-                <Profile {...winnerProfile}/>
+                <Profile imgHeight={screen.heroImgHeight} {...winnerProfile}/>
             </div>
-            <div className='pageHeader'>
-                <img alt='' src={trophy} height={80}/>
-            </div>
+            {/*<div className='pageHeader'>*/}
+            {/*<img alt='' src={trophy} height={80}/>*/}
+            {/*</div>*/}
             <Profiles content={content} className='absolute'/>
         </div>;
     }

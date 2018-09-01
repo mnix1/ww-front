@@ -49,7 +49,7 @@ export default class Resource extends React.PureComponent {
 
     render() {
         const {notEnough, size, column, margin} = this.props;
-        const className = `resource inlineBlock ${margin ? 'marginRem' : ''} relative ${size}`;
+        const className = `resource inlineBlock fontSize08Rem ${margin ? 'marginRem' : ''} relative ${size}`;
         const style = notEnough ? {color: RED_COLOR} : undefined;
         return <div className={className}>
             <div className='justifyCenter'>

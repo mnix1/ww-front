@@ -72,7 +72,7 @@ export default class ProfileBook extends React.PureComponent {
     renderDetails() {
         const {canClaimReward, onReadingDone, readTime, isInProgress, alreadyReadInterval, gainCrystal, gainWisdom, gainElixir, type} = this.props;
         const isFinished = readTime - alreadyReadInterval <= 0;
-        return <div className='bookDetails justifyBetween'>
+        return <div className='bookDetails justifyCenter'>
             <img height={150} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside justifyBetween flexColumn paddingRem'>
                 <div className='justifyCenter flexColumn'>

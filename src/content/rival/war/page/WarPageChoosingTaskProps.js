@@ -68,7 +68,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
         }
         if (choosingTaskPropsTag === profile.tag) {
             return <ChoosingTaskProps
-                screen={{...screen, contentHeight: screen.contentHeight - 80, contentWidth: screen.contentWidth - 80}}
+                screen={{...screen, contentHeight: screen.contentHeight - 70, contentWidth: screen.contentWidth - 80}}
                 renderPoints={false}
                 acceptMsg='WAR_CHOOSE_TASK_PROPS'
                 content={content}

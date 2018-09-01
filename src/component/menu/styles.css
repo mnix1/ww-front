@@ -1,8 +1,10 @@
 .menu.menuLeft {
     float: left;
+    margin-left: 0.25rem;
 }
 .menu.menuRight {
     float: right;
+    margin-right: 0.25rem;
 }
 .menu .menuItems {
     display: flex;

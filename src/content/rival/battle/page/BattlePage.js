@@ -69,10 +69,11 @@ class BattlePage extends React.PureComponent {
     }
 
     renderOptions() {
+        const {onShowOptionsChange} = this.props;
         const content = <div>
             {this.renderSurrender()}
         </div>;
-        return <Modal renderExit={false} content={content}/>
+        return <Modal renderExit={true} content={content} onExitClick={() => onShowOptionsChange(false)}/>
     }
 
     render() {

@@ -41,7 +41,8 @@ class HeroDetailsPage extends React.PureComponent {
     }
 
     renderHero(hero) {
-        return <Hero {...hero} style={{}}>
+        const {screen} = this.props;
+        return <Hero imgHeight={screen.heroImgHeight + 30} {...hero} style={{}}>
             {this.renderHeroAttributes(hero)}
         </Hero>;
     }

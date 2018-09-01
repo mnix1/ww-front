@@ -19,10 +19,7 @@ class Team extends React.PureComponent {
         if (imgHeight) {
             return imgHeight;
         }
-        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
-            return 60;
-        }
-        return 80;
+        return screen.heroImgHeight;
     }
 
     renderHeroes(heroes, activeIndex, presentIndexes) {
@@ -55,7 +52,7 @@ class Team extends React.PureComponent {
                          blackBackground={true}
                          renderDetailsHorizontal={true}
                          isActive={activeIndex === 0} {...profile}
-                         imgHeight={this.imgHeight + 4}
+                         imgHeight={this.imgHeight}
                          className={isProfileDisabled ? 'disabled' : ''}/>
                 {this.renderHeroes(team, activeIndex, presentIndexes)}
             </div>

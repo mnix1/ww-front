@@ -102,6 +102,7 @@ const initialState = {
     isSmallWidth,
     isNotBigHeight,
     moreHeightThanWidth,
+    heroImgHeight: isSmallHeight ? moreHeightThanWidth ? 60 : 50 : 80,
     contentHeight: calculateContentHeight(initialHeight, isSmallHeight, moreHeightThanWidth),
     contentWidth: calculateContentWidth(initialWidth, isSmallWidth, moreHeightThanWidth),
     isMobile
@@ -125,6 +126,7 @@ export default function reducer(state = initialState, action) {
                 isSmallWidth,
                 isNotBigHeight,
                 moreHeightThanWidth,
+                heroImgHeight: isSmallHeight ? moreHeightThanWidth ? 60 : 50 : 80,
                 contentHeight: calculateContentHeight(height, isSmallHeight, moreHeightThanWidth),
                 contentWidth: calculateContentWidth(width, isSmallWidth, moreHeightThanWidth),
                 resolution

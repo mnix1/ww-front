@@ -33,15 +33,15 @@ export default class ProfileBook extends React.PureComponent {
     renderBuyButtonContent() {
         const {canBuyByGold, isBuyEnable, goldCost, canBuyByCrystal, crystalCost} = this.props;
         return <div className='justifyCenter'>
-            {canBuyByGold && <Gold notEnough={!isBuyEnable}>{goldCost}</Gold>}
-            {canBuyByCrystal && <Crystal notEnough={!isBuyEnable}>{crystalCost}</Crystal>}
-            <div className='justifyCenter flexColumn'>{getText(TEXT_BUY)}</div>
+            {canBuyByGold && <Gold margin={false} notEnough={!isBuyEnable}>{goldCost}</Gold>}
+            {canBuyByCrystal && <Crystal margin={false} notEnough={!isBuyEnable}>{crystalCost}</Crystal>}
+            <div className='justifyCenter flexColumn paddingLeftRem'>{getText(TEXT_BUY)}</div>
         </div>;
     }
 
     renderActions() {
         const {onBuyClick, isBuyEnable} = this.props;
-        return <div className='bookActions paddingRem justifyEvenly paddingRem'>
+        return <div className='bookActions paddingRem justifyEvenly'>
             <Button style={maybeDisabledStyle(!isBuyEnable)} onClick={isBuyEnable ? onBuyClick : _.noop}
                     className='bookAction justifyBetween'
                     material={BUTTON_MATERIAL_BOX_SHADOW}
@@ -72,9 +72,9 @@ export default class ProfileBook extends React.PureComponent {
 
     renderDetails() {
         const {gainCrystal, gainWisdom, gainElixir, type} = this.props;
-        return <div className='bookDetails justifyBetween'>
-            <img height={110} alt='' src={getBook(type)}/>
-            <div className='bookDetailsInside relative justifyBetween flexColumn paddingRem'>
+        return <div className='bookDetails justifyCenter'>
+            <img height={120} alt='' src={getBook(type)}/>
+            <div className='bookDetailsInside relative justifyBetween flexColumn'>
                 <div className='bookGain justifyBetween flexColumn height100'>
                     {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}
                     {gainWisdom > 0 && <Wisdom>{gainWisdom}</Wisdom>}

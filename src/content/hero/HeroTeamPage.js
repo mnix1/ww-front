@@ -23,10 +23,10 @@ class HeroTeamPage extends React.PureComponent {
     }
 
     renderHero(hero) {
-        const {edit, onTeamRemoveClick, team} = this.props;
+        const {edit, screen, onTeamRemoveClick, team} = this.props;
         return <Hero
             key={hero.type}
-            imgHeight={80}
+            imgHeight={screen.heroImgHeight}
             className={edit ? 'pointer' : ''}
             onClick={edit ? () => onTeamRemoveClick(team, hero) : _.noop}
             renderDetails={false}

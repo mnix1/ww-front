@@ -20,8 +20,9 @@ import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
 class ChallengeFriendPage extends React.PureComponent {
 
     renderFriend(friend, isAdded) {
-        const {tags, onFriendToggle} = this.props;
+        const {tags, screen, onFriendToggle} = this.props;
         return <Profile
+            imgHeight={screen.heroImgHeight}
             key={friend.tag}
             {...friend}
             actions={

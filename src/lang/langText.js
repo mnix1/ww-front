@@ -21,7 +21,6 @@ export const TEXT_QUESTION = 'TEXT_QUESTION';
 export const TEXT_REMEMBER_DETAILS = 'TEXT_REMEMBER_DETAILS';
 export const TEXT_CLICK_ON_ANY_TO_CONTINUE = 'TEXT_CLICK_ON_ANY_TO_CONTINUE';
 export const TEXT_CORRECT_ANSWER = 'TEXT_CORRECT_ANSWER';
-export const TEXT_IS_CORRECT = 'TEXT_IS_CORRECT';
 export const TEXT_TIME = 'TEXT_TIME';
 export const TEXT_WAR = 'TEXT_WAR';
 export const TEXT_CHOOSE_WHO_ANSWER = 'TEXT_CHOOSE_WHO_ANSWER';
@@ -165,7 +164,7 @@ const TEXTS = {
         [TEXT_DRAW_CATEGORY]: 'Losowanie kategorii',
         [TEXT_DRAW_DIFFICULT]: 'Losowanie trudności',
         [TEXT_ANSWER]: 'Odpowiedz',
-        [TEXT_ANSWERED]: 'Odpowiedź jest',
+        [TEXT_ANSWERED]: 'Odpowiedział(a)',
         [TEXT_CORRECT]: 'Poprawnie',
         [TEXT_WRONG]: 'Błędnie',
         [TEXT_CONTINUE]: 'Kontynuuj',
@@ -178,7 +177,6 @@ const TEXTS = {
         [TEXT_REMEMBER_DETAILS]: 'Zapamiętaj szczegóły obiektów',
         [TEXT_CLICK_ON_ANY_TO_CONTINUE]: 'Kliknij na dowolny aby kontynuować',
         [TEXT_CORRECT_ANSWER]: 'Gratulacje! Poprawna odpowiedź',
-        [TEXT_IS_CORRECT]: 'jest poprawna',
         [TEXT_TIME]: 'Czas',
         [TEXT_WRONG_ANSWER]: 'Niestety, błędna odpowiedź...',
         [TEXT_IS_WRONG]: 'jest błędna',
@@ -292,7 +290,6 @@ const TEXTS = {
         [TEXT_REMEMBER_DETAILS]: 'Remember the details of the objects',
         [TEXT_CLICK_ON_ANY_TO_CONTINUE]: 'Click on any to continue',
         [TEXT_CORRECT_ANSWER]: 'Congratulations! Correct answer',
-        [TEXT_IS_CORRECT]: 'is correct',
         [TEXT_TIME]: 'Time',
         [TEXT_WRONG_ANSWER]: 'Unfortunately, the wrong answer ...',
         [TEXT_IS_WRONG]: 'is wrong',

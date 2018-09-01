@@ -15,14 +15,15 @@ class PlayWarPage extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
-        const iconWidth = Math.max(Math.min(screen.width / 8, 90), 60);
-        return <MenuItem imgSrc={imgSrc}
-                         iconWidth={iconWidth}
-                         route={route}
-                         onClick={(route) => {
-                             onClick();
-                             onRouteChange(route);
-                         }}/>
+        const iconHeight = screen.heroImgHeight + 10;
+        return <MenuItem
+            imgSrc={imgSrc}
+            iconHeight={iconHeight}
+            route={route}
+            onClick={(route) => {
+                onClick();
+                onRouteChange(route);
+            }}/>;
     }
 
     renderMenu() {

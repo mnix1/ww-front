@@ -109,8 +109,8 @@ class App extends React.PureComponent {
 
     renderMenuItem(route, imgSrc) {
         const {screen, onRouteChange} = this.props;
-        const iconWidth = Math.max(Math.min(screen.width / 8, 90), 60);
-        return <MenuItem onClick={onRouteChange} imgSrc={imgSrc} iconWidth={iconWidth} route={route}/>
+        const iconHeight = screen.heroImgHeight + 10;
+        return <MenuItem onClick={onRouteChange} imgSrc={imgSrc} iconHeight={iconHeight} route={route}/>
     }
 
     renderMenu() {

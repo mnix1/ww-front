@@ -29,7 +29,7 @@ class BattlePageAnswered extends React.PureComponent {
         const {content, profile, screen} = this.props;
         const {opponent} = content;
         const answeredProfile = this.meAnswered ? profile : opponent;
-        const imgHeight = screen.isSmallHeight ? 40 : 60;
+        const imgHeight = screen.heroImgHeight;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
@@ -39,10 +39,12 @@ class BattlePageAnswered extends React.PureComponent {
                     {this.isCorrectAnswer
                         ? <div>
                             <div>{getText(TEXT_CORRECT)}</div>
-                            <img alt='' src={thumbUp} height={imgHeight}/></div>
+                            <img alt='' src={thumbUp} height={imgHeight}/>
+                        </div>
                         : <div>
                             <div>{getText(TEXT_WRONG)}</div>
-                            <img alt='' src={thumbDown} height={imgHeight}/></div>}
+                            <img alt='' src={thumbDown} height={imgHeight}/>
+                        </div>}
                 </div>
             </div>
         </div>
@@ -64,7 +66,8 @@ class BattlePageAnswered extends React.PureComponent {
                 score: {value: content.newScore, duration: 1500, delay: 5000},
                 opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 5000}
             }}>
-            <ProfilesComponent content={content} className={'absolute'} profile={profile} screen={screen} scoreColor={scoreColor}
+            <ProfilesComponent content={content} className={'absolute'} profile={profile} screen={screen}
+                               scoreColor={scoreColor}
                                opponentScoreColor={opponentScoreColor}/>
         </Anime>;
     }

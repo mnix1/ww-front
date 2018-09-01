@@ -28,9 +28,7 @@ import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
 import {TRAINING_ROUTE, TRAINING_TASK_ROUTE} from "../routes";
 import ContentWithImage from "../../component/content-with-image/ContentWithImage";
-import {
-    DIFFICULT_LEVEL_TO_NAME,
-} from "../../util/difficultyHelper";
+import {DIFFICULT_LEVEL_TO_NAME,} from "../../util/difficultyHelper";
 import Rating from "../../component/rating/Rating";
 
 class PractisePage extends React.PureComponent {
@@ -42,9 +40,10 @@ class PractisePage extends React.PureComponent {
             <div className="pageHeader"><Rating valueString={difficultyLevel} onChange={onDifficultLevelChange}/></div>
             <div className="pageHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
+                setHeight={false}
                 objects={OBJECTS_CATEGORY}
                 onObjectClick={onCategoryChange}
-                screen={{...screen, contentHeight: screen.contentHeight - 100}}
+                screen={{...screen, contentHeight: screen.contentHeight - 70}}
             />
         </div>;
     }
@@ -104,8 +103,8 @@ class PractisePage extends React.PureComponent {
     }
 
     render() {
-        const {category, difficultyLevel, answerId, practiseStartRep} = this.props;
-        return <div className='page'>
+        const {category, difficultyLevel, answerId, screen, practiseStartRep} = this.props;
+        return <div className='page' style={{height: screen.contentHeight}}>
             <div className='pageBackground absoluteBackgroundMix'/>
             <Switch>
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>

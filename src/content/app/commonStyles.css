@@ -122,9 +122,20 @@
 .top0 {
     top: 0;
 }
+.left0 {
+    left: 0;
+}
 
 .paddingRem {
     padding: 0.25rem;
+}
+
+.paddingLeftRem {
+    padding-left: 0.25rem;
+}
+
+.paddingRightRem {
+    padding-right: 0.25rem;
 }
 
 .borderRadiusRem {

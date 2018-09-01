@@ -10,10 +10,7 @@ class ActiveHero extends React.PureComponent {
         if(imgHeight) {
             return imgHeight;
         }
-        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
-            return 50;
-        }
-        return 70;
+        return screen.heroImgHeight;
     }
 
     renderProfile(profile) {

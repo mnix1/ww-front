@@ -5,16 +5,9 @@ import Profile from "../../../component/profile/Profile";
 
 export class ProfilesComponent extends React.PureComponent {
 
-    get imgHeight() {
-        const {screen} = this.props;
-        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
-            return 40;
-        }
-        return 60;
-    }
-
     renderProfile(profile, score, color) {
-        return <Profile {...profile} imgHeight={this.imgHeight}>
+        const {screen} = this.props;
+        return <Profile {...profile} imgHeight={screen.heroImgHeight}>
             <div style={{color}}>{prepareScoreMessage(score)}</div>
         </Profile>
     }

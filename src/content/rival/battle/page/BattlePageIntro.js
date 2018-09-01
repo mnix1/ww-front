@@ -21,11 +21,11 @@ class BattlePageIntro extends React.PureComponent {
     }
 
     renderProfilesBig() {
-        const {profile, content} = this.props;
+        const {profile, screen, content} = this.props;
         return <div className='profilesBig justifyCenter'>
-            <Profile {...profile}/>
-            <img alt='' src={swordShield} height={80}/>
-            <Profile {...content.opponent}/>
+            <Profile imgHeight={screen.heroImgHeight} {...profile}/>
+            <img alt='' src={swordShield} height={screen.heroImgHeight}/>
+            <Profile imgHeight={screen.heroImgHeight} {...content.opponent}/>
         </div>;
     }
 

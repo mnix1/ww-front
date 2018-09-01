@@ -30,11 +30,11 @@ class WarPageIntro extends React.PureComponent {
     }
 
     renderTeamBig() {
-        const {profile, content} = this.props;
+        const {profile, content, screen} = this.props;
         return <div className='team justifyCenter flexColumn'>
             <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}</div>
             <Team profile={profile} presentIndexes={content.presentIndexes} team={content.team}/>
-            <img alt='' src={swordShield} height={80}/>
+            <img alt='' src={swordShield} height={screen.heroImgHeight}/>
             <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
             <Team profile={content.opponent} presentIndexes={content.opponentPresentIndexes}
                   team={content.opponentTeam}/>

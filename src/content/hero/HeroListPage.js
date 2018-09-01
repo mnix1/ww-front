@@ -34,15 +34,18 @@ class HeroListPage extends React.PureComponent {
     }
 
     renderHeroEdit(hero) {
-        const {team, onTeamAddClick, onHeroDetailsClick, onTeamRemoveClick} = this.props;
+        const {team, screen, onTeamAddClick, onHeroDetailsClick, onTeamRemoveClick} = this.props;
         const isInTeam = _.some(team, (e) => e.id === hero.id);
-        return <Hero key={hero.type} className='pointer' style={{width: this.heroWidth}}
-                     onClick={() => isInTeam
-                         ? onTeamRemoveClick(team, hero)
-                         : team.length < HERO_TEAM_COUNT
-                             ? onTeamAddClick(team, hero)
-                             : _.noop}
-                     {...hero}>
+        return <Hero
+            imgHeight={screen.heroImgHeight + 20}
+            key={hero.type} className='pointer'
+            style={{width: this.heroWidth}}
+            onClick={() => isInTeam
+                ? onTeamRemoveClick(team, hero)
+                : team.length < HERO_TEAM_COUNT
+                    ? onTeamAddClick(team, hero)
+                    : _.noop}
+            {...hero}>
             <div className='left'>
                 {!isInTeam && <Button onClick={(e) => {
                     e.stopPropagation();
@@ -63,13 +66,16 @@ class HeroListPage extends React.PureComponent {
     }
 
     renderHero(hero) {
-        const {onHeroDetailsClick, edit} = this.props;
+        const {onHeroDetailsClick, screen, edit} = this.props;
         if (edit) {
             return this.renderHeroEdit(hero);
         }
-        return <Hero key={hero.type} style={{width: this.heroWidth}} {...hero}
+        return <Hero imgHeight={screen.heroImgHeight + 20}
+                     key={hero.type}
+                     style={{width: this.heroWidth}} {...hero}
                      className={hero.isOwned ? 'pointer' : ''}
-                     onClick={hero.isOwned ? () => onHeroDetailsClick(hero) : _.noop}/>;
+                     onClick={hero.isOwned ? () => onHeroDetailsClick(hero) : _.noop}
+        />;
     }
 
     render() {

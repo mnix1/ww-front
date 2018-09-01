@@ -24,7 +24,7 @@ export class ObjectGroup extends React.PureComponent {
         onObjectMouseOut: _.noop,
         objectContainerClassName: 'objectContainer',
 
-        objectContentClassName: 'objectContent',
+        objectContentClassName: 'objectContent flexColumn justifyCenter width100 height100 textAlignCenter',
         objectStyle: {},
     };
 
