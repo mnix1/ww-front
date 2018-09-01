@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles.css';
-import {getHero} from "../../util/heroHelper";
+import {getWisie} from "../../util/wisieHelper";
 import PropTypes from "prop-types";
 import TiWiFi from "react-icons/lib/ti/wi-fi";
 import {GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
@@ -58,12 +58,12 @@ export default class Profile extends React.PureComponent {
         if (renderDetailsHorizontal) {
             return <div className='profile justifyBetween flexColumn'>
                 {this.renderDetails()}
-                <div className='justifyCenter'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
+                <div className='justifyCenter'><img alt='' src={getWisie(heroType)} height={imgHeight}/></div>
                 {this.renderActions()}
             </div>;
         }
         return <div className='profile justifyBetween'>
-            <div className='justifyCenter marginRem'><img alt='' src={getHero(heroType)} height={imgHeight}/></div>
+            <div className='justifyCenter marginRem'><img alt='' src={getWisie(heroType)} height={imgHeight}/></div>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;

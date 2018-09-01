@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/langText";
 import './styles.css';
 import _ from 'lodash';
-import {calculateHeroWidth, HERO_TEAM_COUNT} from "../../util/heroHelper";
+import {calculateWisieWidth, WISIE_TEAM_COUNT} from "../../util/wisieHelper";
 import {Loading} from "../../component/loading/Loading";
 import {heroDetailsChanged, showNotOwnedChanged, teamChanged} from "../../redux/reducer/hero";
 import Hero from "../../component/hero/Hero";
@@ -18,7 +18,7 @@ class HeroListPage extends React.PureComponent {
 
     get heroWidth() {
         const {screen} = this.props;
-        return calculateHeroWidth(screen.contentWidth - 20) + 8;
+        return calculateWisieWidth(screen.contentWidth - 20) + 8;
     }
 
     renderHeroes(heroesGroups) {
@@ -42,7 +42,7 @@ class HeroListPage extends React.PureComponent {
             style={{width: this.heroWidth}}
             onClick={() => isInTeam
                 ? onTeamRemoveClick(team, hero)
-                : team.length < HERO_TEAM_COUNT
+                : team.length < WISIE_TEAM_COUNT
                     ? onTeamAddClick(team, hero)
                     : _.noop}
             {...hero}>
@@ -51,7 +51,7 @@ class HeroListPage extends React.PureComponent {
                     e.stopPropagation();
                     onTeamAddClick(team, hero);
                 }}
-                                      disabled={team.length >= HERO_TEAM_COUNT}
+                                      disabled={team.length >= WISIE_TEAM_COUNT}
                                       icon={<FaPlusCircle size={16}/>}/>
                 }
                 {isInTeam && <Button onClick={(e) => {

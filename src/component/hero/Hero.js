@@ -1,5 +1,5 @@
 import React from 'react';
-import {getHero} from "../../util/heroHelper";
+import {getWisie} from "../../util/wisieHelper";
 import PropTypes from "prop-types";
 import _ from 'lodash';
 import {getName} from "../../lang/langText";
@@ -88,7 +88,7 @@ export default class Hero extends React.PureComponent {
             <div onClick={onClick} key={type}>
                 <div className=' justifyCenter flexColumn'>
                     {renderDetails && (isOwned ? this.renderHeroDetailsOwned() : this.renderHeroDetailsNotOwned())}
-                    {renderImg && <div className='justifyCenter'><img alt='' src={getHero(type)} height={imgHeight}/></div>}
+                    {renderImg && <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
                     {stats}
                     {children}
                 </div>

@@ -11,7 +11,7 @@ import {
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
-import {getHero} from "../../util/heroHelper";
+import {getWisie} from "../../util/wisieHelper";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,
@@ -93,7 +93,7 @@ class PractisePage extends React.PureComponent {
 
     renderPlayAgain() {
         const {onPlayAgainClick, profile} = this.props;
-        return <ContentWithImage key='playAgain' imgSrc={getHero(profile.heroType)} onClick={onPlayAgainClick}
+        return <ContentWithImage key='playAgain' imgSrc={getWisie(profile.heroType)} onClick={onPlayAgainClick}
                                  id='playAgain'>
             <div className='flexColumn'>
                 <span>{getText(TEXT_NEXT)}</span>

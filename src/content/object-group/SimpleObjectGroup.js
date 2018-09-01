@@ -5,7 +5,6 @@ import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {objectFontSize} from "../../component/object-group/objectHelper";
 import './styles.css';
-import {LIGHT_BLUE_COLOR} from "../../util/style/constant";
 
 export default class SimpleObjectGroup extends React.PureComponent {
 

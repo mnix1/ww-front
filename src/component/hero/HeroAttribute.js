@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {getHeroAttributeLabel} from "../../lang/langHeroAttribute";
-import {NAME_TO_PROP} from "../../util/heroAttributeHelper";
+import {NAME_TO_PROP} from "../../util/wisieAttributeHelper";
 import _ from 'lodash';
 
 export default class HeroAttribute extends React.PureComponent {

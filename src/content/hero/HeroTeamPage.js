@@ -4,7 +4,7 @@ import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_EDIT, TEXT_SAVE, TEXT_WI
 import './styles.css';
 import _ from 'lodash';
 import Hero from "../../component/hero/Hero";
-import {HERO_TEAM_COUNT} from "../../util/heroHelper";
+import {WISIE_TEAM_COUNT} from "../../util/wisieHelper";
 import FaEdit from "react-icons/lib/fa/edit";
 import FaEraser from "react-icons/lib/fa/eraser";
 import MdSave from "react-icons/lib/md/save";
@@ -16,7 +16,7 @@ import {teamChanged, teamSaveChanged} from "../../redux/reducer/hero";
 
 class HeroTeamPage extends React.PureComponent {
     renderHeroes(heroes) {
-        const maybeEmptyHeroes = _.take(_.flatten([heroes, _.fill(Array(HERO_TEAM_COUNT), null)]), HERO_TEAM_COUNT);
+        const maybeEmptyHeroes = _.take(_.flatten([heroes, _.fill(Array(WISIE_TEAM_COUNT), null)]), WISIE_TEAM_COUNT);
         return <div className='justifyCenter flexWrap'>
             {maybeEmptyHeroes.map((e, i) => _.isNil(e) ? this.renderEmptySlot(i) : this.renderHero(e))}
         </div>;
@@ -45,7 +45,7 @@ class HeroTeamPage extends React.PureComponent {
                            onClick={() => onTeamEditClick(inTeamHeroes)}
                            icon={<FaEdit size={16}/>}>{getText(TEXT_EDIT)}</Button>;
         }
-        const saveDisabled = inTeamHeroes.length !== HERO_TEAM_COUNT;
+        const saveDisabled = inTeamHeroes.length !== WISIE_TEAM_COUNT;
         return <div>
             <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onRouteBack}
                     icon={<FaTimesCircle size={16}/>}>{getText(TEXT_CANCEL)}</Button>
@@ -62,7 +62,7 @@ class HeroTeamPage extends React.PureComponent {
         if (!heroListRep || !heroListRep.fulfilled) {
             return null;
         }
-        if (profileHeroes.length < HERO_TEAM_COUNT) {
+        if (profileHeroes.length < WISIE_TEAM_COUNT) {
             return null;
         }
         const inTeamHeroes = edit ? team : profileHeroes.filter(e => e.inTeam);

@@ -2,7 +2,7 @@ import React from 'react';
 import {notice} from "./notice";
 import {getText, TEXT_WISIE_DISCOVERED} from "../../lang/langText";
 import experiment from '../../media/image/icon/experiment.svg';
-import {getHero} from "../../util/heroHelper";
+import {getWisie} from "../../util/wisieHelper";
 
 export function noticeExperiment(heroType) {
     notice(
@@ -14,7 +14,7 @@ export function noticeExperiment(heroType) {
                 </div>
             </div>
             <div className='justifyCenter marginRem'>
-                <img alt='' src={getHero(heroType)} height={80}/>
+                <img alt='' src={getWisie(heroType)} height={80}/>
             </div>
         </div>
     );

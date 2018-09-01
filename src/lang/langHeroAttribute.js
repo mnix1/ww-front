@@ -7,7 +7,7 @@ import {
     MEMORY,
     PATTERN_RECOGNITION,
     PERCEPTIVITY, REFLEX, SPEED
-} from "../util/heroAttributeHelper";
+} from "../util/wisieAttributeHelper";
 
 export function getHeroAttributeLabel(id) {
     return HERO_ATTRIBUTE_LABELS[window.activeLang][id];

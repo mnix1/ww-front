@@ -16,11 +16,11 @@ import {
     PERCEPTIVITY,
     REFLEX,
     SPEED
-} from "../../util/heroAttributeHelper";
+} from "../../util/wisieAttributeHelper";
 import Hero from "../../component/hero/Hero";
 import {heroDetailsChanged, teamChanged, upgradePropsChanged} from "../../redux/reducer/hero";
 import {Button} from "../../component/button/Button";
-import {HERO_TEAM_COUNT} from "../../util/heroHelper";
+import {WISIE_TEAM_COUNT} from "../../util/wisieHelper";
 import {getText, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE} from "../../lang/langText";
 import _ from 'lodash';
 import {GREEN_COLOR} from "../../util/style/constant";
@@ -113,7 +113,7 @@ class HeroDetailsPage extends React.PureComponent {
         const isInTeam = _.some(team, (e) => e.id === heroDetails.id);
         return <div className='left'>
             {!isInTeam && <Button onClick={() => onTeamAddClick(team, heroDetails)}
-                                  disabled={team.length >= HERO_TEAM_COUNT}
+                                  disabled={team.length >= WISIE_TEAM_COUNT}
                                   icon={<FaPlusCircle/>}>{getText(TEXT_TEAM_ADD)}</Button>
             }
             {isInTeam && <Button onClick={() => onTeamRemoveClick(team, heroDetails)}

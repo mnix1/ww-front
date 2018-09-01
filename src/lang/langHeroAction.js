@@ -20,7 +20,7 @@ import {
     WONT_GIVE_RANDOM_ANSWER,
     THINKING_WHICH_ANSWER_MATCH,
     THINKING_IF_GIVE_RANDOM_ANSWER
-} from "../util/heroActionHelper";
+} from "../util/wisieActionHelper";
 
 export function getHeroActionLabel(id) {
     return HERO_ACTION_LABELS[window.activeLang][id];
