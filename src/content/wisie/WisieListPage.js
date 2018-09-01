@@ -1,0 +1,137 @@
+import React from 'react';
+import {connect} from 'react-redux';
+import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/langText";
+import './styles.css';
+import _ from 'lodash';
+import {calculateWisieWidth, WISIE_TEAM_COUNT} from "../../util/wisieHelper";
+import {Loading} from "../../component/loading/Loading";
+import {wisieDetailsChanged, showNotOwnedChanged, teamChanged} from "../../redux/reducer/wisie";
+import Wisie from "../../component/wisie/Wisie";
+import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
+import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
+import {Button} from "../../component/button/Button";
+import FaPlusCircle from "react-icons/lib/fa/plus-circle";
+import FaMinusCircle from "react-icons/lib/fa/minus-circle";
+import MdDescription from 'react-icons/lib/md/description';
+
+class WisieListPage extends React.PureComponent {
+
+    get wisieWidth() {
+        const {screen} = this.props;
+        return calculateWisieWidth(screen.contentWidth - 20) + 8;
+    }
+
+    renderWisies(wisiesGroups) {
+        return <div className='justifyCenter flexColumn'>
+            {wisiesGroups.map((e, i) => this.renderWisiesGroup(e, i))}
+        </div>;
+    }
+
+    renderWisiesGroup(wisies, i) {
+        return <div key={i} className='wisies justifyEvenly'>
+            {wisies.map(e => this.renderWisie(e))}
+        </div>;
+    }
+
+    renderWisieEdit(wisie) {
+        const {team, screen, onTeamAddClick, onWisieDetailsClick, onTeamRemoveClick} = this.props;
+        const isInTeam = _.some(team, (e) => e.id === wisie.id);
+        return <Wisie
+            imgHeight={screen.wisieImgHeight + 20}
+            key={wisie.type} className='pointer'
+            style={{width: this.wisieWidth}}
+            onClick={() => isInTeam
+                ? onTeamRemoveClick(team, wisie)
+                : team.length < WISIE_TEAM_COUNT
+                    ? onTeamAddClick(team, wisie)
+                    : _.noop}
+            {...wisie}>
+            <div className='left'>
+                {!isInTeam && <Button onClick={(e) => {
+                    e.stopPropagation();
+                    onTeamAddClick(team, wisie);
+                }}
+                                      disabled={team.length >= WISIE_TEAM_COUNT}
+                                      icon={<FaPlusCircle size={16}/>}/>
+                }
+                {isInTeam && <Button onClick={(e) => {
+                    e.stopPropagation();
+                    onTeamRemoveClick(team, wisie);
+                }}
+                                     icon={<FaMinusCircle size={16}/>}/>
+                }
+                <Button onClick={() => onWisieDetailsClick(wisie)} icon={<MdDescription size={16}/>}/>
+            </div>
+        </Wisie>
+    }
+
+    renderWisie(wisie) {
+        const {onWisieDetailsClick, screen, edit} = this.props;
+        if (edit) {
+            return this.renderWisieEdit(wisie);
+        }
+        return <Wisie imgHeight={screen.wisieImgHeight + 20}
+                      key={wisie.type}
+                      style={{width: this.wisieWidth}} {...wisie}
+                      className={wisie.isOwned ? 'pointer' : ''}
+                      onClick={wisie.isOwned ? () => onWisieDetailsClick(wisie) : _.noop}
+        />;
+    }
+
+    render() {
+        const {wisieListRep, edit, profileWisieListRep, profileWisies, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
+        if (!wisieListRep || !wisieListRep.fulfilled || !profileWisieListRep || !profileWisieListRep.fulfilled) {
+            return <Loading/>;
+        }
+        const ownedWisiesMap = _.keyBy(profileWisies, 'type');
+        const groupCount = Math.floor(screen.contentWidth / this.wisieWidth);
+        const wisies = _.groupBy(wisieListRep.value, e => ownedWisiesMap[e.type] ? 'owned' : 'notOwned');
+        const ownedWisies = _.chain(wisies.owned).defaultTo([])
+            .sortBy(e => getName(e))
+            .map(e => ({...e, ...ownedWisiesMap[e.type], isOwned: true}))
+            .value();
+        const notOwnedWisies = _.chain(wisies.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
+        return <div>
+            {!_.isEmpty(ownedWisies) && <div className='contentFragment'>
+                <div className='title textAlignCenter'>{getText(TEXT_OWNED_WISIES)}</div>
+                {this.renderWisies(_.chunk(ownedWisies, groupCount))}
+            </div>}
+            {!_.isEmpty(notOwnedWisies) && !edit && <div className='contentFragment'>
+                <div className='title justifyCenter'>
+                    <div className='pointer'
+                         onClick={() => onToggleShowNotOwnedClick(showNotOwned)}>
+                        {`${getText(showNotOwned ? TEXT_HIDE : TEXT_SHOW)} ${getText(TEXT_NOT_OWNED_WISIES).toLowerCase()}`}
+                        <span style={{paddingLeft: '0.25rem'}}>{showNotOwned ? <FaMinusSquareO/> :
+                            <FaPlusSquareO/>}</span>
+                    </div>
+                </div>
+                {showNotOwned && this.renderWisies(_.chunk(notOwnedWisies, groupCount))}
+            </div>}
+        </div>;
+    }
+
+}
+
+export default connect(
+    (state) => ({
+        screen: state.screen,
+        team: state.wisie.team,
+        showNotOwned: state.wisie.showNotOwned,
+        path: state.router.location.pathname,
+        wisieListRep: state.repository.wisieList,
+        profileWisies: state.wisie.profileWisies,
+        profileWisieListRep: state.repository.profileWisieList
+    }),
+    (dispatch) => ({
+        onWisieDetailsClick: (wisie) => dispatch(wisieDetailsChanged(wisie)),
+        onToggleShowNotOwnedClick: (showNotOwned) => dispatch(showNotOwnedChanged(!showNotOwned)),
+        onTeamAddClick: (team, wisie) => {
+            const newTeam = team.concat([wisie]);
+            dispatch(teamChanged(newTeam))
+        },
+        onTeamRemoveClick: (team, wisie) => {
+            const newTeam = team.filter(e => e.id !== wisie.id);
+            dispatch(teamChanged(newTeam))
+        }
+    })
+)(WisieListPage);

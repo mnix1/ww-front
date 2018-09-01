@@ -17,7 +17,7 @@ class PlayPage extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
-        const iconHeight = screen.heroImgHeight + 10;
+        const iconHeight = screen.wisieImgHeight + 10;
         return <MenuItem
             imgSrc={imgSrc}
             iconHeight={iconHeight}
@@ -31,7 +31,7 @@ class PlayPage extends React.PureComponent {
     renderWarMenuItem(route, imgSrc) {
         const {screen, onRouteChange, profile} = this.props;
         const disabled = !profile.teamInitialized;
-        const iconHeight = screen.heroImgHeight + 10;
+        const iconHeight = screen.wisieImgHeight + 10;
         const menuItem = <MenuItem
             className={disabled ? 'disabled' : ''}
             imgSrc={imgSrc}

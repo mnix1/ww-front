@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/langText";
 import Timer from "../../../../component/timer/Timer";
-import ActiveHeroes from "../../component/ActiveHeroes";
+import ActiveMembers from "../../component/ActiveMembers";
 import TaskDescription from "../../component/TaskDescription";
 
 class WarPagePreparingNextTask extends React.PureComponent {
@@ -22,7 +22,7 @@ class WarPagePreparingNextTask extends React.PureComponent {
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>
-            <ActiveHeroes content={content} className='absolute'/>
+            <ActiveMembers content={content} className='absolute'/>
         </div>;
     }
 }

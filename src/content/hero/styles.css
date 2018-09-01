@@ -1,7 +1,0 @@
-.heroPage .heroes:not(:first-child) {
-    margin-top: 0.25rem;
-}
-
-.heroPage .availableResources {
-    display: inline-block;
-}

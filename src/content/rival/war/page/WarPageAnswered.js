@@ -5,7 +5,7 @@ import thumbUp from '../../../../media/image/icon/thumbUp.svg';
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import ActiveHero from "../../component/ActiveHero";
+import ActiveMember from "../../component/ActiveMember";
 import TaskDescription from "../../component/TaskDescription";
 
 class WarPageAnswered extends React.PureComponent {
@@ -39,7 +39,7 @@ class WarPageAnswered extends React.PureComponent {
         return <div className='whoAnswered textAlignCenter'>
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>
-                    <ActiveHero
+                    <ActiveMember
                         className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...this.prepareAnsweredProps(true)}/>
                     <div>{getText(TEXT_ANSWERED)}...</div>
                     <div className='result'>
@@ -54,7 +54,7 @@ class WarPageAnswered extends React.PureComponent {
                             </div>}
                     </div>
                 </div>
-                {this.isCorrectAnswer && <div className='opponentHeroFadeOut'><ActiveHero
+                {this.isCorrectAnswer && <div className='opponentWisieFadeOut'><ActiveMember
                     className='wrongAnswer' {...this.prepareAnsweredProps(false)}/></div>}
             </div>
         </div>

@@ -11,7 +11,7 @@ import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
-import background from '../../media/image/background/backgroundWithHeroesProd.png';
+import background from '../../media/image/background/backgroundWithWisiesProd.png';
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
@@ -54,13 +54,13 @@ import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
 import BattlePage from "../rival/battle/page/BattlePage";
 import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
-import HeroPage from "../hero/HeroPage";
+import WisiePage from "../wisie/WisiePage";
 import ShopPage from "../shop/ShopPage";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
 import ProfilePage from "../profile/ProfilePage";
 import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./ProfileFetch";
-import HeroFetchContainer from "../hero/fetch/HeroFetchContainer";
+import WisieFetchContainer from "../wisie/fetch/WisieFetchContainer";
 import WakeLock from "../../component/wake-lock/WakeLock";
 import WarPage from "../rival/war/page/WarPage";
 import RivalCommunication from "../rival/RivalCommunication";
@@ -112,7 +112,7 @@ class App extends React.PureComponent {
 
     renderMenuItem(route, imgSrc) {
         const {screen, onRouteChange} = this.props;
-        const iconHeight = screen.heroImgHeight + 10;
+        const iconHeight = screen.wisieImgHeight + 10;
         return <MenuItem onClick={onRouteChange} imgSrc={imgSrc} iconHeight={iconHeight} route={route}/>
     }
 
@@ -142,7 +142,7 @@ class App extends React.PureComponent {
                 <Route exact path={PLAY_ROUTE} render={() => <PlayPage/>}/>
                 <Route exact path={FRIEND_ROUTE} render={() => <FriendPage/>}/>
                 <Route exact path={PROFILE_ROUTE} render={() => <ProfilePage/>}/>
-                <Route path={WISIES_ROUTE} render={() => <HeroPage/>}/>
+                <Route path={WISIES_ROUTE} render={() => <WisiePage/>}/>
                 <Route exact path={SHOP_ROUTE} render={() => <ShopPage/>}/>
 
                 <Route exact path={PLAY_WAR_ROUTE} render={() => <PlayWarPage/>}/>
@@ -176,7 +176,7 @@ class App extends React.PureComponent {
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <RivalFetchContainer/>
             <ChallengeFetchContainer/>
-            <HeroFetchContainer/>
+            <WisieFetchContainer/>
             <ShopFetchContainer/>
             <ProfileFetchContainer/>
         </div>

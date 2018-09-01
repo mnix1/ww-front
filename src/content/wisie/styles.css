@@ -1,0 +1,7 @@
+.wisiePage .wisies:not(:first-child) {
+    margin-top: 0.25rem;
+}
+
+.wisiePage .availableResources {
+    display: inline-block;
+}

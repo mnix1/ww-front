@@ -115,7 +115,7 @@
     animation-fill-mode: forwards;
 }
 
-.warPage .opponentHeroFadeOut {
+.warPage .opponentWisieFadeOut {
     opacity: 0;
     animation: fadein 0.5s 2.75s;
     animation-fill-mode: forwards;
@@ -138,7 +138,7 @@
     animation: fadein 0.5s 5s;
     animation-fill-mode: forwards;
 }
-.warPage .warPageAnsweringTimeout .activeHeroes {
+.warPage .warPageAnsweringTimeout .activeWisies {
     opacity: 1;
     animation: fadeout 0.5s 2s;
     animation-fill-mode: forwards;

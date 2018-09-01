@@ -4,7 +4,7 @@ import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_NO_ANSWER} from "../../../../lang/langText";
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import ActiveHeroes from "../../component/ActiveHeroes";
+import ActiveMembers from "../../component/ActiveMembers";
 
 class WarPageAnsweringTimeout extends React.PureComponent {
 
@@ -13,7 +13,7 @@ class WarPageAnsweringTimeout extends React.PureComponent {
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
-                <ActiveHeroes content={content} heroClassName='wrongAnswer'/>
+                <ActiveMembers content={content} wisieClassName='wrongAnswer'/>
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
                 <img alt='' src={thumbDown} height={60}/>
             </div>
@@ -29,7 +29,7 @@ class WarPageAnsweringTimeout extends React.PureComponent {
                 renderTaskCount={false}
                 className='justifyCenter flexColumn contentHeader'
             />
-            <ActiveHeroes content={content} className='absolute activeHeroes'/>
+            <ActiveMembers content={content} className='absolute activeWisies'/>
             {this.renderNoAnswer()}
             {/*<TaskWithoutActions content={content}/>*/}
             <TaskMarkedAnswer content={content}/>

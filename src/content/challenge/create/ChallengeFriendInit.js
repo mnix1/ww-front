@@ -22,7 +22,7 @@ class ChallengeFriendPage extends React.PureComponent {
     renderFriend(friend, isAdded) {
         const {tags, screen, onFriendToggle} = this.props;
         return <Profile
-            imgHeight={screen.heroImgHeight}
+            imgHeight={screen.wisieImgHeight}
             key={friend.tag}
             {...friend}
             actions={

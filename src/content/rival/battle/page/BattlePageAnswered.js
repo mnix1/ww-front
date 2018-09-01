@@ -29,7 +29,7 @@ class BattlePageAnswered extends React.PureComponent {
         const {content, profile, screen} = this.props;
         const {opponent} = content;
         const answeredProfile = this.meAnswered ? profile : opponent;
-        const imgHeight = screen.heroImgHeight;
+        const imgHeight = screen.wisieImgHeight;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>

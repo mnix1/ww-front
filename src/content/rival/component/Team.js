@@ -1,5 +1,5 @@
 import React from 'react';
-import Hero from "../../../component/hero/Hero";
+import Wisie from "../../../component/wisie/Wisie";
 import Profile from "../../../component/profile/Profile";
 import _ from 'lodash';
 import {connect} from "react-redux";
@@ -8,7 +8,7 @@ class Team extends React.PureComponent {
 
     static defaultProps = {
         className: 'justifyCenter',
-        heroClassName: '',
+        wisieClassName: '',
         contentClassName: '',
         renderHobbies: false,
         renderImg: true,
@@ -20,20 +20,20 @@ class Team extends React.PureComponent {
         if (imgHeight) {
             return imgHeight;
         }
-        return screen.heroImgHeight;
+        return screen.wisieImgHeight;
     }
 
-    renderHeroes(heroes, activeIndex, presentIndexes) {
-        return heroes.map((e, i) => this.renderHero(e, i + 1, i + 1 === activeIndex, !_.includes(presentIndexes, i + 1)));
+    renderWisies(wisies, activeIndex, presentIndexes) {
+        return wisies.map((e, i) => this.renderWisie(e, i + 1, i + 1 === activeIndex, !_.includes(presentIndexes, i + 1)));
     }
 
-    renderHero(hero, index, isActive, isDisabled) {
-        const {renderHobbies, onClick, imgHobbyHeight, renderImg, heroClassName} = this.props;
-        const className = `${heroClassName} ${isDisabled ? 'disabled' : ''}`;
-        return <Hero
+    renderWisie(wisie, index, isActive, isDisabled) {
+        const {renderHobbies, onClick, imgHobbyHeight, renderImg, wisieClassName} = this.props;
+        const className = `${wisieClassName} ${isDisabled ? 'disabled' : ''}`;
+        return <Wisie
             onClick={isDisabled ? _.noop : () => onClick(index)}
             className={className}
-            key={hero.type}
+            key={wisie.type}
             isActive={isActive}
             imgHeight={this.imgHeight}
             renderImg={renderImg}
@@ -41,7 +41,7 @@ class Team extends React.PureComponent {
             renderHobbies={renderHobbies}
             imgHobbyHeight={imgHobbyHeight}
             isOwned={true}
-            {...hero}/>;
+            {...wisie}/>;
     }
 
     render() {
@@ -55,7 +55,7 @@ class Team extends React.PureComponent {
                          isActive={activeIndex === 0} {...profile}
                          imgHeight={this.imgHeight}
                          className={isProfileDisabled ? 'disabled' : ''}/>
-                {this.renderHeroes(team, activeIndex, presentIndexes)}
+                {this.renderWisies(team, activeIndex, presentIndexes)}
             </div>
         </div>
     }

@@ -23,8 +23,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen, setHeight, selectedId} = this.props;
-        const objectWidth = screen.heroImgHeight;
-        const objectHeight = screen.heroImgHeight;
+        const objectWidth = screen.wisieImgHeight;
+        const objectHeight = screen.wisieImgHeight;
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
         const rendererTransformerCreator = (o) => (rendered) => <Anime

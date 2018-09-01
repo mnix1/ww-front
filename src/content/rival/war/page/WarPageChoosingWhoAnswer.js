@@ -11,15 +11,15 @@ import Timer from "../../../../component/timer/Timer";
 class WarPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
-        const {profile, content, communication, onTeamHeroClick, onTeamHeroAcceptClick} = this.props;
+        const {profile, content, communication, onTeamWisieClick, onTeamWisieAcceptClick} = this.props;
         const chosen = content.isChosenActiveIndex;
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
                 renderHobbies={true}
                 imgHobbyHeight={16}
                 className={chosen ? 'disabled' : ''}
-                heroClassName={chosen ? '' : 'pointer'}
-                onClick={chosen ? _.noop : onTeamHeroClick}
+                wisieClassName={chosen ? '' : 'pointer'}
+                onClick={chosen ? _.noop : onTeamWisieClick}
                 profile={profile}
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
@@ -29,7 +29,7 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                     ? _.noop
                     : () => {
                         communication.send('WAR_CHOOSE_WHO_ANSWER' + JSON.stringify({activeIndex: content.activeIndex}));
-                        onTeamHeroAcceptClick(true);
+                        onTeamWisieAcceptClick(true);
                     }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
         </div>;
@@ -59,7 +59,7 @@ export default connect(
         profile: state.profile.profile,
     }),
     (dispatch) => ({
-        onTeamHeroClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),
-        onTeamHeroAcceptClick: (accept) => dispatch(rivalInProgressContent({isChosenActiveIndex: accept}))
+        onTeamWisieClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),
+        onTeamWisieAcceptClick: (accept) => dispatch(rivalInProgressContent({isChosenActiveIndex: accept}))
     })
 )(WarPageChoosingWhoAnswer);

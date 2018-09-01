@@ -93,7 +93,7 @@ class PractisePage extends React.PureComponent {
 
     renderPlayAgain() {
         const {onPlayAgainClick, profile} = this.props;
-        return <ContentWithImage key='playAgain' imgSrc={getWisie(profile.heroType)} onClick={onPlayAgainClick}
+        return <ContentWithImage key='playAgain' imgSrc={getWisie(profile.wisieType)} onClick={onPlayAgainClick}
                                  id='playAgain'>
             <div className='flexColumn'>
                 <span>{getText(TEXT_NEXT)}</span>

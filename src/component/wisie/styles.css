@@ -1,0 +1,19 @@
+.wisie.notOwned {
+    /*opacity: 0.5;*/
+}
+
+.wisie.active {
+    background: rgb(40, 121, 218) !important;
+}
+
+.wisie .wisieDetails .absoluteBackgroundMix {
+    background: #888;
+}
+
+.wisie .hobby {
+    padding-left: 0.25rem;
+}
+
+.wisie.owned {
+    background: #111;
+}

@@ -6,10 +6,10 @@ import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from ".
 import TaskDescription from "../../component/TaskDescription";
 import Timer from "../../../../component/timer/Timer";
 import {getText, TEXT_TIME} from "../../../../lang/langText";
-import ActiveHeroes from "../../component/ActiveHeroes";
-import Hero from "../../../../component/hero/Hero";
+import ActiveMembers from "../../component/ActiveMembers";
+import Wisie from "../../../../component/wisie/Wisie";
 import Profile from "../../../../component/profile/Profile";
-import HeroActions from "../../../../component/hero/HeroActions";
+import WisieActions from "../../../../component/wisie/WisieActions";
 
 class WarPageAnswering extends React.PureComponent {
 
@@ -28,7 +28,7 @@ class WarPageAnswering extends React.PureComponent {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
         return <div className='width100 height100 absolute'>
-            <ActiveHeroes content={content} className='absolute'/>
+            <ActiveMembers content={content} className='absolute'/>
             <Task
                 screen={screen}
                 skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
@@ -58,20 +58,20 @@ class WarPageAnswering extends React.PureComponent {
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
                 <div>
-                    <Hero imgHobbyHeight={imgHeight / 3} imgHeight={imgHeight} {...team[activeIndex - 1]}
-                          renderDetails={true} isOwned={true}>
-                        <HeroActions actions={content.heroActions}/>
-                    </Hero>
+                    <Wisie imgHobbyHeight={imgHeight / 3} imgHeight={imgHeight} {...team[activeIndex - 1]}
+                           renderDetails={true} isOwned={true}>
+                        <WisieActions actions={content.wisieActions}/>
+                    </Wisie>
                 </div>
                 <div>
                     {opponentActiveIndex === 0
                         ? <Profile imgHeight={imgHeight + 4} blackBackground={true}
                                    renderDetailsHorizontal={true} {...content.opponent}/>
-                        : <Hero imgHobbyHeight={imgHeight / 3}
-                                imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
-                                isOwned={true}>
-                            <HeroActions actions={content.opponentHeroActions}/>
-                        </Hero>}
+                        : <Wisie imgHobbyHeight={imgHeight / 3}
+                                 imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
+                                 isOwned={true}>
+                            <WisieActions actions={content.opponentWisieActions}/>
+                        </Wisie>}
                 </div>
             </div>
             <Task

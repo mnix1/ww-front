@@ -40,7 +40,7 @@ class BattlePageClosed extends React.PureComponent {
                 {` ${getText(TEXT_THE_WINNER_IS)}:`}
             </div>
             <div className='pageHeader'>
-                <Profile imgHeight={screen.heroImgHeight} {...winnerProfile}/>
+                <Profile imgHeight={screen.wisieImgHeight} {...winnerProfile}/>
             </div>
             {/*<div className='pageHeader'>*/}
             {/*<img alt='' src={trophy} height={80}/>*/}

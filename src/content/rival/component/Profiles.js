@@ -7,7 +7,7 @@ export class ProfilesComponent extends React.PureComponent {
 
     renderProfile(profile, score, color) {
         const {screen} = this.props;
-        return <Profile {...profile} imgHeight={screen.heroImgHeight}>
+        return <Profile {...profile} imgHeight={screen.wisieImgHeight}>
             <div style={{color}}>{prepareScoreMessage(score)}</div>
         </Profile>
     }

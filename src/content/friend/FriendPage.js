@@ -85,7 +85,7 @@ class FriendPage extends React.PureComponent {
     renderFriend(friend) {
         const {addedSuggested, screen, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick, profile} = this.props;
         return <Profile
-            imgHeight={screen.heroImgHeight}
+            imgHeight={screen.wisieImgHeight}
             key={friend.tag}
             {...friend}
             actions={<div className='actions'>

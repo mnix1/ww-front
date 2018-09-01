@@ -11,7 +11,7 @@ export default class Profile extends React.PureComponent {
     static propTypes = {
         tag: PropTypes.string,
         name: PropTypes.string,
-        heroType: PropTypes.string,
+        wisieType: PropTypes.string,
         className: PropTypes.string,
         isOnline: PropTypes.bool,
         isAdded: PropTypes.bool,
@@ -54,16 +54,16 @@ export default class Profile extends React.PureComponent {
     }
 
     renderContent() {
-        const {heroType, imgHeight, renderDetailsHorizontal} = this.props;
+        const {wisieType, imgHeight, renderDetailsHorizontal} = this.props;
         if (renderDetailsHorizontal) {
             return <div className='profile justifyBetween flexColumn'>
                 {this.renderDetails()}
-                <div className='justifyCenter'><img alt='' src={getWisie(heroType)} height={imgHeight}/></div>
+                <div className='justifyCenter'><img alt='' src={getWisie(wisieType)} height={imgHeight}/></div>
                 {this.renderActions()}
             </div>;
         }
         return <div className='profile justifyBetween'>
-            <div className='justifyCenter marginRem'><img alt='' src={getWisie(heroType)} height={imgHeight}/></div>
+            <div className='justifyCenter marginRem'><img alt='' src={getWisie(wisieType)} height={imgHeight}/></div>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;
