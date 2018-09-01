@@ -53,11 +53,9 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 return {
                     ...o,
-                    content: <div>
-                        <div className='simpleGroupObjectBackground'/>
-                        <div className='simpleGroupObjectContent'><img alt='' src={o.imgSrc}
-                                                                       height={objectHeight / 2}/><span>{getCategoryLabel([o.id])}</span>
-                        </div>
+                    content: <div className='justifyCenter flexColumn'>
+                        <img alt='' src={o.imgSrc} height={objectHeight / 2}/>
+                        <span>{getCategoryLabel([o.id])}</span>
                     </div>,
                     rendererTransformer: rendererTransformerCreator(o, top, left),
                     objectStyle: {
@@ -65,8 +63,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
                         height: objectHeight,
                         top,
                         left,
-                        borderRadius: '0.5rem',
-                        boxShadow: `0 0 4px #cccccc`,
+                        // borderRadius: '50%',
+                        // boxShadow: `0 0 4px #cccccc`,
                     }
                 }
             })}
