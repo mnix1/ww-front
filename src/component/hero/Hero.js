@@ -40,7 +40,7 @@ export default class Hero extends React.PureComponent {
     renderHeroDetailsNotOwned() {
         const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
-        return <div className='heroDetails paddingRem relative justifyBetween'>
+        return <div className='heroDetails fontSize08Rem paddingRem relative justifyBetween'>
             <div className='absoluteBackgroundMix inlineBlock'/>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter relative'>{name}</span>
@@ -59,7 +59,7 @@ export default class Hero extends React.PureComponent {
     renderHeroDetailsOwned() {
         const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
-        return <div className='heroDetails justifyBetween'>
+        return <div className='heroDetails fontSize08Rem justifyBetween'>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter'>{name}</span>
                 {this.renderValue()}

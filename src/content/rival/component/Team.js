@@ -12,6 +12,7 @@ class Team extends React.PureComponent {
         contentClassName: '',
         renderHobbies: false,
         renderImg: true,
+        onClick: _.noop,
     };
 
     get imgHeight() {

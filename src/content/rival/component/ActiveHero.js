@@ -38,7 +38,7 @@ class ActiveHero extends React.PureComponent {
 
     render() {
         const {profile, team, activeIndex, className} = this.props;
-        return <div className={className}>
+        return <div className={`${className} zIndex1`}>
             {this.renderProfileOrHero(profile, team, activeIndex)}
         </div>
     }
