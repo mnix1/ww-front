@@ -1,17 +1,17 @@
 import React from 'react';
 import './styles.css';
-import {getWisie} from "../../util/wisieHelper";
 import PropTypes from "prop-types";
 import TiWiFi from "react-icons/lib/ti/wi-fi";
 import {GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
 import _ from 'lodash';
+import {getWisor} from "../../util/wisorHelper";
 
 export default class Profile extends React.PureComponent {
 
     static propTypes = {
         tag: PropTypes.string,
         name: PropTypes.string,
-        wisieType: PropTypes.string,
+        wisorType: PropTypes.string,
         className: PropTypes.string,
         isOnline: PropTypes.bool,
         isAdded: PropTypes.bool,
@@ -54,16 +54,16 @@ export default class Profile extends React.PureComponent {
     }
 
     renderContent() {
-        const {wisieType, imgHeight, renderDetailsHorizontal} = this.props;
+        const {wisorType, imgHeight, renderDetailsHorizontal} = this.props;
         if (renderDetailsHorizontal) {
             return <div className='profile justifyBetween flexColumn'>
                 {this.renderDetails()}
-                <div className='justifyCenter'><img alt='' src={getWisie(wisieType)} height={imgHeight}/></div>
+                <div className='justifyCenter'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
                 {this.renderActions()}
             </div>;
         }
         return <div className='profile justifyBetween'>
-            <div className='justifyCenter marginRem'><img alt='' src={getWisie(wisieType)} height={imgHeight}/></div>
+            <div className='justifyCenter marginRem'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;

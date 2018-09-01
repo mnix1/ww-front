@@ -15,7 +15,7 @@ import background from '../../media/image/background/backgroundWithWisiesProd.pn
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
-import wisie from '../../media/image/menu/wisie.svg';
+import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
 import {Route, Switch} from 'react-router'
 

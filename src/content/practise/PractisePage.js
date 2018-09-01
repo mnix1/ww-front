@@ -30,6 +30,7 @@ import {TRAINING_ROUTE, TRAINING_TASK_ROUTE} from "../routes";
 import ContentWithImage from "../../component/content-with-image/ContentWithImage";
 import {DIFFICULT_LEVEL_TO_NAME,} from "../../util/difficultyHelper";
 import Rating from "../../component/rating/Rating";
+import {getWisor} from "../../util/wisorHelper";
 
 class PractisePage extends React.PureComponent {
 
@@ -93,7 +94,7 @@ class PractisePage extends React.PureComponent {
 
     renderPlayAgain() {
         const {onPlayAgainClick, profile} = this.props;
-        return <ContentWithImage key='playAgain' imgSrc={getWisie(profile.wisieType)} onClick={onPlayAgainClick}
+        return <ContentWithImage key='playAgain' imgSrc={getWisor(profile.wisorType)} onClick={onPlayAgainClick}
                                  id='playAgain'>
             <div className='flexColumn'>
                 <span>{getText(TEXT_NEXT)}</span>
