@@ -8,14 +8,6 @@
     flex-direction: column;
 }
 
-.battlePage .showOptions {
-    position: fixed;
-    cursor: pointer;
-    top: 0;
-    right: 0;
-    padding: 0.25rem;
-}
-
 .battlePage .battlePageIntroHeader {
     font-size: 1rem;
 }

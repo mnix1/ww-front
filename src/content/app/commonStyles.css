@@ -26,6 +26,10 @@
     border-radius: 0.5rem;
 }
 
+.blackBackground {
+    background: #111;
+}
+
 .pointer {
     cursor: pointer;
 }
@@ -55,6 +59,7 @@
     display: flex;
     justify-content: flex-end;
 }
+
 .justifyStart {
     display: flex;
     justify-content: flex-start;
@@ -109,6 +114,7 @@
 .marginRem {
     margin: 0.25rem;
 }
+
 .marginAuto {
     margin: auto;
 }
@@ -116,12 +122,15 @@
 .marginWidthAuto {
     margin: 0 auto;
 }
+
 .right0 {
     right: 0;
 }
+
 .top0 {
     top: 0;
 }
+
 .left0 {
     left: 0;
 }
@@ -146,24 +155,31 @@
     opacity: 0.5;
     cursor: not-allowed !important;
 }
+
 .notAllowed {
     cursor: not-allowed !important;
 }
+
 .fontSize09Rem {
     font-size: .9rem;
 }
+
 .fontSize08Rem {
     font-size: .8rem;
 }
+
 .fontSize07Rem {
     font-size: .7rem;
 }
+
 .fontSize06Rem {
     font-size: .6rem;
 }
+
 .zIndex0 {
     z-index: 0;
 }
+
 .zIndex1 {
     z-index: 1;
 }

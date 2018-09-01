@@ -1,104 +1,107 @@
-import arabianMan from '../media/image/wisor/arabianMan.png';
-import arabianWoman from '../media/image/wisor/arabianWoman.png';
-import architectMan from '../media/image/wisor/architectMan.png';
-import asianBusinessWoman from '../media/image/wisor/asianBusinessWoman.png';
-import asianWoman from '../media/image/wisor/asianWoman.png';
-import blueJacketBrownJeansMan from '../media/image/wisor/blueJacketBrownJeansMan.png';
-import blueJacketDancer from '../media/image/wisor/blueJacketDancer.png';
-import blueSkirtWoman from '../media/image/wisor/blueSkirtWoman.png';
-import businessAfroMan from '../media/image/wisor/businessAfroMan.png';
-import businessAfroWoman from '../media/image/wisor/businessAfroWoman.png';
-import businessAsianMan from '../media/image/wisor/businessAsianMan.png';
-import businessMan from '../media/image/wisor/businessMan.png';
-import carpenter from '../media/image/wisor/carpenter.png';
-import caveman from '../media/image/wisor/caveman.png';
-import cuteGirl from '../media/image/wisor/cuteGirl.png';
-import danceGirl from '../media/image/wisor/danceGirl.png';
-import danceMan from '../media/image/wisor/danceMan.png';
-import danceWoman from '../media/image/wisor/danceWoman.png';
-import dancingWoman from '../media/image/wisor/dancingWoman.png';
-import detective from '../media/image/wisor/detective.png';
-import goldKnight from '../media/image/wisor/goldKnight.png';
-import greenCowboy from '../media/image/wisor/greenCowboy.png';
-import greenKnight from '../media/image/wisor/greenKnight.png';
-import greenLady from '../media/image/wisor/greenLady.png';
-import greenPurpleLady from '../media/image/wisor/greenPurpleLady.png';
-import greenRedCookBoy from '../media/image/wisor/greenRedCookBoy.png';
-import greenRedCowGirl from '../media/image/wisor/greenRedCowGirl.png';
-import guitarCowboy from '../media/image/wisor/guitarCowboy.png';
-import halloweenGirl from '../media/image/wisor/halloweenGirl.png';
-import happyMan from '../media/image/wisor/happyMan.png';
-import headphonesMan from '../media/image/wisor/headphonesMan.png';
-import magicianBoy from '../media/image/wisor/magicianBoy.svg';
-import musicGuy from '../media/image/wisor/musicGuy.png';
-import musicMan from '../media/image/wisor/musicMan.png';
-import musicWoman from '../media/image/wisor/musicWoman.png';
-import officeWoman from '../media/image/wisor/officeWoman.png';
-import oldKnight from '../media/image/wisor/oldKnight.png';
-import purpleLady from '../media/image/wisor/purpleLady.png';
-import redBlueCowgirl from '../media/image/wisor/redBlueCowgirl.png';
-import redHairCookGirl from '../media/image/wisor/redHairCookGirl.png';
-import smartBoy from '../media/image/wisor/smartBoy.png';
-import smartGirl from '../media/image/wisor/smartGirl.svg';
-import studentGirl from '../media/image/wisor/studentGirl.png';
-import teacherWoman from '../media/image/wisor/teacherWoman.png';
-import teenagerMan from '../media/image/wisor/teenagerMan.png';
-import whiteShirtJeansWoman from '../media/image/wisor/whiteShirtJeansWoman.png';
-import winterGirl from '../media/image/wisor/winterGirl.png';
-import wizard from '../media/image/wisor/wizard.png';
+import _ from 'lodash';
+import wisor26 from '../media/image/wisor/wisor26.png';
+import wisor27 from '../media/image/wisor/wisor27.png';
+import wisor28 from '../media/image/wisor/wisor28.png';
+import wisor29 from '../media/image/wisor/wisor29.svg';
+import wisor30 from '../media/image/wisor/wisor30.png';
+import wisor31 from '../media/image/wisor/wisor31.png';
+import wisor32 from '../media/image/wisor/wisor32.png';
+import wisor33 from '../media/image/wisor/wisor33.png';
+import wisor34 from '../media/image/wisor/wisor34.png';
+import wisor35 from '../media/image/wisor/wisor35.png';
+import wisor36 from '../media/image/wisor/wisor36.png';
+import wisor37 from '../media/image/wisor/wisor37.png';
+import wisor38 from '../media/image/wisor/wisor38.png';
+import wisor46 from '../media/image/wisor/wisor46.png';
+import wisor39 from '../media/image/wisor/wisor39.png';
+import wisor40 from '../media/image/wisor/wisor40.png';
+import wisor41 from '../media/image/wisor/wisor41.png';
+import wisor42 from '../media/image/wisor/wisor42.png';
+import wisor2 from '../media/image/wisor/wisor2.svg';
+import wisor3 from '../media/image/wisor/wisor3.png';
+import wisor4 from '../media/image/wisor/wisor4.png';
+import wisor5 from '../media/image/wisor/wisor5.png';
+import wisor6 from '../media/image/wisor/wisor6.png';
+import wisor7 from '../media/image/wisor/wisor7.png';
+import wisor8 from '../media/image/wisor/wisor8.png';
+import wisor9 from '../media/image/wisor/wisor9.png';
+import wisor10 from '../media/image/wisor/wisor10.png';
+import wisor11 from '../media/image/wisor/wisor11.png';
+import wisor12 from '../media/image/wisor/wisor12.png';
+import wisor13 from '../media/image/wisor/wisor13.png';
+import wisor14 from '../media/image/wisor/wisor14.png';
+import wisor15 from '../media/image/wisor/wisor15.png';
+import wisor16 from '../media/image/wisor/wisor16.png';
+import wisor17 from '../media/image/wisor/wisor17.png';
+import wisor18 from '../media/image/wisor/wisor18.png';
+import wisor19 from '../media/image/wisor/wisor19.png';
+import wisor20 from '../media/image/wisor/wisor20.png';
+import wisor21 from '../media/image/wisor/wisor21.png';
+import wisor22 from '../media/image/wisor/wisor22.png';
+import wisor23 from '../media/image/wisor/wisor23.png';
+import wisor24 from '../media/image/wisor/wisor24.png';
+import wisor25 from '../media/image/wisor/wisor25.png';
+import wisor1 from '../media/image/wisor/wisor1.png';
+import wisor43 from '../media/image/wisor/wisor43.png';
+import wisor44 from '../media/image/wisor/wisor44.png';
+import wisor45 from '../media/image/wisor/wisor45.png';
+import wisor47 from '../media/image/wisor/wisor47.png';
 import robot from '../media/image/menu/robot.svg';
 
 export const WISOR = {
+    'wisor1': wisor1,
+    'wisor2': wisor2,
+    'wisor3': wisor3,
+    'wisor4': wisor4,
+    'wisor5': wisor5,
+    'wisor6': wisor6,
+    'wisor7': wisor7,
+    'wisor8': wisor8,
+    'wisor9': wisor9,
+    'wisor10': wisor10,
+    'wisor11': wisor11,
+    'wisor12': wisor12,
+    'wisor13': wisor13,
+    'wisor14': wisor14,
+    'wisor15': wisor15,
+    'wisor16': wisor16,
+    'wisor17': wisor17,
+    'wisor18': wisor18,
+    'wisor19': wisor19,
+    'wisor20': wisor20,
+    'wisor21': wisor21,
+    'wisor22': wisor22,
+    'wisor23': wisor23,
+    'wisor24': wisor24,
+    'wisor25': wisor25,
+    'wisor26': wisor26,
+    'wisor27': wisor27,
+    'wisor28': wisor28,
+    'wisor29': wisor29,
+    'wisor30': wisor30,
+    'wisor31': wisor31,
+    'wisor32': wisor32,
+    'wisor33': wisor33,
+    'wisor34': wisor34,
+    'wisor35': wisor35,
+    'wisor36': wisor36,
+    'wisor37': wisor37,
+    'wisor38': wisor38,
+    'wisor39': wisor39,
+    'wisor40': wisor40,
+    'wisor41': wisor41,
+    'wisor42': wisor42,
+    'wisor43': wisor43,
+    'wisor44': wisor44,
+    'wisor45': wisor45,
+    'wisor46': wisor46,
+    'wisor47': wisor47,
     'robot': robot,
-    'arabianMan': arabianMan,
-    'arabianWoman': arabianWoman,
-    'architectMan': architectMan,
-    'asianBusinessWoman': asianBusinessWoman,
-    'asianWoman': asianWoman,
-    'blueJacketBrownJeansMan': blueJacketBrownJeansMan,
-    'blueJacketDancer': blueJacketDancer,
-    'blueSkirtWoman': blueSkirtWoman,
-    'businessAfroMan': businessAfroMan,
-    'businessAfroWoman': businessAfroWoman,
-    'businessAsianMan': businessAsianMan,
-    'businessMan': businessMan,
-    'carpenter': carpenter,
-    'caveman': caveman,
-    'cuteGirl': cuteGirl,
-    'danceGirl': danceGirl,
-    'danceMan': danceMan,
-    'danceWoman': danceWoman,
-    'dancingWoman': dancingWoman,
-    'detective': detective,
-    'goldKnight': goldKnight,
-    'greenCowboy': greenCowboy,
-    'greenKnight': greenKnight,
-    'greenLady': greenLady,
-    'greenPurpleLady': greenPurpleLady,
-    'greenRedCookBoy': greenRedCookBoy,
-    'greenRedCowGirl': greenRedCowGirl,
-    'guitarCowboy': guitarCowboy,
-    'halloweenGirl': halloweenGirl,
-    'happyMan': happyMan,
-    'headphonesMan': headphonesMan,
-    'magicianBoy': magicianBoy,
-    'musicGuy': musicGuy,
-    'musicMan': musicMan,
-    'musicWoman': musicWoman,
-    'officeWoman': officeWoman,
-    'oldKnight': oldKnight,
-    'purpleLady': purpleLady,
-    'redBlueCowgirl': redBlueCowgirl,
-    'redHairCookGirl': redHairCookGirl,
-    'smartBoy': smartBoy,
-    'smartGirl': smartGirl,
-    'studentGirl': studentGirl,
-    'teacherWoman': teacherWoman,
-    'teenagerMan': teenagerMan,
-    'whiteShirtJeansWoman': whiteShirtJeansWoman,
-    'winterGirl': winterGirl,
-    'wizard': wizard,
 };
+
+export function allPossibleWisors() {
+    return _.keys(WISOR).filter(e => e !== 'robot');
+}
 
 export function getWisor(wisorType) {
     return WISOR[wisorType];

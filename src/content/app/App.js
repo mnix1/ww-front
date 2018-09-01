@@ -18,7 +18,7 @@ import shop from '../../media/image/menu/shop.png';
 import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
 import {Route, Switch} from 'react-router'
-
+import FaCogs from "react-icons/lib/fa/cogs";
 import {ConnectedRouter, push} from 'connected-react-router'
 import {
     APP_ROUTE,
@@ -36,6 +36,7 @@ import {
     PLAY_ROUTE,
     PLAY_WAR_ROUTE,
     PROFILE_ROUTE,
+    SETTINGS_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
     TRAINING_TASK_ROUTE,
@@ -76,6 +77,10 @@ import RivalFastPage from "../rival/RivalFastPage";
 import PlayWarPage from "../play/PlayWarPage";
 import PlayBattlePage from "../play/PlayBattlePage";
 import PlayChallengePage from "../play/PlayChallengePage";
+import Option, {getSurrenderMsg} from "../../component/option/Option";
+import {optionShowChanged} from "../../redux/reducer/option";
+import SettingsPage from "../settings/SettingsPage";
+import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 
 class App extends React.PureComponent {
 
@@ -165,6 +170,8 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
+
+                <Route exact path={SETTINGS_ROUTE} render={() => <SettingsPage/>}/>
             </Switch>
         </ConnectedRouter>;
     }
@@ -174,6 +181,7 @@ class App extends React.PureComponent {
         return <div>
             <ProfileFetch/>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
+            <SettingsFetchContainer/>
             <RivalFetchContainer/>
             <ChallengeFetchContainer/>
             <WisieFetchContainer/>
@@ -192,10 +200,24 @@ class App extends React.PureComponent {
             && path !== CHALLENGE_FRIEND_ROUTE;
     }
 
+    renderShowOption() {
+        const {onOptionShowChange, onRouteChange, screen, path} = this.props;
+        if (path === SETTINGS_ROUTE) {
+            return null;
+        }
+        const imgHeight = screen.isSmallHeight ? 30 : 40;
+        const isInRival = getSurrenderMsg(path) !== null;
+        return <div className='showOption'>
+            <FaCogs size={imgHeight} onClick={isInRival ? onOptionShowChange : () => onRouteChange(SETTINGS_ROUTE)}/>
+        </div>;
+    }
+
     render() {
         const {screen} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
+            {this.renderShowOption()}
+            <Option communication={this.rivalCommunication}/>
             <img alt='' src={background} height={screen.height} width={screen.width} className="fixedBackgroundMix"/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
@@ -228,6 +250,7 @@ export default connect(
         onInit: (socket) => {
             socket.setDispatch(dispatch);
             dispatch(socketCreated(socket));
-        }
+        },
+        onOptionShowChange: () => dispatch(optionShowChanged(true))
     })
 )(App);

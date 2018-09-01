@@ -47,19 +47,21 @@ class WisieListPage extends React.PureComponent {
                     : _.noop}
             {...wisie}>
             <div className='left'>
-                {!isInTeam && <Button onClick={(e) => {
-                    e.stopPropagation();
-                    onTeamAddClick(team, wisie);
-                }}
-                                      disabled={team.length >= WISIE_TEAM_COUNT}
-                                      icon={<FaPlusCircle size={16}/>}/>
-                }
-                {isInTeam && <Button onClick={(e) => {
-                    e.stopPropagation();
-                    onTeamRemoveClick(team, wisie);
-                }}
-                                     icon={<FaMinusCircle size={16}/>}/>
-                }
+                {!isInTeam
+                && <Button
+                    disabled={team.length >= WISIE_TEAM_COUNT}
+                    icon={<FaPlusCircle size={16}/>}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onTeamAddClick(team, wisie);
+                    }}/>}
+                {isInTeam
+                && <Button
+                    icon={<FaMinusCircle size={16}/>}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onTeamRemoveClick(team, wisie);
+                    }}/>}
                 <Button onClick={() => onWisieDetailsClick(wisie)} icon={<MdDescription size={16}/>}/>
             </div>
         </Wisie>
@@ -70,11 +72,12 @@ class WisieListPage extends React.PureComponent {
         if (edit) {
             return this.renderWisieEdit(wisie);
         }
-        return <Wisie imgHeight={screen.wisieImgHeight + 20}
-                      key={wisie.type}
-                      style={{width: this.wisieWidth}} {...wisie}
-                      className={wisie.isOwned ? 'pointer' : ''}
-                      onClick={wisie.isOwned ? () => onWisieDetailsClick(wisie) : _.noop}
+        return <Wisie
+            imgHeight={screen.wisieImgHeight + 20}
+            key={wisie.type}
+            style={{width: this.wisieWidth}} {...wisie}
+            className={wisie.isOwned ? 'pointer' : ''}
+            onClick={wisie.isOwned ? () => onWisieDetailsClick(wisie) : _.noop}
         />;
     }
 

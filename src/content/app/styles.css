@@ -8,3 +8,11 @@ body {
     color: #fffdf1;
 }
 
+.showOption {
+    position: fixed;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    padding: 0.25rem;
+    z-index: 1;
+}

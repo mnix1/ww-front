@@ -114,10 +114,12 @@ export const TEXT_SHOW_DETAILS= 'TEXT_SHOW_DETAILS';
 export const TEXT_WAR_OVER= 'TEXT_WAR_OVER';
 export const TEXT_YOUR_TEAM= 'TEXT_YOUR_TEAM';
 export const TEXT_OPPONENT_TEAM= 'TEXT_OPPONENT_TEAM';
+export const TEXT_CHOOSE_WISOR= 'TEXT_CHOOSE_WISOR';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_CHOOSE_WISOR]: 'Wybierz swojego wiedzora',
         [TEXT_REQUIREMENT]: 'Wymaganie',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Wybierz odpowiadającego',
         [TEXT_YOUR_TEAM]: 'Twoja drużyna',
@@ -233,6 +235,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_CHOOSE_WISOR]: 'Choose your wisor',
         [TEXT_REQUIREMENT]: 'Requirement',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Choose responder',
         [TEXT_DRAW_WHO_ANSWER]: 'Drawing of the responder',

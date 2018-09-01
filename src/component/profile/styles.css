@@ -31,6 +31,3 @@
 .profileContainer.active {
     background: rgb(40, 121, 218) !important;
 }
-.profileContainer.blackBackground {
-    background: #111;
-}

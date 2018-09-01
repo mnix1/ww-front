@@ -8,10 +8,6 @@ import BattlePageAnswered from "./BattlePageAnswered";
 import BattlePageClosed from "./BattlePageClosed";
 import BattlePageChoosingTaskProps from "./BattlePageChoosingTaskProps";
 import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
-import FaCogs from "react-icons/lib/fa/cogs";
-import _ from 'lodash';
-import {showOptionsChanged} from "../../../../redux/reducer/rival";
-import Options from "../../component/Options";
 
 class BattlePage extends React.PureComponent {
 
@@ -46,23 +42,10 @@ class BattlePage extends React.PureComponent {
         </div>;
     }
 
-    renderShowOptions() {
-        const {onShowOptionsChange, screen} = this.props;
-        const imgHeight = screen.isSmallHeight ? 30 : 40;
-        return <div className='showOptions'><FaCogs size={imgHeight} onClick={onShowOptionsChange}/></div>
-    }
-
     render() {
-        const {screen, showOptions, onShowOptionsChange, communication} = this.props;
+        const {screen} = this.props;
         return <div className='page battlePage' style={{height: screen.contentHeight}}>
             <div className='pageBackground absoluteBackgroundMix'/>
-            {this.renderShowOptions()}
-            {showOptions && <Options
-                onShowOptionsChange={onShowOptionsChange}
-                communication={communication}
-                surrenderMsg='BATTLE_SURRENDER'
-                screen={screen}
-            />}
             {this.renderContent()}
         </div>
     }
@@ -72,16 +55,10 @@ export default connect(
     (state) => ({
         screen: state.screen,
         socket: state.socket.socket,
-        // opponentProfile: state.battle.opponent,
         profile: state.profile.profile,
         content: state.rival.content,
-        showOptions: state.rival.showOptions,
         questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
         questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
-
-        // question: state.battle.question,
     }),
-    (dispatch) => ({
-        onShowOptionsChange: (showOptions) => dispatch(showOptionsChanged(_.defaultTo(showOptions, true)))
-    })
+    (dispatch) => ({})
 )(BattlePage);

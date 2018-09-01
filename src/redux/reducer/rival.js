@@ -16,7 +16,6 @@ export const RIVAL_ACCEPTED = 'rival/invite-accepted';
 export const RIVAL_IN_PROGRESS_CONTENT = 'rival/in-progress/content';
 export const QUESTION_ID_ANSWER_ID_MAP_CHANGED = 'rival/question-id-answer-id-map/changed';
 export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'rival/question-id-skip-animation-map/changed';
-export const SHOW_OPTIONS_CHANGED = 'rival/show-options/changed';
 
 const initialState = {
     tag: undefined,
@@ -26,7 +25,6 @@ const initialState = {
     content: undefined,
     questionIdAnswerIdMap: {},
     questionIdSkipAnimationMap: {},
-    showOptions: false,
 };
 
 export default function reducer(state = initialState, action) {
@@ -53,8 +51,6 @@ export default function reducer(state = initialState, action) {
             return {...state, questionIdAnswerIdMap: action.questionIdAnswerIdMap};
         case QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED:
             return {...state, questionIdSkipAnimationMap: action.questionIdSkipAnimationMap};
-        case SHOW_OPTIONS_CHANGED:
-            return {...state, showOptions: action.showOptions};
         default:
             return state
     }
@@ -102,8 +98,4 @@ export function questionIdAnswerIdMapChanged(questionIdAnswerIdMap) {
 
 export function questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap) {
     return {type: QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED, questionIdSkipAnimationMap};
-}
-
-export function showOptionsChanged(showOptions) {
-    return {type: SHOW_OPTIONS_CHANGED, showOptions};
 }

@@ -4,18 +4,6 @@
     flex-direction: column;
 }
 
-/*.warPage .profiles .profile {*/
-    /*flex-direction: column;*/
-/*}*/
-
-.warPage .showOptions {
-    position: fixed;
-    cursor: pointer;
-    top: 0;
-    right: 0;
-    padding: 0.25rem;
-}
-
 .warPage .sleep {
     vertical-align: middle;
     margin: 0.25rem;
