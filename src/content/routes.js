@@ -15,9 +15,11 @@ export const PLAY_CHALLENGE_ROUTE = PLAY_ROUTE + '/challenge';
 
 export const BATTLE_ROUTE = '/battle';
 export const BATTLE_FAST_ROUTE = '/battleFast';
+export const BATTLE_RANKING_ROUTE = '/battleRanking';
 
 export const WAR_ROUTE = '/war';
 export const WAR_FAST_ROUTE = '/warFast';
+export const WAR_RANKING_ROUTE = '/warRanking';
 
 export const CHALLENGE_FAST_ROUTE = '/challengeFast';
 export const CHALLENGE_FRIEND_ROUTE = '/challengeFriend';

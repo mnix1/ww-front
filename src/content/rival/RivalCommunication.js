@@ -3,7 +3,7 @@ import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
 import _ from 'lodash';
 import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
-import {clearRivalStartFastFetch} from "./fetch/RivalStartFastFetch";
+import {clearRivalStartRandomOpponentFetch} from "./fetch/RivalStartRandomOpponentFetch";
 
 export default class RivalCommunication {
     constructor(communicationWebSocket) {
@@ -26,13 +26,13 @@ export default class RivalCommunication {
             const content = JSON.parse(data.content);
             this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
             this.rivalInProgress(content)
-        } else if (id === 'BATTLE_READY_FAST') {
+        } else if (id === 'BATTLE_READY') {
             this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         } else if (id === 'WAR_CONTENT') {
             const content = JSON.parse(data.content);
             this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_WAR));
             this.rivalInProgress(content);
-        } else if (id === 'WAR_READY_FAST') {
+        } else if (id === 'WAR_READY') {
             this.communicationWebSocket.dispatch(push(WAR_ROUTE));
         }
     };
@@ -44,24 +44,24 @@ export default class RivalCommunication {
         }
     }
 
-    battleReady() {
+    battleReadyFriend() {
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('BATTLE_READY_FOR_START');
     }
 
-    warReady() {
+    warReadyFriend() {
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('WAR_READY_FOR_START');
     }
 
-    battleReadyFast() {
-        clearRivalStartFastFetch(this.communicationWebSocket.dispatch);
+    battleReadyRandomOpponent() {
+        clearRivalStartRandomOpponentFetch(this.communicationWebSocket.dispatch);
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('BATTLE_READY_FOR_START');
     }
 
-    warReadyFast() {
-        clearRivalStartFastFetch(this.communicationWebSocket.dispatch);
+    warReadyRandomOpponent() {
+        clearRivalStartRandomOpponentFetch(this.communicationWebSocket.dispatch);
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('WAR_READY_FOR_START');
     }

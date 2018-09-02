@@ -2,14 +2,20 @@ import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
 import randomPerson from '../../media/image/menu/dices.svg';
-import {BATTLE_FAST_ROUTE} from "../routes";
+import ranking from '../../media/image/menu/award.png';
+import {BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import _ from 'lodash';
-import {clearRivalStartFastFetch} from "../rival/fetch/RivalStartFastFetch";
-import {RIVAL_STATUS_START_FAST, RIVAL_TYPE_BATTLE} from "../../util/rivalHelper";
-import {rivalCleared, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
+import {clearRivalStartRandomOpponentFetch} from "../rival/fetch/RivalStartRandomOpponentFetch";
+import {
+    RIVAL_IMPORTANCE_FAST,
+    RIVAL_IMPORTANCE_RANKING,
+    RIVAL_STATUS_START_RANDOM_OPPONENT,
+    RIVAL_TYPE_BATTLE
+} from "../../util/rivalHelper";
+import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
 
 class PlayBattlePage extends React.PureComponent {
 
@@ -27,11 +33,12 @@ class PlayBattlePage extends React.PureComponent {
     }
 
     renderMenu() {
-        const {onBattleFastClick} = this.props;
+        const {onBattleRandomOpponentClick} = this.props;
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(BATTLE_FAST_ROUTE, randomPerson, onBattleFastClick)}
+                    {this.renderMenuItem(BATTLE_RANKING_ROUTE, ranking, () => onBattleRandomOpponentClick(RIVAL_IMPORTANCE_RANKING))}
+                    {this.renderMenuItem(BATTLE_FAST_ROUTE, randomPerson, () => onBattleRandomOpponentClick(RIVAL_IMPORTANCE_FAST))}
                 </div>
             </Menu>
         </div>;
@@ -53,11 +60,12 @@ export default connect(
         path: state.router.location.pathname
     }),
     (dispatch) => ({
-        onBattleFastClick: () => {
-            clearRivalStartFastFetch(dispatch);
+        onBattleRandomOpponentClick: (importance) => {
+            clearRivalStartRandomOpponentFetch(dispatch);
             dispatch(rivalCleared());
+            dispatch(rivalImportanceChanged(importance));
             dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
-            dispatch(statusChanged(RIVAL_STATUS_START_FAST));
+            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
         },
         onRouteChange: (e) => {
             dispatch(push(e));

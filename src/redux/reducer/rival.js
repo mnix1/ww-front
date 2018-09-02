@@ -7,6 +7,7 @@ import {
 export const CLEARED = 'rival/cleared';
 export const TAG_CHANGED = 'rival/tag/changed';
 export const RIVAL_TYPE_CHANGED = 'rival/type/changed';
+export const RIVAL_IMPORTANCE_CHANGED = 'rival/importance/changed';
 export const STATUS_CHANGED = 'rival/status/changed';
 export const RIVAL_INVITED = 'rival/invited';
 export const RIVAL_CANCELLED = 'rival/invite-canceled';
@@ -20,6 +21,7 @@ export const QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED = 'rival/question-id-skip-an
 const initialState = {
     tag: undefined,
     rivalType: undefined,
+    rivalImportance: undefined,
     status: undefined,
     invitedBy: undefined,
     content: undefined,
@@ -35,6 +37,8 @@ export default function reducer(state = initialState, action) {
             return {...state, tag: action.tag};
         case RIVAL_TYPE_CHANGED:
             return {...state, rivalType: action.rivalType};
+        case RIVAL_IMPORTANCE_CHANGED:
+            return {...state, rivalImportance: action.rivalImportance};
         case STATUS_CHANGED:
             return {...state, status: action.status};
         case RIVAL_INVITED:
@@ -66,6 +70,10 @@ export function tagChanged(tag) {
 
 export function rivalTypeChanged(rivalType) {
     return {type: RIVAL_TYPE_CHANGED, rivalType};
+}
+
+export function rivalImportanceChanged(rivalImportance) {
+    return {type: RIVAL_IMPORTANCE_CHANGED, rivalImportance};
 }
 
 export function statusChanged(status) {

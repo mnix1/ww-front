@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BATTLE_FAST_ROUTE,
+    BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE,
     BATTLE_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
@@ -10,7 +10,7 @@ import {
     PLAY_ROUTE, PLAY_WAR_ROUTE,
     PROFILE_ROUTE,
     SHOP_ROUTE,
-    TRAINING_ROUTE, WAR_FAST_ROUTE,
+    TRAINING_ROUTE, WAR_FAST_ROUTE, WAR_RANKING_ROUTE,
     WISIES_ROUTE
 } from "../content/routes";
 import {ENGLISH, POLISH} from "./langText";
@@ -32,8 +32,10 @@ const ROUTE_LABELS = {
         [WISIES_ROUTE]: 'Wiedzaki',
         [FRIEND_ROUTE]: 'Znajomi',
         [PROFILE_ROUTE]: 'Profil',
-        [BATTLE_FAST_ROUTE]: <span>Losowy<br/>przeciwnik</span>,
-        [WAR_FAST_ROUTE]: <span>Losowy<br/>przeciwnik</span>,
+        [BATTLE_FAST_ROUTE]: <span>Szybka<br/>bitwa</span>,
+        [BATTLE_RANKING_ROUTE]: <span>Bitwa<br/>rankingowa</span>,
+        [WAR_FAST_ROUTE]: <span>Szybka<br/>wojna</span>,
+        [WAR_RANKING_ROUTE]: <span>Wojna<br/>rankingowa</span>,
         [CHALLENGE_FAST_ROUTE]: <span>Losowy<br/>przeciwnik</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
@@ -50,8 +52,10 @@ const ROUTE_LABELS = {
         [WISIES_ROUTE]: 'Wisies',
         [FRIEND_ROUTE]: 'Friends',
         [PROFILE_ROUTE]: 'Profile',
-        [BATTLE_FAST_ROUTE]: <span>Random<br/>opponent</span>,
-        [WAR_FAST_ROUTE]: <span>Random<br/>opponent</span>,
+        [BATTLE_FAST_ROUTE]: <span>Fast<br/>battle</span>,
+        [BATTLE_RANKING_ROUTE]: <span>Ranking<br/>battle</span>,
+        [WAR_FAST_ROUTE]: <span>Fast<br/>war</span>,
+        [WAR_RANKING_ROUTE]: <span>Ranking<br/>war</span>,
         [CHALLENGE_FAST_ROUTE]: <span>Random<br/>opponent</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challenge</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,

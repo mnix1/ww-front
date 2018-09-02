@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../lang/langText";
-import {clearRivalStartFastFetch} from "./fetch/RivalStartFastFetch";
+import {clearRivalStartRandomOpponentFetch} from "./fetch/RivalStartRandomOpponentFetch";
 import {CREAM_COLOR} from "../../util/style/constant";
 import Modal from "../../component/modal/Modal";
 import FaTimesCircle from 'react-icons/lib/fa/times-circle';
@@ -9,27 +9,27 @@ import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {APP_ROUTE, PLAY_ROUTE} from "../routes";
 import {statusChanged} from "../../redux/reducer/rival";
-import {RIVAL_STATUS_CANCELED_FAST, RIVAL_STATUS_CLOSED, RIVAL_STATUS_WAITING_FAST} from "../../util/rivalHelper";
+import {RIVAL_STATUS_CANCELED_RANDOM_OPPONENT, RIVAL_STATUS_CLOSED, RIVAL_STATUS_WAITING_RANDOM_OPPONENT} from "../../util/rivalHelper";
 
-class RivalFastPage extends React.PureComponent {
+class RivalSearchOpponentPage extends React.PureComponent {
 
     componentDidMount() {
         const {status, goToMainScreen} = this.props;
-        if (status === RIVAL_STATUS_CLOSED || status === RIVAL_STATUS_CANCELED_FAST) {
+        if (status === RIVAL_STATUS_CLOSED || status === RIVAL_STATUS_CANCELED_RANDOM_OPPONENT) {
             goToMainScreen();
         }
     }
 
     componentWillUnmount() {
         const {status, onCancel} = this.props;
-        if (status === RIVAL_STATUS_WAITING_FAST) {
+        if (status === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
             onCancel(false);
         }
     }
 
     renderContent() {
         const {status, onCancel, profile} = this.props;
-        if (status !== RIVAL_STATUS_WAITING_FAST) {
+        if (status !== RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
             return null;
         }
         const actions = <div className='actions'>
@@ -63,12 +63,12 @@ export default connect(
             dispatch(push(APP_ROUTE));
         },
         onCancel: (withMoveToPlay = true) => {
-            clearRivalStartFastFetch(dispatch);
-            dispatch(statusChanged(RIVAL_STATUS_CANCELED_FAST));
+            clearRivalStartRandomOpponentFetch(dispatch);
+            dispatch(statusChanged(RIVAL_STATUS_CANCELED_RANDOM_OPPONENT));
             if (withMoveToPlay) {
                 dispatch(push(PLAY_ROUTE))
             }
 
         }
     })
-)(RivalFastPage);
+)(RivalSearchOpponentPage);
