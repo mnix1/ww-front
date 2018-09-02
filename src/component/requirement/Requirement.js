@@ -18,7 +18,7 @@ export default class Requirement extends React.PureComponent {
 
     render() {
         const {text, className, style} = this.props;
-        return <div className={`requirement notAllowed absolute left0 top0 height100 fontSize07Rem ${className}`} style={style}>
+        return <div className={`requirement notAllowed absolute left0 top0 height100 fontSize06Rem ${className}`} style={style}>
             <div className='justifyCenter flexColumn height100'>
                 <div className='justifyCenter relative' style={{padding: '0.25rem 0'}}>
                     <div className={`requirementBackground absoluteBackgroundMix`}/>
