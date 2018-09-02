@@ -171,7 +171,7 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
 
-                <Route exact path={SETTINGS_ROUTE} render={() => <SettingsPage/>}/>
+                <Route path={SETTINGS_ROUTE} render={() => <SettingsPage/>}/>
             </Switch>
         </ConnectedRouter>;
     }

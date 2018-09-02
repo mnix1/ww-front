@@ -10,10 +10,13 @@ class ChooseWisorPage extends React.PureComponent {
 
     renderWisor(wisor, height, width) {
         const {onChoose} = this.props;
-        return <div key={wisor} className='justifyCenter marginRem blackBackground boxShadow' style={{width: width}}>
-            <div onClick={() => onChoose(wisor)} className='pointer '>
-                <img src={getWisor(wisor)} height={height}/>
-            </div>
+        return <div
+            key={wisor}
+            onClick={() => onChoose(wisor)}
+            className='justifyCenter marginRem pointer blackBackground boxShadow'
+            style={{width: width}}
+        >
+            <img alt='' src={getWisor(wisor)} height={height}/>
         </div>
     }
 
@@ -43,6 +46,8 @@ export default connect(
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onChoose: (wisor) => dispatch(chosenWisorChanged(wisor))
+        onChoose: (wisor) => {
+            dispatch(chosenWisorChanged(wisor));
+        }
     })
 )(ChooseWisorPage);

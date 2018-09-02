@@ -2,6 +2,7 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_NAME_LENGTH = 'TEXT_NAME_LENGTH';
 export const TEXT_REQUIREMENT = 'TEXT_REQUIREMENT';
 export const TEXT_OPPONENT_SURRENDER = 'TEXT_OPPONENT_SURRENDER';
 export const TEXT_YOU_SURRENDER = 'TEXT_YOU_SURRENDER';
@@ -115,10 +116,15 @@ export const TEXT_WAR_OVER= 'TEXT_WAR_OVER';
 export const TEXT_YOUR_TEAM= 'TEXT_YOUR_TEAM';
 export const TEXT_OPPONENT_TEAM= 'TEXT_OPPONENT_TEAM';
 export const TEXT_CHOOSE_WISOR= 'TEXT_CHOOSE_WISOR';
+export const TEXT_CHANGE_NICK= 'TEXT_CHANGE_NICK';
+export const TEXT_CHANGE_WISOR= 'TEXT_CHANGE_WISOR';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_NAME_LENGTH]: 'długość 2-15 znaków',
+        [TEXT_CHANGE_NICK]: 'Zmień nick',
+        [TEXT_CHANGE_WISOR]: 'Zmień wiedzora',
         [TEXT_CHOOSE_WISOR]: 'Wybierz swojego wiedzora',
         [TEXT_REQUIREMENT]: 'Wymaganie',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Wybierz odpowiadającego',
@@ -235,6 +241,9 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_NAME_LENGTH]: 'length 2-15 chars',
+        [TEXT_CHANGE_NICK]: 'Change nick',
+        [TEXT_CHANGE_WISOR]: 'Change wisor',
         [TEXT_CHOOSE_WISOR]: 'Choose your wisor',
         [TEXT_REQUIREMENT]: 'Requirement',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Choose responder',

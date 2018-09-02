@@ -31,3 +31,4 @@ export const TRAINING_TASK_ROUTE = TRAINING_ROUTE + '/task';
 export const WISIES_TEAM_EDIT_ROUTE = WISIES_ROUTE + '/teamEdit';
 
 export const SETTINGS_ROUTE = '/settings';
+export const SETTINGS_CHOOSE_WISOR_ROUTE = SETTINGS_ROUTE + '/chooseWisor';

@@ -11,7 +11,6 @@ import {
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
-import {getWisie} from "../../util/wisieHelper";
 import {
     getText,
     TEXT_CHOOSE_CATEGORY,

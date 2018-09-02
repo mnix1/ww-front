@@ -143,6 +143,10 @@
     padding-left: 0.25rem;
 }
 
+.paddingTopRem {
+    padding-top: 0.25rem;
+}
+
 .paddingRightRem {
     padding-right: 0.25rem;
 }
