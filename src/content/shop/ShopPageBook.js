@@ -3,15 +3,18 @@ import {connect} from 'react-redux';
 import './styles.css';
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
-import {getText, TEXT_BOOKSHELF} from "../../lang/langText";
+import {getText, TEXT_BOOKSHELF, TEXT_FILTER} from "../../lang/langText";
 import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
-import {buyBookIdChanged} from "../../redux/reducer/shop";
+import {bookFilterLevelChanged, buyBookIdChanged, showBooksChanged} from "../../redux/reducer/shop";
 import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../lang/langError";
 import {noticeError} from "../../component/notification/noticeError";
 import {checkRepValueCode} from "../../util/responseHelper";
+import Rating from "../../component/rating/Rating";
+import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
+import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
 
-class ShopPage extends React.PureComponent {
+class ShopPageBook extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         const {shopBuyBookRep} = this.props;
@@ -50,19 +53,50 @@ class ShopPage extends React.PureComponent {
         />;
     }
 
-    render() {
-        const {shopListBookRep, screen} = this.props;
+    renderFilter() {
+        const {bookFilterLevel, onBookFilterLevelChanged} = this.props;
+        const style = _.isNil(bookFilterLevel) ? {opacity: '0.7'} : {};
+        return <div className='justifyCenter' style={style}>
+            <Rating value={bookFilterLevel} onChange={onBookFilterLevelChanged}/>
+        </div>;
+    }
+
+    renderBooks() {
+        const {shopListBookRep, bookFilterLevel, screen, showBooks} = this.props;
+        if (!showBooks) {
+            return null;
+        }
         if (!shopListBookRep || !shopListBookRep.fulfilled) {
             return <Loading/>;
         }
-        const books = _.sortBy(shopListBookRep.value, 'id');
+        const filteredBooks = _.isNil(bookFilterLevel)
+            ? shopListBookRep.value
+            : shopListBookRep.value.filter(e => e.level === bookFilterLevel * 2);
+        const sortedBooks = _.sortBy(filteredBooks, 'id');
         const groupCount = Math.floor(screen.contentWidth / this.bookWidth);
-        const bookGroups = _.chunk(books, groupCount);
-        return <div className='contentFragment'>
-            <div className='title textAlignCenter'>{getText(TEXT_BOOKSHELF)} </div>
+        const bookGroups = _.chunk(sortedBooks, groupCount);
+        return <div>
+            {this.renderFilter()}
             <div className='justifyCenter flexColumn'>
                 {bookGroups.map((e, i) => this.renderBooksGroup(e, i))}
             </div>
+        </div>
+    }
+
+    render() {
+        const {showBooks, onShowBookChanged} = this.props;
+        const iconClassName = 'pointer paddingLeftRem';
+        return <div className='contentFragment'>
+            <div className='title textAlignCenter justifyCenter'>
+                {getText(TEXT_BOOKSHELF)}
+                <div className='justifyCenter flexColumn'>
+                    {!showBooks
+                    && <FaPlusSquareO className={iconClassName} onClick={() => onShowBookChanged(true)}/>}
+                    {showBooks
+                    && <FaMinusSquareO className={iconClassName} onClick={() => onShowBookChanged(false)}/>}
+                </div>
+            </div>
+            {this.renderBooks()}
         </div>;
     }
 
@@ -71,12 +105,16 @@ class ShopPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        bookFilterLevel: state.shop.bookFilterLevel,
+        showBooks: state.shop.showBooks,
         path: state.router.location.pathname,
         profile: state.profile.profile,
         shopListBookRep: state.repository.shopListBook,
         shopBuyBookRep: state.repository.shopBuyBook
     }),
     (dispatch) => ({
-        onBuyClick: (id) => dispatch(buyBookIdChanged(id))
+        onBuyClick: (id) => dispatch(buyBookIdChanged(id)),
+        onBookFilterLevelChanged: (level) => dispatch(bookFilterLevelChanged(level)),
+        onShowBookChanged: (show) => dispatch(showBooksChanged(show)),
     })
-)(ShopPage);
+)(ShopPageBook);
