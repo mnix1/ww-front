@@ -28,8 +28,8 @@ import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 import './styles.css';
 import ContentWithImage from "../../../component/content-with-image/ContentWithImage";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
-import {getWisie} from "../../../util/wisieHelper";
 import Rating from "../../../component/rating/Rating";
+import {getWisor} from "../../../util/wisorHelper";
 
 class ChallengeTask extends React.PureComponent {
 
@@ -76,7 +76,7 @@ class ChallengeTask extends React.PureComponent {
     renderSummary() {
         const {endTaskRep, onChallengeSummaryClick, challengeId, profile} = this.props;
         const {challengeInterval, score} = endTaskRep.value;
-        return <ContentWithImage imgSrc={getWisie(profile.wisieType)}
+        return <ContentWithImage imgSrc={getWisor(profile.wisorType)}
                                  onClick={() => onChallengeSummaryClick(challengeId)}
                                  id='summary'>
             <div>
@@ -98,7 +98,7 @@ class ChallengeTask extends React.PureComponent {
         const {onNextTaskClick, endTaskRep, status, profile} = this.props;
         const renderNextTaskButton = (status === CHALLENGE_STATUS_END_TASK || status === CHALLENGE_STATUS_CLOSED) && !_.get(endTaskRep, 'value.isAllTasksAnswered', true);
         return renderNextTaskButton &&
-            <ContentWithImage imgSrc={getWisie(profile.wisieType)} onClick={onNextTaskClick} id='nextTask'>
+            <ContentWithImage imgSrc={getWisor(profile.wisorType)} onClick={onNextTaskClick} id='nextTask'>
                 <div className='flexColumn'>
                     <span>{getText(TEXT_NEXT)}</span>
                     <span>{getText(TEXT_QUESTION).toLowerCase()}</span>
