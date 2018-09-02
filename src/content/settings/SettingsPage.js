@@ -37,7 +37,7 @@ class SettingsPage extends React.PureComponent {
             <div>{getText(TEXT_CHANGE_NICK)}</div>
             <div className='justifyCenter'>
                 <input maxLength={15} minLength={2} value={_.defaultTo(chosenNick, profile.name)} onChange={onChoose}/>
-                <FaCheckCircle className='pointer' onClick={onChooseAccept}/>
+                <FaCheckCircle className='pointer' onClick={onChooseAccept} size={20}/>
             </div>
             <div className='justifyCenter fontSize07Rem paddingTopRem'>
                 {getText(TEXT_NAME_LENGTH)}

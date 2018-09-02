@@ -84,16 +84,16 @@ class ShopPageBook extends React.PureComponent {
     }
 
     render() {
-        const {showBooks, onShowBookChanged} = this.props;
+        const {showBooks, onShowBookChanged, onBookFilterLevelChanged} = this.props;
         const iconClassName = 'pointer paddingLeftRem';
         return <div className='contentFragment'>
-            <div className='title textAlignCenter justifyCenter'>
+            <div className='title justifyCenter'>
                 {getText(TEXT_BOOKSHELF)}
                 <div className='justifyCenter flexColumn'>
                     {!showBooks
                     && <FaPlusSquareO className={iconClassName} onClick={() => onShowBookChanged(true)}/>}
                     {showBooks
-                    && <FaMinusSquareO className={iconClassName} onClick={() => onShowBookChanged(false)}/>}
+                    && <FaMinusSquareO className={iconClassName} onClick={() => {onShowBookChanged(false);onBookFilterLevelChanged(undefined)}}/>}
                 </div>
             </div>
             {this.renderBooks()}
