@@ -58,11 +58,7 @@ class WarPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        socket: state.socket.socket,
-        profile: state.profile.profile,
         content: state.rival.content,
-        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),
     (dispatch) => ({})
 )(WarPage);

@@ -41,8 +41,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
-        socket: state.socket.socket,
-        profile: state.profile.profile,
     }),
     (dispatch) => ({})
 )(WarPageAnsweringTimeout);

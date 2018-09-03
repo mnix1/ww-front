@@ -11,7 +11,7 @@ import TaskDescription from "../../component/TaskDescription";
 class WarPageAnswered extends React.PureComponent {
 
     get isCorrectAnswer() {
-        const {content,} = this.props;
+        const {content} = this.props;
         const {correctAnswerId, markedAnswerId} = content;
         return correctAnswerId === markedAnswerId;
     }
@@ -23,13 +23,13 @@ class WarPageAnswered extends React.PureComponent {
     }
 
     prepareAnsweredProps(forAnswered) {
-        const {content, profile} = this.props;
+        const {content} = this.props;
         let meAnswered = this.meAnswered;
         if (!forAnswered) {
             meAnswered = !meAnswered;
         }
         return meAnswered
-            ? {profile, activeIndex: content.activeIndex, team: content.team}
+            ? {profile: content.profile, activeIndex: content.activeIndex, team: content.team}
             : {profile: content.opponent, activeIndex: content.opponentActiveIndex, team: content.opponentTeam};
     }
 
@@ -78,11 +78,7 @@ class WarPageAnswered extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        socket: state.socket.socket,
-        profile: state.profile.profile,
         content: state.rival.content,
-        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),
     (dispatch) => ({})
 )(WarPageAnswered);

@@ -29,12 +29,12 @@ class WarPageChoosingTaskProps extends React.PureComponent {
     }
 
     renderContent() {
-        const {content, screen, communication, profile, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
+        const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps content={content}/>;
         }
-        if (choosingTaskPropsTag === profile.tag) {
+        if (choosingTaskPropsTag === content.profile.tag) {
             return <ChoosingTaskProps
                 screen={{...screen, contentHeight: screen.contentHeight - 70, contentWidth: screen.contentWidth - 80}}
                 renderPoints={false}
@@ -50,8 +50,8 @@ class WarPageChoosingTaskProps extends React.PureComponent {
     }
 
     render() {
-        const {content, profile} = this.props;
-        const {choosingTaskPropsTag} = content;
+        const {content} = this.props;
+        const {choosingTaskPropsTag, profile} = content;
         return <div className='pageContent warPageChoosingTaskProps'>
             {choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
             {!_.isNil(choosingTaskPropsTag) &&
@@ -66,7 +66,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
-        profile: state.profile.profile,
     }),
     (dispatch) => ({
         onCategoryChange: (categoryObject) => dispatch(rivalInProgressContent({

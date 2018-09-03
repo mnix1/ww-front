@@ -7,14 +7,14 @@ class ActiveMember extends React.PureComponent {
 
     get imgHeight() {
         const {imgHeight, screen} = this.props;
-        if(imgHeight) {
+        if (imgHeight) {
             return imgHeight;
         }
         return screen.wisieImgHeight;
     }
 
     renderProfile(profile) {
-        return <Profile blackBackground={true} renderDetailsHorizontal={true} {...profile} imgHeight={this.imgHeight}/>;
+        return <Profile blackBackground={true} {...profile} imgHeight={this.imgHeight}/>;
     }
 
     renderWisie(wisie) {

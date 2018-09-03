@@ -11,7 +11,7 @@ import Timer from "../../../../component/timer/Timer";
 class WarPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
-        const {profile, content, communication, onTeamWisieClick, onTeamWisieAcceptClick} = this.props;
+        const {content, communication, onTeamWisieClick, onTeamWisieAcceptClick} = this.props;
         const chosen = content.isChosenActiveIndex;
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
@@ -20,7 +20,7 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                 className={chosen ? 'disabled' : ''}
                 wisieClassName={chosen ? '' : 'pointer'}
                 onClick={chosen ? _.noop : onTeamWisieClick}
-                profile={profile}
+                profile={content.profile}
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
                 team={content.team}/>
@@ -56,7 +56,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
-        profile: state.profile.profile,
     }),
     (dispatch) => ({
         onTeamWisieClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),

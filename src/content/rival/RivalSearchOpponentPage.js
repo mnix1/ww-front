@@ -9,7 +9,13 @@ import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {APP_ROUTE, PLAY_ROUTE} from "../routes";
 import {statusChanged} from "../../redux/reducer/rival";
-import {RIVAL_STATUS_CANCELED_RANDOM_OPPONENT, RIVAL_STATUS_CLOSED, RIVAL_STATUS_WAITING_RANDOM_OPPONENT} from "../../util/rivalHelper";
+import {
+    renderBattleElo,
+    renderWarElo,
+    RIVAL_STATUS_CANCELED_RANDOM_OPPONENT,
+    RIVAL_STATUS_CLOSED,
+    RIVAL_STATUS_WAITING_RANDOM_OPPONENT
+} from "../../util/rivalHelper";
 
 class RivalSearchOpponentPage extends React.PureComponent {
 
@@ -37,7 +43,8 @@ class RivalSearchOpponentPage extends React.PureComponent {
         </div>;
         const content = <div>
             <div className='justifyCenter'>{getText(TEXT_SEARCHING_OPPONENT)}...</div>
-            <Profile {...profile} actions={actions}/>
+            <Profile renderBattleElo={renderBattleElo(this.props)} renderWarElo={renderWarElo(this.props)} {...profile}
+                     actions={actions}/>
         </div>;
         return <Modal renderExit={false} content={content}/>;
     }
@@ -57,6 +64,8 @@ export default connect(
         screen: state.screen,
         profile: state.profile.profile,
         status: state.rival.status,
+        importance: state.rival.rivalImportance,
+        type: state.rival.rivalType,
     }),
     (dispatch) => ({
         goToMainScreen: () => {

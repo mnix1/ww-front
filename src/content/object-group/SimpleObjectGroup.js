@@ -62,7 +62,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
                         <span style={{zIndex: 1}}>{getCategoryLabel([o.id])}</span>
-                        <img alt='' src={o.imgSrc} height={objectHeight / 1.5}/>
+                        <img alt='' src={o.imgSrc} height={objectHeight / 1.7}/>
                     </div>,
                     rendererTransformer: rendererTransformerCreator(o),
                     objectStyle

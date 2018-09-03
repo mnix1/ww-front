@@ -35,3 +35,27 @@ export const RIVAL_TYPE_INVITED_TO_BY_TEXT = {
     [RIVAL_TYPE_BATTLE]: TEXT_INVITED_TO_BATTLE_BY,
     [RIVAL_TYPE_WAR]: TEXT_INVITED_TO_WAR_BY,
 };
+
+export function renderBattleElo({importance, type}) {
+    return importance === RIVAL_IMPORTANCE_RANKING && type === RIVAL_TYPE_BATTLE;
+}
+
+export function renderWarElo({importance, type}) {
+    return importance === RIVAL_IMPORTANCE_RANKING && type === RIVAL_TYPE_WAR;
+}
+
+export function getElo(profile, type) {
+    return profile[getEloProp(type)];
+}
+
+export function getEloProp(type) {
+    if (type === RIVAL_TYPE_BATTLE) {
+        return 'battleElo';
+    } else if (type === RIVAL_TYPE_WAR) {
+        return 'warElo';
+    }
+}
+
+export function isRanking({importance}){
+    return importance === RIVAL_IMPORTANCE_RANKING;
+}

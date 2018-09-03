@@ -5,6 +5,7 @@ import TiWiFi from "react-icons/lib/ti/wi-fi";
 import {GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
 import _ from 'lodash';
 import {getWisor} from "../../util/wisorHelper";
+import {getText, TEXT_POINTS} from "../../lang/langText";
 
 export default class Profile extends React.PureComponent {
 
@@ -12,28 +13,35 @@ export default class Profile extends React.PureComponent {
         tag: PropTypes.string,
         name: PropTypes.string,
         wisorType: PropTypes.string,
-        className: PropTypes.string,
         isOnline: PropTypes.bool,
         isAdded: PropTypes.bool,
+        imgHeight: PropTypes.number,
+        battleElo: PropTypes.number,
+        warElo: PropTypes.number,
+        isActive: PropTypes.bool,
+        renderBattleElo: PropTypes.bool,
+        renderWarElo: PropTypes.bool,
+        renderTag: PropTypes.bool,
+        blackBackground: PropTypes.bool,
+        style: PropTypes.object,
+        className: PropTypes.string,
+        detailsClassName: PropTypes.string,
+        onClick: PropTypes.func,
         actions: PropTypes.node,
         children: PropTypes.node,
-        imgHeight: PropTypes.number,
-        style: PropTypes.object,
-        onClick: PropTypes.func,
-        isActive: PropTypes.bool,
-        renderDetailsHorizontal: PropTypes.bool,
-        blackBackground: PropTypes.bool,
-        detailsClassName: PropTypes.string,
+        eloStyle: PropTypes.object,
     };
 
     static defaultProps = {
         imgHeight: 80,
         className: '',
         isActive: false,
-        renderDetailsHorizontal: false,
+        renderTag: false,
+        renderBattleElo: false,
+        renderWarElo: false,
         blackBackground: false,
         onClick: _.noop,
-        detailsClassName: 'justifyStart',
+        detailsClassName: 'justifyCenter',
     };
 
     renderActions() {
@@ -42,28 +50,32 @@ export default class Profile extends React.PureComponent {
     }
 
     renderDetails() {
-        const {isOnline, name, tag, detailsClassName} = this.props;
-        return <div className='details fontSize08Rem justifyBetween relative flexColumn'>
-            {isOnline === true && <div><TiWiFi style={{color: GREEN_COLOR}}/></div>}
-            {isOnline === false && <div><TiWiFi style={{color: RED_COLOR}}/></div>}
+        const {wisorType, imgHeight, isOnline, name, renderTag, tag, renderBattleElo, battleElo, renderWarElo, warElo, detailsClassName} = this.props;
+        return <div className='details width100 fontSize08Rem justifyCenter relative flexColumn'>
+            <div className='justifyCenter'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
             <div>
-                {name && <div className={`name ${detailsClassName}`}>{name}</div>}
-                {tag && <div className={`tag ${detailsClassName}`}>#{tag}</div>}
+                <div className='justifyCenter'>
+                    {isOnline && <div className='justifyStart'><TiWiFi style={{color: GREEN_COLOR}}/></div>}
+                    {isOnline === false && <div className={detailsClassName}><TiWiFi style={{color: RED_COLOR}}/></div>}
+                    {name && <div className={`name width100 ${detailsClassName}`}>{name}</div>}
+                </div>
+                {renderTag && <div className={`tag ${detailsClassName}`}>#{tag}</div>}
+                {renderBattleElo && <div className={detailsClassName}>{this.renderElo(battleElo)}</div>}
+                {renderWarElo && <div className={detailsClassName}>{this.renderElo(warElo)}</div>}
             </div>
         </div>;
     }
 
+    renderElo(elo) {
+        const {eloStyle} = this.props;
+        return <div className={`justifyBetween`} style={eloStyle}>
+            {elo}
+            <div className='paddingLeftRem'>{getText(TEXT_POINTS)}</div>
+        </div>;
+    }
+
     renderContent() {
-        const {wisorType, imgHeight, renderDetailsHorizontal} = this.props;
-        if (renderDetailsHorizontal) {
-            return <div className='profile justifyBetween flexColumn'>
-                {this.renderDetails()}
-                <div className='justifyCenter'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
-                {this.renderActions()}
-            </div>;
-        }
         return <div className='profile justifyBetween'>
-            <div className='justifyCenter marginRem'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;

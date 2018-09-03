@@ -5,6 +5,13 @@ import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText, TEXT_BATTLE} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
+import {
+    renderBattleElo,
+    renderWarElo,
+    RIVAL_IMPORTANCE_RANKING,
+    RIVAL_TYPE_BATTLE,
+    RIVAL_TYPE_WAR
+} from "../../../../util/rivalHelper";
 
 class BattlePageIntro extends React.PureComponent {
 
@@ -23,9 +30,9 @@ class BattlePageIntro extends React.PureComponent {
     renderProfilesBig() {
         const {profile, screen, content} = this.props;
         return <div className='profilesBig justifyCenter'>
-            <Profile imgHeight={screen.wisieImgHeight} {...profile}/>
+            <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.wisieImgHeight} {...profile}/>
             <img alt='' src={swordShield} height={screen.wisieImgHeight}/>
-            <Profile imgHeight={screen.wisieImgHeight} {...content.opponent}/>
+            <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.wisieImgHeight} {...content.opponent}/>
         </div>;
     }
 

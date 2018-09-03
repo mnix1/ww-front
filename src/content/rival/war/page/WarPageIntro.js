@@ -4,6 +4,7 @@ import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText, TEXT_WAR} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Teams from "../../component/Teams";
+import {isRanking} from "../../../../util/rivalHelper";
 
 class WarPageIntro extends React.PureComponent {
 
@@ -32,7 +33,8 @@ class WarPageIntro extends React.PureComponent {
     renderTeamBig() {
         const {content, screen} = this.props;
         return <div className='team justifyCenter flexColumn'>
-            <Teams content={content}><img alt='' src={swordShield} height={screen.wisieImgHeight}/></Teams>
+            <Teams renderElo={isRanking(content)} content={content}><img alt='' src={swordShield}
+                                                                         height={screen.wisieImgHeight}/></Teams>
         </div>;
     }
 

@@ -49,9 +49,6 @@ class BattlePageAnswering extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        socket: state.socket.socket,
-        // opponentProfile: state.battle.opponent,
-        profile: state.profile.profile,
         content: state.rival.content,
         questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
         questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,

@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Profile from "../../../../component/profile/Profile";
 import {Anime} from "../../../../component/anime/Anime";
-import {ProfilesComponent} from "../../component/Profiles";
 import TaskDescription from "../../component/TaskDescription";
 import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/langText";
 import thumbUp from '../../../../media/image/icon/thumbUp.svg';
@@ -10,11 +9,12 @@ import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
+import Profiles from "../../component/Profiles";
 
 class BattlePageAnswered extends React.PureComponent {
 
     get isCorrectAnswer() {
-        const {content,} = this.props;
+        const {content} = this.props;
         const {correctAnswerId, markedAnswerId} = content;
         return correctAnswerId === markedAnswerId;
     }
@@ -26,8 +26,8 @@ class BattlePageAnswered extends React.PureComponent {
     }
 
     renderWhoAnswered() {
-        const {content, profile, screen} = this.props;
-        const {opponent} = content;
+        const {content, screen} = this.props;
+        const {opponent, profile} = content;
         const answeredProfile = this.meAnswered ? profile : opponent;
         const imgHeight = screen.wisieImgHeight;
         return <div className='pageCenterHorizontal whoAnswered'>
@@ -51,22 +51,22 @@ class BattlePageAnswered extends React.PureComponent {
     }
 
     renderProfilesWithNewScore() {
-        const {content, profile, screen} = this.props;
+        const {content, screen} = this.props;
         const scoreColor = this.meAnswered ? (this.isCorrectAnswer ? GREEN_COLOR : RED_COLOR) : undefined;
         const opponentScoreColor = this.meAnswered ? undefined : (this.isCorrectAnswer ? GREEN_COLOR : RED_COLOR);
         return <Anime
             targetTransformer={t => ({
-                content: {score: t.score, opponentScore: t.opponentScore, opponent: t.opponent},
+                content: {score: t.score, opponentScore: t.opponentScore, opponent: t.opponent, profile: t.profile},
                 scoreColor: t.score !== content.score ? scoreColor : undefined,
                 opponentScoreColor: t.opponentScore !== content.opponentScore ? opponentScoreColor : undefined,
             })}
             targetAsChildProp={null}
-            from={{score: content.score, opponentScore: content.opponentScore, opponent: content.opponent}}
+            from={{score: content.score, opponentScore: content.opponentScore, opponent: content.opponent, profile: content.profile}}
             to={{
                 score: {value: content.newScore, duration: 1500, delay: 5000},
                 opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 5000}
             }}>
-            <ProfilesComponent content={content} className={'absolute'} profile={profile} screen={screen}
+            <Profiles content={content} className={'absolute'} screen={screen}
                                scoreColor={scoreColor}
                                opponentScoreColor={opponentScoreColor}/>
         </Anime>;
@@ -87,11 +87,7 @@ class BattlePageAnswered extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        socket: state.socket.socket,
-        profile: state.profile.profile,
         content: state.rival.content,
-        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),
     (dispatch) => ({})
 )(BattlePageAnswered);

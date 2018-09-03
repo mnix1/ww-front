@@ -119,10 +119,12 @@ export const TEXT_CHOOSE_WISOR= 'TEXT_CHOOSE_WISOR';
 export const TEXT_CHANGE_NICK= 'TEXT_CHANGE_NICK';
 export const TEXT_CHANGE_WISOR= 'TEXT_CHANGE_WISOR';
 export const TEXT_FILTER= 'TEXT_FILTER';
+export const TEXT_RANKING= 'TEXT_RANKING';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_RANKING]: 'Ranking',
         [TEXT_FILTER]: 'filtr',
         [TEXT_NAME_LENGTH]: 'długość 2-15 znaków',
         [TEXT_CHANGE_NICK]: 'Zmień nick',
@@ -243,6 +245,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_RANKING]: 'Ranking',
         [TEXT_FILTER]: 'filter',
         [TEXT_NAME_LENGTH]: 'length 2-15 chars',
         [TEXT_CHANGE_NICK]: 'Change nick',

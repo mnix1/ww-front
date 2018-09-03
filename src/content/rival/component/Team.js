@@ -49,12 +49,13 @@ class Team extends React.PureComponent {
         const isProfileDisabled = _.head(presentIndexes) !== 0;
         return <div className={className}>
             <div className={`justifyCenter ${contentClassName}`}>
-                <Profile onClick={isProfileDisabled ? _.noop : () => onClick(0)}
-                         blackBackground={true}
-                         renderDetailsHorizontal={true}
-                         isActive={activeIndex === 0} {...profile}
-                         imgHeight={this.imgHeight}
-                         className={isProfileDisabled ? 'disabled' : ''}/>
+                <Profile
+                    onClick={isProfileDisabled ? _.noop : () => onClick(0)}
+                    blackBackground={true}
+                    isActive={activeIndex === 0} {...profile}
+                    imgHeight={this.imgHeight + 18}
+                    className={isProfileDisabled ? 'disabled' : ''}
+                />
                 {this.renderWisies(team, activeIndex, presentIndexes)}
             </div>
         </div>

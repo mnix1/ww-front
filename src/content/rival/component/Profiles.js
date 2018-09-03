@@ -2,27 +2,38 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {prepareScoreMessage} from "../../../util/textHelper";
 import Profile from "../../../component/profile/Profile";
+import {renderBattleElo, renderWarElo} from "../../../util/rivalHelper";
 
-export class ProfilesComponent extends React.PureComponent {
+class Profiles extends React.PureComponent {
 
-    renderProfile(profile, score, color) {
-        const {screen} = this.props;
-        return <Profile {...profile} imgHeight={screen.wisieImgHeight}>
-            <div style={{color}}>{prepareScoreMessage(score)}</div>
+    static defaultProps = {
+        renderScore: true
+    };
+
+    renderProfile(profile, score, color, eloStyle) {
+        const {screen, battleElo, warElo, renderScore, content} = this.props;
+        return <Profile
+            eloStyle={eloStyle}
+            renderBattleElo={battleElo && renderBattleElo(content)}
+            renderWarElo={warElo && renderWarElo(content)}
+            {...profile}
+            imgHeight={screen.wisieImgHeight}
+        >
+            {renderScore && <div className='' style={{color}}>{prepareScoreMessage(score)}</div>}
         </Profile>
     }
 
     render() {
-        const {profile, content, className, scoreColor, opponentScoreColor} = this.props;
+        const {content, className, scoreColor, opponentScoreColor, eloStyle, opponentEloStyle} = this.props;
         if (!content) {
             return;
         }
         return <div className={`profiles width100 justifyBetween ${className}`}>
             <div className='profile'>
-                {this.renderProfile(profile, content.score, scoreColor)}
+                {this.renderProfile(content.profile, content.score, scoreColor, eloStyle)}
             </div>
             <div className='opponentProfile'>
-                {this.renderProfile(content.opponent, content.opponentScore, opponentScoreColor)}
+                {this.renderProfile(content.opponent, content.opponentScore, opponentScoreColor, opponentEloStyle)}
             </div>
         </div>;
     }
@@ -31,8 +42,6 @@ export class ProfilesComponent extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
-        // content: state.battle.content,
     }),
     (dispatch) => ({})
-)(ProfilesComponent);
+)(Profiles);

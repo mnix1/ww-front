@@ -173,8 +173,6 @@ export default connect(
             dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
         },
         onChallengeFriendClick: (tag) => {
-            // clearChallengeStartFriendFetch(dispatch);
-            // clearChallengeEndTaskFetch(dispatch);
             dispatch(challengeCleared());
             dispatch(tagsChanged([tag]));
             dispatch(push(CHALLENGE_FRIEND_ROUTE));
