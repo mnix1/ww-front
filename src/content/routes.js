@@ -12,7 +12,6 @@ export const PLAY_WAR_ROUTE = PLAY_ROUTE + '/war';
 export const PLAY_BATTLE_ROUTE = PLAY_ROUTE + '/battle';
 export const PLAY_CHALLENGE_ROUTE = PLAY_ROUTE + '/challenge';
 
-
 export const BATTLE_ROUTE = '/battle';
 export const BATTLE_FAST_ROUTE = '/battleFast';
 export const BATTLE_RANKING_ROUTE = '/battleRanking';
@@ -27,6 +26,8 @@ export const CHALLENGE_RESPONSE_ROUTE = '/challengeResponse';
 export const CHALLENGE_SUMMARY_ROUTE = '/challengeSummary';
 export const CHALLENGE_LIST_ROUTE = '/challengeList';
 export const CHALLENGE_HISTORY_ROUTE = '/challengeHistory';
+
+export const CAMPAIGN_ROUTE = '/campaign';
 
 export const TRAINING_TASK_ROUTE = TRAINING_ROUTE + '/task';
 

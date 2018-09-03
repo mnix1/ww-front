@@ -46,6 +46,7 @@ import wisor43 from '../media/image/wisor/head/43.png';
 import wisor44 from '../media/image/wisor/head/44.png';
 import wisor45 from '../media/image/wisor/head/45.png';
 import wisor47 from '../media/image/wisor/head/47.png';
+import wisor48 from '../media/image/wisor/head/48.png';
 import robot from '../media/image/menu/robot.svg';
 
 export const WISOR = {
@@ -96,6 +97,7 @@ export const WISOR = {
     'wisor45': wisor45,
     'wisor46': wisor46,
     'wisor47': wisor47,
+    'wisor48': wisor48,
     'robot': robot,
 };
 
