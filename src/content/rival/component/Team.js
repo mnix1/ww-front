@@ -8,8 +8,9 @@ class Team extends React.PureComponent {
 
     static defaultProps = {
         className: 'justifyCenter',
-        wisieClassName: '',
+        memberClassName: '',
         contentClassName: '',
+        renderHorizontal: false,
         renderHobbies: false,
         renderImg: true,
         onClick: _.noop,
@@ -27,35 +28,40 @@ class Team extends React.PureComponent {
         return wisies.map((e, i) => this.renderWisie(e, i + 1, i + 1 === activeIndex, !_.includes(presentIndexes, i + 1)));
     }
 
-    renderWisie(wisie, index, isActive, isDisabled) {
-        const {renderHobbies, onClick, imgHobbyHeight, renderImg, wisieClassName} = this.props;
-        const className = `${wisieClassName} ${isDisabled ? 'disabled' : ''}`;
+    renderWisie(wisie, index, active, disabled) {
+        const {renderHobbies, onClick, renderImg, memberClassName} = this.props;
         return <Wisie
-            onClick={isDisabled ? _.noop : () => onClick(index)}
-            className={className}
+            onClick={() => onClick(index)}
+            disabled={disabled}
+            className={memberClassName}
             key={wisie.type}
-            isActive={isActive}
+            active={active}
             imgHeight={this.imgHeight}
             renderImg={renderImg}
             renderDetails={true}
             renderHobbies={renderHobbies}
-            imgHobbyHeight={imgHobbyHeight}
             isOwned={true}
             {...wisie}/>;
     }
 
+    renderProfile() {
+        const {profile, onClick, activeIndex, memberClassName, presentIndexes} = this.props;
+        return <Profile
+            onClick={() => onClick(0)}
+            disabled={ _.head(presentIndexes) !== 0}
+            active={activeIndex === 0} {...profile}
+            imgHeight={this.imgHeight + 18}
+            className={memberClassName}
+        />;
+    }
+
     render() {
-        const {profile, team, onClick, activeIndex, presentIndexes, contentClassName, className} = this.props;
-        const isProfileDisabled = _.head(presentIndexes) !== 0;
-        return <div className={className}>
-            <div className={`justifyCenter ${contentClassName}`}>
-                <Profile
-                    onClick={isProfileDisabled ? _.noop : () => onClick(0)}
-                    // blackBackground={true}
-                    isActive={activeIndex === 0} {...profile}
-                    imgHeight={this.imgHeight + 18}
-                    className={isProfileDisabled ? 'disabled' : ''}
-                />
+        const {team, activeIndex, presentIndexes, renderHorizontal, contentClassName, className} = this.props;
+        const customClassName = `${className} ${renderHorizontal ? 'justifyStart' : ''}`;
+        const customContentClassName = `${contentClassName} ${renderHorizontal ? 'flexColumn' : ''}`;
+        return <div className={customClassName}>
+            <div className={`justifyCenter ${customContentClassName} flexWrap`}>
+                {this.renderProfile()}
                 {this.renderWisies(team, activeIndex, presentIndexes)}
             </div>
         </div>

@@ -63,23 +63,11 @@
     animation-fill-mode: forwards;
 }
 
-/*.warPage .warPageIntro .profiles {*/
-    /*opacity: 0;*/
-    /*animation: fadein 0.5s 0s;*/
-    /*animation-fill-mode: forwards;*/
-/*}*/
-
 .warPage .warPageIntro .taskProps {
     opacity: 0;
     animation: fadein 0.5s 0s;
     animation-fill-mode: forwards;
 }
-
-/*.warPage .taskProps .profiles {*/
-    /*opacity: 0;*/
-    /*animation: fadein 0.5s 0s;*/
-    /*animation-fill-mode: forwards;*/
-/*}*/
 
 .warPage .whoAnswered {
     opacity: 0;

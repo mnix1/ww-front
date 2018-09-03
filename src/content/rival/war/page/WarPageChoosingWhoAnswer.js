@@ -11,15 +11,14 @@ import Timer from "../../../../component/timer/Timer";
 class WarPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
-        const {content, communication, onTeamWisieClick, onTeamWisieAcceptClick} = this.props;
+        const {content, communication, onTeamClick, onTeamAcceptClick} = this.props;
         const chosen = content.isChosenActiveIndex;
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
                 renderHobbies={true}
-                imgHobbyHeight={16}
                 className={chosen ? 'disabled' : ''}
-                wisieClassName={chosen ? '' : 'pointer'}
-                onClick={chosen ? _.noop : onTeamWisieClick}
+                memberClassName={chosen ? '' : 'pointer'}
+                onClick={chosen ? _.noop : onTeamClick}
                 profile={content.profile}
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
@@ -29,7 +28,7 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                     ? _.noop
                     : () => {
                         communication.send('WAR_CHOOSE_WHO_ANSWER' + JSON.stringify({activeIndex: content.activeIndex}));
-                        onTeamWisieAcceptClick(true);
+                        onTeamAcceptClick(true);
                     }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
         </div>;
@@ -58,7 +57,7 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({
-        onTeamWisieClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),
-        onTeamWisieAcceptClick: (accept) => dispatch(rivalInProgressContent({isChosenActiveIndex: accept}))
+        onTeamClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),
+        onTeamAcceptClick: (accept) => dispatch(rivalInProgressContent({isChosenActiveIndex: accept}))
     })
 )(WarPageChoosingWhoAnswer);

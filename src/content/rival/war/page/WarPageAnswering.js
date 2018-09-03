@@ -58,7 +58,7 @@ class WarPageAnswering extends React.PureComponent {
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
                 <div>
-                    <Wisie imgHobbyHeight={imgHeight / 3} imgHeight={imgHeight} {...team[activeIndex - 1]}
+                    <Wisie imgHeight={imgHeight} {...team[activeIndex - 1]}
                            renderDetails={true} isOwned={true}>
                         <WisieActions actions={content.wisieActions}/>
                     </Wisie>
@@ -66,8 +66,7 @@ class WarPageAnswering extends React.PureComponent {
                 <div>
                     {opponentActiveIndex === 0
                         ? <Profile imgHeight={imgHeight + 4} {...content.opponent}/>
-                        : <Wisie imgHobbyHeight={imgHeight / 3}
-                                 imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
+                        : <Wisie imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
                                  isOwned={true}>
                             <WisieActions actions={content.opponentWisieActions}/>
                         </Wisie>}

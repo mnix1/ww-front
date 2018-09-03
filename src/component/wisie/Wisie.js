@@ -2,6 +2,7 @@ import React from 'react';
 import {getWisie} from "../../util/wisieHelper";
 import PropTypes from "prop-types";
 import _ from 'lodash';
+import cross from '../../media/image/icon/cross.svg';
 import {getName} from "../../lang/langText";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
@@ -22,7 +23,8 @@ export default class Wisie extends React.PureComponent {
         renderImg: PropTypes.bool,
         imgHobbyHeight: PropTypes.number,
         renderDetails: PropTypes.bool,
-        isActive: PropTypes.bool,
+        active: PropTypes.bool,
+        disabled: PropTypes.bool,
         blackBackground: PropTypes.bool,
         hobbies: PropTypes.array
     };
@@ -31,9 +33,10 @@ export default class Wisie extends React.PureComponent {
         renderHobbies: true,
         renderDetails: true,
         renderImg: true,
-        isActive: false,
+        disabled: false,
+        active: false,
         imgHeight: 100,
-        imgHobbyHeight: 20,
+        imgHobbyHeight: 18,
         className: '',
         blackBackground: false,
         onClick: _.noop
@@ -82,12 +85,16 @@ export default class Wisie extends React.PureComponent {
     }
 
     render() {
-        const {onClick, style, type, isOwned, imgHeight, stats, children, renderImg, className, renderDetails, isActive, blackBackground} = this.props;
+        const {onClick, style, type, isOwned, imgHeight, stats, children, renderImg, className, renderDetails, active, disabled, blackBackground} = this.props;
+        const customClassName = `${className} ${isOwned ? 'owned' : 'notOwned'} ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`;
         return <div
-            className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'} ${isActive ? 'active' : ''}`}
+            className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${customClassName}`}
             style={style}>
             <div onClick={onClick} key={type}>
                 {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
+                {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
+                    <img alt='' src={cross} className='height100 width100'/>
+                </div>}
                 <div className='relative justifyCenter flexColumn'>
                     {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
                     {renderImg &&

@@ -33,19 +33,29 @@ class Teams extends React.PureComponent {
             <div style={{marginLeft: '0.25rem'}}>
                 <div>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
                 <div>
-                    <Team renderImg={renderImg} renderHobbies={true} imgHeight={40}
-                          contentClassName='flexColumn'
-                          className='justifyStart' profile={content.profile} team={content.team}
-                          presentIndexes={content.presentIndexes}/>
+                    <Team
+                        renderImg={renderImg}
+                        renderHobbies={true}
+                        imgHeight={40}
+                        renderHorizontal={true}
+                        profile={content.profile}
+                        team={content.team}
+                        presentIndexes={content.presentIndexes}
+                    />
                 </div>
             </div>
             <div style={{marginRight: '0.25rem'}}>
                 <div>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
                 <div>
-                    <Team renderImg={renderImg} renderHobbies={true} imgHeight={40}
-                          contentClassName='flexColumn'
-                          className='justifyEnd' profile={content.opponent} team={content.opponentTeam}
-                          presentIndexes={content.opponentPresentIndexes}/>
+                    <Team
+                        renderImg={renderImg}
+                        renderHobbies={true}
+                        imgHeight={40}
+                        renderHorizontal={true}
+                        profile={content.opponent}
+                        team={content.opponentTeam}
+                        presentIndexes={content.opponentPresentIndexes}
+                    />
                 </div>
             </div>
         </div>;

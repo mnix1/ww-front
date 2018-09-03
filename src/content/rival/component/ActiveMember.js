@@ -23,7 +23,6 @@ class ActiveMember extends React.PureComponent {
             renderHobbies={true}
             key={wisie.type}
             imgHeight={this.imgHeight}
-            imgHobbyHeight={this.imgHeight / 3}
             renderDetails={true}
             {...wisie}>
         </Wisie>;

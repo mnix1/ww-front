@@ -6,6 +6,7 @@ import {GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
 import _ from 'lodash';
 import {getWisor} from "../../util/wisorHelper";
 import {getText, TEXT_POINTS} from "../../lang/langText";
+import cross from '../../media/image/icon/cross.svg';
 
 export default class Profile extends React.PureComponent {
 
@@ -18,7 +19,7 @@ export default class Profile extends React.PureComponent {
         imgHeight: PropTypes.number,
         battleElo: PropTypes.number,
         warElo: PropTypes.number,
-        isActive: PropTypes.bool,
+        active: PropTypes.bool,
         renderBattleElo: PropTypes.bool,
         renderWarElo: PropTypes.bool,
         renderTag: PropTypes.bool,
@@ -30,12 +31,14 @@ export default class Profile extends React.PureComponent {
         actions: PropTypes.node,
         children: PropTypes.node,
         eloStyle: PropTypes.object,
+        disabled: PropTypes.bool,
     };
 
     static defaultProps = {
         imgHeight: 80,
         className: '',
-        isActive: false,
+        active: false,
+        disabled: false,
         renderTag: false,
         renderBattleElo: false,
         renderWarElo: false,
@@ -82,11 +85,15 @@ export default class Profile extends React.PureComponent {
     }
 
     render() {
-        const {onClick, tag, children, className, style, isActive, blackBackground} = this.props;
+        const {onClick, tag, children, className, style, active, disabled, blackBackground} = this.props;
+        const customClassName = `${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`;
         return <div onClick={onClick} key={tag}
-                    className={`profileContainer relative inlineBlock marginRem paddingRem boxShadow ${isActive ? 'active' : ''} ${className}`}
+                    className={`profileContainer relative inlineBlock marginRem paddingRem boxShadow ${className} ${customClassName}`}
                     style={style}>
             {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
+            {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
+                <img alt='' src={cross} className='height100 width100'/>
+            </div>}
             {children}
             {this.renderContent()}
         </div>
