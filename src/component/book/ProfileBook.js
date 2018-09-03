@@ -69,6 +69,9 @@ export default class ProfileBook extends React.PureComponent {
 
     renderSpeedUpReading() {
         const {crystal, onSpeedUpClick} = this.props;
+        if (this.isFinished) {
+            return null;
+        }
         const crystalCost = this.calculateCrystalCost();
         const isBuyEnable = crystal >= crystalCost;
         return <div className='justifyCenter fontSize08Rem paddingTopRem paddingBottomRem'>
