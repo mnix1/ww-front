@@ -4,12 +4,17 @@ import './styles.css';
 import ProfilePageBook from "./ProfilePageBook";
 import AvailableResources from "../../component/resource/AvailableResources";
 import MeshBackground from "../../component/background/MeshBackground";
+import Profile from "../../component/profile/Profile";
 
 class ProfilePage extends React.PureComponent {
 
     renderContent() {
-        return <div>
-            <AvailableResources/>
+        const {profile} = this.props;
+        return <div className='justifyCenter flexColumn'>
+            <div className='justifyBetween'>
+                <div className='justifyCenter'><AvailableResources/></div>
+                <Profile renderTag className='' {...profile}/>
+            </div>
             <ProfilePageBook/>
         </div>
     }
@@ -29,6 +34,7 @@ class ProfilePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        profile: state.profile.profile,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({})
