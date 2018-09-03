@@ -94,13 +94,13 @@ class WisieDetailsPage extends React.PureComponent {
         } else {
             change = <div style={{opacity: 0, paddingRight: '0.25rem'}}>(+0.00)</div>
         }
-        return <div className='justifyBetween'>
+        return <div className='justifyBetween paddingTopRem paddingBottomRem'>
             <div className='width100'>
                 <WisieAttribute change={change} wisie={wisie} attribute={attribute}/>
             </div>
             {upgrade && cost <= profile.wisdom && <div className='justifyCenter flexColumn'>
                 <FaPlusCircle className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
-                              onClick={pending ? _.noop : () => onUpgradeClick(wisie, attribute)}/>
+                              onClick={pending ? _.noop : () => onUpgradeClick(wisie, attribute)} size={20}/>
             </div>}
         </div>;
     }

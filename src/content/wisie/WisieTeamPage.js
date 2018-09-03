@@ -12,7 +12,7 @@ import FaTimesCircle from 'react-icons/lib/fa/times-circle';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {goBack, push} from "connected-react-router";
 import {WISIES_TEAM_EDIT_ROUTE} from "../routes";
-import {teamChanged, teamSaveChanged} from "../../redux/reducer/wisie";
+import {teamChanged, teamSaveChanged, wisieDetailsChanged} from "../../redux/reducer/wisie";
 
 class WisieTeamPage extends React.PureComponent {
     renderWisies(wisies) {
@@ -23,12 +23,12 @@ class WisieTeamPage extends React.PureComponent {
     }
 
     renderWisie(wisie) {
-        const {edit, screen, onTeamRemoveClick, team} = this.props;
+        const {edit, screen, onTeamRemoveClick, onWisieDetailsClick, team} = this.props;
         return <Wisie
             key={wisie.type}
             imgHeight={screen.wisieImgHeight}
-            className={edit ? 'pointer' : ''}
-            onClick={edit ? () => onTeamRemoveClick(team, wisie) : _.noop}
+            className='pointer'
+            onClick={edit ? () => onTeamRemoveClick(team, wisie) : () => onWisieDetailsClick(wisie)}
             renderDetails={false}
             {...wisie}/>;
     }
@@ -92,6 +92,7 @@ export default connect(
         profileWisies: state.wisie.profileWisies
     }),
     (dispatch) => ({
+        onWisieDetailsClick: (wisie) => dispatch(wisieDetailsChanged(wisie)),
         onTeamEditClick: (team) => {
             dispatch(teamChanged(team));
             dispatch(push(WISIES_TEAM_EDIT_ROUTE));

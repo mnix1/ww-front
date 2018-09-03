@@ -21,8 +21,8 @@ export default class WisieAttribute extends React.PureComponent {
         return <div className={`justifyBetween ${className}`}>
             <div className='justifyCenter paddingRem'><span>{getWisieAttributeLabel(attribute)}</span></div>
             <div className='justifyCenter paddingRem'>
-                {!_.isNil(change) && change}
-                <span>{wisie[NAME_TO_PROP[attribute]]}</span>
+                {!_.isNil(change) && <div className='justifyCenter flexColumn'>{change}</div>}
+                <div className='justifyCenter flexColumn'>{wisie[NAME_TO_PROP[attribute]]}</div>
             </div>
         </div>;
     }
