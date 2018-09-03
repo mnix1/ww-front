@@ -4,6 +4,7 @@ import './styles.css';
 import {
     claimRewardBookIdChanged,
     discardBookIdChanged,
+    speedUpBookIdChanged,
     startReadBookIdChanged,
     stopReadBookIdChanged
 } from "../../redux/reducer/profile";
@@ -23,10 +24,12 @@ class ProfilePage extends React.PureComponent {
     }
 
     renderBook(book) {
-        const {onClaimRewardClick, onReadingDone, onStartReadClick, onStopReadClick, onDiscardClick} = this.props;
+        const {onSpeedUpClick, onClaimRewardClick, onReadingDone, onStartReadClick, onStopReadClick, onDiscardClick, profile} = this.props;
         return <ProfileBook
             key={book.id}
+            crystal={profile.crystal}
             {...book}
+            onSpeedUpClick={() => onSpeedUpClick(book.id)}
             onReadingDone={() => onReadingDone(book.id)}
             onClaimRewardClick={() => onClaimRewardClick(book.id)}
             onStartReadClick={() => onStartReadClick(book.id)}
@@ -57,10 +60,12 @@ class ProfilePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        profile: state.profile.profile,
         path: state.router.location.pathname,
         profileListBookRep: state.repository.profileListBook
     }),
     (dispatch) => ({
+        onSpeedUpClick: (id) => dispatch(speedUpBookIdChanged(id)),
         onReadingDone: (id) => dispatch(stopReadBookIdChanged(id)),
         onClaimRewardClick: (id) => dispatch(claimRewardBookIdChanged(id)),
         onStartReadClick: (id) => dispatch(startReadBookIdChanged(id)),

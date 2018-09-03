@@ -8,6 +8,7 @@ import Clock from 'react-clock';
 export default class Timer extends React.PureComponent {
 
     static propTypes = {
+        children: PropTypes.node,
         work: PropTypes.bool,
         from: PropTypes.number,
         to: PropTypes.number,
@@ -33,12 +34,21 @@ export default class Timer extends React.PureComponent {
         showChart: true,
         showAnalog: false,
         className: '',
-        onDone: _.noop
+        onDone: _.noop,
+        onTick: _.noop
     };
 
     constructor(props) {
         super(props);
+        const valueSeconds = props.down ? Math.ceil(props.from / 1000) : Math.floor(props.from / 1000);
+        const hours = Math.floor(valueSeconds / 3600);
+        const minutes = Math.floor((valueSeconds - hours * 3600) / 60);
+        const seconds = Math.floor(valueSeconds - hours * 3600 - minutes * 60);
         this.state = {
+            hours,
+            minutes,
+            seconds,
+            valueSeconds,
             value: props.from,
             elapsed: 0,
             lastTimestamp: undefined
@@ -59,7 +69,7 @@ export default class Timer extends React.PureComponent {
 
     tick = (timestamp) => {
         const {elapsed, lastTimestamp, value} = this.state;
-        const {to, down, work, onDone} = this.props;
+        const {to, down, work, onDone, onTick} = this.props;
         if (!work) {
             return this.stop();
         }
@@ -71,14 +81,23 @@ export default class Timer extends React.PureComponent {
             this.stop();
             return;
         }
-        this.setState(
-            {
-                value: newValue,
-                elapsed: delta + elapsed,
-                lastTimestamp: timestamp
-            },
+        const valueSeconds = down ? Math.ceil(value / 1000) : Math.floor(value / 1000);
+        const hours = Math.floor(valueSeconds / 3600);
+        const minutes = Math.floor((valueSeconds - hours * 3600) / 60);
+        const seconds = Math.floor(valueSeconds - hours * 3600 - minutes * 60);
+        const state = {
+            hours,
+            minutes,
+            seconds,
+            valueSeconds,
+            value: newValue,
+            elapsed: delta + elapsed,
+            lastTimestamp: timestamp
+        };
+        this.setState(state,
             () => this.frameId = requestAnimationFrame(this.tick)
         );
+        onTick(state);
     };
 
     stop = () => {
@@ -86,12 +105,8 @@ export default class Timer extends React.PureComponent {
     };
 
     renderDigital() {
-        const {down, digitalMinutes, digitalSeconds, digitalFillHours0} = this.props;
-        const {value} = this.state;
-        const valueSeconds = down ? Math.ceil(value / 1000) : Math.floor(value / 1000);
-        const hours = Math.floor(valueSeconds / 3600);
-        const minutes = Math.floor((valueSeconds - hours * 3600) / 60);
-        const seconds = Math.floor(valueSeconds - hours * 3600 - minutes * 60);
+        const {digitalMinutes, digitalSeconds, digitalFillHours0} = this.props;
+        const {hours, minutes, seconds} = this.state;
         const formatter = (e) => e === 0 ? '00' : e < 10 ? `0${e}` : e;
         const h = <span>{digitalFillHours0 ? formatter(hours) : hours}h</span>;
         const m = digitalMinutes && <span>{formatter(minutes)}m</span>;
@@ -112,7 +127,7 @@ export default class Timer extends React.PureComponent {
     }
 
     render() {
-        const {showDigital, showChart, showAnalog, className} = this.props;
+        const {children, showDigital, showChart, showAnalog, className} = this.props;
         const cn = `timer ${className}`;
         return <div className={cn}>
             <div className='timerContent'>
@@ -120,6 +135,7 @@ export default class Timer extends React.PureComponent {
                 {showDigital && this.renderDigital()}
                 {showChart && this.renderChart()}
             </div>
+            {children}
         </div>
     }
 }

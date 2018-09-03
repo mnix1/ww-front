@@ -5,6 +5,7 @@ export const START_READ_BOOK_ID_CHANGED = 'profile/start-read-book-id/changed';
 export const STOP_READ_BOOK_ID_CHANGED = 'profile/stop-read-book-id/changed';
 export const DISCARD_BOOK_ID_CHANGED = 'profile/discard-book-id/changed';
 export const CLAIM_REWARD_BOOK_ID_CHANGED = 'profile/claim-reward-book-id/changed';
+export const SPEED_UP_BOOK_ID_CHANGED = 'profile/speed-up-book-id/changed';
 
 const initialState = {
     profileTag: undefined,
@@ -12,7 +13,8 @@ const initialState = {
     startReadBookId: undefined,
     stopReadBookId: undefined,
     discardBookId: undefined,
-    claimRewardBookId: undefined
+    claimRewardBookId: undefined,
+    speedUpBookId: undefined
 };
 
 export default function reducer(state = initialState, action) {
@@ -31,6 +33,8 @@ export default function reducer(state = initialState, action) {
             return {...state, discardBookId: action.discardBookId};
         case CLAIM_REWARD_BOOK_ID_CHANGED:
             return {...state, claimRewardBookId: action.claimRewardBookId};
+        case SPEED_UP_BOOK_ID_CHANGED:
+            return {...state, speedUpBookId: action.speedUpBookId};
         default:
             return state
     }
@@ -62,5 +66,9 @@ export function discardBookIdChanged(discardBookId) {
 
 export function claimRewardBookIdChanged(claimRewardBookId) {
     return {type: CLAIM_REWARD_BOOK_ID_CHANGED, claimRewardBookId};
+}
+
+export function speedUpBookIdChanged(speedUpBookId) {
+    return {type: SPEED_UP_BOOK_ID_CHANGED, speedUpBookId};
 }
 

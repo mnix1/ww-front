@@ -5,11 +5,13 @@ import ProfileStartReadBookFetch from "./ProfileStartReadBookFetch";
 import ProfileClaimRewardBookFetch from "./ProfileClaimRewardBookFetch";
 import ProfileStopReadBookFetch from "./ProfileStopReadBookFetch";
 import ProfileDiscardBookFetch from "./ProfileDiscardBookFetch";
+import ProfileSpeedUpBookFetch from "./ProfileSpeedUpBookFetch";
 
 class ProfileFetchContainer extends React.PureComponent {
     componentDidUpdate(prevProps) {
         const {
-            profileStartReadBookRep, profileStopReadBookRep, profileDiscardBookRep, profileClaimRewardBookRep,
+            profileStartReadBookRep, profileStopReadBookRep, profileDiscardBookRep,
+            profileClaimRewardBookRep, profileSpeedUpBookRep,
             clearListRep
         } = this.props;
         if ((profileStartReadBookRep.fulfilled &&
@@ -18,6 +20,8 @@ class ProfileFetchContainer extends React.PureComponent {
                 !prevProps.profileStopReadBookRep.fulfilled)
             || (profileDiscardBookRep.fulfilled &&
                 !prevProps.profileDiscardBookRep.fulfilled)
+            || (profileSpeedUpBookRep.fulfilled &&
+                !prevProps.profileSpeedUpBookRep.fulfilled)
             || (profileClaimRewardBookRep.fulfilled &&
                 !prevProps.profileClaimRewardBookRep.fulfilled)) {
             clearListRep();
@@ -25,13 +29,14 @@ class ProfileFetchContainer extends React.PureComponent {
     }
 
     render() {
-        const {path, startReadBookId, stopReadBookId, discardBookId, claimRewardBookId} = this.props;
+        const {path, startReadBookId, stopReadBookId, discardBookId, claimRewardBookId, speedUpBookId} = this.props;
         return <div>
             <ProfileListBookFetch path={path}/>
             <ProfileStartReadBookFetch path={path} bookId={startReadBookId}/>
             <ProfileStopReadBookFetch path={path} bookId={stopReadBookId}/>
             <ProfileDiscardBookFetch path={path} bookId={discardBookId}/>
             <ProfileClaimRewardBookFetch path={path} bookId={claimRewardBookId}/>
+            <ProfileSpeedUpBookFetch path={path} bookId={speedUpBookId}/>
         </div>;
     }
 }
@@ -42,11 +47,13 @@ export default connect(
         stopReadBookId: state.profile.stopReadBookId,
         discardBookId: state.profile.discardBookId,
         claimRewardBookId: state.profile.claimRewardBookId,
+        speedUpBookId: state.profile.speedUpBookId,
         profileListBookRep: state.repository.profileListBook,
         profileStartReadBookRep: state.repository.profileStartReadBook || {},
         profileStopReadBookRep: state.repository.profileStopReadBook || {},
         profileDiscardBookRep: state.repository.profileDiscardBook || {},
         profileClaimRewardBookRep: state.repository.profileClaimRewardBook || {},
+        profileSpeedUpBookRep: state.repository.profileSpeedUpBook || {},
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
