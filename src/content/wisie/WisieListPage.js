@@ -37,8 +37,9 @@ class WisieListPage extends React.PureComponent {
         const {team, screen, onTeamAddClick, onWisieDetailsClick, onTeamRemoveClick} = this.props;
         const isInTeam = _.some(team, (e) => e.id === wisie.id);
         return <Wisie
+            blackBackground={true}
             imgHeight={screen.wisieImgHeight + 20}
-            key={wisie.type} className='pointer'
+            key={wisie.type} className='pointer '
             style={{width: this.wisieWidth}}
             onClick={() => isInTeam
                 ? onTeamRemoveClick(team, wisie)
@@ -73,10 +74,11 @@ class WisieListPage extends React.PureComponent {
             return this.renderWisieEdit(wisie);
         }
         return <Wisie
+            blackBackground={true}
             imgHeight={screen.wisieImgHeight + 20}
             key={wisie.type}
             style={{width: this.wisieWidth}} {...wisie}
-            className={wisie.isOwned ? 'pointer' : ''}
+            className={wisie.isOwned ? 'pointer ' : ''}
             onClick={wisie.isOwned ? () => onWisieDetailsClick(wisie) : _.noop}
         />;
     }

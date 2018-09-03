@@ -20,7 +20,7 @@ class Team extends React.PureComponent {
         if (imgHeight) {
             return imgHeight;
         }
-        return screen.wisieImgHeight;
+        return screen.wisieImgHeight - 10;
     }
 
     renderWisies(wisies, activeIndex, presentIndexes) {
@@ -51,7 +51,7 @@ class Team extends React.PureComponent {
             <div className={`justifyCenter ${contentClassName}`}>
                 <Profile
                     onClick={isProfileDisabled ? _.noop : () => onClick(0)}
-                    blackBackground={true}
+                    // blackBackground={true}
                     isActive={activeIndex === 0} {...profile}
                     imgHeight={this.imgHeight + 18}
                     className={isProfileDisabled ? 'disabled' : ''}

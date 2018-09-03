@@ -12,7 +12,7 @@ import PropTypes from "prop-types";
 import Gold from "../resource/Gold";
 import Rating from "../rating/Rating";
 import _ from "lodash";
-import {maybeDisabledStyle} from "../../util/style/constant";
+import {maybeDisabledClassName} from "../../util/style/constant";
 import {RESOURCE_VERY_SMALL} from "../resource/Resource";
 
 export default class ProfileBook extends React.PureComponent {
@@ -43,8 +43,8 @@ export default class ProfileBook extends React.PureComponent {
     renderActions() {
         const {onBuyClick, isBuyEnable} = this.props;
         return <div className='bookActions paddingRem justifyEvenly'>
-            <Button style={maybeDisabledStyle(!isBuyEnable)} onClick={isBuyEnable ? onBuyClick : _.noop}
-                    className='bookAction justifyBetween'
+            <Button onClick={isBuyEnable ? onBuyClick : _.noop}
+                    className={`bookAction justifyBetween ${maybeDisabledClassName(!isBuyEnable)}`}
                     material={BUTTON_MATERIAL_BOX_SHADOW}
                     icon={<FaShoppingCart/>}>{this.renderBuyButtonContent()}</Button>
         </div>;

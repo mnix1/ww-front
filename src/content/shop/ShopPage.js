@@ -4,6 +4,7 @@ import './styles.css';
 import AvailableResources from "../../component/resource/AvailableResources";
 import ShopPageBook from "./ShopPageBook";
 import {RESOURCE_SMALL} from "../../component/resource/Resource";
+import MeshBackground from "../../component/background/MeshBackground";
 
 class ShopPage extends React.PureComponent {
 
@@ -17,7 +18,7 @@ class ShopPage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page shopPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <div className='pageBackground absoluteBackgroundMix'/>
+            <MeshBackground/>
             <div className='pageContent overflowAuto'>
                 {this.renderContent()}
             </div>

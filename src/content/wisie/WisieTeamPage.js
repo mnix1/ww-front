@@ -25,6 +25,7 @@ class WisieTeamPage extends React.PureComponent {
     renderWisie(wisie) {
         const {edit, screen, onTeamRemoveClick, onWisieDetailsClick, team} = this.props;
         return <Wisie
+            blackBackground={true}
             key={wisie.type}
             imgHeight={screen.wisieImgHeight}
             className='pointer'

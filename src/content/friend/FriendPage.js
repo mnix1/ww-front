@@ -38,6 +38,7 @@ import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_FRIEND_ROUTE} from "../routes";
 import {FRIEND_STATUS_ACCEPTED, FRIEND_STATUS_REQUESTED, FRIEND_STATUS_SUGGESTED} from "../../util/friendHelper";
+import MeshBackground from "../../component/background/MeshBackground";
 
 class FriendPage extends React.PureComponent {
 
@@ -85,6 +86,7 @@ class FriendPage extends React.PureComponent {
     renderFriend(friend) {
         const {addedSuggested, screen, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick, profile} = this.props;
         return <Profile
+            blackBackground={true}
             imgHeight={screen.wisieImgHeight}
             key={friend.tag}
             {...friend}
@@ -147,7 +149,7 @@ class FriendPage extends React.PureComponent {
     render() {
         const {addTag, addFriendRep, friendSuggestRep, suggest} = this.props;
         return <div className="page">
-            <div className="pageBackground absoluteBackgroundMix"/>
+            <MeshBackground/>
             {this.renderContent()}
             <AddFriendFetch rep={addFriendRep} addTag={addTag}/>
             <FriendSuggestFetch rep={friendSuggestRep} suggest={suggest}/>

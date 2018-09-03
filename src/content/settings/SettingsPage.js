@@ -10,6 +10,7 @@ import ChooseWisorPage from "./ChooseWisorPage";
 import FaCheckCircle from 'react-icons/lib/fa/check-circle';
 import {chosenNickAcceptChanged, chosenNickChanged} from "../../redux/reducer/settings";
 import _ from 'lodash';
+import MeshBackground from "../../component/background/MeshBackground";
 
 class SettingsPage extends React.PureComponent {
 
@@ -48,7 +49,7 @@ class SettingsPage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page settingsPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <div className='pageBackground absoluteBackgroundMix'/>
+            <MeshBackground/>
             <div className='pageContent overflowAuto'>
                 <Switch>
                     <Route exact path={SETTINGS_CHOOSE_WISOR_ROUTE} render={() => <ChooseWisorPage/>}/>

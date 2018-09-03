@@ -75,7 +75,7 @@ export default class Profile extends React.PureComponent {
     }
 
     renderContent() {
-        return <div className='profile justifyBetween'>
+        return <div className='relative profile justifyBetween'>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;
@@ -84,8 +84,9 @@ export default class Profile extends React.PureComponent {
     render() {
         const {onClick, tag, children, className, style, isActive, blackBackground} = this.props;
         return <div onClick={onClick} key={tag}
-                    className={`profileContainer inlineBlock marginRem paddingRem boxShadow ${isActive ? 'active' : ''} ${blackBackground ? 'blackBackground' : ''} ${className}`}
+                    className={`profileContainer relative inlineBlock marginRem paddingRem boxShadow ${isActive ? 'active' : ''} ${className}`}
                     style={style}>
+            {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
             {children}
             {this.renderContent()}
         </div>

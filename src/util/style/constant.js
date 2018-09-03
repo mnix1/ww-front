@@ -11,8 +11,9 @@ export const DARK_GREEN_COLOR = '#00671f';
 export const DARK_RED_COLOR = '#890006';
 export const RED_COLOR = '#d60007';
 export const LIGHT_BLUE_COLOR = '#2879da';
+export const BLUE_COLOR = '#285783';
 export const ORANGE_COLOR = '#dd7515';
-export const DARK_BLUE_COLOR = '#122f61';
+export const DARK_BLUE_COLOR = '#122b56';
 export const RIDDLE_BLUE_COLOR = '#3ca1ff';
 export const YELLOW_COLOR = '#dad505';
 

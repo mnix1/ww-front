@@ -74,7 +74,7 @@ export default class ProfileBook extends React.PureComponent {
         }
         const crystalCost = this.calculateCrystalCost();
         const isBuyEnable = crystal >= crystalCost;
-        return <div className='justifyCenter fontSize08Rem paddingTopRem paddingBottomRem'>
+        return <div className='justifyCenter fontSize08Rem paddingLeftRem paddingBottomRem'>
             <Button disabled={!isBuyEnable} material={BUTTON_MATERIAL_BOX_SHADOW} icon={<MdAccessTime/>}
                     onClick={onSpeedUpClick}
             >
@@ -129,8 +129,9 @@ export default class ProfileBook extends React.PureComponent {
         const isFinished = this.isFinished;
         return <div className='bookDetails justifyCenter'>
             <img height={160} alt='' src={getBook(type)}/>
-            <div className='bookDetailsInside justifyBetween flexColumn paddingRem'>
-                <div className='justifyCenter flexColumn'>
+            <div className='bookDetailsInside justifyBetween flexColumn'>
+                <div className='justifyCenter flexColumn fontSize08Rem'>
+                    {this.renderSpeedUpReading()}
                     <div className='justifyCenter'>{getText(isFinished ? TEXT_READ_FINISHED : TEXT_TIME_LEFT)}</div>
                     <div className='justifyCenter'>
                         <Timer
@@ -143,7 +144,6 @@ export default class ProfileBook extends React.PureComponent {
                             from={this.leftReadInterval}
                         />
                     </div>
-                    {this.renderSpeedUpReading()}
                 </div>
                 <div className='bookGain justifyCenter'>
                     {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}

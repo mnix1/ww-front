@@ -23,6 +23,7 @@ export default class Wisie extends React.PureComponent {
         imgHobbyHeight: PropTypes.number,
         renderDetails: PropTypes.bool,
         isActive: PropTypes.bool,
+        blackBackground: PropTypes.bool,
         hobbies: PropTypes.array
     };
 
@@ -34,6 +35,7 @@ export default class Wisie extends React.PureComponent {
         imgHeight: 100,
         imgHobbyHeight: 20,
         className: '',
+        blackBackground: false,
         onClick: _.noop
     };
 
@@ -41,7 +43,6 @@ export default class Wisie extends React.PureComponent {
         const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
         return <div className='wisieDetails fontSize08Rem paddingRem relative justifyBetween'>
-            <div className='absoluteBackgroundMix inlineBlock'/>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter relative'>{name}</span>
                 {this.renderValue()}
@@ -81,14 +82,16 @@ export default class Wisie extends React.PureComponent {
     }
 
     render() {
-        const {onClick, style, type, isOwned, imgHeight, stats, children, renderImg, className, renderDetails, isActive} = this.props;
+        const {onClick, style, type, isOwned, imgHeight, stats, children, renderImg, className, renderDetails, isActive, blackBackground} = this.props;
         return <div
-            className={`wisie marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'} ${isActive ? 'active' : ''}`}
+            className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${className} ${isOwned ? 'owned' : 'notOwned'} ${isActive ? 'active' : ''}`}
             style={style}>
             <div onClick={onClick} key={type}>
-                <div className=' justifyCenter flexColumn'>
+                {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
+                <div className='relative justifyCenter flexColumn'>
                     {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
-                    {renderImg && <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
+                    {renderImg &&
+                    <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
                     {stats}
                     {children}
                 </div>

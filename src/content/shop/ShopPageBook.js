@@ -45,7 +45,7 @@ class ShopPageBook extends React.PureComponent {
     renderBook(book) {
         const {onBuyClick, profile} = this.props;
         return <ShopBook
-            style={{width: this.bookWidth}}
+            // style={{width: this.bookWidth}}
             key={book.id}
             isBuyEnable={(book.canBuyByGold && profile.gold >= book.goldCost) || (book.canBuyByCrystal && profile.crystal >= book.crystalCost)}
             {...book}

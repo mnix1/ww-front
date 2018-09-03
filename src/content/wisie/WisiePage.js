@@ -9,6 +9,7 @@ import WisieDetailsPage from "./WisieDetailsPage";
 import WisieTeamPage from "./WisieTeamPage";
 import {WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../routes";
 import {Route, Switch} from 'react-router'
+import MeshBackground from "../../component/background/MeshBackground";
 
 class WisiePage extends React.PureComponent {
 
@@ -35,7 +36,7 @@ class WisiePage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page wisiePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <div className='pageBackground absoluteBackgroundMix'/>
+            <MeshBackground/>
             <Switch>
                 <Route exact path={WISIES_ROUTE} render={() => this.renderContentList()}/>
                 <Route path={WISIES_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>

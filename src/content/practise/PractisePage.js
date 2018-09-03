@@ -30,6 +30,7 @@ import ContentWithImage from "../../component/content-with-image/ContentWithImag
 import {DIFFICULT_LEVEL_TO_NAME,} from "../../util/difficultyHelper";
 import Rating from "../../component/rating/Rating";
 import {getWisor} from "../../util/wisorHelper";
+import MeshBackground, {MESH_1, MESH_3, MESH_4} from "../../component/background/MeshBackground";
 
 class PractisePage extends React.PureComponent {
 
@@ -105,7 +106,7 @@ class PractisePage extends React.PureComponent {
     render() {
         const {category, difficultyLevel, answerId, screen, practiseStartRep} = this.props;
         return <div className='page' style={{height: screen.contentHeight}}>
-            <div className='pageBackground absoluteBackgroundMix'/>
+            <MeshBackground mesh={MESH_4}/>
             <Switch>
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
                 <Route path={TRAINING_TASK_ROUTE} render={() => this.renderTask()}/>

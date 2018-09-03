@@ -4,7 +4,7 @@ import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
-import {DARK_BLUE_COLOR, LIGHT_BLUE_COLOR} from "../../util/style/constant";
+import {BLUE_COLOR, DARK_BLUE_COLOR, LIGHT_BLUE_COLOR} from "../../util/style/constant";
 
 export default class TaskObjectGroup extends React.PureComponent {
 
@@ -115,7 +115,7 @@ export default class TaskObjectGroup extends React.PureComponent {
             }) * _.defaultTo(o.heightFactor, 1);
             const top = o.yTarget * this.answerHeight() - objectHeight / 2;
             const left = o.xTarget * contentWidth - answerObjectWidth / 2;
-            const background = _.get(o, 'material.background', LIGHT_BLUE_COLOR);
+            const background = _.get(o, 'material.background', BLUE_COLOR);
             return {
                 rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,

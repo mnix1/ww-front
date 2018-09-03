@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import './styles.css';
 import ProfilePageBook from "./ProfilePageBook";
 import AvailableResources from "../../component/resource/AvailableResources";
+import MeshBackground from "../../component/background/MeshBackground";
 
 class ProfilePage extends React.PureComponent {
 
@@ -16,7 +17,8 @@ class ProfilePage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page profilePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <div className='pageBackground absoluteBackgroundMix'/>
+            {/*<div className='pageBackground absoluteBackgroundMix'/>*/}
+            <MeshBackground/>
             <div className='pageContent overflowAuto'>
                 {this.renderContent()}
             </div>

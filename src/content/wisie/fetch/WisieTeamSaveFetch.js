@@ -5,6 +5,7 @@ import {teamSaveChanged} from "../../../redux/reducer/wisie";
 import {isRepValueCode1} from "../../../util/responseHelper";
 import {noticeSuccess} from "../../../component/notification/noticeSuccess";
 import {SUCCESS_TEAM_SAVED} from "../../../lang/langSuccess";
+import {goBack} from "connected-react-router";
 
 class WisieTeamSaveFetch extends React.PureComponent {
 
@@ -19,6 +20,7 @@ class WisieTeamSaveFetch extends React.PureComponent {
             dispatch(teamSaveChanged(false));
             if (isRepValueCode1(wisieTeamSaveFetch)) {
                 noticeSuccess(SUCCESS_TEAM_SAVED);
+                dispatch(goBack());
             }
         }
     }

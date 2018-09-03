@@ -14,7 +14,7 @@ class ActiveMember extends React.PureComponent {
     }
 
     renderProfile(profile) {
-        return <Profile blackBackground={true} {...profile} imgHeight={this.imgHeight}/>;
+        return <Profile {...profile} imgHeight={this.imgHeight}/>;
     }
 
     renderWisie(wisie) {

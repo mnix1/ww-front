@@ -122,7 +122,7 @@ function prepareQuestionImageTile(rival) {
     const dataPrefix = questionRenderer === TEXT_IMAGE_SVG ? 'data:image/svg+xml;base64, ' : (questionRenderer === TEXT_IMAGE_PNG ? 'data:image/png;base64, ' : '');
     const imageData = getImageContent(question);
     const image = <img alt='' src={dataPrefix + imageData} height='100%' width='100%'/>;
-    const background = category === CATEGORY_RIDDLE ? RIDDLE_BLUE_COLOR : undefined;
+    // const background = category === CATEGORY_RIDDLE ? RIDDLE_BLUE_COLOR : undefined;
     const textContent = getTextContent(question);
     return [
         {
@@ -135,7 +135,7 @@ function prepareQuestionImageTile(rival) {
         },
         {
             id: 'questionImage',
-            background,
+            // background,
             onClick: _.noop,
             content: image,
             yTarget: .5,
@@ -155,14 +155,14 @@ function prepareQuestionImagesTile(rival) {
     const imagesData = getImageContent(question).split('^_^');
     const imageLeft = <img alt='' src={dataPrefix + imagesData[0]} height='100%' width='100%'/>;
     const imageRight = <img alt='' src={dataPrefix + imagesData[1]} height='100%' width='100%'/>;
-    const background = category === CATEGORY_RIDDLE ? RIDDLE_BLUE_COLOR : undefined;
+    // const background = category === CATEGORY_RIDDLE ? RIDDLE_BLUE_COLOR : undefined;
     const textContent = getTextContent(question);
     return [
         {
             id: 'questionImageLeft',
             onClick: _.noop,
             content: imageLeft,
-            background,
+            // background,
             yTarget: .5,
             xTarget: .2,
             widthFactor:  1.2
@@ -179,7 +179,7 @@ function prepareQuestionImagesTile(rival) {
             id: 'questionImageRight',
             onClick: _.noop,
             content: imageRight,
-            background,
+            // background,
             yTarget: .5,
             xTarget: .8,
             widthFactor: 1.2

@@ -65,7 +65,7 @@ class WarPageAnswering extends React.PureComponent {
                 </div>
                 <div>
                     {opponentActiveIndex === 0
-                        ? <Profile imgHeight={imgHeight + 4} blackBackground={true} {...content.opponent}/>
+                        ? <Profile imgHeight={imgHeight + 4} {...content.opponent}/>
                         : <Wisie imgHobbyHeight={imgHeight / 3}
                                  imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
                                  isOwned={true}>

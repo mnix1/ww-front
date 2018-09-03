@@ -8,6 +8,7 @@ import BattlePageAnswered from "./BattlePageAnswered";
 import BattlePageClosed from "./BattlePageClosed";
 import BattlePageChoosingTaskProps from "./BattlePageChoosingTaskProps";
 import BattlePageAnsweringTimeout from "./BattlePageAnsweringTimeout";
+import MeshBackground, {MESH_3, MESH_4} from "../../../../component/background/MeshBackground";
 
 class BattlePage extends React.PureComponent {
 
@@ -45,7 +46,7 @@ class BattlePage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page battlePage' style={{height: screen.contentHeight}}>
-            <div className='pageBackground absoluteBackgroundMix'/>
+            <MeshBackground mesh={MESH_4}/>
             {this.renderContent()}
         </div>
     }

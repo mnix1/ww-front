@@ -13,7 +13,7 @@ class ChooseWisorPage extends React.PureComponent {
         return <div
             key={wisor}
             onClick={() => onChoose(wisor)}
-            className='justifyCenter marginRem pointer blackBackground boxShadow'
+            className='justifyCenter marginRem pointer boxShadow'
             style={{width: width}}
         >
             <img alt='' src={getWisor(wisor)} height={height}/>
