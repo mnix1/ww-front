@@ -3,10 +3,12 @@ import './styles.css';
 import {getBook} from "../../util/bookHelper";
 import {
     getName,
-    getText, TEXT_BUY,
+    getText,
     TEXT_CLAIM_REWARD,
     TEXT_DISCARD,
-    TEXT_READ, TEXT_READ_FINISHED, TEXT_READ_NOW,
+    TEXT_READ,
+    TEXT_READ_FINISHED,
+    TEXT_READ_NOW,
     TEXT_STOP_READING,
     TEXT_TIME_LEFT
 } from "../../lang/langText";

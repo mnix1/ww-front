@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import './styles.css';
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
-import {getText, TEXT_BOOKSHELF, TEXT_FILTER} from "../../lang/langText";
+import {getText, TEXT_BOOKSHELF} from "../../lang/langText";
 import {calculateBookWidth} from "../../util/bookHelper";
 import ShopBook from "../../component/book/ShopBook";
 import {bookFilterLevelChanged, buyBookIdChanged, showBooksChanged} from "../../redux/reducer/shop";

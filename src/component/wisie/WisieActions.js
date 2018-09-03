@@ -14,7 +14,7 @@ export default class WisieActions extends React.PureComponent {
     };
 
     renderAction(action) {
-        return <div className='justifyCenter'>
+        return <div key={action} className='justifyCenter'>
             {getWisieActionLabel(action)}
         </div>
     }

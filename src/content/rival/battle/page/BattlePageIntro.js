@@ -5,13 +5,7 @@ import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText, TEXT_BATTLE} from "../../../../lang/langText";
 import RandomTaskProps from "../../component/RandomTaskProps";
 import Profiles from "../../component/Profiles";
-import {
-    renderBattleElo,
-    renderWarElo,
-    RIVAL_IMPORTANCE_RANKING,
-    RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_WAR
-} from "../../../../util/rivalHelper";
+import {renderBattleElo} from "../../../../util/rivalHelper";
 
 class BattlePageIntro extends React.PureComponent {
 
@@ -21,8 +15,12 @@ class BattlePageIntro extends React.PureComponent {
         this.nextComponentRender(1, 4000);
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     nextComponentRender(component, interval) {
-        setInterval(() => {
+        this.interval = setInterval(() => {
             this.setState({component})
         }, interval);
     }
@@ -32,7 +30,8 @@ class BattlePageIntro extends React.PureComponent {
         return <div className='profilesBig justifyCenter'>
             <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.wisieImgHeight} {...profile}/>
             <img alt='' src={swordShield} height={screen.wisieImgHeight}/>
-            <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.wisieImgHeight} {...content.opponent}/>
+            <Profile renderBattleElo={renderBattleElo(content)}
+                     imgHeight={screen.wisieImgHeight} {...content.opponent}/>
         </div>;
     }
 
@@ -43,7 +42,6 @@ class BattlePageIntro extends React.PureComponent {
             {component === 0 && <div>
                 <div className='pageHeader title'>{getText(TEXT_BATTLE)}</div>
                 {this.renderProfilesBig()}
-                {/*<div className='pageHeader task'>{`${getText(TEXT_QUESTION)} ${content.task.id}/${content.taskCount}`}</div>*/}
             </div>}
             {component === 1 && <div>
                 <Profiles content={content} className='absolute'/>

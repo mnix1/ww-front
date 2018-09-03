@@ -32,7 +32,7 @@ export default class TaskObjectGroup extends React.PureComponent {
         const {resolution} = screen;
         const fontSize = objectFontSize(resolution);
         if (!anime) {
-            return (rendered) => <div style={{fontSize}}>{rendered}</div>;
+            return (rendered) => <div key={o.id} style={{fontSize}}>{rendered}</div>;
         }
         return (rendered) => <Anime
             key={o.id}

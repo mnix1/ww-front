@@ -14,6 +14,10 @@ class WarPageIntro extends React.PureComponent {
         this.componentDidUpdate();
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
     componentDidUpdate() {
         const {component, waiting} = this.state;
         if (component === 0 && !waiting) {
@@ -23,7 +27,7 @@ class WarPageIntro extends React.PureComponent {
 
     nextComponentRender(component, interval) {
         this.setState({waiting: true});
-        setInterval(() => {
+        this.interval = setInterval(() => {
             if (this.state.waiting && component !== this.state.component) {
                 this.setState({component, waiting: false});
             }
