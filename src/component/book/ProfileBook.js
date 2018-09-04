@@ -60,11 +60,12 @@ export default class ProfileBook extends React.PureComponent {
         }
         const {timerState} = this.state;
         const valueSeconds = _.defaultTo(timerState.valueSeconds, (this.leftReadInterval) / 1000);
-        const hours = valueSeconds / 3600;
-        if (_.isInteger(hours)) {
-            return hours - 1;
-        }
-        return Math.floor(hours);
+        return Math.ceil(valueSeconds / 3600);
+        // const hours = valueSeconds / 3600;
+        // if (_.isInteger(hours)) {
+        //     return hours - 1;
+        // }
+        // return Math.floor(hours);
     }
 
     renderSpeedUpReading() {
