@@ -25,7 +25,7 @@ import {
     BATTLE_FAST_ROUTE,
     BATTLE_RANKING_ROUTE,
     BATTLE_ROUTE,
-    CAMPAIGN_ROUTE,
+    CAMPAIGN_WAR_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_FRIEND_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
@@ -74,7 +74,7 @@ import {
     RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
     RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
     RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_CAMPAIGN,
+    RIVAL_TYPE_CAMPAIGN_WAR,
     RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
 import PlayWarPage from "../play/PlayWarPage";
@@ -99,26 +99,26 @@ class App extends React.PureComponent {
         const {path, rivalStatus, rivalType, onRouteChange} = this.props;
         if (path === BATTLE_ROUTE) {
             if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-                this.rivalCommunication.battleReadyRandomOpponent();
+                this.rivalCommunication.readyRandomOpponent(RIVAL_TYPE_BATTLE);
             } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.rivalCommunication.battleReadyFriend();
+                this.rivalCommunication.readyFriend(RIVAL_TYPE_BATTLE);
             }
         } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_BATTLE) {
             onRouteChange(BATTLE_ROUTE);
         } else if (path === WAR_ROUTE) {
             if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-                this.rivalCommunication.warReadyRandomOpponent();
+                this.rivalCommunication.readyRandomOpponent(RIVAL_TYPE_WAR);
             } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.rivalCommunication.warReadyFriend();
+                this.rivalCommunication.readyFriend(RIVAL_TYPE_WAR);
             }
         } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_WAR) {
             onRouteChange(WAR_ROUTE);
-        } else if (path === CAMPAIGN_ROUTE) {
+        } else if (path === CAMPAIGN_WAR_ROUTE) {
             if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-                this.rivalCommunication.campaignReady();
+                this.rivalCommunication.readyRandomOpponent(RIVAL_TYPE_CAMPAIGN_WAR);
             }
-        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CAMPAIGN) {
-            onRouteChange(CAMPAIGN_ROUTE);
+        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CAMPAIGN_WAR) {
+            onRouteChange(CAMPAIGN_WAR_ROUTE);
         }
     }
 
@@ -174,7 +174,7 @@ class App extends React.PureComponent {
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={CAMPAIGN_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
+                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
 
@@ -210,7 +210,7 @@ class App extends React.PureComponent {
         const {path} = this.props;
         return path !== BATTLE_ROUTE
             && path !== WAR_ROUTE
-            && path !== CAMPAIGN_ROUTE
+            && path !== CAMPAIGN_WAR_ROUTE
             && path !== TRAINING_TASK_ROUTE
             && path !== CHALLENGE_FAST_ROUTE
             && path !== CHALLENGE_RESPONSE_ROUTE

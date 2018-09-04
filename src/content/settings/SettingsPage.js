@@ -12,6 +12,8 @@ import {chosenNickAcceptChanged, chosenNickChanged} from "../../redux/reducer/se
 import _ from 'lodash';
 import MeshBackground from "../../component/background/MeshBackground";
 
+export const NAME_MAX_LENGTH = 20;
+
 class SettingsPage extends React.PureComponent {
 
     renderContent() {
@@ -37,7 +39,7 @@ class SettingsPage extends React.PureComponent {
         return <div className='left marginRem boxShadow paddingRem'>
             <div>{getText(TEXT_CHANGE_NICK)}</div>
             <div className='justifyCenter'>
-                <input maxLength={15} minLength={2} value={_.defaultTo(chosenNick, profile.name)} onChange={onChoose}/>
+                <input maxLength={NAME_MAX_LENGTH} minLength={2} value={_.defaultTo(chosenNick, profile.name)} onChange={onChoose}/>
                 <FaCheckCircle className='pointer' onClick={onChooseAccept} size={20}/>
             </div>
             <div className='justifyCenter fontSize07Rem paddingTopRem'>

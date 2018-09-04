@@ -4,13 +4,16 @@ import Modal from "../modal/Modal";
 import {connect} from "react-redux";
 import {optionShowChanged} from "../../redux/reducer/option";
 import _ from "lodash";
-import {BATTLE_ROUTE, WAR_ROUTE} from "../../content/routes";
+import {BATTLE_ROUTE, CAMPAIGN_WAR_ROUTE, WAR_ROUTE} from "../../content/routes";
+import {RIVAL_TYPE_CAMPAIGN_WAR} from "../../util/rivalHelper";
 
 export function getSurrenderMsg(path) {
     if (path === BATTLE_ROUTE) {
-        return 'BATTLE_SURRENDER';
+        return `${RIVAL_TYPE_CAMPAIGN_WAR}_SURRENDER`;
     } else if (path === WAR_ROUTE) {
-        return 'WAR_SURRENDER';
+        return `${RIVAL_TYPE_CAMPAIGN_WAR}_SURRENDER`;
+    }else if (path === CAMPAIGN_WAR_ROUTE) {
+        return `${RIVAL_TYPE_CAMPAIGN_WAR}_SURRENDER`;
     }
     return null;
 }

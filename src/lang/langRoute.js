@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE,
-    BATTLE_ROUTE, CAMPAIGN_ROUTE,
+    BATTLE_ROUTE, CAMPAIGN_WAR_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_LIST_ROUTE,
@@ -27,7 +27,7 @@ const ROUTE_LABELS = {
         [PLAY_CHALLENGE_ROUTE]: 'Wyzwanie',
         [BATTLE_ROUTE]: 'Bitwa',
         [TRAINING_ROUTE]: 'Trening',
-        [CAMPAIGN_ROUTE]: 'Kampania',
+        [CAMPAIGN_WAR_ROUTE]: 'Kampania',
         [HISTORY_ROUTE]: 'Historia',
         [SHOP_ROUTE]: 'Sklep',
         [WISIES_ROUTE]: 'Wiedzaki',
@@ -48,7 +48,7 @@ const ROUTE_LABELS = {
         [PLAY_CHALLENGE_ROUTE]: 'Challenge',
         [BATTLE_ROUTE]: 'Battle',
         [TRAINING_ROUTE]: 'Training',
-        [CAMPAIGN_ROUTE]: 'Campaign',
+        [CAMPAIGN_WAR_ROUTE]: 'Campaign',
         [HISTORY_ROUTE]: 'History',
         [SHOP_ROUTE]: 'Shop',
         [WISIES_ROUTE]: 'Wisies',

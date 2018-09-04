@@ -38,7 +38,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
             return <ChoosingTaskProps
                 screen={{...screen, contentHeight: screen.contentHeight - 70, contentWidth: screen.contentWidth - 80}}
                 renderPoints={false}
-                acceptMsg={`${rivalType}_CHOOSE_TASK_PROPS`}
+                acceptMsg={`${rivalType}_^_CHOOSE_TASK_PROPS`}
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}

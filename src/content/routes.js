@@ -27,7 +27,7 @@ export const CHALLENGE_SUMMARY_ROUTE = '/challengeSummary';
 export const CHALLENGE_LIST_ROUTE = '/challengeList';
 export const CHALLENGE_HISTORY_ROUTE = '/challengeHistory';
 
-export const CAMPAIGN_ROUTE = '/campaign';
+export const CAMPAIGN_WAR_ROUTE = '/campaignWar';
 
 export const TRAINING_TASK_ROUTE = TRAINING_ROUTE + '/task';
 

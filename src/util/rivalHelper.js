@@ -23,7 +23,7 @@ export const RIVAL_STATUS_CLOSED = 'CLOSED';
 
 export const RIVAL_TYPE_BATTLE = 'BATTLE';
 export const RIVAL_TYPE_WAR = 'WAR';
-export const RIVAL_TYPE_CAMPAIGN = 'CAMPAIGN';
+export const RIVAL_TYPE_CAMPAIGN_WAR = 'CAMPAIGN_WAR';
 
 export const RIVAL_IMPORTANCE_FAST = 'FAST';
 export const RIVAL_IMPORTANCE_RANKING = 'RANKING';

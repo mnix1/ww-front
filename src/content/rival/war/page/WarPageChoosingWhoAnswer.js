@@ -27,7 +27,7 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                 <Button className={chosen ? 'disabled' : ''} onClick={chosen
                     ? _.noop
                     : () => {
-                        communication.send(`${rivalType}_CHOOSE_WHO_ANSWER` + JSON.stringify({activeIndex: content.activeIndex}));
+                        communication.send(`${rivalType}_^_CHOOSE_WHO_ANSWER` + JSON.stringify({activeIndex: content.activeIndex}));
                         onTeamAcceptClick(true);
                     }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>

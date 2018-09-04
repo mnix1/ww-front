@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_STATUS_WAITING_RANDOM_OPPONENT} from "../../../util/rivalHelper";
-import {CAMPAIGN_ROUTE} from "../../routes";
+import {CAMPAIGN_WAR_ROUTE} from "../../routes";
 import {isRepValueCode1} from "../../../util/responseHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
 
@@ -28,7 +28,7 @@ class CampaignStartFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {path, rivalType, rivalImportance, status, dispatchCampaignStartPost} = this.props;
-        if (path === CAMPAIGN_ROUTE
+        if (path === CAMPAIGN_WAR_ROUTE
             && prevProps.status !== status
             && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
             dispatchCampaignStartPost(rivalType, rivalImportance);
