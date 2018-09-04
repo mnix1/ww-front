@@ -27,11 +27,9 @@ class WarPageAnsweringTimeout extends React.PureComponent {
                 content={content}
                 renderTaskPoints={false}
                 renderTaskCount={false}
-                className='justifyCenter flexColumn contentHeader'
+                className='justifyCenter flexColumn contentHeader warTaskDescription'
             />
-            <ActiveMembers content={content} className='absolute activeWisies'/>
             {this.renderNoAnswer()}
-            {/*<TaskWithoutActions content={content}/>*/}
             <TaskMarkedAnswer content={content}/>
         </div>;
     }

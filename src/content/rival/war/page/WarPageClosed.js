@@ -58,7 +58,7 @@ class WarPageClosed extends React.PureComponent {
     renderProfilesWithNewScore(importance) {
         const {content, screen} = this.props;
         if (importance !== RIVAL_IMPORTANCE_RANKING) {
-            return <Profiles renderScore={false} content={content} className='absolute'/>;
+            return null;
         }
         const oldProfileElo = getElo(content.profile, content.type);
         const newProfileElo = getElo(content.newProfile, content.type);
