@@ -11,7 +11,7 @@ import Timer from "../../../../component/timer/Timer";
 class WarPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
-        const {content, communication, onTeamClick, onTeamAcceptClick} = this.props;
+        const {content, communication, rivalType, onTeamClick, onTeamAcceptClick} = this.props;
         const chosen = content.isChosenActiveIndex;
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
@@ -27,7 +27,7 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                 <Button className={chosen ? 'disabled' : ''} onClick={chosen
                     ? _.noop
                     : () => {
-                        communication.send('WAR_CHOOSE_WHO_ANSWER' + JSON.stringify({activeIndex: content.activeIndex}));
+                        communication.send(`${rivalType}_CHOOSE_WHO_ANSWER` + JSON.stringify({activeIndex: content.activeIndex}));
                         onTeamAcceptClick(true);
                     }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
@@ -55,6 +55,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
+        rivalType: state.rival.rivalType,
     }),
     (dispatch) => ({
         onTeamClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),

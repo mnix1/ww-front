@@ -25,6 +25,7 @@ import {
     BATTLE_FAST_ROUTE,
     BATTLE_RANKING_ROUTE,
     BATTLE_ROUTE,
+    CAMPAIGN_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_FRIEND_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
@@ -73,6 +74,7 @@ import {
     RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
     RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
     RIVAL_TYPE_BATTLE,
+    RIVAL_TYPE_CAMPAIGN,
     RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
 import PlayWarPage from "../play/PlayWarPage";
@@ -83,6 +85,7 @@ import {optionShowChanged} from "../../redux/reducer/option";
 import SettingsPage from "../settings/SettingsPage";
 import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 import RivalSearchOpponentPage from "../rival/RivalSearchOpponentPage";
+import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 
 class App extends React.PureComponent {
 
@@ -110,6 +113,12 @@ class App extends React.PureComponent {
             }
         } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_WAR) {
             onRouteChange(WAR_ROUTE);
+        } else if (path === CAMPAIGN_ROUTE) {
+            if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
+                this.rivalCommunication.campaignReady();
+            }
+        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CAMPAIGN) {
+            onRouteChange(CAMPAIGN_ROUTE);
         }
     }
 
@@ -165,6 +174,8 @@ class App extends React.PureComponent {
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
+                <Route exact path={CAMPAIGN_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
+
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
 
                 <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
@@ -186,6 +197,7 @@ class App extends React.PureComponent {
             <ProfileFetch/>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <SettingsFetchContainer/>
+            <CampaignFetchContainer/>
             <RivalFetchContainer/>
             <ChallengeFetchContainer/>
             <WisieFetchContainer/>
@@ -198,6 +210,7 @@ class App extends React.PureComponent {
         const {path} = this.props;
         return path !== BATTLE_ROUTE
             && path !== WAR_ROUTE
+            && path !== CAMPAIGN_ROUTE
             && path !== TRAINING_TASK_ROUTE
             && path !== CHALLENGE_FAST_ROUTE
             && path !== CHALLENGE_RESPONSE_ROUTE

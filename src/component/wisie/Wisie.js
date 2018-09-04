@@ -45,7 +45,7 @@ export default class Wisie extends React.PureComponent {
     renderWisieDetailsNotOwned() {
         const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
-        return <div className='wisieDetails fontSize08Rem paddingRem relative justifyBetween'>
+        return <div className='wisieDetails fontSize08Rem relative justifyBetween'>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter relative'>{name}</span>
                 {this.renderValue()}
@@ -56,7 +56,6 @@ export default class Wisie extends React.PureComponent {
                                            src={getCategory(e)}/>)}
                 </div>}
             </div>
-
         </div>;
     }
 

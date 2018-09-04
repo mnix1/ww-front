@@ -1,7 +1,13 @@
 import {rivalInProgressContent, rivalTypeChanged, statusChanged as rivalStatusChanged} from "../../redux/reducer/rival";
 import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
-import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
+import {
+    RIVAL_STATUS_CLOSED,
+    RIVAL_STATUS_IN_PROGRESS,
+    RIVAL_TYPE_BATTLE,
+    RIVAL_TYPE_CAMPAIGN,
+    RIVAL_TYPE_WAR
+} from "../../util/rivalHelper";
 import {clearRivalStartRandomOpponentFetch} from "./fetch/RivalStartRandomOpponentFetch";
 
 export default class RivalCommunication {
@@ -33,6 +39,10 @@ export default class RivalCommunication {
             this.rivalInProgress(content);
         } else if (id === 'WAR_READY') {
             this.communicationWebSocket.dispatch(push(WAR_ROUTE));
+        } else if (id === 'CAMPAIGN_CONTENT') {
+            const content = JSON.parse(data.content);
+            this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_CAMPAIGN));
+            this.rivalInProgress(content);
         }
     };
 
@@ -63,6 +73,12 @@ export default class RivalCommunication {
         clearRivalStartRandomOpponentFetch(this.communicationWebSocket.dispatch);
         this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
         this.send('WAR_READY_FOR_START');
+    }
+
+    campaignReady() {
+        clearRivalStartRandomOpponentFetch(this.communicationWebSocket.dispatch);
+        this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
+        this.send('CAMPAIGN_READY_FOR_START');
     }
 
 

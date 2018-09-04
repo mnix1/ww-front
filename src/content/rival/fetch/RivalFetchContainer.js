@@ -9,7 +9,7 @@ import {
     RIVAL_STATUS_REJECTED_FRIEND, RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
     RIVAL_STATUS_WAITING_FRIEND,
     RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_WAR
+    RIVAL_TYPE_WAR, RIVAL_TYPE_CAMPAIGN
 } from "../../../util/rivalHelper";
 import _ from 'lodash';
 import {BATTLE_ROUTE, WAR_ROUTE} from "../../routes";
@@ -68,6 +68,9 @@ class RivalFetchContainer extends React.PureComponent {
 
     render() {
         const {tag, rivalType, rivalImportance, status} = this.props;
+        if (rivalType === RIVAL_TYPE_CAMPAIGN) {
+            return null;
+        }
         return <div>
             <RivalStartFriendFetch status={status} tag={tag} rivalType={rivalType}/>
             <RivalCancelFriendFetch status={status}/>

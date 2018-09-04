@@ -9,7 +9,7 @@ import WarPageClosed from "./WarPageClosed";
 import WarPageChoosingTaskProps from "./WarPageChoosingTaskProps";
 import WarPageAnsweringTimeout from "./WarPageAnsweringTimeout";
 import WarPageChoosingWhoAnswer from "./WarPageChoosingWhoAnswer";
-import MeshBackground, {MESH_3, MESH_4} from "../../../../component/background/MeshBackground";
+import MeshBackground, {MESH_4} from "../../../../component/background/MeshBackground";
 
 class WarPage extends React.PureComponent {
 

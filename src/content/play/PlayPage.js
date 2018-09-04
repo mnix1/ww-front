@@ -6,13 +6,21 @@ import practise from '../../media/image/menu/practise.svg';
 import campaign from '../../media/image/menu/expedition.png';
 import challenge from '../../media/image/menu/rubicCube.svg';
 import war from '../../media/image/menu/chessBoard.svg';
-import {PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE, PLAY_WAR_ROUTE, TRAINING_ROUTE, CAMPAIGN_ROUTE} from "../routes";
+import {CAMPAIGN_ROUTE, PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE, PLAY_WAR_ROUTE, TRAINING_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import _ from 'lodash';
 import {TEXT_WISIES_TEAM} from "../../lang/langText";
 import Requirement from "../../component/requirement/Requirement";
+import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
+import {
+    RIVAL_IMPORTANCE_FAST,
+    RIVAL_STATUS_START_RANDOM_OPPONENT,
+    RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
+    RIVAL_TYPE_CAMPAIGN
+} from "../../util/rivalHelper";
+import {clearRivalStartRandomOpponentFetch} from "../rival/fetch/RivalStartRandomOpponentFetch";
 
 class PlayPage extends React.PureComponent {
 
@@ -53,13 +61,14 @@ class PlayPage extends React.PureComponent {
     }
 
     renderMenu() {
+        const {onCampaignClick} = this.props;
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems relative'>
                     {this.renderWarMenuItem(PLAY_WAR_ROUTE, war)}
                     {this.renderMenuItem(PLAY_BATTLE_ROUTE, battle)}
                     {this.renderMenuItem(PLAY_CHALLENGE_ROUTE, challenge)}
-                    {this.renderMenuItem(CAMPAIGN_ROUTE, campaign)}
+                    {this.renderMenuItem(CAMPAIGN_ROUTE, campaign, onCampaignClick)}
                     {this.renderMenuItem(TRAINING_ROUTE, practise)}
                 </div>
             </Menu>
@@ -83,6 +92,13 @@ export default connect(
         path: state.router.location.pathname
     }),
     (dispatch) => ({
+        onCampaignClick: () => {
+            clearRivalStartRandomOpponentFetch(dispatch);
+            dispatch(rivalCleared());
+            dispatch(rivalTypeChanged(RIVAL_TYPE_CAMPAIGN));
+            dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
+            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
+        },
         onRouteChange: (e) => {
             dispatch(push(e));
         },

@@ -25,7 +25,7 @@ class WarPageAnswering extends React.PureComponent {
     }
 
     renderTaskActive() {
-        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
+        const {content, onAnswerClick, rivalType, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
         return <div className='width100 height100 absolute'>
             <ActiveMembers content={content} className='absolute'/>
@@ -44,7 +44,7 @@ class WarPageAnswering extends React.PureComponent {
                     if (!_.isNil(correctAnswerId)) {
                         return;
                     }
-                    communication.send('WAR_ANSWER' + JSON.stringify({answerId}));
+                    communication.send(`${rivalType}_ANSWER` + JSON.stringify({answerId}));
                     onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
                 }}
             />
@@ -105,6 +105,7 @@ export default connect(
         // opponentProfile: state.war.opponent,
         profile: state.profile.profile,
         content: state.rival.content,
+        rivalType: state.rival.rivalType,
         questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
         questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),
