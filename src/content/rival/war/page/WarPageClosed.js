@@ -19,10 +19,10 @@ class WarPageClosed extends React.PureComponent {
 
     render() {
         const {content} = this.props;
-        const {winnerTag, isDraw, resigned, importance, profile} = content;
+        const {winnerTag, isDraw, resigned, profile} = content;
         if (isDraw) {
             return <div className='pageContent warPageClosed'>
-                {this.renderProfilesWithNewScore(importance)}
+                {this.renderProfilesWithNewScore()}
                 <div className='height100 width100 justifyCenter flexColumn'>
                     <div className='pageHeader'>
                         {getText(TEXT_WAR_OVER)}
@@ -33,10 +33,10 @@ class WarPageClosed extends React.PureComponent {
         }
         const meWinner = winnerTag === profile.tag;
         const winnerProps = meWinner
-            ? {profile, presentIndexes: content.presentIndexes, team: content.team}
-            : {profile: content.opponent, presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam};
+            ? {presentIndexes: content.presentIndexes, team: content.team}
+            : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam};
         return <div className='pageContent warPageClosed'>
-            {this.renderProfilesWithNewScore(importance)}
+            {this.renderProfilesWithNewScore()}
             <div className='height100 width100 justifyCenter flexColumn'>
                 {resigned && meWinner && <div className='pageHeader'>
                     {getText(TEXT_OPPONENT_SURRENDER)}
@@ -55,9 +55,9 @@ class WarPageClosed extends React.PureComponent {
         </div>;
     }
 
-    renderProfilesWithNewScore(importance) {
+    renderProfilesWithNewScore() {
         const {content, screen} = this.props;
-        if (importance !== RIVAL_IMPORTANCE_RANKING) {
+        if (content.importance !== RIVAL_IMPORTANCE_RANKING) {
             return null;
         }
         const oldProfileElo = getElo(content.profile, content.type);
