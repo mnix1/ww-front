@@ -49,7 +49,7 @@ import wisor47 from '../media/image/wisor/head/47.png';
 import wisor48 from '../media/image/wisor/head/48.png';
 import robot from '../media/image/menu/robot.svg';
 
-export const WISOR = {
+const WISOR = {
     'wisor1': wisor1,
     'wisor2': wisor2,
     'wisor3': wisor3,

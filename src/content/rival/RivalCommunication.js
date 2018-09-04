@@ -11,8 +11,9 @@ import {
 import {clearRivalStartRandomOpponentFetch} from "./fetch/RivalStartRandomOpponentFetch";
 
 export default class RivalCommunication {
-    constructor(communicationWebSocket) {
+    constructor(communicationWebSocket, app) {
         this.communicationWebSocket = communicationWebSocket;
+        this.app = app;
         this.communicationWebSocket.socket.addEventListener('message', this.onMessage);
     }
 
@@ -29,22 +30,28 @@ export default class RivalCommunication {
         const id = data.id;
         if (id === `${RIVAL_TYPE_BATTLE}_CONTENT`) {
             const content = JSON.parse(data.content);
-            this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
+            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_BATTLE);
             this.rivalInProgress(content)
         } else if (id === `${RIVAL_TYPE_BATTLE}_READY`) {
             this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         } else if (id === `${RIVAL_TYPE_WAR}_CONTENT`) {
             const content = JSON.parse(data.content);
-            this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_WAR));
+            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_WAR);
             this.rivalInProgress(content);
         } else if (id === `${RIVAL_TYPE_WAR}_READY`) {
             this.communicationWebSocket.dispatch(push(WAR_ROUTE));
         } else if (id === `${RIVAL_TYPE_CAMPAIGN_WAR}_CONTENT`) {
             const content = JSON.parse(data.content);
-            this.communicationWebSocket.dispatch(rivalTypeChanged(RIVAL_TYPE_CAMPAIGN_WAR));
+            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_CAMPAIGN_WAR);
             this.rivalInProgress(content);
         }
     };
+
+    changeRivalTypeIfDifferenct(type) {
+        if (this.app.props.rivalType !== type) {
+            this.communicationWebSocket.dispatch(rivalTypeChanged(type));
+        }
+    }
 
     rivalInProgress(content) {
         this.communicationWebSocket.dispatch(rivalInProgressContent(content));

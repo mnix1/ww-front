@@ -14,13 +14,13 @@ class Teams extends React.PureComponent {
         return <div>
             <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
             <div className='pageHeader fontSize08Rem'>
-                <Team renderHobbies={true} profile={content.profile} team={content.team}
+                <Team renderHobbies={true} team={content.team}
                       presentIndexes={content.presentIndexes}/>
             </div>
             <div className='justifyCenter'>{children}</div>
             <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
             <div className='pageHeader fontSize08Rem'>
-                <Team renderHobbies={true} profile={content.opponent} team={content.opponentTeam}
+                <Team renderHobbies={true} team={content.opponentTeam}
                       presentIndexes={content.opponentPresentIndexes}/>
             </div>
         </div>
@@ -38,7 +38,6 @@ class Teams extends React.PureComponent {
                         renderHobbies={true}
                         imgHeight={40}
                         renderHorizontal={true}
-                        profile={content.profile}
                         team={content.team}
                         presentIndexes={content.presentIndexes}
                     />
@@ -52,7 +51,6 @@ class Teams extends React.PureComponent {
                         renderHobbies={true}
                         imgHeight={40}
                         renderHorizontal={true}
-                        profile={content.opponent}
                         team={content.opponentTeam}
                         presentIndexes={content.opponentPresentIndexes}
                     />

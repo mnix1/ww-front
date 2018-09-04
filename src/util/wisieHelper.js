@@ -45,7 +45,7 @@ import owl from '../media/image/wisie/owl.png';
 import penguin from '../media/image/wisie/penguin.svg';
 import walrus from '../media/image/wisie/walrus.svg';
 
-export const WISIE = {
+const WISIE = {
     'ANT': ant,
     'AUROCHS': aurochs,
     'BEE': bee,

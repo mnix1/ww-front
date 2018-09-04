@@ -9,11 +9,11 @@ import {RIVAL_TYPE_CAMPAIGN_WAR} from "../../util/rivalHelper";
 
 export function getSurrenderMsg(path) {
     if (path === BATTLE_ROUTE) {
-        return `${RIVAL_TYPE_CAMPAIGN_WAR}_SURRENDER`;
+        return `${RIVAL_TYPE_CAMPAIGN_WAR}_^_SURRENDER`;
     } else if (path === WAR_ROUTE) {
-        return `${RIVAL_TYPE_CAMPAIGN_WAR}_SURRENDER`;
+        return `${RIVAL_TYPE_CAMPAIGN_WAR}_^_SURRENDER`;
     }else if (path === CAMPAIGN_WAR_ROUTE) {
-        return `${RIVAL_TYPE_CAMPAIGN_WAR}_SURRENDER`;
+        return `${RIVAL_TYPE_CAMPAIGN_WAR}_^_SURRENDER`;
     }
     return null;
 }

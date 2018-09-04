@@ -36,7 +36,7 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
         if (choosingTaskPropsTag === content.profile.tag) {
             return <ChoosingTaskProps
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
-                acceptMsg='BATTLE_CHOOSE_TASK_PROPS'
+                acceptMsg='BATTLE_^_CHOOSE_TASK_PROPS'
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}

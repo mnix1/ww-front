@@ -28,7 +28,7 @@ class BattlePageAnswering extends React.PureComponent {
                 if (!_.isNil(correctAnswerId)) {
                     return;
                 }
-                communication.send('BATTLE_ANSWER' + JSON.stringify({answerId}));
+                communication.send('BATTLE_^_ANSWER' + JSON.stringify({answerId}));
                 onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
             }}
         />;

@@ -3,6 +3,7 @@ import Wisie from "../../../component/wisie/Wisie";
 import Profile from "../../../component/profile/Profile";
 import _ from 'lodash';
 import {connect} from "react-redux";
+import {isTeamMemberWisie} from "../../../util/heroHelper";
 
 class Team extends React.PureComponent {
 
@@ -24,18 +25,27 @@ class Team extends React.PureComponent {
         return screen.wisieImgHeight - 10;
     }
 
-    renderWisies(wisies, activeIndex, presentIndexes) {
-        return wisies.map((e, i) => this.renderWisie(e, i + 1, i + 1 === activeIndex, !_.includes(presentIndexes, i + 1)));
+    renderTeam() {
+        const {team} = this.props;
+        return team.map(this.renderProfileOrWisie);
     }
 
-    renderWisie(wisie, index, active, disabled) {
-        const {renderHobbies, onClick, renderImg, memberClassName} = this.props;
+    renderProfileOrWisie = (teamMember) => {
+        if (isTeamMemberWisie(teamMember)) {
+            return this.renderWisie(teamMember);
+        }
+        return this.renderProfile(teamMember);
+    }
+
+    renderWisie(teamMember) {
+        const wisie = teamMember.content;
+        const {renderHobbies, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
         return <Wisie
-            onClick={() => onClick(index)}
-            disabled={disabled}
+            onClick={() => onClick(teamMember.index)}
+            disabled={!_.includes(presentIndexes, teamMember.index)}
             className={memberClassName}
             key={wisie.type}
-            active={active}
+            active={activeIndex === teamMember.index}
             imgHeight={this.imgHeight}
             renderImg={renderImg}
             renderDetails={true}
@@ -44,25 +54,26 @@ class Team extends React.PureComponent {
             {...wisie}/>;
     }
 
-    renderProfile() {
-        const {profile, onClick, activeIndex, memberClassName, presentIndexes} = this.props;
+    renderProfile(teamMember) {
+        const {onClick, activeIndex, memberClassName, presentIndexes} = this.props;
         return <Profile
-            onClick={() => onClick(0)}
-            disabled={ _.head(presentIndexes) !== 0}
-            active={activeIndex === 0} {...profile}
+            key={teamMember.type}
+            onClick={() => onClick(teamMember.index)}
+            disabled={!_.includes(presentIndexes, teamMember.index)}
+            active={activeIndex === teamMember.index}
+            {...teamMember.content}
             imgHeight={this.imgHeight + 18}
             className={memberClassName}
         />;
     }
 
     render() {
-        const {team, activeIndex, presentIndexes, renderHorizontal, contentClassName, className} = this.props;
+        const {renderHorizontal, contentClassName, className} = this.props;
         const customClassName = `${className} ${renderHorizontal ? 'justifyStart' : ''}`;
         const customContentClassName = `${contentClassName} ${renderHorizontal ? 'flexColumn' : ''}`;
         return <div className={customClassName}>
             <div className={`justifyCenter ${customContentClassName} flexWrap`}>
-                {this.renderProfile()}
-                {this.renderWisies(team, activeIndex, presentIndexes)}
+                {this.renderTeam()}
             </div>
         </div>
     }

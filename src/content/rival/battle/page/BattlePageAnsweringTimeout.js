@@ -12,7 +12,6 @@ class BattlePageAnsweringTimeout extends React.PureComponent {
     renderNoAnswer() {
         const {screen} = this.props;
         return <div className='pageCenterHorizontal whoAnswered'>
-            <div className='pageBackground absoluteBackgroundMix'/>
             <div className='pageCenterVertical'>
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
                 <img alt='' src={thumbDown} height={screen.wisieImgHeight}/>

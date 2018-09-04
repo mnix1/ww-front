@@ -19,7 +19,6 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                 className={chosen ? 'disabled' : ''}
                 memberClassName={chosen ? '' : 'pointer'}
                 onClick={chosen ? _.noop : onTeamClick}
-                profile={content.profile}
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
                 team={content.team}/>

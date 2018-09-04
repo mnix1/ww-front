@@ -29,8 +29,8 @@ class WarPageAnswered extends React.PureComponent {
             meAnswered = !meAnswered;
         }
         return meAnswered
-            ? {profile: content.profile, activeIndex: content.activeIndex, team: content.team}
-            : {profile: content.opponent, activeIndex: content.opponentActiveIndex, team: content.opponentTeam};
+            ? {activeIndex: content.activeIndex, team: content.team}
+            : {activeIndex: content.opponentActiveIndex, team: content.opponentTeam};
     }
 
     renderWhoAnswered() {
@@ -40,7 +40,9 @@ class WarPageAnswered extends React.PureComponent {
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>
                     <ActiveMember
-                        className={this.isCorrectAnswer ? '' : 'wrongAnswer'} {...this.prepareAnsweredProps(true)}/>
+                        className={this.isCorrectAnswer ? '' : 'wrongAnswer'}
+                        {...this.prepareAnsweredProps(true)}
+                    />
                     <div>{getText(TEXT_ANSWERED)}...</div>
                     <div className='result'>
                         {this.isCorrectAnswer
@@ -54,8 +56,9 @@ class WarPageAnswered extends React.PureComponent {
                             </div>}
                     </div>
                 </div>
-                {this.isCorrectAnswer && <div className='opponentWisieFadeOut'><ActiveMember
-                    className='wrongAnswer' {...this.prepareAnsweredProps(false)}/></div>}
+                {this.isCorrectAnswer && <div className='opponentWisieFadeOut'>
+                    <ActiveMember className='wrongAnswer' {...this.prepareAnsweredProps(false)}/>
+                </div>}
             </div>
         </div>
     }

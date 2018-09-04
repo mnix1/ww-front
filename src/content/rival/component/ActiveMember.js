@@ -2,6 +2,7 @@ import React from 'react';
 import Wisie from "../../../component/wisie/Wisie";
 import Profile from "../../../component/profile/Profile";
 import {connect} from "react-redux";
+import {isTeamMemberWisie} from "../../../util/heroHelper";
 
 class ActiveMember extends React.PureComponent {
 
@@ -28,17 +29,18 @@ class ActiveMember extends React.PureComponent {
         </Wisie>;
     }
 
-    renderProfileOrWisie(profile, team, activeIndex) {
-        if (activeIndex === 0) {
-            return this.renderProfile(profile);
+    renderProfileOrWisie(team, activeIndex) {
+        const teamMember = team[activeIndex];
+        if (isTeamMemberWisie(teamMember)) {
+            return this.renderWisie(teamMember.content);
         }
-        return this.renderWisie(team[activeIndex - 1]);
+        return this.renderProfile(teamMember.content);
     }
 
     render() {
-        const {profile, team, activeIndex, className} = this.props;
+        const {team, activeIndex, className} = this.props;
         return <div className={`${className} zIndex1`}>
-            {this.renderProfileOrWisie(profile, team, activeIndex)}
+            {this.renderProfileOrWisie(team, activeIndex)}
         </div>
     }
 }

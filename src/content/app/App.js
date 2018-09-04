@@ -92,7 +92,7 @@ class App extends React.PureComponent {
     componentDidMount() {
         const socket = new CommunicationWebSocket();
         this.props.onInit(socket);
-        this.rivalCommunication = new RivalCommunication(socket);
+        this.rivalCommunication = new RivalCommunication(socket, this);
     }
 
     componentDidUpdate() {

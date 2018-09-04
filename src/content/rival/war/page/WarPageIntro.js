@@ -37,8 +37,9 @@ class WarPageIntro extends React.PureComponent {
     renderTeamBig() {
         const {content, screen} = this.props;
         return <div className='team justifyCenter flexColumn'>
-            <Teams renderElo={isRanking(content)} content={content}><img alt='' src={swordShield}
-                                                                         height={screen.wisieImgHeight}/></Teams>
+            <Teams renderElo={isRanking(content)} content={content}>
+                <img alt='' src={swordShield} height={screen.wisieImgHeight}/>
+            </Teams>
         </div>;
     }
 

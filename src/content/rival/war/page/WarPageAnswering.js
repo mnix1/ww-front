@@ -10,6 +10,7 @@ import ActiveMembers from "../../component/ActiveMembers";
 import Wisie from "../../../../component/wisie/Wisie";
 import Profile from "../../../../component/profile/Profile";
 import WisieActions from "../../../../component/wisie/WisieActions";
+import {isTeamMemberWisie} from "../../../../util/heroHelper";
 
 class WarPageAnswering extends React.PureComponent {
 
@@ -51,30 +52,30 @@ class WarPageAnswering extends React.PureComponent {
         </div>;
     }
 
-    renderTaskNotActive() {
+    renderTaskNotActive(activeMember) {
         const {content, screen} = this.props;
-        const {task, team, activeIndex, opponentTeam, opponentActiveIndex} = content;
+        const {task, opponentTeam, opponentActiveIndex} = content;
+        const opponentActiveMember = opponentTeam[opponentActiveIndex];
         const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
                 <div>
-                    <Wisie imgHeight={imgHeight} {...team[activeIndex - 1]}
+                    <Wisie imgHeight={imgHeight} {...activeMember.content}
                            renderDetails={true} isOwned={true}>
                         <WisieActions actions={content.wisieActions}/>
                     </Wisie>
                 </div>
                 <div>
-                    {opponentActiveIndex === 0
-                        ? <Profile imgHeight={imgHeight + 4} {...content.opponent}/>
-                        : <Wisie imgHeight={imgHeight} {...opponentTeam[opponentActiveIndex - 1]} renderDetails={true}
+                    {isTeamMemberWisie(opponentActiveMember)
+                        ? <Wisie imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
                                  isOwned={true}>
                             <WisieActions actions={content.opponentWisieActions}/>
-                        </Wisie>}
+                        </Wisie>
+                        : <Profile imgHeight={imgHeight + 4} {...opponentActiveMember.content}/>}
                 </div>
             </div>
             <Task
                 screen={{...screen, contentHeight: screen.contentHeight - 40}}
-                // screen={screen}
                 skipAnimation={true}
                 question={task}
                 answers={task.answers}
@@ -84,6 +85,8 @@ class WarPageAnswering extends React.PureComponent {
 
     render() {
         const {content} = this.props;
+        const activeMember = content.team[content.activeIndex];
+        const isMyWisieAnswering = isTeamMemberWisie(activeMember);
         return <div className='pageContent warPageAnswering'>
             <TaskDescription
                 content={content}
@@ -93,7 +96,7 @@ class WarPageAnswering extends React.PureComponent {
             >
                 <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
             </TaskDescription>
-            {content.activeIndex === 0 ? this.renderTaskActive() : this.renderTaskNotActive()}
+            {isMyWisieAnswering ? this.renderTaskNotActive(activeMember) : this.renderTaskActive()}
         </div>;
     }
 }
