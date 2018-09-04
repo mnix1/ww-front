@@ -74,7 +74,7 @@ export default class ProfileBook extends React.PureComponent {
     renderDetails() {
         const {gainCrystal, gainWisdom, gainElixir, type} = this.props;
         return <div className='bookDetails justifyCenter'>
-            <img height={120} alt='' src={getBook(type)}/>
+            <img className='paddingLeftRem' height={120} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside relative justifyBetween flexColumn'>
                 <div className='bookGain justifyBetween flexColumn height100'>
                     {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}
