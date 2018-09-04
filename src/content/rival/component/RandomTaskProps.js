@@ -61,7 +61,6 @@ class RandomTaskProps extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
     }),
     (dispatch) => ({})
 )(RandomTaskProps);
