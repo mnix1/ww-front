@@ -25,6 +25,7 @@ import {
     BATTLE_FAST_ROUTE,
     BATTLE_RANKING_ROUTE,
     BATTLE_ROUTE,
+    CAMPAIGN_ROUTE,
     CAMPAIGN_WAR_ROUTE,
     CHALLENGE_FAST_ROUTE,
     CHALLENGE_FRIEND_ROUTE,
@@ -86,6 +87,7 @@ import SettingsPage from "../settings/SettingsPage";
 import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 import RivalSearchOpponentPage from "../rival/RivalSearchOpponentPage";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
+import CampaignPage from "../campaign/CampaignPage";
 
 class App extends React.PureComponent {
 
@@ -164,7 +166,6 @@ class App extends React.PureComponent {
                 <Route exact path={PLAY_WAR_ROUTE} render={() => <PlayWarPage/>}/>
                 <Route exact path={PLAY_BATTLE_ROUTE} render={() => <PlayBattlePage/>}/>
                 <Route exact path={PLAY_CHALLENGE_ROUTE} render={() => <PlayChallengePage/>}/>
-                {/*<Route exact path={PLAY_TRAINING_ROUTE} render={() => <PlayTrainingPage/>}/>*/}
 
                 <Route exact path={WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
                 <Route exact path={WAR_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
@@ -174,6 +175,7 @@ class App extends React.PureComponent {
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
+                <Route exact path={CAMPAIGN_ROUTE} render={() => <CampaignPage/>}/>
                 <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>

@@ -14,6 +14,7 @@ import Rating from "../rating/Rating";
 import _ from "lodash";
 import {maybeDisabledClassName} from "../../util/style/constant";
 import {RESOURCE_VERY_SMALL} from "../resource/Resource";
+import {getBookLabel} from "../../lang/langBook";
 
 export default class ProfileBook extends React.PureComponent {
 
@@ -21,9 +22,9 @@ export default class ProfileBook extends React.PureComponent {
         isBuyEnable: PropTypes.bool,
         canBuyByGold: PropTypes.bool,
         level: PropTypes.number,
-        gainCrystal: PropTypes.number,
-        gainWisdom: PropTypes.number,
-        gainElixir: PropTypes.number,
+        crystalGain: PropTypes.number,
+        wisdomGain: PropTypes.number,
+        elixirGain: PropTypes.number,
         goldCost: PropTypes.number,
         type: PropTypes.string,
         style: PropTypes.object,
@@ -51,9 +52,9 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderInfo() {
-        const {level, readTime} = this.props;
+        const {level, readTime, type} = this.props;
         return <div className='bookInfo justifyBetween flexColumn'>
-            <div className='justifyCenter'>{getName(this.props)}</div>
+            <div className='justifyCenter'>{getBookLabel(type)}</div>
             <div className='justifyCenter'><Rating value={level / 2}/>
                 <div className='justifyCenter flexColumn marginRem'>
                     <div className='justifyCenter'>
@@ -72,14 +73,14 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderDetails() {
-        const {gainCrystal, gainWisdom, gainElixir, type} = this.props;
+        const {crystalGain, wisdomGain, elixirGain, type} = this.props;
         return <div className='bookDetails justifyCenter'>
             <img className='paddingLeftRem' height={120} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside relative justifyBetween flexColumn'>
                 <div className='bookGain justifyBetween flexColumn height100'>
-                    {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}
-                    {gainWisdom > 0 && <Wisdom>{gainWisdom}</Wisdom>}
-                    {gainElixir > 0 && <Elixir>{gainElixir}</Elixir>}
+                    {crystalGain > 0 && <Crystal>{crystalGain}</Crystal>}
+                    {wisdomGain > 0 && <Wisdom>{wisdomGain}</Wisdom>}
+                    {elixirGain > 0 && <Elixir>{elixirGain}</Elixir>}
                 </div>
             </div>
         </div>;

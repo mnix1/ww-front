@@ -16,7 +16,7 @@ export function noticeReward(reward) {
                 </div>
             </div>
             <div className='justifyEvenly marginRem'>
-                {reward.gainGold && <Gold>{reward.gainGold}</Gold>}
+                {reward.goldGain && <Gold>{reward.goldGain}</Gold>}
                 {reward.bookType && <img alt='' src={getBook(reward.bookType)} height={80}/>}
             </div>
         </div>

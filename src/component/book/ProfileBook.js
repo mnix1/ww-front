@@ -25,6 +25,7 @@ import PropTypes from "prop-types";
 import Rating from "../rating/Rating";
 import {RESOURCE_VERY_SMALL} from "../resource/Resource";
 import _ from 'lodash';
+import {getBookLabel} from "../../lang/langBook";
 
 export default class ProfileBook extends React.PureComponent {
 
@@ -40,9 +41,9 @@ export default class ProfileBook extends React.PureComponent {
         level: PropTypes.number,
         readTime: PropTypes.number,
         alreadyReadInterval: PropTypes.number,
-        gainCrystal: PropTypes.number,
-        gainWisdom: PropTypes.number,
-        gainElixir: PropTypes.number,
+        crystalGain: PropTypes.number,
+        wisdomGain: PropTypes.number,
+        elixirGain: PropTypes.number,
         crystal: PropTypes.number,
         type: PropTypes.string,
         style: PropTypes.object,
@@ -109,9 +110,9 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderInfo() {
-        const {level} = this.props;
+        const {level, type} = this.props;
         return <div className='bookInfo justifyBetween flexColumn'>
-            <div className='justifyCenter'>{getName(this.props)}</div>
+            <div className='justifyCenter'>{getBookLabel(type)}</div>
             <span className='justifyCenter'><Rating value={level / 2}/></span>
         </div>
     }
@@ -126,7 +127,7 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderDetails() {
-        const {canClaimReward, onReadingDone, isInProgress, gainCrystal, gainWisdom, gainElixir, type} = this.props;
+        const {canClaimReward, onReadingDone, isInProgress, crystalGain, wisdomGain, elixirGain, type} = this.props;
         const isFinished = this.isFinished;
         return <div className='bookDetails justifyCenter'>
             <img height={160} alt='' src={getBook(type)}/>
@@ -147,9 +148,9 @@ export default class ProfileBook extends React.PureComponent {
                     </div>
                 </div>
                 <div className='bookGain justifyCenter'>
-                    {gainCrystal > 0 && <Crystal>{gainCrystal}</Crystal>}
-                    {gainWisdom > 0 && <Wisdom>{gainWisdom}</Wisdom>}
-                    {gainElixir > 0 && <Elixir>{gainElixir}</Elixir>}
+                    {crystalGain > 0 && <Crystal>{crystalGain}</Crystal>}
+                    {wisdomGain > 0 && <Wisdom>{wisdomGain}</Wisdom>}
+                    {elixirGain > 0 && <Elixir>{elixirGain}</Elixir>}
                 </div>
             </div>
         </div>;
