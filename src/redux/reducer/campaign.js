@@ -3,7 +3,7 @@ const CAMPAIGN_TYPE_CHANGED = 'campaign/type/changed';
 const CAMPAIGN_DESTINATION_CHANGED = 'campaign/destination/changed';
 
 const initialState = {
-    campaignInit: false,
+    campaignInit: undefined,
     campaignType: undefined,
     campaignDestination: undefined,
 };

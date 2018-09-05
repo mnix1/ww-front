@@ -17,7 +17,7 @@ class CampaignInitFetch extends React.PureComponent {
         this.maybeFetch(prevProps);
         const {campaignInitFetch, init, dispatch} = this.props;
         if (!prevProps.campaignInitFetch.fulfilled && campaignInitFetch.fulfilled && !_.isNil(init)) {
-            dispatch(campaignInitChanged(false));
+            dispatch(campaignInitChanged(undefined));
             if (isRepValueCode1(campaignInitFetch)) {
                 dispatch(goBack());
             }
