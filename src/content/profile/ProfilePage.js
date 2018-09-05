@@ -11,7 +11,7 @@ class ProfilePage extends React.PureComponent {
     renderContent() {
         const {profile} = this.props;
         return <div className='justifyCenter flexColumn'>
-            <div className='justifyBetween'>
+            <div className='justifyEvenly'>
                 <div className='justifyCenter'><AvailableResources/></div>
                 <Profile renderTag className='' {...profile}/>
             </div>

@@ -10,6 +10,7 @@ import shop from "./reducer/shop";
 import screen from "./reducer/screen";
 import wisie from "./reducer/wisie";
 import option from "./reducer/option";
+import campaign from "./reducer/campaign";
 import settings from "./reducer/settings";
 
 const app = combineReducers({
@@ -24,6 +25,7 @@ const app = combineReducers({
     screen,
     option,
     settings,
+    campaign,
     repository: fetchReducer
 });
 

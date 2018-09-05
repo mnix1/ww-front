@@ -1,14 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import CampaignStartFetch from "./CampaignStartFetch";
+import CampaignStartWarFetch from "./CampaignStartWarFetch";
 import {statusChanged} from "../../../redux/reducer/rival";
+import CampaignListFetch from "./CampaignListFetch";
 
 class CampaignFetchContainer extends React.PureComponent {
 
     render() {
         const {path, rivalType, rivalImportance, status} = this.props;
         return <div>
-            <CampaignStartFetch path={path} status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
+            <CampaignListFetch path={path}/>
+            <CampaignStartWarFetch path={path} status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
         </div>;
     }
 }
@@ -19,8 +21,6 @@ export default connect(
         rivalType: state.rival.rivalType,
         rivalImportance: state.rival.rivalImportance,
         path: state.router.location.pathname,
-
-        campaignStartRep: state.repository.campaignStartRep,
     }),
     (dispatch) => ({
         onStatusChange: (status) => {

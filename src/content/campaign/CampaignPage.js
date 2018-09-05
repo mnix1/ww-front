@@ -1,32 +1,42 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
-import AvailableResources from "../../component/resource/AvailableResources";
-import {RESOURCE_SMALL} from "../../component/resource/Resource";
 import MeshBackground from "../../component/background/MeshBackground";
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
-import {
-    RIVAL_IMPORTANCE_FAST,
-    RIVAL_STATUS_START_RANDOM_OPPONENT,
-    RIVAL_TYPE_CAMPAIGN_WAR
-} from "../../util/rivalHelper";
-import {clearRivalStartRandomOpponentFetch} from "../rival/fetch/RivalStartRandomOpponentFetch";
+import {repFulfilled} from "../../util/repositoryHelper";
+import {Loading} from "../../component/loading/Loading";
+import CampaignChoosePropsPage from "./CampaignChoosePropsPage";
+import {CAMPAIGN_ROUTE, CAMPAIGN_TEAM_EDIT_ROUTE} from "../routes";
+import {Route, Switch} from 'react-router'
+import WisieDetailsPage from "../wisie/WisieDetailsPage";
+import WisieTeamPage from "../wisie/WisieTeamPage";
+import WisieListPage from "../wisie/WisieListPage";
 
 class CampaignPage extends React.PureComponent {
 
-    renderContent() {
-        return <div>
+    renderContentChooseProps() {
+        const {campaignListRep} = this.props;
+        if (!repFulfilled(campaignListRep)) {
+            return <Loading/>;
+        }
+        return <div className='pageContent overflowAuto'><CampaignChoosePropsPage/></div>;
+    }
 
-        </div>
+    renderContentTeamEdit() {
+        return <div className='pageContent overflowAuto'>
+            <WisieDetailsPage edit={true}/>
+            <WisieTeamPage edit={true}/>
+            <WisieListPage edit={true}/>
+        </div>;
     }
 
     render() {
         const {screen} = this.props;
         return <div className='page campaignPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
             <MeshBackground/>
-            <div className='pageContent overflowAuto'>
-                {this.renderContent()}
-            </div>
+            <Switch>
+                <Route exact path={CAMPAIGN_ROUTE} render={() => this.renderContentChooseProps()}/>
+                <Route exact path={CAMPAIGN_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
+            </Switch>
         </div>;
     }
 }
@@ -35,14 +45,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
+        campaignListRep: state.repository.campaignList,
     }),
-    (dispatch) => ({
-        onStartClick: () => {
-            clearRivalStartRandomOpponentFetch(dispatch);
-            dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_CAMPAIGN_WAR));
-            dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
-        },
-    })
+    (dispatch) => ({})
 )(CampaignPage);

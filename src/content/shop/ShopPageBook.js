@@ -13,12 +13,13 @@ import {checkRepValueCode} from "../../util/responseHelper";
 import Rating from "../../component/rating/Rating";
 import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
+import {repFulfilled} from "../../util/repositoryHelper";
 
 class ShopPageBook extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         const {shopBuyBookRep} = this.props;
-        if (!shopBuyBookRep || !shopBuyBookRep.fulfilled) {
+        if (!repFulfilled(shopBuyBookRep)) {
             return;
         }
         if (prevProps.shopBuyBookRep && prevProps.shopBuyBookRep.fulfilled) {

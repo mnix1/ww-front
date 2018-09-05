@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 import {getBook} from "../../util/bookHelper";
 import {
-    getName,
     getText,
     TEXT_CLAIM_REWARD,
     TEXT_DISCARD,

@@ -29,6 +29,9 @@
 .blackBackground {
     background: #111;
 }
+.active {
+    background: rgb(40, 121, 218) !important;
+}
 
 .pointer {
     cursor: pointer;

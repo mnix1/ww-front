@@ -121,10 +121,17 @@ export const TEXT_CHANGE_WISOR= 'TEXT_CHANGE_WISOR';
 export const TEXT_FILTER= 'TEXT_FILTER';
 export const TEXT_RANKING= 'TEXT_RANKING';
 export const TEXT_READ_NOW= 'TEXT_READ_NOW';
+export const TEXT_START= 'TEXT_START';
+export const TEXT_CHOOSE_TYPE= 'TEXT_CHOOSE_TYPE';
+export const TEXT_CHOOSE_DESTINATION= 'TEXT_CHOOSE_DESTINATION';
+export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_CHOOSE_TEAM]: 'Wybór drużyny',
+        [TEXT_CHOOSE_TYPE]: 'Wybierz typ',
+        [TEXT_CHOOSE_DESTINATION]: 'Wybierz cel',
         [TEXT_READ_NOW]: 'Przyspiesz',
         [TEXT_RANKING]: 'Ranking',
         [TEXT_FILTER]: 'filtr',
@@ -244,9 +251,13 @@ const TEXTS = {
         [TEXT_YOU]: 'Ty',
         [TEXT_NO_ANSWER]: 'Nie udzielono odpowiedzi',
         [TEXT_REWARD]: 'Nagroda',
+        [TEXT_START]: 'Rozpocznij',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_CHOOSE_TEAM]: 'Choose team',
+        [TEXT_CHOOSE_TYPE]: 'Choose type',
+        [TEXT_CHOOSE_DESTINATION]: 'Choose destination',
         [TEXT_READ_NOW]: 'Read now',
         [TEXT_RANKING]: 'Ranking',
         [TEXT_FILTER]: 'filter',
@@ -364,6 +375,7 @@ const TEXTS = {
         [TEXT_YOU]: 'You',
         [TEXT_NO_ANSWER]: 'No answer',
         [TEXT_REWARD]: 'Reward',
+        [TEXT_START]: 'Start',
     },
 };
 

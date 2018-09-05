@@ -23,7 +23,3 @@
 .profile .tag {
     font-size: 0.8em;
 }
-
-.profileContainer.active {
-    background: rgb(40, 121, 218) !important;
-}

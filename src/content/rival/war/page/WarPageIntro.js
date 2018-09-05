@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText, TEXT_WAR} from "../../../../lang/langText";
-import RandomTaskProps from "../../component/RandomTaskProps";
 import Teams from "../../component/Teams";
 import {isRanking} from "../../../../util/rivalHelper";
 

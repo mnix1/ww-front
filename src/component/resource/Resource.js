@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import {ORANGE_COLOR, RED_COLOR} from "../../util/style/constant";
+import {ORANGE_COLOR} from "../../util/style/constant";
 
 export const RESOURCE_VERY_SMALL = 'resourceVerySmall';
 export const RESOURCE_SMALL = 'resourceSmall';

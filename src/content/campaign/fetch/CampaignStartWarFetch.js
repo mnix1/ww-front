@@ -6,7 +6,7 @@ import {CAMPAIGN_WAR_ROUTE} from "../../routes";
 import {isRepValueCode1} from "../../../util/responseHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
 
-class CampaignStartFetch extends React.PureComponent {
+class CampaignStartWarFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -14,9 +14,9 @@ class CampaignStartFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {campaignStartFetch, dispatch, status} = this.props;
-        if (!prevProps.campaignStartFetch.fulfilled && campaignStartFetch.fulfilled && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
-            if (isRepValueCode1(campaignStartFetch)) {
+        const {campaignStartWarFetch, dispatch, status} = this.props;
+        if (!prevProps.campaignStartWarFetch.fulfilled && campaignStartWarFetch.fulfilled && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
+            if (isRepValueCode1(campaignStartWarFetch)) {
                 dispatch(statusChanged(RIVAL_STATUS_WAITING_RANDOM_OPPONENT));
             }
         }
@@ -41,14 +41,14 @@ class CampaignStartFetch extends React.PureComponent {
 }
 
 export function clearCampaignStartFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'campaignStart'}});
+    dispatch({type: CLEAR, resource: {name: 'campaignStartWar'}});
 }
 
 export default connect([{
-    resource: 'campaignStart',
+    resource: 'campaignStartWar',
     method: 'post',
     request: (type, importance) => ({
         url: `/campaign/start`,
         body: {type, importance}
     })
-}])(CampaignStartFetch);
+}])(CampaignStartWarFetch);

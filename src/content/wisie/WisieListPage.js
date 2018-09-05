@@ -13,6 +13,7 @@ import {Button} from "../../component/button/Button";
 import FaPlusCircle from "react-icons/lib/fa/plus-circle";
 import FaMinusCircle from "react-icons/lib/fa/minus-circle";
 import MdDescription from 'react-icons/lib/md/description';
+import {repFulfilled} from "../../util/repositoryHelper";
 
 class WisieListPage extends React.PureComponent {
 
@@ -85,7 +86,7 @@ class WisieListPage extends React.PureComponent {
 
     render() {
         const {wisieListRep, edit, profileWisieListRep, profileWisies, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
-        if (!wisieListRep || !wisieListRep.fulfilled || !profileWisieListRep || !profileWisieListRep.fulfilled) {
+        if (!repFulfilled(wisieListRep) || !repFulfilled(profileWisieListRep)) {
             return <Loading/>;
         }
         const ownedWisiesMap = _.keyBy(profileWisies, 'type');
