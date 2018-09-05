@@ -60,12 +60,12 @@ class CampaignChoosePropsPage extends React.PureComponent {
     }
 
     renderCampaignType = (campaign) => {
-        const {campaignType, onTypeChanged} = this.props;
+        const {campaignType, campaignDestination, onTypeChanged} = this.props;
         const customClassName = campaignType === campaign.type ? 'active' : '';
         return <div
             key={campaign.type}
             className={`marginRem paddingRem relative boxShadow justifyCenter pointer flexColumn ${customClassName}`}
-            onClick={() => onTypeChanged(campaign.type)}
+            onClick={() => onTypeChanged(campaign.type, campaignDestination)}
         >
             {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
@@ -183,9 +183,11 @@ export default connect(
         campaignListRep: state.repository.campaignList,
     }),
     (dispatch) => ({
-        onTypeChanged: type => {
+        onTypeChanged: (type, destination) => {
             dispatch(campaignTypeChanged(type));
-            dispatch(campaignDestinationChanged(undefined));
+            if(destination){
+                dispatch(campaignDestinationChanged(undefined));
+            }
         },
         onDestinationChanged: destination => dispatch(campaignDestinationChanged(destination)),
         onChooseTeamClick: () => dispatch(push(CAMPAIGN_TEAM_EDIT_ROUTE)),

@@ -10,6 +10,7 @@ import {Route, Switch} from 'react-router'
 import WisieDetailsPage from "../wisie/WisieDetailsPage";
 import WisieTeamPage from "../wisie/WisieTeamPage";
 import WisieListPage from "../wisie/WisieListPage";
+import {campaignInitChanged} from "../../redux/reducer/campaign";
 
 class CampaignPage extends React.PureComponent {
 
@@ -22,9 +23,10 @@ class CampaignPage extends React.PureComponent {
     }
 
     renderContentTeamEdit() {
+        const {onCampaignInitChange} = this.props;
         return <div className='pageContent overflowAuto'>
             <WisieDetailsPage edit={true}/>
-            <WisieTeamPage edit={true}/>
+            <WisieTeamPage edit={true} onTeamSaveClick={() => onCampaignInitChange(true)}/>
             <WisieListPage edit={true}/>
         </div>;
     }
@@ -47,5 +49,7 @@ export default connect(
         path: state.router.location.pathname,
         campaignListRep: state.repository.campaignList,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onCampaignInitChange: (init) => dispatch(campaignInitChanged(init))
+    })
 )(CampaignPage);

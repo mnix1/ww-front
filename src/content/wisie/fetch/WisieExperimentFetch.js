@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {experimentChanged} from "../../../redux/reducer/wisie";
-import {isRepValueCode1} from "../../../util/responseHelper";
+import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {clearProfileWisieListFetch} from "./ProfileWisieListFetch";
 import {clearProfileFetch} from "../../app/ProfileFetch";
 import {noticeExperiment} from "../../../component/notification/noticeExperiment";

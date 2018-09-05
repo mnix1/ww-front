@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_STATUS_WAITING_RANDOM_OPPONENT} from "../../../util/rivalHelper";
 import {CAMPAIGN_WAR_ROUTE} from "../../routes";
-import {isRepValueCode1} from "../../../util/responseHelper";
+import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
 
 class CampaignStartWarFetch extends React.PureComponent {

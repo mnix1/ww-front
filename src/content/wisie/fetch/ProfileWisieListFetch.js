@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CAMPAIGN_TEAM_EDIT_ROUTE, WISIES_ROUTE} from "../../routes";
 import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
-import {profileWisiesChanged} from "../../../redux/reducer/wisie";
+import {profileWisiesChanged, teamChanged} from "../../../redux/reducer/wisie";
 
 class ProfileWisieListFetch extends React.PureComponent {
 
@@ -16,6 +16,7 @@ class ProfileWisieListFetch extends React.PureComponent {
         const {profileWisieListFetch, dispatch} = this.props;
         if (!prevProps.profileWisieListFetch.fulfilled && profileWisieListFetch.fulfilled) {
             dispatch(profileWisiesChanged(profileWisieListFetch.value));
+            dispatch(teamChanged(profileWisieListFetch.value.filter(e => e.inTeam)));
         }
     }
 
@@ -26,7 +27,7 @@ class ProfileWisieListFetch extends React.PureComponent {
     maybeFetch(prevProps) {
         const {path, profileWisieListFetch, dispatchProfileWisieListGet} = this.props;
         if (fetchOnPathAndIfNotExists(prevProps.path, path, WISIES_ROUTE, prevProps.profileWisieListFetch, profileWisieListFetch)
-            // || fetchOnPathAndIfNotExists(prevProps.path, path, CAMPAIGN_TEAM_EDIT_ROUTE, prevProps.profileWisieListFetch, profileWisieListFetch)
+            || fetchOnPathAndIfNotExists(prevProps.path, path, CAMPAIGN_TEAM_EDIT_ROUTE, prevProps.profileWisieListFetch, profileWisieListFetch)
         ) {
             dispatchProfileWisieListGet();
         }

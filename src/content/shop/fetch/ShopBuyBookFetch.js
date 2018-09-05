@@ -6,7 +6,7 @@ import _ from 'lodash';
 import {buyBookIdChanged} from "../../../redux/reducer/shop";
 import {clearProfileFetch} from "../../app/ProfileFetch";
 import {noticeBuy} from "../../../component/notification/noticeBuy";
-import {isRepValueCode1} from "../../../util/responseHelper";
+import {isRepValueCode1} from "../../../util/repositoryHelper";
 
 class ShopBuyBookFetch extends React.PureComponent {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {teamSaveChanged} from "../../../redux/reducer/wisie";
-import {isRepValueCode1} from "../../../util/responseHelper";
+import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {noticeSuccess} from "../../../component/notification/noticeSuccess";
 import {SUCCESS_TEAM_SAVED} from "../../../lang/langSuccess";
 import {goBack} from "connected-react-router";

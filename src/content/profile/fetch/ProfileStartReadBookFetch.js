@@ -4,7 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
 import {startReadBookIdChanged} from "../../../redux/reducer/profile";
-import {checkRepValueCode} from "../../../util/responseHelper";
+import {checkRepValueCode} from "../../../util/repositoryHelper";
 import {noticeError} from "../../../component/notification/noticeError";
 import {ERROR_READING_ANHOTHER_BOOK} from "../../../lang/langError";
 

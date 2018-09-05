@@ -9,7 +9,7 @@ import ShopBook from "../../component/book/ShopBook";
 import {bookFilterLevelChanged, buyBookIdChanged, showBooksChanged} from "../../redux/reducer/shop";
 import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../lang/langError";
 import {noticeError} from "../../component/notification/noticeError";
-import {checkRepValueCode} from "../../util/responseHelper";
+import {checkRepValueCode} from "../../util/repositoryHelper";
 import Rating from "../../component/rating/Rating";
 import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
 import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";

@@ -43,7 +43,7 @@ class WisieTeamPage extends React.PureComponent {
         const {onTeamEditClick, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
         if (!edit) {
             return <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW}
-                           onClick={() => onTeamEditClick(inTeamWisies)}
+                           onClick={onTeamEditClick}
                            icon={<FaEdit size={16}/>}>{getText(TEXT_EDIT)}</Button>;
         }
         const saveDisabled = inTeamWisies.length !== WISIE_TEAM_COUNT;
@@ -94,8 +94,7 @@ export default connect(
     }),
     (dispatch) => ({
         onWisieDetailsClick: (wisie) => dispatch(wisieDetailsChanged(wisie)),
-        onTeamEditClick: (team) => {
-            dispatch(teamChanged(team));
+        onTeamEditClick: () => {
             dispatch(push(WISIES_TEAM_EDIT_ROUTE));
         },
         onRouteBack: () => {
@@ -112,5 +111,10 @@ export default connect(
             const newTeam = team.filter(e => e.id !== wisie.id);
             dispatch(teamChanged(newTeam))
         }
+    }),
+    (stateProps, dispatchProps, ownProps) => ({
+        ...stateProps,
+        ...dispatchProps,
+        ...ownProps,
     })
 )(WisieTeamPage);
