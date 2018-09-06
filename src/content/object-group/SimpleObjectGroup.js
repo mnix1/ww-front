@@ -5,6 +5,7 @@ import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {objectFontSize} from "../../component/object-group/objectHelper";
 import './styles.css';
+import {remToPixels} from "../../util/fontHelper";
 
 export default class SimpleObjectGroup extends React.PureComponent {
 
@@ -62,7 +63,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
                         <span style={{zIndex: 1}}>{getCategoryLabel([o.id])}</span>
-                        <img alt='' src={o.imgSrc} height={objectHeight / 1.7}/>
+                        {/*<img alt='' src={o.imgSrc} height={objectHeight / 1.7}/>*/}
+                        <img alt='' src={o.imgSrc} height={objectHeight - remToPixels(2)}/>
                     </div>,
                     rendererTransformer: rendererTransformerCreator(o),
                     objectStyle
