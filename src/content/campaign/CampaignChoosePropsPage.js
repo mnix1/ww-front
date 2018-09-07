@@ -190,13 +190,6 @@ export default connect(
             }
         },
         onDestinationChanged: destination => dispatch(campaignDestinationChanged(destination)),
-        onChooseTeamClick: () => dispatch(push(CAMPAIGN_TEAM_EDIT_ROUTE)),
-        // onStartClick: () => {
-        //     clearRivalStartRandomOpponentFetch(dispatch);
-        //     dispatch(rivalCleared());
-        //     dispatch(rivalTypeChanged(RIVAL_TYPE_CAMPAIGN_WAR));
-        //     dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-        //     dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
-        // },
+        onChooseTeamClick: () => dispatch(push(CAMPAIGN_TEAM_EDIT_ROUTE))
     })
 )(CampaignChoosePropsPage);

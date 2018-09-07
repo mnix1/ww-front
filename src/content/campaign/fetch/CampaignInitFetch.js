@@ -6,6 +6,8 @@ import _ from 'lodash';
 import {campaignInitChanged} from "../../../redux/reducer/campaign";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {goBack} from "connected-react-router";
+import {getName} from "../../../lang/langText";
+import {getWisie} from "../../../util/wisieHelper";
 
 class CampaignInitFetch extends React.PureComponent {
 
@@ -29,12 +31,17 @@ class CampaignInitFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, type, destination, init, team, dispatchCampaignInitPost} = this.props;
+        const {path, type, destination, init, dispatchCampaignInitPost} = this.props;
         if (path === CAMPAIGN_TEAM_EDIT_ROUTE
             && !_.isNil(init)
             && (prevProps.path !== path || prevProps.init !== init)) {
-            dispatchCampaignInitPost(type, destination, team.map(e => e.id));
+            dispatchCampaignInitPost(type, destination, this.prepareIds());
         }
+    }
+
+    prepareIds(){
+        const {wisieListRep, team} = this.props;
+        return _.sortBy(team, e => getName(wisieListRep.value.find(w => w.type === e.type))).map(e => e.id);
     }
 
     render() {

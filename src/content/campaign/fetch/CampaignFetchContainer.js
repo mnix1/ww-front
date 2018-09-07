@@ -9,11 +9,11 @@ import CampaignInitFetch from "./CampaignInitFetch";
 class CampaignFetchContainer extends React.PureComponent {
 
     render() {
-        const {path, campaignInit, campaignType,team, campaignDestination, rivalType, rivalImportance, status} = this.props;
+        const {path, campaignInit, campaignType,team,wisieListRep, campaignDestination, rivalType, rivalImportance, status} = this.props;
         return <div>
             <CampaignActiveFetch path={path}/>
             <CampaignListFetch path={path}/>
-            <CampaignInitFetch path={path} team={team} type={campaignType} destination={campaignDestination} init={campaignInit}/>
+            <CampaignInitFetch path={path} team={team} wisieListRep={wisieListRep} type={campaignType} destination={campaignDestination} init={campaignInit}/>
             <CampaignStartWarFetch path={path} status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
         </div>;
     }
@@ -24,6 +24,7 @@ export default connect(
         campaignInit: state.campaign.campaignInit,
         campaignType: state.campaign.campaignType,
         campaignDestination: state.campaign.campaignDestination,
+        wisieListRep: state.repository.wisieList,
         team: state.wisie.team,
         status: state.rival.status,
         rivalType: state.rival.rivalType,

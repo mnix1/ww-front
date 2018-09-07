@@ -27,11 +27,11 @@ class CampaignStartWarFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, rivalType, rivalImportance, status, dispatchCampaignStartPost} = this.props;
+        const {path, rivalType, rivalImportance, status, dispatchCampaignStartWarPost} = this.props;
         if (path === CAMPAIGN_WAR_ROUTE
             && prevProps.status !== status
             && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
-            dispatchCampaignStartPost(rivalType, rivalImportance);
+            dispatchCampaignStartWarPost(rivalType, rivalImportance);
         }
     }
 
