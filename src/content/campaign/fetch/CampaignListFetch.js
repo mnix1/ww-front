@@ -14,7 +14,7 @@ class CampaignListFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearCampaignListsFetch(this.props.dispatch);
+        clearCampaignListFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
@@ -29,7 +29,7 @@ class CampaignListFetch extends React.PureComponent {
     }
 }
 
-export function clearCampaignListsFetch(dispatch) {
+export function clearCampaignListFetch(dispatch) {
     dispatch({type: CLEAR, resource: {name: 'campaignList'}});
 }
 

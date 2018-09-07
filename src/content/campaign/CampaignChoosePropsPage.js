@@ -48,7 +48,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
                 <div className='paddingTopRem justifyCenter flexColumn'>
                     <div className='justifyCenter'>{getText(TEXT_CHOOSE_TYPE)}</div>
                     <div className='justifyBetween'>
-                        {_.uniqBy(campaignListRep.value.campaigns, 'type').map(this.renderCampaignType)}
+                        {_.uniqBy(campaignListRep.value, 'type').map(this.renderCampaignType)}
                     </div>
                 </div>
             </div>
@@ -69,7 +69,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
         >
             {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
-                <div className='justifyCenter'><span className='justifyCenter'>{getCampaignLabel(campaign.type)}</span>
+                <div className='justifyCenter'><span className='justifyCenter'>{getCampaignLabel(campaign.type, 'label')}</span>
                 </div>
                 <div className='justifyCenter'><img alt='' src={getCampaignImg(campaign.type)} height={this.imgHeight}/>
                 </div>
@@ -87,7 +87,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
 
             <div className='justifyCenter'>{getText(TEXT_CHOOSE_DESTINATION)}</div>
             <div className='justifyCenter'>
-                {_.filter(campaignListRep.value.campaigns, e => e.type === campaignType).map(this.renderCampaignDestination)}
+                {_.filter(campaignListRep.value, e => e.type === campaignType).map(this.renderCampaignDestination)}
             </div>
         </div>
     }
@@ -102,7 +102,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
         >
             {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
-                <div className='justifyCenter'>{getCampaignLabel(campaign.type, campaign.destination)}</div>
+                <div className='justifyCenter'>{getCampaignLabel(campaign.type, campaign.destination, 'label')}</div>
                 <div className='justifyCenter'><Rating value={campaign.rating / 2}/></div>
                 <div className='justifyCenter'>
                     <img alt='' src={getCampaignImg(campaign.type, campaign.destination)} height={this.imgHeight}/>
@@ -116,7 +116,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
         if (campaignType === undefined || campaignDestination === undefined) {
             return null;
         }
-        const campaign = campaignListRep.value.campaigns.find(e => e.type === campaignType && e.destination === campaignDestination);
+        const campaign = campaignListRep.value.find(e => e.type === campaignType && e.destination === campaignDestination);
         const disabled = campaign.goldCost > profile.gold
             || campaign.crystalCost > profile.crystal
             || campaign.wisdomCost > profile.wisdom

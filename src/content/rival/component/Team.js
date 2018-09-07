@@ -35,7 +35,7 @@ class Team extends React.PureComponent {
             return this.renderWisie(teamMember);
         }
         return this.renderProfile(teamMember);
-    }
+    };
 
     renderWisie(teamMember) {
         const wisie = teamMember.content;

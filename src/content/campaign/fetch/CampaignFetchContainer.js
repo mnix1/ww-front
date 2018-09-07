@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import CampaignStartWarFetch from "./CampaignStartWarFetch";
 import {statusChanged} from "../../../redux/reducer/rival";
 import CampaignListFetch from "./CampaignListFetch";
+import CampaignActiveFetch from "./CampaignActiveFetch";
 import CampaignInitFetch from "./CampaignInitFetch";
 
 class CampaignFetchContainer extends React.PureComponent {
@@ -10,6 +11,7 @@ class CampaignFetchContainer extends React.PureComponent {
     render() {
         const {path, campaignInit, campaignType,team, campaignDestination, rivalType, rivalImportance, status} = this.props;
         return <div>
+            <CampaignActiveFetch path={path}/>
             <CampaignListFetch path={path}/>
             <CampaignInitFetch path={path} team={team} type={campaignType} destination={campaignDestination} init={campaignInit}/>
             <CampaignStartWarFetch path={path} status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>

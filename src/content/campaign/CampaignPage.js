@@ -11,8 +11,25 @@ import WisieDetailsPage from "../wisie/WisieDetailsPage";
 import WisieTeamPage from "../wisie/WisieTeamPage";
 import WisieListPage from "../wisie/WisieListPage";
 import {campaignInitChanged} from "../../redux/reducer/campaign";
+import _ from 'lodash';
+import CampaignActivePage from "./CampaignActivePage";
 
 class CampaignPage extends React.PureComponent {
+
+    renderContent() {
+        const {campaignActiveRep} = this.props;
+        if (!repFulfilled(campaignActiveRep)) {
+            return <Loading/>;
+        }
+        if (_.isNil(campaignActiveRep.value)) {
+            return this.renderContentChooseProps();
+        }
+        return this.renderContentActive();
+    }
+
+    renderContentActive() {
+        return <div className='pageContent overflowAuto'><CampaignActivePage/></div>;
+    }
 
     renderContentChooseProps() {
         const {campaignListRep} = this.props;
@@ -36,7 +53,7 @@ class CampaignPage extends React.PureComponent {
         return <div className='page campaignPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
             <MeshBackground/>
             <Switch>
-                <Route exact path={CAMPAIGN_ROUTE} render={() => this.renderContentChooseProps()}/>
+                <Route exact path={CAMPAIGN_ROUTE} render={() => this.renderContent()}/>
                 <Route exact path={CAMPAIGN_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
             </Switch>
         </div>;
@@ -48,6 +65,7 @@ export default connect(
         screen: state.screen,
         path: state.router.location.pathname,
         campaignListRep: state.repository.campaignList,
+        campaignActiveRep: state.repository.campaignActive,
     }),
     (dispatch) => ({
         onCampaignInitChange: (init) => dispatch(campaignInitChanged(init))
