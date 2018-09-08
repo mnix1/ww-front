@@ -17,8 +17,8 @@ import CampaignActivePage from "./CampaignActivePage";
 class CampaignPage extends React.PureComponent {
 
     renderContent() {
-        const {campaignActiveRep} = this.props;
-        if (!repFulfilled(campaignActiveRep)) {
+        const {campaignActiveRep, campaignListRep} = this.props;
+        if (!repFulfilled(campaignActiveRep) || !repFulfilled(campaignListRep)) {
             return <Loading/>;
         }
         if (_.isNil(campaignActiveRep.value)) {
@@ -32,10 +32,6 @@ class CampaignPage extends React.PureComponent {
     }
 
     renderContentChooseProps() {
-        const {campaignListRep} = this.props;
-        if (!repFulfilled(campaignListRep)) {
-            return <Loading/>;
-        }
         return <div className='pageContent overflowAuto'><CampaignChoosePropsPage/></div>;
     }
 

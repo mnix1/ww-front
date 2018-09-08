@@ -7,7 +7,6 @@ import {campaignInitChanged} from "../../../redux/reducer/campaign";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {goBack} from "connected-react-router";
 import {getName} from "../../../lang/langText";
-import {getWisie} from "../../../util/wisieHelper";
 
 class CampaignInitFetch extends React.PureComponent {
 

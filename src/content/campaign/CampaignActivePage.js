@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import {getCampaignLabel} from "../../lang/langCampaign";
-import {getText, TEXT_START, TEXT_YOUR_TEAM} from "../../lang/langText";
+import {getText, TEXT_EXIT, TEXT_START, TEXT_YOUR_TEAM} from "../../lang/langText";
 import _ from 'lodash';
 import cn from 'classnames';
 import check from '../../media/image/icon/check.svg';
@@ -17,6 +17,13 @@ import {
     RIVAL_TYPE_CAMPAIGN_WAR
 } from "../../util/rivalHelper";
 import {CAMPAIGN_WAR_ROUTE} from "../routes";
+import {campaignCloseChanged} from "../../redux/reducer/campaign";
+import IoAndroidExit from 'react-icons/lib/io/android-exit';
+import Gold from "../../component/resource/Gold";
+import Crystal from "../../component/resource/Crystal";
+import Wisdom from "../../component/resource/Wisdom";
+import Elixir from "../../component/resource/Elixir";
+import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 
 class CampaignActivePage extends React.PureComponent {
 
@@ -32,7 +39,7 @@ class CampaignActivePage extends React.PureComponent {
         const active = phase === e;
         const disabled = phase < e;
         const done = phase > e;
-        const className = cn('marginRem paddingRem boxShadow', {active, disabled});
+        const className = cn('relative marginRem paddingRem boxShadow', {active, disabled});
         return <div key={e} className={className}>
             <div>{getCampaignLabel(type, destination, e)}</div>
             {done && <div className='absoluteBackgroundMix opacity1 zIndex1'>
@@ -47,8 +54,39 @@ class CampaignActivePage extends React.PureComponent {
     }
 
     renderStart() {
+        const {status} = this.props.campaignActiveRep.value;
+        if (status !== 'IN_PROGRESS') {
+            return null;
+        }
         const {onStartClick} = this.props;
         return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}>{getText(TEXT_START)}</Button>
+    }
+
+    renderEnd() {
+        const {onEndClick} = this.props;
+        const {status, phases, phase} = this.props.campaignActiveRep.value;
+        if (status !== 'FINISHED') {
+            return null;
+        }
+        const content = <div className='justifyCenter'>
+            {phase >= phases && <div>
+                {this.renderReward()}
+            </div>}
+            <div className='justifyCenter flexColumn'>{getText(TEXT_EXIT)}</div>
+        </div>;
+        return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEndClick}
+                       icon={<IoAndroidExit/>}>{content}</Button>
+    }
+
+    renderReward() {
+        const {destination, type} = this.props.campaignActiveRep.value;
+        const campaign = this.props.campaignListRep.value.find(e => e.type === type && e.destination === destination);
+        return <div className='justifyCenter'>
+            {campaign.goldGain > 0 && <Gold size={RESOURCE_VERY_SMALL}>{campaign.goldGain}</Gold>}
+            {campaign.crystalGain > 0 && <Crystal size={RESOURCE_VERY_SMALL}>{campaign.crystalGain}</Crystal>}
+            {campaign.wisdomGain > 0 && <Wisdom size={RESOURCE_VERY_SMALL}>{campaign.wisdomGain}</Wisdom>}
+            {campaign.elixirGain > 0 && <Elixir size={RESOURCE_VERY_SMALL}>{campaign.elixirGain}</Elixir>}
+        </div>
     }
 
     render() {
@@ -57,6 +95,7 @@ class CampaignActivePage extends React.PureComponent {
             <div className='justifyCenter'>{getText(TEXT_YOUR_TEAM)}</div>
             {this.renderTeam()}
             <div className='justifyCenter'>{this.renderStart()}</div>
+            <div className='justifyCenter'>{this.renderEnd()}</div>
         </div>;
     }
 }
@@ -77,6 +116,9 @@ export default connect(
             dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
             dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
             dispatch(push(CAMPAIGN_WAR_ROUTE));
+        },
+        onEndClick: () => {
+            dispatch(campaignCloseChanged(true));
         },
     })
 )(CampaignActivePage);

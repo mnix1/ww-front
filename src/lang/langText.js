@@ -122,6 +122,7 @@ export const TEXT_FILTER= 'TEXT_FILTER';
 export const TEXT_RANKING= 'TEXT_RANKING';
 export const TEXT_READ_NOW= 'TEXT_READ_NOW';
 export const TEXT_START= 'TEXT_START';
+export const TEXT_EXIT= 'TEXT_EXIT';
 export const TEXT_CHOOSE_TYPE= 'TEXT_CHOOSE_TYPE';
 export const TEXT_CHOOSE_DESTINATION= 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
@@ -129,6 +130,7 @@ export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_EXIT]: 'Wyjście',
         [TEXT_CHOOSE_TEAM]: 'Wybór drużyny',
         [TEXT_CHOOSE_TYPE]: 'Wybierz typ',
         [TEXT_CHOOSE_DESTINATION]: 'Wybierz cel',
@@ -255,6 +257,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_EXIT]: 'Exit',
         [TEXT_CHOOSE_TEAM]: 'Choose team',
         [TEXT_CHOOSE_TYPE]: 'Choose type',
         [TEXT_CHOOSE_DESTINATION]: 'Choose destination',
