@@ -74,7 +74,7 @@ const WISIE = {
     'KANGAROO': kangaroo,
     'LAMPARD': lampard,
     'LION': lion,
-    'OCTOPUS': octopus,
+    // 'OCTOPUS': octopus,
     'OSTRICH': ostrich,
     'OWL': owl,
     'PANDA_EAT': pandaEat,

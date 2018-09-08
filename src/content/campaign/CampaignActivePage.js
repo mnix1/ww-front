@@ -19,6 +19,7 @@ import {
 import {CAMPAIGN_WAR_ROUTE} from "../routes";
 import {campaignCloseChanged} from "../../redux/reducer/campaign";
 import IoAndroidExit from 'react-icons/lib/io/android-exit';
+import IoPlay from 'react-icons/lib/io/play';
 import Gold from "../../component/resource/Gold";
 import Crystal from "../../component/resource/Crystal";
 import Wisdom from "../../component/resource/Wisdom";
@@ -59,7 +60,8 @@ class CampaignActivePage extends React.PureComponent {
             return null;
         }
         const {onStartClick} = this.props;
-        return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}>{getText(TEXT_START)}</Button>
+        return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}
+                       icon={<IoPlay/>}>{getText(TEXT_START)}</Button>
     }
 
     renderEnd() {
