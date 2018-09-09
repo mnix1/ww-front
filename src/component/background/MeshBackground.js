@@ -1,20 +1,14 @@
 import {connect} from "react-redux";
 import React from "react";
 import PropTypes from 'prop-types';
-import mesh3 from '../../media/image/background/mesh3.svg';
 import mesh4 from '../../media/image/background/mesh4.svg';
-import mesh10 from '../../media/image/background/mesh10.svg';
 import mesh7 from '../../media/image/background/mesh7.svg';
 
-export const MESH_1 = 'MESH_1';
 export const MESH_2 = 'MESH_2';
-export const MESH_3 = 'MESH_3';
 export const MESH_4 = 'MESH_4';
 
 const MESHES = {
-    [MESH_1]: mesh3,
     [MESH_2]: mesh4,
-    [MESH_3]: mesh10,
     [MESH_4]: mesh7,
 };
 

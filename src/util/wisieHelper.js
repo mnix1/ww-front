@@ -43,8 +43,20 @@ import frog from '../media/image/wisie/frog.svg';
 import owl from '../media/image/wisie/owl.png';
 import penguin from '../media/image/wisie/penguin.svg';
 import walrus from '../media/image/wisie/walrus.svg';
+import octopus from '../media/image/wisie/octopus.png';
+import stork from '../media/image/wisie/stork.svg';
+import chick from '../media/image/wisie/chick.svg';
+import elephantChild from '../media/image/wisie/elephantChild.svg';
+import owlHappy from '../media/image/wisie/owlHappy.svg';
+import alligator from '../media/image/wisie/alligator.png';
+import giraffe from '../media/image/wisie/giraffe.png';
+import koala from '../media/image/wisie/koala.svg';
+import monkey from '../media/image/wisie/monkey.png';
+import raccoonBrown from '../media/image/wisie/raccoonBrown.png';
+import worm from '../media/image/wisie/worm.png';
 
 const WISIE = {
+    'ALLIGATOR': alligator,
     'ANT': ant,
     'AUROCHS': aurochs,
     'BEE': bee,
@@ -55,6 +67,7 @@ const WISIE = {
     'CAT_BLUE': catBlue,
     'CAT_PRESENTER': catPresenter,
     'CAT_TEACHER': catTeacher,
+    'CHICK': chick,
     'CROCODILE': crocodile,
     'DOG': dog,
     'DOG_FAT': dogFat,
@@ -65,30 +78,39 @@ const WISIE = {
     'DRAGON_RED': dragonRed,
     'EAGLE': eagle,
     'ELEPHANT': elephant,
+    'ELEPHANT_CHILD': elephantChild,
     'FOX': fox,
     'FOX_MAN': foxMan,
     'FROG': frog,
+    'GIRAFFE': giraffe,
     'GORILLA': gorilla,
     'HORSE': horse,
     'KANGAROO': kangaroo,
+    'KOALA': koala,
     'LAMPARD': lampard,
     'LION': lion,
+    'MONKEY': monkey,
+    'OCTOPUS': octopus,
     'OSTRICH': ostrich,
     'OWL': owl,
+    'OWL_HAPPY': owlHappy,
     'PANDA_EAT': pandaEat,
     'PARROT': parrot,
     'PENGUIN': penguin,
     'POLAR_BEAR': polarBear,
     'RABBIT': rabbit,
     'RACCOON': raccoon,
+    'RACCOON_BROWN': raccoonBrown,
     'SHARK': shark,
     'SHEEP': sheep,
     'SNAKE': snake,
+    'STORK': stork,
     'SQUIRREL': squirrel,
     'TIGER': tiger,
     'TURKEY': turkey,
     'TURTLE': turtle,
     'WALRUS': walrus,
+    'WORM': worm,
     'WOLF': wolf,
 };
 

@@ -11,7 +11,7 @@ import CommunicationWebSocket from "./CommunicationWebSocket";
 import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
-import background from '../../media/image/background/backgroundWithWisiesProd.png';
+import background from '../../media/image/background/backgroundWithWisiesProd.jpg';
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
