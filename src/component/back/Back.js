@@ -1,7 +1,7 @@
 // import React from 'react';
 // import styles from './styles.css';
 // import {connect} from 'react-redux';
-// import MdArrowBack from 'react-icons/lib/md/arrow-back';
+// import {MdArrowBack} from 'react-icons/md';
 // import {idChanged} from "../../redux/reducer/content";
 // import {practiseCleared} from "../../redux/reducer/practise";
 // import {challengeCleared} from "../../redux/reducer/challenge";

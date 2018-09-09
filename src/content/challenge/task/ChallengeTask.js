@@ -21,7 +21,7 @@ import {
 } from "../../../util/challengeHelper";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
-import FaListOl from 'react-icons/lib/fa/list-ol';
+import {FaListOl} from 'react-icons/fa';
 import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {push} from 'connected-react-router'
 import {prepareAnswerIntervalMessage} from "../../../util/textHelper";

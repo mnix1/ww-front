@@ -11,8 +11,7 @@ import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../lang/la
 import {noticeError} from "../../component/notification/noticeError";
 import {checkRepValueCode} from "../../util/repositoryHelper";
 import Rating from "../../component/rating/Rating";
-import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
-import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
+import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
 import {repFulfilled} from "../../util/repositoryHelper";
 
 class ShopPageBook extends React.PureComponent {
@@ -91,9 +90,9 @@ class ShopPageBook extends React.PureComponent {
                 {getText(TEXT_BOOKSHELF)}
                 <div className='justifyCenter flexColumn'>
                     {!showBooks
-                    && <FaPlusSquareO className={iconClassName} onClick={() => onShowBookChanged(true)}/>}
+                    && <FaPlusCircle className={iconClassName} onClick={() => onShowBookChanged(true)}/>}
                     {showBooks
-                    && <FaMinusSquareO className={iconClassName} onClick={() => {onShowBookChanged(false);onBookFilterLevelChanged(undefined)}}/>}
+                    && <FaMinusCircle className={iconClassName} onClick={() => {onShowBookChanged(false);onBookFilterLevelChanged(undefined)}}/>}
                 </div>
             </div>
             {this.renderBooks()}

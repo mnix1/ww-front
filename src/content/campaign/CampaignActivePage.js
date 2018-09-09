@@ -18,8 +18,7 @@ import {
 } from "../../util/rivalHelper";
 import {CAMPAIGN_WAR_ROUTE} from "../routes";
 import {campaignCloseChanged} from "../../redux/reducer/campaign";
-import IoAndroidExit from 'react-icons/lib/io/android-exit';
-import IoPlay from 'react-icons/lib/io/play';
+import {IoMdPlay, IoMdExit} from 'react-icons/io';
 import Gold from "../../component/resource/Gold";
 import Crystal from "../../component/resource/Crystal";
 import Wisdom from "../../component/resource/Wisdom";
@@ -61,7 +60,7 @@ class CampaignActivePage extends React.PureComponent {
         }
         const {onStartClick} = this.props;
         return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}
-                       icon={<IoPlay/>}>{getText(TEXT_START)}</Button>
+                       icon={<IoMdPlay/>}>{getText(TEXT_START)}</Button>
     }
 
     renderEnd() {
@@ -77,7 +76,7 @@ class CampaignActivePage extends React.PureComponent {
             <div className='justifyCenter flexColumn'>{getText(TEXT_EXIT)}</div>
         </div>;
         return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEndClick}
-                       icon={<IoAndroidExit/>}>{content}</Button>
+                       icon={<IoMdExit/>}>{content}</Button>
     }
 
     renderReward() {

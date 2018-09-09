@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import TiWiFi from "react-icons/lib/ti/wi-fi";
+import {TiWiFi} from "react-icons/ti";
 import {GREEN_COLOR, RED_COLOR} from "../../util/style/constant";
 import _ from 'lodash';
 import {getWisor} from "../../util/wisorHelper";

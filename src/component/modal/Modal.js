@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
-import FaTimesCircle from "react-icons/lib/fa/times-circle";
+import {FaTimesCircle} from "react-icons/fa";
 
 export default class Modal extends React.PureComponent {
 

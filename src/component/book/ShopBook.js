@@ -6,7 +6,7 @@ import Crystal from "../../component/resource/Crystal";
 import Timer from "../../component/timer/Timer";
 import Elixir from "../../component/resource/Elixir";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
-import FaShoppingCart from 'react-icons/lib/fa/shopping-cart';
+import {FaShoppingCart} from 'react-icons/fa';
 import Wisdom from "../resource/Wisdom";
 import PropTypes from "prop-types";
 import Gold from "../resource/Gold";

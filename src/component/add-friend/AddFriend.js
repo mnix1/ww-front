@@ -8,8 +8,8 @@ import {
     TEXT_REQUEST_SENT,
     TEXT_WRONG_TAG
 } from "../../lang/langText";
-import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
-import IoAndroidSync from 'react-icons/lib/io/android-sync';
+import {FaPlusCircle} from 'react-icons/fa';
+import {IoMdSync} from 'react-icons/io';
 import PropTypes from "prop-types";
 
 export class AddFriend extends React.PureComponent {
@@ -53,7 +53,7 @@ export class AddFriend extends React.PureComponent {
             {code === 1 && <span>{getText(TEXT_REQUEST_SENT)}</span>}
             {code === -2 && <span>{getText(TEXT_WRONG_TAG)}</span>}
             {(code === -1 || code === -3) && <span>{getText(TEXT_ADD_FRIEND_ALREADY)}</span>}
-            <IoAndroidSync size={fontSize} color="#fffdf1" onClick={onClearClick}/>
+            <IoMdSync size={fontSize} color="#fffdf1" onClick={onClearClick}/>
         </div>;
     }
 

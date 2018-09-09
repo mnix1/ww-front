@@ -23,12 +23,8 @@ import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {challengeCleared, tagsChanged} from "../../redux/reducer/challenge";
 import {AddFriend} from "../../component/add-friend/AddFriend";
-import FaQq from 'react-icons/lib/fa/qq';
-import FaBan from 'react-icons/lib/fa/ban';
-import FaGavel from 'react-icons/lib/fa/gavel';
-import FaPlusCircle from 'react-icons/lib/fa/plus-circle';
-import FaCheckCircle from 'react-icons/lib/fa/check-circle';
-import TiFlash from 'react-icons/lib/ti/flash';
+import {FaQq, FaBan, FaGavel, FaPlusCircle, FaCheckCircle} from 'react-icons/fa';
+import {TiFlash} from 'react-icons/ti';
 import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {CREAM_COLOR} from "../../util/style/constant";

@@ -14,8 +14,8 @@
 //     TEXT_WRONG_ANSWER,
 //     TEXT_YOUR_SCORE
 // } from "../../../lang";
-// import FaArrowCircleRight from 'react-icons/lib/fa/arrow-circle-right';
-// import FaListOl from 'react-icons/lib/fa/list-ol';
+// import FaArrowCircleRight from 'react-icons/fa';
+// import FaListOl from 'react-icons/fa';
 // import {prepareAnswerIntervalMessage} from "../../../util/textHelper";
 // import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 // import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";

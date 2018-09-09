@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import '../../../component/modal/styles.css';
 import {getText, TEXT_CANCEL, TEXT_WAITING_FOR_RESPONSE} from "../../../lang/langText";
 import {CREAM_COLOR} from "../../../util/style/constant";
-import FaTimesCircle from 'react-icons/lib/fa/times-circle';
+import {FaTimesCircle} from 'react-icons/fa';
 import Modal from "../../../component/modal/Modal";
 import _ from 'lodash';
 import {statusChanged} from "../../../redux/reducer/rival";

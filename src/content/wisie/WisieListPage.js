@@ -7,12 +7,9 @@ import {calculateWisieWidth, WISIE_TEAM_COUNT} from "../../util/wisieHelper";
 import {Loading} from "../../component/loading/Loading";
 import {wisieDetailsChanged, showNotOwnedChanged, teamChanged} from "../../redux/reducer/wisie";
 import Wisie from "../../component/wisie/Wisie";
-import FaPlusSquareO from "react-icons/lib/fa/plus-square-o";
-import FaMinusSquareO from "react-icons/lib/fa/minus-square-o";
+import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
 import {Button} from "../../component/button/Button";
-import FaPlusCircle from "react-icons/lib/fa/plus-circle";
-import FaMinusCircle from "react-icons/lib/fa/minus-circle";
-import MdDescription from 'react-icons/lib/md/description';
+import {MdDescription} from 'react-icons/md';
 import {repFulfilled} from "../../util/repositoryHelper";
 
 class WisieListPage extends React.PureComponent {
@@ -107,8 +104,8 @@ class WisieListPage extends React.PureComponent {
                     <div className='pointer'
                          onClick={() => onToggleShowNotOwnedClick(showNotOwned)}>
                         {`${getText(showNotOwned ? TEXT_HIDE : TEXT_SHOW)} ${getText(TEXT_NOT_OWNED_WISIES).toLowerCase()}`}
-                        <span style={{paddingLeft: '0.25rem'}}>{showNotOwned ? <FaMinusSquareO/> :
-                            <FaPlusSquareO/>}</span>
+                        <span className='paddingLeftRem fontSize08Rem'>{showNotOwned ? <FaMinusCircle/> :
+                            <FaPlusCircle/>}</span>
                     </div>
                 </div>
                 {showNotOwned && this.renderWisies(_.chunk(notOwnedWisies, groupCount))}

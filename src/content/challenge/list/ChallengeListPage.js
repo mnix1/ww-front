@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import {CREAM_COLOR} from "../../../util/style/constant";
-import FaGavel from "react-icons/lib/fa/gavel";
-import FaListOl from "react-icons/lib/fa/list-ol";
+import {FaGavel} from "react-icons/fa";
+import {FaListOl} from "react-icons/fa";
 import './styles.css';
 import {
     getText,

@@ -10,9 +10,7 @@ import ocean from '../media/image/campaign/ocean.jpg';
 import party from '../media/image/campaign/party.jpg';
 import premiere from '../media/image/campaign/premiere.jpg';
 import awards from '../media/image/campaign/awards.jpg';
-import FaRocket from "react-icons/lib/fa/rocket";
-import FaAnchor from "react-icons/lib/fa/anchor";
-import FaCamera from "react-icons/lib/fa/camera";
+import {FaRocket, FaAnchor, FaCamera} from "react-icons/fa";
 import React from "react";
 
 export const TYPE_SPACE_EXPEDITION = 'SPACE_EXPEDITION';

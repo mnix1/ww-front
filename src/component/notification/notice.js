@@ -1,7 +1,7 @@
 import React from 'react';
 import Notification from "rc-notification";
 import './styles.css';
-import FaTimesCircle from "react-icons/lib/fa/times-circle";
+import {FaTimesCircle} from "react-icons/fa";
 
 let notification = null;
 Notification.newInstance({

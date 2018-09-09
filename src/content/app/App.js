@@ -18,7 +18,7 @@ import shop from '../../media/image/menu/shop.png';
 import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
 import {Route, Switch} from 'react-router'
-import FaCogs from "react-icons/lib/fa/cogs";
+import {FaCogs} from "react-icons/fa";
 import {ConnectedRouter, push} from 'connected-react-router'
 import {
     APP_ROUTE,

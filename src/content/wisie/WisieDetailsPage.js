@@ -2,8 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Modal from "../../component/modal/Modal";
 import WisieAttribute from "../../component/wisie/WisieAttribute";
-import FaPlusCircle from "react-icons/lib/fa/plus-circle";
-import FaMinusCircle from "react-icons/lib/fa/minus-circle";
+import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
 import {
     COMBINING_FACTS,
     CONCENTRATION,

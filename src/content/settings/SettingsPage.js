@@ -7,7 +7,7 @@ import {push} from "connected-react-router";
 import {SETTINGS_CHOOSE_WISOR_ROUTE, SETTINGS_ROUTE} from "../routes";
 import {Route, Switch} from 'react-router';
 import ChooseWisorPage from "./ChooseWisorPage";
-import FaCheckCircle from 'react-icons/lib/fa/check-circle';
+import {FaCheckCircle} from 'react-icons/fa';
 import {chosenNickAcceptChanged, chosenNickChanged} from "../../redux/reducer/settings";
 import _ from 'lodash';
 import MeshBackground from "../../component/background/MeshBackground";

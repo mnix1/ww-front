@@ -4,7 +4,7 @@ import {getText, TEXT_CANCEL, TEXT_SEARCHING_OPPONENT} from "../../lang/langText
 import {clearRivalStartRandomOpponentFetch} from "./fetch/RivalStartRandomOpponentFetch";
 import {CREAM_COLOR} from "../../util/style/constant";
 import Modal from "../../component/modal/Modal";
-import FaTimesCircle from 'react-icons/lib/fa/times-circle';
+import {FaTimesCircle} from 'react-icons/fa';
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {APP_ROUTE, PLAY_ROUTE} from "../routes";
