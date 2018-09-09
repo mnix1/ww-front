@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {
     getText,
     TEXT_BATTLE_OVER,
-    TEXT_DRAW,
+    TEXT_DRAW, TEXT_EXIT,
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
     TEXT_YOU_SURRENDER
@@ -14,11 +14,13 @@ import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
 import {Anime} from "../../../../component/anime/Anime";
 import {getElo, getEloProp, RIVAL_IMPORTANCE_RANKING} from "../../../../util/rivalHelper";
 import _ from 'lodash';
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
+import {goBack} from "connected-react-router";
 
 class BattlePageClosed extends React.PureComponent {
 
     render() {
-        const {content, screen} = this.props;
+        const {content, screen, onExitClick} = this.props;
         const {winnerTag, isDraw, resigned, importance} = content;
         if (isDraw) {
             return <div className='pageContent battlePageClosed'>
@@ -49,8 +51,10 @@ class BattlePageClosed extends React.PureComponent {
                 <div className='pageHeader'>
                     <Profile imgHeight={screen.wisieImgHeight} {...winnerProfile}/>
                 </div>
+                <div className='paddingTopRem justifyCenter'>
+                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}>{getText(TEXT_EXIT)}</Button>
+                </div>
             </div>
-
         </div>;
     }
 
@@ -98,5 +102,7 @@ export default connect(
         screen: state.screen,
         content: state.rival.content,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onExitClick: () => dispatch(goBack())
+    })
 )(BattlePageClosed);

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     getText,
-    TEXT_DRAW,
+    TEXT_DRAW, TEXT_EXIT,
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
     TEXT_WAR_OVER,
@@ -14,11 +14,13 @@ import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
 import _ from "lodash";
 import Profiles from "../../component/Profiles";
 import {Anime} from "../../../../component/anime/Anime";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
+import {goBack} from "connected-react-router";
 
 class WarPageClosed extends React.PureComponent {
 
     render() {
-        const {content} = this.props;
+        const {content, onExitClick} = this.props;
         const {winnerTag, isDraw, resigned, profile} = content;
         if (isDraw) {
             return <div className='pageContent warPageClosed'>
@@ -50,6 +52,9 @@ class WarPageClosed extends React.PureComponent {
                 </div>
                 <div className='pageHeader'>
                     <Team {...winnerProps}/>
+                </div>
+                <div className='paddingTopRem justifyCenter'>
+                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}>{getText(TEXT_EXIT)}</Button>
                 </div>
             </div>
         </div>;
@@ -100,5 +105,7 @@ export default connect(
         screen: state.screen,
         content: state.rival.content,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({
+        onExitClick: () => dispatch(goBack())
+    })
 )(WarPageClosed);
