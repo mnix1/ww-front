@@ -31,7 +31,7 @@ class MeshBackground extends React.PureComponent {
     render() {
         const {screen, mesh} = this.props;
         return <div className='absoluteBackgroundMix' style={{opacity: 1}}>
-            <img className='borderRadiusRem' style={{objectFit: 'cover'}} src={MESHES[mesh]} height={screen.contentHeight}
+            <img alt='' className='borderRadiusRem' style={{objectFit: 'cover'}} src={MESHES[mesh]} height={screen.contentHeight}
                  width={screen.contentWidth}/>
         </div>
     }

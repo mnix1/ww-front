@@ -1,7 +1,6 @@
 import ant from '../media/image/wisie/ant.svg';
 import bee from '../media/image/wisie/bee.png';
 import catBlue from '../media/image/wisie/catBlue.png';
-import octopus from '../media/image/wisie/octopus.svg';
 import gorilla from '../media/image/wisie/gorilla.png';
 import sheep from '../media/image/wisie/sheep.png';
 import lion from '../media/image/wisie/lion.png';
@@ -74,7 +73,6 @@ const WISIE = {
     'KANGAROO': kangaroo,
     'LAMPARD': lampard,
     'LION': lion,
-    // 'OCTOPUS': octopus,
     'OSTRICH': ostrich,
     'OWL': owl,
     'PANDA_EAT': pandaEat,

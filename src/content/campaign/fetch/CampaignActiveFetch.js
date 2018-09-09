@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CAMPAIGN_ROUTE, WISIES_ROUTE} from "../../routes";
+import {CAMPAIGN_ROUTE} from "../../routes";
 import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
 
 class CampaignActiveFetch extends React.PureComponent {

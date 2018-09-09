@@ -1,23 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
-import {
-    RIVAL_IMPORTANCE_FAST,
-    RIVAL_STATUS_START_RANDOM_OPPONENT,
-    RIVAL_TYPE_CAMPAIGN_WAR
-} from "../../util/rivalHelper";
-import {clearRivalStartRandomOpponentFetch} from "../rival/fetch/RivalStartRandomOpponentFetch";
 import {getCampaignLabel} from "../../lang/langCampaign";
 import {getCampaignImg, getStartButtonIcon} from "../../util/campaignHelper";
 import {campaignDestinationChanged, campaignTypeChanged} from "../../redux/reducer/campaign";
 import {
     getText,
-    TEXT_CHOOSE_DESTINATION, TEXT_CHOOSE_TEAM,
+    TEXT_CHOOSE_DESTINATION,
+    TEXT_CHOOSE_TEAM,
     TEXT_CHOOSE_TYPE,
     TEXT_COST,
-    TEXT_REWARD,
-    TEXT_START
+    TEXT_REWARD
 } from "../../lang/langText";
 import Crystal from "../../component/resource/Crystal";
 import Gold from "../../component/resource/Gold";
