@@ -129,7 +129,7 @@ export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 
 const TEXTS = {
     [POLISH]: {
-        [TEXT_APP_NAME]: 'Wojna na Wiedzę',
+        [TEXT_APP_NAME]: 'Wiedzomania',
         [TEXT_EXIT]: 'Wyjście',
         [TEXT_CHOOSE_TEAM]: 'Wybór drużyny',
         [TEXT_CHOOSE_TYPE]: 'Wybierz typ',
@@ -256,7 +256,7 @@ const TEXTS = {
         [TEXT_START]: 'Rozpocznij',
     },
     [ENGLISH]: {
-        [TEXT_APP_NAME]: 'Wisdom War',
+        [TEXT_APP_NAME]: 'Wisiemania',
         [TEXT_EXIT]: 'Exit',
         [TEXT_CHOOSE_TEAM]: 'Choose team',
         [TEXT_CHOOSE_TYPE]: 'Choose type',
