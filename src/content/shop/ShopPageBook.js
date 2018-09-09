@@ -38,7 +38,7 @@ class ShopPageBook extends React.PureComponent {
     }
 
     renderBooksGroup(books, i) {
-        return <div key={i} className='justifyEvenly booksGroup'>
+        return <div key={i} className='justifyAround booksGroup'>
             {books.map(e => this.renderBook(e))}
         </div>;
     }
@@ -46,7 +46,6 @@ class ShopPageBook extends React.PureComponent {
     renderBook(book) {
         const {onBuyClick, profile} = this.props;
         return <ShopBook
-            // style={{width: this.bookWidth}}
             key={book.id}
             isBuyEnable={(book.canBuyByGold && profile.gold >= book.goldCost) || (book.canBuyByCrystal && profile.crystal >= book.crystalCost)}
             {...book}
@@ -78,7 +77,7 @@ class ShopPageBook extends React.PureComponent {
         const bookGroups = _.chunk(sortedBooks, groupCount);
         return <div>
             {this.renderFilter()}
-            <div className='justifyCenter flexColumn'>
+            <div className='justifyCenter flexColumn marginAuto' style={{width: '96%'}}>
                 {bookGroups.map((e, i) => this.renderBooksGroup(e, i))}
             </div>
         </div>
