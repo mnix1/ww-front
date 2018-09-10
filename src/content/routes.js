@@ -20,8 +20,8 @@ export const WAR_ROUTE = '/war';
 export const WAR_FAST_ROUTE = '/warFast';
 export const WAR_RANKING_ROUTE = '/warRanking';
 
-export const CHALLENGE_FAST_ROUTE = '/challengeFast';
-export const CHALLENGE_FRIEND_ROUTE = '/challengeFriend';
+export const CHALLENGE_ROUTE = '/challenge';
+export const CHALLENGE_FRIEND_INIT_ROUTE = '/challengeFriendInit';
 export const CHALLENGE_RESPONSE_ROUTE = '/challengeResponse';
 export const CHALLENGE_SUMMARY_ROUTE = '/challengeSummary';
 export const CHALLENGE_LIST_ROUTE = '/challengeList';

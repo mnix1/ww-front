@@ -28,10 +28,11 @@ import {
     CAMPAIGN_ROUTE,
     CAMPAIGN_WAR_ROUTE,
     CHALLENGE_FAST_ROUTE,
-    CHALLENGE_FRIEND_ROUTE,
+    CHALLENGE_FRIEND_INIT_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_LIST_ROUTE,
     CHALLENGE_RESPONSE_ROUTE,
+    CHALLENGE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     FRIEND_ROUTE,
     PLAY_BATTLE_ROUTE,
@@ -48,8 +49,7 @@ import {
     WAR_ROUTE,
     WISIES_ROUTE
 } from "../routes";
-import ChallengeFriendPage from "../challenge/create/ChallengeFriendPage";
-import ChallengeResponsePage from "../challenge/create/ChallengeResponsePage";
+import ChallengeFriendInit from "../challenge/create/ChallengeFriendInit";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import PlayPage from "../play/PlayPage";
@@ -58,7 +58,6 @@ import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer"
 import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
 import BattlePage from "../rival/battle/page/BattlePage";
-import ChallengeFastPage from "../challenge/create/ChallengeFastPage";
 import WisiePage from "../wisie/WisiePage";
 import ShopPage from "../shop/ShopPage";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
@@ -72,10 +71,11 @@ import RivalCommunication from "../rival/RivalCommunication";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
 import {
     RIVAL_STATUS_IN_PROGRESS,
-    RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
+    RIVAL_STATUS_READY_TO_BEGIN_FRIEND, RIVAL_STATUS_WAITING_FRIEND,
     RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
     RIVAL_TYPE_BATTLE,
     RIVAL_TYPE_CAMPAIGN_WAR,
+    RIVAL_TYPE_CHALLENGE,
     RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
 import PlayWarPage from "../play/PlayWarPage";
@@ -121,6 +121,12 @@ class App extends React.PureComponent {
             }
         } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CAMPAIGN_WAR) {
             onRouteChange(CAMPAIGN_WAR_ROUTE);
+        } else if (path === CHALLENGE_ROUTE) {
+            if (rivalStatus === RIVAL_STATUS_WAITING_FRIEND) {
+                this.rivalCommunication.readyFriend(RIVAL_TYPE_CHALLENGE);
+            }
+        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CHALLENGE) {
+            onRouteChange(CHALLENGE_ROUTE);
         }
     }
 
@@ -180,10 +186,9 @@ class App extends React.PureComponent {
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
 
-                <Route exact path={CHALLENGE_FRIEND_ROUTE} render={() => <ChallengeFriendPage/>}/>
-                <Route exact path={CHALLENGE_RESPONSE_ROUTE} render={() => <ChallengeResponsePage/>}/>
+                <Route exact path={CHALLENGE_FRIEND_INIT_ROUTE} render={() => <ChallengeFriendInit/>}/>
+                <Route exact path={CHALLENGE_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
 
-                <Route exact path={CHALLENGE_FAST_ROUTE} render={() => <ChallengeFastPage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
@@ -214,9 +219,9 @@ class App extends React.PureComponent {
             && path !== WAR_ROUTE
             && path !== CAMPAIGN_WAR_ROUTE
             && path !== TRAINING_TASK_ROUTE
-            && path !== CHALLENGE_FAST_ROUTE
+            && path !== CHALLENGE_ROUTE
             && path !== CHALLENGE_RESPONSE_ROUTE
-            && path !== CHALLENGE_FRIEND_ROUTE;
+            && path !== CHALLENGE_FRIEND_INIT_ROUTE;
     }
 
     renderShowOption() {

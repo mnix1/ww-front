@@ -2,14 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     getText,
-    TEXT_DRAW, TEXT_EXIT,
+    TEXT_DRAW,
+    TEXT_EXIT,
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
-    TEXT_WAR_OVER,
     TEXT_YOU_SURRENDER
 } from "../../../../lang/langText";
 import Team from "../../component/Team";
-import {getElo, getEloProp, RIVAL_IMPORTANCE_RANKING} from "../../../../util/rivalHelper";
+import {
+    getElo,
+    getEloProp,
+    RIVAL_IMPORTANCE_RANKING,
+    RIVAL_TYPE_CHALLENGE,
+    RIVAL_TYPE_FAREWELL_MSG
+} from "../../../../util/rivalHelper";
 import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
 import _ from "lodash";
 import Profiles from "../../component/Profiles";
@@ -19,17 +25,25 @@ import {goBack} from "connected-react-router";
 
 class WarPageClosed extends React.PureComponent {
 
-    render() {
-        const {content, onExitClick} = this.props;
+    renderContent() {
+        const {content} = this.props;
         const {winnerTag, isDraw, resigned, profile} = content;
         if (isDraw) {
-            return <div className='pageContent warPageClosed'>
-                {this.renderProfilesWithNewScore()}
-                <div className='height100 width100 justifyCenter flexColumn'>
+            if (content.type === RIVAL_TYPE_CHALLENGE) {
+                const props = {presentIndexes: content.presentIndexes, team: content.team};
+                return <div className='justifyCenter flexColumn'>
                     <div className='pageHeader'>
-                        {getText(TEXT_WAR_OVER)}
-                        {` ${getText(TEXT_DRAW)}`}
+                        {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
                     </div>
+                    <div className='pageHeader'>
+                        <Team {...props}/>
+                    </div>
+                </div>
+            }
+            return <div className='justifyCenter flexColumn'>
+                <div className='pageHeader'>
+                    {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
+                    {` ${getText(TEXT_DRAW)}`}
                 </div>
             </div>;
         }
@@ -37,22 +51,29 @@ class WarPageClosed extends React.PureComponent {
         const winnerProps = meWinner
             ? {presentIndexes: content.presentIndexes, team: content.team}
             : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam};
+        return <div className='justifyCenter flexColumn'>
+            {resigned && meWinner && <div className='pageHeader'>
+                {getText(TEXT_OPPONENT_SURRENDER)}
+            </div>}
+            {resigned && !meWinner && <div className='pageHeader'>
+                {getText(TEXT_YOU_SURRENDER)}
+            </div>}
+            <div className='pageHeader'>
+                {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
+                {` ${getText(TEXT_THE_WINNER_IS)}:`}
+            </div>
+            <div className='pageHeader'>
+                <Team {...winnerProps}/>
+            </div>
+        </div>;
+    }
+
+    render() {
+        const {onExitClick} = this.props;
         return <div className='pageContent warPageClosed'>
             {this.renderProfilesWithNewScore()}
             <div className='height100 width100 justifyCenter flexColumn'>
-                {resigned && meWinner && <div className='pageHeader'>
-                    {getText(TEXT_OPPONENT_SURRENDER)}
-                </div>}
-                {resigned && !meWinner && <div className='pageHeader'>
-                    {getText(TEXT_YOU_SURRENDER)}
-                </div>}
-                <div className='pageHeader'>
-                    {getText(TEXT_WAR_OVER)}
-                    {` ${getText(TEXT_THE_WINNER_IS)}:`}
-                </div>
-                <div className='pageHeader'>
-                    <Team {...winnerProps}/>
-                </div>
+                {this.renderContent()}
                 <div className='paddingTopRem justifyCenter'>
                     <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}>{getText(TEXT_EXIT)}</Button>
                 </div>

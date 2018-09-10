@@ -55,7 +55,7 @@ class WarPageAnswering extends React.PureComponent {
     renderTaskNotActive(activeMember) {
         const {content, screen} = this.props;
         const {task, opponentTeam, opponentActiveIndex} = content;
-        const opponentActiveMember = opponentTeam[opponentActiveIndex];
+        const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
         const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
@@ -65,14 +65,14 @@ class WarPageAnswering extends React.PureComponent {
                         <WisieActions actions={content.wisieActions}/>
                     </Wisie>
                 </div>
-                <div>
+                {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
                         ? <Wisie imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
                                  isOwned={true}>
                             <WisieActions actions={content.opponentWisieActions}/>
                         </Wisie>
                         : <Profile imgHeight={imgHeight + 4} {...opponentActiveMember.content}/>}
-                </div>
+                </div>}
             </div>
             <Task
                 screen={{...screen, contentHeight: screen.contentHeight - 40}}

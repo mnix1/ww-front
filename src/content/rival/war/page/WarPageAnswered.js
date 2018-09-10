@@ -34,7 +34,7 @@ class WarPageAnswered extends React.PureComponent {
     }
 
     renderWhoAnswered() {
-        const {screen} = this.props;
+        const {screen, content} = this.props;
         const imgHeight = screen.isSmallHeight ? 40 : 60;
         return <div className='whoAnswered textAlignCenter'>
             <div className='justifyCenter'>
@@ -56,7 +56,7 @@ class WarPageAnswered extends React.PureComponent {
                             </div>}
                     </div>
                 </div>
-                {this.isCorrectAnswer && <div className='opponentWisieFadeOut'>
+                {content.opponent && this.isCorrectAnswer && <div className='opponentWisieFadeOut'>
                     <ActiveMember className='wrongAnswer' {...this.prepareAnsweredProps(false)}/>
                 </div>}
             </div>

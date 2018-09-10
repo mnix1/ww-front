@@ -29,11 +29,9 @@ class PlayChallengePage extends React.PureComponent {
     }
 
     renderMenu() {
-        const {onChallengeFastClick} = this.props;
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(CHALLENGE_FAST_ROUTE, randomPerson, onChallengeFastClick)}
                     {this.renderMenuItem(CHALLENGE_LIST_ROUTE, clock)}
                     {this.renderMenuItem(CHALLENGE_HISTORY_ROUTE, notebook)}
                 </div>
@@ -57,11 +55,6 @@ export default connect(
         path: state.router.location.pathname
     }),
     (dispatch) => ({
-        onChallengeFastClick: () => {
-            clearChallengeTaskAndStartFetch(dispatch);
-            dispatch(challengeCleared());
-            dispatch(challengeStatusChanged(CHALLENGE_STATUS_START));
-        },
         onRouteChange: (e) => {
             dispatch(push(e));
         },

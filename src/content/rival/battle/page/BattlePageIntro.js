@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Profile from "../../../../component/profile/Profile";
 import swordShield from '../../../../media/image/menu/swordShield.svg';
-import {getText, TEXT_BATTLE} from "../../../../lang/langText";
-import {renderBattleElo} from "../../../../util/rivalHelper";
+import {getText} from "../../../../lang/langText";
+import {renderBattleElo, RIVAL_TYPE_WELCOME_MSG} from "../../../../util/rivalHelper";
 
 class BattlePageIntro extends React.PureComponent {
 
@@ -18,9 +18,10 @@ class BattlePageIntro extends React.PureComponent {
     }
 
     render() {
+        const {content} = this.props;
         return <div className='pageContent battlePageIntro'>
             <div>
-                <div className='pageHeader title'>{getText(TEXT_BATTLE)}</div>
+                <div className='pageHeader title'>{getText(RIVAL_TYPE_WELCOME_MSG[content.type])}</div>
                 {this.renderProfilesBig()}
             </div>
         </div>;

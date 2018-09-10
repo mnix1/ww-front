@@ -5,7 +5,7 @@ import {
     RIVAL_STATUS_CLOSED,
     RIVAL_STATUS_IN_PROGRESS,
     RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_CAMPAIGN_WAR,
+    RIVAL_TYPE_CAMPAIGN_WAR, RIVAL_TYPE_CHALLENGE,
     RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
 import {clearRivalStartRandomOpponentFetch} from "./fetch/RivalStartRandomOpponentFetch";
@@ -43,6 +43,10 @@ export default class RivalCommunication {
         } else if (id === `${RIVAL_TYPE_CAMPAIGN_WAR}_CONTENT`) {
             const content = JSON.parse(data.content);
             this.changeRivalTypeIfDifferenct(RIVAL_TYPE_CAMPAIGN_WAR);
+            this.rivalInProgress(content);
+        } else if (id === `${RIVAL_TYPE_CHALLENGE}_CONTENT`) {
+            const content = JSON.parse(data.content);
+            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_CHALLENGE);
             this.rivalInProgress(content);
         }
     };

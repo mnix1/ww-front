@@ -2,6 +2,8 @@ export const POLISH = 'pl';
 export const ENGLISH = 'en';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_CAMPAIGN_OVER = 'TEXT_CAMPAIGN_OVER';
+export const TEXT_CAMPAIGN = 'TEXT_CAMPAIGN';
 export const TEXT_NAME_LENGTH = 'TEXT_NAME_LENGTH';
 export const TEXT_REQUIREMENT = 'TEXT_REQUIREMENT';
 export const TEXT_OPPONENT_SURRENDER = 'TEXT_OPPONENT_SURRENDER';
@@ -38,7 +40,7 @@ export const TEXT_ADD = 'TEXT_ADD';
 export const TEXT_ADDED = 'TEXT_ADDED';
 export const TEXT_START_CHALLENGE = 'TEXT_START_CHALLENGE';
 export const TEXT_SCORE = 'TEXT_SCORE';
-export const TEXT_CHALLENGE_ENDED = 'TEXT_CHALLENGE_ENDED';
+export const TEXT_CHALLENGE_OVER = 'TEXT_CHALLENGE_OVER';
 export const TEXT_YOUR_SCORE = 'TEXT_YOUR_SCORE';
 export const TEXT_POINTS = 'TEXT_POINTS';
 export const TEXT_ANSWER_FOR_QUESTION = 'TEXT_ANSWER_FOR_QUESTION';
@@ -130,6 +132,8 @@ export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CAMPAIGN]: 'Kampania',
+        [TEXT_CAMPAIGN_OVER]: 'Koniec kampanii!',
         [TEXT_EXIT]: 'Wyjście',
         [TEXT_CHOOSE_TEAM]: 'Wybór drużyny',
         [TEXT_CHOOSE_TYPE]: 'Wybierz typ',
@@ -214,7 +218,7 @@ const TEXTS = {
         [TEXT_ADDED]: 'Dodano',
         [TEXT_START_CHALLENGE]: 'Rozpocznij wyzwanie!',
         [TEXT_SCORE]: 'Wynik',
-        [TEXT_CHALLENGE_ENDED]: 'Wyzwanie zakończone',
+        [TEXT_CHALLENGE_OVER]: 'Koniec wyzwania',
         [TEXT_YOUR_SCORE]: 'Twój wynik',
         [TEXT_POINTS]: 'pkt',
         [TEXT_ANSWER_FOR_QUESTION]: 'Odpowiedź dla pytania',
@@ -257,6 +261,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CAMPAIGN]: 'Campaign',
+        [TEXT_CAMPAIGN_OVER]: 'Campaign is over',
         [TEXT_EXIT]: 'Exit',
         [TEXT_CHOOSE_TEAM]: 'Choose team',
         [TEXT_CHOOSE_TYPE]: 'Choose type',
@@ -339,7 +345,7 @@ const TEXTS = {
         [TEXT_ADDED]: 'Added',
         [TEXT_START_CHALLENGE]: 'Start challenge!',
         [TEXT_SCORE]: 'Score',
-        [TEXT_CHALLENGE_ENDED]: 'Challenge ended',
+        [TEXT_CHALLENGE_OVER]: 'Challenge is over',
         [TEXT_YOUR_SCORE]: 'Your score',
         [TEXT_POINTS]: 'pt',
         [TEXT_ANSWER_FOR_QUESTION]: 'Answer for question',

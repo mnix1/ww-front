@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {
     getText,
-    TEXT_BATTLE_OVER,
-    TEXT_DRAW, TEXT_EXIT,
+    TEXT_DRAW,
+    TEXT_EXIT,
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
     TEXT_YOU_SURRENDER
@@ -12,7 +12,7 @@ import Profiles from "../../component/Profiles";
 import Profile from "../../../../component/profile/Profile";
 import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
 import {Anime} from "../../../../component/anime/Anime";
-import {getElo, getEloProp, RIVAL_IMPORTANCE_RANKING} from "../../../../util/rivalHelper";
+import {getElo, getEloProp, RIVAL_IMPORTANCE_RANKING, RIVAL_TYPE_FAREWELL_MSG} from "../../../../util/rivalHelper";
 import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import {goBack} from "connected-react-router";
@@ -27,7 +27,7 @@ class BattlePageClosed extends React.PureComponent {
                 {this.renderProfilesWithNewScore(importance)}
                 <div className='height100 width100 justifyCenter flexColumn'>
                     <div className='pageHeader'>
-                        {getText(TEXT_BATTLE_OVER)}
+                        {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
                         {` ${getText(TEXT_DRAW)}`}
                     </div>
                 </div>
@@ -45,7 +45,7 @@ class BattlePageClosed extends React.PureComponent {
                     {getText(TEXT_YOU_SURRENDER)}
                 </div>}
                 <div className='pageHeader'>
-                    {getText(TEXT_BATTLE_OVER)}
+                    {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
                     {` ${getText(TEXT_THE_WINNER_IS)}:`}
                 </div>
                 <div className='pageHeader'>

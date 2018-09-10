@@ -13,7 +13,7 @@ import {
     TEXT_NONE_IN_PROGRESS_CHALLENGES,
     TEXT_SUMMARY
 } from "../../../lang/langText";
-import {challengeCleared, inProgressIdChanged, statusChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
+import {challengeCleared, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {CHALLENGE_STATUS_START} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
@@ -80,8 +80,8 @@ export default connect(
     (dispatch) => ({
         onChallengeResponseClick: (id) => {
             dispatch(challengeCleared());
-            dispatch(inProgressIdChanged(id));
-            dispatch(statusChanged(CHALLENGE_STATUS_START));
+            // dispatch(inProgressIdChanged(id));
+            // dispatch(statusChanged(CHALLENGE_STATUS_START));
             dispatch(push(CHALLENGE_RESPONSE_ROUTE));
         },
         onChallengeSummaryClick: (id) => {

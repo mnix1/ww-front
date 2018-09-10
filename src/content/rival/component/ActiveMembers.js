@@ -10,9 +10,9 @@ class ActiveMembers extends React.PureComponent {
             <div>
                 <ActiveMember className={memberClassName} team={content.team} activeIndex={content.activeIndex}/>
             </div>
-            <div>
+            {content.opponent && <div>
                 <ActiveMember className={memberClassName} team={content.opponentTeam} activeIndex={content.opponentActiveIndex}/>
-            </div>
+            </div>}
         </div>;
     }
 }

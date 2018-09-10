@@ -29,6 +29,7 @@
 .blackBackground {
     background: #111;
 }
+
 .active {
     background: rgb(40, 121, 218) !important;
 }
@@ -86,7 +87,6 @@
     justify-content: space-between;
 }
 
-
 .justifyAround {
     display: flex;
     justify-content: space-around;
@@ -138,6 +138,22 @@
 
 .marginWidthAuto {
     margin: 0 auto;
+}
+
+.marginLeftRem {
+    margin-left: 0.25rem;
+}
+
+.marginTopRem {
+    margin-top: 0.25rem;
+}
+
+.marginBottomRem {
+    margin-bottom: 0.25rem;
+}
+
+.marginRightRem {
+    margin-right: 0.25rem;
 }
 
 .right0 {

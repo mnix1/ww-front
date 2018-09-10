@@ -8,20 +8,25 @@ import {
     TEXT_NONE_FRIENDS,
     TEXT_START_CHALLENGE
 } from "../../../lang/langText";
-import styles from './styles.css';
 import _ from 'lodash';
-import {statusChanged, tagsChanged} from "../../../redux/reducer/challenge";
+import {tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
-import {CHALLENGE_STATUS_START, MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
+import {MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
-import {clearChallengeTaskAndStartFetch} from "../fetch/ChallengeFetchContainer";
 import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
+import MeshBackground from "../../../component/background/MeshBackground";
+import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
+import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
+import {push} from "connected-react-router";
+import {CHALLENGE_ROUTE} from "../../routes";
+import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
 
 class ChallengeFriendPage extends React.PureComponent {
 
     renderFriend(friend, isAdded) {
         const {tags, screen, onFriendToggle} = this.props;
         return <Profile
+            blackBackground={true}
             imgHeight={screen.wisieImgHeight}
             key={friend.tag}
             {...friend}
@@ -46,7 +51,7 @@ class ChallengeFriendPage extends React.PureComponent {
         const {tags, friends} = this.props;
         const tagsMap = _.keyBy(tags);
         const sortedFriends = _.sortBy(friends.filter(e => e.status === FRIEND_STATUS_ACCEPTED), (e) => (this.isFriendAdded(tagsMap, e) ? 0 : 1) + _.toLower(e.name));
-        return <div className={styles.friendList}>
+        return <div>
             {sortedFriends.map(e => this.renderFriend(e, this.isFriendAdded(tagsMap, e)))}
         </div>;
     }
@@ -54,18 +59,21 @@ class ChallengeFriendPage extends React.PureComponent {
     renderStartChallenge() {
         const {tags, onStartChallengeClick} = this.props;
         const label = getText(TEXT_START_CHALLENGE);
-        return tags.length > 0 && <Button onClick={onStartChallengeClick}
-                                          material={BUTTON_MATERIAL_ACCEPT}
-                                          style={{margin: '0.25rem'}}>{label}</Button>;
+        if (tags.length > 0) {
+            return <Button className='marginRem relative' onClick={onStartChallengeClick}
+                           material={BUTTON_MATERIAL_ACCEPT}>{label}</Button>;
+        }
+        return null;
     }
 
     render() {
-        const {tags, friends} = this.props;
+        const {tags, friends, screen} = this.props;
         if (_.isEmpty(friends)) {
             return <div className="pageHeader">{getText(TEXT_NONE_FRIENDS)}</div>;
         }
         const friendsCounter = `(${tags.length}/${Math.min(friends.length, MAX_CHALLENGE_FRIENDS)})`;
-        return <div>
+        return <div className='page challengePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
+            <MeshBackground/>
             <div className="pageHeader">
                 <span>{getText(TEXT_CHALLENGE_ADD_FRIENDS)} {friendsCounter}</span>
             </div>
@@ -83,8 +91,12 @@ export default connect(
     }),
     (dispatch) => ({
         onStartChallengeClick: () => {
-            clearChallengeTaskAndStartFetch(dispatch);
-            dispatch(statusChanged(CHALLENGE_STATUS_START));
+            clearRivalStartRandomOpponentFetch(dispatch);
+            dispatch(rivalCleared());
+            dispatch(rivalTypeChanged(RIVAL_TYPE_CHALLENGE));
+            dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
+            dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
+            dispatch(push(CHALLENGE_ROUTE));
         },
         onFriendToggle: (tag, tags) => {
             const newTags = _.filter(tags, (e) => e !== tag);

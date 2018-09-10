@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import swordShield from '../../../../media/image/menu/swordShield.svg';
-import {getText, TEXT_WAR} from "../../../../lang/langText";
+import {getText} from "../../../../lang/langText";
 import Teams from "../../component/Teams";
-import {isRanking} from "../../../../util/rivalHelper";
+import {isRanking, RIVAL_TYPE_WELCOME_MSG} from "../../../../util/rivalHelper";
 
 class WarPageIntro extends React.PureComponent {
 
@@ -11,15 +11,16 @@ class WarPageIntro extends React.PureComponent {
         const {content, screen} = this.props;
         return <div className='team justifyCenter flexColumn'>
             <Teams renderElo={isRanking(content)} content={content}>
-                <img alt='' src={swordShield} height={screen.wisieImgHeight}/>
+                {content.opponent && <img alt='' src={swordShield} height={screen.wisieImgHeight}/>}
             </Teams>
         </div>;
     }
 
     render() {
+        const {content} = this.props;
         return <div className='pageContent warPageIntro'>
              <div>
-                <div className='pageHeader title'>{getText(TEXT_WAR)}</div>
+                <div className='pageHeader title'>{getText(RIVAL_TYPE_WELCOME_MSG[content.type])}</div>
                 {this.renderTeamBig()}
             </div>
         </div>;

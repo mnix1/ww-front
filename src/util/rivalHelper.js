@@ -1,8 +1,16 @@
 import {
+    TEXT_BATTLE,
+    TEXT_BATTLE_OVER,
+    TEXT_CAMPAIGN,
+    TEXT_CAMPAIGN_OVER,
+    TEXT_CHALLENGE,
+    TEXT_CHALLENGE_OVER,
     TEXT_INVITE_TO_BATTLE,
     TEXT_INVITE_TO_WAR,
     TEXT_INVITED_TO_BATTLE_BY,
-    TEXT_INVITED_TO_WAR_BY
+    TEXT_INVITED_TO_WAR_BY,
+    TEXT_WAR,
+    TEXT_WAR_OVER
 } from "../lang/langText";
 
 export const RIVAL_STATUS_WAITING_FRIEND = 'WAITING_FRIEND';
@@ -24,6 +32,7 @@ export const RIVAL_STATUS_CLOSED = 'CLOSED';
 export const RIVAL_TYPE_BATTLE = 'BATTLE';
 export const RIVAL_TYPE_WAR = 'WAR';
 export const RIVAL_TYPE_CAMPAIGN_WAR = 'CAMPAIGN_WAR';
+export const RIVAL_TYPE_CHALLENGE = 'CHALLENGE';
 
 export const RIVAL_IMPORTANCE_FAST = 'FAST';
 export const RIVAL_IMPORTANCE_RANKING = 'RANKING';
@@ -35,6 +44,18 @@ export const RIVAL_TYPE_INVITE_TEXT = {
 export const RIVAL_TYPE_INVITED_TO_BY_TEXT = {
     [RIVAL_TYPE_BATTLE]: TEXT_INVITED_TO_BATTLE_BY,
     [RIVAL_TYPE_WAR]: TEXT_INVITED_TO_WAR_BY,
+};
+export const RIVAL_TYPE_WELCOME_MSG = {
+    [RIVAL_TYPE_BATTLE]: TEXT_BATTLE,
+    [RIVAL_TYPE_WAR]: TEXT_WAR,
+    [RIVAL_TYPE_CAMPAIGN_WAR]: TEXT_CAMPAIGN,
+    [RIVAL_TYPE_CHALLENGE]: TEXT_CHALLENGE,
+};
+export const RIVAL_TYPE_FAREWELL_MSG = {
+    [RIVAL_TYPE_BATTLE]: TEXT_BATTLE_OVER,
+    [RIVAL_TYPE_WAR]: TEXT_WAR_OVER,
+    [RIVAL_TYPE_CAMPAIGN_WAR]: TEXT_CAMPAIGN_OVER,
+    [RIVAL_TYPE_CHALLENGE]: TEXT_CHALLENGE_OVER,
 };
 
 export function renderBattleElo({importance, type}) {
@@ -57,6 +78,6 @@ export function getEloProp(type) {
     }
 }
 
-export function isRanking({importance}){
+export function isRanking({importance}) {
     return importance === RIVAL_IMPORTANCE_RANKING;
 }

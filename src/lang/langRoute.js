@@ -2,7 +2,6 @@ import React from 'react';
 import {
     BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE,
     BATTLE_ROUTE, CAMPAIGN_ROUTE, CAMPAIGN_WAR_ROUTE,
-    CHALLENGE_FAST_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_LIST_ROUTE,
     FRIEND_ROUTE,
@@ -38,7 +37,6 @@ const ROUTE_LABELS = {
         [BATTLE_RANKING_ROUTE]: <span>Bitwa<br/>rankingowa</span>,
         [WAR_FAST_ROUTE]: <span>Szybka<br/>wojna</span>,
         [WAR_RANKING_ROUTE]: <span>Wojna<br/>rankingowa</span>,
-        [CHALLENGE_FAST_ROUTE]: <span>Losowy<br/>przeciwnik</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
     },
@@ -60,7 +58,6 @@ const ROUTE_LABELS = {
         [BATTLE_RANKING_ROUTE]: <span>Ranking<br/>battle</span>,
         [WAR_FAST_ROUTE]: <span>Fast<br/>war</span>,
         [WAR_RANKING_ROUTE]: <span>Ranking<br/>war</span>,
-        [CHALLENGE_FAST_ROUTE]: <span>Random<br/>opponent</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challenge</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,
     }

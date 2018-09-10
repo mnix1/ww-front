@@ -18,11 +18,11 @@ class Teams extends React.PureComponent {
                       presentIndexes={content.presentIndexes}/>
             </div>
             <div className='justifyCenter'>{children}</div>
-            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
-            <div className='pageHeader fontSize08Rem'>
+            {content.opponent && <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>}
+            {content.opponent && <div className='pageHeader fontSize08Rem'>
                 <Team renderHobbies={true} team={content.opponentTeam}
                       presentIndexes={content.opponentPresentIndexes}/>
-            </div>
+            </div>}
         </div>
     }
 
@@ -30,7 +30,7 @@ class Teams extends React.PureComponent {
         const {content, screen} = this.props;
         const renderImg = screen.contentHeight - 40 > 480;
         return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
-            <div style={{marginLeft: '0.25rem'}}>
+            <div className='marginLeftRem'>
                 <div>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
                 <div>
                     <Team
@@ -43,7 +43,7 @@ class Teams extends React.PureComponent {
                     />
                 </div>
             </div>
-            <div style={{marginRight: '0.25rem'}}>
+            {content.opponent && <div className='marginRightRem'>
                 <div>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
                 <div>
                     <Team
@@ -55,7 +55,7 @@ class Teams extends React.PureComponent {
                         presentIndexes={content.opponentPresentIndexes}
                     />
                 </div>
-            </div>
+            </div>}
         </div>;
     }
 

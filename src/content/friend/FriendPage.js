@@ -32,7 +32,7 @@ import {statusChanged, tagChanged, rivalTypeChanged} from "../../redux/reducer/r
 import {RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
-import {CHALLENGE_FRIEND_ROUTE} from "../routes";
+import {CHALLENGE_FRIEND_INIT_ROUTE} from "../routes";
 import {FRIEND_STATUS_ACCEPTED, FRIEND_STATUS_REQUESTED, FRIEND_STATUS_SUGGESTED} from "../../util/friendHelper";
 import MeshBackground from "../../component/background/MeshBackground";
 
@@ -173,7 +173,7 @@ export default connect(
         onChallengeFriendClick: (tag) => {
             dispatch(challengeCleared());
             dispatch(tagsChanged([tag]));
-            dispatch(push(CHALLENGE_FRIEND_ROUTE));
+            dispatch(push(CHALLENGE_FRIEND_INIT_ROUTE));
         },
         onDeleteFriendClick: (tag) => {
             request('/friend/delete', {tag}).then(() => {
