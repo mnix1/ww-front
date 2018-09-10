@@ -2,16 +2,12 @@ import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
 import clock from '../../media/image/category/clock.png';
-import randomPerson from '../../media/image/menu/dices.svg';
 import notebook from '../../media/image/menu/notes.svg';
-import {CHALLENGE_FAST_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
+import {CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
-import {CHALLENGE_STATUS_START} from "../../util/challengeHelper";
-import {challengeCleared, statusChanged as challengeStatusChanged} from "../../redux/reducer/challenge";
 import _ from 'lodash';
-import {clearChallengeTaskAndStartFetch} from "../challenge/fetch/ChallengeFetchContainer";
 
 class PlayChallengePage extends React.PureComponent {
 

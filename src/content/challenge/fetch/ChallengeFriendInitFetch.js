@@ -1,20 +1,9 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {
-    RIVAL_STATUS_START_FRIEND,
-    RIVAL_STATUS_WAITING_FRIEND
-} from "../../../util/rivalHelper";
-import {
-    CHALLENGE_FRIEND_INIT_ROUTE,
-    CHALLENGE_LIST_ROUTE,
-    CHALLENGE_ROUTE,
-    CHALLENGE_SUMMARY_ROUTE,
-    PROFILE_ROUTE
-} from "../../routes";
+import {CHALLENGE_FRIEND_INIT_ROUTE, CHALLENGE_LIST_ROUTE} from "../../routes";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
-import {statusChanged} from "../../../redux/reducer/rival";
-import {initChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
+import {initChanged} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
 import _ from "lodash";
 

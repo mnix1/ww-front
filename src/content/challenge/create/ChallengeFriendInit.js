@@ -15,11 +15,6 @@ import {MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
 import MeshBackground from "../../../component/background/MeshBackground";
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
-import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
-import {push} from "connected-react-router";
-import {CHALLENGE_ROUTE} from "../../routes";
-import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
 
 class ChallengeFriendPage extends React.PureComponent {
 
