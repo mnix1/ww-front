@@ -29,7 +29,7 @@ class WarPageAnswering extends React.PureComponent {
         const {content, onAnswerClick, rivalType, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
         return <div className='width100 height100 absolute'>
-            <ActiveMembers content={content} className='absolute'/>
+            <ActiveMembers content={content}/>
             <Task
                 screen={screen}
                 skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}

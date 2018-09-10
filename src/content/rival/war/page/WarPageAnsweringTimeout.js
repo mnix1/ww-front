@@ -11,9 +11,8 @@ class WarPageAnsweringTimeout extends React.PureComponent {
     renderNoAnswer() {
         const {content} = this.props;
         return <div className='pageCenterHorizontal whoAnswered'>
-            {/*<div className='pageBackground absoluteBackgroundMix'/>*/}
             <div className='pageCenterVertical'>
-                <ActiveMembers content={content} memberClassName='wrongAnswer'/>
+                <ActiveMembers content={content} className={content.opponent ? undefined : 'justifyCenter'} memberClassName='wrongAnswer'/>
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
                 <img alt='' src={thumbDown} height={60}/>
             </div>

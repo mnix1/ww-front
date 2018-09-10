@@ -22,7 +22,7 @@ class WarPagePreparingNextTask extends React.PureComponent {
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>
-            <ActiveMembers content={content} className='absolute'/>
+            <ActiveMembers content={content}/>
         </div>;
     }
 }
