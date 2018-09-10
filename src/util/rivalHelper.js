@@ -12,6 +12,8 @@ import {
     TEXT_WAR,
     TEXT_WAR_OVER
 } from "../lang/langText";
+import {BATTLE_ROUTE, CAMPAIGN_WAR_ROUTE, CHALLENGE_ROUTE, WAR_ROUTE} from "../content/routes";
+import _ from 'lodash';
 
 export const RIVAL_STATUS_WAITING_FRIEND = 'WAITING_FRIEND';
 export const RIVAL_STATUS_START_FRIEND = 'START_FRIEND';
@@ -57,6 +59,18 @@ export const RIVAL_TYPE_FAREWELL_MSG = {
     [RIVAL_TYPE_CAMPAIGN_WAR]: TEXT_CAMPAIGN_OVER,
     [RIVAL_TYPE_CHALLENGE]: TEXT_CHALLENGE_OVER,
 };
+
+export const ROUTE_RIVAL_TYPE = {
+    [BATTLE_ROUTE]: RIVAL_TYPE_BATTLE,
+    [WAR_ROUTE]: RIVAL_TYPE_WAR,
+    [CAMPAIGN_WAR_ROUTE]: RIVAL_TYPE_CAMPAIGN_WAR,
+    [CHALLENGE_ROUTE]: RIVAL_TYPE_CHALLENGE,
+};
+
+export const RIVAL_TYPE_ROUTE = _.reduce(ROUTE_RIVAL_TYPE, (acc, v, k) => {
+    acc[v] = k;
+    return acc;
+}, {});
 
 export function renderBattleElo({importance, type}) {
     return importance === RIVAL_IMPORTANCE_RANKING && type === RIVAL_TYPE_BATTLE;

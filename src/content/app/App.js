@@ -75,8 +75,8 @@ import {
     RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
     RIVAL_TYPE_BATTLE,
     RIVAL_TYPE_CAMPAIGN_WAR,
-    RIVAL_TYPE_CHALLENGE,
-    RIVAL_TYPE_WAR
+    RIVAL_TYPE_CHALLENGE, RIVAL_TYPE_ROUTE,
+    RIVAL_TYPE_WAR, ROUTE_RIVAL_TYPE
 } from "../../util/rivalHelper";
 import PlayWarPage from "../play/PlayWarPage";
 import PlayBattlePage from "../play/PlayBattlePage";
@@ -88,6 +88,7 @@ import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 import RivalSearchOpponentPage from "../rival/RivalSearchOpponentPage";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 import CampaignPage from "../campaign/CampaignPage";
+import _ from 'lodash';
 
 class App extends React.PureComponent {
 
@@ -99,34 +100,21 @@ class App extends React.PureComponent {
 
     componentDidUpdate() {
         const {path, rivalStatus, rivalType, onRouteChange} = this.props;
-        if (path === BATTLE_ROUTE) {
-            if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-                this.rivalCommunication.readyRandomOpponent(RIVAL_TYPE_BATTLE);
-            } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.rivalCommunication.readyFriend(RIVAL_TYPE_BATTLE);
-            }
-        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_BATTLE) {
-            onRouteChange(BATTLE_ROUTE);
-        } else if (path === WAR_ROUTE) {
-            if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-                this.rivalCommunication.readyRandomOpponent(RIVAL_TYPE_WAR);
-            } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND) {
-                this.rivalCommunication.readyFriend(RIVAL_TYPE_WAR);
-            }
-        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_WAR) {
-            onRouteChange(WAR_ROUTE);
-        } else if (path === CAMPAIGN_WAR_ROUTE) {
-            if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-                this.rivalCommunication.readyRandomOpponent(RIVAL_TYPE_CAMPAIGN_WAR);
-            }
-        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CAMPAIGN_WAR) {
-            onRouteChange(CAMPAIGN_WAR_ROUTE);
-        } else if (path === CHALLENGE_ROUTE) {
-            if (rivalStatus === RIVAL_STATUS_WAITING_FRIEND) {
-                this.rivalCommunication.readyFriend(RIVAL_TYPE_CHALLENGE);
-            }
-        } else if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && rivalType === RIVAL_TYPE_CHALLENGE) {
-            onRouteChange(CHALLENGE_ROUTE);
+        if (_.isNil(rivalStatus)) {
+            return;
+        }
+        const routeFromRivalType = RIVAL_TYPE_ROUTE[rivalType];
+        if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && path !== routeFromRivalType) {
+            onRouteChange(routeFromRivalType);
+        }
+        const rivalTypeFromRoute = ROUTE_RIVAL_TYPE[path];
+        if (_.isNil(rivalTypeFromRoute)) {
+            return;
+        }
+        if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
+            this.rivalCommunication.readyRandomOpponent(rivalTypeFromRoute);
+        } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND || rivalStatus === RIVAL_STATUS_WAITING_FRIEND) {
+            this.rivalCommunication.readyFriend(rivalTypeFromRoute);
         }
     }
 
@@ -181,7 +169,8 @@ class App extends React.PureComponent {
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
+                <Route exact path={CAMPAIGN_WAR_ROUTE}
+                       render={() => <WarPage communication={this.rivalCommunication}/>}/>
                 <Route path={CAMPAIGN_ROUTE} render={() => <CampaignPage/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
