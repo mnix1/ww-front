@@ -5,6 +5,7 @@ import {RIVAL_STATUS_START_FRIEND, RIVAL_STATUS_WAITING_FRIEND} from "../../../u
 import {CHALLENGE_ROUTE} from "../../routes";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
+import {responseIdChanged} from "../../../redux/reducer/challenge";
 
 class ChallengeResponseFetch extends React.PureComponent {
 
@@ -18,6 +19,7 @@ class ChallengeResponseFetch extends React.PureComponent {
         if (!prevProps.challengeResponseFetch.fulfilled && challengeResponseFetch.fulfilled && status === RIVAL_STATUS_START_FRIEND) {
             if (isRepValueCode1(challengeResponseFetch)) {
                 dispatch(statusChanged(RIVAL_STATUS_WAITING_FRIEND));
+                dispatch(responseIdChanged(undefined));
             }
         }
     }
