@@ -10,14 +10,14 @@ import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
+import {repFulfilled} from "../../../util/repositoryHelper";
+import {Loading} from "../../../component/loading/Loading";
+import MeshBackground from "../../../component/background/MeshBackground";
 
 class ChallengeHistoryPage extends React.PureComponent {
 
     renderChallenges() {
         const {challengeListRep} = this.props;
-        if (!challengeListRep || !challengeListRep.fulfilled) {
-            return null;
-        }
         const challenges = _.sortBy(challengeListRep.value, 'inProgressDate');
         return <div>
             <div className='contentFragment challengesContainer'>
@@ -40,15 +40,25 @@ class ChallengeHistoryPage extends React.PureComponent {
         </div>
     }
 
-    render() {
+    renderContent() {
         const {challengeListRep} = this.props;
-        return <div className="page">
-            <div className="pageBackground absoluteBackgroundMix"/>
-            <div className="pageContent">
-                <div className="pageHeader">
-                    <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_CLOSED_CHALLENGES : TEXT_CLOSED_CHALLENGES)}</span>
-                </div>
-                {this.renderChallenges()}
+        if (!repFulfilled(challengeListRep)) {
+            return <Loading/>
+        }
+        return <div>
+            <div className="pageHeader">
+                <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_CLOSED_CHALLENGES : TEXT_CLOSED_CHALLENGES)}</span>
+            </div>
+            {this.renderChallenges()}
+        </div>
+    }
+
+    render() {
+        const {screen} = this.props;
+        return <div className="page" style={{height: screen.contentHeight, width: screen.contentWidth}}>
+            <MeshBackground/>
+            <div className="pageContent overflowAuto">
+                {this.renderContent()}
             </div>
         </div>
     }
@@ -56,6 +66,7 @@ class ChallengeHistoryPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        screen: state.screen,
         challengeListRep: state.repository.challengeList
     }),
     (dispatch) => ({

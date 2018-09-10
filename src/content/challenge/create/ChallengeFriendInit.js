@@ -9,7 +9,7 @@ import {
     TEXT_START_CHALLENGE
 } from "../../../lang/langText";
 import _ from 'lodash';
-import {tagsChanged} from "../../../redux/reducer/challenge";
+import {initChanged, tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
 import {MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
@@ -91,12 +91,7 @@ export default connect(
     }),
     (dispatch) => ({
         onStartChallengeClick: () => {
-            clearRivalStartRandomOpponentFetch(dispatch);
-            dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_CHALLENGE));
-            dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
-            dispatch(push(CHALLENGE_ROUTE));
+            dispatch(initChanged(true));
         },
         onFriendToggle: (tag, tags) => {
             const newTags = _.filter(tags, (e) => e !== tag);

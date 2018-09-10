@@ -3,12 +3,20 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {
     RIVAL_STATUS_START_FRIEND,
-    RIVAL_STATUS_START_RANDOM_OPPONENT,
     RIVAL_STATUS_WAITING_FRIEND
 } from "../../../util/rivalHelper";
-import {CHALLENGE_ROUTE} from "../../routes";
+import {
+    CHALLENGE_FRIEND_INIT_ROUTE,
+    CHALLENGE_LIST_ROUTE,
+    CHALLENGE_ROUTE,
+    CHALLENGE_SUMMARY_ROUTE,
+    PROFILE_ROUTE
+} from "../../routes";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
+import {initChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
+import {push} from 'connected-react-router'
+import _ from "lodash";
 
 class ChallengeFriendInitFetch extends React.PureComponent {
 
@@ -18,10 +26,11 @@ class ChallengeFriendInitFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {challengeFriendInitFetch, dispatch, status} = this.props;
-        if (!prevProps.challengeFriendInitFetch.fulfilled && challengeFriendInitFetch.fulfilled && status === RIVAL_STATUS_START_FRIEND) {
+        const {challengeFriendInitFetch, dispatch, init} = this.props;
+        if (!prevProps.challengeFriendInitFetch.fulfilled && challengeFriendInitFetch.fulfilled && init) {
             if (isRepValueCode1(challengeFriendInitFetch)) {
-                dispatch(statusChanged(RIVAL_STATUS_WAITING_FRIEND));
+                dispatch(push(CHALLENGE_LIST_ROUTE));
+                dispatch(initChanged(undefined));
             }
         }
     }
@@ -31,10 +40,10 @@ class ChallengeFriendInitFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, tags, status, dispatchChallengeFriendInitPost} = this.props;
-        if (path === CHALLENGE_ROUTE
-            && prevProps.status !== status
-            && status === RIVAL_STATUS_START_FRIEND) {
+        const {path, tags, init, dispatchChallengeFriendInitPost} = this.props;
+        if (path === CHALLENGE_FRIEND_INIT_ROUTE
+            && !_.isNil(init)
+            && (prevProps.path !== path || prevProps.init !== init)) {
             dispatchChallengeFriendInitPost(tags);
         }
     }
