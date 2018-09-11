@@ -1,4 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
+import {getActiveLang} from "../index";
 
 const LEAFLET= 'LEAFLET';
 const FAIRY_TALE= 'FAIRY_TALE';
@@ -20,7 +21,7 @@ const MYSTERIOUS_BOOK= 'MYSTERIOUS_BOOK';
 const SECRET_BOOK= 'SECRET_BOOK';
 
 export function getBookLabel(id) {
-    return BOOK_LABELS[window.activeLang][id];
+    return BOOK_LABELS[getActiveLang()][id];
 }
 const BOOK_LABELS = {
     [POLISH]: {

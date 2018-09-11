@@ -12,8 +12,10 @@ import wisie from "./reducer/wisie";
 import option from "./reducer/option";
 import campaign from "./reducer/campaign";
 import settings from "./reducer/settings";
+import language from "./reducer/language";
 
 const app = combineReducers({
+    language,
     profile,
     rival,
     challenge,

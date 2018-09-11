@@ -14,7 +14,7 @@ export function getSurrenderMsg(path) {
         return `${RIVAL_TYPE_WAR}_^_SURRENDER`;
     } else if (path === CAMPAIGN_WAR_ROUTE) {
         return `${RIVAL_TYPE_CAMPAIGN_WAR}_^_SURRENDER`;
-    }else if (path === CHALLENGE_ROUTE) {
+    } else if (path === CHALLENGE_ROUTE) {
         return `${RIVAL_TYPE_CHALLENGE}_^_SURRENDER`;
     }
     return null;

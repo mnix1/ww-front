@@ -11,7 +11,6 @@ import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import './util/rdHelper';
-import {ENGLISH} from "./redux/reducer/language";
 
 const history = createBrowserHistory();
 
@@ -21,7 +20,6 @@ const store = createStore(
         applyMiddleware(routerMiddleware(history)),
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a)
 );
-window.activeLang = ENGLISH;
 document.title = getText(TEXT_APP_NAME);
 
 const originalFetch = fetch;
@@ -34,7 +32,7 @@ window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
 
-export function getActiveLang(){
+export function getActiveLang() {
     return store.getState().language.lang;
 }
 

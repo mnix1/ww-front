@@ -1,4 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
+import {getActiveLang} from "../index";
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
 export const TEXT_CAMPAIGN_OVER = 'TEXT_CAMPAIGN_OVER';
@@ -390,25 +391,25 @@ const TEXTS = {
     },
 };
 
-export function getText(id) {
-    return TEXTS[window.activeLang][id];
+export function getText(id, lang) {
+    return TEXTS[lang || getActiveLang()][id];
 }
 
 export function getName(e) {
-    if (window.activeLang === POLISH) {
+    if (getActiveLang() === POLISH) {
         return e.namePolish;
     }
-    if (window.activeLang === ENGLISH) {
+    if (getActiveLang() === ENGLISH) {
         return e.nameEnglish;
     }
     return null;
 }
 
 export function getTextContent(obj) {
-    if (window.activeLang === POLISH) {
+    if (getActiveLang() === POLISH) {
         return obj.textContentPolish;
     }
-    if (window.activeLang === ENGLISH) {
+    if (getActiveLang() === ENGLISH) {
         return obj.textContentEnglish;
     }
     throw new Error('UNKNOWN LANGUAGE');

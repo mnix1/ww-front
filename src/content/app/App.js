@@ -149,9 +149,9 @@ class App extends React.PureComponent {
     }
 
     renderMenuItem(route, imgSrc) {
-        const {screen, onRouteChange} = this.props;
+        const {screen, lang, onRouteChange} = this.props;
         const iconHeight = screen.wisieImgHeight + 10;
-        return <MenuItem onClick={onRouteChange} imgSrc={imgSrc} iconHeight={iconHeight} route={route}/>
+        return <MenuItem onClick={onRouteChange} lang={lang} imgSrc={imgSrc} iconHeight={iconHeight} route={route}/>
     }
 
     renderMenu() {
@@ -195,8 +195,7 @@ class App extends React.PureComponent {
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={CAMPAIGN_WAR_ROUTE}
-                       render={() => <WarPage communication={this.rivalCommunication}/>}/>
+                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
                 <Route path={CAMPAIGN_ROUTE} render={() => <CampaignPage/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
@@ -297,6 +296,7 @@ class App extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        lang: state.language.lang,
         socket: state.socket.socket,
         socketOpen: state.socket.open,
         friendListRep: state.repository.friendList,

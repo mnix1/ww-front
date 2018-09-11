@@ -1,4 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
+import {getActiveLang} from "../index";
 
 export const SUCCESS_TEAM_SAVED = 'SUCCESS_TEAM_SAVED';
 export const SUCCESS_CHANGED_NICK = 'SUCCESS_CHANGED_NICK';
@@ -18,5 +19,5 @@ const TEXTS = {
 };
 
 export function getSuccess(id) {
-    return TEXTS[window.activeLang][id];
+    return TEXTS[getActiveLang()][id];
 }

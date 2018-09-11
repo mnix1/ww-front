@@ -12,6 +12,7 @@ export default class MenuItem extends React.PureComponent {
         onClick: PropTypes.func,
         className: PropTypes.string,
         route: PropTypes.string,
+        lang: PropTypes.string,
     };
 
     static defaultProps = {

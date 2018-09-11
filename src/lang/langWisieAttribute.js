@@ -13,9 +13,10 @@ import {
     SPEED
 } from "../util/wisieAttributeHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
+import {getActiveLang} from "../index";
 
 export function getWisieAttributeLabel(id) {
-    return HERO_ATTRIBUTE_LABELS[window.activeLang][id];
+    return HERO_ATTRIBUTE_LABELS[getActiveLang()][id];
 }
 
 const HERO_ATTRIBUTE_LABELS = {

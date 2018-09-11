@@ -5,9 +5,10 @@ import {
 } from "../util/campaignHelper";
 import _ from 'lodash';
 import {ENGLISH, POLISH} from "../redux/reducer/language";
+import {getActiveLang} from "../index";
 
 export function getCampaignLabel(type, destination, phase) {
-    const t = CAMPAIGN_LABELS[window.activeLang][type];
+    const t = CAMPAIGN_LABELS[getActiveLang()][type];
     const d = t[destination];
     if (_.isNil(phase)) {
         return d;

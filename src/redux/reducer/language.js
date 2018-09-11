@@ -19,6 +19,6 @@ export default function reducer(state = initialState, action) {
 }
 
 export const langChanged = (lang) => {
-    document.title = getText(TEXT_APP_NAME);
+    document.title = getText(TEXT_APP_NAME, lang);
     return {type: LANG_CHANGED, lang}
 };

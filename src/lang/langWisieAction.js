@@ -21,9 +21,10 @@ import {
     THINKING_IF_GIVE_RANDOM_ANSWER
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
+import {getActiveLang} from "../index";
 
 export function getWisieActionLabel(id) {
-    return HERO_ACTION_LABELS[window.activeLang][id];
+    return HERO_ACTION_LABELS[getActiveLang()][id];
 }
 const HERO_ACTION_LABELS = {
     [POLISH]: {
