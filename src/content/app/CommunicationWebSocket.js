@@ -7,23 +7,53 @@ import {push} from 'connected-react-router'
 import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
 import {noticeReward} from "../../component/notification/noticeReward";
 import {clearProfileFetch} from "./ProfileFetch";
+import {openChanged} from "../../redux/reducer/socket";
+import {fetchTag} from "../../util/fetchHelper";
 
 export default class CommunicationWebSocket {
-    constructor() {
+    constructor(onInit) {
+        this.onInit = onInit;
         this.init();
-        this.socket.addEventListener('message', this.onMessage);
-        this.socket.addEventListener('close', (e) => {
-            console.log('onclose', e);
-        });
-        this.socket.addEventListener('error', (e) => {
-            console.log('onerror', e);
-        });
-        this.socket.addEventListener('open', (e) => {
-            // console.log('onopen', e)
-        });
     }
 
-    init() {
+    init = () => {
+        this.connect();
+        this.socket.addEventListener('message', this.onMessage);
+        this.socket.addEventListener('close', this.onClose);
+        this.socket.addEventListener('error', this.onError);
+        this.socket.addEventListener('open', this.onOpen);
+        this.onInit(this);
+    };
+
+    dispose() {
+        this.socket.removeEventListener('message', this.onMessage);
+        this.socket.removeEventListener('close', this.onClose);
+        this.socket.removeEventListener('error', this.onError);
+        this.socket.removeEventListener('open', this.onOpen);
+    }
+
+    onClose = (e) => {
+        console.log('onclose', e);
+        this.dispatch(openChanged(false));
+        this.dispose();
+        fetchTag().then(json => {
+            const tag = json.profileTag;
+            if (!_.isNil(tag)) {
+                this.init();
+            }
+        });
+    };
+
+    onError = (e) => {
+        console.log('onerror', e);
+    };
+
+    onOpen = (e) => {
+        console.log('onopen', e);
+        this.dispatch(openChanged(true));
+    };
+
+    connect() {
         let socket;
         if (_.includes(window.location.host, 'localhost')) {
             socket = new WebSocket("ws://localhost:8080/websocket");

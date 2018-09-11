@@ -14,6 +14,7 @@ import {profileTagChanged} from "./redux/reducer/profile";
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import './util/rdHelper';
+import {fetchTag} from "./util/fetchHelper";
 
 const history = createBrowserHistory();
 
@@ -37,8 +38,7 @@ window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
 
-fetch('/profile/profileTag', {credentials: 'include'})
-    .then(res => res.json())
+fetchTag()
     .then(json => {
         const tag = json.profileTag;
         if (_.isNil(tag)) {

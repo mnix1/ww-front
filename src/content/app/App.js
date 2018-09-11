@@ -8,7 +8,6 @@ import TopBar from "../../component/top-bar/TopBar";
 import FriendPage from "../friend/FriendPage";
 import FriendListFetch from "../friend/fetch/FriendListFetch";
 import CommunicationWebSocket from "./CommunicationWebSocket";
-import {socketCreated} from "../../redux/reducer/socket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
 import background from '../../media/image/background/backgroundWithWisiesProd.jpg';
@@ -73,10 +72,8 @@ import {
     RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
     RIVAL_STATUS_WAITING_FRIEND,
     RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
-    RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_CAMPAIGN_WAR,
-    RIVAL_TYPE_CHALLENGE, RIVAL_TYPE_ROUTE,
-    RIVAL_TYPE_WAR, ROUTE_RIVAL_TYPE
+    RIVAL_TYPE_ROUTE,
+    ROUTE_RIVAL_TYPE
 } from "../../util/rivalHelper";
 import PlayWarPage from "../play/PlayWarPage";
 import PlayBattlePage from "../play/PlayBattlePage";
@@ -89,12 +86,15 @@ import RivalSearchOpponentPage from "../rival/RivalSearchOpponentPage";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 import CampaignPage from "../campaign/CampaignPage";
 import _ from 'lodash';
+import Modal from "../../component/modal/Modal";
+import {Loading} from "../../component/loading/Loading";
+import {socketChanged} from "../../redux/reducer/socket";
+import {ERROR_CONNECTION_PROBLEM, getError} from "../../lang/langError";
 
 class App extends React.PureComponent {
 
     componentDidMount() {
-        const socket = new CommunicationWebSocket();
-        this.props.onInit(socket);
+        const socket = new CommunicationWebSocket(this.props.onInit);
         this.rivalCommunication = new RivalCommunication(socket, this);
     }
 
@@ -225,13 +225,38 @@ class App extends React.PureComponent {
         </div>;
     }
 
-    render() {
+    renderBackground() {
+        const {screen,} = this.props;
+        return <img alt='' src={background} height={screen.height} width={screen.width}
+                    className="fixedBackgroundMix"/>;
+    }
+
+    renderConnectionProblem() {
         const {screen} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
+            {this.renderBackground()}
+            <div style={{height, width: contentWidth}} className='content'>
+                <Modal renderExit={false}>
+                    <div>
+                        {getError(ERROR_CONNECTION_PROBLEM)}
+                    </div>
+                    <Loading/>
+                </Modal>
+            </div>
+        </div>;
+    }
+
+    render() {
+        const {screen, socketOpen} = this.props;
+        const {height, contentWidth} = screen;
+        if (!socketOpen) {
+            return this.renderConnectionProblem();
+        }
+        return <div className='app'>
+            {this.renderBackground()}
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
-            <img alt='' src={background} height={screen.height} width={screen.width} className="fixedBackgroundMix"/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
             <div style={{height, width: contentWidth}} className='content'>
@@ -250,6 +275,7 @@ class App extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        socketOpen: state.socket.open,
         friendListRep: state.repository.friendList,
         rivalStatus: state.rival.status,
         rivalType: state.rival.rivalType,
@@ -262,7 +288,7 @@ export default connect(
         },
         onInit: (socket) => {
             socket.setDispatch(dispatch);
-            dispatch(socketCreated(socket));
+            dispatch(socketChanged(socket));
         },
         onOptionShowChange: () => dispatch(optionShowChanged(true))
     })

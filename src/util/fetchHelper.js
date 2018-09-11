@@ -14,3 +14,8 @@ export default function request(url, data) {
             console.error(e);
         })
 }
+
+export function fetchTag(){
+    return fetch('/profile/profileTag', {credentials: 'include'})
+        .then(res => res.json());
+}
