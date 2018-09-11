@@ -19,7 +19,6 @@ function addSourceToVideo(element, type, dataURI) {
 
 export default class WakeLockAndroid extends React.PureComponent {
 
-
     static propTypes = {
         preventSleep: PropTypes.bool
     };
@@ -40,7 +39,6 @@ export default class WakeLockAndroid extends React.PureComponent {
         this.syncState(this.props.preventSleep);
     }
 
-
     componentWillUnmount() {
         delete this.dummyVideo;
     }
@@ -49,9 +47,7 @@ export default class WakeLockAndroid extends React.PureComponent {
         this.syncState(nextProps.preventSleep);
     }
 
-
     syncState(preventSleep) {
-
         if (preventSleep) {
             if (this.dummyVideo.paused) {
                 // We need a "user generated intervention" to start the video.
@@ -65,7 +61,6 @@ export default class WakeLockAndroid extends React.PureComponent {
 
             this.dummyVideo.pause();
         }
-
     }
 
     removeListeners() {
@@ -78,12 +73,10 @@ export default class WakeLockAndroid extends React.PureComponent {
             document.addEventListener(ugiEvents[i], this.startVideo, false);
     }
 
-
     startVideo = () => {
         this.removeListeners();
         this.dummyVideo.play();
-    }
-
+    };
 
     render() {
         return null;

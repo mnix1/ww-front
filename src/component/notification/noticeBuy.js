@@ -18,4 +18,4 @@ export function noticeBuy(bookType) {
             </div>
         </div>
     );
-};
+}

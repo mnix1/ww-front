@@ -21,4 +21,4 @@ export function noticeReward(reward) {
             </div>
         </div>
     );
-};
+}

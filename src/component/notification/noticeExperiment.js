@@ -18,4 +18,4 @@ export function noticeExperiment(wisieType) {
             </div>
         </div>
     );
-};
+}

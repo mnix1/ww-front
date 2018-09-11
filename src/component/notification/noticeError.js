@@ -10,4 +10,4 @@ export function noticeError(error) {
             <div className='justifyCenter flexColumn marginRem'>{getError(error)}</div>
         </div>
     );
-};
+}

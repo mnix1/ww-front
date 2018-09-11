@@ -15,4 +15,4 @@ export function noticeSuccess(success) {
             </div>
         </div>
     );
-};
+}

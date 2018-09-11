@@ -23,7 +23,7 @@ export default class RivalCommunication {
 
     send(message) {
         this.communicationWebSocket.send(message);
-    };
+    }
 
     onMessage = (e) => {
         const data = JSON.parse(e.data);

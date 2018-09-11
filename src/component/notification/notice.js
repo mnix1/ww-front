@@ -19,4 +19,4 @@ export function notice(content) {
         closable: true,
         duration: 4,
     });
-};
+}

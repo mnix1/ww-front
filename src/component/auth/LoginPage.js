@@ -1,16 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {goBack} from "connected-react-router";
-import {fetchTag} from "../../util/fetchHelper";
-import _ from 'lodash';
 import googleLogo from '../../media/image/icon/googleLogo.svg';
 import {getText, TEXT_LOGIN} from "../../lang/langText";
 import {CREAM_COLOR} from "../../util/style/constant";
 
 class LoginPage extends React.PureComponent {
-
-    componentDidMount() {
-    }
 
     render() {
         const {screen} = this.props;
@@ -38,13 +32,5 @@ export default connect(
     (state) => ({
         screen: state.screen,
     }),
-    (dispatch) => ({
-        // onProfileTagChange: (tag) => {
-        //     if (_.isNil(tag)) {
-        //         return;
-        //     }
-        //     dispatch(profileTagChanged(tag));
-        //     dispatch(goBack());
-        // }
-    })
+    (dispatch) => ({})
 )(LoginPage);
