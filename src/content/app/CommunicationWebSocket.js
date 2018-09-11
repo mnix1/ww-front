@@ -8,7 +8,7 @@ import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
 import {noticeReward} from "../../component/notification/noticeReward";
 import {clearProfileFetch} from "./ProfileFetch";
 import {openChanged} from "../../redux/reducer/socket";
-import {fetchTag} from "../../util/fetchHelper";
+import {profileChanged} from "../../redux/reducer/profile";
 
 export default class CommunicationWebSocket {
     constructor(onInit) {
@@ -36,12 +36,12 @@ export default class CommunicationWebSocket {
         console.log('onclose', e);
         this.dispatch(openChanged(false));
         this.dispose();
-        fetchTag().then(json => {
-            const tag = json.profileTag;
-            if (!_.isNil(tag)) {
-                this.init();
-            }
-        });
+        if (e.code === 1008) {
+            clearProfileFetch(this.dispatch);
+            this.dispatch(profileChanged(null));
+        } else {
+            this.init();
+        }
     };
 
     onError = (e) => {

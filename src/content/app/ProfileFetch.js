@@ -2,6 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {profileChanged} from "../../redux/reducer/profile";
+import {langChanged} from "../../redux/reducer/language";
 
 class ProfileFetch extends React.PureComponent {
 
@@ -13,6 +14,7 @@ class ProfileFetch extends React.PureComponent {
         this.maybeFetch(prevProps);
         const {dispatch, profileFetch} = this.props;
         if (!prevProps.profileFetch.fulfilled && profileFetch.fulfilled) {
+            langChanged(profileFetch.value.language);
             dispatch(profileChanged(profileFetch.value));
         }
     }
@@ -23,7 +25,7 @@ class ProfileFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {dispatchProfileGet, profileFetch} = this.props;
-        if (!profileFetch.fulfilled && !profileFetch.pending) {
+        if (!profileFetch.fulfilled && !profileFetch.pending && !profileFetch.rejected) {
             dispatchProfileGet();
         }
     }

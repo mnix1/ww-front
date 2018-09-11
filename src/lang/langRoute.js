@@ -12,10 +12,10 @@ import {
     TRAINING_ROUTE, WAR_FAST_ROUTE, WAR_RANKING_ROUTE,
     WISIES_ROUTE
 } from "../content/routes";
-import {ENGLISH, POLISH} from "./langText";
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getRouteLabel(id) {
-    return ROUTE_LABELS[window.activeLang][id];
+export function getRouteLabel(lang, id) {
+    return ROUTE_LABELS[lang][id];
 }
 
 const ROUTE_LABELS = {

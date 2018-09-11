@@ -1,6 +1,5 @@
 export const PROFILE_CHANGED = 'profile/changed';
 export const PROFILE_PART_CHANGED = 'profile/part/changed';
-export const PROFILE_TAG_CHANGED = 'profile/tag/changed';
 export const START_READ_BOOK_ID_CHANGED = 'profile/start-read-book-id/changed';
 export const STOP_READ_BOOK_ID_CHANGED = 'profile/stop-read-book-id/changed';
 export const DISCARD_BOOK_ID_CHANGED = 'profile/discard-book-id/changed';
@@ -8,8 +7,7 @@ export const CLAIM_REWARD_BOOK_ID_CHANGED = 'profile/claim-reward-book-id/change
 export const SPEED_UP_BOOK_ID_CHANGED = 'profile/speed-up-book-id/changed';
 
 const initialState = {
-    profileTag: undefined,
-    profile: {},
+    profile: null,
     startReadBookId: undefined,
     stopReadBookId: undefined,
     discardBookId: undefined,
@@ -23,8 +21,6 @@ export default function reducer(state = initialState, action) {
             return {...state, profile: action.profile};
         case PROFILE_PART_CHANGED:
             return {...state, profile: {...state.profile, ...action.profile}};
-        case PROFILE_TAG_CHANGED:
-            return {...state, profileTag: action.profileTag};
         case START_READ_BOOK_ID_CHANGED:
             return {...state, startReadBookId: action.startReadBookId};
         case STOP_READ_BOOK_ID_CHANGED:
@@ -46,10 +42,6 @@ export function profileChanged(profile) {
 
 export function profilePartChanged(profile) {
     return {type: PROFILE_PART_CHANGED, profile};
-}
-
-export function profileTagChanged(profileTag) {
-    return {type: PROFILE_TAG_CHANGED, profileTag};
 }
 
 export function startReadBookIdChanged(startReadBookId) {

@@ -35,12 +35,13 @@ import MeshBackground, {MESH_4} from "../../component/background/MeshBackground"
 class PractisePage extends React.PureComponent {
 
     renderChooseCategory() {
-        const {screen, onCategoryChange, difficultyLevel, onDifficultLevelChange} = this.props;
+        const {screen, onCategoryChange, difficultyLevel, onDifficultLevelChange, lang} = this.props;
         return <div className='pageContent'>
             <div className="pageHeader">{getText(TEXT_CHOOSE_DIFFICULT)}</div>
             <div className="pageHeader"><Rating valueString={difficultyLevel} onChange={onDifficultLevelChange}/></div>
             <div className="pageHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
+                lang={lang}
                 setHeight={false}
                 objects={OBJECTS_CATEGORY}
                 onObjectClick={onCategoryChange}
@@ -121,6 +122,7 @@ class PractisePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        lang: state.language.lang,
         profile: state.profile.profile,
         category: state.practise.category,
         difficultyLevel: state.practise.difficultyLevel,

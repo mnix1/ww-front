@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import _ from 'lodash';
 import './index.css';
-import Login from "./component/auth/Login";
 import {Provider} from 'react-redux'
 import app from './redux/app';
 import {screenResized} from "./redux/reducer/screen";
 import App from "./content/app/App";
-import {getText, POLISH, TEXT_APP_NAME} from "./lang/langText";
+import {getText, TEXT_APP_NAME} from "./lang/langText";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
-import {profileTagChanged} from "./redux/reducer/profile";
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import './util/rdHelper';
-import {fetchTag} from "./util/fetchHelper";
+import {ENGLISH} from "./redux/reducer/language";
 
 const history = createBrowserHistory();
 
@@ -25,8 +22,7 @@ const store = createStore(
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a)
 );
 
-window.activeLang = POLISH;
-document.title = getText(TEXT_APP_NAME);
+document.title = getText(ENGLISH, TEXT_APP_NAME);
 
 const originalFetch = fetch;
 fetch = function (url, opts) {
@@ -38,21 +34,6 @@ window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
 
-fetchTag()
-    .then(json => {
-        const tag = json.profileTag;
-        if (_.isNil(tag)) {
-            return ReactDOM.render(<Login/>, document.getElementById('root'));
-        }
-        store.dispatch(profileTagChanged(json.profileTag));
-        ReactDOM.render(<Provider store={store}>
-            <App history={history}/>
-        </Provider>, document.getElementById('root'));
-    })
-    .catch(e => {
-        console.error(e);
-        ReactDOM.render(<div>Error</div>, document.getElementById('root'));
-    });
-
-
-ReactDOM.render(<div>Loading</div>, document.getElementById('root'));
+ReactDOM.render(<Provider store={store}>
+    <App history={history}/>
+</Provider>, document.getElementById('root'));

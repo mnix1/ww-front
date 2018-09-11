@@ -1,5 +1,4 @@
-export const POLISH = 'pl';
-export const ENGLISH = 'en';
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
 export const TEXT_CAMPAIGN_OVER = 'TEXT_CAMPAIGN_OVER';
@@ -107,31 +106,33 @@ export const TEXT_WISIE_DISCOVERED = 'TEXT_WISIE_DISCOVERED';
 export const TEXT_COST = 'TEXT_COST';
 export const TEXT_SKILL = 'TEXT_SKILL';
 export const TEXT_SHOW = 'TEXT_SHOW';
-export const TEXT_HIDE= 'TEXT_HIDE';
-export const TEXT_WISIES_TEAM= 'TEXT_WISIES_TEAM';
-export const TEXT_EDIT= 'TEXT_EDIT';
-export const TEXT_ALREADY_IN_TEAM= 'TEXT_ALREADY_IN_TEAM';
-export const TEXT_TEAM_ADD= 'TEXT_TEAM_ADD';
-export const TEXT_TEAM_REMOVE= 'TEXT_TEAM_REMOVE';
-export const TEXT_SHOW_DETAILS= 'TEXT_SHOW_DETAILS';
-export const TEXT_WAR_OVER= 'TEXT_WAR_OVER';
-export const TEXT_YOUR_TEAM= 'TEXT_YOUR_TEAM';
-export const TEXT_OPPONENT_TEAM= 'TEXT_OPPONENT_TEAM';
-export const TEXT_CHOOSE_WISOR= 'TEXT_CHOOSE_WISOR';
-export const TEXT_CHANGE_NICK= 'TEXT_CHANGE_NICK';
-export const TEXT_CHANGE_WISOR= 'TEXT_CHANGE_WISOR';
-export const TEXT_FILTER= 'TEXT_FILTER';
-export const TEXT_RANKING= 'TEXT_RANKING';
-export const TEXT_READ_NOW= 'TEXT_READ_NOW';
-export const TEXT_START= 'TEXT_START';
-export const TEXT_EXIT= 'TEXT_EXIT';
-export const TEXT_CHOOSE_TYPE= 'TEXT_CHOOSE_TYPE';
-export const TEXT_CHOOSE_DESTINATION= 'TEXT_CHOOSE_DESTINATION';
+export const TEXT_HIDE = 'TEXT_HIDE';
+export const TEXT_WISIES_TEAM = 'TEXT_WISIES_TEAM';
+export const TEXT_EDIT = 'TEXT_EDIT';
+export const TEXT_ALREADY_IN_TEAM = 'TEXT_ALREADY_IN_TEAM';
+export const TEXT_TEAM_ADD = 'TEXT_TEAM_ADD';
+export const TEXT_TEAM_REMOVE = 'TEXT_TEAM_REMOVE';
+export const TEXT_SHOW_DETAILS = 'TEXT_SHOW_DETAILS';
+export const TEXT_WAR_OVER = 'TEXT_WAR_OVER';
+export const TEXT_YOUR_TEAM = 'TEXT_YOUR_TEAM';
+export const TEXT_OPPONENT_TEAM = 'TEXT_OPPONENT_TEAM';
+export const TEXT_CHOOSE_WISOR = 'TEXT_CHOOSE_WISOR';
+export const TEXT_CHANGE_NICK = 'TEXT_CHANGE_NICK';
+export const TEXT_CHANGE_WISOR = 'TEXT_CHANGE_WISOR';
+export const TEXT_FILTER = 'TEXT_FILTER';
+export const TEXT_RANKING = 'TEXT_RANKING';
+export const TEXT_READ_NOW = 'TEXT_READ_NOW';
+export const TEXT_START = 'TEXT_START';
+export const TEXT_EXIT = 'TEXT_EXIT';
+export const TEXT_CHOOSE_TYPE = 'TEXT_CHOOSE_TYPE';
+export const TEXT_CHOOSE_DESTINATION = 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
+export const TEXT_LOGIN = 'TEXT_LOGIN';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_LOGIN]: 'Zaloguj się',
         [TEXT_CAMPAIGN]: 'Kampania',
         [TEXT_CAMPAIGN_OVER]: 'Koniec kampanii!',
         [TEXT_EXIT]: 'Wyjście',
@@ -261,6 +262,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_LOGIN]: 'Sign in',
         [TEXT_CAMPAIGN]: 'Campaign',
         [TEXT_CAMPAIGN_OVER]: 'Campaign is over',
         [TEXT_EXIT]: 'Exit',
@@ -388,15 +390,15 @@ const TEXTS = {
     },
 };
 
-export function getText(id) {
-    return TEXTS[window.activeLang][id];
+export function getText(lang, id) {
+    return TEXTS[lang][id];
 }
 
-export function getName(e) {
-    if(window.activeLang === POLISH){
+export function getName(lang, e) {
+    if (lang === POLISH) {
         return e.namePolish;
     }
-    if(window.activeLang === ENGLISH){
+    if (lang === ENGLISH) {
         return e.nameEnglish;
     }
     return null;

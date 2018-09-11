@@ -1,16 +1,21 @@
-import {ENGLISH, POLISH} from "./langText";
 import {
-    COMBINING_FACTS, CONCENTRATION,
+    COMBINING_FACTS,
+    CONCENTRATION,
+    CONFIDENCE,
     COUNTING,
-    IMAGINATION, INTUITION, CONFIDENCE,
+    IMAGINATION,
+    INTUITION,
     LOGIC,
     MEMORY,
     PATTERN_RECOGNITION,
-    PERCEPTIVITY, REFLEX, SPEED
+    PERCEPTIVITY,
+    REFLEX,
+    SPEED
 } from "../util/wisieAttributeHelper";
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getWisieAttributeLabel(id) {
-    return HERO_ATTRIBUTE_LABELS[window.activeLang][id];
+export function getWisieAttributeLabel(lang, id) {
+    return HERO_ATTRIBUTE_LABELS[lang][id];
 }
 
 const HERO_ATTRIBUTE_LABELS = {

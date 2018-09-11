@@ -16,7 +16,7 @@ import {maybeDisabledClassName} from "../../util/style/constant";
 import {RESOURCE_VERY_SMALL} from "../resource/Resource";
 import {getBookLabel} from "../../lang/langBook";
 
-export default class ProfileBook extends React.PureComponent {
+export default class ShopBook extends React.PureComponent {
 
     static propTypes = {
         isBuyEnable: PropTypes.bool,
@@ -27,6 +27,7 @@ export default class ProfileBook extends React.PureComponent {
         elixirGain: PropTypes.number,
         goldCost: PropTypes.number,
         type: PropTypes.string,
+        lang: PropTypes.string,
         style: PropTypes.object,
     };
 
@@ -52,9 +53,9 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderInfo() {
-        const {level, readTime, type} = this.props;
+        const {level, readTime, type, lang} = this.props;
         return <div className='bookInfo justifyBetween flexColumn'>
-            <div className='justifyCenter'>{getBookLabel(type)}</div>
+            <div className='justifyCenter'>{getBookLabel(lang, type)}</div>
             <div className='justifyCenter'><Rating value={level / 2}/>
                 <div className='justifyCenter flexColumn marginRem'>
                     <div className='justifyCenter'>

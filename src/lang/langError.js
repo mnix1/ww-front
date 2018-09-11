@@ -1,4 +1,4 @@
-import {ENGLISH, POLISH} from "./langText";
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
 export const ERROR_CONNECTION_PROBLEM = 'ERROR_CONNECTION_PROBLEM';
 export const ERROR_NOT_ENOUGH_RESOURCES = 'ERROR_NOT_ENOUGH_RESOURCES';
@@ -23,6 +23,6 @@ const TEXTS = {
     },
 };
 
-export function getError(id) {
-    return TEXTS[window.activeLang][id];
+export function getError(lang, id) {
+    return TEXTS[lang][id];
 }

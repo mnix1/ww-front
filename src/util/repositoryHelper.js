@@ -15,5 +15,4 @@ export function fetchOnPathAndIfNotExists(prevPath, path, targetPath, prevRep, r
 
 export function repFulfilled(rep){
     return rep && rep.fulfilled;
-
 }

@@ -1,5 +1,5 @@
-import {ENGLISH, POLISH} from "./langText";
-// const DIARY= 'DIARY';
+import {ENGLISH, POLISH} from "../redux/reducer/language";
+
 const LEAFLET= 'LEAFLET';
 const FAIRY_TALE= 'FAIRY_TALE';
 const TV_GUIDE= 'TV_GUIDE';
@@ -19,8 +19,8 @@ const SCIENCE_ARTICLE= 'SCIENCE_ARTICLE';
 const MYSTERIOUS_BOOK= 'MYSTERIOUS_BOOK';
 const SECRET_BOOK= 'SECRET_BOOK';
 
-export function getBookLabel(id) {
-    return BOOK_LABELS[window.activeLang][id];
+export function getBookLabel(lang, id) {
+    return BOOK_LABELS[lang][id];
 }
 const BOOK_LABELS = {
     [POLISH]: {

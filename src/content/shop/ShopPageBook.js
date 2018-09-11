@@ -43,8 +43,9 @@ class ShopPageBook extends React.PureComponent {
     }
 
     renderBook(book) {
-        const {onBuyClick, profile} = this.props;
+        const {onBuyClick, profile, lang} = this.props;
         return <ShopBook
+            lang={lang}
             key={book.id}
             isBuyEnable={(book.canBuyByGold && profile.gold >= book.goldCost) || (book.canBuyByCrystal && profile.crystal >= book.crystalCost)}
             {...book}
@@ -106,6 +107,7 @@ export default connect(
         screen: state.screen,
         bookFilterLevel: state.shop.bookFilterLevel,
         showBooks: state.shop.showBooks,
+        lang: state.language.lang,
         path: state.router.location.pathname,
         profile: state.profile.profile,
         shopListBookRep: state.repository.shopListBook,

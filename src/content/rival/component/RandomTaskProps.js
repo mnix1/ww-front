@@ -13,7 +13,7 @@ class RandomTaskProps extends React.PureComponent {
 
     renderRandomCategory() {
         const objectsCategory = _.shuffle(OBJECTS_CATEGORY.filter(e => e.id !== CATEGORY_RANDOM));
-        const {screen, content} = this.props;
+        const {screen, content, lang} = this.props;
         const targetCategory = content.task.category;
         const targetSelectedIdValue = objectsCategory.length * 6;
         return <Anime
@@ -22,6 +22,7 @@ class RandomTaskProps extends React.PureComponent {
             from={{selectedId: 0}}
             to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 4000, delay: 500}}}>
             <SimpleObjectGroup
+                lang={lang}
                 objects={objectsCategory}
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
             />
@@ -61,6 +62,7 @@ class RandomTaskProps extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        lang: state.language.lang,
     }),
     (dispatch) => ({})
 )(RandomTaskProps);

@@ -33,6 +33,7 @@ import {
     CHALLENGE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     FRIEND_ROUTE,
+    LOGIN_ROUTE,
     PLAY_BATTLE_ROUTE,
     PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE,
@@ -90,15 +91,40 @@ import Modal from "../../component/modal/Modal";
 import {Loading} from "../../component/loading/Loading";
 import {socketChanged} from "../../redux/reducer/socket";
 import {ERROR_CONNECTION_PROBLEM, getError} from "../../lang/langError";
+import LoginPage from "../../component/auth/LoginPage";
+import {repFulfilled} from "../../util/repositoryHelper";
 
 class App extends React.PureComponent {
 
     componentDidMount() {
-        const socket = new CommunicationWebSocket(this.props.onInit);
-        this.rivalCommunication = new RivalCommunication(socket, this);
+        if (this.maybeRedirectToLogin()) {
+            return;
+        }
+        this.maybeInitSocket();
+    }
+
+    maybeInitSocket() {
+        const {onInit, socket, profileRep} = this.props;
+        if (repFulfilled(profileRep) && _.isNil(socket)) {
+            const socket = new CommunicationWebSocket(onInit);
+            this.rivalCommunication = new RivalCommunication(socket, this);
+        }
+    }
+
+    maybeRedirectToLogin() {
+        const {onRouteChange, profileRep, path} = this.props;
+        if (profileRep && profileRep.rejected && !profileRep.pending && path !== LOGIN_ROUTE) {
+            onRouteChange(LOGIN_ROUTE);
+            return true;
+        }
+        return false;
     }
 
     componentDidUpdate() {
+        if (this.maybeRedirectToLogin()) {
+            return;
+        }
+        this.maybeInitSocket();
         const {path, rivalStatus, rivalType, onRouteChange} = this.props;
         if (_.isNil(rivalStatus)) {
             return;
@@ -183,6 +209,8 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
 
                 <Route path={SETTINGS_ROUTE} render={() => <SettingsPage/>}/>
+
+                <Route path={LOGIN_ROUTE} render={() => <LoginPage/>}/>
             </Switch>
         </ConnectedRouter>;
     }
@@ -190,7 +218,6 @@ class App extends React.PureComponent {
     renderFetch() {
         const {friendListRep, path} = this.props;
         return <div>
-            <ProfileFetch/>
             <FriendListFetch path={path} friendListRep={friendListRep}/>
             <SettingsFetchContainer/>
             <CampaignFetchContainer/>
@@ -226,48 +253,44 @@ class App extends React.PureComponent {
     }
 
     renderBackground() {
-        const {screen,} = this.props;
+        const {screen} = this.props;
         return <img alt='' src={background} height={screen.height} width={screen.width}
                     className="fixedBackgroundMix"/>;
     }
 
     renderConnectionProblem() {
-        const {screen} = this.props;
-        const {height, contentWidth} = screen;
-        return <div className='app'>
-            {this.renderBackground()}
-            <div style={{height, width: contentWidth}} className='content'>
-                <Modal renderExit={false}>
-                    <div>
-                        {getError(ERROR_CONNECTION_PROBLEM)}
-                    </div>
-                    <Loading/>
-                </Modal>
+        const {lang} = this.props;
+        return <Modal renderExit={false}>
+            <div>
+                {getError(lang, ERROR_CONNECTION_PROBLEM)}
             </div>
-        </div>;
+            <Loading/>
+        </Modal>
     }
 
-    render() {
-        const {screen, socketOpen} = this.props;
-        const {height, contentWidth} = screen;
-        if (!socketOpen) {
-            return this.renderConnectionProblem();
-        }
-        return <div className='app'>
-            {this.renderBackground()}
+    renderLogged() {
+        return <div>
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
-            <div style={{height, width: contentWidth}} className='content'>
-                <TopBar/>
-                {this.renderContent()}
-                {/*<div style={{position: 'absolute', bottom: 0, right: 0, fontSize: 8}}>*/}
-                {/*{JSON.stringify(screen)}*/}
-                {/*</div>*/}
-            </div>
             <WakeLock/>
             {this.renderFetch()}
+        </div>;
+    }
+
+    render() {
+        const {screen, socketOpen, profile} = this.props;
+        const {height, contentWidth} = screen;
+        return <div className='app'>
+            {this.renderBackground()}
+            {profile && this.renderLogged()}
+            <div style={{height, width: contentWidth}} className='content'>
+                <TopBar/>
+                {profile && !socketOpen && this.renderConnectionProblem()}
+                {this.renderContent()}
+            </div>
+            <ProfileFetch/>
         </div>;
     }
 }
@@ -275,8 +298,11 @@ class App extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        socket: state.socket.socket,
+        lang: state.language.lang,
         socketOpen: state.socket.open,
         friendListRep: state.repository.friendList,
+        profileRep: state.repository.profile,
         rivalStatus: state.rival.status,
         rivalType: state.rival.rivalType,
         profile: state.profile.profile,

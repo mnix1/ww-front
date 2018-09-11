@@ -29,13 +29,14 @@ class WarPageChoosingTaskProps extends React.PureComponent {
     }
 
     renderContent() {
-        const {content, screen, rivalType, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
+        const {content, screen, rivalType, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange, lang} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
             return <ChoosingTaskProps
+                lang={lang}
                 screen={{...screen, contentHeight: screen.contentHeight - 70, contentWidth: screen.contentWidth - 80}}
                 renderPoints={false}
                 acceptMsg={`${rivalType}_^_CHOOSE_TASK_PROPS`}
@@ -65,6 +66,7 @@ class WarPageChoosingTaskProps extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        lang: state.language.lang,
         content: state.rival.content,
         rivalType: state.rival.rivalType,
     }),

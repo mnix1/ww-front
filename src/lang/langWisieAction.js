@@ -1,4 +1,3 @@
-import {ENGLISH, POLISH} from "./langText";
 import {
     ANSWERED,
     DREAMING_ABOUT_VACATION,
@@ -21,9 +20,10 @@ import {
     THINKING_WHICH_ANSWER_MATCH,
     THINKING_IF_GIVE_RANDOM_ANSWER
 } from "../util/wisieActionHelper";
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getWisieActionLabel(id) {
-    return HERO_ACTION_LABELS[window.activeLang][id];
+export function getWisieActionLabel(lang, id) {
+    return HERO_ACTION_LABELS[lang][id];
 }
 const HERO_ACTION_LABELS = {
     [POLISH]: {

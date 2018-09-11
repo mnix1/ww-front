@@ -11,10 +11,10 @@ import {
     CATEGORY_COLOR,
     CATEGORY_TIME,
 } from "../util/categoryHelper";
-import {ENGLISH, POLISH} from "./langText";
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getCategoryLabel(id) {
-    return CATEGORY_LABELS[window.activeLang][id];
+export function getCategoryLabel(lang, id) {
+    return CATEGORY_LABELS[lang][id];
 }
 
 const CATEGORY_LABELS = {

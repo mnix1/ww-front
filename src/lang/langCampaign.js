@@ -1,13 +1,13 @@
-import {ENGLISH, POLISH} from "./langText";
 import {
     DESTINATION_EASY,
     DESTINATION_HARD,
     DESTINATION_NORMAL, TYPE_CELEBRITY_LIFE, TYPE_SPACE_EXPEDITION, TYPE_UNDERWATER_WORLD
 } from "../util/campaignHelper";
 import _ from 'lodash';
+import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getCampaignLabel(type, destination, phase) {
-    const t = CAMPAIGN_LABELS[window.activeLang][type];
+export function getCampaignLabel(lang, type, destination, phase) {
+    const t = CAMPAIGN_LABELS[lang][type];
     const d = t[destination];
     if (_.isNil(phase)) {
         return d;

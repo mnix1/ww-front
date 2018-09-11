@@ -23,7 +23,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
     };
 
     render() {
-        const {objects, onObjectClick, screen, setHeight, selectedId} = this.props;
+        const {objects, onObjectClick, screen, setHeight, selectedId, lang} = this.props;
         const objectWidth = screen.wisieImgHeight;
         const objectHeight = screen.wisieImgHeight;
         const {contentHeight, contentWidth, resolution} = screen;
@@ -62,7 +62,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 return {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
-                        <span style={{zIndex: 1}}>{getCategoryLabel([o.id])}</span>
+                        <span style={{zIndex: 1}}>{getCategoryLabel(lang, [o.id])}</span>
                         {/*<img alt='' src={o.imgSrc} height={objectHeight / 1.7}/>*/}
                         <img alt='' src={o.imgSrc} height={objectHeight - remToPixels(2)}/>
                     </div>,
