@@ -1,5 +1,6 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
+import {NAME_MAX_LENGTH} from "../content/settings/SettingsPage";
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
 export const TEXT_CAMPAIGN_OVER = 'TEXT_CAMPAIGN_OVER';
@@ -143,7 +144,7 @@ const TEXTS = {
         [TEXT_READ_NOW]: 'Przyspiesz',
         [TEXT_RANKING]: 'Ranking',
         [TEXT_FILTER]: 'filtr',
-        [TEXT_NAME_LENGTH]: 'długość 2-15 znaków',
+        [TEXT_NAME_LENGTH]: `długość 2-${NAME_MAX_LENGTH} znaków`,
         [TEXT_CHANGE_NICK]: 'Zmień nick',
         [TEXT_CHANGE_WISOR]: 'Zmień wiedzora',
         [TEXT_CHOOSE_WISOR]: 'Wybierz swojego wiedzora',
@@ -273,7 +274,7 @@ const TEXTS = {
         [TEXT_READ_NOW]: 'Read now',
         [TEXT_RANKING]: 'Ranking',
         [TEXT_FILTER]: 'filter',
-        [TEXT_NAME_LENGTH]: 'length 2-15 chars',
+        [TEXT_NAME_LENGTH]: `length 2-${NAME_MAX_LENGTH} chars`,
         [TEXT_CHANGE_NICK]: 'Change nick',
         [TEXT_CHANGE_WISOR]: 'Change wisor',
         [TEXT_CHOOSE_WISOR]: 'Choose your wisor',
