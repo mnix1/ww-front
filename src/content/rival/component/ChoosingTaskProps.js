@@ -33,9 +33,8 @@ export default class ChoosingTaskProps extends React.PureComponent {
     }
 
     renderChooseCategory() {
-        const {screen, content, communication, acceptMsg, onCategoryChange, lang} = this.props;
+        const {screen, content, communication, acceptMsg, onCategoryChange} = this.props;
         return <SimpleObjectGroup
-            lang={lang}
             setHeight={false}
             objects={OBJECTS_CATEGORY}
             selectedId={content.chosenCategory}

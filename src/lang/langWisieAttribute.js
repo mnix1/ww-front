@@ -14,8 +14,8 @@ import {
 } from "../util/wisieAttributeHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getWisieAttributeLabel(lang, id) {
-    return HERO_ATTRIBUTE_LABELS[lang][id];
+export function getWisieAttributeLabel(id) {
+    return HERO_ATTRIBUTE_LABELS[window.activeLang][id];
 }
 
 const HERO_ATTRIBUTE_LABELS = {

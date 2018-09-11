@@ -1,5 +1,3 @@
-import {ENGLISH, POLISH} from "../lang/langText";
-
 export const TEXT = 'TEXT';
 export const HTML = 'HTML';
 export const DATE = 'DATE';
@@ -13,17 +11,6 @@ export const TEXT_ANIMATION = 'TEXT_ANIMATION';
 export const IMAGE_SVG = 'IMAGE_SVG';
 export const IMAGE_PNG = 'IMAGE_PNG';
 export const IMAGE_PNG_TEXT_IMAGE_PNG = 'IMAGE_PNG_TEXT_IMAGE_PNG';
-
-
-export function getTextContent(obj) {
-    if (window.activeLang === POLISH) {
-        return obj.textContentPolish;
-    }
-    if (window.activeLang === ENGLISH) {
-        return obj.textContentEnglish;
-    }
-    throw new Error('UNKNOWN LANGUAGE');
-}
 
 export function getHtmlContent(obj) {
     return obj.htmlContent;

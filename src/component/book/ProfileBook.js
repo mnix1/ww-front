@@ -44,7 +44,6 @@ export default class ProfileBook extends React.PureComponent {
         elixirGain: PropTypes.number,
         crystal: PropTypes.number,
         type: PropTypes.string,
-        lang: PropTypes.string,
         style: PropTypes.object,
     };
 
@@ -109,9 +108,9 @@ export default class ProfileBook extends React.PureComponent {
     }
 
     renderInfo() {
-        const {level, type,lang} = this.props;
+        const {level, type} = this.props;
         return <div className='bookInfo justifyBetween flexColumn'>
-            <div className='justifyCenter'>{getBookLabel(lang, type)}</div>
+            <div className='justifyCenter'>{getBookLabel(type)}</div>
             <span className='justifyCenter'><Rating value={level / 2}/></span>
         </div>
     }

@@ -28,14 +28,13 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
     }
 
     renderContent() {
-        const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange, lang} = this.props;
+        const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
             return <ChoosingTaskProps
-                lang={lang}
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
                 acceptMsg='BATTLE_^_CHOOSE_TASK_PROPS'
                 content={content}
@@ -63,7 +62,6 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        lang: state.language.lang,
         content: state.rival.content,
     }),
     (dispatch) => ({

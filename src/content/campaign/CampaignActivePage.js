@@ -35,14 +35,13 @@ class CampaignActivePage extends React.PureComponent {
     }
 
     renderPhase(e) {
-        const {lang} = this.props;
         const {phase, type, destination} = this.props.campaignActiveRep.value;
         const active = phase === e;
         const disabled = phase < e;
         const done = phase > e;
         const className = cn('relative marginRem paddingRem boxShadow', {active, disabled});
         return <div key={e} className={className}>
-            <div>{getCampaignLabel(lang, type, destination, e)}</div>
+            <div>{getCampaignLabel(type, destination, e)}</div>
             {done && <div className='absoluteBackgroundMix opacity1 zIndex1'>
                 <img alt='' src={check} className='height100 width100'/>
             </div>}
@@ -105,7 +104,6 @@ class CampaignActivePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        lang: state.language.lang,
         path: state.router.location.pathname,
         profile: state.profile.profile,
         campaignActiveRep: state.repository.campaignActive,

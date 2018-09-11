@@ -259,10 +259,9 @@ class App extends React.PureComponent {
     }
 
     renderConnectionProblem() {
-        const {lang} = this.props;
         return <Modal renderExit={false}>
             <div>
-                {getError(lang, ERROR_CONNECTION_PROBLEM)}
+                {getError(ERROR_CONNECTION_PROBLEM)}
             </div>
             <Loading/>
         </Modal>
@@ -299,7 +298,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         socket: state.socket.socket,
-        lang: state.language.lang,
         socketOpen: state.socket.open,
         friendListRep: state.repository.friendList,
         profileRep: state.repository.profile,

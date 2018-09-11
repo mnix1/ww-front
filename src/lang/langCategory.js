@@ -13,8 +13,8 @@ import {
 } from "../util/categoryHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getCategoryLabel(lang, id) {
-    return CATEGORY_LABELS[lang][id];
+export function getCategoryLabel(id) {
+    return CATEGORY_LABELS[window.activeLang][id];
 }
 
 const CATEGORY_LABELS = {

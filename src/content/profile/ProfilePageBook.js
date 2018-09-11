@@ -24,9 +24,8 @@ class ProfilePage extends React.PureComponent {
     }
 
     renderBook(book) {
-        const {lang, onSpeedUpClick, onClaimRewardClick, onReadingDone, onStartReadClick, onStopReadClick, onDiscardClick, profile} = this.props;
+        const {onSpeedUpClick, onClaimRewardClick, onReadingDone, onStartReadClick, onStopReadClick, onDiscardClick, profile} = this.props;
         return <ProfileBook
-            lang={lang}
             key={book.id}
             crystal={profile.crystal}
             {...book}
@@ -61,7 +60,6 @@ class ProfilePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        lang: state.language.lang,
         profile: state.profile.profile,
         path: state.router.location.pathname,
         profileListBookRep: state.repository.profileListBook

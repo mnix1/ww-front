@@ -21,8 +21,8 @@ const store = createStore(
         applyMiddleware(routerMiddleware(history)),
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a)
 );
-
-document.title = getText(ENGLISH, TEXT_APP_NAME);
+window.activeLang = ENGLISH;
+document.title = getText(TEXT_APP_NAME);
 
 const originalFetch = fetch;
 fetch = function (url, opts) {
@@ -33,6 +33,10 @@ fetch = function (url, opts) {
 window.addEventListener('resize', () => {
     store.dispatch(screenResized());
 });
+
+export function getActiveLang(){
+    return store.getState().language.lang;
+}
 
 ReactDOM.render(<Provider store={store}>
     <App history={history}/>

@@ -19,8 +19,8 @@ const SCIENCE_ARTICLE= 'SCIENCE_ARTICLE';
 const MYSTERIOUS_BOOK= 'MYSTERIOUS_BOOK';
 const SECRET_BOOK= 'SECRET_BOOK';
 
-export function getBookLabel(lang, id) {
-    return BOOK_LABELS[lang][id];
+export function getBookLabel(id) {
+    return BOOK_LABELS[window.activeLang][id];
 }
 const BOOK_LABELS = {
     [POLISH]: {

@@ -390,16 +390,26 @@ const TEXTS = {
     },
 };
 
-export function getText(lang, id) {
-    return TEXTS[lang][id];
+export function getText(id) {
+    return TEXTS[window.activeLang][id];
 }
 
-export function getName(lang, e) {
-    if (lang === POLISH) {
+export function getName(e) {
+    if (window.activeLang === POLISH) {
         return e.namePolish;
     }
-    if (lang === ENGLISH) {
+    if (window.activeLang === ENGLISH) {
         return e.nameEnglish;
     }
     return null;
+}
+
+export function getTextContent(obj) {
+    if (window.activeLang === POLISH) {
+        return obj.textContentPolish;
+    }
+    if (window.activeLang === ENGLISH) {
+        return obj.textContentEnglish;
+    }
+    throw new Error('UNKNOWN LANGUAGE');
 }

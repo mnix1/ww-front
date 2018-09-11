@@ -35,7 +35,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
     }
 
     renderCampaignTypes() {
-        const {campaignListRep, campaignType, campaignDestination, screen, lang} = this.props;
+        const {campaignListRep, campaignType, campaignDestination, screen} = this.props;
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter'>
                 <div className='paddingTopRem justifyCenter flexColumn'>
@@ -47,13 +47,13 @@ class CampaignChoosePropsPage extends React.PureComponent {
             </div>
             {campaignType && !campaignDestination && <div className='fontSize08Rem justifyCenter '>
                 <div className='boxShadow paddingRem width100' style={{maxWidth: screen.contentWidth * .6}}
-                >{getCampaignLabel(lang, campaignType, 'description')}</div>
+                >{getCampaignLabel(campaignType, 'description')}</div>
             </div>}
         </div>
     }
 
     renderCampaignType = (campaign) => {
-        const {campaignType, campaignDestination, onTypeChanged, lang} = this.props;
+        const {campaignType, campaignDestination, onTypeChanged} = this.props;
         const customClassName = campaignType === campaign.type ? 'active' : '';
         return <div
             key={campaign.type}
@@ -62,7 +62,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
         >
             {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
-                <div className='justifyCenter'><span className='justifyCenter'>{getCampaignLabel(lang, campaign.type, 'label')}</span>
+                <div className='justifyCenter'><span className='justifyCenter'>{getCampaignLabel(campaign.type, 'label')}</span>
                 </div>
                 <div className='justifyCenter'><img alt='' src={getCampaignImg(campaign.type)} height={this.imgHeight}/>
                 </div>
@@ -86,7 +86,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
     }
 
     renderCampaignDestination = (campaign) => {
-        const {campaignDestination, onDestinationChanged, lang} = this.props;
+        const {campaignDestination, onDestinationChanged} = this.props;
         const customClassName = campaignDestination === campaign.destination ? 'active' : '';
         return <div
             key={campaign.destination}
@@ -95,7 +95,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
         >
             {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
-                <div className='justifyCenter'>{getCampaignLabel(lang, campaign.type, campaign.destination, 'label')}</div>
+                <div className='justifyCenter'>{getCampaignLabel(campaign.type, campaign.destination, 'label')}</div>
                 <div className='justifyCenter'><Rating value={campaign.rating / 2}/></div>
                 <div className='justifyCenter'>
                     <img alt='' src={getCampaignImg(campaign.type, campaign.destination)} height={this.imgHeight}/>
@@ -169,7 +169,6 @@ class CampaignChoosePropsPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        lang: state.language.lang,
         path: state.router.location.pathname,
         profile: state.profile.profile,
         campaignType: state.campaign.campaignType,

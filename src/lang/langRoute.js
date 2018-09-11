@@ -14,8 +14,8 @@ import {
 } from "../content/routes";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getRouteLabel(lang, id) {
-    return ROUTE_LABELS[lang][id];
+export function getRouteLabel(id) {
+    return ROUTE_LABELS[window.activeLang][id];
 }
 
 const ROUTE_LABELS = {

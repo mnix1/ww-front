@@ -22,8 +22,8 @@ import {
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 
-export function getWisieActionLabel(lang, id) {
-    return HERO_ACTION_LABELS[lang][id];
+export function getWisieActionLabel(id) {
+    return HERO_ACTION_LABELS[window.activeLang][id];
 }
 const HERO_ACTION_LABELS = {
     [POLISH]: {

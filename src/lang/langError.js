@@ -23,6 +23,6 @@ const TEXTS = {
     },
 };
 
-export function getError(lang, id) {
-    return TEXTS[lang][id];
+export function getError(id) {
+    return TEXTS[window.activeLang][id];
 }

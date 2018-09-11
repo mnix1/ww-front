@@ -17,6 +17,6 @@ const TEXTS = {
     },
 };
 
-export function getSuccess(lang, id) {
-    return TEXTS[lang][id];
+export function getSuccess(id) {
+    return TEXTS[window.activeLang][id];
 }

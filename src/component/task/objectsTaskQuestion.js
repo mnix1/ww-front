@@ -3,7 +3,6 @@ import {
     getDateContent,
     getHtmlContent,
     getImageContent,
-    getTextContent,
     IMAGE_PNG_TEXT_IMAGE_PNG,
     TEXT,
     TEXT_ANIMATION,
@@ -16,6 +15,7 @@ import {
 import _ from "lodash";
 import Clock from "react-clock";
 import {Equation} from "react-equation";
+import {getTextContent} from "../../lang/langText";
 
 export function prepareQuestionTiles(rival) {
     return _.flatten([

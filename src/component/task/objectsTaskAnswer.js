@@ -3,7 +3,6 @@ import {
     DATE, EQUATION, getDateContent,
     getHtmlContent,
     getImageContent,
-    getTextContent,
     HTML,
     IMAGE_SVG
 } from "../../util/taskRenderer";
@@ -12,6 +11,7 @@ import {CORRECT_ANSWER_OBJECT_MATERIAL, WRONG_ANSWER_OBJECT_MATERIAL} from "../o
 import _ from 'lodash';
 import Clock from "react-clock";
 import {Equation} from "react-equation";
+import {getTextContent} from "../../lang/langText";
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
