@@ -40,7 +40,7 @@ export default class CommunicationWebSocket {
             clearProfileFetch(this.dispatch);
             this.dispatch(profileChanged(null));
         } else {
-            this.init();
+            setTimeout(this.init, 1000);
         }
     };
 

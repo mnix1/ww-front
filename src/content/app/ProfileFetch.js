@@ -14,7 +14,9 @@ class ProfileFetch extends React.PureComponent {
         this.maybeFetch(prevProps);
         const {dispatch, profileFetch} = this.props;
         if (!prevProps.profileFetch.fulfilled && profileFetch.fulfilled) {
-            dispatch(langChanged(profileFetch.value.language));
+            if (profileFetch.value) {
+                dispatch(langChanged(profileFetch.value.language));
+            }
             dispatch(profileChanged(profileFetch.value));
         }
     }
