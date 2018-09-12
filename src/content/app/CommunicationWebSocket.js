@@ -40,7 +40,7 @@ export default class CommunicationWebSocket {
             clearProfileFetch(this.dispatch);
             this.dispatch(profileChanged(null));
         } else {
-            setTimeout(this.init, 1000);
+            // setTimeout(this.init, 1000);
         }
     };
 
@@ -56,11 +56,11 @@ export default class CommunicationWebSocket {
     connect() {
         let socket;
         if (_.includes(window.location.host, 'localhost')) {
-            socket = new WebSocket("ws://localhost:8080/websocket");
+            socket = new WebSocket("ws://localhost:8080/wisiemaniaWebSocket");
         } else if (_.includes(window.location.host, ':3000')) {
-            socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host.replace(':3000', '') + ":8080/websocket");
+            socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host.replace(':3000', '') + ":8080/wisiemaniaWebSocket");
         } else {
-            socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/websocket");
+            socket = new WebSocket(((window.location.protocol === "https:") ? "wss://" : "ws://") + window.location.host + "/wisiemaniaWebSocket");
         }
         this.socket = socket;
     }
