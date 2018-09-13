@@ -3,13 +3,11 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {
     RIVAL_STATUS_ERROR_FRIEND,
-    RIVAL_STATUS_ERROR_RANDOM_OPPONENT,
     RIVAL_STATUS_START_FRIEND,
     RIVAL_STATUS_WAITING_FRIEND
 } from "../../../util/rivalHelper";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
-import {clearRivalStartRandomOpponentFetch} from "./RivalStartRandomOpponentFetch";
 
 class RivalStartFriendFetch extends React.PureComponent {
 

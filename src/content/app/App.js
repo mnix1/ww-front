@@ -126,16 +126,6 @@ class App extends React.PureComponent {
         if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && path !== routeFromRivalType) {
             onRouteChange(routeFromRivalType);
         }
-        // const rivalTypeFromRoute = ROUTE_RIVAL_TYPE[path];
-        // console.log('app rivalTypeFromRoute', rivalTypeFromRoute);
-        // if (_.isNil(rivalTypeFromRoute)) {
-        //     return;
-        // }
-        // if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-        //     this.rivalCommunication.readyRandomOpponent(rivalTypeFromRoute);
-        // } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND || rivalStatus === RIVAL_STATUS_WAITING_FRIEND) {
-        //     // this.rivalCommunication.readyFriend(rivalTypeFromRoute);
-        // }
     }
 
     componentWillUnmount() {

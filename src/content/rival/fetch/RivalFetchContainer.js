@@ -3,37 +3,30 @@ import {connect} from 'react-redux';
 import {rivalCleared, statusChanged} from "../../../redux/reducer/rival";
 import {
     RIVAL_STATUS_ACCEPTED_FRIEND,
-    RIVAL_STATUS_CANCELED_FRIEND, RIVAL_STATUS_ERROR_RANDOM_OPPONENT,
-    RIVAL_STATUS_ERROR_FRIEND,
+    RIVAL_STATUS_CANCELED_FRIEND,
     RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
-    RIVAL_STATUS_REJECTED_FRIEND, RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
-    RIVAL_STATUS_WAITING_FRIEND,
+    RIVAL_STATUS_REJECTED_FRIEND,
     RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_WAR, RIVAL_TYPE_CAMPAIGN_WAR, RIVAL_TYPE_CHALLENGE, RIVAL_STATUS_IN_PROGRESS
+    RIVAL_TYPE_CAMPAIGN_WAR,
+    RIVAL_TYPE_CHALLENGE,
+    RIVAL_TYPE_WAR
 } from "../../../util/rivalHelper";
-import _ from 'lodash';
 import {BATTLE_ROUTE, WAR_ROUTE} from "../../routes";
 import {push} from 'connected-react-router'
 import RivalStartFriendFetch from "./RivalStartFriendFetch";
 import RivalCancelFriendFetch from "./RivalCancelFriendFetch";
 import RivalRejectFriendFetch, {clearRivalRejectFriendFetch} from "./RivalRejectFriendFetch";
 import RivalAcceptFriendFetch, {clearRivalAcceptFriendFetch} from "./RivalAcceptFriendFetch";
-import RivalStartRandomOpponentFetch, {clearRivalStartRandomOpponentFetch} from "./RivalStartRandomOpponentFetch";
+import RivalStartRandomOpponentFetch from "./RivalStartRandomOpponentFetch";
 import RivalCancelRandomOpponentFetch from "./RivalCancelRandomOpponentFetch";
 
 class RivalFetchContainer extends React.PureComponent {
 
     resolveFriend() {
         const {
-            rivalStartFriendRep, rivalRejectFriendRep, rivalCancelFriendRep, rivalAcceptFriendRep, onStatusChange,
+            rivalRejectFriendRep, rivalCancelFriendRep, rivalAcceptFriendRep,
             status, onRivalFriendClear, onRivalFriendInProgress
         } = this.props;
-        const code = _.get(rivalStartFriendRep, 'value.code');
-        if (code === -1) {
-            onStatusChange(RIVAL_STATUS_ERROR_FRIEND);
-        } else if (code === 1) {
-            onStatusChange(RIVAL_STATUS_WAITING_FRIEND);
-        }
         if (status === RIVAL_STATUS_REJECTED_FRIEND && rivalRejectFriendRep && rivalRejectFriendRep.fulfilled) {
             onRivalFriendClear();
         }
@@ -45,9 +38,9 @@ class RivalFetchContainer extends React.PureComponent {
         }
     }
 
-    // componentDidUpdate() {
-    //     this.resolveFriend();
-    // }
+    componentDidUpdate() {
+        this.resolveFriend();
+    }
 
     render() {
         const {tag, rivalType, rivalImportance, status} = this.props;
