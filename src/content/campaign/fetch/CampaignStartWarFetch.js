@@ -18,6 +18,7 @@ class CampaignStartWarFetch extends React.PureComponent {
         if (!prevProps.campaignStartWarFetch.fulfilled && campaignStartWarFetch.fulfilled && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
             if (isRepValueCode1(campaignStartWarFetch)) {
                 dispatch(statusChanged(RIVAL_STATUS_WAITING_RANDOM_OPPONENT));
+                clearCampaignStartFetch(dispatch);
             }
         }
     }

@@ -22,11 +22,11 @@ const store = createStore(
 );
 document.title = getText(TEXT_APP_NAME);
 
-const originalFetch = fetch;
-fetch = function (url, opts) {
-    console.log('fetch', url, opts);
-    return originalFetch(url, {...opts, credentials: 'include'});
-};
+// const originalFetch = fetch;
+// fetch = function (url, opts) {
+//     // console.log('fetch', url, opts);
+//     return originalFetch(url, {...opts, credentials: 'include'});
+// };
 
 window.addEventListener('resize', () => {
     store.dispatch(screenResized());

@@ -68,14 +68,7 @@ import WakeLock from "../../component/wake-lock/WakeLock";
 import WarPage from "../rival/war/page/WarPage";
 import RivalCommunication from "../rival/RivalCommunication";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
-import {
-    RIVAL_STATUS_IN_PROGRESS,
-    RIVAL_STATUS_READY_TO_BEGIN_FRIEND,
-    RIVAL_STATUS_WAITING_FRIEND,
-    RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
-    RIVAL_TYPE_ROUTE,
-    ROUTE_RIVAL_TYPE
-} from "../../util/rivalHelper";
+import {RIVAL_STATUS_IN_PROGRESS, RIVAL_TYPE_ROUTE} from "../../util/rivalHelper";
 import PlayWarPage from "../play/PlayWarPage";
 import PlayBattlePage from "../play/PlayBattlePage";
 import PlayChallengePage from "../play/PlayChallengePage";
@@ -133,15 +126,16 @@ class App extends React.PureComponent {
         if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && path !== routeFromRivalType) {
             onRouteChange(routeFromRivalType);
         }
-        const rivalTypeFromRoute = ROUTE_RIVAL_TYPE[path];
-        if (_.isNil(rivalTypeFromRoute)) {
-            return;
-        }
-        if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-            this.rivalCommunication.readyRandomOpponent(rivalTypeFromRoute);
-        } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND || rivalStatus === RIVAL_STATUS_WAITING_FRIEND) {
-            this.rivalCommunication.readyFriend(rivalTypeFromRoute);
-        }
+        // const rivalTypeFromRoute = ROUTE_RIVAL_TYPE[path];
+        // console.log('app rivalTypeFromRoute', rivalTypeFromRoute);
+        // if (_.isNil(rivalTypeFromRoute)) {
+        //     return;
+        // }
+        // if (rivalStatus === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
+        //     this.rivalCommunication.readyRandomOpponent(rivalTypeFromRoute);
+        // } else if (rivalStatus === RIVAL_STATUS_READY_TO_BEGIN_FRIEND || rivalStatus === RIVAL_STATUS_WAITING_FRIEND) {
+        //     // this.rivalCommunication.readyFriend(rivalTypeFromRoute);
+        // }
     }
 
     componentWillUnmount() {

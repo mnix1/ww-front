@@ -9,7 +9,7 @@ import {
     RIVAL_STATUS_REJECTED_FRIEND, RIVAL_STATUS_WAITING_RANDOM_OPPONENT,
     RIVAL_STATUS_WAITING_FRIEND,
     RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_WAR, RIVAL_TYPE_CAMPAIGN_WAR, RIVAL_TYPE_CHALLENGE
+    RIVAL_TYPE_WAR, RIVAL_TYPE_CAMPAIGN_WAR, RIVAL_TYPE_CHALLENGE, RIVAL_STATUS_IN_PROGRESS
 } from "../../../util/rivalHelper";
 import _ from 'lodash';
 import {BATTLE_ROUTE, WAR_ROUTE} from "../../routes";
@@ -18,32 +18,16 @@ import RivalStartFriendFetch from "./RivalStartFriendFetch";
 import RivalCancelFriendFetch from "./RivalCancelFriendFetch";
 import RivalRejectFriendFetch, {clearRivalRejectFriendFetch} from "./RivalRejectFriendFetch";
 import RivalAcceptFriendFetch, {clearRivalAcceptFriendFetch} from "./RivalAcceptFriendFetch";
-import RivalStartRandomOpponentFetch from "./RivalStartRandomOpponentFetch";
+import RivalStartRandomOpponentFetch, {clearRivalStartRandomOpponentFetch} from "./RivalStartRandomOpponentFetch";
 import RivalCancelRandomOpponentFetch from "./RivalCancelRandomOpponentFetch";
 
 class RivalFetchContainer extends React.PureComponent {
-
-    resolveRandomOpponent() {
-        const {rivalStartRandomOpponentRep, onStatusChange, status} = this.props;
-        if (status === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
-            return;
-        }
-        const code = _.get(rivalStartRandomOpponentRep, 'value.code');
-        if (code === -1) {
-            onStatusChange(RIVAL_STATUS_ERROR_RANDOM_OPPONENT);
-        } else if (code === 1) {
-            onStatusChange(RIVAL_STATUS_WAITING_RANDOM_OPPONENT);
-        }
-    }
 
     resolveFriend() {
         const {
             rivalStartFriendRep, rivalRejectFriendRep, rivalCancelFriendRep, rivalAcceptFriendRep, onStatusChange,
             status, onRivalFriendClear, onRivalFriendInProgress
         } = this.props;
-        if (status === RIVAL_STATUS_WAITING_FRIEND) {
-            return;
-        }
         const code = _.get(rivalStartFriendRep, 'value.code');
         if (code === -1) {
             onStatusChange(RIVAL_STATUS_ERROR_FRIEND);
@@ -61,10 +45,9 @@ class RivalFetchContainer extends React.PureComponent {
         }
     }
 
-    componentDidUpdate() {
-        this.resolveRandomOpponent();
-        this.resolveFriend();
-    }
+    // componentDidUpdate() {
+    //     this.resolveFriend();
+    // }
 
     render() {
         const {tag, rivalType, rivalImportance, status} = this.props;

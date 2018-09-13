@@ -7,13 +7,13 @@ import {CREAM_COLOR} from "../../../util/style/constant";
 import Profile from "../../../component/profile/Profile";
 import Modal from "../../../component/modal/Modal";
 import {rivalInviteAccepted, rivalInviteRejected} from "../../../redux/reducer/rival";
-import {RIVAL_TYPE_INVITED_TO_BY_TEXT} from "../../../util/rivalHelper";
+import {RIVAL_STATUS_INVITED_FRIEND, RIVAL_TYPE_INVITED_TO_BY_TEXT} from "../../../util/rivalHelper";
 
 class InvitedToRivalBy extends React.PureComponent {
 
     render() {
-        const {invitedToRivalBy, onAccept, onReject} = this.props;
-        if (!invitedToRivalBy) {
+        const {invitedToRivalBy, status, onAccept, onReject} = this.props;
+        if (!invitedToRivalBy || status !== RIVAL_STATUS_INVITED_FRIEND) {
             return null;
         }
         const actions = <div className='actions'>
@@ -30,6 +30,7 @@ class InvitedToRivalBy extends React.PureComponent {
 export default connect(
     (state) => ({
         invitedToRivalBy: state.rival.invitedBy,
+        status: state.rival.status,
     }),
     (dispatch) => ({
         onAccept: () => {

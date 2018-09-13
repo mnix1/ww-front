@@ -32,14 +32,10 @@ export default class RivalCommunication {
             const content = JSON.parse(data.content);
             this.changeRivalTypeIfDifferenct(RIVAL_TYPE_BATTLE);
             this.rivalInProgress(content)
-        } else if (id === `${RIVAL_TYPE_BATTLE}_READY`) {
-            this.communicationWebSocket.dispatch(push(BATTLE_ROUTE));
         } else if (id === `${RIVAL_TYPE_WAR}_CONTENT`) {
             const content = JSON.parse(data.content);
             this.changeRivalTypeIfDifferenct(RIVAL_TYPE_WAR);
             this.rivalInProgress(content);
-        } else if (id === `${RIVAL_TYPE_WAR}_READY`) {
-            this.communicationWebSocket.dispatch(push(WAR_ROUTE));
         } else if (id === `${RIVAL_TYPE_CAMPAIGN_WAR}_CONTENT`) {
             const content = JSON.parse(data.content);
             this.changeRivalTypeIfDifferenct(RIVAL_TYPE_CAMPAIGN_WAR);
@@ -64,15 +60,13 @@ export default class RivalCommunication {
         }
     }
 
-    readyFriend(rivalType) {
-        this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
-        this.send(`${rivalType}_^_READY_FOR_START`);
-    }
+    // readyFriend(rivalType) {
+    //     this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
+    // }
 
     readyRandomOpponent(rivalType) {
         clearRivalStartRandomOpponentFetch(this.communicationWebSocket.dispatch);
-        this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
-        this.send(`${rivalType}_^_READY_FOR_START`);
+        // this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_IN_PROGRESS));
     }
 
 }
