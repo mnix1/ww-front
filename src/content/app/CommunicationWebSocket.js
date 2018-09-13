@@ -14,6 +14,7 @@ export default class CommunicationWebSocket {
     constructor(onInit) {
         this.onInit = onInit;
         this.init();
+        this.onInit(this);
     }
 
     init = () => {
@@ -22,7 +23,6 @@ export default class CommunicationWebSocket {
         this.socket.addEventListener('close', this.onClose);
         this.socket.addEventListener('error', this.onError);
         this.socket.addEventListener('open', this.onOpen);
-        this.onInit(this);
     };
 
     dispose() {
@@ -30,18 +30,16 @@ export default class CommunicationWebSocket {
         this.socket.removeEventListener('close', this.onClose);
         this.socket.removeEventListener('error', this.onError);
         this.socket.removeEventListener('open', this.onOpen);
+        this.dispatch(openChanged(false));
     }
 
     onClose = (e) => {
         console.log('onclose', e);
-        this.dispatch(openChanged(false));
-        this.dispose();
         if (e.code === 1008) {
             clearProfileFetch(this.dispatch);
             this.dispatch(profileChanged(null));
-        } else {
-            // setTimeout(this.init, 1000);
         }
+        this.dispose();
     };
 
     onError = (e) => {

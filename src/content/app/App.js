@@ -81,11 +81,13 @@ import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 import CampaignPage from "../campaign/CampaignPage";
 import _ from 'lodash';
 import Modal from "../../component/modal/Modal";
-import {Loading} from "../../component/loading/Loading";
 import {socketChanged} from "../../redux/reducer/socket";
 import {ERROR_CONNECTION_PROBLEM, getError} from "../../lang/langError";
 import LoginPage from "../../component/auth/LoginPage";
 import {repFulfilled} from "../../util/repositoryHelper";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
+import {getText, TEXT_RECONNECT} from "../../lang/langText";
+import {Loading} from "../../component/loading/Loading";
 
 class App extends React.PureComponent {
 
@@ -179,7 +181,8 @@ class App extends React.PureComponent {
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <WarPage communication={this.rivalCommunication}/>}/>
+                <Route exact path={CAMPAIGN_WAR_ROUTE}
+                       render={() => <WarPage communication={this.rivalCommunication}/>}/>
                 <Route path={CAMPAIGN_ROUTE} render={() => <CampaignPage/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
@@ -242,11 +245,21 @@ class App extends React.PureComponent {
     }
 
     renderConnectionProblem() {
+        const {socket} = this.props;
         return <Modal renderExit={false}>
             <div>
                 {getError(ERROR_CONNECTION_PROBLEM)}
             </div>
-            <Loading/>
+            <div className='marginTopRem justifyCenter paddingTopRem'>
+                <div className='justifyCenter flexColumn'>
+                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={() => {
+                        if (!_.isNil(socket)) {
+                            socket.init();
+                        }
+                    }}>{getText(TEXT_RECONNECT)}</Button>
+                </div>
+                <Loading/>
+            </div>
         </Modal>
     }
 

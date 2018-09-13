@@ -130,10 +130,12 @@ export const TEXT_CHOOSE_TYPE = 'TEXT_CHOOSE_TYPE';
 export const TEXT_CHOOSE_DESTINATION = 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 export const TEXT_LOGIN = 'TEXT_LOGIN';
+export const TEXT_RECONNECT = 'TEXT_RECONNECT';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_RECONNECT]: 'Połącz ponownie',
         [TEXT_LOGIN]: 'Zaloguj się',
         [TEXT_CAMPAIGN]: 'Kampania',
         [TEXT_CAMPAIGN_OVER]: 'Koniec kampanii!',
@@ -264,6 +266,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_RECONNECT]: 'Reconnect',
         [TEXT_LOGIN]: 'Sign in',
         [TEXT_CAMPAIGN]: 'Campaign',
         [TEXT_CAMPAIGN_OVER]: 'Campaign is over',

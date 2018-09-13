@@ -55,7 +55,7 @@ export default class WakeLockAndroid extends React.PureComponent {
                 this.removeListeners();
                 this.addListeners();
             }
-            this.dummyVideo.play();
+            // this.dummyVideo.play();
         } else {
             this.removeListeners();
 
