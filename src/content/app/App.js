@@ -88,6 +88,7 @@ import {repFulfilled} from "../../util/repositoryHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {getText, TEXT_RECONNECT} from "../../lang/langText";
 import {Loading} from "../../component/loading/Loading";
+import Bot from "../../bot/Bot";
 
 class App extends React.PureComponent {
 
@@ -286,6 +287,7 @@ class App extends React.PureComponent {
                 {this.renderContent()}
             </div>
             <ProfileFetch/>
+            <Bot user={'grzesiu'} pass={'!1botgrzesiu'}/>
         </div>;
     }
 }

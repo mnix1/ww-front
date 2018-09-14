@@ -132,7 +132,7 @@ export default class ProfileBook extends React.PureComponent {
             <div className='bookDetailsInside justifyBetween flexColumn'>
                 <div className='justifyCenter flexColumn fontSize08Rem'>
                     {this.renderSpeedUpReading()}
-                    <div className='justifyCenter'>{getText(isFinished ? TEXT_READ_FINISHED : TEXT_TIME_LEFT)}</div>
+                    <div className='justifyCenter paddingLeftRem'>{getText(isFinished ? TEXT_READ_FINISHED : TEXT_TIME_LEFT)}</div>
                     <div className='justifyCenter'>
                         <Timer
                             className={isFinished ? 'none' : ''}

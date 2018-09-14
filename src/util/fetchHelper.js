@@ -1,3 +1,9 @@
+const originalFetch = fetch;
+fetch = function (url, opts) {
+    // console.log('fetch', url, opts);
+    return originalFetch(url, {...opts, credentials: 'include'});
+};
+
 export default function request(url, data) {
     const opts = {};
     if (data) {
@@ -13,9 +19,4 @@ export default function request(url, data) {
         .catch(e => {
             console.error(e);
         })
-}
-
-export function fetchTag(){
-    return fetch('/profile/profileTag', {credentials: 'include'})
-        .then(res => res.json());
 }

@@ -11,6 +11,7 @@ import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import './util/rdHelper';
+import Bot from './bot/Bot';
 
 const history = createBrowserHistory();
 
@@ -21,12 +22,6 @@ const store = createStore(
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a)
 );
 document.title = getText(TEXT_APP_NAME);
-
-// const originalFetch = fetch;
-// fetch = function (url, opts) {
-//     // console.log('fetch', url, opts);
-//     return originalFetch(url, {...opts, credentials: 'include'});
-// };
 
 window.addEventListener('resize', () => {
     store.dispatch(screenResized());
