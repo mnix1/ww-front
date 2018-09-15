@@ -9,6 +9,7 @@ import {blockUntilRepFulfilled, logBot} from "./botHelper";
 
 
 export async function manageBooks(bot) {
+    logBot('start manage books');
     await maybeClaimBookReward(bot);
     bot.rootRoute();
     const isReadingBook = await maybeReadBook(bot);

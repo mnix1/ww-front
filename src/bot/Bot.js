@@ -6,6 +6,7 @@ import {push} from 'connected-react-router'
 import _ from 'lodash';
 import {manageBooks} from "./BotBook";
 import {logBot} from "./botHelper";
+import {manageWisies} from "./BotWisie";
 
 class Bot extends React.Component {
     componentDidMount() {
@@ -27,6 +28,7 @@ class Bot extends React.Component {
     async start() {
         this.auth();
         manageBooks(this);
+        manageWisies(this);
     }
 
     rootRoute() {

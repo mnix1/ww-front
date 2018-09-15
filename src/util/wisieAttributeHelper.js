@@ -26,3 +26,5 @@ export const NAME_TO_PROP = {
       [CONFIDENCE]: 'confidence',
       [INTUITION]: 'intuition',
 };
+
+export const WISIE_ATTRIBUTES = Object.keys(NAME_TO_PROP);
