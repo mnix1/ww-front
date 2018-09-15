@@ -1,8 +1,9 @@
 import {
     RIVAL_STATUS_ACCEPTED_FRIEND, RIVAL_STATUS_IN_PROGRESS,
     RIVAL_STATUS_INVITED_FRIEND,
-    RIVAL_STATUS_REJECTED_FRIEND
+    RIVAL_STATUS_REJECTED_FRIEND, RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
+import {clearRivalStartRandomOpponentFetch} from "../../content/rival/fetch/RivalStartRandomOpponentFetch";
 
 export const CLEARED = 'rival/cleared';
 export const TAG_CHANGED = 'rival/tag/changed';
@@ -106,4 +107,12 @@ export function questionIdAnswerIdMapChanged(questionIdAnswerIdMap) {
 
 export function questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap) {
     return {type: QUESTION_ID_SKIP_ANIMATION_MAP_CHANGED, questionIdSkipAnimationMap};
+}
+
+export function startRandomOpponent(dispatch, type, importance) {
+    clearRivalStartRandomOpponentFetch(dispatch);
+    dispatch(rivalCleared());
+    dispatch(rivalTypeChanged(type));
+    dispatch(rivalImportanceChanged(importance));
+    dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
 }

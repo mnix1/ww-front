@@ -8,14 +8,8 @@ import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import _ from 'lodash';
-import {clearRivalStartRandomOpponentFetch} from "../rival/fetch/RivalStartRandomOpponentFetch";
-import {
-    RIVAL_IMPORTANCE_FAST,
-    RIVAL_IMPORTANCE_RANKING,
-    RIVAL_STATUS_START_RANDOM_OPPONENT,
-    RIVAL_TYPE_WAR
-} from "../../util/rivalHelper";
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
+import {RIVAL_IMPORTANCE_FAST, RIVAL_IMPORTANCE_RANKING, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
+import {startRandomOpponent} from "../../redux/reducer/rival";
 
 class PlayWarPage extends React.PureComponent {
 
@@ -61,11 +55,7 @@ export default connect(
     }),
     (dispatch) => ({
         onWarRandomOpponentClick: (importance) => {
-            clearRivalStartRandomOpponentFetch(dispatch);
-            dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_WAR));
-            dispatch(rivalImportanceChanged(importance));
-            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
+           startRandomOpponent(dispatch, RIVAL_TYPE_WAR, importance);
         },
         onRouteChange: (e) => {
             dispatch(push(e));

@@ -7,6 +7,7 @@ import _ from 'lodash';
 import {manageBooks} from "./BotBook";
 import {logBot} from "./botHelper";
 import {manageWisies} from "./BotWisie";
+import {manageWar} from "./BotWar";
 
 class Bot extends React.Component {
     componentDidMount() {
@@ -25,10 +26,15 @@ class Bot extends React.Component {
         return this.props.redux;
     }
 
+    get communication() {
+        return this.props.communication;
+    }
+
     async start() {
-        this.auth();
-        manageBooks(this);
-        manageWisies(this);
+        // await this.auth();
+        // await manageBooks(this);
+        // await manageWisies(this);
+        // await manageWar(this);
     }
 
     rootRoute() {

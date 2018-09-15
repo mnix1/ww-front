@@ -287,7 +287,7 @@ class App extends React.PureComponent {
                 {this.renderContent()}
             </div>
             <ProfileFetch/>
-            <Bot user={'grzesiu'} pass={'!1botgrzesiu'}/>
+            <Bot communication={this.rivalCommunication} user={'grzesiu'} pass={'!1botgrzesiu'}/>
         </div>;
     }
 }

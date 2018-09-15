@@ -13,9 +13,15 @@ import {
     RIVAL_IMPORTANCE_FAST,
     RIVAL_IMPORTANCE_RANKING,
     RIVAL_STATUS_START_RANDOM_OPPONENT,
-    RIVAL_TYPE_BATTLE
+    RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR
 } from "../../util/rivalHelper";
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../redux/reducer/rival";
+import {
+    rivalCleared,
+    rivalImportanceChanged,
+    rivalTypeChanged,
+    startRandomOpponent,
+    statusChanged
+} from "../../redux/reducer/rival";
 
 class PlayBattlePage extends React.PureComponent {
 
@@ -61,11 +67,7 @@ export default connect(
     }),
     (dispatch) => ({
         onBattleRandomOpponentClick: (importance) => {
-            clearRivalStartRandomOpponentFetch(dispatch);
-            dispatch(rivalCleared());
-            dispatch(rivalImportanceChanged(importance));
-            dispatch(rivalTypeChanged(RIVAL_TYPE_BATTLE));
-            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
+            startRandomOpponent(dispatch, RIVAL_TYPE_BATTLE, importance);
         },
         onRouteChange: (e) => {
             dispatch(push(e));
