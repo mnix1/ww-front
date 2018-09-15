@@ -28,6 +28,8 @@ export const NAME_TO_POINTS = {
     [EXTREMELY_HARD]: 7,
 };
 
+export const DIFFICULTY_LEVEL_NAMES = _.keys(NAME_TO_DIFFICULT_LEVEL);
+
 export const DIFFICULTY_LEVELS = _.map(NAME_TO_DIFFICULT_LEVEL);
 
 export const DIFFICULT_LEVEL_TO_NAME = _.transform(NAME_TO_DIFFICULT_LEVEL, (result, value, key) => result[value] = key, {});

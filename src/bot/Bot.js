@@ -31,10 +31,17 @@ class Bot extends React.Component {
     }
 
     async start() {
-        // await this.auth();
-        // await manageBooks(this);
-        // await manageWisies(this);
-        // await manageWar(this);
+        await this.round();
+    }
+
+    async round() {
+        logBot('START ROUND');
+        await this.auth();
+        await manageWar(this);
+        await manageBooks(this);
+        await manageWisies(this);
+        logBot('END ROUND');
+        this.round();
     }
 
     rootRoute() {

@@ -11,7 +11,6 @@ import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {createBrowserHistory} from 'history'
 import {connectRouter, routerMiddleware} from 'connected-react-router'
 import './util/rdHelper';
-import Bot from './bot/Bot';
 
 const history = createBrowserHistory();
 

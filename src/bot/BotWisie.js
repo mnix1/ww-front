@@ -1,4 +1,3 @@
-import React from 'react';
 import {blockUntilRepFulfilled, logBot} from "./botHelper";
 import {push} from 'connected-react-router'
 import _ from 'lodash';

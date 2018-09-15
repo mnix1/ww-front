@@ -10,6 +10,7 @@ import sleep from '../../../../media/image/icon/sleep.svg';
 import Timer from "../../../../component/timer/Timer";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
 import {rivalInProgressContent} from "../../../../redux/reducer/rival";
+import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 
 class BattlePageChoosingTaskProps extends React.PureComponent {
 
@@ -36,7 +37,7 @@ class BattlePageChoosingTaskProps extends React.PureComponent {
         if (choosingTaskPropsTag === content.profile.tag) {
             return <ChoosingTaskProps
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
-                acceptMsg='BATTLE_^_CHOOSE_TASK_PROPS'
+                rivalType={RIVAL_TYPE_BATTLE}
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}

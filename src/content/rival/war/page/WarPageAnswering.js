@@ -45,7 +45,7 @@ class WarPageAnswering extends React.PureComponent {
                     if (!_.isNil(correctAnswerId)) {
                         return;
                     }
-                    communication.send(`${rivalType}_^_ANSWER` + JSON.stringify({answerId}));
+                    communication.sendAnswer(rivalType, answerId);
                     onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
                 }}
             />

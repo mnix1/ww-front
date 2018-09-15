@@ -15,7 +15,7 @@ export default class ChoosingTaskProps extends React.PureComponent {
     };
 
     renderChooseDifficult() {
-        const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, acceptMsg, renderPoints} = this.props;
+        const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, rivalType, renderPoints} = this.props;
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter marginRem'>
                 <Rating onChange={onDifficultLevelChange} valueString={content.chosenDifficulty}/>
@@ -23,7 +23,7 @@ export default class ChoosingTaskProps extends React.PureComponent {
             </div>
             <div className='justifyCenter marginRem'>
                 <Button onClick={() => {
-                    communication.send(acceptMsg + JSON.stringify({difficultyLevel: content.chosenDifficulty}));
+                    communication.sendChosenDifficulty(rivalType, content.chosenDifficulty);
                     onDifficultLevelAcceptChange(true);
                 }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
@@ -33,13 +33,13 @@ export default class ChoosingTaskProps extends React.PureComponent {
     }
 
     renderChooseCategory() {
-        const {screen, content, communication, acceptMsg, onCategoryChange} = this.props;
+        const {screen, content, communication, rivalType, onCategoryChange} = this.props;
         return <SimpleObjectGroup
             setHeight={false}
             objects={OBJECTS_CATEGORY}
             selectedId={content.chosenCategory}
             onObjectClick={(categoryObject) => {
-                communication.send(acceptMsg + JSON.stringify({category: categoryObject.id}))
+                communication.sendChosenCategory(rivalType, categoryObject.id);
                 onCategoryChange(categoryObject);
             }}
             screen={screen}

@@ -1,4 +1,3 @@
-import React from 'react';
 import {isRepValueCode1} from "../util/repositoryHelper";
 import {PROFILE_ROUTE, SHOP_ROUTE} from "../content/routes";
 import {push} from 'connected-react-router'

@@ -110,7 +110,7 @@ function prepareQuestionTextDateTile(rival) {
         onClick: _.noop,
         content: <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(dateContent)}/>,
         yTarget: .5,
-        xTarget: .65,
+        xTarget: .68,
         widthFactor: 1.2
     }];
 }
