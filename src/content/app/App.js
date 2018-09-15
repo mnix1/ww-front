@@ -288,7 +288,7 @@ class App extends React.PureComponent {
                 {this.renderContent()}
             </div>
             <ProfileFetch/>
-            <Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>
+            {/*<Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>*/}
         </div>;
     }
 }

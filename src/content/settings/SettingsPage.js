@@ -2,15 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import {getWisor} from "../../util/wisorHelper";
-import {getText, TEXT_CHANGE_NICK, TEXT_CHANGE_WISOR, TEXT_NAME_LENGTH} from "../../lang/langText";
+import {getText, TEXT_CHANGE_NICK, TEXT_CHANGE_WISOR, TEXT_LOGOUT, TEXT_NAME_LENGTH} from "../../lang/langText";
 import {push} from "connected-react-router";
 import {SETTINGS_CHOOSE_WISOR_ROUTE, SETTINGS_ROUTE} from "../routes";
 import {Route, Switch} from 'react-router';
 import ChooseWisorPage from "./ChooseWisorPage";
-import {FaCheckCircle} from 'react-icons/fa';
+import {FaCheckCircle, FaSignOutAlt} from 'react-icons/fa';
 import {chosenNickAcceptChanged, chosenNickChanged} from "../../redux/reducer/settings";
 import _ from 'lodash';
 import MeshBackground from "../../component/background/MeshBackground";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 
 export const NAME_MAX_LENGTH = 20;
 
@@ -18,6 +19,13 @@ class SettingsPage extends React.PureComponent {
 
     renderContent() {
         return <div>
+            <a href='/logout'><Button
+                className='marginRem right'
+                icon={<FaSignOutAlt/>}
+                material={BUTTON_MATERIAL_BOX_SHADOW}>
+                {getText(TEXT_LOGOUT)}
+            </Button>
+            </a>
             {this.renderActualNick()}
             {this.renderActualWisor()}
         </div>
@@ -39,7 +47,8 @@ class SettingsPage extends React.PureComponent {
         return <div className='left marginRem boxShadow paddingRem'>
             <div>{getText(TEXT_CHANGE_NICK)}</div>
             <div className='justifyCenter'>
-                <input maxLength={NAME_MAX_LENGTH} minLength={2} value={_.defaultTo(chosenNick, profile.name)} onChange={onChoose}/>
+                <input maxLength={NAME_MAX_LENGTH} minLength={2} value={_.defaultTo(chosenNick, profile.name)}
+                       onChange={onChoose}/>
                 <FaCheckCircle className='pointer' onClick={onChooseAccept} size={20}/>
             </div>
             <div className='justifyCenter fontSize07Rem paddingTopRem'>
