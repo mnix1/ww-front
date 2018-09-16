@@ -53,7 +53,7 @@ class RivalFetchContainer extends React.PureComponent {
             <RivalRejectFriendFetch status={status}/>
             <RivalAcceptFriendFetch status={status}/>
             <RivalStartRandomOpponentFetch status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
-            <RivalCancelRandomOpponentFetch status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
+            <RivalCancelRandomOpponentFetch status={status}/>
         </div>;
     }
 }

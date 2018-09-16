@@ -18,9 +18,9 @@ class RivalCancelRandomOpponentFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {status, rivalType, rivalImportance, dispatchRivalCancelRandomOpponentPost} = this.props;
+        const {status, dispatchRivalCancelRandomOpponentPost} = this.props;
         if (prevProps.status !== status && status === RIVAL_STATUS_CANCELED_RANDOM_OPPONENT) {
-            dispatchRivalCancelRandomOpponentPost(rivalType, rivalImportance);
+            dispatchRivalCancelRandomOpponentPost();
         }
     }
 
@@ -36,8 +36,7 @@ export function clearRivalCancelRandomOpponentFetch(dispatch) {
 export default connect([{
     resource: 'rivalCancelRandomOpponent',
     method: 'post',
-    request: (type, importance) => ({
+    request: () => ({
         url: `/rival/cancelRandomOpponent`,
-        body: {type, importance}
     })
 }])(RivalCancelRandomOpponentFetch);

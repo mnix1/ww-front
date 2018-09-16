@@ -4,7 +4,7 @@ import {rivalCleared, rivalInviteCancelled, rivalInvited, statusChanged} from ".
 import {clearRivalStartFriendFetch} from "../rival/fetch/RivalStartFriendFetch";
 import {RIVAL_STATUS_READY_TO_BEGIN_FRIEND, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
 import {push} from 'connected-react-router'
-import {BATTLE_ROUTE, WAR_ROUTE} from "../routes";
+import {BATTLE_ROUTE, LOGIN_ROUTE, WAR_ROUTE} from "../routes";
 import {noticeReward} from "../../component/notification/noticeReward";
 import {clearProfileFetch} from "./ProfileFetch";
 import {openChanged} from "../../redux/reducer/socket";
@@ -36,8 +36,9 @@ export default class CommunicationWebSocket {
     onClose = (e) => {
         console.log('onclose', e);
         if (e.code === 1008) {
+            this.dispatch(push(LOGIN_ROUTE));
+            this.dispatch(profileChanged(undefined));
             clearProfileFetch(this.dispatch);
-            this.dispatch(profileChanged(null));
         }
         this.dispose();
     };

@@ -7,7 +7,7 @@ export const CLAIM_REWARD_BOOK_ID_CHANGED = 'profile/claim-reward-book-id/change
 export const SPEED_UP_BOOK_ID_CHANGED = 'profile/speed-up-book-id/changed';
 
 const initialState = {
-    profile: null,
+    profile: undefined,
     startReadBookId: undefined,
     stopReadBookId: undefined,
     discardBookId: undefined,

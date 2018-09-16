@@ -3,6 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {profileChanged} from "../../redux/reducer/profile";
 import {langChanged} from "../../redux/reducer/language";
+import {LOGIN_ROUTE} from "../routes";
 
 class ProfileFetch extends React.PureComponent {
 
@@ -26,8 +27,8 @@ class ProfileFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {dispatchProfileGet, profileFetch} = this.props;
-        if (!profileFetch.fulfilled && !profileFetch.pending && !profileFetch.rejected) {
+        const {dispatchProfileGet, profileFetch, path} = this.props;
+        if (!profileFetch.fulfilled && !profileFetch.pending && !profileFetch.rejected && path !== LOGIN_ROUTE) {
             dispatchProfileGet();
         }
     }

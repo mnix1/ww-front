@@ -275,13 +275,12 @@ class App extends React.PureComponent {
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
-            <WakeLock/>
             {this.renderFetch()}
         </div>;
     }
 
     render() {
-        const {screen, socketOpen, profile} = this.props;
+        const {screen, socketOpen, profile, path} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
             {this.renderBackground()}
@@ -291,7 +290,8 @@ class App extends React.PureComponent {
                 {profile && !socketOpen && this.renderConnectionProblem()}
                 {this.renderContent()}
             </div>
-            <ProfileFetch/>
+            <ProfileFetch path={path}/>
+            <WakeLock/>
             {/*<Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>*/}
         </div>;
     }
