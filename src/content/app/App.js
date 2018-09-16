@@ -31,7 +31,8 @@ import {
     CHALLENGE_LIST_ROUTE,
     CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_ROUTE,
-    CHALLENGE_SUMMARY_ROUTE,
+    CHALLENGE_SUMMARY_ROUTE, CLASSIFICATION_BATTLE_ROUTE,
+    CLASSIFICATION_WAR_ROUTE,
     FRIEND_ROUTE,
     LOGIN_ROUTE,
     PLAY_BATTLE_ROUTE,
@@ -88,8 +89,7 @@ import {repFulfilled} from "../../util/repositoryHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {getText, TEXT_RECONNECT} from "../../lang/langText";
 import {Loading} from "../../component/loading/Loading";
-import Bot from "../../bot/Bot";
-import {BOTS} from "../../bot/botHelper";
+import ClassificationPage from "../rival/classification/ClassificationPage";
 
 class App extends React.PureComponent {
 
@@ -195,6 +195,9 @@ class App extends React.PureComponent {
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
+
+                <Route exact path={CLASSIFICATION_WAR_ROUTE} render={() => <ClassificationPage/>}/>
+                <Route exact path={CLASSIFICATION_BATTLE_ROUTE} render={() => <ClassificationPage/>}/>
 
                 <Route path={SETTINGS_ROUTE} render={() => <SettingsPage/>}/>
 

@@ -28,7 +28,9 @@ class BattlePageClosed extends React.PureComponent {
                 <div className='height100 width100 justifyCenter flexColumn'>
                     <div className='pageHeader'>
                         {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
-                        {` ${getText(TEXT_DRAW)}`}
+                    </div>
+                    <div className='pageHeader'>
+                       {getText(TEXT_DRAW)}
                     </div>
                 </div>
             </div>;
@@ -46,7 +48,9 @@ class BattlePageClosed extends React.PureComponent {
                 </div>}
                 <div className='pageHeader'>
                     {getText(RIVAL_TYPE_FAREWELL_MSG[content.type])}
-                    {` ${getText(TEXT_THE_WINNER_IS)}:`}
+                </div>
+                <div className='pageHeader'>
+                    {`${getText(TEXT_THE_WINNER_IS)}:`}
                 </div>
                 <div className='pageHeader'>
                     <Profile imgHeight={screen.wisieImgHeight} {...winnerProfile}/>

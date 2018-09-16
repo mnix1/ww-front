@@ -7,6 +7,8 @@ import _ from 'lodash';
 import {getWisor} from "../../util/wisorHelper";
 import {getText, TEXT_POINTS} from "../../lang/langText";
 import cross from '../../media/image/icon/cross.svg';
+import trophy from '../../media/image/icon/trophy.svg';
+import cn from 'classnames';
 
 export default class Profile extends React.PureComponent {
 
@@ -27,11 +29,15 @@ export default class Profile extends React.PureComponent {
         style: PropTypes.object,
         className: PropTypes.string,
         detailsClassName: PropTypes.string,
+        detailsContainerClassName: PropTypes.string,
+        detailsInsideContainerClassName: PropTypes.string,
         onClick: PropTypes.func,
         actions: PropTypes.node,
         children: PropTypes.node,
         eloStyle: PropTypes.object,
         disabled: PropTypes.bool,
+        defaultClassNames: PropTypes.bool,
+        defaultDetailsClassNames: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -45,6 +51,9 @@ export default class Profile extends React.PureComponent {
         blackBackground: false,
         onClick: _.noop,
         detailsClassName: 'justifyCenter',
+        detailsInsideContainerClassName: '',
+        defaultClassNames: true,
+        defaultDetailsClassNames: true,
     };
 
     renderActions() {
@@ -53,10 +62,15 @@ export default class Profile extends React.PureComponent {
     }
 
     renderDetails() {
-        const {wisorType, imgHeight, isOnline, name, renderTag, tag, renderBattleElo, battleElo, renderWarElo, warElo, detailsClassName} = this.props;
-        return <div className='details width100 fontSize08Rem justifyCenter relative flexColumn'>
+        const {wisorType, imgHeight, isOnline, name, renderTag, tag, renderBattleElo, battleElo, renderWarElo, warElo,
+            defaultDetailsClassNames, detailsContainerClassName, detailsClassName, detailsInsideContainerClassName} = this.props;
+        const customClassName = cn({
+            'fontSize08Rem': defaultDetailsClassNames,
+            [detailsContainerClassName]: detailsContainerClassName
+        });
+        return <div className={customClassName}>
             <div className='justifyCenter'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
-            <div>
+            <div className={detailsInsideContainerClassName}>
                 <div className='justifyCenter'>
                     {isOnline && <div className='justifyStart'><TiWiFi style={{color: GREEN_COLOR}}/></div>}
                     {isOnline === false && <div className={detailsClassName}><TiWiFi style={{color: RED_COLOR}}/></div>}
@@ -72,8 +86,8 @@ export default class Profile extends React.PureComponent {
     renderElo(elo) {
         const {eloStyle} = this.props;
         return <div className={`justifyBetween`} style={eloStyle}>
-            {elo}
-            <div className='paddingLeftRem'>{getText(TEXT_POINTS)}</div>
+            <div className='justifyCenter flexColumn'>{elo}</div>
+            <img className='paddingLeftRem' alt={getText(TEXT_POINTS)} src={trophy} height={20}/>
         </div>;
     }
 
@@ -85,10 +99,15 @@ export default class Profile extends React.PureComponent {
     }
 
     render() {
-        const {onClick, tag, children, className, style, active, disabled, blackBackground} = this.props;
-        const customClassName = `${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`;
+        const {onClick, tag, children, className, style, active, disabled, blackBackground, defaultClassNames} = this.props;
+        const customClassName = cn({
+            'profileContainer relative inlineBlock marginRem paddingRem boxShadow': defaultClassNames,
+            [className]: className,
+            active,
+            disabled,
+        });
         return <div onClick={onClick} key={tag}
-                    className={`profileContainer relative inlineBlock marginRem paddingRem boxShadow ${className} ${customClassName}`}
+                    className={`${customClassName}`}
                     style={style}>
             {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
             {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>

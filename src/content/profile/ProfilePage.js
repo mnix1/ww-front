@@ -22,7 +22,6 @@ class ProfilePage extends React.PureComponent {
     render() {
         const {screen} = this.props;
         return <div className='page profilePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            {/*<div className='pageBackground absoluteBackgroundMix'/>*/}
             <MeshBackground/>
             <div className='pageContent overflowAuto'>
                 {this.renderContent()}

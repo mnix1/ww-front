@@ -52,7 +52,6 @@ class RivalFetchContainer extends React.PureComponent {
             <RivalCancelFriendFetch status={status}/>
             <RivalRejectFriendFetch status={status}/>
             <RivalAcceptFriendFetch status={status}/>
-
             <RivalStartRandomOpponentFetch status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
             <RivalCancelRandomOpponentFetch status={status} rivalImportance={rivalImportance} rivalType={rivalType}/>
         </div>;
@@ -61,6 +60,8 @@ class RivalFetchContainer extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        path: state.router.location.pathname,
+
         status: state.rival.status,
         tag: state.rival.tag,
         rivalType: state.rival.rivalType,

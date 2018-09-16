@@ -1,9 +1,10 @@
 import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
+import rating from '../../media/image/menu/rating.svg';
 import randomPerson from '../../media/image/menu/dices.svg';
 import ranking from '../../media/image/menu/award.png';
-import {WAR_FAST_ROUTE, WAR_RANKING_ROUTE} from "../routes";
+import {CLASSIFICATION_WAR_ROUTE, WAR_FAST_ROUTE, WAR_RANKING_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
@@ -33,6 +34,7 @@ class PlayWarPage extends React.PureComponent {
                 <div className='menuItems'>
                     {this.renderMenuItem(WAR_RANKING_ROUTE, ranking, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_RANKING))}
                     {this.renderMenuItem(WAR_FAST_ROUTE, randomPerson, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_FAST))}
+                    {this.renderMenuItem(CLASSIFICATION_WAR_ROUTE, rating)}
                 </div>
             </Menu>
         </div>;

@@ -40,3 +40,8 @@ export const WISIES_TEAM_EDIT_ROUTE = WISIES_ROUTE + '/teamEdit';
 
 export const SETTINGS_ROUTE = '/settings';
 export const SETTINGS_CHOOSE_WISOR_ROUTE = SETTINGS_ROUTE + '/chooseWisor';
+
+export const CLASSIFICATION_ROUTE = '/classification';
+
+export const CLASSIFICATION_WAR_ROUTE = CLASSIFICATION_ROUTE + '/war';
+export const CLASSIFICATION_BATTLE_ROUTE = CLASSIFICATION_WAR_ROUTE + '/battle';

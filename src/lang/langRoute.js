@@ -7,10 +7,10 @@ import {
     FRIEND_ROUTE,
     HISTORY_ROUTE, PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE, PLAY_WAR_ROUTE,
-    PROFILE_ROUTE,
+    PROFILE_ROUTE, CLASSIFICATION_WAR_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE, WAR_FAST_ROUTE, WAR_RANKING_ROUTE,
-    WISIES_ROUTE
+    WISIES_ROUTE, CLASSIFICATION_BATTLE_ROUTE
 } from "../content/routes";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
@@ -40,6 +40,8 @@ const ROUTE_LABELS = {
         [WAR_RANKING_ROUTE]: <span>Wojna<br/>rankingowa</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
+        [CLASSIFICATION_WAR_ROUTE]: 'Klasyfikacja',
+        [CLASSIFICATION_BATTLE_ROUTE]: 'Klasyfikacja',
     },
     [ENGLISH]: {
         [PLAY_ROUTE]: 'Play',
@@ -61,5 +63,7 @@ const ROUTE_LABELS = {
         [WAR_RANKING_ROUTE]: <span>Ranking<br/>war</span>,
         [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challenge</span>,
         [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,
+        [CLASSIFICATION_WAR_ROUTE]: 'Classification',
+        [CLASSIFICATION_BATTLE_ROUTE]: 'Classification',
     }
 };

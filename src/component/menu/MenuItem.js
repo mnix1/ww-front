@@ -25,7 +25,9 @@ export default class MenuItem extends React.PureComponent {
                     className={`menuItem flexColumn flex marginRem relative pointer ${className}`}
                     style={{fontSize: '0.9rem'}}>
             <img className='marginWidthAuto' alt='' src={imgSrc} width={iconWidth} height={iconHeight}/>
-            <span className='textAlignCenter width100'>{getRouteLabel(route)}</span>
+            <div className='justifyCenter flexColumn marginAuto'>
+                <span className='textAlignCenter width100'>{getRouteLabel(route)}</span>
+            </div>
         </div>
     }
 
