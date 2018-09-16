@@ -24,9 +24,11 @@ class ClassificationPage extends React.PureComponent {
         const type = CLASSIFICATION_ROUTE_RIVAL_TYPE[path];
         const myProfile = classificationListRep.value.filter(e => e.tag === profile.tag)[0];
         const isLast = myProfile.tag === _.last(classificationListRep.value).tag;
-        const otherProfiles = classificationListRep.value.filter(e => e.tag !== profile.tag);
+        const profilesToList = isLast
+            ? classificationListRep.value.filter(e => e.tag !== profile.tag)
+            : classificationListRep.value;
         return <div className='justifyCenter flexColumn'>
-            {otherProfiles.map(e => this.renderPosition(e, type === RIVAL_TYPE_WAR, type === RIVAL_TYPE_BATTLE))}
+            {profilesToList.map(e => this.renderPosition(e, type === RIVAL_TYPE_WAR, type === RIVAL_TYPE_BATTLE))}
             {isLast && this.renderPosition(myProfile, type === RIVAL_TYPE_WAR, type === RIVAL_TYPE_BATTLE)}
         </div>
     }
