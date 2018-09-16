@@ -36,26 +36,14 @@ class PlayPage extends React.PureComponent {
     }
 
     renderWarMenuItem(route, imgSrc) {
-        const {screen, onRouteChange, profile} = this.props;
-        const disabled = !profile.teamInitialized;
+        const {screen, onRouteChange} = this.props;
         const iconHeight = screen.wisieImgHeight + 10;
-        const menuItem = <MenuItem
-            className={disabled ? 'disabled' : ''}
+        return <MenuItem
             imgSrc={imgSrc}
             iconHeight={iconHeight}
             route={route}
-            onClick={(route) => {
-                if (!disabled) {
-                    onRouteChange(route);
-                }
-            }}/>;
-        if (!disabled) {
-            return menuItem;
-        }
-        return <div className='relative'>
-            {menuItem}
-            <Requirement text={TEXT_WISIES_TEAM}/>
-        </div>;
+            onClick={route => onRouteChange(route)}
+        />;
     }
 
     renderMenu() {

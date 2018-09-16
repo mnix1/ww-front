@@ -23,12 +23,12 @@ import {addedSuggestedChanged, addTagChanged, suggestChanged} from "../../redux/
 import AddFriendFetch, {clearAddFriendFetch} from "./fetch/AddFriendFetch";
 import {challengeCleared, tagsChanged} from "../../redux/reducer/challenge";
 import {AddFriend} from "../../component/add-friend/AddFriend";
-import {FaQq, FaBan, FaGavel, FaPlusCircle, FaCheckCircle} from 'react-icons/fa';
+import {FaBan, FaCheckCircle, FaGavel, FaPlusCircle, FaQq} from 'react-icons/fa';
 import {TiFlash} from 'react-icons/ti';
 import FriendSuggestFetch from "./fetch/FriendSuggestFetch";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {CREAM_COLOR} from "../../util/style/constant";
-import {statusChanged, tagChanged, rivalTypeChanged} from "../../redux/reducer/rival";
+import {rivalTypeChanged, statusChanged, tagChanged} from "../../redux/reducer/rival";
 import {RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
 import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
@@ -80,14 +80,14 @@ class FriendPage extends React.PureComponent {
     }
 
     renderFriend(friend) {
-        const {addedSuggested, screen, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick, profile} = this.props;
+        const {addedSuggested, screen, onAddSuggestedFriendClick, onAcceptFriendClick, onDeleteFriendClick, onChallengeFriendClick, onRivalFriendClick} = this.props;
         return <Profile
             blackBackground={true}
             imgHeight={screen.wisieImgHeight}
             key={friend.tag}
             {...friend}
             actions={<div className='actions'>
-                {profile.teamInitialized && friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline && friend.teamInitialized &&
+                {friend.status === FRIEND_STATUS_ACCEPTED && friend.isOnline &&
                 <div onClick={() => onRivalFriendClick(friend.tag, RIVAL_TYPE_WAR)}>
                     <span>{getText(TEXT_WAR)}</span><FaQq
                     color={CREAM_COLOR}/></div>}
