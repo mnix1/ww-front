@@ -4,7 +4,7 @@ import {Loading} from "../../../component/loading/Loading";
 import Profile from "../../../component/profile/Profile";
 import MeshBackground from "../../../component/background/MeshBackground";
 import {repFulfilled} from "../../../util/repositoryHelper";
-import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR, ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
+import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR, CLASSIFICATION_ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
 import {getText, TEXT_RANKING} from "../../../lang/langText";
 import position1 from '../../../media/image/position/position1.svg';
 import position2 from '../../../media/image/position/position2.svg';
@@ -21,7 +21,7 @@ class ClassificationPage extends React.PureComponent {
         if (!repFulfilled(classificationListRep)) {
             return <Loading/>;
         }
-        const type = ROUTE_RIVAL_TYPE[path];
+        const type = CLASSIFICATION_ROUTE_RIVAL_TYPE[path];
         const myProfile = classificationListRep.value.filter(e => e.tag === profile.tag)[0];
         const isLast = myProfile.tag === _.last(classificationListRep.value).tag;
         const otherProfiles = classificationListRep.value.filter(e => e.tag !== profile.tag);

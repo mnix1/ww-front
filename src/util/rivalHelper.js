@@ -82,14 +82,17 @@ export const ROUTE_RIVAL_TYPE = {
     [WAR_ROUTE]: RIVAL_TYPE_WAR,
     [CAMPAIGN_WAR_ROUTE]: RIVAL_TYPE_CAMPAIGN_WAR,
     [CHALLENGE_ROUTE]: RIVAL_TYPE_CHALLENGE,
-    [CLASSIFICATION_BATTLE_ROUTE]: RIVAL_TYPE_BATTLE,
-    [CLASSIFICATION_WAR_ROUTE]: RIVAL_TYPE_WAR,
 };
 
 export const RIVAL_TYPE_ROUTE = _.reduce(ROUTE_RIVAL_TYPE, (acc, v, k) => {
     acc[v] = k;
     return acc;
 }, {});
+
+export const CLASSIFICATION_ROUTE_RIVAL_TYPE = {
+    [CLASSIFICATION_BATTLE_ROUTE]: RIVAL_TYPE_BATTLE,
+    [CLASSIFICATION_WAR_ROUTE]: RIVAL_TYPE_WAR,
+};
 
 export function renderBattleElo({importance, type}) {
     return importance === RIVAL_IMPORTANCE_RANKING && type === RIVAL_TYPE_BATTLE;

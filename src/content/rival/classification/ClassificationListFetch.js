@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CLASSIFICATION_BATTLE_ROUTE, CLASSIFICATION_WAR_ROUTE} from "../../routes";
 import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
-import {ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
+import {CLASSIFICATION_ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
 
 class ClassificationListFetch extends React.PureComponent {
 
@@ -23,7 +23,7 @@ class ClassificationListFetch extends React.PureComponent {
         const {path, dispatchClassificationListPost, classificationListFetch} = this.props;
         if (fetchOnPathAndIfNotExists(prevProps.path, path, CLASSIFICATION_WAR_ROUTE, prevProps.classificationListFetch, classificationListFetch)
             || fetchOnPathAndIfNotExists(prevProps.path, path, CLASSIFICATION_BATTLE_ROUTE, prevProps.classificationListFetch, classificationListFetch)) {
-            dispatchClassificationListPost(ROUTE_RIVAL_TYPE[path]);
+            dispatchClassificationListPost(CLASSIFICATION_ROUTE_RIVAL_TYPE[path]);
         }
     }
 
