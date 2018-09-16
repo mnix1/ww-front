@@ -106,7 +106,7 @@ export default class Profile extends React.PureComponent {
             active,
             disabled,
         });
-        return <div onClick={onClick} key={tag}
+        return <div onClick={disabled ? _.noop : onClick} key={tag}
                     className={`${customClassName}`}
                     style={style}>
             {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}

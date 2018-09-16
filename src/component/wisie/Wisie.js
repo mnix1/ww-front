@@ -89,7 +89,7 @@ export default class Wisie extends React.PureComponent {
         return <div
             className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${customClassName}`}
             style={style}>
-            <div onClick={onClick} key={type}>
+            <div onClick={disabled ? _.noop : onClick} key={type}>
                 {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
                 {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
                     <img alt='' src={cross} className='height100 width100'/>
