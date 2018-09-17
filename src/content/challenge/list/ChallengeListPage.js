@@ -44,8 +44,8 @@ class ChallengeListPage extends React.PureComponent {
         return <div key={challenge.id} className='challenge'>
             <Profile {...{
                 ...creator,
-                tag: isProfileCreator ? null : creator.tag,
-                name: isProfileCreator ? null : creator.name
+                tag: creator.tag,
+                name: creator.name
             }} actions={<div className='actions'>
                 {challenge.canResponse &&
                 <div onClick={() => onChallengeResponseClick(challenge.id)}>

@@ -296,7 +296,7 @@ class App extends React.PureComponent {
             </div>
             <ProfileFetch path={path}/>
             <WakeLock/>
-            <Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>
+            {/*<Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>*/}
         </div>;
     }
 }

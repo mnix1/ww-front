@@ -24,25 +24,28 @@ export default class RivalCommunication {
         this.communicationWebSocket.send(message);
     }
 
-    sendAnswer(rivalType, answerId){
+    sendAnswer(rivalType, answerId) {
         this.send(`${rivalType}_^_ANSWER` + JSON.stringify({answerId}));
     }
 
-    sendWhoAnswer(rivalType, activeIndex){
+    sendWhoAnswer(rivalType, activeIndex) {
         this.send(`${rivalType}_^_CHOOSE_WHO_ANSWER` + JSON.stringify({activeIndex}));
     }
 
-    sendChosenDifficulty(rivalType, difficultyLevel){
+    sendChosenDifficulty(rivalType, difficultyLevel) {
         this.send(`${rivalType}_^_CHOOSE_TASK_PROPS` + JSON.stringify({difficultyLevel}));
     }
 
-    sendChosenCategory(rivalType, category){
+    sendChosenCategory(rivalType, category) {
         this.send(`${rivalType}_^_CHOOSE_TASK_PROPS` + JSON.stringify({category}));
     }
 
     onMessage = (e) => {
         const data = JSON.parse(e.data);
         const id = data.id;
+        if (!_.includes(id, '_CONTENT')) {
+            return;
+        }
         const content = JSON.parse(data.content);
         if (id === `${RIVAL_TYPE_BATTLE}_CONTENT`) {
             this.changeRivalTypeIfDifferenct(RIVAL_TYPE_BATTLE);

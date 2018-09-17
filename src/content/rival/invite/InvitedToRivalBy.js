@@ -6,7 +6,7 @@ import {getText, TEXT_ACCEPT, TEXT_REJECT} from "../../../lang/langText";
 import {CREAM_COLOR} from "../../../util/style/constant";
 import Profile from "../../../component/profile/Profile";
 import Modal from "../../../component/modal/Modal";
-import {rivalInviteAccepted, rivalInviteRejected} from "../../../redux/reducer/rival";
+import {rivalCleared, rivalInviteAccepted, rivalInviteRejected} from "../../../redux/reducer/rival";
 import {RIVAL_STATUS_INVITED_FRIEND, RIVAL_TYPE_INVITED_TO_BY_TEXT} from "../../../util/rivalHelper";
 
 class InvitedToRivalBy extends React.PureComponent {
@@ -34,9 +34,11 @@ export default connect(
     }),
     (dispatch) => ({
         onAccept: () => {
+            dispatch(rivalCleared());
             dispatch(rivalInviteAccepted())
         },
         onReject: () => {
+            dispatch(rivalCleared());
             dispatch(rivalInviteRejected());
         }
     })
