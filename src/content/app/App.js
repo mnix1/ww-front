@@ -91,6 +91,9 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button"
 import {getText, TEXT_RECONNECT} from "../../lang/langText";
 import {Loading} from "../../component/loading/Loading";
 import ClassificationPage from "../rival/classification/ClassificationPage";
+import Intro from "../intro/Intro";
+import Bot from "../../bot/Bot";
+import {BOTS} from "../../bot/botHelper";
 
 class App extends React.PureComponent {
 
@@ -238,7 +241,7 @@ class App extends React.PureComponent {
             return null;
         }
         const imgHeight = screen.isSmallHeight ? 30 : 40;
-        const isInRival = getSurrenderMsg(path) !== null;
+        const isInRival = !_.isNil(getSurrenderMsg(path));
         return <div className='showOption'>
             <FaCogs size={imgHeight} onClick={isInRival ? onOptionShowChange : () => onRouteChange(SETTINGS_ROUTE)}/>
         </div>;
@@ -271,6 +274,7 @@ class App extends React.PureComponent {
 
     renderLogged() {
         return <div>
+            {/*<Intro/>*/}
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
@@ -292,7 +296,7 @@ class App extends React.PureComponent {
             </div>
             <ProfileFetch path={path}/>
             <WakeLock/>
-            {/*<Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>*/}
+            <Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>
         </div>;
     }
 }
