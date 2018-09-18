@@ -25,8 +25,8 @@ class IntroStepWelcome extends React.PureComponent {
     }
 }
 
-export function prepareIntroStepWelcome() {
-    return prepareIntroStep({
+export function prepareIntroStepWelcome(afterReload) {
+    return prepareIntroStep(afterReload,{
         position: 'center',
         stepId: INTRO_STEP_WELCOME,
         content: <IntroStepWelcome/>

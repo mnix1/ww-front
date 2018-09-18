@@ -6,19 +6,11 @@ import practise from '../../media/image/menu/practise.svg';
 import campaign from '../../media/image/menu/expedition.png';
 import challenge from '../../media/image/menu/rubicCube.svg';
 import war from '../../media/image/menu/chessBoard.svg';
-import {
-    CAMPAIGN_ROUTE,
-    PLAY_BATTLE_ROUTE,
-    PLAY_CHALLENGE_ROUTE,
-    PLAY_WAR_ROUTE,
-    TRAINING_ROUTE
-} from "../routes";
+import {CAMPAIGN_ROUTE, PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE, PLAY_WAR_ROUTE, TRAINING_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import _ from 'lodash';
-import {TEXT_WISIES_TEAM} from "../../lang/langText";
-import Requirement from "../../component/requirement/Requirement";
 
 class PlayPage extends React.PureComponent {
 

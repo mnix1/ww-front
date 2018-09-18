@@ -9,11 +9,11 @@ import {FaArrowRight} from 'react-icons/fa';
 import {stepIndexChanged} from "../../../redux/reducer/intro";
 import _ from 'lodash';
 
-export function prepareIntroStep({stepId, content, selector, position}) {
+export function prepareIntroStep(afterReload, {stepId, content, selector, position}) {
     return {
         selector: _.defaultTo(selector, `.${stepId}`),
         content,
-        position: _.defaultTo(position, 'top'),
+        position: afterReload ? 'center' : _.defaultTo(position, 'top'),
     }
 }
 

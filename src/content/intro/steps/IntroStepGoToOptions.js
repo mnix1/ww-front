@@ -40,8 +40,8 @@ const IntroStepGoToOptionsRedux = connect(
     })
 )(IntroStepGoToOptions);
 
-export function prepareIntroStepGoToOptions() {
-    return prepareIntroStep({
+export function prepareIntroStepGoToOptions(afterReload) {
+    return prepareIntroStep(afterReload,{
         stepId: INTRO_STEP_GO_TO_OPTIONS,
         content: <IntroStepGoToOptionsRedux/>
     });

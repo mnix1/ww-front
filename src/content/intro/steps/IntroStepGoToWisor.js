@@ -41,8 +41,8 @@ const IntroStepGoToWisorRedux = connect(
     })
 )(IntroStepGoToWisor);
 
-export function prepareIntroStepGoToWisor() {
-    return prepareIntroStep({
+export function prepareIntroStepGoToWisor(afterReload) {
+    return prepareIntroStep(afterReload,{
         stepId: INTRO_STEP_GO_TO_WISOR,
         content: <IntroStepGoToWisorRedux/>
     });

@@ -1,4 +1,3 @@
-import React from 'react';
 import _ from 'lodash';
 import {APP_ROUTE, PROFILE_ROUTE, SETTINGS_CHOOSE_WISOR_ROUTE, SETTINGS_ROUTE, WISIES_ROUTE} from "../routes";
 

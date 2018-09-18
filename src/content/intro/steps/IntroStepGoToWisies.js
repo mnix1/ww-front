@@ -52,9 +52,8 @@ const IntroStepGoToWisiesRedux = connect(
     })
 )(IntroStepGoToWisies);
 
-export function prepareIntroStepGoToWisies() {
-    return prepareIntroStep({
-        // position: 'bottom',
+export function prepareIntroStepGoToWisies(afterReload) {
+    return prepareIntroStep(afterReload,{
         stepId: INTRO_STEP_GO_TO_WISIES,
         content: <IntroStepGoToWisiesRedux/>
     });

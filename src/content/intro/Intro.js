@@ -10,38 +10,31 @@ import {prepareIntroStepGoToProfile} from "./steps/IntroStepGoToProfile";
 import {stepIndexChanged} from "../../redux/reducer/intro";
 import {prepareIntroStepGoToWisor} from "./steps/IntroStepGoToWisor";
 import {prepareIntroStepWisor} from "./steps/IntroStepWisor";
-import {STEP_ID_TO_ROUTE, STEP_INDEX_TO_STEP_ID} from "./introHelper";
 import {push} from "connected-react-router";
 import {prepareIntroStepGoToAppFromOptions} from "./steps/IntroStepGoToAppFromOptions";
 import {prepareIntroStepGoToWisies} from "./steps/IntroStepGoToWisies";
+import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
 
-export function prepareIntroSteps() {
+export function prepareIntroSteps(afterReload) {
     return [
-        prepareIntroStepWelcome(),
-        prepareIntroStepGoToOptions(),
-        prepareIntroStepOptions(),
-        prepareIntroStepGoToWisor(),
-        prepareIntroStepWisor(),
-        prepareIntroStepGoToAppFromOptions(),
-        prepareIntroStepGoToWisies(),
-        prepareIntroStepGoToProfile(),
+        prepareIntroStepWelcome(afterReload),
+        prepareIntroStepGoToOptions(afterReload),
+        prepareIntroStepOptions(afterReload),
+        prepareIntroStepGoToWisor(afterReload),
+        prepareIntroStepWisor(afterReload),
+        prepareIntroStepGoToAppFromOptions(afterReload),
+        prepareIntroStepGoToWisies(afterReload),
+        prepareIntroStepGoToProfile(afterReload),
     ];
 }
 
 class Intro extends React.PureComponent {
 
-    componentDidUpdate(prevProps) {
-        const {stepIndex, path, onRouteChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
-        const introPaths = _.flatten([STEP_ID_TO_ROUTE[stepId]]);
-        console.log('Intro', introPaths, path);
-        if (!_.includes(introPaths, path)) {
-            onRouteChange(_.head(introPaths));
-        }
-    }
-
     render() {
-        const {stepIndex} = this.props;
+        const {stepIndex, profile, show, open, afterReload} = this.props;
+        if (!show) {
+            return null;
+        }
         return <div className="">
             <Tour
                 showNavigation={false}
@@ -51,20 +44,31 @@ class Intro extends React.PureComponent {
                 showClose={false}
                 rounded={remToPixels(0.5)}
                 goToStep={stepIndex}
-                steps={prepareIntroSteps()}
-                isOpen={true}
+                startAt={stepIndex}
+                steps={prepareIntroSteps(afterReload)}
+                isOpen={open && show}
+                update={stepIndex + ''}
                 onRequestClose={_.noop}/>
+            <IntroChangeStepIndexFetch stepIndex={stepIndex} profile={profile}/>
         </div>
     }
 }
 
 export default connect(
     (state) => ({
+        afterReload: state.profile.profile.introductionStepIndex === state.intro.stepIndex,
+        profile: state.profile.profile,
         stepIndex: state.intro.stepIndex,
+        enable: state.intro.enable,
+        show: state.intro.show,
+        open: state.socket.open,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
         onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex)),
-        onRouteChange: (e) => dispatch(push(e))
+        onRouteChange: (e) => {
+            console.log(e);
+            dispatch(push(e))
+        }
     })
 )(Intro);

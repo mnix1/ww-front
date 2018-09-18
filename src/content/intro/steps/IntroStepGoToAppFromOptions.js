@@ -49,8 +49,8 @@ const IntroStepGoToAppFromOptionsRedux = connect(
     })
 )(IntroStepGoToAppFromOptions);
 
-export function prepareIntroStepGoToAppFromOptions() {
-    return prepareIntroStep({
+export function prepareIntroStepGoToAppFromOptions(afterReload) {
+    return prepareIntroStep(afterReload,{
         position: 'center',
         selector: `.${INTRO_STEP_WELCOME}`,
         stepId: INTRO_STEP_GO_TO_APP_FROM_OPTIONS,

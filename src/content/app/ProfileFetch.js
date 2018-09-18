@@ -4,6 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {profileChanged} from "../../redux/reducer/profile";
 import {langChanged} from "../../redux/reducer/language";
 import {LOGIN_ROUTE} from "../routes";
+import {enableChanged, stepIndexChanged} from "../../redux/reducer/intro";
 
 class ProfileFetch extends React.PureComponent {
 
@@ -19,6 +20,12 @@ class ProfileFetch extends React.PureComponent {
                 dispatch(langChanged(profileFetch.value.language));
             }
             dispatch(profileChanged(profileFetch.value));
+            if (!profileFetch.value.introductionCompleted) {
+                // setTimeout(() => {
+                dispatch(stepIndexChanged(profileFetch.value.introductionStepIndex));
+                dispatch(enableChanged(true));
+                // }, 300)
+            }
         }
     }
 

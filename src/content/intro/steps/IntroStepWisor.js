@@ -35,8 +35,8 @@ const IntroStepWisorRedux = connect(
     })
 )(IntroStepWisor);
 
-export function prepareIntroStepWisor() {
-    return prepareIntroStep({
+export function prepareIntroStepWisor(afterReload) {
+    return prepareIntroStep(afterReload, {
         stepId: INTRO_STEP_WISOR,
         content: <IntroStepWisorRedux/>
     });

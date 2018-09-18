@@ -93,6 +93,7 @@ import {Loading} from "../../component/loading/Loading";
 import ClassificationPage from "../rival/classification/ClassificationPage";
 import Intro from "../intro/Intro";
 import {INTRO_STEP_GO_TO_OPTIONS, INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../intro/introHelper";
+import IntroUpdate from "../intro/IntroUpdate";
 
 class App extends React.PureComponent {
 
@@ -273,8 +274,12 @@ class App extends React.PureComponent {
     }
 
     renderLogged() {
+        const {enable} = this.props;
         return <div>
-            <Intro/>
+            {enable && <div>
+                <IntroUpdate/>
+                <Intro/>
+            </div>}
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
@@ -306,6 +311,7 @@ export default connect(
         screen: state.screen,
         lang: state.language.lang,
         socket: state.socket.socket,
+        enable: state.intro.enable,
         socketOpen: state.socket.open,
         friendListRep: state.repository.friendList,
         profileRep: state.repository.profile,

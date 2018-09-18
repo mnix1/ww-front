@@ -40,8 +40,8 @@ const IntroStepGoToProfileRedux = connect(
     })
 )(IntroStepGoToProfile);
 
-export function prepareIntroStepGoToProfile() {
-    return prepareIntroStep({
+export function prepareIntroStepGoToProfile(afterReload) {
+    return prepareIntroStep(afterReload,{
         stepId: INTRO_STEP_GO_TO_PROFILE,
         content: <IntroStepGoToProfileRedux/>
     });
