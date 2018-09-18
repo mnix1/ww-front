@@ -17,6 +17,7 @@ import {prepareIntroStepGoToWisies} from "./steps/wisies/IntroStepGoToWisies";
 import {prepareIntroStepWisies} from "./steps/wisies/IntroStepExperiment";
 import {prepareIntroStepNewWisie} from "./steps/wisies/IntroStepNewWisie";
 import {prepareIntroStepWisieDetails} from "./steps/wisies/IntroStepWisieDetails";
+import {prepareIntroStepWisieDetailsClose} from "./steps/wisies/IntroStepWisieDetailsClose";
 
 export function prepareIntroSteps(afterReload) {
     return [
@@ -30,6 +31,7 @@ export function prepareIntroSteps(afterReload) {
         prepareIntroStepWisies(afterReload),
         prepareIntroStepNewWisie(false),
         prepareIntroStepWisieDetails(afterReload),
+        prepareIntroStepWisieDetailsClose(afterReload),
         prepareIntroStepGoToProfile(afterReload),
     ];
 }

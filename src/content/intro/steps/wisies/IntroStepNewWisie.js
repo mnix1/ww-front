@@ -30,9 +30,7 @@ class IntroStepNewWisie extends React.PureComponent {
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_NEW_WISIE_TEXT_0)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_NEW_WISIE_TEXT_1)}</div>
-                <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_NEW_WISIE_TEXT_2)}
-                    <div className='inlineBlock paddingLeftRem'><FaPlusCircle color={GREEN_COLOR}/></div>
-                </div>
+                <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_NEW_WISIE_TEXT_2)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_NEW_WISIE_TEXT_3)}</div>
             </div>
         </IntroStep>

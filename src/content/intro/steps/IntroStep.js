@@ -84,7 +84,9 @@ class IntroStep extends React.PureComponent {
                     <img alt='' src={this.introWisor} width={wisorWidth} height={wisorHeight}/>
                 </div>
                 <div className='paddingLeftRem justifyBetween flexColumn'>
-                    {children}
+                    <div className='fontSize09Rem'>
+                        {children}
+                    </div>
                     {renderContinue && <div>
                         <Button
                             onClick={() => onContinueClick(STEP_ID_TO_NEXT_STEP_INDEX[stepId])}

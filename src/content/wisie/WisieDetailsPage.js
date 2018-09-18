@@ -27,7 +27,7 @@ import {GREEN_COLOR} from "../../util/style/constant";
 import Wisdom from "../../component/resource/Wisdom";
 import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {clearWisieUpgradeFetch} from "./fetch/WisieUpgradeFetch";
-import {INTRO_STEP_WISIE_DETAILS} from "../intro/introHelper";
+import {INTRO_STEP_WISIE_DETAILS, INTRO_STEP_WISIE_DETAILS_CLOSE} from "../intro/introHelper";
 
 class WisieDetailsPage extends React.PureComponent {
 
@@ -58,7 +58,7 @@ class WisieDetailsPage extends React.PureComponent {
 
     renderWisieAttributes(wisie) {
         const {upgrade} = this.props;
-        return <div className='justifyEvenly' style={{fontSize: '0.8em'}}>
+        return <div className={`justifyEvenly ${INTRO_STEP_WISIE_DETAILS}`} style={{fontSize: '0.8em'}}>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
                 <div className='justifyCenter'>
                     Wiedza
@@ -129,7 +129,7 @@ class WisieDetailsPage extends React.PureComponent {
         if (!wisieDetails) {
             return null;
         }
-        return <Modal header={this.renderModalHeader()} onExitClick={onExitClick}>
+        return <Modal exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE} header={this.renderModalHeader()} onExitClick={onExitClick}>
             {this.renderWisie(wisieDetails)}
         </Modal>;
     }
