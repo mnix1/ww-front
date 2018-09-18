@@ -1,6 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
+import {INTRO_STEP_WISIE_DETAILS, STEP_INDEX_TO_STEP_ID} from "../introHelper";
 
 class IntroChangeStepIndexFetch extends React.PureComponent {
 
@@ -22,7 +23,10 @@ class IntroChangeStepIndexFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {stepIndex, profile, dispatchIntroChangeStepIndexPost} = this.props;
-        if (prevProps.stepIndex !== stepIndex && profile.introductionStepIndex !== stepIndex) {
+        if (prevProps.stepIndex !== stepIndex
+            && profile.introductionStepIndex !== stepIndex
+            && STEP_INDEX_TO_STEP_ID[stepIndex] !== INTRO_STEP_WISIE_DETAILS
+        ) {
             dispatchIntroChangeStepIndexPost(stepIndex);
         }
     }

@@ -12,21 +12,23 @@ export default class Modal extends React.PureComponent {
         header: PropTypes.node,
         onExitClick: PropTypes.func,
         renderExit: PropTypes.bool,
+        className: PropTypes.string,
     };
 
     static defaultProps = {
         shouldRender: true,
         renderExit: true,
+        className: '',
     };
 
     render() {
-        const {shouldRender, content, children, onExitClick, header, renderExit} = this.props;
+        const {shouldRender, content, children, onExitClick, header, renderExit, className} = this.props;
         if (!shouldRender) {
             return null;
         }
         return <div className='modalContainer'>
             <div onClick={onExitClick} className='modalBackground'/>
-            <div className='modal'>
+            <div className={`modal ${className}`}>
                 {header}
                 {renderExit &&
                 <div className='right pointer'><FaTimesCircle onClick={onExitClick} size={30}/></div>}

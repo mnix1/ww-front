@@ -8,6 +8,7 @@ import Elixir from "../../component/resource/Elixir";
 import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {maybeDisabledClassName} from "../../util/style/constant";
 import {experimentChanged} from "../../redux/reducer/wisie";
+import {INTRO_STEP_EXPERIMENT} from "../intro/introHelper";
 
 class WisieExperimentPage extends React.PureComponent {
 
@@ -15,7 +16,7 @@ class WisieExperimentPage extends React.PureComponent {
         const {profile, onExperimentClick} = this.props;
         const cost = 100;
         const isEnoughResource = profile.crystal >= cost && profile.wisdom >= cost && profile.elixir >= cost;
-        return <div className='inlineBlock'>
+        return <div className={`inlineBlock ${INTRO_STEP_EXPERIMENT}`}>
             <div onClick={isEnoughResource ? onExperimentClick : null}
                  className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!isEnoughResource)}`}>
                 <div className='justifyCenter paddingRem'>{getText(TEXT_EXPERIMENT)}</div>

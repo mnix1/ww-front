@@ -2,6 +2,7 @@ import React from 'react';
 import _ from 'lodash';
 import Tour from "../../component/tour/Tour";
 import {connect} from "react-redux";
+import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
 import {remToPixels} from "../../util/fontHelper";
 import {prepareIntroStepWelcome} from "./steps/welcome/IntroStepWelcome";
 import {prepareIntroStepGoToOptions} from "./steps/options/IntroStepGoToOptions";
@@ -13,7 +14,9 @@ import {prepareIntroStepWisor} from "./steps/options/IntroStepWisor";
 import {push} from "connected-react-router";
 import {prepareIntroStepGoToAppFromOptions} from "./steps/options/IntroStepGoToAppFromOptions";
 import {prepareIntroStepGoToWisies} from "./steps/wisies/IntroStepGoToWisies";
-import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
+import {prepareIntroStepWisies} from "./steps/wisies/IntroStepExperiment";
+import {prepareIntroStepNewWisie} from "./steps/wisies/IntroStepNewWisie";
+import {prepareIntroStepWisieDetails} from "./steps/wisies/IntroStepWisieDetails";
 
 export function prepareIntroSteps(afterReload) {
     return [
@@ -24,6 +27,9 @@ export function prepareIntroSteps(afterReload) {
         prepareIntroStepWisor(afterReload),
         prepareIntroStepGoToAppFromOptions(afterReload),
         prepareIntroStepGoToWisies(afterReload),
+        prepareIntroStepWisies(afterReload),
+        prepareIntroStepNewWisie(false),
+        prepareIntroStepWisieDetails(afterReload),
         prepareIntroStepGoToProfile(afterReload),
     ];
 }
@@ -40,6 +46,8 @@ class Intro extends React.PureComponent {
                 showNavigation={false}
                 showNavigationNumber={false}
                 showNumber={false}
+                disableKeyboardNavigation={true}
+                disableDotsNavigation={true}
                 showButtons={false}
                 showClose={false}
                 rounded={remToPixels(0.5)}
@@ -66,9 +74,6 @@ export default connect(
     }),
     (dispatch) => ({
         onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex)),
-        onRouteChange: (e) => {
-            console.log(e);
-            dispatch(push(e))
-        }
+        onRouteChange: (e) => dispatch(push(e))
     })
 )(Intro);

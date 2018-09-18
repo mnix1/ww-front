@@ -21,10 +21,8 @@ class ProfileFetch extends React.PureComponent {
             }
             dispatch(profileChanged(profileFetch.value));
             if (!profileFetch.value.introductionCompleted) {
-                // setTimeout(() => {
                 dispatch(stepIndexChanged(profileFetch.value.introductionStepIndex));
                 dispatch(enableChanged(true));
-                // }, 300)
             }
         }
     }

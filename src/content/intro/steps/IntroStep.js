@@ -83,7 +83,6 @@ class IntroStep extends React.PureComponent {
                 <div className='justifyStart'>
                     <img alt='' src={this.introWisor} width={wisorWidth} height={wisorHeight}/>
                 </div>
-                {/*<img alt='' src={this.introWisor} height={wisorHeight}/>*/}
                 <div className='paddingLeftRem justifyBetween flexColumn'>
                     {children}
                     {renderContinue && <div>

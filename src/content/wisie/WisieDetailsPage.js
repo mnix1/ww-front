@@ -2,14 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Modal from "../../component/modal/Modal";
 import WisieAttribute from "../../component/wisie/WisieAttribute";
-import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
+import {FaMinusCircle, FaPlusCircle} from "react-icons/fa";
 import {
     COMBINING_FACTS,
     CONCENTRATION,
     CONFIDENCE,
     COUNTING,
     IMAGINATION,
-    INTUITION, LOGIC,
+    INTUITION,
+    LOGIC,
     MEMORY,
     PATTERN_RECOGNITION,
     PERCEPTIVITY,
@@ -17,7 +18,7 @@ import {
     SPEED
 } from "../../util/wisieAttributeHelper";
 import Wisie from "../../component/wisie/Wisie";
-import {wisieDetailsChanged, teamChanged, upgradePropsChanged} from "../../redux/reducer/wisie";
+import {teamChanged, upgradePropsChanged, wisieDetailsChanged} from "../../redux/reducer/wisie";
 import {Button} from "../../component/button/Button";
 import {WISIE_TEAM_COUNT} from "../../util/wisieHelper";
 import {getText, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE} from "../../lang/langText";
@@ -26,6 +27,7 @@ import {GREEN_COLOR} from "../../util/style/constant";
 import Wisdom from "../../component/resource/Wisdom";
 import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {clearWisieUpgradeFetch} from "./fetch/WisieUpgradeFetch";
+import {INTRO_STEP_WISIE_DETAILS} from "../intro/introHelper";
 
 class WisieDetailsPage extends React.PureComponent {
 

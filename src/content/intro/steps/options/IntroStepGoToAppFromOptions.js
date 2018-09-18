@@ -21,9 +21,7 @@ class IntroStepGoToAppFromOptions extends React.PureComponent {
         const {path, stepIndex, onStepIndexChange} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
         if (stepId === INTRO_STEP_GO_TO_APP_FROM_OPTIONS && path === APP_ROUTE && prevProps.path === SETTINGS_ROUTE) {
-            // setTimeout(() => {
-                onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
-            // }, 100)
+            onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
     }
 
@@ -50,7 +48,7 @@ const IntroStepGoToAppFromOptionsRedux = connect(
 )(IntroStepGoToAppFromOptions);
 
 export function prepareIntroStepGoToAppFromOptions(afterReload) {
-    return prepareIntroStep(afterReload,{
+    return prepareIntroStep(afterReload, {
         position: 'center',
         selector: `.${INTRO_STEP_WELCOME}`,
         stepId: INTRO_STEP_GO_TO_APP_FROM_OPTIONS,

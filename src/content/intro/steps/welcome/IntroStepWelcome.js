@@ -4,8 +4,7 @@ import {
     INTRO_STEP_WELCOME_TEXT_0,
     INTRO_STEP_WELCOME_TEXT_1,
     INTRO_STEP_WELCOME_TEXT_2,
-    INTRO_STEP_WELCOME_TEXT_3,
-    INTRO_STEP_WELCOME_TEXT_4
+    INTRO_STEP_WELCOME_TEXT_3
 } from "../../introHelper";
 import {getIntroText} from "../../../../lang/langIntro";
 import IntroStep, {prepareIntroStep} from "../IntroStep";

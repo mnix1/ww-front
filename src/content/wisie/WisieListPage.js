@@ -11,6 +11,8 @@ import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
 import {Button} from "../../component/button/Button";
 import {MdDescription} from 'react-icons/md';
 import {repFulfilled} from "../../util/repositoryHelper";
+import cn from 'classnames';
+import {INTRO_STEP_NEW_WISIE, STEP_INDEX_TO_STEP_ID} from "../intro/introHelper";
 
 class WisieListPage extends React.PureComponent {
 
@@ -67,16 +69,20 @@ class WisieListPage extends React.PureComponent {
     }
 
     renderWisie(wisie) {
-        const {onWisieDetailsClick, screen, edit} = this.props;
+        const {onWisieDetailsClick, screen, edit, enable, stepIndex} = this.props;
         if (edit) {
             return this.renderWisieEdit(wisie);
         }
+        const className = cn({
+            pointer: wisie.isOwned,
+            [INTRO_STEP_NEW_WISIE]: wisie.isOwned && enable && STEP_INDEX_TO_STEP_ID[stepIndex] === INTRO_STEP_NEW_WISIE
+        });
         return <Wisie
             blackBackground={true}
             imgHeight={screen.wisieImgHeight + 20}
             key={wisie.type}
             style={{width: this.wisieWidth}} {...wisie}
-            className={wisie.isOwned ? 'pointer ' : ''}
+            className={className}
             onClick={wisie.isOwned ? () => onWisieDetailsClick(wisie) : _.noop}
         />;
     }
@@ -119,6 +125,8 @@ export default connect(
     (state) => ({
         screen: state.screen,
         team: state.wisie.team,
+        enable: state.intro.enable,
+        stepIndex: state.intro.stepIndex,
         showNotOwned: state.wisie.showNotOwned,
         path: state.router.location.pathname,
         wisieListRep: state.repository.wisieList,

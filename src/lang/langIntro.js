@@ -1,6 +1,9 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
 import {
+    INTRO_STEP_EXPERIMENT_TEXT_0,
+    INTRO_STEP_EXPERIMENT_TEXT_1,
+    INTRO_STEP_EXPERIMENT_TEXT_2,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_0,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_1,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_2,
@@ -13,6 +16,9 @@ import {
     INTRO_STEP_GO_TO_WISIES_TEXT_3,
     INTRO_STEP_GO_TO_WISOR_TEXT_0,
     INTRO_STEP_GO_TO_WISOR_TEXT_1,
+    INTRO_STEP_NEW_WISIE_TEXT_0,
+    INTRO_STEP_NEW_WISIE_TEXT_1,
+    INTRO_STEP_NEW_WISIE_TEXT_2, INTRO_STEP_NEW_WISIE_TEXT_3,
     INTRO_STEP_OPTIONS_TEXT_0,
     INTRO_STEP_OPTIONS_TEXT_1,
     INTRO_STEP_OPTIONS_TEXT_2,
@@ -53,6 +59,15 @@ const INTRO_TEXT = {
         [INTRO_STEP_GO_TO_WISIES_TEXT_1]: 'Dziękuję, za Twoje zaufanie :)',
         [INTRO_STEP_GO_TO_WISIES_TEXT_2]: 'Może teraz dowiemy się czegoś o wiedzakach?',
         [INTRO_STEP_GO_TO_WISIES_TEXT_3]: 'Proszę kliknij tutaj, kiedy będziesz gotów.',
+
+        [INTRO_STEP_EXPERIMENT_TEXT_0]: 'Wiedzaki to Twoi uczniowie, których możesz rozwijać i uczyć nowych rzeczy.',
+        [INTRO_STEP_EXPERIMENT_TEXT_1]: 'Zdobywa się je przeprowadzając eksperymenty naukowe.',
+        [INTRO_STEP_EXPERIMENT_TEXT_2]: 'Wykonaj teraz jeden z nich.',
+
+        [INTRO_STEP_NEW_WISIE_TEXT_0]: 'Gratulacje! Oto Twój nowy wiedzak ;)',
+        [INTRO_STEP_NEW_WISIE_TEXT_1]: 'Proszę kliknij na niego żeby zobaczyć szczegóły.',
+        [INTRO_STEP_NEW_WISIE_TEXT_2]: 'Kiedy to zrobisz, ulepsz dowolną jego statystykę klikając znak',
+        [INTRO_STEP_NEW_WISIE_TEXT_3]: 'Następnie zamknij okno szczegółów kiedy będziesz gotów.',
 
         [INTRO_STEP_GO_TO_PROFILE_TEXT_0]: 'Proszę kliknij tutaj, aby przejść do zakładki profilu.',
     },
