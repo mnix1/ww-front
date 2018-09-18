@@ -12,6 +12,7 @@ import {chosenNickAcceptChanged, chosenNickChanged} from "../../redux/reducer/se
 import _ from 'lodash';
 import MeshBackground from "../../component/background/MeshBackground";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
+import {INTRO_STEP_GO_TO_WISOR, INTRO_STEP_OPTIONS, INTRO_STEP_WISOR} from "../intro/introHelper";
 
 export const NAME_MAX_LENGTH = 20;
 
@@ -33,7 +34,7 @@ class SettingsPage extends React.PureComponent {
 
     renderActualWisor() {
         const {profile, screen, onRouteChange} = this.props;
-        return <div className='right marginRem pointer boxShadow paddingRem'
+        return <div className={`right marginRem pointer boxShadow paddingRem ${INTRO_STEP_GO_TO_WISOR}`}
                     onClick={() => onRouteChange(SETTINGS_CHOOSE_WISOR_ROUTE)}>
             <div>{getText(TEXT_CHANGE_WISOR)}</div>
             <div className='justifyCenter'>
@@ -44,7 +45,7 @@ class SettingsPage extends React.PureComponent {
 
     renderActualNick() {
         const {profile, chosenNick, onChoose, onChooseAccept} = this.props;
-        return <div className='left marginRem boxShadow paddingRem'>
+        return <div className={`left marginRem boxShadow paddingRem ${INTRO_STEP_OPTIONS}`}>
             <div>{getText(TEXT_CHANGE_NICK)}</div>
             <div className='justifyCenter'>
                 <input maxLength={NAME_MAX_LENGTH} minLength={2} value={_.defaultTo(chosenNick, profile.name)}
@@ -61,7 +62,7 @@ class SettingsPage extends React.PureComponent {
         const {screen} = this.props;
         return <div className='page settingsPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
             <MeshBackground/>
-            <div className='pageContent overflowAuto'>
+            <div className={`pageContent overflowAuto ${INTRO_STEP_WISOR}`}>
                 <Switch>
                     <Route exact path={SETTINGS_CHOOSE_WISOR_ROUTE} render={() => <ChooseWisorPage/>}/>
                     <Route exact path={SETTINGS_ROUTE} render={() => this.renderContent()}/>

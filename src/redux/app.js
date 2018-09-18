@@ -13,8 +13,10 @@ import option from "./reducer/option";
 import campaign from "./reducer/campaign";
 import settings from "./reducer/settings";
 import language from "./reducer/language";
+import intro from "./reducer/intro";
 
 const app = combineReducers({
+    intro,
     language,
     profile,
     rival,

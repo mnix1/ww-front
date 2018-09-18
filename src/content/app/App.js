@@ -92,8 +92,7 @@ import {getText, TEXT_RECONNECT} from "../../lang/langText";
 import {Loading} from "../../component/loading/Loading";
 import ClassificationPage from "../rival/classification/ClassificationPage";
 import Intro from "../intro/Intro";
-import Bot from "../../bot/Bot";
-import {BOTS} from "../../bot/botHelper";
+import {INTRO_STEP_GO_TO_OPTIONS, INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../intro/introHelper";
 
 class App extends React.PureComponent {
 
@@ -140,10 +139,11 @@ class App extends React.PureComponent {
         this.rivalCommunication.dispose();
     }
 
-    renderMenuItem(route, imgSrc) {
+    renderMenuItem(route, imgSrc, className) {
         const {screen, lang, onRouteChange} = this.props;
         const iconHeight = screen.wisieImgHeight + 10;
-        return <MenuItem onClick={onRouteChange} lang={lang} imgSrc={imgSrc} iconHeight={iconHeight} route={route}/>
+        return <MenuItem className={className} onClick={onRouteChange} lang={lang} imgSrc={imgSrc}
+                         iconHeight={iconHeight} route={route}/>
     }
 
     renderMenu() {
@@ -152,12 +152,12 @@ class App extends React.PureComponent {
                 <div className='menuItems'>
                     {this.renderMenuItem(PLAY_ROUTE, play)}
                     {this.renderMenuItem(FRIEND_ROUTE, friend)}
-                    {this.renderMenuItem(PROFILE_ROUTE, wisie)}
+                    {this.renderMenuItem(PROFILE_ROUTE, wisie, INTRO_STEP_GO_TO_PROFILE)}
                 </div>
             </Menu>
             <Menu className='menuRight'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(WISIES_ROUTE, owl)}
+                    {this.renderMenuItem(WISIES_ROUTE, owl, INTRO_STEP_GO_TO_WISIES)}
                     {this.renderMenuItem(SHOP_ROUTE, shop)}
                 </div>
             </Menu>
@@ -242,7 +242,7 @@ class App extends React.PureComponent {
         }
         const imgHeight = screen.isSmallHeight ? 30 : 40;
         const isInRival = !_.isNil(getSurrenderMsg(path));
-        return <div className='showOption'>
+        return <div className={`showOption ${INTRO_STEP_GO_TO_OPTIONS}`}>
             <FaCogs size={imgHeight} onClick={isInRival ? onOptionShowChange : () => onRouteChange(SETTINGS_ROUTE)}/>
         </div>;
     }
@@ -274,7 +274,7 @@ class App extends React.PureComponent {
 
     renderLogged() {
         return <div>
-            {/*<Intro/>*/}
+            <Intro/>
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
@@ -292,7 +292,7 @@ class App extends React.PureComponent {
             <div style={{height, width: contentWidth}} className='content'>
                 <TopBar/>
                 {profile && !socketOpen && this.renderConnectionProblem()}
-                {this.renderContent()}
+                {socketOpen && this.renderContent()}
             </div>
             <ProfileFetch path={path}/>
             <WakeLock/>

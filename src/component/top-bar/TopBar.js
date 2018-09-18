@@ -2,9 +2,9 @@ import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
 import {getText, TEXT_APP_NAME} from "../../lang/langText";
-import {Anime} from "../../component/anime/Anime";
 import {push} from "connected-react-router";
 import {APP_ROUTE} from "../../content/routes";
+import {INTRO_STEP_WELCOME} from "../../content/intro/introHelper";
 
 class TopBar extends React.PureComponent {
 
@@ -12,12 +12,11 @@ class TopBar extends React.PureComponent {
         const {screen, onAppNameClick} = this.props;
         const {contentWidth, height} = screen;
         const fontSize = Math.min(contentWidth / 14, height / 14);
-        return <div className='topBarContent'>
-            <Anime from={{opacity: 0, fontSize: 0}}
-                   to={{opacity: 1, fontSize}}
-                   config={{duration: 200}}>
-                <span onClick={onAppNameClick} className='topBarContentValue'>{getText(TEXT_APP_NAME)}</span>
-            </Anime>
+        return <div className='justifyCenter'>
+            <span style={{fontSize}} onClick={onAppNameClick}
+                  className={`topBarContentValue ${INTRO_STEP_WELCOME}`}>
+                {getText(TEXT_APP_NAME)}
+                </span>
         </div>
     }
 

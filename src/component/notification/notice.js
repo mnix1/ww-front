@@ -5,7 +5,7 @@ import {FaTimesCircle} from "react-icons/fa";
 
 let notification = null;
 Notification.newInstance({
-    style: {right: 0, top: '1rem'},
+    style: {right: 0, bottom: '1rem'},
     closeIcon: <FaTimesCircle/>,
     maxCount: 4,
 }, n => notification = n);

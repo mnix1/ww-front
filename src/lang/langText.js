@@ -260,7 +260,6 @@ const TEXTS = {
         [TEXT_OPPONENT_WRONG_ANSWER]: 'Przeciwnik zaznaczył złą odpowiedź',
         [TEXT_BATTLE_OVER]: 'Koniec bitwy!',
         [TEXT_THE_WINNER_IS]: 'Zwycięża',
-        [TEXT_NEXT]: 'Następne',
         [TEXT_YOU]: 'Ty',
         [TEXT_NO_ANSWER]: 'Nie udzielono odpowiedzi',
         [TEXT_REWARD]: 'Nagroda',

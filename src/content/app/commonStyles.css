@@ -200,6 +200,13 @@
 .notAllowed {
     cursor: not-allowed !important;
 }
+.fontSize12Rem {
+    font-size: 1.2rem;
+}
+
+.fontSize11Rem {
+    font-size: 1.1rem;
+}
 
 .fontSize09Rem {
     font-size: .9rem;

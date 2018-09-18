@@ -1,15 +1,5 @@
-.topBar {
-    padding-top: 4px;
-}
-
-.topBarContent {
-    text-align: center;
-}
-
 .topBarContentValue {
     cursor: pointer;
-    width: 100%;
     text-align: center;
     font-family: 'Black Ops One', cursive;
-    font-size: 40px;
 }
