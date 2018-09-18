@@ -7,9 +7,11 @@ import AvailableResources from "../../component/resource/AvailableResources";
 import {RESOURCE_SMALL} from "../../component/resource/Resource";
 import WisieDetailsPage from "./WisieDetailsPage";
 import WisieTeamPage from "./WisieTeamPage";
-import {WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../routes";
+import {WISIES_PICK_ROUTE, WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../routes";
 import {Route, Switch} from 'react-router'
 import MeshBackground from "../../component/background/MeshBackground";
+import WisiePickPage from "./WisiePickPage";
+import {INTRO_STEP_PICK_WISIES} from "../intro/introHelper";
 
 class WisiePage extends React.PureComponent {
 
@@ -33,6 +35,12 @@ class WisiePage extends React.PureComponent {
         </div>;
     }
 
+    renderContentPick() {
+        return <div className={`pageContent overflowAuto ${INTRO_STEP_PICK_WISIES}`}>
+            <WisiePickPage/>
+        </div>;
+    }
+
     render() {
         const {screen} = this.props;
         return <div className='page wisiePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
@@ -40,6 +48,7 @@ class WisiePage extends React.PureComponent {
             <Switch>
                 <Route exact path={WISIES_ROUTE} render={() => this.renderContentList()}/>
                 <Route path={WISIES_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
+                <Route path={WISIES_PICK_ROUTE} render={() => this.renderContentPick()}/>
             </Switch>
         </div>;
     }

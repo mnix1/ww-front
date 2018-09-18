@@ -3,7 +3,8 @@ import {
     INTRO_STEP_NEW_WISIE,
     INTRO_STEP_NEW_WISIE_TEXT_0,
     INTRO_STEP_NEW_WISIE_TEXT_1,
-    INTRO_STEP_NEW_WISIE_TEXT_2, INTRO_STEP_NEW_WISIE_TEXT_3,
+    INTRO_STEP_NEW_WISIE_TEXT_2,
+    INTRO_STEP_NEW_WISIE_TEXT_3,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
 } from "../../introHelper";
@@ -11,8 +12,6 @@ import {getIntroText} from "../../../../lang/langIntro";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
-import {GREEN_COLOR} from "../../../../util/style/constant";
-import {FaPlusCircle} from "react-icons/fa";
 import _ from 'lodash';
 
 class IntroStepNewWisie extends React.PureComponent {

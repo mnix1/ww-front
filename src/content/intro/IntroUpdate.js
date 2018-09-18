@@ -22,11 +22,11 @@ class IntroUpdate extends React.PureComponent {
         if ((!show && _.head(introPaths) !== path) || !_.includes(introPaths, path)) {
             onRouteChange(_.head(introPaths));
         }
-        if (show) {
+        if (show || this.timeout) {
             return;
         }
         if (afterReload && stepIndex !== 0) {
-            setTimeout(() => {
+            this.timeout = setTimeout(() => {
                 onShowChanged(true);
             }, 1000)
         } else {

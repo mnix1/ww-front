@@ -18,6 +18,8 @@ import {prepareIntroStepWisies} from "./steps/wisies/IntroStepExperiment";
 import {prepareIntroStepNewWisie} from "./steps/wisies/IntroStepNewWisie";
 import {prepareIntroStepWisieDetails} from "./steps/wisies/IntroStepWisieDetails";
 import {prepareIntroStepWisieDetailsClose} from "./steps/wisies/IntroStepWisieDetailsClose";
+import {prepareIntroStepPickWisies} from "./steps/wisies/IntroStepPickWisies";
+import IntroPickWisiesFetch from "./fetch/IntroPickWisiesFetch";
 
 export function prepareIntroSteps(afterReload) {
     return [
@@ -32,6 +34,7 @@ export function prepareIntroSteps(afterReload) {
         prepareIntroStepNewWisie(false),
         prepareIntroStepWisieDetails(afterReload),
         prepareIntroStepWisieDetailsClose(afterReload),
+        prepareIntroStepPickWisies(afterReload),
         prepareIntroStepGoToProfile(afterReload),
     ];
 }
@@ -39,7 +42,7 @@ export function prepareIntroSteps(afterReload) {
 class Intro extends React.PureComponent {
 
     render() {
-        const {stepIndex, profile, show, open, afterReload} = this.props;
+        const {stepIndex, profile, show, open, afterReload, pickWisies} = this.props;
         if (!show) {
             return null;
         }
@@ -60,6 +63,7 @@ class Intro extends React.PureComponent {
                 update={stepIndex + ''}
                 onRequestClose={_.noop}/>
             <IntroChangeStepIndexFetch stepIndex={stepIndex} profile={profile}/>
+            <IntroPickWisiesFetch stepIndex={stepIndex} pickWisies={pickWisies} profile={profile}/>
         </div>
     }
 }
@@ -69,6 +73,7 @@ export default connect(
         afterReload: state.profile.profile.introductionStepIndex === state.intro.stepIndex,
         profile: state.profile.profile,
         stepIndex: state.intro.stepIndex,
+        pickWisies: state.intro.pickWisies,
         enable: state.intro.enable,
         show: state.intro.show,
         open: state.socket.open,

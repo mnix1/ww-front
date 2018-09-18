@@ -6,7 +6,6 @@ export const PLAY_ROUTE = '/play';
 export const TRAINING_ROUTE = '/training';
 export const HISTORY_ROUTE = '/history';
 export const SHOP_ROUTE = '/shop';
-export const WISIES_ROUTE = '/wisies';
 export const FRIEND_ROUTE = '/friend';
 export const PROFILE_ROUTE = '/profile';
 
@@ -36,6 +35,8 @@ export const CAMPAIGN_WAR_ROUTE = '/campaignWar';
 
 export const TRAINING_TASK_ROUTE = TRAINING_ROUTE + '/task';
 
+export const WISIES_ROUTE = '/wisies';
+export const WISIES_PICK_ROUTE = WISIES_ROUTE + '/pick';
 export const WISIES_TEAM_EDIT_ROUTE = WISIES_ROUTE + '/teamEdit';
 
 export const SETTINGS_ROUTE = '/settings';

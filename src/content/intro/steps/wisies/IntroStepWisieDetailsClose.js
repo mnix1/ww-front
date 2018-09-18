@@ -1,7 +1,7 @@
 import React from 'react';
 import {
     INTRO_STEP_WISIE_DETAILS_CLOSE,
-    INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0,
+    INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0, INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1, INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_2,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
 } from "../../introHelper";
@@ -25,6 +25,8 @@ class IntroStepWisieDetailsClose extends React.PureComponent {
         return <IntroStep stepId={INTRO_STEP_WISIE_DETAILS_CLOSE} wisorHeightFactor={2} renderContinue={false}>
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0)}</div>
+                <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1)}</div>
+                <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_2)}</div>
             </div>
         </IntroStep>
     }

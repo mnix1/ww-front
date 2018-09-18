@@ -132,10 +132,12 @@ export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 export const TEXT_LOGIN = 'TEXT_LOGIN';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
+export const TEXT_CHOOSE_WISIES = 'TEXT_CHOOSE_WISIES';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CHOOSE_WISIES]: 'Wybierz wiedzaki',
         [TEXT_LOGOUT]: 'Wyloguj',
         [TEXT_RECONNECT]: 'Połącz ponownie',
         [TEXT_LOGIN]: 'Zaloguj się',
@@ -267,6 +269,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CHOOSE_WISIES]: 'Choose wisies',
         [TEXT_LOGOUT]: 'Sign out',
         [TEXT_RECONNECT]: 'Reconnect',
         [TEXT_LOGIN]: 'Sign in',

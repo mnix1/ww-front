@@ -2,7 +2,12 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import _ from 'lodash';
-import {INTRO_STEP_WISIE_DETAILS, INTRO_STEP_WISIE_DETAILS_CLOSE, STEP_INDEX_TO_STEP_ID} from "../introHelper";
+import {
+    INTRO_STEP_PICK_WISIES,
+    INTRO_STEP_WISIE_DETAILS,
+    INTRO_STEP_WISIE_DETAILS_CLOSE,
+    STEP_INDEX_TO_STEP_ID
+} from "../introHelper";
 
 class IntroChangeStepIndexFetch extends React.PureComponent {
 
@@ -12,10 +17,6 @@ class IntroChangeStepIndexFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        // const {introChangeStepIndexFetch, dispatch} = this.props;
-        // if (!prevProps.introChangeStepIndexFetch.fulfilled && introChangeStepIndexFetch.fulfilled && isRepValueCode1(introChangeStepIndexFetch)) {
-        // dispatch(profileChanged(introChangeStepIndexFetch.value.profile));
-        // }
     }
 
     componentWillUnmount() {

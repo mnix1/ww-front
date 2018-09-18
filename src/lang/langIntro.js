@@ -27,10 +27,14 @@ import {
     INTRO_STEP_WELCOME_TEXT_1,
     INTRO_STEP_WELCOME_TEXT_2,
     INTRO_STEP_WELCOME_TEXT_3,
-    INTRO_STEP_WELCOME_TEXT_4, INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0,
+    INTRO_STEP_WELCOME_TEXT_4,
+    INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0,
+    INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1,
+    INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_2,
     INTRO_STEP_WISIE_DETAILS_TEXT_0,
     INTRO_STEP_WISIE_DETAILS_TEXT_1,
-    INTRO_STEP_WISIE_DETAILS_TEXT_2, INTRO_STEP_WISIE_DETAILS_TEXT_3,
+    INTRO_STEP_WISIE_DETAILS_TEXT_2,
+    INTRO_STEP_WISIE_DETAILS_TEXT_3,
 } from "../content/intro/introHelper";
 
 export function getIntroText(id) {
@@ -72,15 +76,15 @@ const INTRO_TEXT = {
         [INTRO_STEP_NEW_WISIE_TEXT_1]: 'W prawym górnym rogu znajdują się jego zainteresowania.',
         [INTRO_STEP_NEW_WISIE_TEXT_2]: 'Natomiast po lewej stronie średnia wartość jego statystyk.',
         [INTRO_STEP_NEW_WISIE_TEXT_3]: 'Proszę kliknij na niego żeby zobaczyć szczegóły.',
-        // [INTRO_STEP_NEW_WISIE_TEXT_2]: 'Kiedy to zrobisz, ulepsz dowolną jego statystykę klikając znak',
-        // [INTRO_STEP_NEW_WISIE_TEXT_3]: 'Następnie zamknij okno szczegółów kiedy będziesz gotów.',
 
         [INTRO_STEP_WISIE_DETAILS_TEXT_0]: 'Widzimy teraz statystyki Twojego wiedzaka.',
         [INTRO_STEP_WISIE_DETAILS_TEXT_1]: 'W tym miejscu możesz je ulepszać za cenę punktów wiedzy.',
         [INTRO_STEP_WISIE_DETAILS_TEXT_2]: 'Aby to zrobić kliknij proszę na znak',
         [INTRO_STEP_WISIE_DETAILS_TEXT_3]: 'lub jeśli nie chcesz nic ulepszać, kliknij przycisk "Kontynuuj".',
 
-        [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0]: 'Proszę kliknij tutaj w celu zamknięcia okna statystyk.',
+        [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0]: 'Przejdziemy teraz do wyboru reszty wiedzaków do Twojej drużyny.',
+        [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1]: 'Będziesz mógł wybrać 3, która najbardziej Ci się podoba.',
+        [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_2]: 'Proszę kliknij tutaj w celu zamknięcia okna statystyk.',
 
         [INTRO_STEP_GO_TO_PROFILE_TEXT_0]: 'Proszę kliknij tutaj, aby przejść do zakładki profilu.',
     },

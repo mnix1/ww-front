@@ -277,8 +277,8 @@ class App extends React.PureComponent {
         const {enable} = this.props;
         return <div>
             {enable && <div>
-                <IntroUpdate/>
-                <Intro/>
+                {/*<IntroUpdate/>*/}
+                {/*<Intro/>*/}
             </div>}
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>

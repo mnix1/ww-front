@@ -5,16 +5,16 @@ import './styles.css';
 import _ from 'lodash';
 import {calculateWisieWidth, WISIE_TEAM_COUNT} from "../../util/wisieHelper";
 import {Loading} from "../../component/loading/Loading";
-import {wisieDetailsChanged, showNotOwnedChanged, teamChanged} from "../../redux/reducer/wisie";
+import {showNotOwnedChanged, teamChanged, wisieDetailsChanged} from "../../redux/reducer/wisie";
 import Wisie from "../../component/wisie/Wisie";
-import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
+import {FaMinusCircle, FaPlusCircle} from "react-icons/fa";
 import {Button} from "../../component/button/Button";
 import {MdDescription} from 'react-icons/md';
 import {repFulfilled} from "../../util/repositoryHelper";
 import cn from 'classnames';
 import {INTRO_STEP_NEW_WISIE, STEP_INDEX_TO_STEP_ID} from "../intro/introHelper";
 
-class WisieListPage extends React.PureComponent {
+export class WisieListPageComponent extends React.PureComponent {
 
     get wisieWidth() {
         const {screen} = this.props;
@@ -87,35 +87,49 @@ class WisieListPage extends React.PureComponent {
         />;
     }
 
+    renderOwned(wisies, ownedWisiesMap, groupCount) {
+        const ownedWisies = _.chain(wisies.owned).defaultTo([])
+            .sortBy(e => getName(e))
+            .map(e => ({...e, ...ownedWisiesMap[e.type], isOwned: true}))
+            .value();
+        return !_.isEmpty(ownedWisies) && <div className='contentFragment'>
+            <div className='title textAlignCenter'>{getText(TEXT_OWNED_WISIES)}</div>
+            {this.renderWisies(_.chunk(ownedWisies, groupCount))}
+        </div>
+    }
+
+    renderToogleShowNotOwned() {
+        const {showNotOwned, onToggleShowNotOwnedClick} = this.props;
+        return <div className='title justifyCenter'>
+            <div className='pointer'
+                 onClick={() => onToggleShowNotOwnedClick(showNotOwned)}>
+                {`${getText(showNotOwned ? TEXT_HIDE : TEXT_SHOW)} ${getText(TEXT_NOT_OWNED_WISIES).toLowerCase()}`}
+                <span className='paddingLeftRem fontSize08Rem'>{showNotOwned ? <FaMinusCircle/> :
+                    <FaPlusCircle/>}</span>
+            </div>
+        </div>
+    }
+
+    renderNotOwned(notOwnedWisies, groupCount) {
+        const {edit, showNotOwned} = this.props;
+        return !_.isEmpty(notOwnedWisies) && !edit && <div className='contentFragment'>
+            {this.renderToogleShowNotOwned()}
+            {showNotOwned && this.renderWisies(_.chunk(notOwnedWisies, groupCount))}
+        </div>
+    }
+
     render() {
-        const {wisieListRep, edit, profileWisieListRep, profileWisies, showNotOwned, onToggleShowNotOwnedClick, screen} = this.props;
+        const {wisieListRep, profileWisieListRep, profileWisies, screen, className} = this.props;
         if (!repFulfilled(wisieListRep) || !repFulfilled(profileWisieListRep)) {
             return <Loading/>;
         }
         const ownedWisiesMap = _.keyBy(profileWisies, 'type');
         const groupCount = Math.floor(screen.contentWidth / this.wisieWidth);
         const wisies = _.groupBy(wisieListRep.value, e => ownedWisiesMap[e.type] ? 'owned' : 'notOwned');
-        const ownedWisies = _.chain(wisies.owned).defaultTo([])
-            .sortBy(e => getName(e))
-            .map(e => ({...e, ...ownedWisiesMap[e.type], isOwned: true}))
-            .value();
         const notOwnedWisies = _.chain(wisies.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
-        return <div>
-            {!_.isEmpty(ownedWisies) && <div className='contentFragment'>
-                <div className='title textAlignCenter'>{getText(TEXT_OWNED_WISIES)}</div>
-                {this.renderWisies(_.chunk(ownedWisies, groupCount))}
-            </div>}
-            {!_.isEmpty(notOwnedWisies) && !edit && <div className='contentFragment'>
-                <div className='title justifyCenter'>
-                    <div className='pointer'
-                         onClick={() => onToggleShowNotOwnedClick(showNotOwned)}>
-                        {`${getText(showNotOwned ? TEXT_HIDE : TEXT_SHOW)} ${getText(TEXT_NOT_OWNED_WISIES).toLowerCase()}`}
-                        <span className='paddingLeftRem fontSize08Rem'>{showNotOwned ? <FaMinusCircle/> :
-                            <FaPlusCircle/>}</span>
-                    </div>
-                </div>
-                {showNotOwned && this.renderWisies(_.chunk(notOwnedWisies, groupCount))}
-            </div>}
+        return <div className={className}>
+            {this.renderOwned(wisies, ownedWisiesMap, groupCount)}
+            {this.renderNotOwned(notOwnedWisies, groupCount)}
         </div>;
     }
 
@@ -145,4 +159,4 @@ export default connect(
             dispatch(teamChanged(newTeam))
         }
     })
-)(WisieListPage);
+)(WisieListPageComponent);
