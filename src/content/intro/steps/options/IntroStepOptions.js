@@ -6,12 +6,12 @@ import {
     INTRO_STEP_OPTIONS_TEXT_2,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
-} from "../introHelper";
-import {getIntroText} from "../../../lang/langIntro";
-import IntroStep, {prepareIntroStep} from "./IntroStep";
+} from "../../introHelper";
+import {getIntroText} from "../../../../lang/langIntro";
+import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../redux/reducer/intro";
-import {isRepValueCode1} from "../../../util/repositoryHelper";
+import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {isRepValueCode1} from "../../../../util/repositoryHelper";
 
 class IntroStepOptions extends React.PureComponent {
 

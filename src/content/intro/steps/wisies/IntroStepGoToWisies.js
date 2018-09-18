@@ -1,5 +1,5 @@
 import React from 'react';
-import {getIntroText} from "../../../lang/langIntro";
+import {getIntroText} from "../../../../lang/langIntro";
 import {
     INTRO_STEP_GO_TO_WISIES,
     INTRO_STEP_GO_TO_WISIES_TEXT_0,
@@ -8,11 +8,11 @@ import {
     INTRO_STEP_GO_TO_WISIES_TEXT_3,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
-} from "../introHelper";
-import IntroStep, {prepareIntroStep} from "./IntroStep";
-import {APP_ROUTE, WISIES_ROUTE} from "../../routes";
+} from "../../introHelper";
+import IntroStep, {prepareIntroStep} from "../IntroStep";
+import {APP_ROUTE, WISIES_ROUTE} from "../../../routes";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../redux/reducer/intro";
+import {stepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToWisies extends React.PureComponent {
 

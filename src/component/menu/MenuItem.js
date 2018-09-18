@@ -7,7 +7,6 @@ export default class MenuItem extends React.PureComponent {
 
     static propTypes = {
         imgSrc: PropTypes.string,
-        iconWidth: PropTypes.number,
         iconHeight: PropTypes.number,
         onClick: PropTypes.func,
         className: PropTypes.string,
@@ -20,7 +19,8 @@ export default class MenuItem extends React.PureComponent {
     };
 
     render() {
-        const {iconWidth, iconHeight, onClick, imgSrc, route, className} = this.props;
+        const {iconHeight, onClick, imgSrc, route, className} = this.props;
+        const iconWidth = iconHeight * .88;
         return <div key={route} onClick={() => onClick(route)}
                     className={`menuItem flexColumn flex marginRem relative pointer ${className}`}
                     style={{fontSize: '0.9rem'}}>

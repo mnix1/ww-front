@@ -3,11 +3,11 @@ import {
     INTRO_STEP_WISOR,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
-} from "../introHelper";
-import IntroStep, {prepareIntroStep} from "./IntroStep";
+} from "../../introHelper";
+import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../redux/reducer/intro";
-import {isRepValueCode1} from "../../../util/repositoryHelper";
+import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {isRepValueCode1} from "../../../../util/repositoryHelper";
 
 class IntroStepWisor extends React.PureComponent {
 

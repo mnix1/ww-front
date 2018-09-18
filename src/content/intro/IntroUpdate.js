@@ -19,13 +19,13 @@ class IntroUpdate extends React.PureComponent {
         const {stepIndex, path, onRouteChange, show, afterReload, onShowChanged} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
         const introPaths = _.flatten([STEP_ID_TO_ROUTE[stepId]]);
-        if (!_.includes(introPaths, path)) {
+        if ((!show && _.head(introPaths) !== path) || !_.includes(introPaths, path)) {
             onRouteChange(_.head(introPaths));
         }
         if (show) {
             return;
         }
-        if (afterReload) {
+        if (afterReload && stepIndex !== 0) {
             setTimeout(() => {
                 onShowChanged(true);
             }, 1000)
@@ -46,7 +46,7 @@ export default connect(
         stepIndex: state.intro.stepIndex,
         enable: state.intro.enable,
         open: state.socket.open,
-        show: state.socket.show,
+        show: state.intro.show,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({

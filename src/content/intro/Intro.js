@@ -3,16 +3,16 @@ import _ from 'lodash';
 import Tour from "../../component/tour/Tour";
 import {connect} from "react-redux";
 import {remToPixels} from "../../util/fontHelper";
-import {prepareIntroStepWelcome} from "./steps/IntroStepWelcome";
-import {prepareIntroStepGoToOptions} from "./steps/IntroStepGoToOptions";
-import {prepareIntroStepOptions} from "./steps/IntroStepOptions";
-import {prepareIntroStepGoToProfile} from "./steps/IntroStepGoToProfile";
+import {prepareIntroStepWelcome} from "./steps/welcome/IntroStepWelcome";
+import {prepareIntroStepGoToOptions} from "./steps/options/IntroStepGoToOptions";
+import {prepareIntroStepOptions} from "./steps/options/IntroStepOptions";
+import {prepareIntroStepGoToProfile} from "./steps/profile/IntroStepGoToProfile";
 import {stepIndexChanged} from "../../redux/reducer/intro";
-import {prepareIntroStepGoToWisor} from "./steps/IntroStepGoToWisor";
-import {prepareIntroStepWisor} from "./steps/IntroStepWisor";
+import {prepareIntroStepGoToWisor} from "./steps/options/IntroStepGoToWisor";
+import {prepareIntroStepWisor} from "./steps/options/IntroStepWisor";
 import {push} from "connected-react-router";
-import {prepareIntroStepGoToAppFromOptions} from "./steps/IntroStepGoToAppFromOptions";
-import {prepareIntroStepGoToWisies} from "./steps/IntroStepGoToWisies";
+import {prepareIntroStepGoToAppFromOptions} from "./steps/options/IntroStepGoToAppFromOptions";
+import {prepareIntroStepGoToWisies} from "./steps/wisies/IntroStepGoToWisies";
 import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
 
 export function prepareIntroSteps(afterReload) {

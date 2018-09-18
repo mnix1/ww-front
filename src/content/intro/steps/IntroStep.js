@@ -45,6 +45,9 @@ class IntroStep extends React.PureComponent {
         if (!screen.moreHeightThanWidth && screen.isSmallHeight) {
             return 3;
         }
+        if (screen.isSmallHeight) {
+            return 4;
+        }
         return 5;
     }
 
@@ -71,11 +74,16 @@ class IntroStep extends React.PureComponent {
     render() {
         const {screen, stepId, children, onContinueClick, renderContinue, render, width} = this.props;
         const style = {width, maxWidth: this.maxWidth};
+        const wisorHeight = screen.wisieImgHeight * this.wisorHeightFactor;
+        const wisorWidth = wisorHeight * .68;
         return render && <div className='boxShadow relative paddingRem'
                               style={style}>
             <div className='blackBackground absoluteBackgroundMix'/>
             <div className='relative justifyCenter'>
-                <img alt='' src={this.introWisor} height={screen.wisieImgHeight * this.wisorHeightFactor}/>
+                <div className='justifyStart'>
+                    <img alt='' src={this.introWisor} width={wisorWidth} height={wisorHeight}/>
+                </div>
+                {/*<img alt='' src={this.introWisor} height={wisorHeight}/>*/}
                 <div className='paddingLeftRem justifyBetween flexColumn'>
                     {children}
                     {renderContinue && <div>

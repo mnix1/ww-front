@@ -6,9 +6,9 @@ import {
     INTRO_STEP_WELCOME_TEXT_2,
     INTRO_STEP_WELCOME_TEXT_3,
     INTRO_STEP_WELCOME_TEXT_4
-} from "../introHelper";
-import {getIntroText} from "../../../lang/langIntro";
-import IntroStep, {prepareIntroStep} from "./IntroStep";
+} from "../../introHelper";
+import {getIntroText} from "../../../../lang/langIntro";
+import IntroStep, {prepareIntroStep} from "../IntroStep";
 
 class IntroStepWelcome extends React.PureComponent {
 
@@ -19,7 +19,7 @@ class IntroStepWelcome extends React.PureComponent {
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_WELCOME_TEXT_1)}</div>
                 <div className=''>{getIntroText(INTRO_STEP_WELCOME_TEXT_2)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_WELCOME_TEXT_3)}</div>
-                <div className=''>{getIntroText(INTRO_STEP_WELCOME_TEXT_4)}</div>
+                {/*<div className=''>{getIntroText(INTRO_STEP_WELCOME_TEXT_4)}</div>*/}
             </div>
         </IntroStep>
     }

@@ -38,7 +38,9 @@ class SettingsPage extends React.PureComponent {
                     onClick={() => onRouteChange(SETTINGS_CHOOSE_WISOR_ROUTE)}>
             <div>{getText(TEXT_CHANGE_WISOR)}</div>
             <div className='justifyCenter'>
-                <img alt='' src={getWisor(profile.wisorType)} height={screen.wisieImgHeight * 2}/>
+                <img alt='' src={getWisor(profile.wisorType)}
+                     height={screen.wisieImgHeight * 2}
+                     width={screen.wisieImgHeight * 2}/>
             </div>
         </div>
     }
