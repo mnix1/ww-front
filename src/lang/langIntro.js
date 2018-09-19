@@ -1,16 +1,23 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
 import {
-    INTRO_STEP_EDIT_TEAM_TEXT_0, INTRO_STEP_EDIT_TEAM_TEXT_1,
+    INTRO_STEP_EDIT_TEAM_TEXT_0,
+    INTRO_STEP_EDIT_TEAM_TEXT_1,
     INTRO_STEP_EXPERIMENT_TEXT_0,
     INTRO_STEP_EXPERIMENT_TEXT_1,
     INTRO_STEP_EXPERIMENT_TEXT_2,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_0,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_1,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_2,
-    INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_3, INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0, INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1,
+    INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_3,
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_0,
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1,
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_2,
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_3,
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4,
+    INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0,
+    INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1,
     INTRO_STEP_GO_TO_OPTIONS_TEXT_0,
-    INTRO_STEP_GO_TO_PROFILE_TEXT_0,
     INTRO_STEP_GO_TO_WISIES_TEXT_0,
     INTRO_STEP_GO_TO_WISIES_TEXT_1,
     INTRO_STEP_GO_TO_WISIES_TEXT_2,
@@ -58,7 +65,7 @@ const INTRO_TEXT = {
 
         [INTRO_STEP_GO_TO_WISOR_TEXT_0]: 'Proszę kiliknij tutaj, aby przejść do wyboru wiedzora.',
         [INTRO_STEP_GO_TO_WISOR_TEXT_1]: 'Będziesz mógł to zrobić klikając na jego portret.',
-        
+
         [INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_0]: 'Bardzo dobrze ;)',
         [INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_1]: 'Twój nowy wiedzor pokaże Ci resztę.',
         [INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_2]: 'Czeka na Ciebie w menu głównym.',
@@ -87,13 +94,17 @@ const INTRO_TEXT = {
         [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1]: 'Będziesz mógł wybrać 3, która najbardziej Ci się podoba.',
         [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_2]: 'Proszę kliknij tutaj w celu zamknięcia okna statystyk.',
 
-        // [INTRO_STEP_GO_TO_PROFILE_TEXT_0]: 'Proszę kliknij tutaj, aby przejść do zakładki profilu.',
-
         [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0]: 'Gratulacje! Udało Ci się zdobyć wystarczającą ilość wiedzaków do utworzenia drużyny.',
         [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1]: 'Proszę kliknij tutaj, aby przejść do ekranu edycji drużyny.',
 
         [INTRO_STEP_EDIT_TEAM_TEXT_0]: 'Teraz możesz utworzyć swoją drużynę.',
         [INTRO_STEP_EDIT_TEAM_TEXT_1]: 'Proszę wybierz 4 wiedzaki, a następnie kliknij przycisk "Zapisz".',
+
+        [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_0]: 'Twoja drużyna została utworzona i ma się dobrze ;)',
+        [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1]: 'Czeka na Was wiele przygód. Możecie udać się na kampanię lub wojnę, aby konkurować z innymi.',
+        [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_2]: 'Dziękuję Ci za cierpliwość i współpracę :D',
+        [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_3]: 'Póki co to wszystko co mam Ci do pokazania.',
+        [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4]: 'Do zobaczenia wkrótce ;)',
     },
     [ENGLISH]: {
         [INTRO_STEP_WELCOME_TEXT_0]: 'Leaflet',

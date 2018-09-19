@@ -133,10 +133,12 @@ export const TEXT_LOGIN = 'TEXT_LOGIN';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
 export const TEXT_CHOOSE_WISIES = 'TEXT_CHOOSE_WISIES';
+export const TEXT_THIS_WINDOW = 'TEXT_THIS_WINDOW';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_THIS_WINDOW]: 'To okienko',
         [TEXT_CHOOSE_WISIES]: 'Wybierz wiedzaki',
         [TEXT_LOGOUT]: 'Wyloguj',
         [TEXT_RECONNECT]: 'Połącz ponownie',
@@ -269,6 +271,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_THIS_WINDOW]: 'This window',
         [TEXT_CHOOSE_WISIES]: 'Choose wisies',
         [TEXT_LOGOUT]: 'Sign out',
         [TEXT_RECONNECT]: 'Reconnect',

@@ -21,6 +21,7 @@ import {prepareIntroStepPickWisies} from "./steps/wisies/IntroStepPickWisies";
 import {prepareIntroStepGoToEditTeam} from "./steps/wisies/IntroStepGoToEditTeam";
 import {WISIES_ROUTE} from "../routes";
 import {prepareIntroStepEditTeam} from "./steps/wisies/IntroStepEditTeam";
+import {prepareIntroStepGoToAppFromWisie} from "./steps/wisies/IntroStepGoToAppFromWisie";
 
 export function prepareIntroSteps(afterReload) {
     return [
@@ -38,7 +39,8 @@ export function prepareIntroSteps(afterReload) {
         prepareIntroStepPickWisies(afterReload),
         prepareIntroStepGoToEditTeam(false),
         prepareIntroStepEditTeam(afterReload),
-        prepareIntroStepGoToProfile(afterReload),
+        prepareIntroStepGoToAppFromWisie(afterReload),
+        // prepareIntroStepGoToProfile(afterReload),
     ];
 }
 

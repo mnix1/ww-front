@@ -4,8 +4,8 @@ import {connect} from "react-redux";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 import {INTRO_STEP_GO_TO_APP_FROM_OPTIONS, STEP_ID_TO_NEXT_STEP_INDEX} from "../introHelper";
 import {getFullWisor, getIntroWisor} from "../../../util/wisorHelper";
-import {getText, TEXT_CONTINUE} from "../../../lang/langText";
-import {FaArrowRight} from 'react-icons/fa';
+import {getText, TEXT_CONTINUE, TEXT_HIDE, TEXT_THIS_WINDOW} from "../../../lang/langText";
+import {FaArrowRight, FaWindowClose} from 'react-icons/fa';
 import {stepIndexChanged} from "../../../redux/reducer/intro";
 import _ from 'lodash';
 
@@ -21,7 +21,9 @@ class IntroStep extends React.PureComponent {
 
     static propTypes = {
         renderContinue: PropTypes.bool,
+        renderHide: PropTypes.bool,
         render: PropTypes.bool,
+        enableOpacity: PropTypes.bool,
         screen: PropTypes.object,
         stepId: PropTypes.string,
         children: PropTypes.node,
@@ -33,8 +35,14 @@ class IntroStep extends React.PureComponent {
 
     static defaultProps = {
         renderContinue: true,
+        renderHide: false,
+        enableOpacity: false,
         render: true,
         width: 'auto',
+    };
+
+    state = {
+        hidden: false
     };
 
     get wisorHeightFactor() {
@@ -72,13 +80,14 @@ class IntroStep extends React.PureComponent {
     }
 
     render() {
-        const {screen, stepId, children, onContinueClick, renderContinue, render, width} = this.props;
+        const {screen, stepId, children, onContinueClick, renderContinue, renderHide, render, width, enableOpacity} = this.props;
+        const {hidden} = this.state;
         const style = {width, maxWidth: this.maxWidth};
         const wisorHeight = screen.wisieImgHeight * this.wisorHeightFactor;
         const wisorWidth = wisorHeight * .68;
-        return render && <div className='boxShadow relative paddingRem'
-                              style={style}>
-            <div className='blackBackground absoluteBackgroundMix'/>
+        return render && !hidden && <div className='boxShadow relative paddingRem'
+                                         style={style}>
+            <div className={`blackBackground absoluteBackgroundMix ${enableOpacity ? 'opacity1' : ''}`}/>
             <div className='relative justifyCenter'>
                 <div className='justifyStart'>
                     <img alt='' src={this.introWisor} width={wisorWidth} height={wisorHeight}/>
@@ -95,6 +104,14 @@ class IntroStep extends React.PureComponent {
                             {getText(TEXT_CONTINUE)}
                         </Button>
                     </div>}
+                    {renderHide && <div>
+                        <Button
+                            onClick={() => this.setState({hidden: true})}
+                            material={BUTTON_MATERIAL_BOX_SHADOW}
+                            icon={<FaWindowClose/>}>
+                            {`${getText(TEXT_HIDE)} ${getText(TEXT_THIS_WINDOW).toLowerCase()}`}
+                        </Button>
+                    </div>}
                 </div>
             </div>
         </div>;
@@ -109,5 +126,10 @@ export default connect(
     }),
     (dispatch) => ({
         onContinueClick: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+    }),
+    (stateProps, dispatchProps, ownProps) => ({
+        ...stateProps,
+        ...dispatchProps,
+        ...ownProps,
     })
 )(IntroStep);
