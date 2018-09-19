@@ -12,25 +12,27 @@ import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {enoughResources} from "../../../../util/experimentHelper";
 
 class IntroStepExperiment extends React.PureComponent {
 
-    componentDidUpdate(prevProps) {
-        const {wisieExperimentRep, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
-        if (stepId === INTRO_STEP_EXPERIMENT && isRepValueCode1(wisieExperimentRep)) {
-            // setTimeout(() => {
-                onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
-            // }, 1000);
-        }
+    componentDidMount() {
+        this.nextStep();
     }
 
-    // componentWillUnmount(){
-    //     const {stepIndex, onStepIndexChange} = this.props;
-    //     const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
-    //     onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
-    // }
+    componentDidUpdate(prevProps) {
+        this.nextStep();
+    }
 
+    nextStep() {
+        const {wisieExperimentRep, stepIndex, profile, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        if (stepId === INTRO_STEP_EXPERIMENT &&
+            (isRepValueCode1(wisieExperimentRep) || !(enoughResources(profile)))
+        ) {
+            onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
+        }
+    }
 
     render() {
         return <IntroStep stepId={INTRO_STEP_EXPERIMENT} renderContinue={false}>
@@ -46,6 +48,7 @@ class IntroStepExperiment extends React.PureComponent {
 const IntroStepWisiesRedux = connect(
     (state) => ({
         stepIndex: state.intro.stepIndex,
+        profile: state.profile.profile,
         wisieExperimentRep: state.repository.wisieExperiment,
     }),
     (dispatch) => ({

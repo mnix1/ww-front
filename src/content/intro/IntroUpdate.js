@@ -49,7 +49,7 @@ class IntroUpdate extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        afterReload: state.profile.profile.introductionStepIndex === state.intro.stepIndex,
+        afterReload: false,//state.profile.profile.introductionStepIndex === state.intro.stepIndex,
         profile: state.profile.profile,
         stepIndex: state.intro.stepIndex,
         pickWisies: state.intro.pickWisies,

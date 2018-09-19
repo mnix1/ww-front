@@ -16,8 +16,8 @@ class ProfileWisieListFetch extends React.PureComponent {
         const {profileWisieListFetch, dispatch} = this.props;
         if (!repFulfilled(prevProps.profileWisieListFetch) && repFulfilled(profileWisieListFetch)) {
             dispatch(profileWisiesChanged(profileWisieListFetch.value));
-            dispatch(isProfileWisiesActualChanged(true));
             dispatch(teamChanged(profileWisieListFetch.value.filter(e => e.inTeam)));
+            dispatch(isProfileWisiesActualChanged(true));
         }
     }
 

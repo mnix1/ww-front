@@ -9,13 +9,15 @@ import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {maybeDisabledClassName} from "../../util/style/constant";
 import {experimentChanged} from "../../redux/reducer/wisie";
 import {INTRO_STEP_EXPERIMENT} from "../intro/introHelper";
+import {enoughResources, EXPERIMENT_COST} from "../../util/experimentHelper";
+
+
 
 class WisieExperimentPage extends React.PureComponent {
 
     render() {
         const {profile, onExperimentClick} = this.props;
-        const cost = 100;
-        const isEnoughResource = profile.crystal >= cost && profile.wisdom >= cost && profile.elixir >= cost;
+        const isEnoughResource = enoughResources(profile);
         return <div className={`inlineBlock ${INTRO_STEP_EXPERIMENT}`}>
             <div onClick={isEnoughResource ? onExperimentClick : null}
                  className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!isEnoughResource)}`}>
@@ -23,9 +25,9 @@ class WisieExperimentPage extends React.PureComponent {
                 <div className='justifyCenter'><img alt='' src={experiment} height={60}/></div>
                 <div className='justifyCenter paddingRem'>
                     <div className='justifyCenter flexColumn paddingRem'>{getText(TEXT_COST)}:</div>
-                    <Crystal notEnough={profile.crystal < cost} size={RESOURCE_VERY_SMALL}>{cost}</Crystal>
-                    <Wisdom notEnough={profile.wisdom < cost} size={RESOURCE_VERY_SMALL}>{cost}</Wisdom>
-                    <Elixir notEnough={profile.elixir < cost} size={RESOURCE_VERY_SMALL}>{cost}</Elixir>
+                    <Crystal notEnough={profile.crystal < EXPERIMENT_COST} size={RESOURCE_VERY_SMALL}>{EXPERIMENT_COST}</Crystal>
+                    <Wisdom notEnough={profile.wisdom < EXPERIMENT_COST} size={RESOURCE_VERY_SMALL}>{EXPERIMENT_COST}</Wisdom>
+                    <Elixir notEnough={profile.elixir < EXPERIMENT_COST} size={RESOURCE_VERY_SMALL}>{EXPERIMENT_COST}</Elixir>
                 </div>
             </div>
         </div>;

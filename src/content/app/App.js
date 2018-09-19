@@ -274,12 +274,7 @@ class App extends React.PureComponent {
     }
 
     renderLogged() {
-        const {enable} = this.props;
         return <div>
-            {enable && <div>
-                <IntroUpdate/>
-                <Intro/>
-            </div>}
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
@@ -289,7 +284,7 @@ class App extends React.PureComponent {
     }
 
     render() {
-        const {screen, socketOpen, profile, path} = this.props;
+        const {screen, socketOpen, profile, enable, path} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
             {this.renderBackground()}
@@ -301,6 +296,10 @@ class App extends React.PureComponent {
             </div>
             <ProfileFetch path={path}/>
             <WakeLock/>
+            {enable && profile && <div>
+                <IntroUpdate/>
+                <Intro/>
+            </div>}
             {/*<Bot communication={this.rivalCommunication} {...BOTS[window.name]}/>*/}
         </div>;
     }

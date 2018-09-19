@@ -83,7 +83,7 @@ class Intro extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        afterReload: state.profile.profile.introductionStepIndex === state.intro.stepIndex,
+        afterReload: false,
         stepIndex: state.intro.stepIndex,
         isProfileWisiesActual: state.wisie.isProfileWisiesActual,
         enable: state.intro.enable,

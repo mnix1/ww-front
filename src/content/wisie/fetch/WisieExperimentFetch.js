@@ -4,8 +4,8 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {experimentChanged} from "../../../redux/reducer/wisie";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {clearProfileWisieListFetch} from "./ProfileWisieListFetch";
-import {clearProfileFetch} from "../../app/ProfileFetch";
 import {noticeExperiment} from "../../../component/notification/noticeExperiment";
+import {profileChanged} from "../../../redux/reducer/profile";
 
 class WisieExperimentFetch extends React.PureComponent {
 
@@ -20,8 +20,8 @@ class WisieExperimentFetch extends React.PureComponent {
             dispatch(experimentChanged(false));
             if (isRepValueCode1(wisieExperimentFetch)) {
                 noticeExperiment(wisieExperimentFetch.value.wisieType);
+                dispatch(profileChanged(wisieExperimentFetch.value.profile));
                 clearProfileWisieListFetch(dispatch);
-                clearProfileFetch(dispatch);
             }
         }
     }
