@@ -6,7 +6,6 @@ import {remToPixels} from "../../util/fontHelper";
 import {prepareIntroStepWelcome} from "./steps/welcome/IntroStepWelcome";
 import {prepareIntroStepGoToOptions} from "./steps/options/IntroStepGoToOptions";
 import {prepareIntroStepOptions} from "./steps/options/IntroStepOptions";
-import {prepareIntroStepGoToProfile} from "./steps/profile/IntroStepGoToProfile";
 import {stepIndexChanged} from "../../redux/reducer/intro";
 import {prepareIntroStepGoToWisor} from "./steps/options/IntroStepGoToWisor";
 import {prepareIntroStepWisor} from "./steps/options/IntroStepWisor";

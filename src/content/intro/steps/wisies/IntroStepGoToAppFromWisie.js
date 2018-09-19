@@ -9,7 +9,7 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {completeChanged, stepIndexChanged} from "../../../../redux/reducer/intro";
+import {completeChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
 
 class IntroStepGoToAppFromWisie extends React.PureComponent {

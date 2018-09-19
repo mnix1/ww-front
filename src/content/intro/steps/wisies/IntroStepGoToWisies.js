@@ -10,7 +10,6 @@ import {
     STEP_INDEX_TO_STEP_ID
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
-import {APP_ROUTE, WISIES_ROUTE} from "../../../routes";
 import {connect} from "react-redux";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
 

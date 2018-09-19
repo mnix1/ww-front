@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
-import {completeChanged, enableChanged} from "../../../redux/reducer/intro";
+import {enableChanged} from "../../../redux/reducer/intro";
 import {profileChanged} from "../../../redux/reducer/profile";
 
 class IntroCompleteFetch extends React.PureComponent {
