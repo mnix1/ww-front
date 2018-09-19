@@ -1,5 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../index";
+import {getActiveLang} from "../indexApp";
 import {NAME_MAX_LENGTH} from "../content/settings/SettingsPage";
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';

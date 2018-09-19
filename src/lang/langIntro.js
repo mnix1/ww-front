@@ -1,5 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../index";
+import {getActiveLang} from "../indexApp";
 import {
     INTRO_STEP_EDIT_TEAM_TEXT_0,
     INTRO_STEP_EDIT_TEAM_TEXT_1,

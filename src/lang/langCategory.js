@@ -12,7 +12,7 @@ import {
     CATEGORY_TIME,
 } from "../util/categoryHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../index";
+import {getActiveLang} from "../indexApp";
 
 export function getCategoryLabel(id) {
     return CATEGORY_LABELS[getActiveLang()][id];

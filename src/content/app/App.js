@@ -94,8 +94,6 @@ import ClassificationPage from "../rival/classification/ClassificationPage";
 import Intro from "../intro/Intro";
 import {INTRO_STEP_GO_TO_OPTIONS, INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../intro/introHelper";
 import IntroUpdate from "../intro/IntroUpdate";
-// import Auto from "../../auto/Auto";
-// import {AUTO} from "../../auto/autoHelper";
 
 class App extends React.PureComponent {
 
@@ -302,7 +300,7 @@ class App extends React.PureComponent {
                 <IntroUpdate/>
                 <Intro/>
             </div>}
-            {process.env.REACT_APP_AUTO === 'enable' && window.auto && React.createElement(window.auto, {
+            {window.auto && React.createElement(window.auto, {
                 communication: this.rivalCommunication,
                 ...window.AUTO[window.name]
             })}

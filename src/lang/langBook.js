@@ -1,5 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../index";
+import {getActiveLang} from "../indexApp";
 
 const LEAFLET= 'LEAFLET';
 const FAIRY_TALE= 'FAIRY_TALE';
