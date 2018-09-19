@@ -84,7 +84,7 @@ export default connect(
     (dispatch) => ({
         onChoose: (e) => {
             const value = e.target.value;
-            if (value.length === 0 || /^[a-zA-Z0-9 _]+$/.test(value)) {
+            if (value.length === 0 || /^[\w\S _]+$/.test(value)) {
                 dispatch(chosenNickChanged(value));
             }
         },
