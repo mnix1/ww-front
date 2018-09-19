@@ -41,7 +41,7 @@ class IntroUpdate extends React.PureComponent {
         const {stepIndex, complete, profile, pickWisies} = this.props;
         return <div>
             <IntroChangeStepIndexFetch stepIndex={stepIndex} profile={profile}/>
-            <IntroPickWisiesFetch stepIndex={stepIndex} pickWisies={pickWisies} profile={profile}/>
+            <IntroPickWisiesFetch stepIndex={stepIndex} pickWisies={pickWisies}/>
             <IntroCompleteFetch complete={complete}/>
         </div>;
     }
