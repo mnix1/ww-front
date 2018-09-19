@@ -12,7 +12,7 @@ import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
-import {enoughResources} from "../../../../util/experimentHelper";
+import {experimentCost} from "../../../../util/experimentHelper";
 
 class IntroStepExperiment extends React.PureComponent {
 
@@ -25,10 +25,10 @@ class IntroStepExperiment extends React.PureComponent {
     }
 
     nextStep() {
-        const {wisieExperimentRep, stepIndex, profile, onStepIndexChange} = this.props;
+        const {wisieExperimentRep, profileWisieListRep, stepIndex, profile, onStepIndexChange} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
         if (stepId === INTRO_STEP_EXPERIMENT &&
-            (isRepValueCode1(wisieExperimentRep) || !(enoughResources(profile)))
+            (isRepValueCode1(wisieExperimentRep) || !(experimentCost(profile, profileWisieListRep.value.length).isEnoughResource))
         ) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -49,6 +49,7 @@ const IntroStepWisiesRedux = connect(
     (state) => ({
         stepIndex: state.intro.stepIndex,
         profile: state.profile.profile,
+        profileWisieListRep: state.repository.profileWisieList,
         wisieExperimentRep: state.repository.wisieExperiment,
     }),
     (dispatch) => ({

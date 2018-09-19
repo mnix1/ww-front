@@ -9,25 +9,30 @@ import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {maybeDisabledClassName} from "../../util/style/constant";
 import {experimentChanged} from "../../redux/reducer/wisie";
 import {INTRO_STEP_EXPERIMENT} from "../intro/introHelper";
-import {enoughResources, EXPERIMENT_COST} from "../../util/experimentHelper";
-
-
+import {experimentCost} from "../../util/experimentHelper";
+import {repFulfilled} from "../../util/repositoryHelper";
 
 class WisieExperimentPage extends React.PureComponent {
 
     render() {
-        const {profile, onExperimentClick} = this.props;
-        const isEnoughResource = enoughResources(profile);
+        const {profile, onExperimentClick, profileWisieListRep} = this.props;
+        if (!repFulfilled(profileWisieListRep)) {
+            return null;
+        }
+        const cost = experimentCost(profile, profileWisieListRep.value.length);
         return <div className={`inlineBlock ${INTRO_STEP_EXPERIMENT}`}>
-            <div onClick={isEnoughResource ? onExperimentClick : null}
-                 className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!isEnoughResource)}`}>
+            <div onClick={cost.isEnoughResource ? onExperimentClick : null}
+                 className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!cost.isEnoughResource)}`}>
                 <div className='justifyCenter paddingRem'>{getText(TEXT_EXPERIMENT)}</div>
                 <div className='justifyCenter'><img alt='' src={experiment} height={60}/></div>
                 <div className='justifyCenter paddingRem'>
                     <div className='justifyCenter flexColumn paddingRem'>{getText(TEXT_COST)}:</div>
-                    <Crystal notEnough={profile.crystal < EXPERIMENT_COST} size={RESOURCE_VERY_SMALL}>{EXPERIMENT_COST}</Crystal>
-                    <Wisdom notEnough={profile.wisdom < EXPERIMENT_COST} size={RESOURCE_VERY_SMALL}>{EXPERIMENT_COST}</Wisdom>
-                    <Elixir notEnough={profile.elixir < EXPERIMENT_COST} size={RESOURCE_VERY_SMALL}>{EXPERIMENT_COST}</Elixir>
+                    <Crystal notEnough={profile.crystal < cost.crystal}
+                             size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
+                    <Wisdom notEnough={profile.wisdom < cost.wisdom}
+                            size={RESOURCE_VERY_SMALL}>{cost.wisdom}</Wisdom>
+                    <Elixir notEnough={profile.elixir < cost.elixir}
+                            size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                 </div>
             </div>
         </div>;
@@ -39,6 +44,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         profile: state.profile.profile,
+        profileWisieListRep: state.repository.profileWisieList,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
