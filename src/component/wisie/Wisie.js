@@ -76,8 +76,8 @@ export default class Wisie extends React.PureComponent {
     }
 
     renderValue() {
-        const {value, isOwned} = this.props;
-        return isOwned &&
+        const {value} = this.props;
+        return !_.isNil(value) &&
             <div className='justifyStart' style={{fontSize: '0.8em', color: '#999'}}>
                 {value}
             </div>;
