@@ -36,6 +36,8 @@
     "clean": "rm -rf build && mkdir build",
     "start": "node ./scripts/setup && react-scripts start",
     "build": "node ./scripts/setup && react-scripts build",
+    "startAuto": "set REACT_APP_AUTO=enable&& node ./scripts/setup && react-scripts start",
+    "buildAuto": "set REACT_APP_AUTO=enable&& node ./scripts/setup && react-scripts build",
     "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

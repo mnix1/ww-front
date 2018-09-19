@@ -13,12 +13,12 @@ if (!window.name) {
     window.name = 'grzesiu';
 }
 
-export function logBot() {
-    console.log('Bot', ...arguments);
+export function logAuto() {
+    console.log('Auto', ...arguments);
 }
 
 export function blockUntilRepFulfilled(repGetter) {
-    logBot('blockUntilRepFulfilled', 'init', repGetter());
+    logAuto('blockUntilRepFulfilled', 'init', repGetter());
     let time = 0;
     const timeout = 5000;
     const interval = 500;
@@ -26,16 +26,16 @@ export function blockUntilRepFulfilled(repGetter) {
         setTimeout(() => {
             time += interval;
             if (time > timeout) {
-                logBot('blockUntilRepFulfilled', 'reject');
+                logAuto('blockUntilRepFulfilled', 'reject');
                 reject();
                 return;
             }
             if (repFulfilled(repGetter())) {
-                logBot('blockUntilRepFulfilled', 'resolve', repGetter());
+                logAuto('blockUntilRepFulfilled', 'resolve', repGetter());
                 resolve();
             } else {
                 if (time <= interval) {
-                    logBot('blockUntilRepFulfilled', 'wait', repGetter());
+                    logAuto('blockUntilRepFulfilled', 'wait', repGetter());
                 }
                 func(resolve, reject, func);
             }
@@ -46,73 +46,73 @@ export function blockUntilRepFulfilled(repGetter) {
     });
 }
 
-export const BOT_1 = 'grzesiu';
-export const BOT_2 = 'speedy';
-export const BOT_3 = 'Razerox';
-export const BOT_4 = 'W4X';
-export const BOT_5 = 'pierdołła';
-export const BOT_6 = 'Kanar';
-export const BOT_7 = 'Best19';
-export const BOT_8 = 'xxULAxx';
-export const BOT_9 = 'qq5';
-export const BOT_10 = 'radosny1982';
+export const AUTO_1 = 'grzesiu';
+export const AUTO_2 = 'speedy';
+export const AUTO_3 = 'Razerox';
+export const AUTO_4 = 'W4X';
+export const AUTO_5 = 'pierdołła';
+export const AUTO_6 = 'Kanar';
+export const AUTO_7 = 'Best19';
+export const AUTO_8 = 'xxULAxx';
+export const AUTO_9 = 'qq5';
+export const AUTO_10 = 'radosny1982';
 
-export const BOTS = {
-    [BOT_1]: {
+export const AUTO = {
+    [AUTO_1]: {
         user: 'grzesiu',
         hobbies: [CATEGORY_RIDDLE, CATEGORY_TIME],
         baseWisdomSkill: 0.6, baseMentalSkill: 0.4,
         hobbyImpact: 0.1, difficultyImpact: 0.04
     },
-    [BOT_2]: {
+    [AUTO_2]: {
         user: 'speedy',
         hobbies: [CATEGORY_COUNTRY, CATEGORY_ELEMENT, CATEGORY_COLOR],
         baseWisdomSkill: 0.8, baseMentalSkill: 0.8,
         hobbyImpact: 0.15, difficultyImpact: 0.06
     },
-    [BOT_3]: {
+    [AUTO_3]: {
         user: 'Razerox',
         hobbies: [CATEGORY_NUMBER, CATEGORY_EQUATION],
         baseWisdomSkill: 0.4, baseMentalSkill: 0.7,
         hobbyImpact: 0.25, difficultyImpact: 0.03
     },
-    [BOT_4]: {
+    [AUTO_4]: {
         user: 'W4X',
         hobbies: [CATEGORY_MEMORY],
         baseWisdomSkill: 0.7, baseMentalSkill: 0.5,
         hobbyImpact: 0.25, difficultyImpact: 0.04
     },
-    [BOT_5]: {
+    [AUTO_5]: {
         user: 'pierdołła',
         hobbies: [CATEGORY_LYRICS],
         baseWisdomSkill: 0.55, baseMentalSkill: 0.6,
         hobbyImpact: 0.15, difficultyImpact: 0.01
     },
-    [BOT_6]: {
+    [AUTO_6]: {
         user: 'Kanar',
         hobbies: [CATEGORY_ELEMENT, CATEGORY_NUMBER],
         baseWisdomSkill: 0.9, baseMentalSkill: 0.6,
         hobbyImpact: 0.09, difficultyImpact: 0.08
     },
-    [BOT_7]: {
+    [AUTO_7]: {
         user: 'Best19',
         hobbies: [CATEGORY_COUNTRY, CATEGORY_COLOR],
         baseWisdomSkill: 0.5, baseMentalSkill: 0.9,
         hobbyImpact: 0.34, difficultyImpact: 0.01
     },
-    [BOT_8]: {
+    [AUTO_8]: {
         user: 'xxULAxx',
         hobbies: [CATEGORY_RIDDLE, CATEGORY_MEMORY],
         baseWisdomSkill: 0.77, baseMentalSkill: 0.77,
         hobbyImpact: 0.24, difficultyImpact: 0.06
     },
-    [BOT_9]: {
+    [AUTO_9]: {
         user: 'qq5',
         hobbies: [CATEGORY_NUMBER, CATEGORY_LYRICS],
         baseWisdomSkill: 0.62, baseMentalSkill: 0.67,
         hobbyImpact: 0.22, difficultyImpact: 0.02
     },
-    [BOT_10]: {
+    [AUTO_10]: {
         user: 'radosny1982',
         hobbies: [CATEGORY_EQUATION, CATEGORY_TIME],
         baseWisdomSkill: 0.82, baseMentalSkill: 0.77,

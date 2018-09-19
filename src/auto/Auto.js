@@ -1,15 +1,13 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {isCode1} from "../util/repositoryHelper";
 import {APP_ROUTE} from "../content/routes";
 import {push} from 'connected-react-router'
-import _ from 'lodash';
-import {manageBooks} from "./BotBook";
-import {logBot} from "./botHelper";
-import {manageWisies} from "./BotWisie";
-import {manageWar} from "./BotWar";
+import {manageBooks} from "./AutoBook";
+import {logAuto} from "./autoHelper";
+import {manageWisies} from "./AutoWisie";
+import {manageWar} from "./AutoWar";
 
-class Bot extends React.Component {
+class Auto extends React.Component {
     componentDidMount() {
         setTimeout(() => this.start(), 1000);
     }
@@ -35,18 +33,18 @@ class Bot extends React.Component {
     }
 
     async round() {
-        logBot('START ROUND');
+        logAuto('START ROUND');
         await manageWar(this);
         await manageBooks(this);
         await manageWisies(this);
-        logBot('END ROUND');
+        logAuto('END ROUND');
         setTimeout(() => {
             this.round();
         }, Math.random()* 60000);
     }
 
     rootRoute() {
-        logBot('go route /');
+        logAuto('go route /');
         this.dispatch(push(APP_ROUTE));
     }
 
@@ -62,4 +60,4 @@ export default connect(
     (dispatch) => ({
         dispatch,
     })
-)(Bot);
+)(Auto);

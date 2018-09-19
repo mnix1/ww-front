@@ -29,6 +29,18 @@ window.addEventListener('resize', () => {
 export function getActiveLang() {
     return store.getState().language.lang;
 }
+console.log(process.env);
+if (process.env.REACT_APP_AUTO === 'enable') {
+    import("./auto/Auto")
+        .then(auto => {
+            console.log(auto);
+            window.auto = auto.default;
+        });
+    import("./auto/autoHelper")
+        .then(auto => {
+            window.AUTO = auto.AUTO;
+        });
+}
 
 ReactDOM.render(<Provider store={store}>
     <App history={history}/>
