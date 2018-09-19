@@ -297,7 +297,7 @@ class App extends React.PureComponent {
             <div style={{height, width: contentWidth}} className='content'>
                 <TopBar/>
                 {profile && !socketOpen && this.renderConnectionProblem()}
-                {socketOpen && this.renderContent()}
+                {this.renderContent()}
             </div>
             <ProfileFetch path={path}/>
             <WakeLock/>
