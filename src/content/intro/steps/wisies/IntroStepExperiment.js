@@ -19,11 +19,18 @@ class IntroStepExperiment extends React.PureComponent {
         const {wisieExperimentRep, stepIndex, onStepIndexChange} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
         if (stepId === INTRO_STEP_EXPERIMENT && isRepValueCode1(wisieExperimentRep)) {
-            setTimeout(() => {
+            // setTimeout(() => {
                 onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
-            }, 1000);
+            // }, 1000);
         }
     }
+
+    // componentWillUnmount(){
+    //     const {stepIndex, onStepIndexChange} = this.props;
+    //     const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+    //     onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
+    // }
+
 
     render() {
         return <IntroStep stepId={INTRO_STEP_EXPERIMENT} renderContinue={false}>

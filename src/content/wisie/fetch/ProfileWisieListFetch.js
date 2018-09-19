@@ -2,8 +2,8 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CAMPAIGN_TEAM_EDIT_ROUTE, WISIES_PICK_ROUTE, WISIES_ROUTE} from "../../routes";
-import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
-import {profileWisiesChanged, teamChanged} from "../../../redux/reducer/wisie";
+import {fetchOnPathAndIfNotExists, repFulfilled} from "../../../util/repositoryHelper";
+import {isProfileWisiesActualChanged, profileWisiesChanged, teamChanged} from "../../../redux/reducer/wisie";
 
 class ProfileWisieListFetch extends React.PureComponent {
 
@@ -14,8 +14,9 @@ class ProfileWisieListFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {profileWisieListFetch, dispatch} = this.props;
-        if (!prevProps.profileWisieListFetch.fulfilled && profileWisieListFetch.fulfilled) {
+        if (!repFulfilled(prevProps.profileWisieListFetch) && repFulfilled(profileWisieListFetch)) {
             dispatch(profileWisiesChanged(profileWisieListFetch.value));
+            dispatch(isProfileWisiesActualChanged(true));
             dispatch(teamChanged(profileWisieListFetch.value.filter(e => e.inTeam)));
         }
     }
@@ -25,12 +26,13 @@ class ProfileWisieListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, profileWisieListFetch, dispatchProfileWisieListGet} = this.props;
+        const {path, profileWisieListFetch, dispatchProfileWisieListGet, dispatch} = this.props;
         if (fetchOnPathAndIfNotExists(prevProps.path, path, WISIES_ROUTE, prevProps.profileWisieListFetch, profileWisieListFetch)
             || fetchOnPathAndIfNotExists(prevProps.path, path, CAMPAIGN_TEAM_EDIT_ROUTE, prevProps.profileWisieListFetch, profileWisieListFetch)
             || fetchOnPathAndIfNotExists(prevProps.path, path, WISIES_PICK_ROUTE, prevProps.profileWisieListFetch, profileWisieListFetch)
         ) {
             dispatchProfileWisieListGet();
+            dispatch(isProfileWisiesActualChanged(false));
         }
     }
 

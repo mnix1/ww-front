@@ -11,6 +11,7 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button"
 import {goBack, push} from "connected-react-router";
 import {WISIES_TEAM_EDIT_ROUTE} from "../routes";
 import {teamChanged, teamSaveChanged, wisieDetailsChanged} from "../../redux/reducer/wisie";
+import {INTRO_STEP_GO_TO_EDIT_TEAM} from "../intro/introHelper";
 
 class WisieTeamPage extends React.PureComponent {
     renderWisies(wisies) {
@@ -40,7 +41,7 @@ class WisieTeamPage extends React.PureComponent {
     renderTeamActions(inTeamWisies) {
         const {onTeamEditClick, onRouteBack, edit, onEraseTeamClick, onTeamSaveClick} = this.props;
         if (!edit) {
-            return <Button className='marginRem' material={BUTTON_MATERIAL_BOX_SHADOW}
+            return <Button className={`marginRem ${INTRO_STEP_GO_TO_EDIT_TEAM}`} material={BUTTON_MATERIAL_BOX_SHADOW}
                            onClick={onTeamEditClick}
                            icon={<FaEdit size={16}/>}>{getText(TEXT_EDIT)}</Button>;
         }

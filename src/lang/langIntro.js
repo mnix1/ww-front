@@ -7,7 +7,7 @@ import {
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_0,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_1,
     INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_2,
-    INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_3,
+    INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_3, INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0, INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1,
     INTRO_STEP_GO_TO_OPTIONS_TEXT_0,
     INTRO_STEP_GO_TO_PROFILE_TEXT_0,
     INTRO_STEP_GO_TO_WISIES_TEXT_0,
@@ -86,7 +86,10 @@ const INTRO_TEXT = {
         [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1]: 'Będziesz mógł wybrać 3, która najbardziej Ci się podoba.',
         [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_2]: 'Proszę kliknij tutaj w celu zamknięcia okna statystyk.',
 
-        [INTRO_STEP_GO_TO_PROFILE_TEXT_0]: 'Proszę kliknij tutaj, aby przejść do zakładki profilu.',
+        // [INTRO_STEP_GO_TO_PROFILE_TEXT_0]: 'Proszę kliknij tutaj, aby przejść do zakładki profilu.',
+
+        [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0]: 'Gratulacje! Udało Ci się zdobyć wystarczającą ilość wiedzaków do utworzenia drużyny.',
+        [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1]: 'Proszę kliknij tutaj, aby przejść do ekranu edycji drużyny.',
     },
     [ENGLISH]: {
         [INTRO_STEP_WELCOME_TEXT_0]: 'Leaflet',

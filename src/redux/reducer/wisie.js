@@ -7,7 +7,8 @@ export const SHOW_NOT_OWNED_CHANGED = 'wisie/show-not-owned/changed';
 export const TEAM_CHANGED = 'wisie/team/changed';
 export const TEAM_SAVE_CHANGED = 'wisie/team-save/changed';
 export const UPGRADE_PROPS_CHANGED = 'wisie/upgrade-props/changed';
-export const PROFILE_HEROES_CHANGED = 'wisie/profile-wisies/changed';
+export const PROFILE_WISIES_CHANGED = 'wisie/profile-wisies/changed';
+export const IS_PROFILE_WISIES_ACTUAL_CHANGED = 'wisie/is-profile-wisies-actual/changed';
 
 const initialState = {
     experiment: false,
@@ -15,6 +16,7 @@ const initialState = {
     showNotOwned: false,
     team: [],
     profileWisies: [],
+    isProfileWisiesActual: undefined,
     teamSave: false,
     upgradeProps: undefined,
 };
@@ -40,7 +42,9 @@ export default function reducer(state = initialState, action) {
             return {...state, teamSave: action.teamSave};
         case UPGRADE_PROPS_CHANGED:
             return {...state, upgradeProps: action.upgradeProps};
-        case PROFILE_HEROES_CHANGED: {
+        case IS_PROFILE_WISIES_ACTUAL_CHANGED:
+            return {...state, isProfileWisiesActual: action.isProfileWisiesActual};
+        case PROFILE_WISIES_CHANGED: {
             let profileWisies = action.profileWisies;
             if (!_.isArray(profileWisies) && _.isObject(profileWisies)) {
                 profileWisies = _.flatten([state.profileWisies.filter(e => e.id !== action.profileWisies.id), action.profileWisies]);
@@ -78,5 +82,9 @@ export function upgradePropsChanged(upgradeProps) {
 }
 
 export function profileWisiesChanged(profileWisies) {
-    return {type: PROFILE_HEROES_CHANGED, profileWisies};
+    return {type: PROFILE_WISIES_CHANGED, profileWisies};
+}
+
+export function isProfileWisiesActualChanged(isProfileWisiesActual) {
+    return {type: IS_PROFILE_WISIES_ACTUAL_CHANGED, isProfileWisiesActual};
 }

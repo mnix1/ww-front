@@ -4,6 +4,10 @@ import {connect} from "react-redux";
 import {showChanged, stepIndexChanged} from "../../redux/reducer/intro";
 import {STEP_ID_TO_ROUTE, STEP_INDEX_TO_STEP_ID} from "./introHelper";
 import {push} from "connected-react-router";
+import {repPending} from "../../util/repositoryHelper";
+import {WISIES_ROUTE} from "../routes";
+import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
+import IntroPickWisiesFetch from "./fetch/IntroPickWisiesFetch";
 
 class IntroUpdate extends React.PureComponent {
 
@@ -35,7 +39,11 @@ class IntroUpdate extends React.PureComponent {
     }
 
     render() {
-        return null;
+        const {stepIndex, profile, pickWisies} = this.props;
+        return <div>
+            <IntroChangeStepIndexFetch stepIndex={stepIndex} profile={profile}/>
+            <IntroPickWisiesFetch stepIndex={stepIndex} pickWisies={pickWisies} profile={profile}/>
+        </div>;
     }
 }
 
@@ -44,9 +52,10 @@ export default connect(
         afterReload: state.profile.profile.introductionStepIndex === state.intro.stepIndex,
         profile: state.profile.profile,
         stepIndex: state.intro.stepIndex,
+        pickWisies: state.intro.pickWisies,
         enable: state.intro.enable,
-        open: state.socket.open,
         show: state.intro.show,
+        open: state.socket.open,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({

@@ -24,3 +24,6 @@ export function fetchOnPathAndIfNotExists(prevPath, path, targetPath, prevRep, r
 export function repFulfilled(rep) {
     return rep && rep.fulfilled;
 }
+export function repPending(rep) {
+    return rep && rep.pending;
+}

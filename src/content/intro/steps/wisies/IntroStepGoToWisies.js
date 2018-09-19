@@ -16,12 +16,18 @@ import {stepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToWisies extends React.PureComponent {
 
-    componentDidUpdate(prevProps) {
-        const {path, stepIndex, onStepIndexChange} = this.props;
+    // componentDidUpdate(prevProps) {
+    //     const {path, stepIndex, onStepIndexChange} = this.props;
+    //     const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+    //     if (stepId === INTRO_STEP_GO_TO_WISIES && path === WISIES_ROUTE && prevProps.path === APP_ROUTE) {
+    //         onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
+    //     }
+    // }
+
+    componentWillUnmount(){
+        const {stepIndex, onStepIndexChange} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
-        if (stepId === INTRO_STEP_GO_TO_WISIES && path === WISIES_ROUTE && prevProps.path === APP_ROUTE) {
-            onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
-        }
+        onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
     }
 
     render() {
