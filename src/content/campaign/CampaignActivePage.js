@@ -79,17 +79,15 @@ class CampaignActivePage extends React.PureComponent {
     }
 
     renderReward() {
-        const {destination, type, bookGain} = this.props.campaignActiveRep.value;
-        const campaign = this.props.campaignListRep.value.find(e => e.type === type && e.destination === destination);
+        const {bookGain, goldGain, crystalGain, wisdomGain, elixirGain} = this.props.campaignActiveRep.value;
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter'>{getText(TEXT_YOUR_REWARD)}</div>
             <div className='justifyCenter paddingRem boxShadow marginRem'>
-                {campaign.goldGain > 0 && <Gold className='justifyCenter flexColumn'>{campaign.goldGain}</Gold>}
-                {campaign.crystalGain > 0 &&
-                <Crystal className='justifyCenter flexColumn'>{campaign.crystalGain}</Crystal>}
-                {campaign.wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{campaign.wisdomGain}</Wisdom>}
-                {campaign.elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{campaign.elixirGain}</Elixir>}
-                {<div className='justifyCenter flexColumn'><img alt='' src={getBook(bookGain)} height={80}/></div>}
+                {goldGain > 0 && <Gold className='justifyCenter flexColumn'>{goldGain}</Gold>}
+                {crystalGain > 0 && <Crystal className='justifyCenter flexColumn'>{crystalGain}</Crystal>}
+                {wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{wisdomGain}</Wisdom>}
+                {elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{elixirGain}</Elixir>}
+                {bookGain && <div className='justifyCenter flexColumn'><img alt='' src={getBook(bookGain)} height={80}/></div>}
             </div>
         </div>
     }
