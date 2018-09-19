@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CAMPAIGN_ROUTE} from "../../routes";
-import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
+import {fetchOnPathOrIfNotExistsAnymore} from "../../../util/repositoryHelper";
 
 class CampaignActiveFetch extends React.PureComponent {
 
@@ -20,7 +20,7 @@ class CampaignActiveFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {path, dispatchCampaignActiveGet, campaignActiveFetch} = this.props;
-        if (fetchOnPathAndIfNotExists(prevProps.path, path, CAMPAIGN_ROUTE, prevProps.campaignActiveFetch, campaignActiveFetch)){
+        if (fetchOnPathOrIfNotExistsAnymore(prevProps.path, path, CAMPAIGN_ROUTE, prevProps.campaignActiveFetch, campaignActiveFetch)){
             dispatchCampaignActiveGet();
         }
     }

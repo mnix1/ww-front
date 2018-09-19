@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CLASSIFICATION_BATTLE_ROUTE, CLASSIFICATION_WAR_ROUTE} from "../../routes";
-import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
+import {fetchOnPathOrIfNotExistsAnymore} from "../../../util/repositoryHelper";
 import {CLASSIFICATION_ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
 
 class ClassificationListFetch extends React.PureComponent {
@@ -21,8 +21,8 @@ class ClassificationListFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {path, dispatchClassificationListPost, classificationListFetch} = this.props;
-        if (fetchOnPathAndIfNotExists(prevProps.path, path, CLASSIFICATION_WAR_ROUTE, prevProps.classificationListFetch, classificationListFetch)
-            || fetchOnPathAndIfNotExists(prevProps.path, path, CLASSIFICATION_BATTLE_ROUTE, prevProps.classificationListFetch, classificationListFetch)) {
+        if (fetchOnPathOrIfNotExistsAnymore(prevProps.path, path, CLASSIFICATION_WAR_ROUTE, prevProps.classificationListFetch, classificationListFetch)
+            || fetchOnPathOrIfNotExistsAnymore(prevProps.path, path, CLASSIFICATION_BATTLE_ROUTE, prevProps.classificationListFetch, classificationListFetch)) {
             dispatchClassificationListPost(CLASSIFICATION_ROUTE_RIVAL_TYPE[path]);
         }
     }

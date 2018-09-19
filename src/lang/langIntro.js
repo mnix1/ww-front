@@ -1,6 +1,7 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
 import {
+    INTRO_STEP_EDIT_TEAM_TEXT_0, INTRO_STEP_EDIT_TEAM_TEXT_1,
     INTRO_STEP_EXPERIMENT_TEXT_0,
     INTRO_STEP_EXPERIMENT_TEXT_1,
     INTRO_STEP_EXPERIMENT_TEXT_2,
@@ -90,6 +91,9 @@ const INTRO_TEXT = {
 
         [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0]: 'Gratulacje! Udało Ci się zdobyć wystarczającą ilość wiedzaków do utworzenia drużyny.',
         [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1]: 'Proszę kliknij tutaj, aby przejść do ekranu edycji drużyny.',
+
+        [INTRO_STEP_EDIT_TEAM_TEXT_0]: 'Teraz możesz utworzyć swoją drużynę.',
+        [INTRO_STEP_EDIT_TEAM_TEXT_1]: 'Proszę wybierz 4 wiedzaki, a następnie kliknij przycisk "Zapisz".',
     },
     [ENGLISH]: {
         [INTRO_STEP_WELCOME_TEXT_0]: 'Leaflet',

@@ -16,9 +16,13 @@ export function checkCode(e, value) {
     return _.get(e, 'code') === value;
 }
 
-export function fetchOnPathAndIfNotExists(prevPath, path, targetPath, prevRep, rep) {
+export function fetchOnPathOrIfNotExistsAnymore(prevPath, path, targetPath, prevRep, rep) {
     return (path === targetPath && prevPath !== path)
         || (!rep.fulfilled && !rep.pending && prevRep.fulfilled)
+}
+
+export function fetchOnPathAndIfNotExists(prevPath, path, targetPath, prevRep, rep) {
+    return path === targetPath && prevPath !== path && !rep.fulfilled && !rep.pending;
 }
 
 export function repFulfilled(rep) {

@@ -20,7 +20,7 @@ import {prepareIntroStepWisieDetailsClose} from "./steps/wisies/IntroStepWisieDe
 import {prepareIntroStepPickWisies} from "./steps/wisies/IntroStepPickWisies";
 import {prepareIntroStepGoToEditTeam} from "./steps/wisies/IntroStepGoToEditTeam";
 import {WISIES_ROUTE} from "../routes";
-import {repFulfilled} from "../../util/repositoryHelper";
+import {prepareIntroStepEditTeam} from "./steps/wisies/IntroStepEditTeam";
 
 export function prepareIntroSteps(afterReload) {
     return [
@@ -37,6 +37,7 @@ export function prepareIntroSteps(afterReload) {
         prepareIntroStepWisieDetailsClose(afterReload),
         prepareIntroStepPickWisies(afterReload),
         prepareIntroStepGoToEditTeam(false),
+        prepareIntroStepEditTeam(afterReload),
         prepareIntroStepGoToProfile(afterReload),
     ];
 }

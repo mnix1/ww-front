@@ -11,7 +11,7 @@ import {WISIES_PICK_ROUTE, WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../routes
 import {Route, Switch} from 'react-router'
 import MeshBackground from "../../component/background/MeshBackground";
 import WisiePickPage from "./WisiePickPage";
-import {INTRO_STEP_PICK_WISIES} from "../intro/introHelper";
+import {INTRO_STEP_EDIT_TEAM, INTRO_STEP_PICK_WISIES} from "../intro/introHelper";
 
 class WisiePage extends React.PureComponent {
 
@@ -28,7 +28,7 @@ class WisiePage extends React.PureComponent {
     }
 
     renderContentTeamEdit() {
-        return <div className='pageContent overflowAuto'>
+        return <div className={`pageContent overflowAuto ${INTRO_STEP_EDIT_TEAM}`}>
             <WisieDetailsPage edit={true}/>
             <WisieTeamPage edit={true}/>
             <WisieListPage edit={true}/>

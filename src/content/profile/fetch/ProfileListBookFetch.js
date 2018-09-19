@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
-import {fetchOnPathAndIfNotExists} from "../../../util/repositoryHelper";
+import {fetchOnPathOrIfNotExistsAnymore} from "../../../util/repositoryHelper";
 
 class ProfileListBookFetch extends React.PureComponent {
 
@@ -20,7 +20,7 @@ class ProfileListBookFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {path, profileListBookFetch, dispatchProfileListBookGet} = this.props;
-        if (fetchOnPathAndIfNotExists(prevProps.path, path, PROFILE_ROUTE, prevProps.profileListBookFetch, profileListBookFetch)) {
+        if (fetchOnPathOrIfNotExistsAnymore(prevProps.path, path, PROFILE_ROUTE, prevProps.profileListBookFetch, profileListBookFetch)) {
             dispatchProfileListBookGet();
         }
     }
