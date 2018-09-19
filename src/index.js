@@ -1,1 +1,2 @@
-import './indexAuto';
+import './indexApp';
+// import './indexAuto';

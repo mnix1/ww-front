@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import {getCampaignLabel} from "../../lang/langCampaign";
-import {getText, TEXT_EXIT, TEXT_START, TEXT_YOUR_TEAM} from "../../lang/langText";
+import {getText, TEXT_CLAIM_AND_EXIT, TEXT_START, TEXT_YOUR_REWARD, TEXT_YOUR_TEAM} from "../../lang/langText";
 import _ from 'lodash';
 import cn from 'classnames';
 import check from '../../media/image/icon/check.svg';
@@ -18,12 +18,12 @@ import {
 } from "../../util/rivalHelper";
 import {CAMPAIGN_WAR_ROUTE} from "../routes";
 import {campaignCloseChanged} from "../../redux/reducer/campaign";
-import {IoMdPlay, IoMdExit} from 'react-icons/io';
+import {IoMdExit, IoMdPlay} from 'react-icons/io';
 import Gold from "../../component/resource/Gold";
 import Crystal from "../../component/resource/Crystal";
 import Wisdom from "../../component/resource/Wisdom";
 import Elixir from "../../component/resource/Elixir";
-import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
+import {getBook} from "../../util/bookHelper";
 
 class CampaignActivePage extends React.PureComponent {
 
@@ -65,28 +65,32 @@ class CampaignActivePage extends React.PureComponent {
 
     renderEnd() {
         const {onEndClick} = this.props;
-        const {status, phases, phase} = this.props.campaignActiveRep.value;
+        const {status} = this.props.campaignActiveRep.value;
         if (status !== 'FINISHED') {
             return null;
         }
-        const content = <div className='justifyCenter'>
-            {phase >= phases && <div>
-                {this.renderReward()}
-            </div>}
-            <div className='justifyCenter flexColumn'>{getText(TEXT_EXIT)}</div>
-        </div>;
-        return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEndClick}
-                       icon={<IoMdExit/>}>{content}</Button>
+        return <div className='justifyCenter'>
+            {this.renderReward()}
+            <div className='flexColumn justifyCenter'>
+                <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEndClick}
+                        icon={<IoMdExit/>}>{getText(TEXT_CLAIM_AND_EXIT)}</Button>
+            </div>
+        </div>
     }
 
     renderReward() {
-        const {destination, type} = this.props.campaignActiveRep.value;
+        const {destination, type, bookGain} = this.props.campaignActiveRep.value;
         const campaign = this.props.campaignListRep.value.find(e => e.type === type && e.destination === destination);
-        return <div className='justifyCenter'>
-            {campaign.goldGain > 0 && <Gold size={RESOURCE_VERY_SMALL}>{campaign.goldGain}</Gold>}
-            {campaign.crystalGain > 0 && <Crystal size={RESOURCE_VERY_SMALL}>{campaign.crystalGain}</Crystal>}
-            {campaign.wisdomGain > 0 && <Wisdom size={RESOURCE_VERY_SMALL}>{campaign.wisdomGain}</Wisdom>}
-            {campaign.elixirGain > 0 && <Elixir size={RESOURCE_VERY_SMALL}>{campaign.elixirGain}</Elixir>}
+        return <div className='justifyCenter flexColumn'>
+            <div className='justifyCenter'>{getText(TEXT_YOUR_REWARD)}</div>
+            <div className='justifyCenter paddingRem boxShadow marginRem'>
+                {campaign.goldGain > 0 && <Gold className='justifyCenter flexColumn'>{campaign.goldGain}</Gold>}
+                {campaign.crystalGain > 0 &&
+                <Crystal className='justifyCenter flexColumn'>{campaign.crystalGain}</Crystal>}
+                {campaign.wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{campaign.wisdomGain}</Wisdom>}
+                {campaign.elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{campaign.elixirGain}</Elixir>}
+                {<div className='justifyCenter flexColumn'><img alt='' src={getBook(bookGain)} height={80}/></div>}
+            </div>
         </div>
     }
 

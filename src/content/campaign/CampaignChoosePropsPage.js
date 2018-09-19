@@ -10,7 +10,7 @@ import {
     TEXT_CHOOSE_TEAM,
     TEXT_CHOOSE_TYPE,
     TEXT_COST,
-    TEXT_REWARD
+    TEXT_POSSIBLE_REWARD
 } from "../../lang/langText";
 import Crystal from "../../component/resource/Crystal";
 import Gold from "../../component/resource/Gold";
@@ -23,6 +23,7 @@ import _ from 'lodash';
 import AvailableResources from "../../component/resource/AvailableResources";
 import {CAMPAIGN_TEAM_EDIT_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
+import randomBook from '../../media/image/book/randomBook.svg';
 
 class CampaignChoosePropsPage extends React.PureComponent {
 
@@ -60,9 +61,9 @@ class CampaignChoosePropsPage extends React.PureComponent {
             className={`marginRem paddingRem relative boxShadow justifyCenter pointer flexColumn ${customClassName}`}
             onClick={() => onTypeChanged(campaign.type, campaignDestination)}
         >
-            {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
-                <div className='justifyCenter'><span className='justifyCenter'>{getCampaignLabel(campaign.type, 'label')}</span>
+                <div className='justifyCenter'><span
+                    className='justifyCenter'>{getCampaignLabel(campaign.type, 'label')}</span>
                 </div>
                 <div className='justifyCenter'><img alt='' src={getCampaignImg(campaign.type)} height={this.imgHeight}/>
                 </div>
@@ -93,7 +94,6 @@ class CampaignChoosePropsPage extends React.PureComponent {
             className={`marginRem paddingRem relative boxShadow justifyCenter pointer flexColumn ${customClassName}`}
             onClick={() => onDestinationChanged(campaign.destination)}
         >
-            {/*<div className='blackBackground absoluteBackgroundMix'/>*/}
             <div className='relative justifyCenter flexColumn'>
                 <div className='justifyCenter'>{getCampaignLabel(campaign.type, campaign.destination, 'label')}</div>
                 <div className='justifyCenter'><Rating value={campaign.rating / 2}/></div>
@@ -121,12 +121,13 @@ class CampaignChoosePropsPage extends React.PureComponent {
                     {this.renderResourcesCost(campaign, disabled, RESOURCE_SMALL)}
                 </div>}
                 <div className='justifyCenter flexColumn'>
-                    <div className='justifyCenter'>{getText(TEXT_REWARD)}</div>
+                    <div className='justifyCenter'>{getText(TEXT_POSSIBLE_REWARD)}</div>
                     <div className='justifyCenter paddingRem boxShadow marginRem'>
-                        {campaign.goldGain > 0 && <Gold>{campaign.goldGain}</Gold>}
-                        {campaign.crystalGain > 0 && <Crystal>{campaign.crystalGain}</Crystal>}
-                        {campaign.wisdomGain > 0 && <Wisdom>{campaign.wisdomGain}</Wisdom>}
-                        {campaign.elixirGain > 0 && <Elixir>{campaign.elixirGain}</Elixir>}
+                        {campaign.goldGain > 0 && <Gold className='justifyCenter flexColumn'>{campaign.goldGain}</Gold>}
+                        {campaign.crystalGain > 0 && <Crystal className='justifyCenter flexColumn'>{campaign.crystalGain}</Crystal>}
+                        {campaign.wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{campaign.wisdomGain}</Wisdom>}
+                        {campaign.elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{campaign.elixirGain}</Elixir>}
+                        {<div className='justifyCenter flexColumn'><img alt='' src={randomBook} height={50}/></div>}
                     </div>
                 </div>
             </div>
@@ -178,7 +179,7 @@ export default connect(
     (dispatch) => ({
         onTypeChanged: (type, destination) => {
             dispatch(campaignTypeChanged(type));
-            if(destination){
+            if (destination) {
                 dispatch(campaignDestinationChanged(undefined));
             }
         },

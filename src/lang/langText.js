@@ -98,6 +98,7 @@ export const TEXT_AVAILABLE_RESOURCES = 'TEXT_AVAILABLE_RESOURCES';
 export const TEXT_BOOKSHELF = 'TEXT_BOOKSHELF';
 export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
 export const TEXT_BUY = 'TEXT_BUY';
+export const TEXT_POSSIBLE_REWARD = 'TEXT_POSSIBLE_REWARD';
 export const TEXT_REWARD = 'TEXT_REWARD';
 export const TEXT_BOUGHT = 'TEXT_BOUGHT';
 export const TEXT_TIME_LEFT = 'TEXT_TIME_LEFT';
@@ -126,6 +127,7 @@ export const TEXT_RANKING = 'TEXT_RANKING';
 export const TEXT_READ_NOW = 'TEXT_READ_NOW';
 export const TEXT_START = 'TEXT_START';
 export const TEXT_EXIT = 'TEXT_EXIT';
+export const TEXT_CLAIM_AND_EXIT = 'TEXT_CLAIM_AND_EXIT';
 export const TEXT_CHOOSE_TYPE = 'TEXT_CHOOSE_TYPE';
 export const TEXT_CHOOSE_DESTINATION = 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
@@ -134,10 +136,14 @@ export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
 export const TEXT_CHOOSE_WISIES = 'TEXT_CHOOSE_WISIES';
 export const TEXT_THIS_WINDOW = 'TEXT_THIS_WINDOW';
+export const TEXT_YOUR_REWARD = 'TEXT_YOUR_REWARD';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CLAIM_AND_EXIT]: 'Odbierz i wyjdź',
+        [TEXT_POSSIBLE_REWARD]: 'Możliwa nagroda',
+        [TEXT_YOUR_REWARD]: 'Twoja nagroda',
         [TEXT_THIS_WINDOW]: 'To okienko',
         [TEXT_CHOOSE_WISIES]: 'Wybierz wiedzaki',
         [TEXT_LOGOUT]: 'Wyloguj',
@@ -272,6 +278,9 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CLAIM_AND_EXIT]: 'Claim and exit',
+        [TEXT_YOUR_REWARD]: 'Your reward',
+        [TEXT_POSSIBLE_REWARD]: 'Possible reward',
         [TEXT_THIS_WINDOW]: 'This window',
         [TEXT_CHOOSE_WISIES]: 'Choose wisies',
         [TEXT_LOGOUT]: 'Sign out',

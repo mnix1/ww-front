@@ -2,6 +2,7 @@ import React from 'react';
 import './styles.css';
 import PropTypes from "prop-types";
 import {ORANGE_COLOR} from "../../util/style/constant";
+import cn from 'classnames';
 
 export const RESOURCE_VERY_SMALL = 'resourceVerySmall';
 export const RESOURCE_SMALL = 'resourceSmall';
@@ -22,6 +23,7 @@ export default class Resource extends React.PureComponent {
         notEnough: PropTypes.bool,
         column: PropTypes.bool,
         margin: PropTypes.bool,
+        className: PropTypes.string,
     };
 
     static defaultProps = {
@@ -48,10 +50,14 @@ export default class Resource extends React.PureComponent {
     }
 
     render() {
-        const {notEnough, size, column, margin} = this.props;
-        const className = `resource inlineBlock fontSize08Rem ${margin ? 'marginRem' : ''} relative ${size}`;
+        const {notEnough, size, column, margin, className} = this.props;
+        const customClassName = cn('resource inlineBlock fontSize08Rem relative', {
+            [className]: className,
+            'marginRem': margin,
+            [size]: size
+        });
         const style = notEnough ? {color: ORANGE_COLOR} : undefined;
-        return <div className={className}>
+        return <div className={customClassName}>
             <div className='justifyCenter'>
                 {column ? this.renderColumn(style) : this.renderRow(style)}
             </div>
