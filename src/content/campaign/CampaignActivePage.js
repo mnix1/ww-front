@@ -2,7 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import {getCampaignLabel} from "../../lang/langCampaign";
-import {getText, TEXT_CLAIM_AND_EXIT, TEXT_START, TEXT_YOUR_REWARD, TEXT_YOUR_TEAM} from "../../lang/langText";
+import {
+    getText,
+    TEXT_CLAIM_AND_EXIT,
+    TEXT_EXIT,
+    TEXT_START,
+    TEXT_YOUR_REWARD,
+    TEXT_YOUR_TEAM
+} from "../../lang/langText";
 import _ from 'lodash';
 import cn from 'classnames';
 import check from '../../media/image/icon/check.svg';
@@ -65,7 +72,7 @@ class CampaignActivePage extends React.PureComponent {
 
     renderEnd() {
         const {onEndClick} = this.props;
-        const {status} = this.props.campaignActiveRep.value;
+        const {status, rewardNotEmpty} = this.props.campaignActiveRep.value;
         if (status !== 'FINISHED') {
             return null;
         }
@@ -73,14 +80,14 @@ class CampaignActivePage extends React.PureComponent {
             {this.renderReward()}
             <div className='flexColumn justifyCenter'>
                 <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEndClick}
-                        icon={<IoMdExit/>}>{getText(TEXT_CLAIM_AND_EXIT)}</Button>
+                        icon={<IoMdExit/>}>{getText(rewardNotEmpty ? TEXT_CLAIM_AND_EXIT : TEXT_EXIT)}</Button>
             </div>
         </div>
     }
 
     renderReward() {
-        const {bookGain, goldGain, crystalGain, wisdomGain, elixirGain} = this.props.campaignActiveRep.value;
-        return <div className='justifyCenter flexColumn'>
+        const {bookGain, goldGain, crystalGain, wisdomGain, elixirGain, rewardNotEmpty} = this.props.campaignActiveRep.value;
+        return rewardNotEmpty && <div className='justifyCenter flexColumn paddingRightRem'>
             <div className='justifyCenter'>{getText(TEXT_YOUR_REWARD)}</div>
             <div className='justifyCenter paddingRem boxShadow marginRem'>
                 {goldGain > 0 && <Gold className='justifyCenter flexColumn'>{goldGain}</Gold>}
