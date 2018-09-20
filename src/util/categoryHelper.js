@@ -8,6 +8,7 @@ import puzzle from '../media/image/category/puzzle.svg';
 import clock from '../media/image/category/clock.png';
 import questionMark from '../media/image/category/questionMark.svg';
 import colors from '../media/image/category/colors.png';
+import olympicGames from '../media/image/category/olympicGames.svg';
 
 export const CATEGORY_EQUATION = 'EQUATION';
 export const CATEGORY_NUMBER = 'NUMBER';
@@ -19,6 +20,7 @@ export const CATEGORY_RIDDLE = 'RIDDLE';
 export const CATEGORY_COLOR = 'COLOR';
 export const CATEGORY_TIME = 'TIME';
 export const CATEGORY_RANDOM = 'RANDOM';
+export const CATEGORY_OLYMPIC_GAMES = 'OLYMPIC_GAMES';
 
 const CATEGORY = {
     [CATEGORY_RANDOM]: questionMark,
@@ -31,6 +33,7 @@ const CATEGORY = {
     [CATEGORY_COLOR]: colors,
     [CATEGORY_TIME]: clock,
     [CATEGORY_NUMBER]: number,
+    [CATEGORY_OLYMPIC_GAMES]: olympicGames,
 };
 
 export function getCategory(category) {

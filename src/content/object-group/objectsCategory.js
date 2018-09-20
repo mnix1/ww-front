@@ -9,6 +9,7 @@ import {
     CATEGORY_RIDDLE,
     CATEGORY_COLOR,
     CATEGORY_TIME,
+    CATEGORY_OLYMPIC_GAMES,
     getCategory
 } from "../../util/categoryHelper";
 
@@ -42,6 +43,9 @@ const categories = [
     },
     {
         id: CATEGORY_TIME,
+    },
+    {
+        id: CATEGORY_OLYMPIC_GAMES,
     },
     {
         id: CATEGORY_MEMORY,

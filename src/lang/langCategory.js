@@ -1,14 +1,14 @@
-import {OBJECT_CHALLENGE_LIST} from "../content/object-group/objectsChallenge";
 import {
+    CATEGORY_COLOR,
     CATEGORY_COUNTRY,
     CATEGORY_ELEMENT,
     CATEGORY_EQUATION,
     CATEGORY_LYRICS,
     CATEGORY_MEMORY,
     CATEGORY_NUMBER,
+    CATEGORY_OLYMPIC_GAMES,
     CATEGORY_RANDOM,
     CATEGORY_RIDDLE,
-    CATEGORY_COLOR,
     CATEGORY_TIME,
 } from "../util/categoryHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
@@ -30,7 +30,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_RIDDLE]: 'Zagadki',
         [CATEGORY_COLOR]: 'Kolory',
         [CATEGORY_TIME]: 'Czas',
-        [OBJECT_CHALLENGE_LIST]: 'Aktywne wyzwania',
+        [CATEGORY_OLYMPIC_GAMES]: 'Olimpiady',
     },
     [ENGLISH]: {
         [CATEGORY_RANDOM]: 'Random',
@@ -43,6 +43,6 @@ const CATEGORY_LABELS = {
         [CATEGORY_RIDDLE]: 'Riddles',
         [CATEGORY_COLOR]: 'Colors',
         [CATEGORY_TIME]: 'Time',
-        [OBJECT_CHALLENGE_LIST]: 'Active challenges',
+        [CATEGORY_OLYMPIC_GAMES]: 'Olympic Games',
     }
 };
