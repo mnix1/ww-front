@@ -234,17 +234,6 @@ class App extends React.PureComponent {
         </div>
     }
 
-    canRenderInvitedToBattle() {
-        const {path} = this.props;
-        return path !== BATTLE_ROUTE
-            && path !== WAR_ROUTE
-            && path !== CAMPAIGN_WAR_ROUTE
-            && path !== TRAINING_TASK_ROUTE
-            && path !== CHALLENGE_ROUTE
-            && path !== CHALLENGE_RESPONSE_ROUTE
-            && path !== CHALLENGE_FRIEND_INIT_ROUTE;
-    }
-
     renderShowOption() {
         const {onOptionShowChange, onRouteChange, screen, path} = this.props;
         if (path === SETTINGS_ROUTE) {
@@ -271,7 +260,7 @@ class App extends React.PureComponent {
         return <div>
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
-            {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
+            <InvitedToBattleBy/>
             <InviteToBattle/>
         </div>;
     }

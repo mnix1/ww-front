@@ -1,13 +1,8 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {
-    RIVAL_STATUS_ERROR_RANDOM_OPPONENT,
-    RIVAL_STATUS_START_RANDOM_OPPONENT,
-    RIVAL_STATUS_WAITING_RANDOM_OPPONENT
-} from "../../../util/rivalHelper";
-import {isRepValueCode1} from "../../../util/repositoryHelper";
-import {statusChanged} from "../../../redux/reducer/rival";
+import {RIVAL_STATUS_START_RANDOM_OPPONENT} from "../../../util/rivalHelper";
+import {repFulfilled} from "../../../util/repositoryHelper";
 
 class RivalStartRandomOpponentFetch extends React.PureComponent {
 
@@ -17,13 +12,8 @@ class RivalStartRandomOpponentFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {rivalStartRandomOpponentFetch, dispatch, status} = this.props;
-        if (!prevProps.rivalStartRandomOpponentFetch.fulfilled && rivalStartRandomOpponentFetch.fulfilled && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
-            if (isRepValueCode1(rivalStartRandomOpponentFetch)) {
-                dispatch(statusChanged(RIVAL_STATUS_WAITING_RANDOM_OPPONENT));
-            } else {
-                dispatch(statusChanged(RIVAL_STATUS_ERROR_RANDOM_OPPONENT));
-            }
+        const {rivalStartRandomOpponentFetch, dispatch} = this.props;
+        if (repFulfilled(rivalStartRandomOpponentFetch)) {
             clearRivalStartRandomOpponentFetch(dispatch);
         }
     }

@@ -2,6 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_CANCELED_FRIEND} from "../../../util/rivalHelper";
+import {repFulfilled} from "../../../util/repositoryHelper";
 
 class RivalCancelFriendFetch extends React.PureComponent {
 
@@ -11,6 +12,10 @@ class RivalCancelFriendFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
+        const {rivalCancelFriendFetch, dispatch} = this.props;
+        if (repFulfilled(rivalCancelFriendFetch)) {
+            clearRivalCancelFriendFetch(dispatch);
+        }
     }
 
     componentWillUnmount() {

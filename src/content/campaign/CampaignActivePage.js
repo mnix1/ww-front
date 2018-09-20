@@ -124,8 +124,8 @@ export default connect(
             dispatch(rivalCleared());
             dispatch(rivalTypeChanged(RIVAL_TYPE_CAMPAIGN_WAR));
             dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
             dispatch(push(CAMPAIGN_WAR_ROUTE));
+            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
         },
         onEndClick: () => {
             dispatch(campaignCloseChanged(true));

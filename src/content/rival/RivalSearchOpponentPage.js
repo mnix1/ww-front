@@ -13,8 +13,7 @@ import {
     renderBattleElo,
     renderWarElo,
     RIVAL_STATUS_CANCELED_RANDOM_OPPONENT,
-    RIVAL_STATUS_CLOSED,
-    RIVAL_STATUS_WAITING_RANDOM_OPPONENT
+    RIVAL_STATUS_CLOSED, RIVAL_STATUS_START_RANDOM_OPPONENT,
 } from "../../util/rivalHelper";
 
 class RivalSearchOpponentPage extends React.PureComponent {
@@ -28,14 +27,14 @@ class RivalSearchOpponentPage extends React.PureComponent {
 
     componentWillUnmount() {
         const {status, onCancel} = this.props;
-        if (status === RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
+        if (status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
             onCancel(false);
         }
     }
 
     renderContent() {
         const {status, onCancel, profile} = this.props;
-        if (status !== RIVAL_STATUS_WAITING_RANDOM_OPPONENT) {
+        if (status !== RIVAL_STATUS_START_RANDOM_OPPONENT) {
             return null;
         }
         const actions = <div className='actions'>

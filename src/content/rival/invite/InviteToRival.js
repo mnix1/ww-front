@@ -9,7 +9,7 @@ import _ from 'lodash';
 import {statusChanged} from "../../../redux/reducer/rival";
 import {
     RIVAL_STATUS_CANCELED_FRIEND,
-    RIVAL_STATUS_WAITING_FRIEND,
+    RIVAL_STATUS_START_FRIEND,
     RIVAL_TYPE_INVITE_TEXT
 } from "../../../util/rivalHelper";
 import {clearRivalStartFriendFetch} from "../fetch/RivalStartFriendFetch";
@@ -19,7 +19,7 @@ class InviteToRival extends React.PureComponent {
 
     render() {
         const {status, tag, rivalType, friends, onCancel} = this.props;
-        if (status !== RIVAL_STATUS_WAITING_FRIEND) {
+        if (status !== RIVAL_STATUS_START_FRIEND) {
             return null;
         }
         const friend = _.find(friends, e => e.tag === tag);

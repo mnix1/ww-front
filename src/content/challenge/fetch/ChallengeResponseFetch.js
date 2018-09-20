@@ -1,9 +1,9 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {RIVAL_STATUS_START_FRIEND, RIVAL_STATUS_WAITING_FRIEND} from "../../../util/rivalHelper";
+import {RIVAL_STATUS_ERROR_FRIEND, RIVAL_STATUS_START_FRIEND} from "../../../util/rivalHelper";
 import {CHALLENGE_ROUTE} from "../../routes";
-import {isRepValueCode1} from "../../../util/repositoryHelper";
+import {isRepValueCode1, repFulfilled} from "../../../util/repositoryHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
 import {responseIdChanged} from "../../../redux/reducer/challenge";
 
@@ -16,11 +16,11 @@ class ChallengeResponseFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {challengeResponseFetch, dispatch, status} = this.props;
-        if (!prevProps.challengeResponseFetch.fulfilled && challengeResponseFetch.fulfilled && status === RIVAL_STATUS_START_FRIEND) {
-            if (isRepValueCode1(challengeResponseFetch)) {
-                dispatch(statusChanged(RIVAL_STATUS_WAITING_FRIEND));
-                dispatch(responseIdChanged(undefined));
+        if (!repFulfilled(prevProps.challengeResponseFetch) && repFulfilled(challengeResponseFetch) && status === RIVAL_STATUS_START_FRIEND) {
+            if (!isRepValueCode1(challengeResponseFetch)) {
+                dispatch(statusChanged(RIVAL_STATUS_ERROR_FRIEND));
             }
+            dispatch(responseIdChanged(undefined));
         }
     }
 

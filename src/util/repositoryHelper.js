@@ -1,4 +1,7 @@
 import _ from 'lodash';
+import {statusChanged} from "../redux/reducer/rival";
+import {RIVAL_STATUS_ERROR_RANDOM_OPPONENT} from "./rivalHelper";
+import {clearRivalStartRandomOpponentFetch} from "../content/rival/fetch/RivalStartRandomOpponentFetch";
 
 export function isRepValueCode1(e) {
     return checkRepValueCode(e, 1);

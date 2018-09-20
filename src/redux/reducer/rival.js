@@ -87,10 +87,6 @@ export function rivalInvited(invitedBy) {
     return {type: RIVAL_INVITED, invitedBy};
 }
 
-export function rivalInviteCancelled() {
-    return {type: RIVAL_CANCELLED};
-}
-
 export function rivalInviteRejected() {
     return {type: RIVAL_REJECTED};
 }

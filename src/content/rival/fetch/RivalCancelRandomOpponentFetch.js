@@ -2,6 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_CANCELED_RANDOM_OPPONENT} from "../../../util/rivalHelper";
+import {repFulfilled} from "../../../util/repositoryHelper";
 
 class RivalCancelRandomOpponentFetch extends React.PureComponent {
 
@@ -11,6 +12,10 @@ class RivalCancelRandomOpponentFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
+        const {rivalCancelRandomOpponentFetch, dispatch} = this.props;
+        if (repFulfilled(rivalCancelRandomOpponentFetch)) {
+            clearRivalCancelRandomOpponentFetch(dispatch);
+        }
     }
 
     componentWillUnmount() {
