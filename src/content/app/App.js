@@ -82,18 +82,17 @@ import RivalSearchOpponentPage from "../rival/RivalSearchOpponentPage";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 import CampaignPage from "../campaign/CampaignPage";
 import _ from 'lodash';
-import Modal from "../../component/modal/Modal";
 import {socketChanged} from "../../redux/reducer/socket";
-import {ERROR_CONNECTION_PROBLEM, getError} from "../../lang/langError";
-import LoginPage from "../../component/auth/LoginPage";
-import {repFulfilled} from "../../util/repositoryHelper";
-import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
-import {getText, TEXT_RECONNECT} from "../../lang/langText";
-import {Loading} from "../../component/loading/Loading";
+import {repFulfilled, repPending, repRejected} from "../../util/repositoryHelper";
 import ClassificationPage from "../rival/classification/ClassificationPage";
 import Intro from "../intro/Intro";
 import {INTRO_STEP_GO_TO_OPTIONS, INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../intro/introHelper";
 import IntroUpdate from "../intro/IntroUpdate";
+import TestSignInFetch from "./TestSignInFetch";
+import {Loading} from "../../component/loading/Loading";
+import LoginPage from "../../component/auth/LoginPage";
+import Connecting from "./connection/Connecting";
+import ConnectionProblem from "./connection/ConnectionProblem";
 
 class App extends React.PureComponent {
 
@@ -104,30 +103,13 @@ class App extends React.PureComponent {
         this.maybeInitSocket();
     }
 
-    maybeInitSocket() {
-        const {onInit, socket, profileRep} = this.props;
-        if (repFulfilled(profileRep) && _.isNil(socket)) {
-            const socket = new CommunicationWebSocket(onInit);
-            this.rivalCommunication = new RivalCommunication(socket, this);
-        }
-    }
-
-    maybeRedirectToLogin() {
-        const {onRouteChange, profileRep, path} = this.props;
-        if (profileRep && profileRep.rejected && !profileRep.pending && path !== LOGIN_ROUTE) {
-            onRouteChange(LOGIN_ROUTE);
-            return true;
-        }
-        return false;
-    }
-
     componentDidUpdate() {
         if (this.maybeRedirectToLogin()) {
             return;
         }
         this.maybeInitSocket();
-        const {path, rivalStatus, rivalType, onRouteChange} = this.props;
-        if (_.isNil(rivalStatus)) {
+        const {path, rivalStatus, rivalType, onRouteChange, signedIn} = this.props;
+        if (_.isNil(rivalStatus) || !signedIn) {
             return;
         }
         const routeFromRivalType = RIVAL_TYPE_ROUTE[rivalType];
@@ -138,6 +120,23 @@ class App extends React.PureComponent {
 
     componentWillUnmount() {
         this.rivalCommunication.dispose();
+    }
+
+    maybeInitSocket() {
+        const {onInit, socket, profileRep} = this.props;
+        if (_.isNil(socket) && repFulfilled(profileRep)) {
+            const socket = new CommunicationWebSocket(onInit);
+            this.rivalCommunication = new RivalCommunication(socket, this);
+        }
+    }
+
+    maybeRedirectToLogin() {
+        const {onRouteChange, path, testSignInRep} = this.props;
+        if (repRejected(testSignInRep) && path !== LOGIN_ROUTE) {
+            onRouteChange(LOGIN_ROUTE);
+            return true;
+        }
+        return false;
     }
 
     renderMenuItem(route, imgSrc, className) {
@@ -166,7 +165,13 @@ class App extends React.PureComponent {
     }
 
     renderContent() {
-        const {history} = this.props;
+        const {history, testSignInRep, socketOpen, socket} = this.props;
+        if (repPending(testSignInRep)) {
+            return <Loading/>;
+        }
+        // if (!socketOpen && socket) {
+        //     return <LoginPage/>;
+        // }
         return <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path={APP_ROUTE} render={() => this.renderMenu()}/>
@@ -212,16 +217,20 @@ class App extends React.PureComponent {
     }
 
     renderFetch() {
-        const {friendListRep, path} = this.props;
+        const {friendListRep, path, signedIn, socket} = this.props;
         return <div>
-            <FriendListFetch path={path} friendListRep={friendListRep}/>
-            <SettingsFetchContainer/>
-            <CampaignFetchContainer/>
-            <RivalFetchContainer/>
-            <ChallengeFetchContainer/>
-            <WisieFetchContainer/>
-            <ShopFetchContainer/>
-            <ProfileFetchContainer/>
+            {signedIn && socket && <div>
+                <FriendListFetch path={path} friendListRep={friendListRep}/>
+                <SettingsFetchContainer/>
+                <CampaignFetchContainer/>
+                <RivalFetchContainer/>
+                <ChallengeFetchContainer/>
+                <WisieFetchContainer/>
+                <ShopFetchContainer/>
+                <ProfileFetchContainer/>
+            </div>}
+            {signedIn && <ProfileFetch path={path}/>}
+            {!signedIn && <TestSignInFetch path={path}/>}
         </div>
     }
 
@@ -254,49 +263,34 @@ class App extends React.PureComponent {
                     className="fixedBackgroundMix"/>;
     }
 
-    renderConnectionProblem() {
-        const {socket} = this.props;
-        return <Modal renderExit={false}>
-            <div>
-                {getError(ERROR_CONNECTION_PROBLEM)}
-            </div>
-            <div className='marginTopRem justifyCenter paddingTopRem'>
-                <div className='justifyCenter flexColumn'>
-                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={() => {
-                        if (!_.isNil(socket)) {
-                            socket.init();
-                        }
-                    }}>{getText(TEXT_RECONNECT)}</Button>
-                </div>
-                <Loading/>
-            </div>
-        </Modal>
-    }
-
-    renderLogged() {
+    renderConnected() {
+        const {signedIn, socketOpen} = this.props;
+        if (!signedIn || !socketOpen) {
+            return null;
+        }
         return <div>
             {this.renderShowOption()}
             <Option communication={this.rivalCommunication}/>
             {this.canRenderInvitedToBattle() && <InvitedToBattleBy/>}
             <InviteToBattle/>
-            {this.renderFetch()}
         </div>;
     }
 
     render() {
-        const {screen, socketOpen, profile, enable, path} = this.props;
+        const {screen, enable, signedIn} = this.props;
         const {height, contentWidth} = screen;
         return <div className='app'>
             {this.renderBackground()}
-            {profile && this.renderLogged()}
+            {this.renderConnected()}
             <div style={{height, width: contentWidth}} className='content'>
                 <TopBar/>
-                {profile && !socketOpen && this.renderConnectionProblem()}
+                <Connecting/>
+                <ConnectionProblem/>
                 {this.renderContent()}
             </div>
-            <ProfileFetch path={path}/>
+            {this.renderFetch()}
             <WakeLock/>
-            {enable && profile && <div>
+            {signedIn && enable && <div>
                 <IntroUpdate/>
                 <Intro/>
             </div>}
@@ -310,17 +304,20 @@ class App extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        path: state.router.location.pathname,
         screen: state.screen,
-        lang: state.language.lang,
+        signedIn: state.profile.signedIn,
+        profile: state.profile.profile,
         socket: state.socket.socket,
-        enable: state.intro.enable,
         socketOpen: state.socket.open,
-        friendListRep: state.repository.friendList,
-        profileRep: state.repository.profile,
+        lang: state.language.lang,
+        enable: state.intro.enable,
         rivalStatus: state.rival.status,
         rivalType: state.rival.rivalType,
-        profile: state.profile.profile,
-        path: state.router.location.pathname,
+
+        friendListRep: state.repository.friendList,
+        testSignInRep: state.repository.testSignIn,
+        profileRep: state.repository.profile,
     }),
     (dispatch) => ({
         onRouteChange: (e) => {

@@ -31,3 +31,6 @@ export function repFulfilled(rep) {
 export function repPending(rep) {
     return rep && rep.pending;
 }
+export function repRejected(rep) {
+    return rep && rep.rejected;
+}

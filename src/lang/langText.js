@@ -134,6 +134,7 @@ export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 export const TEXT_LOGIN = 'TEXT_LOGIN';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
+export const TEXT_CONNECTING = 'TEXT_CONNECTING';
 export const TEXT_CHOOSE_WISIES = 'TEXT_CHOOSE_WISIES';
 export const TEXT_THIS_WINDOW = 'TEXT_THIS_WINDOW';
 export const TEXT_YOUR_REWARD = 'TEXT_YOUR_REWARD';
@@ -141,6 +142,7 @@ export const TEXT_YOUR_REWARD = 'TEXT_YOUR_REWARD';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CONNECTING]: 'Łączenie',
         [TEXT_CLAIM_AND_EXIT]: 'Odbierz i wyjdź',
         [TEXT_POSSIBLE_REWARD]: 'Możliwa nagroda',
         [TEXT_YOUR_REWARD]: 'Twoja nagroda',
@@ -278,6 +280,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CONNECTING]: 'Connecting',
         [TEXT_CLAIM_AND_EXIT]: 'Claim and exit',
         [TEXT_YOUR_REWARD]: 'Your reward',
         [TEXT_POSSIBLE_REWARD]: 'Possible reward',

@@ -8,7 +8,7 @@ import {BATTLE_ROUTE, LOGIN_ROUTE, WAR_ROUTE} from "../routes";
 import {noticeReward} from "../../component/notification/noticeReward";
 import {clearProfileFetch} from "./ProfileFetch";
 import {openChanged} from "../../redux/reducer/socket";
-import {profileChanged} from "../../redux/reducer/profile";
+import {profileChanged, signedInChanged} from "../../redux/reducer/profile";
 
 export default class CommunicationWebSocket {
     constructor(onInit) {
@@ -36,9 +36,10 @@ export default class CommunicationWebSocket {
     onClose = (e) => {
         console.log('onclose', e);
         if (e.code === 1008) {
-            this.dispatch(push(LOGIN_ROUTE));
-            this.dispatch(profileChanged(undefined));
-            clearProfileFetch(this.dispatch);
+            this.dispatch(signedInChanged(false));
+            // this.dispatch(push(LOGIN_ROUTE));
+            // this.dispatch(profileChanged(undefined));
+            // clearProfileFetch(this.dispatch);
         }
         this.dispose();
     };

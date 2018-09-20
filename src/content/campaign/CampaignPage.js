@@ -19,7 +19,7 @@ class CampaignPage extends React.PureComponent {
     renderContent() {
         const {campaignActiveRep, campaignListRep} = this.props;
         if (!repFulfilled(campaignActiveRep) || !repFulfilled(campaignListRep)) {
-            return <Loading/>;
+            return <div className='pageContent overflowAuto'><Loading/></div>;
         }
         if (_.isNil(campaignActiveRep.value)) {
             return this.renderContentChooseProps();

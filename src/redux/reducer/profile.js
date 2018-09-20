@@ -1,4 +1,5 @@
-export const PROFILE_CHANGED = 'profile/changed';
+export const PROFILE_CHANGED = 'profile/profile/changed';
+export const SIGNED_IN_CHANGED = 'profile/signedIn/changed';
 export const PROFILE_PART_CHANGED = 'profile/part/changed';
 export const START_READ_BOOK_ID_CHANGED = 'profile/start-read-book-id/changed';
 export const STOP_READ_BOOK_ID_CHANGED = 'profile/stop-read-book-id/changed';
@@ -8,6 +9,7 @@ export const SPEED_UP_BOOK_ID_CHANGED = 'profile/speed-up-book-id/changed';
 
 const initialState = {
     profile: undefined,
+    signedIn: undefined,
     startReadBookId: undefined,
     stopReadBookId: undefined,
     discardBookId: undefined,
@@ -19,6 +21,8 @@ export default function reducer(state = initialState, action) {
     switch (action.type) {
         case PROFILE_CHANGED:
             return {...state, profile: action.profile};
+        case SIGNED_IN_CHANGED:
+            return {...state, signedIn: action.signedIn};
         case PROFILE_PART_CHANGED:
             return {...state, profile: {...state.profile, ...action.profile}};
         case START_READ_BOOK_ID_CHANGED:
@@ -38,6 +42,10 @@ export default function reducer(state = initialState, action) {
 
 export function profileChanged(profile) {
     return {type: PROFILE_CHANGED, profile};
+}
+
+export function signedInChanged(signedIn) {
+    return {type: SIGNED_IN_CHANGED, signedIn};
 }
 
 export function profilePartChanged(profile) {
