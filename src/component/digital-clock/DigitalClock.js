@@ -12,7 +12,7 @@ export default class DigitalClock extends React.PureComponent {
     };
 
     static defaultProps = {
-        fontSize: '2rem'
+        fontSize: '1.7rem'
     };
 
     convertDateToTime(date) {
