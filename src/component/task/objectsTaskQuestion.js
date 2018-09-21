@@ -5,8 +5,9 @@ import {
     getImageContent,
     IMAGE_PNG_TEXT_IMAGE_PNG,
     TEXT,
+    TEXT_ANALOG_CLOCK,
     TEXT_ANIMATION,
-    TEXT_DATE,
+    TEXT_DIGITAL_CLOCK,
     TEXT_EQUATION,
     TEXT_HTML,
     TEXT_IMAGE_PNG,
@@ -16,170 +17,98 @@ import _ from "lodash";
 import Clock from "react-clock";
 import {Equation} from "react-equation";
 import {getTextContent} from "../../lang/langText";
+import DigitalClock from "../digital-clock/DigitalClock";
 
 export function prepareQuestionTiles(rival) {
-    return _.flatten([
-        prepareQuestionTextTile(rival),
-        prepareQuestionTextHtmlTile(rival),
-        prepareQuestionTextEquationTile(rival),
-        prepareQuestionTextDateTile(rival),
-        prepareQuestionImageTile(rival),
-        prepareQuestionImagesTile(rival)
-    ]).filter(e => !_.isNil(e));
+    const {question, screen} = rival.props;
+    const {questionRenderer} = question;
+    if (questionRenderer === TEXT || questionRenderer === TEXT_ANIMATION) {
+        return [textTile({question})];
+    }
+    if (questionRenderer === TEXT_HTML) {
+        return prepareQuestionTextHtmlTile(question);
+    }
+    if (questionRenderer === TEXT_EQUATION) {
+        return prepareQuestionTextEquationTile(question);
+    }
+    if (questionRenderer === TEXT_ANALOG_CLOCK) {
+        return prepareQuestionTextAnalogClockTile(question, screen);
+    }
+    if (questionRenderer === TEXT_DIGITAL_CLOCK) {
+        return prepareQuestionTextDigitalClockTile(question, screen);
+    }
+    if (questionRenderer === TEXT_IMAGE_SVG || questionRenderer === TEXT_IMAGE_PNG) {
+        return prepareQuestionImageTile(question, questionRenderer);
+    }
+    if (questionRenderer === IMAGE_PNG_TEXT_IMAGE_PNG) {
+        return prepareQuestionImagesTile(question);
+    }
+    throw new Error('Missing questionRenderer')
 }
 
-function prepareQuestionTextTile(rival) {
-    const {question} = rival.props;
-    if (question.questionRenderer !== TEXT && question.questionRenderer !== TEXT_ANIMATION) {
-        return null;
-    }
-    const textContent = getTextContent(question);
+const svgBase64 = 'data:image/svg+xml;base64, ';
+const pngBase64 = 'data:image/png;base64, ';
+
+function textTile({question, xTarget = .5, yTarget = .5, widthFactor = 1}) {
     return {
-        id: 'questionText',
-        onClick: _.noop,
-        content: textContent,
-        yTarget: .5,
-        xTarget: .5
+        id: 'questionText', onClick: _.noop,
+        content: getTextContent(question),
+        yTarget, xTarget, widthFactor
     };
 }
 
-function prepareQuestionTextHtmlTile(rival) {
-    const {question} = rival.props;
-    if (question.questionRenderer !== TEXT_HTML) {
-        return null;
-    }
-    const textContent = getTextContent(question);
-    const htmlContent = getHtmlContent(question);
-    return [{
-        id: 'questionText',
-        onClick: _.noop,
-        content: textContent,
-        yTarget: .5,
-        xTarget: .3,
-        widthFactor: 0.9
-    }, {
-        id: 'questionHtml',
-        onClick: _.noop,
-        contentHtml: htmlContent,
-        yTarget: .5,
-        xTarget: .65,
-        widthFactor: 1.2
+function imageTile({src, yTarget = .5, xTarget = .7, widthFactor = 1.4, id = 'questionImage'}) {
+    return {
+        id, onClick: _.noop,
+        content: <img alt='' src={src} height='100%' width='100%'/>,
+        yTarget, xTarget, widthFactor
+    };
+}
+
+
+function prepareQuestionTextHtmlTile(question) {
+    return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
+        id: 'questionHtml', onClick: _.noop,
+        contentHtml: getHtmlContent(question),
+        yTarget: .5, xTarget: .65, widthFactor: 1.2
     }];
 }
 
-function prepareQuestionTextEquationTile(rival) {
-    const {question} = rival.props;
-    if (question.questionRenderer !== TEXT_EQUATION) {
-        return null;
-    }
-    const textContent = getTextContent(question);
-    const htmlContent = getHtmlContent(question);
-    return [{
-        id: 'questionText',
-        onClick: _.noop,
-        content: textContent,
-        yTarget: .5,
-        xTarget: .3,
-        widthFactor: 0.9
-    }, {
-        id: 'questionEquation',
-        onClick: _.noop,
-        content: <Equation className='equation'>{htmlContent}</Equation>,
-        yTarget: .5,
-        xTarget: .65,
-        widthFactor: 1.2
+function prepareQuestionTextEquationTile(question) {
+    return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
+        id: 'questionEquation', onClick: _.noop,
+        content: <Equation className='equation'>{getHtmlContent(question)}</Equation>,
+        yTarget: .5, xTarget: .65, widthFactor: 1.2
     }];
 }
 
-function prepareQuestionTextDateTile(rival) {
-    const {question, screen} = rival.props;
-    if (question.questionRenderer !== TEXT_DATE) {
-        return null;
-    }
-    const textContent = getTextContent(question);
-    const dateContent = getDateContent(question);
-    return [{
-        id: 'questionText',
-        onClick: _.noop,
-        content: textContent,
-        yTarget: .5,
-        xTarget: .3,
-        widthFactor: 0.9
-    }, {
-        id: 'questionDate',
-        onClick: _.noop,
-        content: <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(dateContent)}/>,
-        yTarget: .5,
-        xTarget: .68,
-        widthFactor: 1.2
+function prepareQuestionTextAnalogClockTile(question, screen) {
+    return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
+        id: 'questionDate', onClick: _.noop,
+        content: <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(getDateContent(question))}/>,
+        yTarget: .5, xTarget: .68, widthFactor: 1.2
     }];
 }
 
-function prepareQuestionImageTile(rival) {
-    const {question} = rival.props;
-    const {questionRenderer} = question;
-    if (questionRenderer !== TEXT_IMAGE_SVG && questionRenderer !== TEXT_IMAGE_PNG) {
-        return null;
-    }
-    const dataPrefix = questionRenderer === TEXT_IMAGE_SVG ? 'data:image/svg+xml;base64, ' : (questionRenderer === TEXT_IMAGE_PNG ? 'data:image/png;base64, ' : '');
-    const imageData = getImageContent(question);
-    const image = <img alt='' src={dataPrefix + imageData} height='100%' width='100%'/>;
-    const textContent = getTextContent(question);
-    return [
-        {
-            id: 'questionText',
-            onClick: _.noop,
-            content: textContent,
-            yTarget: .5,
-            xTarget: .25,
-            widthFactor: 0.9
-        },
-        {
-            id: 'questionImage',
-            onClick: _.noop,
-            content: image,
-            yTarget: .5,
-            xTarget: .7,
-            widthFactor: 1.4
-        },
+function prepareQuestionTextDigitalClockTile(question, screen) {
+    return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
+        id: 'questionDate', onClick: _.noop,
+        content: <DigitalClock date={new Date(getDateContent(question))}/>,
+        yTarget: .5, xTarget: .68, widthFactor: 1.2
+    }];
+}
+
+function prepareQuestionImageTile(question, questionRenderer) {
+    const dataPrefix = questionRenderer === TEXT_IMAGE_SVG ? svgBase64 : (questionRenderer === TEXT_IMAGE_PNG ? pngBase64 : '');
+    return [textTile({question, xTarget: .25, widthFactor: 0.9}),
+        imageTile({src: dataPrefix + getImageContent(question)})
     ];
 }
 
-function prepareQuestionImagesTile(rival) {
-    const {question} = rival.props;
-    const {questionRenderer} = question;
-    if (questionRenderer !== IMAGE_PNG_TEXT_IMAGE_PNG) {
-        return null;
-    }
-    const dataPrefix = 'data:image/png;base64, ';
+function prepareQuestionImagesTile(question) {
     const imagesData = getImageContent(question).split('^_^');
-    const imageLeft = <img alt='' src={dataPrefix + imagesData[0]} height='100%' width='100%'/>;
-    const imageRight = <img alt='' src={dataPrefix + imagesData[1]} height='100%' width='100%'/>;
-    const textContent = getTextContent(question);
-    return [
-        {
-            id: 'questionImageLeft',
-            onClick: _.noop,
-            content: imageLeft,
-            yTarget: .5,
-            xTarget: .2,
-            widthFactor:  1.2
-        },
-        {
-            id: 'questionText',
-            onClick: _.noop,
-            content: textContent,
-            yTarget: .5,
-            xTarget: .5,
-            widthFactor: 0.85
-        },
-        {
-            id: 'questionImageRight',
-            onClick: _.noop,
-            content: imageRight,
-            yTarget: .5,
-            xTarget: .8,
-            widthFactor: 1.2
-        },
+    return [imageTile({src: pngBase64 + imagesData[0], xTarget: .2, widthFactor: 1.2, id: 'questionImageLeft'}),
+        textTile({question, widthFactor: 0.85}),
+        imageTile({src: pngBase64 + imagesData[1], xTarget: .8, widthFactor: 1.2, id: 'questionImageRight'})
     ];
 }

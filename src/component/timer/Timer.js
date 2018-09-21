@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import {Line} from "rc-progress";
 import './styles.css';
 import Clock from 'react-clock';
+import DigitalClock from "../digital-clock/DigitalClock";
+import {datePartFormatter} from "../../util/dateHelper";
 
 export default class Timer extends React.PureComponent {
 
@@ -13,12 +15,13 @@ export default class Timer extends React.PureComponent {
         from: PropTypes.number,
         to: PropTypes.number,
         down: PropTypes.bool,
-        showDigital: PropTypes.bool,
+        showNumber: PropTypes.bool,
         showChart: PropTypes.bool,
         showAnalog: PropTypes.bool,
-        digitalFillHours0: PropTypes.bool,
-        digitalSeconds: PropTypes.bool,
-        digitalMinutes: PropTypes.bool,
+        showDigital: PropTypes.bool,
+        numberFillHours0: PropTypes.bool,
+        numberSeconds: PropTypes.bool,
+        numberMinutes: PropTypes.bool,
         className: PropTypes.string,
         onDone: PropTypes.func
     };
@@ -27,12 +30,13 @@ export default class Timer extends React.PureComponent {
         work: true,
         down: true,
         to: 0,
-        digitalFillHours0: true,
-        digitalSeconds: true,
-        digitalMinutes: true,
-        showDigital: false,
+        numberFillHours0: true,
+        numberSeconds: true,
+        numberMinutes: true,
+        showNumber: false,
         showChart: true,
         showAnalog: false,
+        showDigital: false,
         className: '',
         onDone: _.noop,
         onTick: _.noop
@@ -104,14 +108,19 @@ export default class Timer extends React.PureComponent {
         cancelAnimationFrame(this.frameId);
     };
 
-    renderDigital() {
-        const {digitalMinutes, digitalSeconds, digitalFillHours0} = this.props;
+    renderNumber() {
+        const {numberMinutes, numberSeconds, numberFillHours0} = this.props;
         const {hours, minutes, seconds} = this.state;
-        const formatter = (e) => e === 0 ? '00' : e < 10 ? `0${e}` : e;
-        const h = <span>{digitalFillHours0 ? formatter(hours) : hours}h</span>;
-        const m = digitalMinutes && <span>{formatter(minutes)}m</span>;
-        const s = digitalSeconds && <span>{formatter(seconds)}s</span>;
+        const h = <span>{numberFillHours0 ? datePartFormatter(hours) : hours}h</span>;
+        const m = numberMinutes && <span>{datePartFormatter(minutes)}m</span>;
+        const s = numberSeconds && <span>{datePartFormatter(seconds)}s</span>;
         return <span>{h} {m} {s}</span>
+    }
+
+    renderDigital() {
+        const {hours, minutes, seconds} = this.state;
+        const time = `${datePartFormatter(hours)}:${datePartFormatter(minutes)}:${datePartFormatter(seconds)}`;
+        return <DigitalClock time={time}/>
     }
 
     renderAnalog() {
@@ -127,11 +136,12 @@ export default class Timer extends React.PureComponent {
     }
 
     render() {
-        const {children, showDigital, showChart, showAnalog, className} = this.props;
+        const {children, showNumber, showDigital, showChart, showAnalog, className} = this.props;
         const cn = `timer ${className}`;
         return <div className={cn}>
             <div className='timerContent'>
                 {showAnalog && this.renderAnalog()}
+                {showNumber && this.renderNumber()}
                 {showDigital && this.renderDigital()}
                 {showChart && this.renderChart()}
             </div>

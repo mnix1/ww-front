@@ -1,6 +1,9 @@
 import React from 'react';
 import {
-    DATE, EQUATION, getDateContent,
+    ANALOG_CLOCK,
+    DIGITAL_CLOCK,
+    EQUATION,
+    getDateContent,
     getHtmlContent,
     getImageContent,
     HTML,
@@ -12,6 +15,7 @@ import _ from 'lodash';
 import Clock from "react-clock";
 import {Equation} from "react-equation";
 import {getTextContent} from "../../lang/langText";
+import DigitalClock from "../digital-clock/DigitalClock";
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
@@ -30,7 +34,8 @@ export function prepareAnswerTiles(rival) {
 
 function prepareContent(answerRenderer, ans, screen) {
     const asContentHtml = answerRenderer === HTML;
-    const asContentDate = answerRenderer === DATE;
+    const asContentAnalogClock = answerRenderer === ANALOG_CLOCK;
+    const asContentDigitalClock = answerRenderer === DIGITAL_CLOCK;
     const asContentEquation = answerRenderer === EQUATION;
     const asContentImageSvg = answerRenderer === IMAGE_SVG;
     let content;
@@ -39,12 +44,12 @@ function prepareContent(answerRenderer, ans, screen) {
         content = <img alt='' src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
     } else if (asContentHtml) {
         content = getHtmlContent(ans);
-    } else if (asContentDate) {
-        content = getDateContent(ans);
-        content = <Clock size={screen.isSmallHeight ? 80 : 100} value={new Date(content)}/>
+    } else if (asContentAnalogClock) {
+        content = <Clock size={screen.isSmallHeight ? 80 : 100} value={new Date(getDateContent(ans))}/>
     } else if (asContentEquation) {
-        content = getTextContent(ans);
-        content = <Equation className='equation'>{content}</Equation>
+        content = <Equation className='equation'>{getTextContent(ans)}</Equation>
+    } else if (asContentDigitalClock) {
+        content = <DigitalClock date={new Date(getDateContent(ans))}/>
     } else {
         content = getTextContent(ans);
     }
@@ -57,7 +62,6 @@ function prepareStyle(ans, i, answerId, correctAnswerId, answerRenderer, screen)
     const isUserAnswer = answerId === ans.id;
     const isCorrectAnswer = correctAnswerId === ans.id;
     return {
-        // heightFactor: answerRenderer === DATE ? (screen.moreHeightThanWidth ? 1.5 : 1.3) : 1,
         material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
         border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
         borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined

@@ -1,0 +1,1 @@
+export const datePartFormatter = (e) => e === 0 ? '00' : e < 10 ? `0${e}` : e;

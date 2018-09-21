@@ -1,0 +1,65 @@
+.outer {
+    position: relative;
+    display: inline-block;
+    border: 1px solid rgba(225, 119, 3, .9);
+    border-radius: 0.5rem;
+    background: linear-gradient(
+            to bottom,
+            rgba(253, 155, 18, .8) 0%,
+            rgba(255, 42, 4, .8) 73%,
+            rgba(253, 125, 45, .8) 100%
+    );
+    box-shadow: 0 0 4px 2px rgba(255, 119, 3, .9),
+    inset 0 0 4px 2px rgba(255, 119, 3, .9);
+}
+
+.inner {
+    margin: 0.25rem;
+    border: 1px solid rgba(225, 119, 3, .9);
+    border-radius: 0.5rem;
+    background: linear-gradient(
+            to bottom,
+            rgba(253, 125, 45, .3) 0%,
+            rgba(255, 42, 4, .3) 73%,
+            rgba(253, 125, 45, .3) 100%
+    );
+    box-shadow: 0 0 4px 2px rgba(255, 119, 3, .9),
+    inset 0 0 4px 2px rgba(255, 119, 3, .9);
+}
+
+.most-inner {
+    text-align: center;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid rgba(225, 119, 3, 1);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 4px 2px rgba(255, 119, 3, .9),
+    inset 0 0 4px 2px rgba(255, 119, 3, .9);
+    text-shadow: 0 0 5px #fff,
+    0 0 10px #fff,
+    0 0 7px #fff,
+    0 0 20px #88dfff,
+    0 0 35px #68ffc8,
+    0 0 40px #68ffc8,
+    0 0 50px #68ffc8,
+    0 0 75px #68ffc8;
+    background: /* On "top" */ repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 4px,
+            #171717 4px,
+            black 8px
+    ),
+        /* on "bottom" */ linear-gradient(
+            to bottom,
+            #171717,
+            black
+    );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.time {
+    color: white;
+    position: relative;
+    display: block;
+}

@@ -139,7 +139,7 @@ export default class ProfileBook extends React.PureComponent {
                             onDone={onReadingDone}
                             onTick={(state) => this.setState({timerState: state})}
                             work={!isFinished && !canClaimReward && isInProgress}
-                            showDigital={true}
+                            showNumber={true}
                             showChart={false}
                             from={this.leftReadInterval}
                         />

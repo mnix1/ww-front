@@ -59,11 +59,11 @@ export default class ProfileBook extends React.PureComponent {
                 <div className='justifyCenter flexColumn marginRem'>
                     <div className='justifyCenter'>
                         (<Timer work={false}
-                                digitalFillHours0={false}
-                                digitalMinutes={false}
-                                digitalSeconds={false}
+                                numberFillHours0={false}
+                                numberMinutes={false}
+                                numberSeconds={false}
                                 showChart={false}
-                                showDigital={true}
+                                showNumber={true}
                                 from={readTime}
                     />)
                     </div>

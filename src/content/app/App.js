@@ -93,6 +93,8 @@ import {Loading} from "../../component/loading/Loading";
 import LoginPage from "../../component/auth/LoginPage";
 import Connecting from "./connection/Connecting";
 import ConnectionProblem from "./connection/ConnectionProblem";
+import DigitalClock from "../../component/digital-clock/DigitalClock";
+import Timer from "../../component/timer/Timer";
 
 class App extends React.PureComponent {
 
