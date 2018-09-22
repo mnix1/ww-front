@@ -3,7 +3,7 @@ export const OPEN_CHANGED = 'socket/open/changed';
 
 const initialState = {
     socket: undefined,
-    open: false,
+    open: undefined,
 };
 
 export default function reducer(state = initialState, action) {

@@ -1,4 +1,4 @@
-import {EXTREMELY_EASY} from "../../util/difficultyHelper";
+import {NORMAL} from "../../util/difficultyHelper";
 
 export const CLEARED = 'practise/cleared';
 export const CATEGORY_CHANGED = 'practise/category/changed';
@@ -8,7 +8,7 @@ export const SKIP_ANIMATION_CHANGED = 'practise/skip-animation/changed';
 
 const initialState = {
     category: undefined,
-    difficultyLevel: EXTREMELY_EASY,
+    difficultyLevel: NORMAL,
     answerId: undefined,
     skipAnimation: false
 };

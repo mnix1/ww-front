@@ -21,6 +21,9 @@ export default class CommunicationWebSocket {
         this.socket.addEventListener('close', this.onClose);
         this.socket.addEventListener('error', this.onError);
         this.socket.addEventListener('open', this.onOpen);
+        if (this.dispatch) {
+            this.dispatch(openChanged(undefined));
+        }
     };
 
     dispose() {

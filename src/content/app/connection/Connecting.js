@@ -6,8 +6,8 @@ import {Loading} from "../../../component/loading/Loading";
 
 class Connecting extends React.PureComponent {
     render() {
-        const {socket, signedIn} = this.props;
-        if (!signedIn || socket) {
+        const {socket, signedIn, socketOpen} = this.props;
+        if (!signedIn || (socket && socketOpen !== undefined)) {
             return null;
         }
         return <Modal renderExit={false}>
@@ -25,6 +25,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         signedIn: state.profile.signedIn,
+        socketOpen: state.socket.open,
         socket: state.socket.socket,
     }),
     (dispatch) => ({})

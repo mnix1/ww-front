@@ -10,7 +10,7 @@ import {clearProfileFetch} from "../ProfileFetch";
 class ConnectionProblem extends React.PureComponent {
     render() {
         const {socket, socketOpen, signedIn, dispatch} = this.props;
-        if (!signedIn || !socket || socketOpen) {
+        if (!signedIn || !socket || socketOpen !== false) {
             return null;
         }
         return <Modal renderExit={false}>
