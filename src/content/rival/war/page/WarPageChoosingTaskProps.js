@@ -35,8 +35,9 @@ class WarPageChoosingTaskProps extends React.PureComponent {
             return <RandomTaskProps content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
+            const offset = screen.moreHeightThanWidth && screen.isSmallWidth ? 160 : 100;
             return <ChoosingTaskProps
-                screen={{...screen, contentHeight: screen.contentHeight - 70, contentWidth: screen.contentWidth - 80}}
+                screen={{...screen, contentHeight: screen.contentHeight - 56, contentWidth: screen.contentWidth - offset}}
                 renderPoints={false}
                 rivalType={rivalType}
                 content={content}

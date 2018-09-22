@@ -45,7 +45,7 @@ function prepareContent(answerRenderer, ans, screen) {
     } else if (asContentHtml) {
         content = getHtmlContent(ans);
     } else if (asContentAnalogClock) {
-        content = <Clock size={screen.isSmallHeight ? 80 : 100} value={new Date(getDateContent(ans))}/>
+        content = <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(getDateContent(ans))}/>
     } else if (asContentEquation) {
         content = <Equation className='equation'>{getTextContent(ans)}</Equation>
     } else if (asContentDigitalClock) {
@@ -62,6 +62,7 @@ function prepareStyle(ans, i, answerId, correctAnswerId, answerRenderer, screen)
     const isUserAnswer = answerId === ans.id;
     const isCorrectAnswer = correctAnswerId === ans.id;
     return {
+        heightFactor: answerRenderer === ANALOG_CLOCK ? (screen.moreHeightThanWidth ? 1.16 : 1.32) : answerRenderer === DIGITAL_CLOCK ? 1.1 : 1,
         material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
         border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
         borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined

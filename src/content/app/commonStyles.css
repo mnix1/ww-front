@@ -103,6 +103,13 @@
 .overflowAuto {
     overflow: auto;
 }
+.overflowXAuto {
+    overflow-x: auto;
+}
+
+.overflowHidden {
+    overflow: hidden;
+}
 
 .textAlignCenter {
     text-align: center;

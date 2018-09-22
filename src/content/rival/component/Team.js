@@ -72,7 +72,7 @@ class Team extends React.PureComponent {
         const customClassName = `${className} ${renderHorizontal ? 'justifyStart' : ''}`;
         const customContentClassName = `${contentClassName} ${renderHorizontal ? 'flexColumn' : ''}`;
         return <div className={customClassName}>
-            <div className={`justifyCenter ${customContentClassName} flexWrap`}>
+            <div className={`justifyCenter ${customContentClassName} `}>
                 {this.renderTeam()}
             </div>
         </div>

@@ -83,10 +83,10 @@ function prepareQuestionTextEquationTile(question) {
 }
 
 function prepareQuestionTextAnalogClockTile(question, screen) {
-    return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
+    return [textTile({question, xTarget: .3, widthFactor: 1.2}), {
         id: 'questionDate', onClick: _.noop,
-        content: <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(getDateContent(question))}/>,
-        yTarget: .5, xTarget: .68, widthFactor: 1.2
+        content: <Clock size={screen.isSmallHeight ? 80 : 130} value={new Date(getDateContent(question))}/>,
+        yTarget: .5, xTarget: .7, widthFactor: 0.9
     }];
 }
 

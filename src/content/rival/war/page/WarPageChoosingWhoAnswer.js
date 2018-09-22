@@ -7,16 +7,21 @@ import TaskDescription from "../../component/TaskDescription";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import _ from 'lodash';
 import Timer from "../../../../component/timer/Timer";
+import cn from 'classnames';
 
 class WarPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
         const {content, communication, rivalType, onTeamClick, onTeamAcceptClick} = this.props;
         const chosen = content.isChosenActiveIndex;
+        const className = cn('justifyCenter overflowHidden width100', {
+            disabled: chosen
+        });
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
                 renderHobbies={true}
-                className={chosen ? 'disabled' : ''}
+                className={className}
+                contentClassName='overflowXAuto justifyStart'
                 memberClassName={chosen ? '' : 'pointer'}
                 onClick={chosen ? _.noop : onTeamClick}
                 presentIndexes={content.presentIndexes}

@@ -11,6 +11,7 @@ import Wisie from "../../../../component/wisie/Wisie";
 import Profile from "../../../../component/profile/Profile";
 import WisieActions from "../../../../component/wisie/WisieActions";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
+import {remToPixels} from "../../../../util/fontHelper";
 
 class WarPageAnswering extends React.PureComponent {
 
@@ -19,10 +20,7 @@ class WarPageAnswering extends React.PureComponent {
         if (imgHeight) {
             return imgHeight;
         }
-        if (screen.isSmallHeight || screen.moreHeightThanWidth) {
-            return 50;
-        }
-        return 70;
+        return screen.wisieImgHeight - 10;
     }
 
     renderTaskActive() {
@@ -71,11 +69,11 @@ class WarPageAnswering extends React.PureComponent {
                                  isOwned={true}>
                             <WisieActions actions={content.opponentWisieActions}/>
                         </Wisie>
-                        : <Profile imgHeight={imgHeight + 4} {...opponentActiveMember.content}/>}
+                        : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}
             </div>
             <Task
-                screen={{...screen, contentHeight: screen.contentHeight - 40}}
+                screen={{...screen, contentHeight: screen.contentHeight - remToPixels(1.6)}}
                 skipAnimation={true}
                 question={task}
                 answers={task.answers}

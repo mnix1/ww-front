@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {getText, TEXT_OPPONENT_TEAM, TEXT_POINTS, TEXT_YOUR_TEAM} from "../../../lang/langText";
 import Team from "./Team";
 import {getElo} from "../../../util/rivalHelper";
+import {remToPixels} from "../../../util/fontHelper";
 
 class Teams extends React.PureComponent {
 
@@ -15,12 +16,16 @@ class Teams extends React.PureComponent {
             <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
             <div className='pageHeader fontSize08Rem'>
                 <Team renderHobbies={true} team={content.team}
+                      className='justifyCenter overflowHidden width100'
+                      contentClassName='overflowXAuto justifyStart'
                       presentIndexes={content.presentIndexes}/>
             </div>
             <div className='justifyCenter'>{children}</div>
             {content.opponent && <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>}
             {content.opponent && <div className='pageHeader fontSize08Rem'>
                 <Team renderHobbies={true} team={content.opponentTeam}
+                      className='justifyCenter overflowHidden width100'
+                      contentClassName='overflowXAuto justifyStart'
                       presentIndexes={content.opponentPresentIndexes}/>
             </div>}
         </div>
@@ -29,14 +34,16 @@ class Teams extends React.PureComponent {
     renderAbsolute() {
         const {content, screen} = this.props;
         const renderImg = screen.contentHeight - 40 > 480;
+        const imgHeight = (screen.contentHeight - 40)/5 - remToPixels(3);
         return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
             <div className='marginLeftRem'>
-                <div>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
-                <div>
+                <div className='justifyStart'>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
+                <div className='justifyStart'>
                     <Team
+                        memberClassName='justifyCenter'
                         renderImg={renderImg}
                         renderHobbies={true}
-                        imgHeight={40}
+                        imgHeight={imgHeight}
                         renderHorizontal={true}
                         team={content.team}
                         presentIndexes={content.presentIndexes}
@@ -44,12 +51,13 @@ class Teams extends React.PureComponent {
                 </div>
             </div>
             {content.opponent && <div className='marginRightRem'>
-                <div>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
-                <div>
+                <div className='justifyEnd'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
+                <div className='justifyEnd'>
                     <Team
+                        memberClassName='justifyCenter'
                         renderImg={renderImg}
                         renderHobbies={true}
-                        imgHeight={40}
+                        imgHeight={imgHeight}
                         renderHorizontal={true}
                         team={content.opponentTeam}
                         presentIndexes={content.opponentPresentIndexes}

@@ -27,8 +27,6 @@ export default class ChoosingTaskProps extends React.PureComponent {
                     onDifficultLevelAcceptChange(true);
                 }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
-            <div className='justifyCenter'>
-            </div>
         </div>;
     }
 
