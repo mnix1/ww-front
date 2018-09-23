@@ -6,7 +6,7 @@ import {getBook} from "../../util/bookHelper";
 import {notice} from "./notice";
 import presentSvg from '../../media/image/icon/present.svg';
 
-export function noticeReward(reward) {
+export function noticeReward(reward, onClick) {
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
@@ -19,6 +19,7 @@ export function noticeReward(reward) {
                 {reward.goldGain && <Gold>{reward.goldGain}</Gold>}
                 {reward.bookType && <img alt='' src={getBook(reward.bookType)} height={80}/>}
             </div>
-        </div>
+        </div>,
+        onClick
     );
 }

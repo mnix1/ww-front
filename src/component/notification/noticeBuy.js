@@ -4,7 +4,7 @@ import {getText, TEXT_BOUGHT} from "../../lang/langText";
 import {getBook} from "../../util/bookHelper";
 import shoppingCart from '../../media/image/icon/shoppingCart.svg';
 
-export function noticeBuy(bookType) {
+export function noticeBuy(bookType, onClick) {
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
@@ -16,6 +16,7 @@ export function noticeBuy(bookType) {
             <div className='justifyCenter marginRem'>
                 <img alt='' src={getBook(bookType)} height={80}/>
             </div>
-        </div>
+        </div>,
+        onClick
     );
 }

@@ -1,12 +1,13 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {SHOP_ROUTE} from "../../routes";
+import {PROFILE_ROUTE, SHOP_ROUTE} from "../../routes";
 import _ from 'lodash';
 import {buyBookIdChanged} from "../../../redux/reducer/shop";
 import {clearProfileFetch} from "../../app/ProfileFetch";
 import {noticeBuy} from "../../../component/notification/noticeBuy";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
+import {push} from 'connected-react-router';
 
 class ShopBuyBookFetch extends React.PureComponent {
 
@@ -20,7 +21,7 @@ class ShopBuyBookFetch extends React.PureComponent {
         if (!prevProps.shopBuyBookFetch.fulfilled && shopBuyBookFetch.fulfilled && bookId !== undefined) {
             dispatch(buyBookIdChanged(undefined));
             if (isRepValueCode1(shopBuyBookFetch)) {
-                noticeBuy(shopBuyBookFetch.value.bookType)
+                noticeBuy(shopBuyBookFetch.value.bookType, () => dispatch(push(PROFILE_ROUTE)));
                 clearProfileFetch(dispatch);
             }
         }
