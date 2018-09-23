@@ -12,7 +12,7 @@ export default class RivalCommunication {
     constructor(communicationWebSocket, app) {
         this.communicationWebSocket = communicationWebSocket;
         this.app = app;
-        this.communicationWebSocket.socket.addEventListener('message', this.onMessage);
+        this.communicationWebSocket.onRivalMessage = this.onMessage;
         this.onMessageEvent = _.noop;
     }
 
@@ -40,9 +40,8 @@ export default class RivalCommunication {
         this.send(`${rivalType}_^_CHOOSE_TASK_PROPS` + JSON.stringify({category}));
     }
 
-    onMessage = (e) => {
-        const data = JSON.parse(e.data);
-        const id = data.id;
+    onMessage = (id, data) => {
+        console.log('onMessage', id, data);
         if (!_.includes(id, '_CONTENT')) {
             return;
         }

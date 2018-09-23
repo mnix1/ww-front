@@ -7,12 +7,15 @@ import {openChanged} from "../../redux/reducer/socket";
 import {signedInChanged} from "../../redux/reducer/profile";
 import {noticeError} from "../../component/notification/noticeError";
 import {ERROR_FRIEND_RIVAL_CANCELED, ERROR_FRIEND_RIVAL_REJECTED} from "../../lang/langError";
+import {LOGIN_ROUTE} from "../routes";
+import {push} from 'connected-react-router'
 
 export default class CommunicationWebSocket {
     constructor(onInit) {
         this.onInit = onInit;
         this.init();
         this.onInit(this);
+        this.onRivalMessage = _.noop;
     }
 
     init = () => {
@@ -37,10 +40,8 @@ export default class CommunicationWebSocket {
     onClose = (e) => {
         console.log('onclose', e);
         if (e.code === 1008) {
+            this.dispatch(push(LOGIN_ROUTE));
             this.dispatch(signedInChanged(false));
-            // this.dispatch(push(LOGIN_ROUTE));
-            // this.dispatch(profileChanged(undefined));
-            // clearProfileFetch(this.dispatch);
         }
         this.dispose();
     };
@@ -66,12 +67,7 @@ export default class CommunicationWebSocket {
         this.socket = socket;
     }
 
-    processMessage = true;
-
     onMessage = (e) => {
-        if (!this.processMessage) {
-            return;
-        }
         const data = JSON.parse(e.data);
         const id = data.id;
         if (_.includes(id, 'FRIEND')) {
@@ -97,6 +93,7 @@ export default class CommunicationWebSocket {
                 noticeError(ERROR_FRIEND_RIVAL_CANCELED);
             }
         }
+        this.onRivalMessage(id, data);
     };
 
     send(message) {

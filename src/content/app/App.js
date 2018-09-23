@@ -29,7 +29,6 @@ import {
     CHALLENGE_FRIEND_INIT_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_LIST_ROUTE,
-    CHALLENGE_RESPONSE_ROUTE,
     CHALLENGE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     CLASSIFICATION_BATTLE_ROUTE,
@@ -44,7 +43,6 @@ import {
     SETTINGS_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
-    TRAINING_TASK_ROUTE,
     WAR_FAST_ROUTE,
     WAR_RANKING_ROUTE,
     WAR_ROUTE,
@@ -93,8 +91,6 @@ import {Loading} from "../../component/loading/Loading";
 import LoginPage from "../../component/auth/LoginPage";
 import Connecting from "./connection/Connecting";
 import ConnectionProblem from "./connection/ConnectionProblem";
-import DigitalClock from "../../component/digital-clock/DigitalClock";
-import Timer from "../../component/timer/Timer";
 
 class App extends React.PureComponent {
 
@@ -167,13 +163,10 @@ class App extends React.PureComponent {
     }
 
     renderContent() {
-        const {history, testSignInRep, socketOpen, socket} = this.props;
+        const {history, testSignInRep} = this.props;
         if (repPending(testSignInRep)) {
             return <Loading/>;
         }
-        // if (!socketOpen && socket) {
-        //     return <LoginPage/>;
-        // }
         return <ConnectedRouter history={history}>
             <Switch>
                 <Route exact path={APP_ROUTE} render={() => this.renderMenu()}/>
