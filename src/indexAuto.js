@@ -1,6 +1,6 @@
 import './indexApp';
 import Auto from './auto/Auto';
-import {AUTO} from './auto/autoHelper';
-window.AUTO = AUTO;
+import {prepareAuto} from './auto/autoHelper';
+window.prepareAuto = prepareAuto;
 window.auto = Auto;
 

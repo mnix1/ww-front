@@ -280,7 +280,7 @@ class App extends React.PureComponent {
             </div>}
             {window.auto && React.createElement(window.auto, {
                 communication: this.rivalCommunication,
-                ...window.AUTO[window.name]
+                ...window.prepareAuto()
             })}
         </div>;
     }

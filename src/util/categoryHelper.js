@@ -9,6 +9,7 @@ import clock from '../media/image/category/clock.png';
 import questionMark from '../media/image/category/questionMark.svg';
 import colors from '../media/image/category/colors.png';
 import olympicGames from '../media/image/category/olympicGames.svg';
+import {MEMORY} from "./wisieAttributeHelper";
 
 export const CATEGORY_EQUATION = 'EQUATION';
 export const CATEGORY_NUMBER = 'NUMBER';
@@ -22,7 +23,7 @@ export const CATEGORY_TIME = 'TIME';
 export const CATEGORY_RANDOM = 'RANDOM';
 export const CATEGORY_OLYMPIC_GAMES = 'OLYMPIC_GAMES';
 
-const CATEGORY = {
+export const CATEGORY = {
     [CATEGORY_RANDOM]: questionMark,
     [CATEGORY_LYRICS]: piano,
     [CATEGORY_COUNTRY]: globe,
@@ -35,6 +36,11 @@ const CATEGORY = {
     [CATEGORY_NUMBER]: number,
     [CATEGORY_OLYMPIC_GAMES]: olympicGames,
 };
+
+export const CATEGORIES = [
+    CATEGORY_LYRICS, CATEGORY_COUNTRY, MEMORY, CATEGORY_ELEMENT, CATEGORY_EQUATION, CATEGORY_RIDDLE,
+    CATEGORY_COLOR, CATEGORY_TIME, CATEGORY_NUMBER, CATEGORY_OLYMPIC_GAMES
+];
 
 export function getCategory(category) {
     return CATEGORY[category];
