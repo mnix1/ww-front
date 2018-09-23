@@ -10,7 +10,7 @@ import FriendListFetch from "../friend/fetch/FriendListFetch";
 import CommunicationWebSocket from "./CommunicationWebSocket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
-import background from '../../media/image/background/backgroundWithWisiesProd.jpg';
+import background from '../../media/image/background/backgroundWithWisiesProd2.jpg';
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
