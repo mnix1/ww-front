@@ -25,6 +25,6 @@ export function notice(content, onClick) {
             {content}
         </div>,
         closable: true,
-        duration: 400,
+        duration: 4,
     });
 }

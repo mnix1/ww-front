@@ -3,7 +3,7 @@ import {
     INTRO_STEP_OPTIONS,
     INTRO_STEP_OPTIONS_TEXT_0,
     INTRO_STEP_OPTIONS_TEXT_1,
-    INTRO_STEP_OPTIONS_TEXT_2,
+    INTRO_STEP_OPTIONS_TEXT_2, INTRO_STEP_OPTIONS_TEXT_3,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
 } from "../../introHelper";
@@ -12,6 +12,7 @@ import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
+import {FaCheckCircle} from "react-icons/fa";
 
 class IntroStepOptions extends React.PureComponent {
 
@@ -28,7 +29,11 @@ class IntroStepOptions extends React.PureComponent {
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_OPTIONS_TEXT_0)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_OPTIONS_TEXT_1)}</div>
-                <div className=''>{getIntroText(INTRO_STEP_OPTIONS_TEXT_2)}</div>
+                <div className='paddingBottomRem'>
+                    {getIntroText(INTRO_STEP_OPTIONS_TEXT_2)}
+                    <div className='inlineBlock paddingLeftRem'><FaCheckCircle/></div>.
+                </div>
+                <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_OPTIONS_TEXT_3)}</div>
             </div>
         </IntroStep>
     }

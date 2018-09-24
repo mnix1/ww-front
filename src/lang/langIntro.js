@@ -30,7 +30,7 @@ import {
     INTRO_STEP_NEW_WISIE_TEXT_3,
     INTRO_STEP_OPTIONS_TEXT_0,
     INTRO_STEP_OPTIONS_TEXT_1,
-    INTRO_STEP_OPTIONS_TEXT_2,
+    INTRO_STEP_OPTIONS_TEXT_2, INTRO_STEP_OPTIONS_TEXT_3,
     INTRO_STEP_WELCOME_TEXT_0,
     INTRO_STEP_WELCOME_TEXT_1,
     INTRO_STEP_WELCOME_TEXT_2,
@@ -62,7 +62,8 @@ const INTRO_TEXT = {
 
         [INTRO_STEP_OPTIONS_TEXT_0]: 'W ustawieniach możesz zmienić swój nick oraz wiedzora.',
         [INTRO_STEP_OPTIONS_TEXT_1]: 'Jeśli chcesz zmienić swój nick możesz to zrobić teraz.',
-        [INTRO_STEP_OPTIONS_TEXT_2]: 'W innym przypadku kliknij kontunuuj.',
+        [INTRO_STEP_OPTIONS_TEXT_2]: 'Wpisz swoje nick i kliknij',
+        [INTRO_STEP_OPTIONS_TEXT_3]: 'W innym przypadku kliknij "Kontynuuj".',
 
         [INTRO_STEP_GO_TO_WISOR_TEXT_0]: 'Proszę kiliknij tutaj, aby przejść do wyboru wiedzora.',
         [INTRO_STEP_GO_TO_WISOR_TEXT_1]: 'Będziesz mógł to zrobić klikając na jego portret.',
@@ -89,7 +90,7 @@ const INTRO_TEXT = {
         [INTRO_STEP_WISIE_DETAILS_TEXT_0]: 'Widzimy teraz statystyki Twojego wiedzaka.',
         [INTRO_STEP_WISIE_DETAILS_TEXT_1]: 'W tym miejscu możesz je ulepszać za cenę punktów wiedzy.',
         [INTRO_STEP_WISIE_DETAILS_TEXT_2]: 'Aby to zrobić kliknij proszę na znak',
-        [INTRO_STEP_WISIE_DETAILS_TEXT_3]: 'lub jeśli nie chcesz nic ulepszać, kliknij przycisk"Kontynuuj".',
+        [INTRO_STEP_WISIE_DETAILS_TEXT_3]: 'lub jeśli nie chcesz nic ulepszać, kliknij przycisk "Kontynuuj".',
 
         [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_0]: 'Przejdziemy teraz do wyboru reszty wiedzaków do Twojej drużyny.',
         [INTRO_STEP_WISIE_DETAILS_CLOSE_TEXT_1]: `Będziesz mógł wybrać ${PICK_WISIE_COUNT}, która najbardziej Ci się podoba.`,
@@ -99,7 +100,7 @@ const INTRO_TEXT = {
         [INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1]: 'Proszę kliknij tutaj, aby przejść do ekranu edycji drużyny.',
 
         [INTRO_STEP_EDIT_TEAM_TEXT_0]: 'Teraz możesz utworzyć swoją drużynę.',
-        [INTRO_STEP_EDIT_TEAM_TEXT_1]: 'Proszę wybierz 4 wiedzaki, a następnie kliknij przycisk"Zapisz".',
+        [INTRO_STEP_EDIT_TEAM_TEXT_1]: 'Proszę wybierz 4 wiedzaki, a następnie kliknij przycisk "Zapisz".',
 
         [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_0]: 'Twoja drużyna została utworzona i ma się dobrze ;)',
         [INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1]: 'Czeka na Was wiele przygód. Możecie udać się na kampanię lub wojnę, aby konkurować z innymi.',
@@ -118,7 +119,8 @@ const INTRO_TEXT = {
 
         [INTRO_STEP_OPTIONS_TEXT_0]: "In Settings you can change your nickname and your Wisor.",
         [INTRO_STEP_OPTIONS_TEXT_1]: "You can change your nickname right now if you wish.",
-        [INTRO_STEP_OPTIONS_TEXT_2]: "Otherwise press continue.",
+        [INTRO_STEP_OPTIONS_TEXT_2]: "Enter your nickname and click",
+        [INTRO_STEP_OPTIONS_TEXT_3]: "Otherwise press 'Continue'.",
 
         [INTRO_STEP_GO_TO_WISOR_TEXT_0]: "Please click here to choose your Wisor.",
         [INTRO_STEP_GO_TO_WISOR_TEXT_1]: "You can do it by pressing it's photo.",
