@@ -41,7 +41,6 @@ export default class RivalCommunication {
     }
 
     onMessage = (id, data) => {
-        console.log('onMessage', id, data);
         if (!_.includes(id, '_CONTENT')) {
             return;
         }

@@ -38,7 +38,7 @@ export default class CommunicationWebSocket {
     }
 
     onClose = (e) => {
-        console.log('onclose', e);
+        // console.log('onclose', e);
         if (e.code === 1008) {
             this.dispatch(push(LOGIN_ROUTE));
             this.dispatch(signedInChanged(false));
@@ -47,11 +47,11 @@ export default class CommunicationWebSocket {
     };
 
     onError = (e) => {
-        console.log('onerror', e);
+        // console.log('onerror', e);
     };
 
     onOpen = (e) => {
-        console.log('onopen', e);
+        // console.log('onopen', e);
         this.dispatch(openChanged(true));
     };
 

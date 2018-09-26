@@ -23,7 +23,6 @@ class InvitedToRivalBy extends React.PureComponent {
 
     canRenderInvitedToBattle() {
         const {path} = this.props;
-        console.log(!_.includes(path, BATTLE_ROUTE), path, BATTLE_ROUTE);
         return !_.includes(path, BATTLE_ROUTE)
             && !_.includes(path, WAR_ROUTE)
             && path !== CAMPAIGN_WAR_ROUTE

@@ -12,7 +12,7 @@ async function translateMulti(words) {
         const word = await translate(words[i]);
         result.push(word);
     }
-    console.log(result, result.join(','));
+    // console.log(result, result.join(','));
     // return Promise.all(words.map(translate))
     //     .then(e => console.log(e, JSON.stringify(e.join(','))));
 }
