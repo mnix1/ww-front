@@ -18,7 +18,12 @@ import WisieFetchContainer from "../wisie/fetch/WisieFetchContainer";
 import WakeLock from "../../component/wake-lock/WakeLock";
 import RivalCommunication from "../rival/RivalCommunication";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
-import {RIVAL_STATUS_IN_PROGRESS, RIVAL_TYPE_ROUTE} from "../../util/rivalHelper";
+import {
+    RIVAL_STATUS_CLOSED,
+    RIVAL_STATUS_IN_PROGRESS,
+    RIVAL_TYPE_ROUTE,
+    ROUTE_RIVAL_TYPE
+} from "../../util/rivalHelper";
 import Option from "../../component/option/Option";
 import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
@@ -32,6 +37,7 @@ import Connecting from "./connection/Connecting";
 import ConnectionProblem from "./connection/ConnectionProblem";
 import Page from "../../component/page/Page";
 import ShowOption from "../../component/page/ShowOption";
+import {statusChanged} from "../../redux/reducer/rival";
 
 class App extends React.PureComponent {
 
@@ -42,18 +48,21 @@ class App extends React.PureComponent {
         this.maybeInitSocket();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         if (this.maybeRedirectToLogin()) {
             return;
         }
         this.maybeInitSocket();
-        const {path, rivalStatus, rivalType, onRouteChange, signedIn} = this.props;
+        const {path, rivalStatus, rivalType, onRouteChange, onRivalStatusClear, signedIn} = this.props;
         if (_.isNil(rivalStatus) || !signedIn) {
             return;
         }
         const routeFromRivalType = RIVAL_TYPE_ROUTE[rivalType];
         if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && path !== routeFromRivalType) {
             onRouteChange(routeFromRivalType);
+        }
+        if (rivalStatus === RIVAL_STATUS_CLOSED && path !== prevProps.path && ROUTE_RIVAL_TYPE[prevProps.path]) {
+            onRivalStatusClear();
         }
     }
 
@@ -155,6 +164,9 @@ export default connect(
     (dispatch) => ({
         onRouteChange: (e) => {
             dispatch(push(e));
+        },
+        onRivalStatusClear: () => {
+            dispatch(statusChanged(undefined));
         },
         onInit: (socket) => {
             socket.setDispatch(dispatch);
