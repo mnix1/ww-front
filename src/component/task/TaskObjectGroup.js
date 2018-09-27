@@ -128,8 +128,6 @@ export default class TaskObjectGroup extends React.PureComponent {
                     width: answerObjectWidth,
                     top,
                     left,
-                    borderRadius: '0.5rem',
-                    boxShadow: `0 0 4px #444`,
                 }
             }
         });

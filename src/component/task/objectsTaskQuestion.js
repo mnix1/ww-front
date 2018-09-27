@@ -75,7 +75,7 @@ function prepareQuestionTextHtmlTile(question) {
 }
 
 function prepareQuestionTextEquationTile(question) {
-    return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
+    return [textTile({question, xTarget: .25, widthFactor: 0.9}), {
         id: 'questionEquation', onClick: _.noop,
         content: <Equation className='equation'>{getHtmlContent(question)}</Equation>,
         yTarget: .5, xTarget: .65, widthFactor: 1.2
@@ -107,8 +107,8 @@ function prepareQuestionImageTile(question, questionRenderer) {
 
 function prepareQuestionImagesTile(question) {
     const imagesData = getImageContent(question).split('^_^');
-    return [imageTile({src: pngBase64 + imagesData[0], xTarget: .2, widthFactor: 1.2, id: 'questionImageLeft'}),
-        textTile({question, widthFactor: 0.85}),
-        imageTile({src: pngBase64 + imagesData[1], xTarget: .8, widthFactor: 1.2, id: 'questionImageRight'})
+    return [imageTile({src: pngBase64 + imagesData[0], xTarget: .2, widthFactor: 1.35, id: 'questionImageLeft'}),
+        textTile({question, widthFactor: 0.55}),
+        imageTile({src: pngBase64 + imagesData[1], xTarget: .8, widthFactor: 1.35, id: 'questionImageRight'})
     ];
 }
