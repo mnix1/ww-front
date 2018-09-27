@@ -77,7 +77,7 @@
 
 .warPage .whoAnswered {
     opacity: 0;
-    animation: fadein 0.5s 0.5s, fadeout 0.5s 5s;
+    animation: fadein 0.5s 0.5s, fadeout 0.5s 4.5s;
     animation-fill-mode: forwards;
 }
 
@@ -99,19 +99,13 @@
 
 .warPage .opponentWisieFadeOut {
     opacity: 0;
-    animation: fadein 0.5s 2.75s;
+    animation: fadein 0.5s 2.5s;
     animation-fill-mode: forwards;
 }
 
 .warPage .warTaskDescription {
-    opacity: 1;
-    animation: fadeout 0.5s .25s, fadein 0.5s 5.25s;
-    animation-fill-mode: forwards;
-}
-
-.warPage .emptyTask {
-    opacity: 1;
-    animation: fadeout 0.6s;
+    opacity: 0;
+    animation: fadein 0.5s 5s;
     animation-fill-mode: forwards;
 }
 

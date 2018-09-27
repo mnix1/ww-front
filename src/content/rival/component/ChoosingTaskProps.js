@@ -7,6 +7,7 @@ import Rating from "../../../component/rating/Rating";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
 import {NAME_TO_POINTS} from "../../../util/difficultyHelper";
+import {TiInputChecked} from "react-icons/ti";
 
 export default class ChoosingTaskProps extends React.PureComponent {
 
@@ -19,13 +20,16 @@ export default class ChoosingTaskProps extends React.PureComponent {
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter marginRem'>
                 <Rating onChange={onDifficultLevelChange} valueString={content.chosenDifficulty}/>
-                {renderPoints && <div className='justifyCenter flexColumn'>&nbsp;{prepareRatingPointsMessage(NAME_TO_POINTS[content.chosenDifficulty])}</div>}
+                {renderPoints && <div
+                    className='justifyCenter flexColumn'>&nbsp;{prepareRatingPointsMessage(NAME_TO_POINTS[content.chosenDifficulty])}</div>}
             </div>
             <div className='justifyCenter marginRem'>
-                <Button onClick={() => {
-                    communication.sendChosenDifficulty(rivalType, content.chosenDifficulty);
-                    onDifficultLevelAcceptChange(true);
-                }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
+                <Button
+                    icon={<TiInputChecked/>}
+                    onClick={() => {
+                        communication.sendChosenDifficulty(rivalType, content.chosenDifficulty);
+                        onDifficultLevelAcceptChange(true);
+                    }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
         </div>;
     }
