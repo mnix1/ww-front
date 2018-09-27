@@ -1,14 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
-import WarPageIntro from "./WarPageIntro";
-import WarPageAnswering from "./WarPageAnswering";
-import WarPagePreparingNextTask from "./WarPagePreparingNextTask";
-import WarPageAnswered from "./WarPageAnswered";
-import WarPageClosed from "./WarPageClosed";
-import WarPageChoosingTaskProps from "./WarPageChoosingTaskProps";
-import WarPageAnsweringTimeout from "./WarPageAnsweringTimeout";
-import WarPageChoosingWhoAnswer from "./WarPageChoosingWhoAnswer";
+import RivalPageIntro from "./RivalPageIntro";
+import RivalPageAnswering from "./RivalPageAnswering";
+import RivalPagePreparingNextTask from "./RivalPagePreparingNextTask";
+import RivalPageAnswered from "./RivalPageAnswered";
+import RivalPageClosed from "./RivalPageClosed";
+import RivalPageChoosingTaskProps from "./RivalPageChoosingTaskProps";
+import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
+import RivalPageChoosingWhoAnswer from "./RivalPageChoosingWhoAnswer";
 import MeshBackground, {MESH_4} from "../../../../component/background/MeshBackground";
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
@@ -22,7 +22,7 @@ import {
     RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK
 } from "../../../../util/rivalHelper";
 
-class WarPage extends React.PureComponent {
+class RivalPage extends React.PureComponent {
 
     renderContent() {
         const {content, communication} = this.props;
@@ -31,28 +31,28 @@ class WarPage extends React.PureComponent {
         }
         const {status} = content;
         if (status === RIVAL_CONTENT_STATUS_INTRO) {
-            return <WarPageIntro/>
+            return <RivalPageIntro/>
         }
         if (status === RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK || status === RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS) {
-            return <WarPagePreparingNextTask/>
+            return <RivalPagePreparingNextTask/>
         }
         if (status === RIVAL_CONTENT_STATUS_ANSWERING) {
-            return <WarPageAnswering communication={communication}/>
+            return <RivalPageAnswering communication={communication}/>
         }
         if (status === RIVAL_CONTENT_STATUS_ANSWERED) {
-            return <WarPageAnswered/>
+            return <RivalPageAnswered/>
         }
         if (status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
-            return <WarPageAnsweringTimeout/>
+            return <RivalPageAnsweringTimeout/>
         }
         if (status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS) {
-            return <WarPageChoosingTaskProps communication={communication}/>
+            return <RivalPageChoosingTaskProps communication={communication}/>
         }
         if (status === RIVAL_CONTENT_STATUS_CHOOSING_WHO_ANSWER) {
-            return <WarPageChoosingWhoAnswer communication={communication}/>
+            return <RivalPageChoosingWhoAnswer communication={communication}/>
         }
         if (status === RIVAL_CONTENT_STATUS_CLOSED) {
-            return <WarPageClosed/>
+            return <RivalPageClosed/>
         }
         return <div className='pageContent'>
         </div>;
@@ -77,4 +77,4 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({})
-)(WarPage);
+)(RivalPage);

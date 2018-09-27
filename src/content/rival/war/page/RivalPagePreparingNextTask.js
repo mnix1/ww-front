@@ -7,15 +7,16 @@ import TaskDescription from "../../component/TaskDescription";
 import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 
-class WarPagePreparingNextTask extends React.PureComponent {
+class RivalPagePreparingNextTask extends React.PureComponent {
     render() {
-        const {content} = this.props;
+        const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPagePreparingNextTask'>
             <TaskDescription
                 content={content}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
+                small={screen.isSmallHeight}
                 className='justifyCenter flexColumn pageHeader'
             />
             <div className='pageHeader'>
@@ -35,4 +36,4 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({})
-)(WarPagePreparingNextTask);
+)(RivalPagePreparingNextTask);

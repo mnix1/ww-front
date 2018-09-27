@@ -13,7 +13,7 @@ import Teams from "../../component/Teams";
 import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 
-class WarPageChoosingTaskProps extends React.PureComponent {
+class RivalPageChoosingTaskProps extends React.PureComponent {
 
     renderOpponentChoosing() {
         const {content, screen} = this.props;
@@ -88,4 +88,4 @@ export default connect(
             isChosenDifficulty: accept,
         }))
     })
-)(WarPageChoosingTaskProps);
+)(RivalPageChoosingTaskProps);

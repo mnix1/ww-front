@@ -8,7 +8,7 @@ import ActiveMembers from "../../component/ActiveMembers";
 import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 
-class WarPageAnsweringTimeout extends React.PureComponent {
+class RivalPageAnsweringTimeout extends React.PureComponent {
 
     renderNoAnswer() {
         const {content, screen} = this.props;
@@ -47,4 +47,4 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({})
-)(WarPageAnsweringTimeout);
+)(RivalPageAnsweringTimeout);

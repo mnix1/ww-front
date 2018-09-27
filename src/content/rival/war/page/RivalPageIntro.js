@@ -6,7 +6,7 @@ import Teams from "../../component/Teams";
 import {isRanking, renderBattleElo, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WELCOME_MSG} from "../../../../util/rivalHelper";
 import Profile from "../../../../component/profile/Profile";
 
-class WarPageIntro extends React.PureComponent {
+class RivalPageIntro extends React.PureComponent {
 
     renderProfilesBig() {
         const {screen, content} = this.props;
@@ -44,4 +44,4 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({})
-)(WarPageIntro);
+)(RivalPageIntro);

@@ -12,7 +12,8 @@ import Team from "../../component/Team";
 import {
     getElo,
     getEloProp,
-    RIVAL_IMPORTANCE_RANKING, RIVAL_TYPE_BATTLE,
+    RIVAL_IMPORTANCE_RANKING,
+    RIVAL_TYPE_BATTLE,
     RIVAL_TYPE_CHALLENGE,
     RIVAL_TYPE_FAREWELL_MSG
 } from "../../../../util/rivalHelper";
@@ -24,7 +25,7 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/B
 import {goBack} from "connected-react-router";
 import Profile from "../../../../component/profile/Profile";
 
-class WarPageClosed extends React.PureComponent {
+class RivalPageClosed extends React.PureComponent {
 
     renderContent() {
         const {content, screen} = this.props;
@@ -68,7 +69,8 @@ class WarPageClosed extends React.PureComponent {
                 {`${getText(TEXT_THE_WINNER_IS)}:`}
             </div>
             <div className='pageHeader'>
-                {battle && <Profile imgHeight={screen.wisieImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
+                {battle && <Profile
+                    imgHeight={screen.wisieImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
                 {!battle && <Team {...meWinner
                     ? {presentIndexes: content.presentIndexes, team: content.team}
                     : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam}}/>}
@@ -137,4 +139,4 @@ export default connect(
     (dispatch) => ({
         onExitClick: () => dispatch(goBack())
     })
-)(WarPageClosed);
+)(RivalPageClosed);

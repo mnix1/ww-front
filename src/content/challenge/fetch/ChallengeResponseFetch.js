@@ -15,7 +15,7 @@ class ChallengeResponseFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {challengeResponseFetch, dispatch, status} = this.props;
+        const {challengeResponseFetch, dispatch} = this.props;
         if (repFulfilled(challengeResponseFetch)) {
             dispatch(responseIdChanged(undefined));
             clearCampaignResponseFetch(dispatch);

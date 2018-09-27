@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_ACCEPT, TEXT_CHOOSE_WHO_ANSWER, TEXT_TIME} from "../../../../lang/langText";
+import {getText, TEXT_CHOOSE_WHO_ANSWER, TEXT_TIME} from "../../../../lang/langText";
 import Team from "../../component/Team";
 import {rivalInProgressContent} from "../../../../redux/reducer/rival";
 import TaskDescription from "../../component/TaskDescription";
-import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import _ from 'lodash';
 import Timer from "../../../../component/timer/Timer";
 import cn from 'classnames';
 
-class WarPageChoosingWhoAnswer extends React.PureComponent {
+class RivalPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
         const {content, communication, onTeamClick} = this.props;
@@ -58,4 +57,4 @@ export default connect(
             dispatch(rivalInProgressContent({activeIndex: index, isChosenActiveIndex: true}))
         }
     })
-)(WarPageChoosingWhoAnswer);
+)(RivalPageChoosingWhoAnswer);

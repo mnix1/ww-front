@@ -4,7 +4,7 @@ import {push} from "connected-react-router";
 import {optionShowChanged} from "../../redux/reducer/option";
 import {INTRO_STEP_GO_TO_OPTIONS} from "../../content/intro/introHelper";
 import {SETTINGS_ROUTE} from "../../content/routes";
-import {RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
+import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
 import {getSurrenderMsg} from "../option/Option";
 import _ from "lodash";
 import {FaCogs} from "react-icons/fa";
@@ -12,7 +12,7 @@ import {FaCogs} from "react-icons/fa";
 class ShowOption extends React.PureComponent {
     render() {
         const {onOptionShowChange, onRouteChange, screen, path, rivalStatus} = this.props;
-        if (path === SETTINGS_ROUTE || (rivalStatus === RIVAL_STATUS_IN_PROGRESS && screen.isSmallHeight)) {
+        if (path === SETTINGS_ROUTE || ((rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight)) {
             return null;
         }
         const imgHeight = screen.isSmallHeight ? 30 : 40;

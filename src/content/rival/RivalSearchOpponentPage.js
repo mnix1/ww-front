@@ -69,6 +69,7 @@ export default connect(
     (dispatch) => ({
         goToMainScreen: () => {
             dispatch(push(APP_ROUTE));
+            dispatch(statusChanged(undefined));
         },
         onCancel: (withMoveToPlay = true) => {
             clearRivalStartRandomOpponentFetch(dispatch);

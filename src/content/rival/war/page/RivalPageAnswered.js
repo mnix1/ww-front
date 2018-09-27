@@ -13,7 +13,7 @@ import {Anime} from "../../../../component/anime/Anime";
 import Profiles from "../../component/Profiles";
 import Profile from "../../../../component/profile/Profile";
 
-class WarPageAnswered extends React.PureComponent {
+class RivalPageAnswered extends React.PureComponent {
 
     get isCorrectAnswer() {
         const {content} = this.props;
@@ -143,4 +143,4 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({})
-)(WarPageAnswered);
+)(RivalPageAnswered);

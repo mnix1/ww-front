@@ -1,8 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {socketChanged} from "../../redux/reducer/socket";
 import {ConnectedRouter, push} from "connected-react-router";
-import {optionShowChanged} from "../../redux/reducer/option";
 import TopBar from "../top-bar/TopBar";
 import {
     APP_ROUTE,
@@ -47,7 +45,7 @@ import ShopPage from "../../content/shop/ShopPage";
 import PlayWarPage from "../../content/play/PlayWarPage";
 import PlayBattlePage from "../../content/play/PlayBattlePage";
 import PlayChallengePage from "../../content/play/PlayChallengePage";
-import WarPage from "../../content/rival/war/page/WarPage";
+import RivalPage from "../../content/rival/war/page/RivalPage";
 import RivalSearchOpponentPage from "../../content/rival/RivalSearchOpponentPage";
 import PractisePage from "../../content/practise/PractisePage";
 import CampaignPage from "../../content/campaign/CampaignPage";
@@ -58,7 +56,7 @@ import ChallengeHistoryPage from "../../content/challenge/list/ChallengeHistoryP
 import ClassificationPage from "../../content/rival/classification/ClassificationPage";
 import SettingsPage from "../../content/settings/SettingsPage";
 import LoginPage from "../auth/LoginPage";
-import {RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
+import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
@@ -110,22 +108,21 @@ class Page extends React.PureComponent {
                 <Route exact path={PLAY_BATTLE_ROUTE} render={() => <PlayBattlePage/>}/>
                 <Route exact path={PLAY_CHALLENGE_ROUTE} render={() => <PlayChallengePage/>}/>
 
-                <Route exact path={WAR_ROUTE} render={() => <WarPage communication={communication}/>}/>
+                <Route exact path={WAR_ROUTE} render={() => <RivalPage communication={communication}/>}/>
                 <Route exact path={WAR_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={WAR_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={BATTLE_ROUTE} render={() => <WarPage communication={communication}/>}/>
+                <Route exact path={BATTLE_ROUTE} render={() => <RivalPage communication={communication}/>}/>
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={CAMPAIGN_WAR_ROUTE}
-                       render={() => <WarPage communication={communication}/>}/>
+                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <RivalPage communication={communication}/>}/>
                 <Route path={CAMPAIGN_ROUTE} render={() => <CampaignPage/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
 
                 <Route exact path={CHALLENGE_FRIEND_INIT_ROUTE} render={() => <ChallengeFriendInit/>}/>
-                <Route exact path={CHALLENGE_ROUTE} render={() => <WarPage communication={communication}/>}/>
+                <Route exact path={CHALLENGE_ROUTE} render={() => <RivalPage communication={communication}/>}/>
 
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
@@ -144,11 +141,12 @@ class Page extends React.PureComponent {
     render() {
         const {screen, rivalStatus} = this.props;
         const {height, width: screenWidth, contentWidth} = screen;
-        const width = rivalStatus === RIVAL_STATUS_IN_PROGRESS && screen.isSmallHeight
+        const fullScreen = (rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight;
+        const width = fullScreen
             ? screenWidth
             : contentWidth;
         return <div style={{height, width}} className='content'>
-            <TopBar/>
+            {!fullScreen && <TopBar/>}
             {this.renderContent()}
         </div>
     }
@@ -158,28 +156,14 @@ export default connect(
     (state) => ({
         path: state.router.location.pathname,
         screen: state.screen,
-        signedIn: state.profile.signedIn,
         profile: state.profile.profile,
-        socket: state.socket.socket,
-        socketOpen: state.socket.open,
         lang: state.language.lang,
-        enable: state.intro.enable,
         rivalStatus: state.rival.status,
-        rivalType: state.rival.rivalType,
-
-        friendListRep: state.repository.friendList,
-        testSignInRep: state.repository.testSignIn,
-        profileRep: state.repository.profile,
     }),
     (dispatch) => ({
         onRouteChange: (e) => {
             dispatch(push(e));
         },
-        onInit: (socket) => {
-            socket.setDispatch(dispatch);
-            dispatch(socketChanged(socket));
-        },
-        onOptionShowChange: () => dispatch(optionShowChanged(true))
     })
 )(Page);
 

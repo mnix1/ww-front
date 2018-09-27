@@ -13,8 +13,17 @@ import WisieListPage from "../wisie/WisieListPage";
 import {campaignInitChanged} from "../../redux/reducer/campaign";
 import _ from 'lodash';
 import CampaignActivePage from "./CampaignActivePage";
+import {RIVAL_STATUS_CLOSED} from "../../util/rivalHelper";
+import {statusChanged} from "../../redux/reducer/rival";
 
 class CampaignPage extends React.PureComponent {
+
+    componentDidMount() {
+        const {rivalStatus, onStatusChange} = this.props;
+        if (rivalStatus === RIVAL_STATUS_CLOSED) {
+            onStatusChange();
+        }
+    }
 
     renderContent() {
         const {campaignActiveRep, campaignListRep} = this.props;
@@ -59,11 +68,13 @@ class CampaignPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        rivalStatus: state.rival.status,
         path: state.router.location.pathname,
         campaignListRep: state.repository.campaignList,
         campaignActiveRep: state.repository.campaignActive,
     }),
     (dispatch) => ({
+        onStatusChange: () => dispatch(statusChanged(undefined)),
         onCampaignInitChange: (init) => dispatch(campaignInitChanged(init))
     })
 )(CampaignPage);

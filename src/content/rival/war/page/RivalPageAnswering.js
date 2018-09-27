@@ -15,7 +15,7 @@ import {remToPixels} from "../../../../util/fontHelper";
 import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 
-class WarPageAnswering extends React.PureComponent {
+class RivalPageAnswering extends React.PureComponent {
 
     get imgHeight() {
         const {screen, imgHeight} = this.props;
@@ -139,4 +139,4 @@ export default connect(
         onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
         onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))
     })
-)(WarPageAnswering);
+)(RivalPageAnswering);
