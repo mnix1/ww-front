@@ -121,7 +121,7 @@ class RivalPageAnswered extends React.PureComponent {
     render() {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
-        return <div className='pageContent warPageAnswered'>
+        return <div key='answered' className='pageContent warPageAnswered'>
             {battle && this.renderWhoAnsweredBattle()}
             <TaskDescription
                 content={content}

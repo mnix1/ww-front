@@ -12,11 +12,36 @@ import Profile from "../../../../component/profile/Profile";
 import WisieActions from "../../../../component/wisie/WisieActions";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
-import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
+import {
+    RIVAL_CONTENT_STATUS_ANSWERED,
+    RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT,
+    RIVAL_TYPE_BATTLE
+} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 import {rivalScreen} from "../../../../util/screenHelper";
+import RivalPageAnswered from "./RivalPageAnswered";
+import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 
 class RivalPageAnswering extends React.PureComponent {
+
+    state = {component: undefined};
+
+    componentDidMount() {
+        if (this.props.content.status === RIVAL_CONTENT_STATUS_ANSWERING) {
+            this.setState({component: 0});
+        }
+    }
+
+    componentDidUpdate() {
+        const status = this.props.content.status;
+        if (this.state.component === 0 && status !== RIVAL_CONTENT_STATUS_ANSWERING) {
+            const component = status === RIVAL_CONTENT_STATUS_ANSWERED ? 2 : status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT ? 3 : 0;
+            this.setState({component: 1});
+            setTimeout(() => {
+                this.setState({component});
+            }, 500)
+        }
+    }
 
     get imgHeight() {
         const {screen, imgHeight} = this.props;
@@ -108,10 +133,11 @@ class RivalPageAnswering extends React.PureComponent {
         return isMyWisieAnswering ? this.renderTaskNotActive(activeMember) : this.renderTaskActive();
     }
 
-    render() {
+    renderAnswering() {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
-        return <div className='pageContent warPageAnswering'>
+        return <div
+            className={`pageContent warPageAnswering ${content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : ''}`}>
             <TaskDescription
                 content={content}
                 renderTaskPoints={battle}
@@ -124,6 +150,18 @@ class RivalPageAnswering extends React.PureComponent {
             </TaskDescription>
             {this.renderContent()}
         </div>;
+    }
+
+    render() {
+        const {component} = this.state;
+        const {content} = this.props;
+        if (component === 2 || component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERED) {
+            return <RivalPageAnswered/>;
+        }
+        if (component === 3 || component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
+            return <RivalPageAnsweringTimeout/>
+        }
+        return this.renderAnswering();
     }
 }
 

@@ -36,14 +36,8 @@ class RivalPage extends React.PureComponent {
         if (status === RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK || status === RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS) {
             return <RivalPagePreparingNextTask/>
         }
-        if (status === RIVAL_CONTENT_STATUS_ANSWERING) {
+        if (status === RIVAL_CONTENT_STATUS_ANSWERING || status === RIVAL_CONTENT_STATUS_ANSWERED || status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
             return <RivalPageAnswering communication={communication}/>
-        }
-        if (status === RIVAL_CONTENT_STATUS_ANSWERED) {
-            return <RivalPageAnswered/>
-        }
-        if (status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
-            return <RivalPageAnsweringTimeout/>
         }
         if (status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS) {
             return <RivalPageChoosingTaskProps communication={communication}/>
