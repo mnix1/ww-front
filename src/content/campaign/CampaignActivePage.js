@@ -5,7 +5,7 @@ import {getCampaignLabel} from "../../lang/langCampaign";
 import {
     getText,
     TEXT_CLAIM_AND_EXIT,
-    TEXT_EXIT,
+    TEXT_EXIT, TEXT_GUARANTEED_REWARD, TEXT_NO_REWARD,
     TEXT_START,
     TEXT_YOUR_REWARD,
     TEXT_YOUR_TEAM
@@ -31,6 +31,8 @@ import Crystal from "../../component/resource/Crystal";
 import Wisdom from "../../component/resource/Wisdom";
 import Elixir from "../../component/resource/Elixir";
 import {getBook} from "../../util/bookHelper";
+import goldEgg from "../../media/image/icon/goldEgg.svg";
+import silverEgg from "../../media/image/icon/silverEgg.svg";
 
 class CampaignActivePage extends React.PureComponent {
 
@@ -42,13 +44,17 @@ class CampaignActivePage extends React.PureComponent {
     }
 
     renderPhase(e) {
-        const {phase, type, destination} = this.props.campaignActiveRep.value;
+        const {phase, phases, type, destination} = this.props.campaignActiveRep.value;
         const active = phase === e;
         const disabled = phase < e;
         const done = phase > e;
-        const className = cn('relative marginRem paddingRem boxShadow', {active, disabled});
+        const className = cn('relative marginRem paddingRem boxShadow flexColumn justifyCenter', {active, disabled});
         return <div key={e} className={className}>
-            <div>{getCampaignLabel(type, destination, e)}</div>
+            <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>{getCampaignLabel(type, destination, e)}</div>
+                {e === phases - 1 && <img className='paddingLeftRem' height={30} src={goldEgg}/>}
+                {e === phases / 2 - 1 && <img className='paddingLeftRem' height={30} src={silverEgg}/>}
+            </div>
             {done && <div className='absoluteBackgroundMix opacity1 zIndex1'>
                 <img alt='' src={check} className='height100 width100'/>
             </div>}
@@ -74,10 +80,12 @@ class CampaignActivePage extends React.PureComponent {
         const {onEndClick} = this.props;
         const {status, rewardNotEmpty} = this.props.campaignActiveRep.value;
         if (status !== 'FINISHED') {
-            return null;
+            return <div className='justifyCenter'>
+                {this.renderReward(false)}
+            </div>;
         }
         return <div className='justifyCenter'>
-            {this.renderReward()}
+            {this.renderReward(true)}
             <div className='flexColumn justifyCenter'>
                 <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onEndClick}
                         icon={<IoMdExit/>}>{getText(rewardNotEmpty ? TEXT_CLAIM_AND_EXIT : TEXT_EXIT)}</Button>
@@ -85,16 +93,24 @@ class CampaignActivePage extends React.PureComponent {
         </div>
     }
 
-    renderReward() {
+    renderReward(finished) {
         const {bookGain, goldGain, crystalGain, wisdomGain, elixirGain, rewardNotEmpty} = this.props.campaignActiveRep.value;
+        if (finished && !rewardNotEmpty) {
+            return <div className='justifyCenter flexColumn paddingRightRem'>
+                <div className='justifyCenter'>{getText(TEXT_NO_REWARD)}</div>
+            </div>
+        }
         return rewardNotEmpty && <div className='justifyCenter flexColumn paddingRightRem'>
-            <div className='justifyCenter'>{getText(TEXT_YOUR_REWARD)}</div>
-            <div className='justifyCenter paddingRem boxShadow marginRem'>
-                {goldGain > 0 && <Gold className='justifyCenter flexColumn'>{goldGain}</Gold>}
-                {crystalGain > 0 && <Crystal className='justifyCenter flexColumn'>{crystalGain}</Crystal>}
-                {wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{wisdomGain}</Wisdom>}
-                {elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{elixirGain}</Elixir>}
-                {bookGain && <div className='justifyCenter flexColumn'><img alt='' src={getBook(bookGain)} height={80}/></div>}
+            <div className='justifyCenter'>{getText(finished ? TEXT_YOUR_REWARD : TEXT_GUARANTEED_REWARD)}</div>
+            <div className='justifyCenter'>
+                <div className='justifyCenter paddingRem boxShadow marginRem'>
+                    {goldGain > 0 && <Gold className='justifyCenter flexColumn'>{goldGain}</Gold>}
+                    {crystalGain > 0 && <Crystal className='justifyCenter flexColumn'>{crystalGain}</Crystal>}
+                    {wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{wisdomGain}</Wisdom>}
+                    {elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{elixirGain}</Elixir>}
+                    {bookGain &&
+                    <div className='justifyCenter flexColumn'><img alt='' src={getBook(bookGain)} height={80}/></div>}
+                </div>
             </div>
         </div>
     }
