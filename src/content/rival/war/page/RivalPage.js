@@ -4,10 +4,8 @@ import './styles.css';
 import RivalPageIntro from "./RivalPageIntro";
 import RivalPageAnswering from "./RivalPageAnswering";
 import RivalPagePreparingNextTask from "./RivalPagePreparingNextTask";
-import RivalPageAnswered from "./RivalPageAnswered";
 import RivalPageClosed from "./RivalPageClosed";
 import RivalPageChoosingTaskProps from "./RivalPageChoosingTaskProps";
-import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 import RivalPageChoosingWhoAnswer from "./RivalPageChoosingWhoAnswer";
 import MeshBackground, {MESH_4} from "../../../../component/background/MeshBackground";
 import {

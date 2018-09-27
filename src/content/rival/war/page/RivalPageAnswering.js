@@ -53,8 +53,10 @@ class RivalPageAnswering extends React.PureComponent {
 
     renderTask() {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
-        const {task, correctAnswerId} = content;
+        const {task, type, correctAnswerId} = content;
+        const battle = type === RIVAL_TYPE_BATTLE;
         return <Task
+            className={battle ? this.addTransitionClass : ''}
             screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
             skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
             onSkipAnimationChange={() => {
@@ -133,17 +135,22 @@ class RivalPageAnswering extends React.PureComponent {
         return isMyWisieAnswering ? this.renderTaskNotActive(activeMember) : this.renderTaskActive();
     }
 
+    get addTransitionClass() {
+        const {content} = this.props;
+        return content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
+    }
+
     renderAnswering() {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div
-            className={`pageContent warPageAnswering ${content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : ''}`}>
+            className={`pageContent warPageAnswering ${!battle ? this.addTransitionClass : ''}`}>
             <TaskDescription
                 content={content}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
                 small={screen.isSmallHeight}
-                className='justifyCenter flexColumn pageHeader'
+                className={`justifyCenter flexColumn pageHeader ${battle ? this.addTransitionClass : ''}`}
             >
                 <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/>
                 </div>
@@ -155,10 +162,10 @@ class RivalPageAnswering extends React.PureComponent {
     render() {
         const {component} = this.state;
         const {content} = this.props;
-        if (component === 2 || component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERED) {
+        if (component === 2 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERED)) {
             return <RivalPageAnswered/>;
         }
-        if (component === 3 || component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
+        if (component === 3 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT)) {
             return <RivalPageAnsweringTimeout/>
         }
         return this.renderAnswering();

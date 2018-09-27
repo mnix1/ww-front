@@ -87,7 +87,7 @@
 
 .warPage .whoAnswered .wrongAnswer {
     opacity: 1;
-    animation: fadeouthalf 1s 3s;
+    animation: fadeouthalf 1s 2.5s;
     animation-fill-mode: forwards;
 }
 
@@ -111,12 +111,12 @@
 
 .warPage .warTaskDescription {
     opacity: 0;
-    animation: fadein 0.5s 5s;
+    animation: fadein 0.5s 4.5s;
     animation-fill-mode: forwards;
 }
 
 .warPage .taskWithAnswer {
     opacity: 0;
-    animation: fadein 0.5s 5s;
+    animation: fadein 0.5s 4.5s;
     animation-fill-mode: forwards;
 }

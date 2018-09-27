@@ -109,8 +109,8 @@ class RivalPageAnswered extends React.PureComponent {
                 profile: content.profile
             }}
             to={{
-                score: {value: content.newScore, duration: 1500, delay: 5000},
-                opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 5000}
+                score: {value: content.newScore, duration: 1500, delay: 4500},
+                opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 4500}
             }}>
             <Profiles content={content} className={'absolute'} screen={screen}
                       scoreColor={scoreColor}

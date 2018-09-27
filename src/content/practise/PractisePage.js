@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './styles.css';
 import _ from 'lodash';
 import {connect} from 'react-redux';
 import {
@@ -11,18 +10,9 @@ import {
 import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
-import {
-    getText,
-    TEXT_CHOOSE_CATEGORY,
-    TEXT_CHOOSE_DIFFICULT,
-    TEXT_CORRECT_ANSWER,
-    TEXT_NEXT,
-    TEXT_QUESTION,
-    TEXT_WRONG_ANSWER
-} from "../../lang/langText";
+import {getText, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_NEXT, TEXT_QUESTION} from "../../lang/langText";
 import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
-import {prepareAnswerIntervalMessage} from "../../util/textHelper";
 import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
 import {TRAINING_ROUTE, TRAINING_TASK_ROUTE} from "../routes";
