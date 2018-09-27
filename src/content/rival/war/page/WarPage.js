@@ -60,8 +60,12 @@ class WarPage extends React.PureComponent {
 
     render() {
         const {screen} = this.props;
-        return <div className='page warPage' style={{height: screen.contentHeight}}>
-            <MeshBackground mesh={MESH_4}/>
+        const style = {
+            height: screen.isSmallHeight ? screen.height : screen.contentHeight,
+            width: screen.isSmallHeight ? screen.width : screen.contentWidth,
+        };
+        return <div className='page warPage overflowHidden' style={style}>
+            <MeshBackground mesh={MESH_4} fullScreen={screen.isSmallHeight}/>
             {this.renderContent()}
         </div>
     }

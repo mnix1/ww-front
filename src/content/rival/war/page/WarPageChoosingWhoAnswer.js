@@ -12,7 +12,7 @@ import cn from 'classnames';
 class WarPageChoosingWhoAnswer extends React.PureComponent {
 
     renderTeamBig() {
-        const {content, communication, rivalType, onTeamClick, onTeamAcceptClick} = this.props;
+        const {content, communication, onTeamClick} = this.props;
         const chosen = content.isChosenActiveIndex;
         const className = cn('justifyCenter overflowHidden width100', {
             disabled: chosen
@@ -23,18 +23,10 @@ class WarPageChoosingWhoAnswer extends React.PureComponent {
                 className={className}
                 contentClassName='overflowXAuto justifyStart'
                 memberClassName={chosen ? '' : 'pointer'}
-                onClick={chosen ? _.noop : onTeamClick}
+                onClick={chosen ? _.noop : (i) => onTeamClick(i, communication, content.type)}
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
                 team={content.team}/>
-            <div className='justifyCenter marginRem'>
-                <Button className={chosen ? 'disabled' : ''} onClick={chosen
-                    ? _.noop
-                    : () => {
-                        communication.sendWhoAnswer(rivalType, content.activeIndex);
-                        onTeamAcceptClick(true);
-                    }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
-            </div>
         </div>;
     }
 
@@ -59,10 +51,11 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
-        rivalType: state.rival.rivalType,
     }),
     (dispatch) => ({
-        onTeamClick: (index) => dispatch(rivalInProgressContent({activeIndex: index})),
-        onTeamAcceptClick: (accept) => dispatch(rivalInProgressContent({isChosenActiveIndex: accept}))
+        onTeamClick: (index, communication, rivalType) => {
+            communication.sendWhoAnswer(rivalType, index);
+            dispatch(rivalInProgressContent({activeIndex: index, isChosenActiveIndex: true}))
+        }
     })
 )(WarPageChoosingWhoAnswer);

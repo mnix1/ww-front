@@ -12,7 +12,7 @@ import Team from "../../component/Team";
 import {
     getElo,
     getEloProp,
-    RIVAL_IMPORTANCE_RANKING,
+    RIVAL_IMPORTANCE_RANKING, RIVAL_TYPE_BATTLE,
     RIVAL_TYPE_CHALLENGE,
     RIVAL_TYPE_FAREWELL_MSG
 } from "../../../../util/rivalHelper";
@@ -22,14 +22,17 @@ import Profiles from "../../component/Profiles";
 import {Anime} from "../../../../component/anime/Anime";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import {goBack} from "connected-react-router";
+import Profile from "../../../../component/profile/Profile";
 
 class WarPageClosed extends React.PureComponent {
 
     renderContent() {
-        const {content} = this.props;
+        const {content, screen} = this.props;
         const {winnerTag, isDraw, resigned, profile} = content;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
+        const challenge = content.type === RIVAL_TYPE_CHALLENGE;
         if (isDraw) {
-            if (content.type === RIVAL_TYPE_CHALLENGE) {
+            if (challenge) {
                 const props = {presentIndexes: content.presentIndexes, team: content.team};
                 return <div className='justifyCenter flexColumn'>
                     <div className='pageHeader'>
@@ -50,9 +53,6 @@ class WarPageClosed extends React.PureComponent {
             </div>;
         }
         const meWinner = winnerTag === profile.tag;
-        const winnerProps = meWinner
-            ? {presentIndexes: content.presentIndexes, team: content.team}
-            : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam};
         return <div className='justifyCenter flexColumn'>
             {resigned && meWinner && <div className='pageHeader'>
                 {getText(TEXT_OPPONENT_SURRENDER)}
@@ -68,7 +68,10 @@ class WarPageClosed extends React.PureComponent {
                 {`${getText(TEXT_THE_WINNER_IS)}:`}
             </div>
             <div className='pageHeader'>
-                <Team {...winnerProps}/>
+                {battle && <Profile imgHeight={screen.wisieImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
+                {!battle && <Team {...meWinner
+                    ? {presentIndexes: content.presentIndexes, team: content.team}
+                    : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam}}/>}
             </div>
         </div>;
     }

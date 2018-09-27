@@ -57,6 +57,12 @@
     animation-fill-mode: forwards;
 }
 
+.warPage .warPageIntro .profilesBig {
+    opacity: 0;
+    animation: fadein 0.5s 1s, fadeout 0.5s 3s;
+    animation-fill-mode: forwards;
+}
+
 .warPage .warPageIntro .task {
     opacity: 0;
     animation: fadein 0.5s 0s, fadeout 0.5s 9s;

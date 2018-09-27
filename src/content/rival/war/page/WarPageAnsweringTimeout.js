@@ -5,29 +5,36 @@ import {getText, TEXT_NO_ANSWER} from "../../../../lang/langText";
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import ActiveMembers from "../../component/ActiveMembers";
+import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
+import Profiles from "../../component/Profiles";
 
 class WarPageAnsweringTimeout extends React.PureComponent {
 
     renderNoAnswer() {
-        const {content} = this.props;
+        const {content, screen} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageCenterVertical'>
-                <ActiveMembers content={content} className={content.opponent ? 'justifyBetween' : 'justifyCenter'} memberClassName='wrongAnswer'/>
+                {!battle &&
+                <ActiveMembers content={content} className={content.opponent ? 'justifyBetween' : 'justifyCenter'}
+                               memberClassName='wrongAnswer'/>}
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
-                <img alt='' src={thumbDown} height={60}/>
+                <img alt='' src={thumbDown} height={screen.wisieImgHeight}/>
             </div>
         </div>
     }
 
     render() {
         const {content} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageAnsweringTimeout'>
             <TaskDescription
                 content={content}
-                renderTaskPoints={false}
-                renderTaskCount={false}
+                renderTaskPoints={battle}
+                renderTaskCount={battle}
                 className='justifyCenter flexColumn contentHeader warTaskDescription'
             />
+            {battle && <Profiles content={content} className='absolute'/>}
             {this.renderNoAnswer()}
             <TaskMarkedAnswer content={content}/>
         </div>;

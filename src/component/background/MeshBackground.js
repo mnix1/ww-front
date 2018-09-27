@@ -17,16 +17,25 @@ class MeshBackground extends React.PureComponent {
     static propTypes = {
         mesh: PropTypes.string,
         screen: PropTypes.object,
+        fullScreen: PropTypes.bool,
     };
     static defaultProps = {
         mesh: MESH_2,
+        fullScreen: false,
     };
 
     render() {
-        const {screen, mesh} = this.props;
+        const {screen, mesh, fullScreen} = this.props;
+        const style = {
+            objectFit: 'cover',
+            height: fullScreen ? screen.height : screen.contentHeight,
+            width: fullScreen ? screen.width : screen.contentWidth
+        };
         return <div className='absoluteBackgroundMix' style={{opacity: 1}}>
-            <img alt='' className='borderRadiusRem' style={{objectFit: 'cover'}} src={MESHES[mesh]} height={screen.contentHeight}
-                 width={screen.contentWidth}/>
+            <img alt='' className={fullScreen ? '' : 'borderRadiusRem'}
+                 style={style}
+                 src={MESHES[mesh]}
+            />
         </div>
     }
 }

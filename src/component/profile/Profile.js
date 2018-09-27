@@ -92,7 +92,7 @@ export default class Profile extends React.PureComponent {
     }
 
     renderContent() {
-        return <div className='relative profile justifyBetween'>
+        return <div className='relative profile justifyCenter'>
             {this.renderDetails()}
             {this.renderActions()}
         </div>;

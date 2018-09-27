@@ -4,16 +4,18 @@ import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/langText";
 import Timer from "../../../../component/timer/Timer";
 import ActiveMembers from "../../component/ActiveMembers";
 import TaskDescription from "../../component/TaskDescription";
+import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
+import Profiles from "../../component/Profiles";
 
 class WarPagePreparingNextTask extends React.PureComponent {
-
     render() {
         const {content} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPagePreparingNextTask'>
             <TaskDescription
                 content={content}
-                renderTaskPoints={false}
-                renderTaskCount={false}
+                renderTaskPoints={battle}
+                renderTaskCount={battle}
                 className='justifyCenter flexColumn pageHeader'
             />
             <div className='pageHeader'>
@@ -22,7 +24,7 @@ class WarPagePreparingNextTask extends React.PureComponent {
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>
-            <ActiveMembers content={content}/>
+            {battle ? <Profiles content={content} className='absolute'/> : <ActiveMembers content={content}/>}
         </div>;
     }
 }

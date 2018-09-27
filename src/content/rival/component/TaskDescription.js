@@ -10,29 +10,34 @@ export default class TaskDescription extends React.PureComponent {
 
     static defaultProps = {
         renderTaskCount: true,
-        renderTaskPoints: true
+        renderTaskPoints: true,
+        small: false
     };
 
     render() {
-        const {content, className, children, taskId, renderTaskCount, renderTaskPoints} = this.props;
+        const {content, className, children, taskId, renderTaskCount, renderTaskPoints, small} = this.props;
         let {task} = content;
         if (!task) {
             task = {};
         }
         const taskCount = renderTaskCount ? `/${content.taskCount}` : '';
-        return <div className={`${className}`}>
-            <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>
-            {task.category && <div>{`${getText(TEXT_CATEGORY)}: ${getCategoryLabel(task.category)} `}
+        const taskNumber = <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>;
+        const taskCategory = task.category &&
+            <div>{small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
                 <img alt='' key={task.category} height={14}
                      src={getCategory(task.category)}/>
+            </div>;
+        const taskDifficulty = task.difficultyLevel && <div className='justifyCenter'>
+            {!small && <div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT)}:`}</div>}
+            &nbsp;<Rating valueString={task.difficultyLevel}/>&nbsp;
+            {renderTaskPoints && <div className='justifyCenter flexColumn'>
+                {prepareRatingPointsMessage(task.points)}
             </div>}
-            {task.difficultyLevel && <div className='justifyCenter'>
-                <div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT)}:`}</div>
-                &nbsp;<Rating valueString={task.difficultyLevel}/>&nbsp;
-                {renderTaskPoints && <div className='justifyCenter flexColumn'>
-                    {prepareRatingPointsMessage(task.points)}
-                </div>}
-            </div>}
+        </div>;
+        return <div className={`${className}`}>
+            {taskNumber}
+            {taskCategory}
+            {taskDifficulty}
             {children}
         </div>
     }

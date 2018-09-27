@@ -14,7 +14,7 @@ class Teams extends React.PureComponent {
             return this.renderAbsolute();
         }
         return <div>
-            <div className='pageHeader'>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
+            <div className='pageHeader'><div className='justifyCenter flexColumn'>{getText(TEXT_YOUR_TEAM)}</div>{this.renderElo(content.profile)}</div>
             <div className='pageHeader fontSize08Rem'>
                 <Team renderHobbies={true} team={content.team}
                       className='justifyCenter overflowHidden width100'
@@ -23,7 +23,7 @@ class Teams extends React.PureComponent {
             </div>
             <div className='justifyCenter'>{children}</div>
             {content.opponent &&
-            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>}
+            <div className='pageHeader'><div className='justifyCenter flexColumn'>{getText(TEXT_OPPONENT_TEAM)}</div>{this.renderElo(content.opponent)}</div>}
             {content.opponent && <div className='pageHeader fontSize08Rem'>
                 <Team renderHobbies={true} team={content.opponentTeam}
                       className='justifyCenter overflowHidden width100'
@@ -39,7 +39,7 @@ class Teams extends React.PureComponent {
         const imgHeight = (screen.contentHeight - 40) / 5 - remToPixels(3);
         return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
             <div className='marginLeftRem'>
-                <div className='justifyStart'>{getText(TEXT_YOUR_TEAM)}{this.renderElo(content.profile)}</div>
+                <div className='justifyStart'><div className='justifyCenter flexColumn'>{getText(TEXT_YOUR_TEAM)}</div>{this.renderElo(content.profile)}</div>
                 <div className='justifyStart'>
                     <Team
                         memberClassName='justifyCenter'
@@ -53,7 +53,7 @@ class Teams extends React.PureComponent {
                 </div>
             </div>
             {content.opponent && <div className='marginRightRem'>
-                <div className='justifyEnd'>{getText(TEXT_OPPONENT_TEAM)}{this.renderElo(content.opponent)}</div>
+                <div className='justifyEnd'><div className='justifyCenter flexColumn'>{getText(TEXT_OPPONENT_TEAM)}</div>{this.renderElo(content.opponent)}</div>
                 <div className='justifyEnd'>
                     <Team
                         memberClassName='justifyCenter'
@@ -74,10 +74,12 @@ class Teams extends React.PureComponent {
         if (!renderElo) {
             return null;
         }
-        return <div className='justifyCenter'>
-            <div className='justifyCenter flexColumn'>{getElo(profile, content.type)}</div>
-            <div className='justifyCenter flexColumn'>
-                <img className='paddingLeftRem' alt={getText(TEXT_POINTS)} src={trophy} height={20}/>
+        return <div className='justifyCenter flexColumn paddingLeftRem'>
+            <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>{getElo(profile, content.type)}</div>
+                <div className='justifyCenter flexColumn'>
+                    <img className='paddingLeftRem' alt={getText(TEXT_POINTS)} src={trophy} height={20}/>
+                </div>
             </div>
         </div>;
     }

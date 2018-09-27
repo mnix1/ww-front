@@ -12,6 +12,8 @@ import Profile from "../../../../component/profile/Profile";
 import WisieActions from "../../../../component/wisie/WisieActions";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
+import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
+import Profiles from "../../component/Profiles";
 
 class WarPageAnswering extends React.PureComponent {
 
@@ -23,36 +25,41 @@ class WarPageAnswering extends React.PureComponent {
         return screen.wisieImgHeight - 10;
     }
 
-    renderTaskActive() {
-        const {content, onAnswerClick, rivalType, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
+    renderTask() {
+        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
+        return <Task
+            screen={screen}
+            skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
+            onSkipAnimationChange={() => {
+                if (!_.isNil(correctAnswerId)) {
+                    return;
+                }
+                onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
+            }}
+            question={task}
+            answers={task.answers}
+            onAnswerClick={(answerId) => {
+                if (!_.isNil(correctAnswerId)) {
+                    return;
+                }
+                communication.sendAnswer(content.type, answerId);
+                onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+            }}
+        />
+    }
+
+    renderTaskActive() {
+        const {content} = this.props;
         return <div className='width100 height100 absolute'>
             <ActiveMembers content={content}/>
-            <Task
-                screen={screen}
-                skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
-                onSkipAnimationChange={() => {
-                    if (!_.isNil(correctAnswerId)) {
-                        return;
-                    }
-                    onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
-                }}
-                question={task}
-                answers={task.answers}
-                onAnswerClick={(answerId) => {
-                    if (!_.isNil(correctAnswerId)) {
-                        return;
-                    }
-                    communication.sendAnswer(rivalType, answerId);
-                    onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
-                }}
-            />
+            {this.renderTask()}
         </div>;
     }
 
     renderTaskNotActive(activeMember) {
-        const {content, screen} = this.props;
-        const {task, opponentTeam, opponentActiveIndex} = content;
+        const {content, screen, questionIdSkipAnimationMap, onSkipAnimationChange} = this.props;
+        const {task, correctAnswerId, opponentTeam, opponentActiveIndex} = content;
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
         const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
@@ -73,28 +80,47 @@ class WarPageAnswering extends React.PureComponent {
                 </div>}
             </div>
             <Task
+                onSkipAnimationChange={() => {
+                    if (!_.isNil(correctAnswerId)) {
+                        return;
+                    }
+                    onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
+                }}
                 screen={{...screen, contentHeight: screen.contentHeight - remToPixels(1.6)}}
-                skipAnimation={true}
+                skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
                 question={task}
                 answers={task.answers}
             />
         </div>;
     }
 
-    render() {
+    renderContent() {
         const {content} = this.props;
+        if (content.type === RIVAL_TYPE_BATTLE) {
+            return <div className='width100 height100 absolute'>
+                <Profiles content={content} className='absolute'/>
+                {this.renderTask()}
+            </div>;
+        }
         const activeMember = content.team[content.activeIndex];
         const isMyWisieAnswering = isTeamMemberWisie(activeMember);
+        return isMyWisieAnswering ? this.renderTaskNotActive(activeMember) : this.renderTaskActive();
+    }
+
+    render() {
+        const {content, screen} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageAnswering'>
             <TaskDescription
                 content={content}
-                renderTaskPoints={false}
-                renderTaskCount={false}
+                renderTaskPoints={battle}
+                renderTaskCount={battle}
+                small={screen.isSmallHeight}
                 className='justifyCenter flexColumn pageHeader'
             >
-                <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
+                <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
             </TaskDescription>
-            {isMyWisieAnswering ? this.renderTaskNotActive(activeMember) : this.renderTaskActive()}
+            {this.renderContent()}
         </div>;
     }
 }
@@ -106,7 +132,6 @@ export default connect(
         // opponentProfile: state.war.opponent,
         profile: state.profile.profile,
         content: state.rival.content,
-        rivalType: state.rival.rivalType,
         questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
         questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
     }),

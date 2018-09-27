@@ -10,11 +10,14 @@ import Timer from "../../../../component/timer/Timer";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
 import {rivalInProgressContent} from "../../../../redux/reducer/rival";
 import Teams from "../../component/Teams";
+import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
+import Profiles from "../../component/Profiles";
 
 class WarPageChoosingTaskProps extends React.PureComponent {
 
     renderOpponentChoosing() {
         const {content, screen} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div>
             <div className='pageHeader justifyCenter'>
                 <div style={{width: screen.contentWidth / 3}}>
@@ -24,12 +27,12 @@ class WarPageChoosingTaskProps extends React.PureComponent {
             <div className='pageHeader'><img alt='' className='sleep' src={sleep} height={screen.wisieImgHeight}/></div>
             <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/>
             </div>
-            <Teams content={content}/>
+            {!battle && <Teams content={content}/>}
         </div>
     }
 
     renderContent() {
-        const {content, screen, rivalType, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
+        const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
             return <RandomTaskProps content={content}/>;
@@ -37,9 +40,13 @@ class WarPageChoosingTaskProps extends React.PureComponent {
         if (choosingTaskPropsTag === content.profile.tag) {
             const offset = screen.moreHeightThanWidth && screen.isSmallWidth ? 160 : 100;
             return <ChoosingTaskProps
-                screen={{...screen, contentHeight: screen.contentHeight - 56, contentWidth: screen.contentWidth - offset}}
+                screen={{
+                    ...screen,
+                    contentHeight: screen.contentHeight - 56,
+                    contentWidth: screen.contentWidth - offset
+                }}
                 renderPoints={false}
-                rivalType={rivalType}
+                rivalType={content.type}
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}
@@ -53,11 +60,13 @@ class WarPageChoosingTaskProps extends React.PureComponent {
     render() {
         const {content} = this.props;
         const {choosingTaskPropsTag, profile} = content;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageChoosingTaskProps'>
-            {choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
+            {battle ? <Profiles content={content} className='absolute'/>
+                : choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
             {!_.isNil(choosingTaskPropsTag) &&
             <TaskDescription content={content} className='justifyCenter flexColumn pageHeader' taskId={content.taskId}
-                             renderTaskCount={false}/>}
+                             renderTaskCount={battle}/>}
             {this.renderContent()}
         </div>;
     }
@@ -67,7 +76,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
-        rivalType: state.rival.rivalType,
     }),
     (dispatch) => ({
         onCategoryChange: (categoryObject) => dispatch(rivalInProgressContent({

@@ -3,9 +3,20 @@ import {connect} from 'react-redux';
 import swordShield from '../../../../media/image/menu/swordShield.svg';
 import {getText} from "../../../../lang/langText";
 import Teams from "../../component/Teams";
-import {isRanking, RIVAL_TYPE_WELCOME_MSG} from "../../../../util/rivalHelper";
+import {isRanking, renderBattleElo, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WELCOME_MSG} from "../../../../util/rivalHelper";
+import Profile from "../../../../component/profile/Profile";
 
 class WarPageIntro extends React.PureComponent {
+
+    renderProfilesBig() {
+        const {screen, content} = this.props;
+        return <div className='profilesBig justifyCenter'>
+            <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.wisieImgHeight} {...content.profile}/>
+            <img alt='' src={swordShield} height={screen.wisieImgHeight}/>
+            <Profile renderBattleElo={renderBattleElo(content)}
+                     imgHeight={screen.wisieImgHeight} {...content.opponent}/>
+        </div>;
+    }
 
     renderTeamBig() {
         const {content, screen} = this.props;
@@ -21,7 +32,7 @@ class WarPageIntro extends React.PureComponent {
         return <div className='pageContent warPageIntro'>
              <div>
                 <div className='pageHeader title'>{getText(RIVAL_TYPE_WELCOME_MSG[content.type])}</div>
-                {this.renderTeamBig()}
+                {content.type === RIVAL_TYPE_BATTLE ? this.renderProfilesBig() : this.renderTeamBig()}
             </div>
         </div>;
     }
