@@ -35,7 +35,7 @@ class Teams extends React.PureComponent {
 
     renderAbsolute() {
         const {content, screen} = this.props;
-        const renderImg = screen.contentHeight - 40 > 480;
+        const renderImg = !screen.isSmallHeight;
         const imgHeight = (screen.contentHeight - 40) / 5 - remToPixels(3);
         return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
             <div className='marginLeftRem'>

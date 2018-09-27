@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/langText";
 import thumbUp from '../../../../media/image/icon/thumbUp.svg';
 import thumbDown from '../../../../media/image/icon/thumbDown.svg';
-import TaskWithoutActions from "../../component/TaskWithoutActions";
 import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
 import ActiveMember from "../../component/ActiveMember";
 import TaskDescription from "../../component/TaskDescription";
@@ -122,6 +121,7 @@ class RivalPageAnswered extends React.PureComponent {
     render() {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
+        console.log(battle);
         return <div className='pageContent warPageAnswered'>
             {battle && this.renderWhoAnsweredBattle()}
             <TaskDescription
@@ -131,7 +131,6 @@ class RivalPageAnswered extends React.PureComponent {
                 small={screen.isSmallHeight}
                 className='pageHeader warTaskDescription'/>
             {battle ? this.renderProfilesWithNewScore() : this.renderWhoAnsweredWar()}
-            <TaskWithoutActions content={content}/>
             <TaskMarkedAnswer content={content}/>
         </div>;
     }

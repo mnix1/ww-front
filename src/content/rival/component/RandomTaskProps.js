@@ -15,12 +15,12 @@ class RandomTaskProps extends React.PureComponent {
         const objectsCategory = _.shuffle(OBJECTS_CATEGORY.filter(e => e.id !== CATEGORY_RANDOM));
         const {screen, content} = this.props;
         const targetCategory = content.task.category;
-        const targetSelectedIdValue = objectsCategory.length * 6;
+        const targetSelectedIdValue = objectsCategory.length * 3;
         return <Anime
             targetAsChildProp={null}
             targetTransformer={(t) => ({selectedId: targetSelectedIdValue <= t.selectedId ? targetCategory : objectsCategory[Math.floor((t.selectedId) % objectsCategory.length)].id})}
             from={{selectedId: 0}}
-            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 3000, delay: 500}}}>
+            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 1500, delay: 500}}}>
             <SimpleObjectGroup
                 objects={objectsCategory}
                 screen={{...screen, contentHeight: screen.isSmallHeight ? screen.height - 70 : screen.contentHeight - 70}}
@@ -32,12 +32,12 @@ class RandomTaskProps extends React.PureComponent {
         const {content} = this.props;
         const objectsDifficult = DIFFICULTY_LEVELS;
         const targetDifficult = NAME_TO_DIFFICULT_LEVEL[content.task.difficultyLevel];
-        const targetSelectedIdValue = objectsDifficult.length * 6;
+        const targetSelectedIdValue = objectsDifficult.length * 3;
         return <Anime
             targetAsChildProp={null}
             targetTransformer={(t) => ({value: targetSelectedIdValue <= t.value ? targetDifficult : objectsDifficult[Math.floor((t.value) % objectsDifficult.length)]})}
             from={{value: 0}}
-            to={{value: {value: targetSelectedIdValue * 1.5, duration: 3000, delay: 500}}}>
+            to={{value: {value: targetSelectedIdValue * 1.5, duration: 1500, delay: 500}}}>
             {<Rating/>}
         </Anime>;
     }

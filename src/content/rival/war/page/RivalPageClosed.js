@@ -24,6 +24,7 @@ import {Anime} from "../../../../component/anime/Anime";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
 import {goBack} from "connected-react-router";
 import Profile from "../../../../component/profile/Profile";
+import {IoMdExit} from "react-icons/io";
 
 class RivalPageClosed extends React.PureComponent {
 
@@ -85,7 +86,7 @@ class RivalPageClosed extends React.PureComponent {
             <div className='height100 width100 justifyCenter flexColumn'>
                 {this.renderContent()}
                 <div className='paddingTopRem justifyCenter'>
-                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}>{getText(TEXT_EXIT)}</Button>
+                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick} icon={<IoMdExit/>}>{getText(TEXT_EXIT)} </Button>
                 </div>
             </div>
         </div>;
