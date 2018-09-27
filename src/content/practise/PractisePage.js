@@ -31,6 +31,8 @@ import {DIFFICULT_LEVEL_TO_NAME,} from "../../util/difficultyHelper";
 import Rating from "../../component/rating/Rating";
 import {getWisor} from "../../util/wisorHelper";
 import MeshBackground, {MESH_4} from "../../component/background/MeshBackground";
+import TaskDescription from "../rival/component/TaskDescription";
+import {remToPixels} from "../../util/fontHelper";
 
 class PractisePage extends React.PureComponent {
 
@@ -57,15 +59,10 @@ class PractisePage extends React.PureComponent {
         const question = practiseStartRep.value.practise.question;
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
         return <div className='pageContent'>
-            {answerId && correctAnswerId && [this.renderResult(), this.renderPlayAgain()]}
+            <TaskDescription className='justifyCenter flexColumn pageHeader' renderTask={false} renderTaskPoints={false} content={{task: question}}/>
+            {answerId && correctAnswerId && this.renderPlayAgain()}
             <Task key='task'
-                  contentHeightCalculator={(screen) => {
-                      const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
-                      return contentHeight / 9 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
-                  }}
-                  header={!answerId && <div className="contentHeader">{getText(TEXT_QUESTION)}:
-                      <span><Rating style={{paddingLeft: '0.25rem'}} valueString={question.difficultyLevel}
-                                    onHoverChange={_.noop}/></span></div>}
+                  offsetHeight={remToPixels(3)}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}
@@ -77,20 +74,20 @@ class PractisePage extends React.PureComponent {
         </div>
     }
 
-    renderResult() {
-        const {answerId, practiseEndRep} = this.props;
-        const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
-        if (!correctAnswerId) {
-            return null;
-        }
-        const answerInterval = _.get(practiseEndRep, 'value.answerInterval');
-        const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
-        return <div key='result' className="contentHeader">
-            <span className={styles.resultMessage}>{resultMessage}</span>
-            <br/>
-            <span className={styles.resultMessage}>{prepareAnswerIntervalMessage(answerInterval)}</span>
-        </div>;
-    }
+    // renderResult() {
+    //     const {answerId, practiseEndRep} = this.props;
+    //     const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
+    //     if (!correctAnswerId) {
+    //         return null;
+    //     }
+    //     const answerInterval = _.get(practiseEndRep, 'value.answerInterval');
+    //     const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
+    //     return <div key='result' className="contentHeader">
+    //         <span className={styles.resultMessage}>{resultMessage}</span>
+    //         <br/>
+    //         <span className={styles.resultMessage}>{prepareAnswerIntervalMessage(answerInterval)}</span>
+    //     </div>;
+    // }
 
     renderPlayAgain() {
         const {onPlayAgainClick, profile} = this.props;

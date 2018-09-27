@@ -20,41 +20,29 @@ export default class Task extends React.PureComponent {
         onAnswerClick: PropTypes.func,
         skipAnimation: PropTypes.bool,
         onSkipAnimationChange: PropTypes.func,
-        canChangeAnswer: PropTypes.bool,
-        header: PropTypes.node,
         style: PropTypes.object,
-        anime: PropTypes.bool,
         className: PropTypes.string,
     };
 
     static defaultProps = {
         canChangeAnswer: false,
-        anime: true,
         onAnswerClick: _.noop,
         onSkipAnimationChange: _.noop
     };
 
-    renderTaskHeader() {
-        const {header} = this.props;
-        return header;
-    }
-
     renderTask() {
-        const {onAnswerClick, answerId, contentHeightCalculator, screen, canChangeAnswer, anime} = this.props;
+        const {onAnswerClick, answerId, screen} = this.props;
         return <TaskObjectGroup
-            contentHeightCalculator={contentHeightCalculator}
-            anime={anime}
             questionObjects={prepareQuestionTiles(this)}
             answerObjects={prepareAnswerTiles(this)}
-            onObjectClick={(e) => !_.isNil(e.id) && (canChangeAnswer || !answerId) && onAnswerClick(e.id)}
+            onObjectClick={(e) => !_.isNil(e.id) && !answerId && onAnswerClick(e.id)}
             screen={screen}
         />;
     }
 
     renderAnimation() {
-        const {onSkipAnimationChange, contentHeightCalculator, screen} = this.props;
+        const {onSkipAnimationChange, screen} = this.props;
         return <AnimationObjectGroup
-            contentHeightCalculator={contentHeightCalculator}
             onObjectClick={() => onSkipAnimationChange(true)}
             questionObjects={prepareAnimationDescription(this)}
             animationObjects={prepareAnimationTiles(this)}
@@ -77,7 +65,6 @@ export default class Task extends React.PureComponent {
     render() {
         const {style, screen, className} = this.props;
         return <div className={`${className ? className : ''} task`} style={{height: screen.contentHeight, ...style}}>
-            {this.renderTaskHeader()}
             <div className='taskContent'>{this.renderContent()}</div>
         </div>
     }

@@ -9,19 +9,20 @@ import {prepareRatingPointsMessage} from "../../../util/textHelper";
 export default class TaskDescription extends React.PureComponent {
 
     static defaultProps = {
+        renderTask: true,
         renderTaskCount: true,
         renderTaskPoints: true,
         small: false
     };
 
     render() {
-        const {content, className, children, taskId, renderTaskCount, renderTaskPoints, small} = this.props;
+        const {content, className, children, taskId, renderTaskCount, renderTask, renderTaskPoints, small} = this.props;
         let {task} = content;
         if (!task) {
             task = {};
         }
         const taskCount = renderTaskCount ? `/${content.taskCount}` : '';
-        const taskNumber = <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>;
+        const taskNumber = renderTask && <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>;
         const taskCategory = task.category &&
             <div>{small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
                 <img alt='' key={task.category} height={14}
