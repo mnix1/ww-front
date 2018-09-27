@@ -52,8 +52,8 @@ class CampaignActivePage extends React.PureComponent {
         return <div key={e} className={className}>
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>{getCampaignLabel(type, destination, e)}</div>
-                {e === phases - 1 && <img className='paddingLeftRem' height={30} src={goldEgg}/>}
-                {e === phases / 2 - 1 && <img className='paddingLeftRem' height={30} src={silverEgg}/>}
+                {e === phases - 1 && <img alt='' className='paddingLeftRem' height={30} src={goldEgg}/>}
+                {e === phases / 2 - 1 && <img alt='' className='paddingLeftRem' height={30} src={silverEgg}/>}
             </div>
             {done && <div className='absoluteBackgroundMix opacity1 zIndex1'>
                 <img alt='' src={check} className='height100 width100'/>

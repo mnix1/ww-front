@@ -1,6 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Task from "../../../component/task/Task";
+import {rivalScreen} from "../../../util/screenHelper";
+import {remToPixels} from "../../../util/fontHelper";
 
 class TaskMarkedAnswer extends React.PureComponent {
 
@@ -11,7 +13,7 @@ class TaskMarkedAnswer extends React.PureComponent {
             className='taskWithAnswer'
             correctAnswerId={correctAnswerId}
             answerId={markedAnswerId}
-            screen={screen}
+            screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
             skipAnimation={true}
             question={task}
             answers={task.answers}

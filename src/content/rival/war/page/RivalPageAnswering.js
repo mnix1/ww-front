@@ -14,6 +14,7 @@ import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
 import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
+import {rivalScreen} from "../../../../util/screenHelper";
 
 class RivalPageAnswering extends React.PureComponent {
 
@@ -29,7 +30,7 @@ class RivalPageAnswering extends React.PureComponent {
         const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
         const {task, correctAnswerId} = content;
         return <Task
-            screen={screen}
+            screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
             skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
             onSkipAnimationChange={() => {
                 if (!_.isNil(correctAnswerId)) {
@@ -86,7 +87,7 @@ class RivalPageAnswering extends React.PureComponent {
                     }
                     onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
                 }}
-                screen={{...screen, contentHeight: screen.contentHeight - remToPixels(1.6)}}
+                screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
                 skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
                 question={task}
                 answers={task.answers}
@@ -118,7 +119,8 @@ class RivalPageAnswering extends React.PureComponent {
                 small={screen.isSmallHeight}
                 className='justifyCenter flexColumn pageHeader'
             >
-                <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/></div>
+                <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/>
+                </div>
             </TaskDescription>
             {this.renderContent()}
         </div>;

@@ -12,6 +12,7 @@ import {rivalInProgressContent} from "../../../../redux/reducer/rival";
 import Teams from "../../component/Teams";
 import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
+import {rivalScreen} from "../../../../util/screenHelper";
 
 class RivalPageChoosingTaskProps extends React.PureComponent {
 
@@ -38,13 +39,8 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
             return <RandomTaskProps content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
-            const offset = screen.moreHeightThanWidth && screen.isSmallWidth ? 160 : 100;
             return <ChoosingTaskProps
-                screen={{
-                    ...screen,
-                    contentHeight: screen.contentHeight - 56,
-                    contentWidth: screen.contentWidth - offset
-                }}
+                screen={rivalScreen({screen, offsetHeight:56, offsetWidth: screen.moreHeightThanWidth && screen.isSmallWidth ? 160 : 100})}
                 renderPoints={false}
                 rivalType={content.type}
                 content={content}

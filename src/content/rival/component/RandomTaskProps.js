@@ -20,10 +20,10 @@ class RandomTaskProps extends React.PureComponent {
             targetAsChildProp={null}
             targetTransformer={(t) => ({selectedId: targetSelectedIdValue <= t.selectedId ? targetCategory : objectsCategory[Math.floor((t.selectedId) % objectsCategory.length)].id})}
             from={{selectedId: 0}}
-            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 4000, delay: 500}}}>
+            to={{selectedId: {value: targetSelectedIdValue * 1.5, duration: 3000, delay: 500}}}>
             <SimpleObjectGroup
                 objects={objectsCategory}
-                screen={{...screen, contentHeight: screen.contentHeight - 70}}
+                screen={{...screen, contentHeight: screen.isSmallHeight ? screen.height - 70 : screen.contentHeight - 70}}
             />
         </Anime>;
     }
@@ -37,7 +37,7 @@ class RandomTaskProps extends React.PureComponent {
             targetAsChildProp={null}
             targetTransformer={(t) => ({value: targetSelectedIdValue <= t.value ? targetDifficult : objectsDifficult[Math.floor((t.value) % objectsDifficult.length)]})}
             from={{value: 0}}
-            to={{value: {value: targetSelectedIdValue * 1.5, duration: 4000, delay: 500}}}>
+            to={{value: {value: targetSelectedIdValue * 1.5, duration: 3000, delay: 500}}}>
             {<Rating/>}
         </Anime>;
     }

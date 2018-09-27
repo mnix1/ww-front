@@ -28,8 +28,8 @@ class MeshBackground extends React.PureComponent {
         const {screen, mesh, fullScreen} = this.props;
         const style = {
             objectFit: 'cover',
-            height: fullScreen ? screen.height : screen.contentHeight,
-            width: fullScreen ? screen.width : screen.contentWidth
+            height: fullScreen ? screen.height + 2 : screen.contentHeight,
+            width: fullScreen ? screen.width + 2 : screen.contentWidth
         };
         return <div className='absoluteBackgroundMix' style={{opacity: 1}}>
             <img alt='' className={fullScreen ? '' : 'borderRadiusRem'}
