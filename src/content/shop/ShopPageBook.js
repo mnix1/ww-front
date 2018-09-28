@@ -13,11 +13,13 @@ import {checkRepValueCode} from "../../util/repositoryHelper";
 import Rating from "../../component/rating/Rating";
 import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
 import {isRepFulfilled} from "../../util/repositoryHelper";
+import {push} from "connected-react-router";
+import {PROFILE_ROUTE} from "../routes";
 
 class ShopPageBook extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {shopBuyBookRep} = this.props;
+        const {shopBuyBookRep, dispatch} = this.props;
         if (!isRepFulfilled(shopBuyBookRep)) {
             return;
         }
@@ -25,9 +27,9 @@ class ShopPageBook extends React.PureComponent {
             return;
         }
         if (checkRepValueCode(shopBuyBookRep, -3)) {
-            noticeError(ERROR_NOT_ENOUGH_RESOURCES)
+            noticeError(ERROR_NOT_ENOUGH_RESOURCES);
         } else if (checkRepValueCode(shopBuyBookRep, -2)) {
-            noticeError(ERROR_NO_SPACE_FOR_BOOK)
+            noticeError(ERROR_NO_SPACE_FOR_BOOK, () => dispatch(push(PROFILE_ROUTE)));
         }
     }
 
@@ -112,6 +114,7 @@ export default connect(
         shopBuyBookRep: state.repository.shopBuyBook
     }),
     (dispatch) => ({
+        dispatch,
         onBuyClick: (id) => dispatch(buyBookIdChanged(id)),
         onBookFilterLevelChanged: (level) => dispatch(bookFilterLevelChanged(level)),
         onShowBookChanged: (show) => dispatch(showBooksChanged(show)),

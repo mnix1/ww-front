@@ -5,6 +5,7 @@ import {getCategoryLabel} from "../../../lang/langCategory";
 import Rating from "../../../component/rating/Rating";
 import {getCategory} from "../../../util/categoryHelper";
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
+import {remToPixels} from "../../../util/fontHelper";
 
 export default class TaskDescription extends React.PureComponent {
 
@@ -25,7 +26,7 @@ export default class TaskDescription extends React.PureComponent {
         const taskNumber = renderTask && <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>;
         const taskCategory = task.category &&
             <div>{small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
-                <img alt='' key={task.category} height={14}
+                <img alt='' key={task.category} height={remToPixels(1)}
                      src={getCategory(task.category)}/>
             </div>;
         const taskDifficulty = task.difficultyLevel && <div className='justifyCenter'>
