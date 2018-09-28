@@ -21,7 +21,7 @@ import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} 
 import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
 import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
 import MeshBackground from "../../../component/background/MeshBackground";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 
 class ChallengeListPage extends React.PureComponent {
@@ -61,7 +61,7 @@ class ChallengeListPage extends React.PureComponent {
 
     renderContent() {
         const {challengeListRep} = this.props;
-        if (!repFulfilled(challengeListRep)) {
+        if (!isRepFulfilled(challengeListRep)) {
             return <Loading/>
         }
         return <div>

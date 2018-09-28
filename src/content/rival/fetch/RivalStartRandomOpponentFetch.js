@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_START_RANDOM_OPPONENT} from "../../../util/rivalHelper";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 
 class RivalStartRandomOpponentFetch extends React.PureComponent {
 
@@ -13,7 +13,7 @@ class RivalStartRandomOpponentFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {rivalStartRandomOpponentFetch, dispatch} = this.props;
-        if (repFulfilled(rivalStartRandomOpponentFetch)) {
+        if (isRepFulfilled(rivalStartRandomOpponentFetch)) {
             clearRivalStartRandomOpponentFetch(dispatch);
         }
     }

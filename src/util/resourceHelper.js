@@ -1,3 +1,18 @@
+export const WISIE_WISDOM_UPGRADE_COST = 1;
+export const WISIE_MENTAL_UPGRADE_COST = 2;
+
+export function wisieChangeHobbyCost(profile, wisie) {
+    const hobbiesCount = wisie.hobbies.length;
+    const crystal = hobbiesCount * 20;
+    const elixir = hobbiesCount * 10;
+    return {
+        isEnoughResource: profile.crystal >= crystal && profile.elixir >= elixir,
+        crystal,
+        elixir
+    }
+}
+
+
 export function experimentCost(profile, wisiesCount) {
     const experimentCostImpact = wisiesCount <= 5 ? 0 : (wisiesCount - 5) * 10;
     const crystal = 30 + experimentCostImpact;

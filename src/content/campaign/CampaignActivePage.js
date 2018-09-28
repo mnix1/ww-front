@@ -72,7 +72,7 @@ class CampaignActivePage extends React.PureComponent {
             return null;
         }
         const {onStartClick} = this.props;
-        return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}
+        return <Button className='paddingBottomRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}
                        icon={<IoMdPlay/>}>{getText(TEXT_START)}</Button>
     }
 

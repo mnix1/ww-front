@@ -116,6 +116,8 @@ const WISIE = {
 
 export const WISIE_TEAM_COUNT = 4;
 
+export const WISIE_MAX_HOBBY_COUNT = 3;
+
 export function getWisie(wisieType) {
     return WISIE[wisieType];
 }

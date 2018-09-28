@@ -4,6 +4,10 @@ export function isRepValueCode1(e) {
     return checkRepValueCode(e, 1);
 }
 
+export function isRepFulfilledOnceWithCode1(e, prevE) {
+    return isRepFulfilled(e) && !isRepFulfilled(prevE) && isRepValueCode1(e);
+}
+
 export function checkRepValueCode(e, value) {
     return _.get(e, 'value.code') === value;
 }
@@ -25,12 +29,12 @@ export function fetchOnPathAndIfNotExists(prevPath, path, targetPath, prevRep, r
     return path === targetPath && prevPath !== path && !rep.fulfilled && !rep.pending;
 }
 
-export function repFulfilled(rep) {
+export function isRepFulfilled(rep) {
     return rep && rep.fulfilled;
 }
-export function repPending(rep) {
+export function isRepPending(rep) {
     return rep && rep.pending;
 }
-export function repRejected(rep) {
+export function isRepRejected(rep) {
     return rep && rep.rejected;
 }

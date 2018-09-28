@@ -11,14 +11,14 @@ import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
-import {repFulfilled} from "../../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../../util/repositoryHelper";
 
 class IntroStepEditTeam extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         const {wisieTeamSaveRep, stepIndex, onStepIndexChange} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
-        if (stepId === INTRO_STEP_EDIT_TEAM && repFulfilled(wisieTeamSaveRep)) {
+        if (stepId === INTRO_STEP_EDIT_TEAM && isRepFulfilled(wisieTeamSaveRep)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
     }

@@ -31,7 +31,7 @@ import {
     WAR_ROUTE,
     WISIES_ROUTE
 } from "../../content/routes";
-import {repPending} from "../../util/repositoryHelper";
+import {isRepPending} from "../../util/repositoryHelper";
 import {INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../../content/intro/introHelper";
 import MenuItem from "../menu/MenuItem";
 import Menu from "../menu/Menu";
@@ -92,7 +92,7 @@ class Page extends React.PureComponent {
 
     renderContent() {
         const {history, testSignInRep, communication} = this.props;
-        if (repPending(testSignInRep)) {
+        if (isRepPending(testSignInRep)) {
             return <Loading/>;
         }
         return <ConnectedRouter history={history}>

@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_ACCEPTED_FRIEND} from "../../../util/rivalHelper";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 
 class RivalAcceptFriendFetch extends React.PureComponent {
 
@@ -13,7 +13,7 @@ class RivalAcceptFriendFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {rivalAcceptFriendFetch, dispatch} = this.props;
-        if (repFulfilled(rivalAcceptFriendFetch)) {
+        if (isRepFulfilled(rivalAcceptFriendFetch)) {
             clearRivalAcceptFriendFetch(dispatch);
         }
     }

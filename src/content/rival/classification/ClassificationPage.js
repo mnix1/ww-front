@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Loading} from "../../../component/loading/Loading";
 import Profile from "../../../component/profile/Profile";
 import MeshBackground from "../../../component/background/MeshBackground";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR, CLASSIFICATION_ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
 import {getText, TEXT_RANKING} from "../../../lang/langText";
 import position1 from '../../../media/image/position/position1.svg';
@@ -18,7 +18,7 @@ class ClassificationPage extends React.PureComponent {
 
     renderContent() {
         const {classificationListRep, path, profile} = this.props;
-        if (!repFulfilled(classificationListRep)) {
+        if (!isRepFulfilled(classificationListRep)) {
             return <Loading/>;
         }
         const type = CLASSIFICATION_ROUTE_RIVAL_TYPE[path];

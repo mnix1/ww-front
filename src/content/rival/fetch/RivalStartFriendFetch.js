@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_START_FRIEND,} from "../../../util/rivalHelper";
-import {isRepValueCode1, repFulfilled} from "../../../util/repositoryHelper";
+import {isRepValueCode1, isRepFulfilled} from "../../../util/repositoryHelper";
 import {noticeError} from "../../../component/notification/noticeError";
 import {ERROR_FRIEND_CANT_PLAY_RIGHT_NOW} from "../../../lang/langError";
 import {rivalCleared} from "../../../redux/reducer/rival";
@@ -16,7 +16,7 @@ class RivalStartFriendFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {rivalStartFriendFetch, dispatch} = this.props;
-        if (repFulfilled(rivalStartFriendFetch)) {
+        if (isRepFulfilled(rivalStartFriendFetch)) {
             if (!isRepValueCode1(rivalStartFriendFetch)) {
                 noticeError(ERROR_FRIEND_CANT_PLAY_RIGHT_NOW);
                 dispatch(rivalCleared());

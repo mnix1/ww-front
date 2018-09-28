@@ -7,7 +7,7 @@ import Profile from "../../../component/profile/Profile";
 import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
 import {prepareScoreMessage} from "../../../util/textHelper";
 import MeshBackground from "../../../component/background/MeshBackground";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 
 class ChallengeSummaryPage extends React.PureComponent {
@@ -38,7 +38,7 @@ class ChallengeSummaryPage extends React.PureComponent {
 
     renderContent() {
         const {challengeSummaryRep} = this.props;
-        if (!repFulfilled(challengeSummaryRep)) {
+        if (!isRepFulfilled(challengeSummaryRep)) {
             return <Loading/>
         }
         return <div>

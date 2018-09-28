@@ -2,7 +2,8 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {profileChanged} from "../../../redux/reducer/profile";
-import {wisieDetailsChanged, profileWisiesChanged} from "../../../redux/reducer/wisie";
+import {profileWisiesChanged, wisieDetailsChanged} from "../../../redux/reducer/wisie";
+import {isRepFulfilledOnceWithCode1} from "../../../util/repositoryHelper";
 
 class WisieUpgradeAttributeFetch extends React.PureComponent {
 
@@ -13,7 +14,7 @@ class WisieUpgradeAttributeFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {wisieUpgradeAttributeFetch, dispatch} = this.props;
-        if (!prevProps.wisieUpgradeAttributeFetch.fulfilled && wisieUpgradeAttributeFetch.fulfilled) {
+        if (isRepFulfilledOnceWithCode1(wisieUpgradeAttributeFetch, prevProps.wisieUpgradeAttributeFetch)) {
             const value = wisieUpgradeAttributeFetch.value;
             dispatch(profileChanged(value.profile));
             dispatch(wisieDetailsChanged(value.profileWisie));
@@ -26,9 +27,9 @@ class WisieUpgradeAttributeFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {upgradeProps, dispatchWisieUpgradeAttributePost} = this.props;
-        if (upgradeProps && prevProps.upgradeProps !== upgradeProps) {
-            dispatchWisieUpgradeAttributePost(upgradeProps);
+        const {upgradeAttributeProps, dispatchWisieUpgradeAttributePost} = this.props;
+        if (upgradeAttributeProps && prevProps.upgradeAttributeProps !== upgradeAttributeProps) {
+            dispatchWisieUpgradeAttributePost(upgradeAttributeProps);
         }
     }
 

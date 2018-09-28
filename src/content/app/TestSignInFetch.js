@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {LOGIN_ROUTE} from "../routes";
-import {repFulfilled, repRejected} from "../../util/repositoryHelper";
+import {isRepFulfilled, isRepRejected} from "../../util/repositoryHelper";
 import {signedInChanged} from "../../redux/reducer/profile";
 
 class TestSignInFetch extends React.PureComponent {
@@ -14,9 +14,9 @@ class TestSignInFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {dispatch, testSignInFetch} = this.props;
-        if (repFulfilled(testSignInFetch) && !repFulfilled(prevProps.testSignInFetch)) {
+        if (isRepFulfilled(testSignInFetch) && !isRepFulfilled(prevProps.testSignInFetch)) {
             dispatch(signedInChanged(true));
-        } else if (repRejected(testSignInFetch) && !repRejected(prevProps.testSignInFetch)) {
+        } else if (isRepRejected(testSignInFetch) && !isRepRejected(prevProps.testSignInFetch)) {
             dispatch(signedInChanged(false));
         }
     }

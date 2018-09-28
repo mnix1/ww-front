@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import MeshBackground from "../../component/background/MeshBackground";
-import {repFulfilled} from "../../util/repositoryHelper";
+import {isRepFulfilled} from "../../util/repositoryHelper";
 import {Loading} from "../../component/loading/Loading";
 import CampaignChoosePropsPage from "./CampaignChoosePropsPage";
 import {CAMPAIGN_ROUTE, CAMPAIGN_TEAM_EDIT_ROUTE} from "../routes";
@@ -19,7 +19,7 @@ class CampaignPage extends React.PureComponent {
 
     renderContent() {
         const {campaignActiveRep, campaignListRep} = this.props;
-        if (!repFulfilled(campaignActiveRep) || !repFulfilled(campaignListRep)) {
+        if (!isRepFulfilled(campaignActiveRep) || !isRepFulfilled(campaignListRep)) {
             return <div className='pageContent overflowAuto'><Loading/></div>;
         }
         if (_.isNil(campaignActiveRep.value)) {

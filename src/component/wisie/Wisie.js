@@ -20,6 +20,7 @@ export default class Wisie extends React.PureComponent {
         onClick: PropTypes.func,
         stats: PropTypes.node,
         renderHobbies: PropTypes.bool,
+        customHobbies: PropTypes.node,
         renderImg: PropTypes.bool,
         imgHobbyHeight: PropTypes.number,
         renderDetails: PropTypes.bool,
@@ -42,36 +43,37 @@ export default class Wisie extends React.PureComponent {
         onClick: _.noop
     };
 
+    renderHobbies() {
+        const {hobbies, renderHobbies, customHobbies, imgHobbyHeight} = this.props;
+        if (!renderHobbies) {
+            return null;
+        }
+        if (customHobbies) {
+            return customHobbies;
+        }
+        return <div className='justifyCenter'>
+            {hobbies.map(e => <img alt='' className='paddingLeftRem' key={e} height={imgHobbyHeight} src={getCategory(e)}/>)}
+        </div>;
+    }
+
     renderWisieDetailsNotOwned() {
-        const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
         return <div className='wisieDetails fontSize08Rem relative justifyBetween'>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter relative'>{name}</span>
                 {this.renderValue()}
             </div>
-            <div className='hobbies justifyCenter flexColumn relative'>
-                {renderHobbies && !_.isEmpty(hobbies) && <div className='hobbies justifyCenter'>
-                    {hobbies.map(e => <img alt='' className='hobby' key={e} height={imgHobbyHeight}
-                                           src={getCategory(e)}/>)}
-                </div>}
-            </div>
         </div>;
     }
 
     renderWisieDetailsOwned() {
-        const {hobbies, renderHobbies, imgHobbyHeight} = this.props;
         const name = getName(this.props);
         return <div className='wisieDetails fontSize08Rem justifyBetween'>
             <div className='justifyCenter flexColumn'>
                 <span className='name flexColumn justifyCenter'>{name}</span>
                 {this.renderValue()}
             </div>
-            {renderHobbies && <div className='hobbies justifyCenter '>
-                {hobbies.map(e => <img alt='' className='hobby' key={e} height={imgHobbyHeight}
-                                       src={getCategory(e)}/>)}
-            </div>}
-
+            {this.renderHobbies()}
         </div>;
     }
 

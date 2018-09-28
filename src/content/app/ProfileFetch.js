@@ -5,7 +5,7 @@ import {profileChanged, signedInChanged} from "../../redux/reducer/profile";
 import {langChanged} from "../../redux/reducer/language";
 import {LOGIN_ROUTE} from "../routes";
 import {enableChanged, stepIndexChanged} from "../../redux/reducer/intro";
-import {repFulfilled, repRejected} from "../../util/repositoryHelper";
+import {isRepFulfilled, isRepRejected} from "../../util/repositoryHelper";
 
 class ProfileFetch extends React.PureComponent {
 
@@ -16,8 +16,8 @@ class ProfileFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {dispatch, profileFetch} = this.props;
-        if (repFulfilled(profileFetch)) {
-            if (repFulfilled(prevProps.profileFetch)) {
+        if (isRepFulfilled(profileFetch)) {
+            if (isRepFulfilled(prevProps.profileFetch)) {
                 return;
             }
             dispatch(langChanged(profileFetch.value.language));
@@ -26,8 +26,8 @@ class ProfileFetch extends React.PureComponent {
                 dispatch(stepIndexChanged(profileFetch.value.introductionStepIndex));
                 dispatch(enableChanged(true));
             }
-        } else if (repRejected(profileFetch)) {
-            if (repRejected(prevProps.profileFetch)) {
+        } else if (isRepRejected(profileFetch)) {
+            if (isRepRejected(prevProps.profileFetch)) {
                 return;
             }
             dispatch(signedInChanged(false));

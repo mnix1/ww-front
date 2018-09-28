@@ -12,7 +12,7 @@ import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
 import {stepIndexChanged} from "../../../../redux/reducer/intro";
-import {experimentCost} from "../../../../util/experimentHelper";
+import {experimentCost} from "../../../../util/resourceHelper";
 
 class IntroStepExperiment extends React.PureComponent {
 

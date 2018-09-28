@@ -10,7 +10,7 @@ import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import MeshBackground from "../../../component/background/MeshBackground";
 
@@ -42,7 +42,7 @@ class ChallengeHistoryPage extends React.PureComponent {
 
     renderContent() {
         const {challengeListRep} = this.props;
-        if (!repFulfilled(challengeListRep)) {
+        if (!isRepFulfilled(challengeListRep)) {
             return <Loading/>
         }
         return <div>

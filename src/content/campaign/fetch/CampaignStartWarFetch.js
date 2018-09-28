@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_ERROR_RANDOM_OPPONENT, RIVAL_STATUS_START_RANDOM_OPPONENT} from "../../../util/rivalHelper";
 import {CAMPAIGN_WAR_ROUTE} from "../../routes";
-import {isRepValueCode1, repFulfilled} from "../../../util/repositoryHelper";
+import {isRepValueCode1, isRepFulfilled} from "../../../util/repositoryHelper";
 import {statusChanged} from "../../../redux/reducer/rival";
 
 class CampaignStartWarFetch extends React.PureComponent {
@@ -15,7 +15,7 @@ class CampaignStartWarFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {campaignStartWarFetch, dispatch, status} = this.props;
-        if (!repFulfilled(prevProps.campaignStartWarFetch) && repFulfilled(campaignStartWarFetch) && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
+        if (!isRepFulfilled(prevProps.campaignStartWarFetch) && isRepFulfilled(campaignStartWarFetch) && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
             if (!isRepValueCode1(campaignStartWarFetch)) {
                 dispatch(statusChanged(RIVAL_STATUS_ERROR_RANDOM_OPPONENT));
             }

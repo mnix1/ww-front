@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CHALLENGE_FRIEND_INIT_ROUTE, CHALLENGE_LIST_ROUTE} from "../../routes";
-import {isRepValueCode1, repFulfilled} from "../../../util/repositoryHelper";
+import {isRepValueCode1, isRepFulfilled} from "../../../util/repositoryHelper";
 import {initChanged} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
 import _ from "lodash";
@@ -16,7 +16,7 @@ class ChallengeFriendInitFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {challengeFriendInitFetch, dispatch} = this.props;
-        if (repFulfilled(challengeFriendInitFetch)) {
+        if (isRepFulfilled(challengeFriendInitFetch)) {
             if (isRepValueCode1(challengeFriendInitFetch)) {
                 dispatch(push(CHALLENGE_LIST_ROUTE));
                 dispatch(initChanged(undefined));

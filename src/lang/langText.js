@@ -140,10 +140,14 @@ export const TEXT_THIS_WINDOW = 'TEXT_THIS_WINDOW';
 export const TEXT_YOUR_REWARD = 'TEXT_YOUR_REWARD';
 export const TEXT_GUARANTEED_REWARD = 'TEXT_GUARANTEED_REWARD';
 export const TEXT_NO_REWARD = 'TEXT_NO_REWARD';
+export const TEXT_WISDOM = 'TEXT_WISDOM';
+export const TEXT_MENTALITY = 'TEXT_MENTALITY';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_WISDOM]: 'Wiedza',
+        [TEXT_MENTALITY]: 'Mentalność',
         [TEXT_GUARANTEED_REWARD]: 'Gwarantowana nagroda',
         [TEXT_NO_REWARD]: 'Brak nagrody',
         [TEXT_CONNECTING]: 'Łączenie',
@@ -284,6 +288,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_WISDOM]: 'Wisdom',
+        [TEXT_MENTALITY]: 'Mentality',
         [TEXT_GUARANTEED_REWARD]: 'Guaranteed reward',
         [TEXT_NO_REWARD]: 'No reward',
         [TEXT_CONNECTING]: 'Connecting',

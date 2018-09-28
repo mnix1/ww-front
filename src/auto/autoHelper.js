@@ -1,4 +1,4 @@
-import {repFulfilled} from "../util/repositoryHelper";
+import {isRepFulfilled} from "../util/repositoryHelper";
 import {CATEGORIES} from "../util/categoryHelper";
 import _ from 'lodash';
 
@@ -19,7 +19,7 @@ export function blockUntilRepFulfilled(repGetter) {
                 reject();
                 return;
             }
-            if (repFulfilled(repGetter())) {
+            if (isRepFulfilled(repGetter())) {
                 logAuto('blockUntilRepFulfilled', 'resolve', repGetter());
                 resolve();
             } else {

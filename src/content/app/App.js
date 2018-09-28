@@ -29,7 +29,7 @@ import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 import _ from 'lodash';
 import {socketChanged} from "../../redux/reducer/socket";
-import {repFulfilled, repRejected} from "../../util/repositoryHelper";
+import {isRepFulfilled, isRepRejected} from "../../util/repositoryHelper";
 import Intro from "../intro/Intro";
 import IntroUpdate from "../intro/IntroUpdate";
 import TestSignInFetch from "./TestSignInFetch";
@@ -72,7 +72,7 @@ class App extends React.PureComponent {
 
     maybeInitSocket() {
         const {onInit, socket, profileRep} = this.props;
-        if (_.isNil(socket) && repFulfilled(profileRep)) {
+        if (_.isNil(socket) && isRepFulfilled(profileRep)) {
             const socket = new CommunicationWebSocket(onInit);
             this.rivalCommunication = new RivalCommunication(socket, this);
         }
@@ -80,7 +80,7 @@ class App extends React.PureComponent {
 
     maybeRedirectToLogin() {
         const {onRouteChange, path, testSignInRep} = this.props;
-        if (repRejected(testSignInRep) && path !== LOGIN_ROUTE) {
+        if (isRepRejected(testSignInRep) && path !== LOGIN_ROUTE) {
             onRouteChange(LOGIN_ROUTE);
             return true;
         }

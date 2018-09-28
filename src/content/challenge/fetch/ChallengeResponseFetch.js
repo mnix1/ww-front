@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {RIVAL_STATUS_START_FRIEND} from "../../../util/rivalHelper";
 import {CHALLENGE_ROUTE} from "../../routes";
-import {repFulfilled} from "../../../util/repositoryHelper";
+import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {responseIdChanged} from "../../../redux/reducer/challenge";
 import _ from 'lodash';
 
@@ -16,7 +16,7 @@ class ChallengeResponseFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {challengeResponseFetch, dispatch} = this.props;
-        if (repFulfilled(challengeResponseFetch)) {
+        if (isRepFulfilled(challengeResponseFetch)) {
             dispatch(responseIdChanged(undefined));
             clearCampaignResponseFetch(dispatch);
         }

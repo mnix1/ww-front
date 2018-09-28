@@ -9,14 +9,14 @@ import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {maybeDisabledClassName} from "../../util/style/constant";
 import {experimentChanged} from "../../redux/reducer/wisie";
 import {INTRO_STEP_EXPERIMENT} from "../intro/introHelper";
-import {experimentCost} from "../../util/experimentHelper";
-import {repFulfilled} from "../../util/repositoryHelper";
+import {experimentCost} from "../../util/resourceHelper";
+import {isRepFulfilled} from "../../util/repositoryHelper";
 
 class WisieExperimentPage extends React.PureComponent {
 
     render() {
         const {profile, onExperimentClick, profileWisieListRep} = this.props;
-        if (!repFulfilled(profileWisieListRep)) {
+        if (!isRepFulfilled(profileWisieListRep)) {
             return null;
         }
         const cost = experimentCost(profile, profileWisieListRep.value.length);
@@ -25,7 +25,7 @@ class WisieExperimentPage extends React.PureComponent {
                  className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!cost.isEnoughResource)}`}>
                 <div className='justifyCenter paddingRem'>{getText(TEXT_EXPERIMENT)}</div>
                 <div className='justifyCenter'><img alt='' src={experiment} height={60}/></div>
-                <div className='justifyCenter paddingRem'>
+                <div className='justifyCenter'>
                     <div className='justifyCenter flexColumn paddingRem'>{getText(TEXT_COST)}:</div>
                     <Crystal notEnough={profile.crystal < cost.crystal}
                              size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>

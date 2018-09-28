@@ -10,7 +10,7 @@ import Wisie from "../../component/wisie/Wisie";
 import {FaMinusCircle, FaPlusCircle} from "react-icons/fa";
 import {Button} from "../../component/button/Button";
 import {MdDescription} from 'react-icons/md';
-import {repFulfilled} from "../../util/repositoryHelper";
+import {isRepFulfilled} from "../../util/repositoryHelper";
 import cn from 'classnames';
 import {INTRO_STEP_NEW_WISIE, STEP_INDEX_TO_STEP_ID} from "../intro/introHelper";
 
@@ -120,7 +120,7 @@ export class WisieListPageComponent extends React.PureComponent {
 
     render() {
         const {wisieListRep, profileWisieListRep, profileWisies, screen, className} = this.props;
-        if (!repFulfilled(wisieListRep) || !repFulfilled(profileWisieListRep)) {
+        if (!isRepFulfilled(wisieListRep) || !isRepFulfilled(profileWisieListRep)) {
             return <Loading/>;
         }
         const ownedWisiesMap = _.keyBy(profileWisies, 'type');

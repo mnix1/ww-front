@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Modal from "../../component/modal/Modal";
 import WisieAttribute from "../../component/wisie/WisieAttribute";
-import {FaMinusCircle, FaPlusCircle} from "react-icons/fa";
+import {FaMinusCircle, FaPlusCircle, FaRetweet} from "react-icons/fa";
 import {
     COMBINING_FACTS,
     CONCENTRATION,
@@ -18,22 +18,35 @@ import {
     SPEED
 } from "../../util/wisieAttributeHelper";
 import Wisie from "../../component/wisie/Wisie";
-import {teamChanged, upgradePropsChanged, wisieDetailsChanged} from "../../redux/reducer/wisie";
+import {
+    changeHobbyPropsChanged,
+    teamChanged,
+    upgradeAttributePropsChanged,
+    wisieDetailsChanged
+} from "../../redux/reducer/wisie";
 import {Button} from "../../component/button/Button";
-import {WISIE_TEAM_COUNT} from "../../util/wisieHelper";
-import {getText, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE} from "../../lang/langText";
+import {
+    WISIE_MAX_HOBBY_COUNT,
+    WISIE_TEAM_COUNT,
+} from "../../util/wisieHelper";
+import {getText, TEXT_MENTAL, TEXT_MENTALITY, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE, TEXT_WISDOM} from "../../lang/langText";
 import _ from 'lodash';
 import {GREEN_COLOR} from "../../util/style/constant";
 import Wisdom from "../../component/resource/Wisdom";
 import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
 import {clearWisieUpgradeAttributeFetch} from "./fetch/WisieUpgradeAttributeFetch";
 import {INTRO_STEP_WISIE_DETAILS, INTRO_STEP_WISIE_DETAILS_CLOSE} from "../intro/introHelper";
+import {getCategory} from "../../util/categoryHelper";
+import {isRepPending} from "../../util/repositoryHelper";
+import {WISIE_MENTAL_UPGRADE_COST, WISIE_WISDOM_UPGRADE_COST, wisieChangeHobbyCost} from "../../util/resourceHelper";
+import Crystal from "../../component/resource/Crystal";
+import Elixir from "../../component/resource/Elixir";
 
 class WisieDetailsPage extends React.PureComponent {
 
     get pending() {
-        const {wisieUpgradeAttributeRep} = this.props;
-        return _.get(wisieUpgradeAttributeRep, 'pending');
+        const {wisieUpgradeAttributeRep, wisieChangeHobbyRep} = this.props;
+        return isRepPending(wisieUpgradeAttributeRep) || isRepPending(wisieChangeHobbyRep);
     }
 
     get change() {
@@ -41,16 +54,58 @@ class WisieDetailsPage extends React.PureComponent {
         return _.get(wisieUpgradeAttributeRep, 'value.attributeChange');
     }
 
+    renderWisieCustomHobbies(wisie) {
+        const {onChangeHobbyClick, profile} = this.props;
+        const renderAdd = wisie.hobbies.length < WISIE_MAX_HOBBY_COUNT;
+        const cost = wisieChangeHobbyCost(profile, wisie);
+        const pending = this.pending;
+        return <div className='justifyCenter'>
+            <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>
+                    <div className='justifyCenter'>
+                        <Crystal notEnough={profile.crystal < cost.crystal} margin={false}
+                                 size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
+                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} margin={false}
+                                size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
+                    </div>
+                </div>
+                {cost.isEnoughResource && renderAdd &&
+                <FaPlusCircle className={`paddingLeftRem pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
+                              onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, null)} size={24}/>}
+            </div>
+            <div className='justifyStart flexColumn paddingLeftRem'>
+                <div className='justifyCenter '>
+                    {wisie.hobbies.map(e => {
+                        const img = <img alt='' className='paddingLeftRem' key={e} height={24}
+                                         src={getCategory(e)}/>;
+                        if (renderAdd) {
+                            return img;
+                        }
+                        return <div className='justifyCenter flexColumn'>
+                            {img}
+                            {cost.isEnoughResource &&
+                            <div className='justifyCenter'>
+                                <FaRetweet className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR} size={20}
+                                           onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, e)}/>
+                            </div>}
+                        </div>
+                    })}
+                </div>
+            </div>
+        </div>;
+    }
+
     renderWisie(wisie) {
-        const {screen} = this.props;
-        return <Wisie imgHeight={screen.wisieImgHeight + 30} {...wisie} style={{}}>
+        const {screen, upgrade} = this.props;
+        return <Wisie imgHeight={screen.wisieImgHeight + 30} {...wisie}
+                      customHobbies={upgrade && this.renderWisieCustomHobbies(wisie)}>
             {this.renderWisieAttributes(wisie)}
         </Wisie>;
     }
 
-    renderUpgradeCost(cost) {
+    renderUpgradeAttributeCost(cost) {
         const {profile} = this.props;
-        return <div className='justifyCenter' style={{marginLeft: '0.25rem'}}>
+        return <div className='justifyCenter marginLeftRem'>
             (<Wisdom notEnough={profile.wisdom < cost} margin={false} column={false}
                      size={RESOURCE_VERY_SMALL}>{cost}</Wisdom>)
         </div>;
@@ -58,42 +113,42 @@ class WisieDetailsPage extends React.PureComponent {
 
     renderWisieAttributes(wisie) {
         const {upgrade} = this.props;
-        return <div className={`justifyEvenly ${INTRO_STEP_WISIE_DETAILS}`} style={{fontSize: '0.8em'}}>
+        return <div className={`justifyEvenly fontSize08Rem ${INTRO_STEP_WISIE_DETAILS}`}>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
                 <div className='justifyCenter'>
-                    Wiedza
-                    {upgrade && this.renderUpgradeCost(1)}
+                    {getText(TEXT_WISDOM)}
+                    {upgrade && this.renderUpgradeAttributeCost(WISIE_WISDOM_UPGRADE_COST)}
                 </div>
-                {this.renderWisieAttribute(wisie, MEMORY, 1)}
-                {this.renderWisieAttribute(wisie, LOGIC, 1)}
-                {this.renderWisieAttribute(wisie, PERCEPTIVITY, 1)}
-                {this.renderWisieAttribute(wisie, COUNTING, 1)}
-                {this.renderWisieAttribute(wisie, COMBINING_FACTS, 1)}
-                {this.renderWisieAttribute(wisie, PATTERN_RECOGNITION, 1)}
-                {this.renderWisieAttribute(wisie, IMAGINATION, 1)}
+                {this.renderWisieAttribute(wisie, MEMORY, WISIE_WISDOM_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, LOGIC, WISIE_WISDOM_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, PERCEPTIVITY, WISIE_WISDOM_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, COUNTING, WISIE_WISDOM_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, COMBINING_FACTS, WISIE_WISDOM_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, PATTERN_RECOGNITION, WISIE_WISDOM_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, IMAGINATION, WISIE_WISDOM_UPGRADE_COST)}
             </div>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
                 <div className='justifyCenter'>
-                    Mentalność
-                    {upgrade && this.renderUpgradeCost(2)}
+                    {getText(TEXT_MENTALITY)}
+                    {upgrade && this.renderUpgradeAttributeCost(WISIE_MENTAL_UPGRADE_COST)}
                 </div>
-                {this.renderWisieAttribute(wisie, SPEED, 2)}
-                {this.renderWisieAttribute(wisie, REFLEX, 2)}
-                {this.renderWisieAttribute(wisie, CONCENTRATION, 2)}
-                {this.renderWisieAttribute(wisie, CONFIDENCE, 2)}
-                {this.renderWisieAttribute(wisie, INTUITION, 2)}
+                {this.renderWisieAttribute(wisie, SPEED, WISIE_MENTAL_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, REFLEX, WISIE_MENTAL_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, CONCENTRATION, WISIE_MENTAL_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, CONFIDENCE, WISIE_MENTAL_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, INTUITION, WISIE_MENTAL_UPGRADE_COST)}
             </div>
         </div>;
     }
 
     renderWisieAttribute(wisie, attribute, cost) {
-        const {upgrade, profile, onUpgradeClick, upgradeProps} = this.props;
+        const {upgrade, profile, onUpgradeAttributeClick, upgradeAttributeProps} = this.props;
         let change = undefined;
         const pending = this.pending;
-        if (!pending && wisie.id === _.get(upgradeProps, 'id') && upgradeProps.attribute === attribute) {
-            change = <div style={{color: GREEN_COLOR, paddingRight: '0.25rem'}}>(+{this.change})</div>;
+        if (!pending && wisie.id === _.get(upgradeAttributeProps, 'id') && upgradeAttributeProps.attribute === attribute) {
+            change = <div className='paddingRightRem' style={{color: GREEN_COLOR}}>(+{this.change})</div>;
         } else {
-            change = <div style={{opacity: 0, paddingRight: '0.25rem'}}>(+0.00)</div>
+            change = <div className='paddingRightRem opacity0'>(+0.00)</div>
         }
         return <div className='justifyBetween paddingTopRem paddingBottomRem'>
             <div className='width100'>
@@ -101,7 +156,7 @@ class WisieDetailsPage extends React.PureComponent {
             </div>
             {upgrade && cost <= profile.wisdom && <div className='justifyCenter flexColumn'>
                 <FaPlusCircle className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
-                              onClick={pending ? _.noop : () => onUpgradeClick(wisie, attribute)} size={20}/>
+                              onClick={pending ? _.noop : () => onUpgradeAttributeClick(wisie, attribute)} size={20}/>
             </div>}
         </div>;
     }
@@ -113,12 +168,16 @@ class WisieDetailsPage extends React.PureComponent {
         }
         const isInTeam = _.some(team, (e) => e.id === wisieDetails.id);
         return <div className='left'>
-            {!isInTeam && <Button onClick={() => onTeamAddClick(team, wisieDetails)}
-                                  disabled={team.length >= WISIE_TEAM_COUNT}
-                                  icon={<FaPlusCircle/>}>{getText(TEXT_TEAM_ADD)}</Button>
+            {!isInTeam && <Button
+                onClick={() => onTeamAddClick(team, wisieDetails)}
+                disabled={team.length >= WISIE_TEAM_COUNT}
+                icon={<FaPlusCircle/>}>{getText(TEXT_TEAM_ADD)}
+            </Button>
             }
-            {isInTeam && <Button onClick={() => onTeamRemoveClick(team, wisieDetails)}
-                                 icon={<FaMinusCircle/>}>{getText(TEXT_TEAM_REMOVE)}</Button>
+            {isInTeam && <Button
+                onClick={() => onTeamRemoveClick(team, wisieDetails)}
+                icon={<FaMinusCircle/>}>{getText(TEXT_TEAM_REMOVE)}
+            </Button>
             }
 
         </div>;
@@ -129,7 +188,8 @@ class WisieDetailsPage extends React.PureComponent {
         if (!wisieDetails) {
             return null;
         }
-        return <Modal exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE} header={this.renderModalHeader()} onExitClick={onExitClick}>
+        return <Modal exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE} header={this.renderModalHeader()}
+                      onExitClick={onExitClick}>
             {this.renderWisie(wisieDetails)}
         </Modal>;
     }
@@ -138,13 +198,14 @@ class WisieDetailsPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        path: state.router.location.pathname,
         screen: state.screen,
         profile: state.profile.profile,
         team: state.wisie.team,
         wisieDetails: state.wisie.wisieDetails,
+        upgradeAttributeProps: state.wisie.upgradeAttributeProps,
         wisieUpgradeAttributeRep: state.repository.wisieUpgradeAttribute,
-        upgradeProps: state.wisie.upgradeProps,
-        path: state.router.location.pathname,
+        wisieChangeHobbyRep: state.repository.wisieChangeHobby,
     }),
     (dispatch) => ({
         onExitClick: () => dispatch(wisieDetailsChanged(undefined)),
@@ -156,9 +217,12 @@ export default connect(
             const newTeam = team.filter(e => e.id !== wisie.id);
             dispatch(teamChanged(newTeam))
         },
-        onUpgradeClick: (wisie, attribute) => {
-            dispatch(upgradePropsChanged({id: wisie.id, attribute}));
+        onUpgradeAttributeClick: (wisie, attribute) => {
+            dispatch(upgradeAttributePropsChanged({id: wisie.id, attribute}));
             clearWisieUpgradeAttributeFetch(dispatch);
+        },
+        onChangeHobbyClick: (wisie, hobby) => {
+            dispatch(changeHobbyPropsChanged({id: wisie.id, hobby}));
         }
     })
 )(WisieDetailsPage);

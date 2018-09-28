@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CAMPAIGN_TEAM_EDIT_ROUTE, WISIES_PICK_ROUTE, WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../../routes";
-import {fetchOnPathAndIfNotExists, fetchOnPathOrIfNotExistsAnymore, repFulfilled} from "../../../util/repositoryHelper";
+import {fetchOnPathAndIfNotExists, fetchOnPathOrIfNotExistsAnymore, isRepFulfilled} from "../../../util/repositoryHelper";
 import {isProfileWisiesActualChanged, profileWisiesChanged, teamChanged} from "../../../redux/reducer/wisie";
 
 class ProfileWisieListFetch extends React.PureComponent {
@@ -14,7 +14,7 @@ class ProfileWisieListFetch extends React.PureComponent {
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
         const {profileWisieListFetch, dispatch} = this.props;
-        if (!repFulfilled(prevProps.profileWisieListFetch) && repFulfilled(profileWisieListFetch)) {
+        if (!isRepFulfilled(prevProps.profileWisieListFetch) && isRepFulfilled(profileWisieListFetch)) {
             dispatch(profileWisiesChanged(profileWisieListFetch.value));
             dispatch(teamChanged(profileWisieListFetch.value.filter(e => e.inTeam)));
             dispatch(isProfileWisiesActualChanged(true));

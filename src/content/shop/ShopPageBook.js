@@ -12,13 +12,13 @@ import {noticeError} from "../../component/notification/noticeError";
 import {checkRepValueCode} from "../../util/repositoryHelper";
 import Rating from "../../component/rating/Rating";
 import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
-import {repFulfilled} from "../../util/repositoryHelper";
+import {isRepFulfilled} from "../../util/repositoryHelper";
 
 class ShopPageBook extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         const {shopBuyBookRep} = this.props;
-        if (!repFulfilled(shopBuyBookRep)) {
+        if (!isRepFulfilled(shopBuyBookRep)) {
             return;
         }
         if (prevProps.shopBuyBookRep && prevProps.shopBuyBookRep.fulfilled) {

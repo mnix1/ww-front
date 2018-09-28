@@ -6,7 +6,8 @@ export const HERO_DETAILS_CHANGED = 'wisie/wisie-details/changed';
 export const SHOW_NOT_OWNED_CHANGED = 'wisie/show-not-owned/changed';
 export const TEAM_CHANGED = 'wisie/team/changed';
 export const TEAM_SAVE_CHANGED = 'wisie/team-save/changed';
-export const UPGRADE_PROPS_CHANGED = 'wisie/upgrade-props/changed';
+export const UPGRADE_ATTRIBUTE_PROPS_CHANGED = 'wisie/upgrade-attribute-props/changed';
+export const HOBBY_CHANGE_PROPS_CHANGED = 'wisie/hobby-change-props/changed';
 export const PROFILE_WISIES_CHANGED = 'wisie/profile-wisies/changed';
 export const IS_PROFILE_WISIES_ACTUAL_CHANGED = 'wisie/is-profile-wisies-actual/changed';
 
@@ -18,7 +19,8 @@ const initialState = {
     profileWisies: [],
     isProfileWisiesActual: undefined,
     teamSave: false,
-    upgradeProps: undefined,
+    upgradeAttributeProps: undefined,
+    changeHobbyProps: undefined,
 };
 
 export default function reducer(state = initialState, action) {
@@ -40,8 +42,10 @@ export default function reducer(state = initialState, action) {
             return {...state, team: action.team};
         case TEAM_SAVE_CHANGED:
             return {...state, teamSave: action.teamSave};
-        case UPGRADE_PROPS_CHANGED:
-            return {...state, upgradeProps: action.upgradeProps};
+        case UPGRADE_ATTRIBUTE_PROPS_CHANGED:
+            return {...state, upgradeAttributeProps: action.upgradeAttributeProps};
+        case HOBBY_CHANGE_PROPS_CHANGED:
+            return {...state, changeHobbyProps: action.changeHobbyProps};
         case IS_PROFILE_WISIES_ACTUAL_CHANGED:
             return {...state, isProfileWisiesActual: action.isProfileWisiesActual};
         case PROFILE_WISIES_CHANGED: {
@@ -77,8 +81,12 @@ export function teamSaveChanged(teamSave) {
     return {type: TEAM_SAVE_CHANGED, teamSave};
 }
 
-export function upgradePropsChanged(upgradeProps) {
-    return {type: UPGRADE_PROPS_CHANGED, upgradeProps};
+export function upgradeAttributePropsChanged(upgradeAttributeProps) {
+    return {type: UPGRADE_ATTRIBUTE_PROPS_CHANGED, upgradeAttributeProps};
+}
+
+export function changeHobbyPropsChanged(changeHobbyProps) {
+    return {type: HOBBY_CHANGE_PROPS_CHANGED, changeHobbyProps};
 }
 
 export function profileWisiesChanged(profileWisies) {
