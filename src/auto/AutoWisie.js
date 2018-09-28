@@ -35,8 +35,8 @@ async function upgradeWisie(auto, wisie) {
     auto.dispatch(wisieDetailsChanged(wisie));
     auto.dispatch(upgradePropsChanged({id: wisie.id, attribute: _.shuffle(WISIE_ATTRIBUTES)[0]}));
     logAuto('upgradeWisie', 'blockUntilRepFulfilled', 'profileWisieList');
-    await blockUntilRepFulfilled(() => auto.redux.repository.wisieUpgrade);
-    const result = isRepValueCode1(auto.redux.repository.wisieUpgrade);
+    await blockUntilRepFulfilled(() => auto.redux.repository.wisieUpgradeAttribute);
+    const result = isRepValueCode1(auto.redux.repository.wisieUpgradeAttribute);
     logAuto('upgradeWisie', 'upgraded?', result);
     return result;
 }

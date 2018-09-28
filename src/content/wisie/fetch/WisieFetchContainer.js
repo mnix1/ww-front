@@ -4,17 +4,14 @@ import WisieListFetch from "./WisieListFetch";
 import ProfileWisieListFetch from "./ProfileWisieListFetch";
 import WisieExperimentFetch from "./WisieExperimentFetch";
 import WisieTeamSaveFetch from "./WisieTeamSaveFetch";
-import WisieUpgradeFetch from "./WisieUpgradeFetch";
+import WisieUpgradeAttributeFetch from "./WisieUpgradeAttributeFetch";
 
 class WisieFetchContainer extends React.PureComponent {
-    componentDidUpdate(prevProps) {
-    }
-
     render() {
         const {path, upgradeProps, experiment, teamSave, team} = this.props;
         return <div>
             <WisieListFetch/>
-            <WisieUpgradeFetch upgradeProps={upgradeProps}/>
+            <WisieUpgradeAttributeFetch upgradeProps={upgradeProps}/>
             <ProfileWisieListFetch path={path}/>
             <WisieExperimentFetch experiment={experiment}/>
             <WisieTeamSaveFetch teamSave={teamSave} team={team}/>

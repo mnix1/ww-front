@@ -26,19 +26,19 @@ import _ from 'lodash';
 import {GREEN_COLOR} from "../../util/style/constant";
 import Wisdom from "../../component/resource/Wisdom";
 import {RESOURCE_VERY_SMALL} from "../../component/resource/Resource";
-import {clearWisieUpgradeFetch} from "./fetch/WisieUpgradeFetch";
+import {clearWisieUpgradeAttributeFetch} from "./fetch/WisieUpgradeAttributeFetch";
 import {INTRO_STEP_WISIE_DETAILS, INTRO_STEP_WISIE_DETAILS_CLOSE} from "../intro/introHelper";
 
 class WisieDetailsPage extends React.PureComponent {
 
     get pending() {
-        const {wisieUpgradeRep} = this.props;
-        return _.get(wisieUpgradeRep, 'pending');
+        const {wisieUpgradeAttributeRep} = this.props;
+        return _.get(wisieUpgradeAttributeRep, 'pending');
     }
 
     get change() {
-        const {wisieUpgradeRep} = this.props;
-        return _.get(wisieUpgradeRep, 'value.attributeChange');
+        const {wisieUpgradeAttributeRep} = this.props;
+        return _.get(wisieUpgradeAttributeRep, 'value.attributeChange');
     }
 
     renderWisie(wisie) {
@@ -142,7 +142,7 @@ export default connect(
         profile: state.profile.profile,
         team: state.wisie.team,
         wisieDetails: state.wisie.wisieDetails,
-        wisieUpgradeRep: state.repository.wisieUpgrade,
+        wisieUpgradeAttributeRep: state.repository.wisieUpgradeAttribute,
         upgradeProps: state.wisie.upgradeProps,
         path: state.router.location.pathname,
     }),
@@ -158,9 +158,7 @@ export default connect(
         },
         onUpgradeClick: (wisie, attribute) => {
             dispatch(upgradePropsChanged({id: wisie.id, attribute}));
-            clearWisieUpgradeFetch(dispatch);
-            // const newTeam = team.filter(e => e.id !== wisie.id);
-            // dispatch(teamChanged(newTeam))
+            clearWisieUpgradeAttributeFetch(dispatch);
         }
     })
 )(WisieDetailsPage);

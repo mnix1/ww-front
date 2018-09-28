@@ -19,9 +19,9 @@ import {isRepValueCode1} from "../../../../util/repositoryHelper";
 class IntroStepWisieDetails extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {wisieUpgradeRep, stepIndex, onStepIndexChange} = this.props;
+        const {wisieUpgradeAttributeRep, stepIndex, onStepIndexChange} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
-        if (stepId === INTRO_STEP_WISIE_DETAILS && isRepValueCode1(wisieUpgradeRep)) {
+        if (stepId === INTRO_STEP_WISIE_DETAILS && isRepValueCode1(wisieUpgradeAttributeRep)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
     }
@@ -44,7 +44,7 @@ class IntroStepWisieDetails extends React.PureComponent {
 const IntroStepWisieDetailsRedux = connect(
     (state) => ({
         stepIndex: state.intro.stepIndex,
-        wisieUpgradeRep: state.repository.wisieUpgrade,
+        wisieUpgradeAttributeRep: state.repository.wisieUpgradeAttribute,
     }),
     (dispatch) => ({
         onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))

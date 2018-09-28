@@ -4,7 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {profileChanged} from "../../../redux/reducer/profile";
 import {wisieDetailsChanged, profileWisiesChanged} from "../../../redux/reducer/wisie";
 
-class WisieUpgradeFetch extends React.PureComponent {
+class WisieUpgradeAttributeFetch extends React.PureComponent {
 
     componentDidMount() {
         this.maybeFetch({});
@@ -12,9 +12,9 @@ class WisieUpgradeFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {wisieUpgradeFetch, dispatch} = this.props;
-        if (!prevProps.wisieUpgradeFetch.fulfilled && wisieUpgradeFetch.fulfilled) {
-            const value = wisieUpgradeFetch.value;
+        const {wisieUpgradeAttributeFetch, dispatch} = this.props;
+        if (!prevProps.wisieUpgradeAttributeFetch.fulfilled && wisieUpgradeAttributeFetch.fulfilled) {
+            const value = wisieUpgradeAttributeFetch.value;
             dispatch(profileChanged(value.profile));
             dispatch(wisieDetailsChanged(value.profileWisie));
             dispatch(profileWisiesChanged(value.profileWisie));
@@ -22,13 +22,13 @@ class WisieUpgradeFetch extends React.PureComponent {
     }
 
     componentWillUnmount() {
-        clearWisieUpgradeFetch(this.props.dispatch);
+        clearWisieUpgradeAttributeFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {upgradeProps, dispatchWisieUpgradePost} = this.props;
+        const {upgradeProps, dispatchWisieUpgradeAttributePost} = this.props;
         if (upgradeProps && prevProps.upgradeProps !== upgradeProps) {
-            dispatchWisieUpgradePost(upgradeProps);
+            dispatchWisieUpgradeAttributePost(upgradeProps);
         }
     }
 
@@ -37,15 +37,15 @@ class WisieUpgradeFetch extends React.PureComponent {
     }
 }
 
-export function clearWisieUpgradeFetch(dispatch) {
-    dispatch({type: CLEAR, resource: {name: 'wisieUpgrade'}});
+export function clearWisieUpgradeAttributeFetch(dispatch) {
+    dispatch({type: CLEAR, resource: {name: 'wisieUpgradeAttribute'}});
 }
 
 export default connect([{
-    resource: 'wisieUpgrade',
+    resource: 'wisieUpgradeAttribute',
     method: 'post',
     request: ({id, attribute}) => ({
-        url: `/wisie/upgradeWisie`,
+        url: `/wisie/upgradeAttribute`,
         body: {id, attribute}
     })
-}])(WisieUpgradeFetch);
+}])(WisieUpgradeAttributeFetch);
