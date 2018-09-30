@@ -1,6 +1,10 @@
 import React from 'react';
 import {getText, TEXT_ACCEPT, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../lang/langText";
-import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
+import {
+    OBJECTS_CATEGORY,
+    OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM,
+    OBJECTS_CATEGORY_WIDTH_WITH_RANDOM
+} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
 import Timer from "../../../component/timer/Timer";
 import Rating from "../../../component/rating/Rating";
@@ -36,9 +40,10 @@ export default class ChoosingTaskProps extends React.PureComponent {
 
     renderChooseCategory() {
         const {screen, content, communication, rivalType, onCategoryChange} = this.props;
+        const objects = screen.moreHeightThanWidth ? OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM : OBJECTS_CATEGORY_WIDTH_WITH_RANDOM;
         return <SimpleObjectGroup
             setHeight={false}
-            objects={OBJECTS_CATEGORY}
+            objects={objects}
             selectedId={content.chosenCategory}
             onObjectClick={(categoryObject) => {
                 communication.sendChosenCategory(rivalType, categoryObject.id);

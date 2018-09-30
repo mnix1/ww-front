@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Anime} from "../../../component/anime/Anime";
 import {getText, TEXT_DRAW_CATEGORY, TEXT_DRAW_DIFFICULT} from "../../../lang/langText";
-import {OBJECTS_CATEGORY} from "../../object-group/objectsCategory";
+import {OBJECTS_CATEGORY_CIRCLE} from "../../object-group/objectsCategory";
 import SimpleObjectGroup from "../../object-group/SimpleObjectGroup";
-import {CATEGORY_RANDOM} from "../../../util/categoryHelper";
 import _ from 'lodash';
 import Rating from "../../../component/rating/Rating";
 import {DIFFICULTY_LEVELS, NAME_TO_DIFFICULT_LEVEL} from "../../../util/difficultyHelper";
@@ -12,7 +11,7 @@ import {DIFFICULTY_LEVELS, NAME_TO_DIFFICULT_LEVEL} from "../../../util/difficul
 class RandomTaskProps extends React.PureComponent {
 
     renderRandomCategory() {
-        const objectsCategory = _.shuffle(OBJECTS_CATEGORY.filter(e => e.id !== CATEGORY_RANDOM));
+        const objectsCategory = _.shuffle(OBJECTS_CATEGORY_CIRCLE);
         const {screen, content} = this.props;
         const targetCategory = content.task.category;
         const targetSelectedIdValue = objectsCategory.length * 3;

@@ -1,8 +1,8 @@
-// const originalFetch = fetch;
-// fetch = function (url, opts) {
-//     // console.log('fetch', url, opts);
-//     return originalFetch(url, {...opts, credentials: 'include'});
-// };
+const originalFetch = fetch;
+fetch = function (url, opts) {
+    // console.log('fetch', url, opts);
+    return originalFetch(url, {...opts, credentials: 'include'});
+};
 
 export default function request(url, data) {
     const opts = {};

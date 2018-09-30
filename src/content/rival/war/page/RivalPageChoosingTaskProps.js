@@ -39,12 +39,11 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
             return <RandomTaskProps content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
-            const battle = content.type === RIVAL_TYPE_BATTLE;
             return <ChoosingTaskProps
                 screen={rivalScreen({
                     screen,
                     offsetHeight: 56,
-                    offsetWidth: battle ? 0 : screen.moreHeightThanWidth && screen.isSmallWidth ? 160 : 100
+                    offsetWidth: 0
                 })}
                 renderPoints={false}
                 rivalType={content.type}

@@ -25,11 +25,8 @@ import {
     wisieDetailsChanged
 } from "../../redux/reducer/wisie";
 import {Button} from "../../component/button/Button";
-import {
-    WISIE_MAX_HOBBY_COUNT,
-    WISIE_TEAM_COUNT,
-} from "../../util/wisieHelper";
-import {getText, TEXT_MENTAL, TEXT_MENTALITY, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE, TEXT_WISDOM} from "../../lang/langText";
+import {WISIE_MAX_HOBBY_COUNT, WISIE_TEAM_COUNT} from "../../util/wisieHelper";
+import {getText, TEXT_MENTALITY, TEXT_TEAM_ADD, TEXT_TEAM_REMOVE, TEXT_WISDOM} from "../../lang/langText";
 import _ from 'lodash';
 import {GREEN_COLOR} from "../../util/style/constant";
 import Wisdom from "../../component/resource/Wisdom";

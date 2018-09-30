@@ -1,25 +1,25 @@
 import {
+    CATEGORY_COLOR,
     CATEGORY_COUNTRY,
     CATEGORY_ELEMENT,
     CATEGORY_EQUATION,
     CATEGORY_LYRICS,
     CATEGORY_MEMORY,
     CATEGORY_NUMBER,
+    CATEGORY_OLYMPIC_GAMES,
     CATEGORY_RANDOM,
     CATEGORY_RIDDLE,
-    CATEGORY_COLOR,
     CATEGORY_TIME,
-    CATEGORY_OLYMPIC_GAMES,
     getCategory
 } from "../../util/categoryHelper";
 
+const randomCategory = {
+    id: CATEGORY_RANDOM,
+    xTarget: .5,
+    yTarget: .5,
+    imgSrc: getCategory(CATEGORY_RANDOM)
+};
 const categories = [
-    {
-        id: CATEGORY_RANDOM,
-        xTarget: .5,
-        yTarget: .5,
-        imgSrc: getCategory(CATEGORY_RANDOM)
-    },
     {
         id: CATEGORY_LYRICS,
     },
@@ -51,15 +51,12 @@ const categories = [
         id: CATEGORY_MEMORY,
     },
 ];
-const length = categories.length - 1;
-const df = 2 * Math.PI / length;
 
-export const OBJECTS_CATEGORY = categories.map((e, i) => {
-    if (e.id === CATEGORY_RANDOM) {
-        return e;
-    }
+const df = 2 * Math.PI / categories.length;
+
+export const OBJECTS_CATEGORY_CIRCLE = categories.map((e, i) => {
     let f = i * df;
-    if (length % 2 === 1) {
+    if (categories.length % 2 === 1) {
         f -= Math.PI / 2;
     } else {
         f -= df / 2;
@@ -68,3 +65,24 @@ export const OBJECTS_CATEGORY = categories.map((e, i) => {
     const yTarget = 0.5 - Math.sin(f) * 0.35;
     return {...e, xTarget, yTarget, imgSrc: getCategory(e.id)}
 });
+
+export const OBJECTS_CATEGORY_CIRCLE_WITH_RANDOM = OBJECTS_CATEGORY_CIRCLE.concat(randomCategory);
+
+const factor = 1 / ((categories.length / 2) - 1);
+
+export const OBJECTS_CATEGORY_HEIGHT = categories.map((e, i) => {
+    const f = i < categories.length / 2 ? -1 : 1;
+    const g = ((i % (categories.length / 2)) * factor - .5) * .5;
+    const xTarget = 0.5 + f * 0.1;
+    const yTarget = .5 + g;
+    return {...e, xTarget, yTarget, imgSrc: getCategory(e.id)}
+});
+export const OBJECTS_CATEGORY_WIDTH = OBJECTS_CATEGORY_HEIGHT.map((e, i) => ({
+    ...e,
+    yTarget: e.xTarget > 0.5 ? e.xTarget + 0.15 : e.xTarget - 0.15,
+    xTarget: e.yTarget
+}));
+
+export const OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM = OBJECTS_CATEGORY_HEIGHT.concat({...randomCategory, yTarget: 0.12});
+export const OBJECTS_CATEGORY_WIDTH_WITH_RANDOM = OBJECTS_CATEGORY_WIDTH.concat(randomCategory);
+

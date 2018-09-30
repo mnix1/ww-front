@@ -11,7 +11,7 @@ import Task from "../../component/task/Task";
 import PractiseStartFetch, {clearPractiseStartFetch} from "./fetch/PractiseStartFetch";
 import PractiseEndFetch, {clearPractiseEndFetch} from "./fetch/PractiseEndFetch";
 import {getText, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_NEXT, TEXT_QUESTION} from "../../lang/langText";
-import {OBJECTS_CATEGORY} from "../object-group/objectsCategory";
+import {OBJECTS_CATEGORY_CIRCLE_WITH_RANDOM} from "../object-group/objectsCategory";
 import SimpleObjectGroup from "../object-group/SimpleObjectGroup";
 import {Route, Switch} from 'react-router'
 import {push} from 'connected-react-router'
@@ -34,7 +34,7 @@ class PractisePage extends React.PureComponent {
             <div className="pageHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
                 setHeight={false}
-                objects={OBJECTS_CATEGORY}
+                objects={OBJECTS_CATEGORY_CIRCLE_WITH_RANDOM}
                 onObjectClick={onCategoryChange}
                 screen={{...screen, contentHeight: screen.contentHeight - 70}}
             />
@@ -63,21 +63,6 @@ class PractisePage extends React.PureComponent {
                   onAnswerClick={onAnswerClick}/>
         </div>
     }
-
-    // renderResult() {
-    //     const {answerId, practiseEndRep} = this.props;
-    //     const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
-    //     if (!correctAnswerId) {
-    //         return null;
-    //     }
-    //     const answerInterval = _.get(practiseEndRep, 'value.answerInterval');
-    //     const resultMessage = correctAnswerId === answerId ? getText(TEXT_CORRECT_ANSWER) : getText(TEXT_WRONG_ANSWER);
-    //     return <div key='result' className="contentHeader">
-    //         <span className={styles.resultMessage}>{resultMessage}</span>
-    //         <br/>
-    //         <span className={styles.resultMessage}>{prepareAnswerIntervalMessage(answerInterval)}</span>
-    //     </div>;
-    // }
 
     renderPlayAgain() {
         const {onPlayAgainClick, profile} = this.props;
