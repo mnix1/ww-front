@@ -92,8 +92,9 @@ export default class CommunicationWebSocket {
             } else if (id === 'RIVAL_CANCEL_INVITE') {
                 noticeError(ERROR_FRIEND_RIVAL_CANCELED);
             }
+        } else {
+            this.onRivalMessage(id, data);
         }
-        this.onRivalMessage(id, data);
     };
 
     send(message) {

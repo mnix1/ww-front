@@ -19,7 +19,7 @@ export default class ChoosingTaskProps extends React.PureComponent {
     };
 
     renderChooseDifficult() {
-        const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, rivalType, renderPoints} = this.props;
+        const {content, onDifficultLevelChange, onDifficultLevelAcceptChange, communication, renderPoints} = this.props;
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter marginRem'>
                 <Rating onChange={onDifficultLevelChange} valueString={content.chosenDifficulty}/>
@@ -30,7 +30,7 @@ export default class ChoosingTaskProps extends React.PureComponent {
                 <Button
                     icon={<TiInputChecked/>}
                     onClick={() => {
-                        communication.sendChosenDifficulty(rivalType, content.chosenDifficulty);
+                        communication.sendChosenDifficulty(content.chosenDifficulty);
                         onDifficultLevelAcceptChange(true);
                     }} material={BUTTON_MATERIAL_BOX_SHADOW}>{getText(TEXT_ACCEPT)}</Button>
             </div>
@@ -38,14 +38,14 @@ export default class ChoosingTaskProps extends React.PureComponent {
     }
 
     renderChooseCategory() {
-        const {screen, content, communication, rivalType, onCategoryChange} = this.props;
+        const {screen, content, communication, onCategoryChange} = this.props;
         const objects = screen.moreHeightThanWidth ? OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM : OBJECTS_CATEGORY_WIDTH_WITH_RANDOM;
         return <SimpleObjectGroup
             setHeight={false}
             objects={objects}
             selectedId={content.chosenCategory}
             onObjectClick={(categoryObject) => {
-                communication.sendChosenCategory(rivalType, categoryObject.id);
+                communication.sendChosenCategory(categoryObject.id);
                 onCategoryChange(categoryObject);
             }}
             screen={screen}

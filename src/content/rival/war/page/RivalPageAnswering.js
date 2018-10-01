@@ -35,14 +35,14 @@ class RivalPageAnswering extends React.PureComponent {
     handleAnswerClick = (answerId) => {
         const {content, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
         const {task} = content;
-        communication.sendAnswer(content.type, answerId);
+        communication.sendAnswer(answerId);
         onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
     };
 
     handleHintClick = (answerId) => {
         const {content, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
         const {task} = content;
-        communication.sendHint(content.type, answerId);
+        communication.sendHint(answerId);
         // onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
     };
 

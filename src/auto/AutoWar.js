@@ -63,7 +63,7 @@ function taskProps(auto, content) {
     const interval = Math.random() * 1000 + 2000;
     const difficultyLevel = _.shuffle(DIFFICULTY_LEVEL_NAMES)[0];
     setTimeout(() => {
-        auto.communication.sendChosenDifficulty(RIVAL_TYPE_WAR, difficultyLevel);
+        auto.communication.sendChosenDifficulty(difficultyLevel);
     }, interval);
     const available = content.presentIndexes.map(e => content.team[e]);
     const availableWisies = available.filter(isTeamMemberWisie);
@@ -79,7 +79,7 @@ function taskProps(auto, content) {
     const category = _.shuffle(_.flatten(possibleCategories))[0];
     logAuto('taskProps', 'category', category, 'difficultyLevel', difficultyLevel);
     setTimeout(() => {
-        auto.communication.sendChosenCategory(RIVAL_TYPE_WAR, category);
+        auto.communication.sendChosenCategory(category);
     }, interval * 2);
 }
 
@@ -88,7 +88,7 @@ function whoAnswer(auto, content) {
     const whoAnswerIndex = findWhoAnswerIndex(auto, content);
     logAuto('whoAnswer', 'whoAnswerIndex', whoAnswerIndex);
     setTimeout(() => {
-        auto.communication.sendWhoAnswer(RIVAL_TYPE_WAR, whoAnswerIndex);
+        auto.communication.sendWhoAnswer(whoAnswerIndex);
     }, interval);
 }
 
@@ -146,7 +146,7 @@ function answering(auto, content) {
         const randomId = _.shuffle(content.task.answers)[0].id;
         if (!isCorrect) {
             logAuto('answering', 'randomId', randomId);
-            auto.communication.sendAnswer(RIVAL_TYPE_WAR, randomId);
+            auto.communication.sendAnswer(randomId);
             return;
         }
         request('/auto/correctAnswer').then(e => {
@@ -154,7 +154,7 @@ function answering(auto, content) {
                 return;
             }
             logAuto('answering', 'correct', e.id)
-            auto.communication.sendAnswer(RIVAL_TYPE_WAR, e.id);
+            auto.communication.sendAnswer(e.id);
         })
     }, noAnswerInterval)
 }

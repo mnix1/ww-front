@@ -6,10 +6,10 @@ import {getText, TEXT_SURRENDER} from "../../lang/langText";
 export default class Surrender extends React.PureComponent {
 
     render() {
-        const {onOptionShowChange, communication, surrenderMsg, screen} = this.props;
+        const {onOptionShowChange, communication, screen} = this.props;
         const imgHeight = screen.isSmallHeight ? 20 : 30;
         return <div className='justifyCenter surrender' onClick={() => {
-            communication.send(surrenderMsg);
+            communication.sendSurrender();
             onOptionShowChange(false);
         }}>
             <Button material={BUTTON_MATERIAL_BOX_SHADOW} icon={<img alt='' src={flag} height={imgHeight}/>}>

@@ -22,7 +22,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
                 className={className}
                 contentClassName='overflowXAuto justifyStart'
                 memberClassName={chosen ? '' : 'pointer'}
-                onClick={chosen ? _.noop : (i) => onTeamClick(i, communication, content.type)}
+                onClick={chosen ? _.noop : i => onTeamClick(i, communication)}
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
                 team={content.team}/>
@@ -52,8 +52,8 @@ export default connect(
         content: state.rival.content,
     }),
     (dispatch) => ({
-        onTeamClick: (index, communication, rivalType) => {
-            communication.sendWhoAnswer(rivalType, index);
+        onTeamClick: (index, communication) => {
+            communication.sendWhoAnswer(index);
             dispatch(rivalInProgressContent({activeIndex: index, isChosenActiveIndex: true}))
         }
     })

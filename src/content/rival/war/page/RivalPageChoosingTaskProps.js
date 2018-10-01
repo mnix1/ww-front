@@ -46,7 +46,6 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
                     offsetWidth: 0
                 })}
                 renderPoints={false}
-                rivalType={content.type}
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}

@@ -1,11 +1,5 @@
 import {rivalInProgressContent, rivalTypeChanged, statusChanged as rivalStatusChanged} from "../../redux/reducer/rival";
-import {
-    RIVAL_STATUS_CLOSED,
-    RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_CAMPAIGN_WAR,
-    RIVAL_TYPE_CHALLENGE,
-    RIVAL_TYPE_WAR
-} from "../../util/rivalHelper";
+import {RIVAL_STATUS_CLOSED, RIVAL_TYPE_ROUTE} from "../../util/rivalHelper";
 import _ from 'lodash';
 
 export default class RivalCommunication {
@@ -24,44 +18,38 @@ export default class RivalCommunication {
         this.communicationWebSocket.send(message);
     }
 
-    sendAnswer(rivalType, answerId) {
-        this.send(`${rivalType}_^_ANSWER` + JSON.stringify({answerId}));
+    sendSurrender() {
+        this.send(JSON.stringify({id: 'SURRENDER'}));
     }
 
-    sendHint(rivalType, answerId) {
-        this.send(`${rivalType}_^_HINT` + JSON.stringify({answerId}));
+    sendAnswer(answerId) {
+        this.send(JSON.stringify({id: 'ANSWER', answerId}));
     }
 
-    sendWhoAnswer(rivalType, activeIndex) {
-        this.send(`${rivalType}_^_CHOOSE_WHO_ANSWER` + JSON.stringify({activeIndex}));
+    sendHint(answerId) {
+        this.send(JSON.stringify({id: 'HINT', answerId}));
     }
 
-    sendChosenDifficulty(rivalType, difficultyLevel) {
-        this.send(`${rivalType}_^_CHOOSE_TASK_PROPS` + JSON.stringify({difficultyLevel}));
+    sendWhoAnswer(activeIndex) {
+        this.send(JSON.stringify({id: 'CHOOSE_WHO_ANSWER', activeIndex}));
     }
 
-    sendChosenCategory(rivalType, category) {
-        this.send(`${rivalType}_^_CHOOSE_TASK_PROPS` + JSON.stringify({category}));
+    sendChosenDifficulty(difficultyLevel) {
+        this.send(JSON.stringify({id: 'CHOOSE_TASK_PROPS', difficultyLevel}));
+    }
+
+    sendChosenCategory(category) {
+        this.send(JSON.stringify({id: 'CHOOSE_TASK_PROPS', category}));
     }
 
     onMessage = (id, data) => {
-        if (!_.includes(id, '_CONTENT')) {
+        const rivalType = id.replace('_CONTENT', '');
+        if (!RIVAL_TYPE_ROUTE[rivalType]) {
             return;
         }
         const content = JSON.parse(data.content);
-        if (id === `${RIVAL_TYPE_BATTLE}_CONTENT`) {
-            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_BATTLE);
-            this.rivalInProgress(content)
-        } else if (id === `${RIVAL_TYPE_WAR}_CONTENT`) {
-            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_WAR);
-            this.rivalInProgress(content);
-        } else if (id === `${RIVAL_TYPE_CAMPAIGN_WAR}_CONTENT`) {
-            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_CAMPAIGN_WAR);
-            this.rivalInProgress(content);
-        } else if (id === `${RIVAL_TYPE_CHALLENGE}_CONTENT`) {
-            this.changeRivalTypeIfDifferenct(RIVAL_TYPE_CHALLENGE);
-            this.rivalInProgress(content);
-        }
+        this.changeRivalTypeIfDifferenct(rivalType);
+        this.rivalInProgress(content);
         this.onMessageEvent(id, content);
     };
 
