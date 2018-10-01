@@ -18,7 +18,7 @@ import {
     WILL_GIVE_RANDOM_ANSWER,
     WONT_GIVE_RANDOM_ANSWER,
     THINKING_WHICH_ANSWER_MATCH,
-    THINKING_IF_GIVE_RANDOM_ANSWER
+    THINKING_IF_GIVE_RANDOM_ANSWER, HINT_RECEIVED, THINKING_IF_USE_HINT, WILL_USE_HINT, WONT_USE_HINT
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -50,6 +50,11 @@ const HERO_ACTION_LABELS = {
         [THINKING_WHICH_ANSWER_MATCH]: "Która odpowiedź pasuje?",
         [THINKING_IF_GIVE_RANDOM_ANSWER]: "Może będę strzelać?",
 
+        [HINT_RECEIVED]: "(Podpowiedziano)",
+        [THINKING_IF_USE_HINT]: "To dobra podpowiedź?",
+        [WILL_USE_HINT]: "Chyba tak...",
+        [WONT_USE_HINT]: "Wydaje mi się, że nie",
+
         [DREAMING_ABOUT_VACATION]: '(Marzy o wakacjach...)',
         [SCRATCHING]: '(Drapie się...)',
         [YAWNING]: '(Ziewa...)',
@@ -78,6 +83,11 @@ const HERO_ACTION_LABELS = {
 
         [THINKING_WHICH_ANSWER_MATCH]: "Which answer match?",
         [THINKING_IF_GIVE_RANDOM_ANSWER]: "Give random answer?",
+
+        [HINT_RECEIVED]: "(Hint received)",
+        [THINKING_IF_USE_HINT]: "Is hint correct?",
+        [WILL_USE_HINT]: "I guess so...",
+        [WONT_USE_HINT]: "I don't think so...",
 
         [DREAMING_ABOUT_VACATION]: '(Dreaming...)',
         [SCRATCHING]: '(Scratching...)',

@@ -24,25 +24,6 @@ import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 
 class RivalPageAnswering extends React.PureComponent {
 
-    state = {component: undefined};
-
-    componentDidMount() {
-        if (this.props.content.status === RIVAL_CONTENT_STATUS_ANSWERING) {
-            this.setState({component: 0});
-        }
-    }
-
-    componentDidUpdate() {
-        const status = this.props.content.status;
-        if (this.state.component === 0 && status !== RIVAL_CONTENT_STATUS_ANSWERING) {
-            const component = status === RIVAL_CONTENT_STATUS_ANSWERED ? 2 : status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT ? 3 : 0;
-            this.setState({component: 1});
-            setTimeout(() => {
-                this.setState({component});
-            }, 500)
-        }
-    }
-
     get imgHeight() {
         const {screen, imgHeight} = this.props;
         if (imgHeight) {
@@ -51,8 +32,22 @@ class RivalPageAnswering extends React.PureComponent {
         return screen.wisieImgHeight - 10;
     }
 
-    renderTask() {
-        const {content, onAnswerClick, onSkipAnimationChange, questionIdAnswerIdMap, questionIdSkipAnimationMap, screen, communication} = this.props;
+    handleAnswerClick = (answerId) => {
+        const {content, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
+        const {task} = content;
+        communication.sendAnswer(content.type, answerId);
+        onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+    };
+
+    handleHintClick = (answerId) => {
+        const {content, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
+        const {task} = content;
+        communication.sendHint(content.type, answerId);
+        // onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+    };
+
+    renderTask(onAnswerClick) {
+        const {content, onSkipAnimationChange, questionIdSkipAnimationMap, screen} = this.props;
         const {task, type, correctAnswerId} = content;
         const battle = type === RIVAL_TYPE_BATTLE;
         return <Task
@@ -71,18 +66,23 @@ class RivalPageAnswering extends React.PureComponent {
                 if (!_.isNil(correctAnswerId)) {
                     return;
                 }
-                communication.sendAnswer(content.type, answerId);
-                onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+                onAnswerClick(answerId);
             }}
-        />
+        />;
     }
 
     renderTaskActive() {
         const {content} = this.props;
         return <div className='width100 height100 absolute'>
             <ActiveMembers content={content}/>
-            {this.renderTask()}
+            {this.renderTask(this.handleAnswerClick)}
         </div>;
+    }
+
+    renderSkills() {
+        return <div>
+            Hints: 1
+        </div>
     }
 
     renderTaskNotActive(activeMember) {
@@ -97,6 +97,7 @@ class RivalPageAnswering extends React.PureComponent {
                            renderDetails={true} isOwned={true}>
                         <WisieActions actions={content.wisieActions}/>
                     </Wisie>
+                    {this.renderSkills()}
                 </div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
@@ -107,18 +108,7 @@ class RivalPageAnswering extends React.PureComponent {
                         : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}
             </div>
-            <Task
-                onSkipAnimationChange={() => {
-                    if (!_.isNil(correctAnswerId)) {
-                        return;
-                    }
-                    onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
-                }}
-                screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
-                skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
-                question={task}
-                answers={task.answers}
-            />
+            {this.renderTask(this.handleHintClick)}
         </div>;
     }
 
@@ -127,7 +117,7 @@ class RivalPageAnswering extends React.PureComponent {
         if (content.type === RIVAL_TYPE_BATTLE) {
             return <div className='width100 height100 absolute'>
                 <Profiles content={content} className='absolute'/>
-                {this.renderTask()}
+                {this.renderTask(this.handleAnswerClick)}
             </div>;
         }
         const activeMember = content.team[content.activeIndex];
@@ -140,7 +130,7 @@ class RivalPageAnswering extends React.PureComponent {
         return content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
     }
 
-    renderAnswering() {
+    render() {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div
@@ -157,18 +147,6 @@ class RivalPageAnswering extends React.PureComponent {
             </TaskDescription>
             {this.renderContent()}
         </div>;
-    }
-
-    render() {
-        const {component} = this.state;
-        const {content} = this.props;
-        if (component === 2 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERED)) {
-            return <RivalPageAnswered/>;
-        }
-        if (component === 3 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT)) {
-            return <RivalPageAnsweringTimeout/>
-        }
-        return this.renderAnswering();
     }
 }
 

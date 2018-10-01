@@ -1,7 +1,6 @@
 import React from 'react';
 import {getText, TEXT_ACCEPT, TEXT_CHOOSE_CATEGORY, TEXT_CHOOSE_DIFFICULT, TEXT_TIME} from "../../../lang/langText";
 import {
-    OBJECTS_CATEGORY,
     OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM,
     OBJECTS_CATEGORY_WIDTH_WITH_RANDOM
 } from "../../object-group/objectsCategory";

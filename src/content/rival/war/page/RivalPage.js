@@ -19,6 +19,7 @@ import {
     RIVAL_CONTENT_STATUS_INTRO,
     RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK
 } from "../../../../util/rivalHelper";
+import RivalMultiPageAnswer from "./RivalMultiPageAnswer";
 
 class RivalPage extends React.PureComponent {
 
@@ -35,7 +36,7 @@ class RivalPage extends React.PureComponent {
             return <RivalPagePreparingNextTask/>
         }
         if (status === RIVAL_CONTENT_STATUS_ANSWERING || status === RIVAL_CONTENT_STATUS_ANSWERED || status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
-            return <RivalPageAnswering communication={communication}/>
+            return <RivalMultiPageAnswer communication={communication}/>
         }
         if (status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS) {
             return <RivalPageChoosingTaskProps communication={communication}/>

@@ -28,6 +28,10 @@ export default class RivalCommunication {
         this.send(`${rivalType}_^_ANSWER` + JSON.stringify({answerId}));
     }
 
+    sendHint(rivalType, answerId) {
+        this.send(`${rivalType}_^_HINT` + JSON.stringify({answerId}));
+    }
+
     sendWhoAnswer(rivalType, activeIndex) {
         this.send(`${rivalType}_^_CHOOSE_WHO_ANSWER` + JSON.stringify({activeIndex}));
     }
