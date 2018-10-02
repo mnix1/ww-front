@@ -123,7 +123,7 @@ const HERO_ACTION_LABELS = {
         [HUMMING_A_SONG]: '(Humming a song...)',
         [WATCHES_THE_AUDIENCE]: '(Watches the audience...)',
         [HUNG_UP]: '(Hung up...)',
-        [HAS_MUSCLE_SPASM]: '(Has muscle spasm...)',
+        [HAS_MUSCLE_SPASM]: '(Has muscle contraction...)',
         [NEED_GO_TO_TOILET]: '(Need go to toilet...)',
     }
 };

@@ -4,6 +4,7 @@ import Profile from "../../../component/profile/Profile";
 import _ from 'lodash';
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
+import SkillLifebuoy from "../../../component/skill/SkillLifebuoy";
 
 class Team extends React.PureComponent {
 
@@ -60,7 +61,7 @@ class Team extends React.PureComponent {
         }
         return <div className='justifyStart flexColumn'>
             <div className='justifyCenter'>{wisieComponent}</div>
-            <div className='justifyCenter' onClick={() => onLifebuoyClick(teamMember.index)}>Lifebuoy</div>
+            <SkillLifebuoy onClick={() => onLifebuoyClick(teamMember.index)}/>
         </div>;
     }
 
