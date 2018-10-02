@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_CHOOSE_WHO_ANSWER, TEXT_OPPONENT_TEAM, TEXT_TIME} from "../../../../lang/langText";
-import Team from "../../component/Team";
-import {rivalInProgressContent} from "../../../../redux/reducer/rival";
-import TaskDescription from "../../component/TaskDescription";
+import {getText, TEXT_CHOOSE_WHO_ANSWER, TEXT_OPPONENT_TEAM, TEXT_TIME} from "../../../lang/langText";
+import Team from "../component/Team";
+import {rivalInProgressContent} from "../../../redux/reducer/rival";
+import TaskDescription from "../component/TaskDescription";
 import _ from 'lodash';
-import Timer from "../../../../component/timer/Timer";
+import Timer from "../../../component/timer/Timer";
 import cn from 'classnames';
 
 class RivalPageChoosingWhoAnswer extends React.PureComponent {

@@ -1,18 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import RandomTaskProps from "../../component/RandomTaskProps";
-import ChoosingTaskProps from "../../component/ChoosingTaskProps";
-import TaskDescription from "../../component/TaskDescription";
-import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../../lang/langText";
-import sleep from '../../../../media/image/icon/sleep.svg';
-import Timer from "../../../../component/timer/Timer";
-import {DIFFICULT_LEVEL_TO_NAME} from "../../../../util/difficultyHelper";
-import {rivalInProgressContent} from "../../../../redux/reducer/rival";
-import Teams from "../../component/Teams";
-import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
-import Profiles from "../../component/Profiles";
-import {rivalScreen} from "../../../../util/screenHelper";
+import RandomTaskProps from "../component/RandomTaskProps";
+import ChoosingTaskProps from "../component/ChoosingTaskProps";
+import TaskDescription from "../component/TaskDescription";
+import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../lang/langText";
+import sleep from '../../../media/image/icon/sleep.svg';
+import Timer from "../../../component/timer/Timer";
+import {DIFFICULT_LEVEL_TO_NAME} from "../../../util/difficultyHelper";
+import {rivalInProgressContent} from "../../../redux/reducer/rival";
+import Teams from "../component/Teams";
+import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import Profiles from "../component/Profiles";
+import {rivalScreen} from "../../../util/screenHelper";
 
 class RivalPageChoosingTaskProps extends React.PureComponent {
 

@@ -15,8 +15,8 @@ export default class AvailableSkills extends React.PureComponent {
 
     render() {
         const {skills} = this.props;
-        return <div>
-            <div>
+        return <div className='justifyCenter'>
+            <div className='justifyCenter'>
                 {skills.map(e => <Skill imgSrc={getSkill(e.type)}>{e.count}</Skill>)}
             </div>
         </div>

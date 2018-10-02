@@ -45,7 +45,7 @@ import ShopPage from "../../content/shop/ShopPage";
 import PlayWarPage from "../../content/play/PlayWarPage";
 import PlayBattlePage from "../../content/play/PlayBattlePage";
 import PlayChallengePage from "../../content/play/PlayChallengePage";
-import RivalPage from "../../content/rival/war/page/RivalPage";
+import RivalPage from "../../content/rival/page/RivalPage";
 import RivalSearchOpponentPage from "../../content/rival/RivalSearchOpponentPage";
 import PractisePage from "../../content/practise/PractisePage";
 import CampaignPage from "../../content/campaign/CampaignPage";

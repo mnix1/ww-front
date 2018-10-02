@@ -1,16 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../../lang/langText";
-import thumbUp from '../../../../media/image/icon/thumbUp.svg';
-import thumbDown from '../../../../media/image/icon/thumbDown.svg';
-import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import ActiveMember from "../../component/ActiveMember";
-import TaskDescription from "../../component/TaskDescription";
-import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
-import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
-import {Anime} from "../../../../component/anime/Anime";
-import Profiles from "../../component/Profiles";
-import Profile from "../../../../component/profile/Profile";
+import {getText, TEXT_ANSWERED, TEXT_CORRECT, TEXT_WRONG} from "../../../lang/langText";
+import thumbUp from '../../../media/image/icon/thumbUp.svg';
+import thumbDown from '../../../media/image/icon/thumbDown.svg';
+import TaskMarkedAnswer from "../component/TaskMarkedAnswer";
+import ActiveMember from "../component/ActiveMember";
+import TaskDescription from "../component/TaskDescription";
+import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import {GREEN_COLOR, RED_COLOR} from "../../../util/style/constant";
+import {Anime} from "../../../component/anime/Anime";
+import Profiles from "../component/Profiles";
+import Profile from "../../../component/profile/Profile";
 
 class RivalPageAnswered extends React.PureComponent {
 

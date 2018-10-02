@@ -1,10 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import swordShield from '../../../../media/image/menu/swordShield.svg';
-import {getText} from "../../../../lang/langText";
-import Teams from "../../component/Teams";
-import {isRanking, renderBattleElo, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WELCOME_MSG} from "../../../../util/rivalHelper";
-import Profile from "../../../../component/profile/Profile";
+import swordShield from '../../../media/image/menu/swordShield.svg';
+import {getText} from "../../../lang/langText";
+import Teams from "../component/Teams";
+import {isRanking, renderBattleElo, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WELCOME_MSG} from "../../../util/rivalHelper";
+import Profile from "../../../component/profile/Profile";
 
 class RivalPageIntro extends React.PureComponent {
 

@@ -4,7 +4,7 @@ import {
     RIVAL_CONTENT_STATUS_ANSWERED,
     RIVAL_CONTENT_STATUS_ANSWERING,
     RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT
-} from "../../../../util/rivalHelper";
+} from "../../../util/rivalHelper";
 import RivalPageAnswered from "./RivalPageAnswered";
 import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 import RivalPageAnswering from "./RivalPageAnswering";

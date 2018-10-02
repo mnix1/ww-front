@@ -6,7 +6,7 @@ import RivalPagePreparingNextTask from "./RivalPagePreparingNextTask";
 import RivalPageClosed from "./RivalPageClosed";
 import RivalPageChoosingTaskProps from "./RivalPageChoosingTaskProps";
 import RivalPageChoosingWhoAnswer from "./RivalPageChoosingWhoAnswer";
-import MeshBackground, {MESH_4} from "../../../../component/background/MeshBackground";
+import MeshBackground, {MESH_4} from "../../../component/background/MeshBackground";
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
     RIVAL_CONTENT_STATUS_ANSWERING,
@@ -17,7 +17,7 @@ import {
     RIVAL_CONTENT_STATUS_CLOSED,
     RIVAL_CONTENT_STATUS_INTRO,
     RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK
-} from "../../../../util/rivalHelper";
+} from "../../../util/rivalHelper";
 import RivalMultiPageAnswer from "./RivalMultiPageAnswer";
 
 class RivalPage extends React.PureComponent {

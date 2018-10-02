@@ -1,12 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import TaskDescription from "../../component/TaskDescription";
-import {getText, TEXT_NO_ANSWER} from "../../../../lang/langText";
-import thumbDown from '../../../../media/image/icon/thumbDown.svg';
-import TaskMarkedAnswer from "../../component/TaskMarkedAnswer";
-import ActiveMembers from "../../component/ActiveMembers";
-import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
-import Profiles from "../../component/Profiles";
+import TaskDescription from "../component/TaskDescription";
+import {getText, TEXT_NO_ANSWER} from "../../../lang/langText";
+import thumbDown from '../../../media/image/icon/thumbDown.svg';
+import TaskMarkedAnswer from "../component/TaskMarkedAnswer";
+import ActiveMembers from "../component/ActiveMembers";
+import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import Profiles from "../component/Profiles";
 
 class RivalPageAnsweringTimeout extends React.PureComponent {
 

@@ -7,8 +7,8 @@ import {
     TEXT_OPPONENT_SURRENDER,
     TEXT_THE_WINNER_IS,
     TEXT_YOU_SURRENDER
-} from "../../../../lang/langText";
-import Team from "../../component/Team";
+} from "../../../lang/langText";
+import Team from "../component/Team";
 import {
     getElo,
     getEloProp,
@@ -16,14 +16,14 @@ import {
     RIVAL_TYPE_BATTLE,
     RIVAL_TYPE_CHALLENGE,
     RIVAL_TYPE_FAREWELL_MSG
-} from "../../../../util/rivalHelper";
-import {GREEN_COLOR, RED_COLOR} from "../../../../util/style/constant";
+} from "../../../util/rivalHelper";
+import {GREEN_COLOR, RED_COLOR} from "../../../util/style/constant";
 import _ from "lodash";
-import Profiles from "../../component/Profiles";
-import {Anime} from "../../../../component/anime/Anime";
-import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../../component/button/Button";
+import Profiles from "../component/Profiles";
+import {Anime} from "../../../component/anime/Anime";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 import {goBack} from "connected-react-router";
-import Profile from "../../../../component/profile/Profile";
+import Profile from "../../../component/profile/Profile";
 import {IoMdExit} from "react-icons/io";
 
 class RivalPageClosed extends React.PureComponent {

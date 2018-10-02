@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_QUESTION_PREPARING} from "../../../../lang/langText";
-import Timer from "../../../../component/timer/Timer";
-import ActiveMembers from "../../component/ActiveMembers";
-import TaskDescription from "../../component/TaskDescription";
-import {RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
-import Profiles from "../../component/Profiles";
+import {getText, TEXT_QUESTION_PREPARING} from "../../../lang/langText";
+import Timer from "../../../component/timer/Timer";
+import ActiveMembers from "../component/ActiveMembers";
+import TaskDescription from "../component/TaskDescription";
+import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import Profiles from "../component/Profiles";
 
 class RivalPagePreparingNextTask extends React.PureComponent {
     render() {

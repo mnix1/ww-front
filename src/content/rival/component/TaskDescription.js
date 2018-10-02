@@ -1,5 +1,5 @@
 import React from 'react';
-import '../war/page/styles.css';
+import '../page/styles.css';
 import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_QUESTION} from "../../../lang/langText";
 import {getCategoryLabel} from "../../../lang/langCategory";
 import Rating from "../../../component/rating/Rating";

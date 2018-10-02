@@ -5,6 +5,7 @@ import Team from "./Team";
 import {getElo} from "../../../util/rivalHelper";
 import {remToPixels} from "../../../util/fontHelper";
 import trophy from '../../../media/image/icon/trophy.svg';
+import AvailableSkills from "../../../component/skill/AvailableSkills";
 
 class Teams extends React.PureComponent {
 
@@ -21,6 +22,7 @@ class Teams extends React.PureComponent {
                       contentClassName='overflowXAuto justifyStart'
                       presentIndexes={content.presentIndexes}/>
             </div>
+            <AvailableSkills skills={content.skills}/>
             <div className='justifyCenter'>{children}</div>
             {content.opponent &&
             <div className='pageHeader'><div className='justifyCenter flexColumn'>{getText(TEXT_OPPONENT_TEAM)}</div>{this.renderElo(content.opponent)}</div>}
@@ -30,6 +32,7 @@ class Teams extends React.PureComponent {
                       contentClassName='overflowXAuto justifyStart'
                       presentIndexes={content.opponentPresentIndexes}/>
             </div>}
+            <AvailableSkills skills={content.opponentSkills}/>
         </div>
     }
 
