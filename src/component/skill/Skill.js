@@ -3,13 +3,15 @@ import PropTypes from "prop-types";
 import cn from 'classnames';
 import _ from 'lodash';
 
-export const SKILL_VERY_SMALL = 'resourceVerySmall';
-export const SKILL_SMALL = 'resourceSmall';
-export const SKILL_BIG = 'resourceBig';
+export const SKILL_VERY_SMALL = 'skillVerySmall';
+export const SKILL_SMALL = 'skillSmall';
+export const SKILL_MEDIUM = 'skillMedium';
+export const SKILL_BIG = 'skillBig';
 
 export const IMG_HEIGHT = {
     [SKILL_VERY_SMALL]: 15,
     [SKILL_SMALL]: 30,
+    [SKILL_MEDIUM]: 40,
     [SKILL_BIG]: 50,
 };
 

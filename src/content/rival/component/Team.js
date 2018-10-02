@@ -4,8 +4,8 @@ import Profile from "../../../component/profile/Profile";
 import _ from 'lodash';
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
-import SkillLifebuoy from "../../../component/skill/SkillLifebuoy";
 import {getSkill, SKILL_LIFEBUOY} from "../../../util/skillHelper";
+import {IMG_HEIGHT, SKILL_MEDIUM} from "../../../component/skill/Skill";
 
 class Team extends React.PureComponent {
 
@@ -41,14 +41,21 @@ class Team extends React.PureComponent {
         return this.renderProfile(teamMember);
     };
 
+    renderLifebuoy(teamMember) {
+        const {onLifebuoyClick} = this.props;
+        return <div className='absoluteBackgroundMix opacity1 pointer'
+                    onClick={() => onLifebuoyClick(teamMember.index)}>
+                <img className='height100 width100' alt='' src={getSkill(SKILL_LIFEBUOY)}/>
+        </div>;
+    }
+
     renderWisie(teamMember) {
         const wisie = teamMember.content;
-        const {renderHobbies, renderLifebuoyChoose, onLifebuoyClick, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
+        const {renderHobbies, renderLifebuoyChoose, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
         const disabled = !_.includes(presentIndexes, teamMember.index);
         const canUseLifebuoy = disabled && renderLifebuoyChoose;
-        const wisieComponent = <Wisie
+        return <Wisie
             onClick={() => onClick(teamMember.index)}
-            customBackgroundImgSrc={canUseLifebuoy ? getSkill(SKILL_LIFEBUOY) : undefined}
             disabled={disabled}
             className={memberClassName}
             key={wisie.type}
@@ -58,14 +65,8 @@ class Team extends React.PureComponent {
             renderDetails={true}
             renderHobbies={renderHobbies}
             isOwned={true}
+            outsideChildren={canUseLifebuoy && this.renderLifebuoy(teamMember)}
             {...wisie}/>;
-        // if (!renderLifebuoyChoose || !disabled) {
-            return wisieComponent;
-        // }
-        // return <div className='justifyStart flexColumn'>
-        //     <div className='justifyCenter'>{wisieComponent}</div>
-        //     <SkillLifebuoy onClick={() => onLifebuoyClick(teamMember.index)}/>
-        // </div>;
     }
 
     renderProfile(teamMember) {

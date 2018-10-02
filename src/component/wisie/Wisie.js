@@ -114,18 +114,19 @@ export default class Wisie extends React.PureComponent {
         }
         return <div className='absoluteBackgroundMix opacity1 zIndex1'>
             <img alt='' src={_.defaultTo(customBackgroundImgSrc, cross)} className='height100 width100'/>
-        </div>
+        </div>;
     }
 
     render() {
         const {onClick, outsideChildren, outsideChildrenAfter, style, type, isOwned, className, active, disabled} = this.props;
-        const customClassName = `${className} ${isOwned ? 'owned' : 'notOwned'} ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`;
+        const customClassName = `${className} ${isOwned ? 'owned' : 'notOwned'} ${active ? 'active' : ''}`;
+        const customInsideClass = `${disabled ? 'disabled' : ''}`;
         return <div
             className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${customClassName}`}
             style={style}
             key={type}>
             {!outsideChildrenAfter && outsideChildren}
-            <div onClick={disabled ? _.noop : onClick}>
+            <div className={customInsideClass} onClick={disabled ? _.noop : onClick}>
                 {this.renderBlackBackground()}
                 {this.renderBackground()}
                 {this.renderContent()}

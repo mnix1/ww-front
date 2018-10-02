@@ -8,6 +8,7 @@ import _ from 'lodash';
 import Timer from "../../../component/timer/Timer";
 import cn from 'classnames';
 import AvailableSkills from "../../../component/skill/AvailableSkills";
+import {SKILL_LIFEBUOY} from "../../../util/skillHelper";
 
 class RivalPageChoosingWhoAnswer extends React.PureComponent {
 
@@ -24,7 +25,8 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         });
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
-                renderLifebuoyChoose={true}
+                renderLifebuoyChoose={content.skills[SKILL_LIFEBUOY] > 0}
+                onLifebuoyClick={this.handleLifebuoyClick}
                 renderHobbies={true}
                 className={className}
                 contentClassName='overflowXAuto justifyStart'
