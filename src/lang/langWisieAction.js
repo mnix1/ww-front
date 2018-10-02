@@ -18,7 +18,12 @@ import {
     WILL_GIVE_RANDOM_ANSWER,
     WONT_GIVE_RANDOM_ANSWER,
     THINKING_WHICH_ANSWER_MATCH,
-    THINKING_IF_GIVE_RANDOM_ANSWER, HINT_RECEIVED, THINKING_IF_USE_HINT, WILL_USE_HINT, WONT_USE_HINT
+    THINKING_IF_GIVE_RANDOM_ANSWER,
+    HINT_RECEIVED,
+    THINKING_IF_USE_HINT,
+    WILL_USE_HINT,
+    WONT_USE_HINT,
+    WATER_PISTOL_USED_ON_IT, CLEANING
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -52,8 +57,11 @@ const HERO_ACTION_LABELS = {
 
         [HINT_RECEIVED]: "(Podpowiedziano)",
         [THINKING_IF_USE_HINT]: "To dobra podpowiedź?",
-        [WILL_USE_HINT]: "Chyba tak...",
-        [WONT_USE_HINT]: "Wydaje mi się, że nie",
+        [WILL_USE_HINT]: "Chyba tak",
+        [WONT_USE_HINT]: "Raczej nie",
+
+        [WATER_PISTOL_USED_ON_IT]: "(Spryskano wodą)",
+        [CLEANING]: "(Sprząta...)",
 
         [DREAMING_ABOUT_VACATION]: '(Marzy o wakacjach...)',
         [SCRATCHING]: '(Drapie się...)',
@@ -86,8 +94,11 @@ const HERO_ACTION_LABELS = {
 
         [HINT_RECEIVED]: "(Hint received)",
         [THINKING_IF_USE_HINT]: "Is hint correct?",
-        [WILL_USE_HINT]: "I guess so...",
-        [WONT_USE_HINT]: "I don't think so...",
+        [WILL_USE_HINT]: "I guess so",
+        [WONT_USE_HINT]: "I don't think so",
+
+        [WATER_PISTOL_USED_ON_IT]: "(Sprayed with water)",
+        [CLEANING]: "(Cleaning...)",
 
         [DREAMING_ABOUT_VACATION]: '(Dreaming...)',
         [SCRATCHING]: '(Scratching...)',

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getText, TEXT_CHOOSE_WHO_ANSWER, TEXT_TIME} from "../../../../lang/langText";
+import {getText, TEXT_CHOOSE_WHO_ANSWER, TEXT_OPPONENT_TEAM, TEXT_TIME} from "../../../../lang/langText";
 import Team from "../../component/Team";
 import {rivalInProgressContent} from "../../../../redux/reducer/rival";
 import TaskDescription from "../../component/TaskDescription";
@@ -23,7 +23,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         });
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
-                renderLifebuoy={true}
+                renderLifebuoyChoose={true}
                 onLifebuoyClick={this.handleLifebuoyClick}
                 renderHobbies={true}
                 className={className}
@@ -33,6 +33,17 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
                 team={content.team}/>
+        </div>;
+    }
+
+    renderOpponentTeamBig() {
+        const {content} = this.props;
+        return <div className='team justifyCenter flexColumn fontSize08Rem'>
+            <Team
+                renderHobbies={true}
+                contentClassName='overflowXAuto justifyStart'
+                presentIndexes={content.opponentPresentIndexes}
+                team={content.opponentTeam}/>
         </div>;
     }
 
@@ -49,6 +60,8 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
             </TaskDescription>
             <div className='pageHeader'>{getText(TEXT_CHOOSE_WHO_ANSWER)}</div>
             {this.renderTeamBig()}
+            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
+            {this.renderOpponentTeamBig()}
         </div>;
     }
 }

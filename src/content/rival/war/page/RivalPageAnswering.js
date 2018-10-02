@@ -101,7 +101,7 @@ class RivalPageAnswering extends React.PureComponent {
                 </div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
-                        ? <Wisie onClick={this.handleWaterPistolClick} imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
+                        ? <Wisie className='pointer' onClick={this.handleWaterPistolClick} imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
                                  isOwned={true}>
                             <WisieActions actions={content.opponentWisieActions}/>
                         </Wisie>
