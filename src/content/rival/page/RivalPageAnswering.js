@@ -81,11 +81,6 @@ class RivalPageAnswering extends React.PureComponent {
         </div>;
     }
 
-    renderSkills() {
-        const {content} = this.props;
-        return <AvailableSkills skills={content.skills}/>
-    }
-
     renderTaskNotActive(activeMember) {
         const {content} = this.props;
         const {opponentTeam, opponentActiveIndex} = content;
@@ -96,27 +91,31 @@ class RivalPageAnswering extends React.PureComponent {
                 <div>
                     <Wisie
                         className='justifyCenter'
-                        outsideChildren={<WisieActions className='textAlignStart paddingLeftRem'
-                                               actions={content.wisieActions}/>}
+                        outsideChildren={<WisieActions
+                            className='textAlignStart paddingLeftRem'
+                            actions={content.wisieActions}/>}
                         imgHeight={imgHeight}
                         {...activeMember.content}
                         renderDetails={true}
                         isOwned={true}/>
-                    {this.renderSkills()}
+                    <AvailableSkills skills={content.skills}/>
                 </div>
                 <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
-                        ? <Wisie
+                        ? [<Wisie
+                            key='w'
                             outsideChildrenAfter={false}
-                            outsideChildren={<WisieActions className='textAlignEnd paddingRightRem'
-                                                   actions={content.opponentWisieActions}/>}
+                            outsideChildren={<WisieActions
+                                className='textAlignEnd paddingRightRem'
+                                actions={content.opponentWisieActions}/>}
                             className='pointer justifyCenter'
                             onClick={this.handleWaterPistolClick}
                             imgHeight={imgHeight}
                             {...opponentActiveMember.content}
                             renderDetails={true}
-                            isOwned={true}/>
+                            isOwned={true}/>,
+                            <AvailableSkills key='s' skills={content.opponentSkills}/>]
                         : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}
             </div>
