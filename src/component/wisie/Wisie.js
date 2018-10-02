@@ -18,7 +18,8 @@ export default class Wisie extends React.PureComponent {
         imgHeight: PropTypes.number,
         style: PropTypes.object,
         onClick: PropTypes.func,
-        stats: PropTypes.node,
+        actionsAfter: PropTypes.bool,
+        actions: PropTypes.node,
         renderHobbies: PropTypes.bool,
         customHobbies: PropTypes.node,
         renderImg: PropTypes.bool,
@@ -31,6 +32,7 @@ export default class Wisie extends React.PureComponent {
     };
 
     static defaultProps = {
+        actionsAfter: true,
         renderHobbies: true,
         renderDetails: true,
         renderImg: true,
@@ -86,11 +88,12 @@ export default class Wisie extends React.PureComponent {
     }
 
     render() {
-        const {onClick, style, type, isOwned, imgHeight, stats, children, renderImg, className, renderDetails, active, disabled, blackBackground} = this.props;
+        const {onClick, actions, actionsAfter, style, type, isOwned, imgHeight, children, renderImg, className, renderDetails, active, disabled, blackBackground} = this.props;
         const customClassName = `${className} ${isOwned ? 'owned' : 'notOwned'} ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`;
         return <div
             className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${customClassName}`}
             style={style}>
+            {!actionsAfter && actions}
             <div onClick={disabled ? _.noop : onClick} key={type}>
                 {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
                 {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
@@ -100,10 +103,10 @@ export default class Wisie extends React.PureComponent {
                     {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
                     {renderImg &&
                     <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
-                    {stats}
                     {children}
                 </div>
             </div>
+            {actionsAfter && actions}
         </div>;
     }
 

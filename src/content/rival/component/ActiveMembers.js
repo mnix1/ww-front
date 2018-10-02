@@ -9,11 +9,12 @@ class ActiveMembers extends React.PureComponent {
     };
 
     render() {
-        const {content, memberClassName, className} = this.props;
+        const {content, memberClassName, className, children} = this.props;
         return <div className={`width100 ${className}`}>
             <div>
                 <ActiveMember className={memberClassName} team={content.team} activeIndex={content.activeIndex}/>
             </div>
+            {children}
             {content.opponent && <div>
                 <ActiveMember className={memberClassName} team={content.opponentTeam} activeIndex={content.opponentActiveIndex}/>
             </div>}

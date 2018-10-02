@@ -23,7 +23,13 @@ import {
     THINKING_IF_USE_HINT,
     WILL_USE_HINT,
     WONT_USE_HINT,
-    WATER_PISTOL_USED_ON_IT, CLEANING
+    WATER_PISTOL_USED_ON_IT,
+    CLEANING,
+    NOW_KNOW_ANSWER,
+    DOESNT_KNOW_ANSWER,
+    HUMMING_A_SONG,
+    WATCHES_THE_AUDIENCE,
+    HAS_MUSCLE_SPASM, DRINKING_JUICE, WOULD_EAT_SOMETHING
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -31,6 +37,7 @@ import {getActiveLang} from "../indexApp";
 export function getWisieActionLabel(id) {
     return HERO_ACTION_LABELS[getActiveLang()][id];
 }
+
 const HERO_ACTION_LABELS = {
     [POLISH]: {
         [WAITING_FOR_QUESTION]: 'Czekam na pytanie',
@@ -45,6 +52,9 @@ const HERO_ACTION_LABELS = {
 
         [NOT_SURE_OF_ANSWER]: 'Ale o co chodzi?',
         [RECOGNIZING_ANSWERS]: 'Poznaję odpowiedzi',
+
+        [NOW_KNOW_ANSWER]: 'Teraz wiem o co chodzi',
+        [DOESNT_KNOW_ANSWER]: 'Nie wiem o co chodzi',
 
         [ANSWERED]: 'Odpowiadam',
         [SURRENDER]: 'Nie, poddaję się',
@@ -63,10 +73,15 @@ const HERO_ACTION_LABELS = {
         [WATER_PISTOL_USED_ON_IT]: "(Spryskano wodą)",
         [CLEANING]: "(Sprząta...)",
 
+        [WOULD_EAT_SOMETHING]: '(Zjadłby coś...)',
+        [DRINKING_JUICE]: '(Pije soczek...)',
         [DREAMING_ABOUT_VACATION]: '(Marzy o wakacjach...)',
         [SCRATCHING]: '(Drapie się...)',
         [YAWNING]: '(Ziewa...)',
+        [HUMMING_A_SONG]: '(Nuci piosenkę...)',
+        [WATCHES_THE_AUDIENCE]: '(Ogląda publiczność...)',
         [HUNG_UP]: '(Zawiesił się...)',
+        [HAS_MUSCLE_SPASM]: '(Ma skurcz mięśni...)',
         [NEED_GO_TO_TOILET]: '(Musi do toalety...)',
     },
     [ENGLISH]: {
@@ -100,10 +115,15 @@ const HERO_ACTION_LABELS = {
         [WATER_PISTOL_USED_ON_IT]: "(Sprayed with water)",
         [CLEANING]: "(Cleaning...)",
 
+        [WOULD_EAT_SOMETHING]: '(Would eat something...)',
+        [DRINKING_JUICE]: '(Drinking juice...)',
         [DREAMING_ABOUT_VACATION]: '(Dreaming...)',
         [SCRATCHING]: '(Scratching...)',
         [YAWNING]: '(Yawning...)',
+        [HUMMING_A_SONG]: '(Humming a song...)',
+        [WATCHES_THE_AUDIENCE]: '(Watches the audience...)',
         [HUNG_UP]: '(Hung up...)',
+        [HAS_MUSCLE_SPASM]: '(Has muscle spasm...)',
         [NEED_GO_TO_TOILET]: '(Need go to toilet...)',
     }
 };

@@ -73,7 +73,9 @@ class RivalPageAnswering extends React.PureComponent {
     renderTaskActive() {
         const {content} = this.props;
         return <div className='width100 height100 absolute'>
-            <ActiveMembers content={content}/>
+            <ActiveMembers content={content}>
+                <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
+            </ActiveMembers>
             {this.renderTask(this.handleAnswerClick)}
         </div>;
     }
@@ -93,18 +95,27 @@ class RivalPageAnswering extends React.PureComponent {
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
                 <div>
-                    <Wisie imgHeight={imgHeight} {...activeMember.content}
-                           renderDetails={true} isOwned={true}>
-                        <WisieActions actions={content.wisieActions}/>
-                    </Wisie>
+                    <Wisie
+                        className='justifyCenter'
+                        actions={<WisieActions className='textAlignStart paddingLeftRem' actions={content.wisieActions}/>}
+                        imgHeight={imgHeight}
+                        {...activeMember.content}
+                        renderDetails={true}
+                        isOwned={true}/>
                     {this.renderSkills()}
                 </div>
+                <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
-                        ? <Wisie className='pointer' onClick={this.handleWaterPistolClick} imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
-                                 isOwned={true}>
-                            <WisieActions actions={content.opponentWisieActions}/>
-                        </Wisie>
+                        ? <Wisie
+                            actionsAfter={false}
+                            actions={<WisieActions className='textAlignEnd paddingRightRem' actions={content.opponentWisieActions}/>}
+                            className='pointer justifyCenter'
+                            onClick={this.handleWaterPistolClick}
+                            imgHeight={imgHeight}
+                            {...opponentActiveMember.content}
+                            renderDetails={true}
+                            isOwned={true}/>
                         : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}
             </div>
@@ -130,21 +141,27 @@ class RivalPageAnswering extends React.PureComponent {
         return content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
     }
 
-    render() {
+    renderTaskDescription() {
         const {content, screen} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
+        return <TaskDescription
+            content={content}
+            renderTaskPoints={battle}
+            renderTaskCount={battle}
+            small={screen.isSmallHeight}
+            className={`justifyCenter flexColumn pageHeader ${battle ? this.addTransitionClass : ''}`}
+        >
+            <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/>
+            </div>
+        </TaskDescription>
+    }
+
+    render() {
+        const {content} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div
             className={`pageContent warPageAnswering ${!battle ? this.addTransitionClass : ''}`}>
-            <TaskDescription
-                content={content}
-                renderTaskPoints={battle}
-                renderTaskCount={battle}
-                small={screen.isSmallHeight}
-                className={`justifyCenter flexColumn pageHeader ${battle ? this.addTransitionClass : ''}`}
-            >
-                <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/>
-                </div>
-            </TaskDescription>
+            {battle && this.renderTaskDescription()}
             {this.renderContent()}
         </div>;
     }
