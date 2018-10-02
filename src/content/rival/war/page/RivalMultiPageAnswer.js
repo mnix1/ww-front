@@ -1,24 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import _ from 'lodash';
-import Task from "../../../../component/task/Task";
-import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/rival";
-import TaskDescription from "../../component/TaskDescription";
-import Timer from "../../../../component/timer/Timer";
-import {getText, TEXT_TIME} from "../../../../lang/langText";
-import ActiveMembers from "../../component/ActiveMembers";
-import Wisie from "../../../../component/wisie/Wisie";
-import Profile from "../../../../component/profile/Profile";
-import WisieActions from "../../../../component/wisie/WisieActions";
-import {isTeamMemberWisie} from "../../../../util/heroHelper";
-import {remToPixels} from "../../../../util/fontHelper";
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
-    RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT,
-    RIVAL_TYPE_BATTLE
+    RIVAL_CONTENT_STATUS_ANSWERING,
+    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT
 } from "../../../../util/rivalHelper";
-import Profiles from "../../component/Profiles";
-import {rivalScreen} from "../../../../util/screenHelper";
 import RivalPageAnswered from "./RivalPageAnswered";
 import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 import RivalPageAnswering from "./RivalPageAnswering";

@@ -12,15 +12,9 @@ import Profile from "../../../../component/profile/Profile";
 import WisieActions from "../../../../component/wisie/WisieActions";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
-import {
-    RIVAL_CONTENT_STATUS_ANSWERED,
-    RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT,
-    RIVAL_TYPE_BATTLE
-} from "../../../../util/rivalHelper";
+import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 import {rivalScreen} from "../../../../util/screenHelper";
-import RivalPageAnswered from "./RivalPageAnswered";
-import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 
 class RivalPageAnswering extends React.PureComponent {
 
@@ -40,9 +34,14 @@ class RivalPageAnswering extends React.PureComponent {
     };
 
     handleHintClick = (answerId) => {
-        const {content, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
-        const {task} = content;
+        const {communication} = this.props;
         communication.sendHint(answerId);
+        // onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+    };
+
+    handleWaterPistolClick = () => {
+        const {communication} = this.props;
+        communication.sendWaterPistol();
         // onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
     };
 
@@ -81,13 +80,14 @@ class RivalPageAnswering extends React.PureComponent {
 
     renderSkills() {
         return <div>
-            Hints: 1
+            <div>Hints: 1</div>
+            <div>Water Pistols: 1</div>
         </div>
     }
 
     renderTaskNotActive(activeMember) {
-        const {content, screen, questionIdSkipAnimationMap, onSkipAnimationChange} = this.props;
-        const {task, correctAnswerId, opponentTeam, opponentActiveIndex} = content;
+        const {content} = this.props;
+        const {opponentTeam, opponentActiveIndex} = content;
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
         const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
@@ -101,7 +101,7 @@ class RivalPageAnswering extends React.PureComponent {
                 </div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
-                        ? <Wisie imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
+                        ? <Wisie onClick={this.handleWaterPistolClick} imgHeight={imgHeight} {...opponentActiveMember.content} renderDetails={true}
                                  isOwned={true}>
                             <WisieActions actions={content.opponentWisieActions}/>
                         </Wisie>

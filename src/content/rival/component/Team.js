@@ -13,8 +13,10 @@ class Team extends React.PureComponent {
         contentClassName: '',
         renderHorizontal: false,
         renderHobbies: false,
+        renderLifebuoyChoose: false,
         renderImg: true,
         onClick: _.noop,
+        onLifebuoyClick: _.noop,
     };
 
     get imgHeight() {
@@ -39,10 +41,11 @@ class Team extends React.PureComponent {
 
     renderWisie(teamMember) {
         const wisie = teamMember.content;
-        const {renderHobbies, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
-        return <Wisie
+        const {renderHobbies, renderLifebuoyChoose, onLifebuoyClick, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
+        const disabled = !_.includes(presentIndexes, teamMember.index);
+        const wisieComponent = <Wisie
             onClick={() => onClick(teamMember.index)}
-            disabled={!_.includes(presentIndexes, teamMember.index)}
+            disabled={disabled}
             className={memberClassName}
             key={wisie.type}
             active={activeIndex === teamMember.index}
@@ -52,6 +55,13 @@ class Team extends React.PureComponent {
             renderHobbies={renderHobbies}
             isOwned={true}
             {...wisie}/>;
+        if (!renderLifebuoyChoose || !disabled) {
+            return wisieComponent;
+        }
+        return <div className='justifyStart flexColumn'>
+            <div className='justifyCenter'>{wisieComponent}</div>
+            <div className='justifyCenter' onClick={() => onLifebuoyClick(teamMember.index)}>Lifebuoy</div>
+        </div>;
     }
 
     renderProfile(teamMember) {

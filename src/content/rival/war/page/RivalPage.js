@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import './styles.css';
 import RivalPageIntro from "./RivalPageIntro";
-import RivalPageAnswering from "./RivalPageAnswering";
 import RivalPagePreparingNextTask from "./RivalPagePreparingNextTask";
 import RivalPageClosed from "./RivalPageClosed";
 import RivalPageChoosingTaskProps from "./RivalPageChoosingTaskProps";

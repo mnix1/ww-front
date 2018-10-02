@@ -10,6 +10,11 @@ import cn from 'classnames';
 
 class RivalPageChoosingWhoAnswer extends React.PureComponent {
 
+    handleLifebuoyClick = (index) => {
+        const {communication} = this.props;
+        communication.sendLifebuoy(index);
+    };
+
     renderTeamBig() {
         const {content, communication, onTeamClick} = this.props;
         const chosen = content.isChosenActiveIndex;
@@ -18,6 +23,8 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         });
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
+                renderLifebuoy={true}
+                onLifebuoyClick={this.handleLifebuoyClick}
                 renderHobbies={true}
                 className={className}
                 contentClassName='overflowXAuto justifyStart'

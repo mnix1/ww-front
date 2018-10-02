@@ -30,6 +30,14 @@ export default class RivalCommunication {
         this.send(JSON.stringify({id: 'HINT', answerId}));
     }
 
+    sendWaterPistol() {
+        this.send(JSON.stringify({id: 'WATER_PISTOL'}));
+    }
+
+    sendLifebuoy(index) {
+        this.send(JSON.stringify({id: 'LIFEBUOY', index}));
+    }
+
     sendWhoAnswer(activeIndex) {
         this.send(JSON.stringify({id: 'CHOOSE_WHO_ANSWER', activeIndex}));
     }
