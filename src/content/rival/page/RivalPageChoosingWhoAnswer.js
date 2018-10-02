@@ -7,6 +7,7 @@ import TaskDescription from "../component/TaskDescription";
 import _ from 'lodash';
 import Timer from "../../../component/timer/Timer";
 import cn from 'classnames';
+import AvailableSkills from "../../../component/skill/AvailableSkills";
 
 class RivalPageChoosingWhoAnswer extends React.PureComponent {
 
@@ -24,7 +25,6 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
                 renderLifebuoyChoose={true}
-                onLifebuoyClick={this.handleLifebuoyClick}
                 renderHobbies={true}
                 className={className}
                 contentClassName='overflowXAuto justifyStart'
@@ -33,6 +33,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
                 presentIndexes={content.presentIndexes}
                 activeIndex={content.activeIndex}
                 team={content.team}/>
+            <AvailableSkills skills={content.skills}/>
         </div>;
     }
 
@@ -44,6 +45,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
                 contentClassName='overflowXAuto justifyStart'
                 presentIndexes={content.opponentPresentIndexes}
                 team={content.opponentTeam}/>
+            <AvailableSkills skills={content.opponentSkills}/>
         </div>;
     }
 

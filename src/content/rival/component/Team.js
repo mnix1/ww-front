@@ -5,6 +5,7 @@ import _ from 'lodash';
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
 import SkillLifebuoy from "../../../component/skill/SkillLifebuoy";
+import {getSkill, SKILL_LIFEBUOY} from "../../../util/skillHelper";
 
 class Team extends React.PureComponent {
 
@@ -44,8 +45,10 @@ class Team extends React.PureComponent {
         const wisie = teamMember.content;
         const {renderHobbies, renderLifebuoyChoose, onLifebuoyClick, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
         const disabled = !_.includes(presentIndexes, teamMember.index);
+        const canUseLifebuoy = disabled && renderLifebuoyChoose;
         const wisieComponent = <Wisie
             onClick={() => onClick(teamMember.index)}
+            customBackgroundImgSrc={canUseLifebuoy ? getSkill(SKILL_LIFEBUOY) : undefined}
             disabled={disabled}
             className={memberClassName}
             key={wisie.type}
@@ -56,13 +59,13 @@ class Team extends React.PureComponent {
             renderHobbies={renderHobbies}
             isOwned={true}
             {...wisie}/>;
-        if (!renderLifebuoyChoose || !disabled) {
+        // if (!renderLifebuoyChoose || !disabled) {
             return wisieComponent;
-        }
-        return <div className='justifyStart flexColumn'>
-            <div className='justifyCenter'>{wisieComponent}</div>
-            <SkillLifebuoy onClick={() => onLifebuoyClick(teamMember.index)}/>
-        </div>;
+        // }
+        // return <div className='justifyStart flexColumn'>
+        //     <div className='justifyCenter'>{wisieComponent}</div>
+        //     <SkillLifebuoy onClick={() => onLifebuoyClick(teamMember.index)}/>
+        // </div>;
     }
 
     renderProfile(teamMember) {

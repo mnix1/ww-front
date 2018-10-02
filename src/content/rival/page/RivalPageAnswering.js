@@ -15,6 +15,7 @@ import {remToPixels} from "../../../util/fontHelper";
 import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
 import Profiles from "../component/Profiles";
 import {rivalScreen} from "../../../util/screenHelper";
+import AvailableSkills from "../../../component/skill/AvailableSkills";
 
 class RivalPageAnswering extends React.PureComponent {
 
@@ -81,10 +82,8 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderSkills() {
-        return <div>
-            <div>Hints: 1</div>
-            <div>Water Pistols: 1</div>
-        </div>
+        const {content} = this.props;
+        return <AvailableSkills skills={content.skills}/>
     }
 
     renderTaskNotActive(activeMember) {
@@ -97,7 +96,8 @@ class RivalPageAnswering extends React.PureComponent {
                 <div>
                     <Wisie
                         className='justifyCenter'
-                        actions={<WisieActions className='textAlignStart paddingLeftRem' actions={content.wisieActions}/>}
+                        outsideChildren={<WisieActions className='textAlignStart paddingLeftRem'
+                                               actions={content.wisieActions}/>}
                         imgHeight={imgHeight}
                         {...activeMember.content}
                         renderDetails={true}
@@ -108,8 +108,9 @@ class RivalPageAnswering extends React.PureComponent {
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
                         ? <Wisie
-                            actionsAfter={false}
-                            actions={<WisieActions className='textAlignEnd paddingRightRem' actions={content.opponentWisieActions}/>}
+                            outsideChildrenAfter={false}
+                            outsideChildren={<WisieActions className='textAlignEnd paddingRightRem'
+                                                   actions={content.opponentWisieActions}/>}
                             className='pointer justifyCenter'
                             onClick={this.handleWaterPistolClick}
                             imgHeight={imgHeight}

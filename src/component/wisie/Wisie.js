@@ -15,11 +15,11 @@ export default class Wisie extends React.PureComponent {
         value: PropTypes.number,
         className: PropTypes.string,
         children: PropTypes.node,
+        outsideChildren: PropTypes.node,
+        outsideChildrenAfter: PropTypes.bool,
         imgHeight: PropTypes.number,
         style: PropTypes.object,
         onClick: PropTypes.func,
-        actionsAfter: PropTypes.bool,
-        actions: PropTypes.node,
         renderHobbies: PropTypes.bool,
         customHobbies: PropTypes.node,
         renderImg: PropTypes.bool,
@@ -28,11 +28,12 @@ export default class Wisie extends React.PureComponent {
         active: PropTypes.bool,
         disabled: PropTypes.bool,
         blackBackground: PropTypes.bool,
+        customBackgroundImgSrc: PropTypes.node,
         hobbies: PropTypes.array
     };
 
     static defaultProps = {
-        actionsAfter: true,
+        outsideChildrenAfter: true,
         renderHobbies: true,
         renderDetails: true,
         renderImg: true,
@@ -54,7 +55,8 @@ export default class Wisie extends React.PureComponent {
             return customHobbies;
         }
         return <div className='justifyCenter'>
-            {hobbies.map(e => <img alt='' className='paddingLeftRem' key={e} height={imgHobbyHeight} src={getCategory(e)}/>)}
+            {hobbies.map(e => <img alt='' className='paddingLeftRem' key={e} height={imgHobbyHeight}
+                                   src={getCategory(e)}/>)}
         </div>;
     }
 
@@ -87,26 +89,48 @@ export default class Wisie extends React.PureComponent {
             </div>;
     }
 
+    renderContent() {
+        const {type, isOwned, imgHeight, children, renderImg, renderDetails} = this.props;
+        return <div className='relative justifyCenter flexColumn'>
+            {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
+            {renderImg &&
+            <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
+            {children}
+        </div>
+    }
+
+    renderBlackBackground() {
+        const {blackBackground} = this.props;
+        if (!blackBackground) {
+            return null;
+        }
+        return <div className='blackBackground absoluteBackgroundMix'/>;
+    }
+
+    renderBackground() {
+        const {disabled, customBackgroundImgSrc} = this.props;
+        if (!disabled) {
+            return null;
+        }
+        return <div className='absoluteBackgroundMix opacity1 zIndex1'>
+            <img alt='' src={_.defaultTo(customBackgroundImgSrc, cross)} className='height100 width100'/>
+        </div>
+    }
+
     render() {
-        const {onClick, actions, actionsAfter, style, type, isOwned, imgHeight, children, renderImg, className, renderDetails, active, disabled, blackBackground} = this.props;
+        const {onClick, outsideChildren, outsideChildrenAfter, style, type, isOwned, className, active, disabled} = this.props;
         const customClassName = `${className} ${isOwned ? 'owned' : 'notOwned'} ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`;
         return <div
             className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${customClassName}`}
-            style={style}>
-            {!actionsAfter && actions}
-            <div onClick={disabled ? _.noop : onClick} key={type}>
-                {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
-                {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
-                    <img alt='' src={cross} className='height100 width100'/>
-                </div>}
-                <div className='relative justifyCenter flexColumn'>
-                    {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
-                    {renderImg &&
-                    <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
-                    {children}
-                </div>
+            style={style}
+            key={type}>
+            {!outsideChildrenAfter && outsideChildren}
+            <div onClick={disabled ? _.noop : onClick}>
+                {this.renderBlackBackground()}
+                {this.renderBackground()}
+                {this.renderContent()}
             </div>
-            {actionsAfter && actions}
+            {outsideChildrenAfter && outsideChildren}
         </div>;
     }
 
