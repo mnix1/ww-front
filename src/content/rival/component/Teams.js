@@ -38,17 +38,14 @@ class Teams extends React.PureComponent {
 
     renderAbsolute() {
         const {content, screen} = this.props;
-        const renderImg = !screen.isSmallHeight;
-        const imgHeight = (screen.contentHeight - 40) / 5 - remToPixels(3);
         return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
             <div className='marginLeftRem'>
                 <div className='justifyStart'><div className='justifyCenter flexColumn'>{getText(TEXT_YOUR_TEAM)}</div>{this.renderElo(content.profile)}</div>
                 <div className='justifyStart'>
                     <Team
                         memberClassName='justifyCenter'
-                        renderImg={renderImg}
+                        renderImg={false}
                         renderHobbies={true}
-                        imgHeight={imgHeight}
                         renderHorizontal={true}
                         team={content.team}
                         presentIndexes={content.presentIndexes}
@@ -60,9 +57,8 @@ class Teams extends React.PureComponent {
                 <div className='justifyEnd'>
                     <Team
                         memberClassName='justifyCenter'
-                        renderImg={renderImg}
+                        renderImg={false}
                         renderHobbies={true}
-                        imgHeight={imgHeight}
                         renderHorizontal={true}
                         team={content.opponentTeam}
                         presentIndexes={content.opponentPresentIndexes}

@@ -11,9 +11,9 @@ export default class Wisie extends React.PureComponent {
 
     static propTypes = {
         type: PropTypes.string,
-        isOwned: PropTypes.bool,
         value: PropTypes.number,
         className: PropTypes.string,
+        detailsClassName: 'justifyStart',
         children: PropTypes.node,
         outsideChildren: PropTypes.node,
         outsideChildrenAfter: PropTypes.bool,
@@ -23,6 +23,7 @@ export default class Wisie extends React.PureComponent {
         style: PropTypes.object,
         onClick: PropTypes.func,
         renderHobbies: PropTypes.bool,
+        hobbiesUnderName: PropTypes.bool,
         customHobbies: PropTypes.node,
         renderImg: PropTypes.bool,
         imgHobbyHeight: PropTypes.number,
@@ -38,6 +39,8 @@ export default class Wisie extends React.PureComponent {
         outsideChildrenAfter: true,
         nearImgChildrenAfter: true,
         renderHobbies: true,
+        hobbiesUnderName: false,
+        detailsClassName: 'justifyBetween',
         renderDetails: true,
         renderImg: true,
         disabled: false,
@@ -50,37 +53,29 @@ export default class Wisie extends React.PureComponent {
     };
 
     renderHobbies() {
-        const {hobbies, renderHobbies, customHobbies, imgHobbyHeight} = this.props;
+        const {hobbies, renderHobbies, hobbiesUnderName, customHobbies, imgHobbyHeight} = this.props;
         if (!renderHobbies) {
             return null;
         }
         if (customHobbies) {
             return customHobbies;
         }
-        return <div className='justifyCenter'>
-            {hobbies.map(e => <img alt='' className='paddingLeftRem' key={e} height={imgHobbyHeight}
+        return <div className={hobbiesUnderName ? 'justifyStart' : 'justifyCenter'}>
+            {hobbies.map(e => <img alt='' className={hobbiesUnderName ? 'paddingRightRem' : 'paddingLeftRem'} key={e} height={imgHobbyHeight}
                                    src={getCategory(e)}/>)}
         </div>;
     }
 
-    renderWisieDetailsNotOwned() {
-        const name = getName(this.props);
-        return <div className='wisieDetails fontSize08Rem relative justifyBetween'>
-            <div className='justifyCenter flexColumn'>
-                <span className='name flexColumn justifyCenter relative'>{name}</span>
-                {this.renderValue()}
-            </div>
-        </div>;
-    }
-
     renderWisieDetailsOwned() {
+        const {hobbiesUnderName, detailsClassName} = this.props;
         const name = getName(this.props);
-        return <div className='wisieDetails fontSize08Rem justifyBetween'>
+        return <div className={`wisieDetails fontSize08Rem ${detailsClassName}`}>
             <div className='justifyCenter flexColumn'>
-                <span className='name flexColumn justifyCenter'>{name}</span>
+                <div className='justifyStart'><span className='name flexColumn justifyCenter'>{name}</span></div>
+                {hobbiesUnderName && this.renderHobbies()}
                 {this.renderValue()}
             </div>
-            {this.renderHobbies()}
+            {!hobbiesUnderName && this.renderHobbies()}
         </div>;
     }
 
@@ -93,9 +88,9 @@ export default class Wisie extends React.PureComponent {
     }
 
     renderContent() {
-        const {type, isOwned, imgHeight, children, renderImg, renderDetails, nearImgChildrenAfter, nearImgChildren} = this.props;
+        const {type, imgHeight, children, renderImg, renderDetails, nearImgChildrenAfter, nearImgChildren} = this.props;
         return <div className='relative justifyCenter flexColumn'>
-            {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
+            {renderDetails && this.renderWisieDetailsOwned()}
             {renderImg &&
             <div className='justifyCenter'>
                 {!nearImgChildrenAfter && nearImgChildren}
@@ -125,8 +120,8 @@ export default class Wisie extends React.PureComponent {
     }
 
     render() {
-        const {onClick, outsideChildren, outsideChildrenAfter, style, type, isOwned, className, active, disabled} = this.props;
-        const customClassName = `${className} ${isOwned ? 'owned' : 'notOwned'} ${active ? 'active' : ''}`;
+        const {onClick, outsideChildren, outsideChildrenAfter, style, type, className, active, disabled} = this.props;
+        const customClassName = `${className} ${active ? 'active' : ''}`;
         const customInsideClass = `${disabled ? 'disabled' : ''}`;
         return <div
             className={`wisie relative marginRem paddingRem borderBox inlineBlock boxShadow ${customClassName}`}

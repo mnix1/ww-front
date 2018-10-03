@@ -91,20 +91,21 @@ class RivalPageAnswering extends React.PureComponent {
                 <div>
                     <Wisie
                         className='justifyCenter'
+                        detailsClassName='justifyStart'
                         nearImgChildren={<WisieActions
                             className='textAlignStart paddingLeftRem'
                             actions={content.wisieActions}/>}
                         imgHeight={imgHeight}
                         {...activeMember.content}
-                        renderDetails={true}
-                        isOwned={true}/>
+                        renderDetails={true}/>
                     <AvailableSkills className='justifyStart' skills={content.skills}/>
                 </div>
-                <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>
+                <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
                         ? [<Wisie
                             key='w'
+                            detailsClassName='justifyEnd'
                             nearImgChildrenAfter={false}
                             nearImgChildren={<WisieActions
                                 className='textAlignEnd paddingRightRem'
@@ -113,8 +114,7 @@ class RivalPageAnswering extends React.PureComponent {
                             onClick={this.handleWaterPistolClick}
                             imgHeight={imgHeight}
                             {...opponentActiveMember.content}
-                            renderDetails={true}
-                            isOwned={true}/>,
+                            renderDetails={true}/>,
                             <AvailableSkills className='justifyEnd' key='s' skills={content.opponentSkills}/>]
                         : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}

@@ -78,6 +78,7 @@ export class WisieListPageComponent extends React.PureComponent {
             [INTRO_STEP_NEW_WISIE]: wisie.isOwned && enable && STEP_INDEX_TO_STEP_ID[stepIndex] === INTRO_STEP_NEW_WISIE
         });
         return <Wisie
+            renderHobbies={wisie.isOwned === true}
             blackBackground={true}
             imgHeight={screen.wisieImgHeight + 20}
             key={wisie.type}

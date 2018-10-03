@@ -54,6 +54,7 @@ class Team extends React.PureComponent {
         const disabled = !_.includes(presentIndexes, teamMember.index);
         const canUseLifebuoy = disabled && renderLifebuoyChoose;
         return <Wisie
+            hobbiesUnderName={true}
             onClick={() => onClick(teamMember.index)}
             disabled={disabled}
             className={memberClassName}
@@ -63,7 +64,6 @@ class Team extends React.PureComponent {
             renderImg={renderImg}
             renderDetails={true}
             renderHobbies={renderHobbies}
-            isOwned={true}
             outsideChildren={canUseLifebuoy && this.renderLifebuoy(teamMember)}
             {...wisie}/>;
     }
