@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {getText, TEXT_OPPONENT_TEAM, TEXT_POINTS, TEXT_YOUR_TEAM} from "../../../lang/langText";
 import Team from "./Team";
 import {getElo} from "../../../util/rivalHelper";
-import {remToPixels} from "../../../util/fontHelper";
 import trophy from '../../../media/image/icon/trophy.svg';
 import AvailableSkills from "../../../component/skill/AvailableSkills";
 

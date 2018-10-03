@@ -29,7 +29,13 @@ import {
     DOESNT_KNOW_ANSWER,
     HUMMING_A_SONG,
     WATCHES_THE_AUDIENCE,
-    HAS_MUSCLE_SPASM, DRINKING_JUICE, WOULD_EAT_SOMETHING, WRITING_AN_SMS, TALKING_ON_THE_PHONE
+    HAS_MUSCLE_SPASM,
+    DRINKING_JUICE,
+    WOULD_EAT_SOMETHING,
+    WRITING_AN_SMS,
+    TALKING_ON_THE_PHONE,
+    PREPARING_KIDNAPPING,
+    TRYING_TO_KIDNAP, KIDNAPPING_SUCCEEDED, KIDNAPPING_FAILED, TRYING_TO_DEFEND, WAS_KIDNAPPED, WAS_NOT_KIDNAPPED
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -72,6 +78,14 @@ const HERO_ACTION_LABELS = {
 
         [WATER_PISTOL_USED_ON_IT]: "(Spryskano wodą)",
         [CLEANING]: "(Sprząta...)",
+
+        [PREPARING_KIDNAPPING]: "(Przygotowuje porwanie...)",
+        [TRYING_TO_KIDNAP]: "(Próbuje porwać przeciwnika...)",
+        [KIDNAPPING_SUCCEEDED]: "Porwałem przeciwnika!",
+        [KIDNAPPING_FAILED]: "Nie udało mi się",
+        [TRYING_TO_DEFEND]: "(Broni się)",
+        [WAS_KIDNAPPED]: "Zostałem porwany",
+        [WAS_NOT_KIDNAPPED]: "Ufff, było blisko",
 
         [TALKING_ON_THE_PHONE]: '(Rozmawia przez telefon...)',
         [WRITING_AN_SMS]: "(Pisze SMS'a...)",
@@ -116,6 +130,14 @@ const HERO_ACTION_LABELS = {
 
         [WATER_PISTOL_USED_ON_IT]: "(Sprayed with water)",
         [CLEANING]: "(Cleaning...)",
+
+        [PREPARING_KIDNAPPING]: "(Preparing kidnapping...)",
+        [TRYING_TO_KIDNAP]: "(Trying to kidnap opponent...)",
+        [KIDNAPPING_SUCCEEDED]: "I kidnapped opponent!",
+        [KIDNAPPING_FAILED]: "I failed",
+        [TRYING_TO_DEFEND]: "(Defends...)",
+        [WAS_KIDNAPPED]: "I was kidnapped",
+        [WAS_NOT_KIDNAPPED]: "Phew, it was close",
 
         [TALKING_ON_THE_PHONE]: '(Talking on the phone...)',
         [WRITING_AN_SMS]: '(Writing an SMS...)',
