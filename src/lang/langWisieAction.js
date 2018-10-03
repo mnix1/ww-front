@@ -29,7 +29,7 @@ import {
     DOESNT_KNOW_ANSWER,
     HUMMING_A_SONG,
     WATCHES_THE_AUDIENCE,
-    HAS_MUSCLE_SPASM, DRINKING_JUICE, WOULD_EAT_SOMETHING
+    HAS_MUSCLE_SPASM, DRINKING_JUICE, WOULD_EAT_SOMETHING, WRITING_AN_SMS, TALKING_ON_THE_PHONE
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -73,7 +73,9 @@ const HERO_ACTION_LABELS = {
         [WATER_PISTOL_USED_ON_IT]: "(Spryskano wodą)",
         [CLEANING]: "(Sprząta...)",
 
-        [WOULD_EAT_SOMETHING]: '(Zjadłby coś...)',
+        [TALKING_ON_THE_PHONE]: '(Rozmawia przez telefon...)',
+        [WRITING_AN_SMS]: "(Pisze SMS'a...)",
+        [WOULD_EAT_SOMETHING]: '(Chce coś zjeść...)',
         [DRINKING_JUICE]: '(Pije soczek...)',
         [DREAMING_ABOUT_VACATION]: '(Marzy o wakacjach...)',
         [SCRATCHING]: '(Drapie się...)',
@@ -115,6 +117,8 @@ const HERO_ACTION_LABELS = {
         [WATER_PISTOL_USED_ON_IT]: "(Sprayed with water)",
         [CLEANING]: "(Cleaning...)",
 
+        [TALKING_ON_THE_PHONE]: '(Talking on the phone...)',
+        [WRITING_AN_SMS]: '(Writing an SMS...)',
         [WOULD_EAT_SOMETHING]: '(Would eat something...)',
         [DRINKING_JUICE]: '(Drinking juice...)',
         [DREAMING_ABOUT_VACATION]: '(Dreaming...)',
