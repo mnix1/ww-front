@@ -16,6 +16,7 @@ import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE} from "../../../util/r
 import Profiles from "../component/Profiles";
 import {rivalScreen} from "../../../util/screenHelper";
 import AvailableSkills from "../../../component/skill/AvailableSkills";
+import {SKILL_KIDNAPPING, SKILL_WATER_PISTOL} from "../../../util/skillHelper";
 
 class RivalPageAnswering extends React.PureComponent {
 
@@ -37,13 +38,16 @@ class RivalPageAnswering extends React.PureComponent {
     handleHintClick = (answerId) => {
         const {communication} = this.props;
         communication.sendHint(answerId);
-        // onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
     };
 
     handleWaterPistolClick = () => {
         const {communication} = this.props;
         communication.sendWaterPistol();
-        // onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
+    };
+
+    handleKidnappingClick = () => {
+        const {communication} = this.props;
+        communication.sendKidnapping();
     };
 
     renderTask(onAnswerClick) {
@@ -98,7 +102,10 @@ class RivalPageAnswering extends React.PureComponent {
                         imgHeight={imgHeight}
                         {...activeMember.content}
                         renderDetails={true}/>
-                    <AvailableSkills className='justifyStart' skills={content.skills}/>
+                    <AvailableSkills className='justifyStart' skills={content.skills} skillClickHandlers={{
+                      [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
+                      [SKILL_KIDNAPPING]: this.handleKidnappingClick,
+                    }}/>
                 </div>
                 {this.renderWarTaskDescription()}
                 <div style={{width: '12rem'}}>
