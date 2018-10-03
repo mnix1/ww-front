@@ -75,14 +75,14 @@ class RivalPageAnswering extends React.PureComponent {
         const {content} = this.props;
         return <div className='width100 height100 absolute'>
             <ActiveMembers content={content}>
-                <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
+                {this.renderWarTaskDescription()}
             </ActiveMembers>
             {this.renderTask(this.handleAnswerClick)}
         </div>;
     }
 
     renderTaskNotActive(activeMember) {
-        const {content, screen} = this.props;
+        const {content} = this.props;
         const {opponentTeam, opponentActiveIndex} = content;
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
         const imgHeight = this.imgHeight;
@@ -100,10 +100,9 @@ class RivalPageAnswering extends React.PureComponent {
                         renderDetails={true}/>
                     <AvailableSkills className='justifyStart' skills={content.skills}/>
                 </div>
-                <div className='justifyStart flexColumn'
-                     style={{width: screen.isSmallHeight ? '10rem' : '20rem'}}>{this.renderTaskDescription()}</div>
-                {content.opponent && <div style={{width: '12rem'}}>
-                    {isTeamMemberWisie(opponentActiveMember)
+                {this.renderWarTaskDescription()}
+                <div style={{width: '12rem'}}>
+                    {content.opponent && (isTeamMemberWisie(opponentActiveMember)
                         ? [<Wisie
                             key='w'
                             detailsClassName='justifyEnd'
@@ -118,8 +117,8 @@ class RivalPageAnswering extends React.PureComponent {
                             renderDetails={true}/>,
                             <AvailableSkills key='a' className='justifyEnd' skills={content.opponentSkills}/>]
                         : <Profile className='justifyEnd'
-                                   imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
-                </div>}
+                                   imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>)}
+                </div>
             </div>
             {this.renderTask(this.handleHintClick)}
         </div>;
@@ -141,6 +140,12 @@ class RivalPageAnswering extends React.PureComponent {
     get addTransitionClass() {
         const {content} = this.props;
         return content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
+    }
+
+    renderWarTaskDescription(){
+        const {screen} = this.props;
+        return <div className='justifyStart flexColumn'
+             style={{width: screen.isSmallHeight ? '10rem' : '20rem'}}>{this.renderTaskDescription()}</div>
     }
 
     renderTaskDescription() {

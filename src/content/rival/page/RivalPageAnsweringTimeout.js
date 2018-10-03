@@ -16,7 +16,7 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageCenterVertical'>
                 {!battle &&
-                <ActiveMembers content={content} className={content.opponent ? 'justifyBetween' : 'justifyCenter'}
+                <ActiveMembers addWidthStyle={false} content={content} className={content.opponent ? 'justifyBetween' : 'justifyCenter'}
                                memberClassName='wrongAnswer'/>}
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
                 <img alt='' src={thumbDown} height={screen.wisieImgHeight}/>

@@ -6,19 +6,30 @@ class ActiveMembers extends React.PureComponent {
 
     static defaultProps = {
         className: 'absolute justifyBetween',
-        renderHobbies: true
+        renderHobbies: true,
+        addWidthStyle: true
     };
 
     render() {
-        const {content, memberClassName, className, renderHobbies, children} = this.props;
+        const {content, memberClassName, className, renderHobbies, children, addWidthStyle} = this.props;
+        const style = addWidthStyle ? {width:'12rem'} : {};
         return <div className={`width100 ${className}`}>
-            <div>
-                <ActiveMember renderHobbies={renderHobbies} className={memberClassName} team={content.team} activeIndex={content.activeIndex}/>
+            <div style={style}>
+                <ActiveMember
+                    renderHobbies={renderHobbies}
+                    className={`${memberClassName ? memberClassName : 'justifyStart'}`}
+                    team={content.team}
+                    activeIndex={content.activeIndex}/>
             </div>
             {children}
-            {content.opponent && <div>
-                <ActiveMember renderHobbies={renderHobbies} className={memberClassName} team={content.opponentTeam} activeIndex={content.opponentActiveIndex}/>
-            </div>}
+            <div style={style}>
+                {content.opponent &&
+                <ActiveMember
+                    renderHobbies={renderHobbies}
+                    className={`${memberClassName ? memberClassName : 'justifyEnd'}`}
+                    team={content.opponentTeam}
+                    activeIndex={content.opponentActiveIndex}/>}
+            </div>
         </div>;
     }
 }
