@@ -5,7 +5,6 @@ import _ from 'lodash';
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
 import {getSkill, SKILL_LIFEBUOY} from "../../../util/skillHelper";
-import {IMG_HEIGHT, SKILL_MEDIUM} from "../../../component/skill/Skill";
 
 class Team extends React.PureComponent {
 
