@@ -17,7 +17,7 @@ class Teams extends React.PureComponent {
         return <div>
             <div className='pageHeader'><div className='justifyCenter flexColumn'>{getText(TEXT_YOUR_TEAM)}</div>{this.renderElo(content.profile)}</div>
             <div className='pageHeader fontSize08Rem'>
-                <Team renderHobbies={true} team={content.team}
+                <Team team={content.team}
                       className='justifyCenter overflowHidden width100'
                       contentClassName='overflowXAuto justifyStart'
                       presentIndexes={content.presentIndexes}/>
@@ -27,7 +27,7 @@ class Teams extends React.PureComponent {
             {content.opponent &&
             <div className='pageHeader'><div className='justifyCenter flexColumn'>{getText(TEXT_OPPONENT_TEAM)}</div>{this.renderElo(content.opponent)}</div>}
             {content.opponent && <div className='pageHeader fontSize08Rem'>
-                <Team renderHobbies={true} team={content.opponentTeam}
+                <Team team={content.opponentTeam}
                       className='justifyCenter overflowHidden width100'
                       contentClassName='overflowXAuto justifyStart'
                       presentIndexes={content.opponentPresentIndexes}/>
@@ -37,7 +37,7 @@ class Teams extends React.PureComponent {
     }
 
     renderAbsolute() {
-        const {content, screen} = this.props;
+        const {content} = this.props;
         return <div className='contentHeader justifyBetween top0 fontSize07Rem' style={{zIndex: 0}}>
             <div className='marginLeftRem'>
                 <div className='justifyStart'><div className='justifyCenter flexColumn'>{getText(TEXT_YOUR_TEAM)}</div>{this.renderElo(content.profile)}</div>
@@ -45,7 +45,6 @@ class Teams extends React.PureComponent {
                     <Team
                         memberClassName='justifyCenter'
                         renderImg={false}
-                        renderHobbies={true}
                         renderHorizontal={true}
                         team={content.team}
                         presentIndexes={content.presentIndexes}
@@ -58,7 +57,6 @@ class Teams extends React.PureComponent {
                     <Team
                         memberClassName='justifyCenter'
                         renderImg={false}
-                        renderHobbies={true}
                         renderHorizontal={true}
                         team={content.opponentTeam}
                         presentIndexes={content.opponentPresentIndexes}

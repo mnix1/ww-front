@@ -72,9 +72,12 @@ class RivalPageClosed extends React.PureComponent {
             <div className='pageHeader'>
                 {battle && <Profile
                     imgHeight={screen.wisieImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
-                {!battle && <Team {...meWinner
-                    ? {presentIndexes: content.presentIndexes, team: content.team}
-                    : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam}}/>}
+                {!battle && <Team
+                    className='justifyCenter overflowHidden width100'
+                    contentClassName='overflowXAuto justifyStart'
+                    {...meWinner
+                        ? {presentIndexes: content.presentIndexes, team: content.team}
+                        : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam}}/>}
             </div>
         </div>;
     }
@@ -86,7 +89,8 @@ class RivalPageClosed extends React.PureComponent {
             <div className='height100 width100 justifyCenter flexColumn'>
                 {this.renderContent()}
                 <div className='paddingTopRem justifyCenter'>
-                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick} icon={<IoMdExit/>}>{getText(TEXT_EXIT)} </Button>
+                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}
+                            icon={<IoMdExit/>}>{getText(TEXT_EXIT)} </Button>
                 </div>
             </div>
         </div>;

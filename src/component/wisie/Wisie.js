@@ -13,7 +13,7 @@ export default class Wisie extends React.PureComponent {
         type: PropTypes.string,
         value: PropTypes.number,
         className: PropTypes.string,
-        detailsClassName: 'justifyStart',
+        detailsClassName: PropTypes.string,
         children: PropTypes.node,
         outsideChildren: PropTypes.node,
         outsideChildrenAfter: PropTypes.bool,

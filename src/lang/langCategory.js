@@ -23,7 +23,7 @@ const CATEGORY_LABELS = {
         [CATEGORY_RANDOM]: 'Losowa',
         [CATEGORY_EQUATION]: 'Równania',
         [CATEGORY_NUMBER]: 'Liczby',
-        [CATEGORY_LYRICS]: 'Teksty piosenek',
+        [CATEGORY_LYRICS]: 'Piosenki',
         [CATEGORY_COUNTRY]: 'Państwa',
         [CATEGORY_MEMORY]: 'Pamięć',
         [CATEGORY_ELEMENT]: 'Pierwiastki',

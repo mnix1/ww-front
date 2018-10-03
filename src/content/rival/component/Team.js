@@ -5,6 +5,7 @@ import _ from 'lodash';
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
 import {getSkill, SKILL_LIFEBUOY} from "../../../util/skillHelper";
+import {remToPixels} from "../../../util/fontHelper";
 
 class Team extends React.PureComponent {
 
@@ -13,7 +14,6 @@ class Team extends React.PureComponent {
         memberClassName: '',
         contentClassName: '',
         renderHorizontal: false,
-        renderHobbies: false,
         renderLifebuoyChoose: false,
         renderImg: true,
         onClick: _.noop,
@@ -50,7 +50,7 @@ class Team extends React.PureComponent {
 
     renderWisie(teamMember) {
         const wisie = teamMember.content;
-        const {renderHobbies, renderLifebuoyChoose, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
+        const {renderLifebuoyChoose, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
         const disabled = !_.includes(presentIndexes, teamMember.index);
         const canUseLifebuoy = disabled && renderLifebuoyChoose;
         return <Wisie
@@ -63,7 +63,6 @@ class Team extends React.PureComponent {
             imgHeight={this.imgHeight}
             renderImg={renderImg}
             renderDetails={true}
-            renderHobbies={renderHobbies}
             outsideChildren={canUseLifebuoy && this.renderLifebuoy(teamMember)}
             {...wisie}/>;
     }
@@ -76,7 +75,7 @@ class Team extends React.PureComponent {
             disabled={!_.includes(presentIndexes, teamMember.index)}
             active={activeIndex === teamMember.index}
             {...teamMember.content}
-            imgHeight={this.imgHeight + 18}
+            imgHeight={this.imgHeight + remToPixels(0.85) + 18}
             className={memberClassName}
         />;
     }

@@ -5,18 +5,19 @@ import ActiveMember from "./ActiveMember";
 class ActiveMembers extends React.PureComponent {
 
     static defaultProps = {
-        className: 'absolute justifyBetween'
+        className: 'absolute justifyBetween',
+        renderHobbies: true
     };
 
     render() {
-        const {content, memberClassName, className, children} = this.props;
+        const {content, memberClassName, className, renderHobbies, children} = this.props;
         return <div className={`width100 ${className}`}>
             <div>
-                <ActiveMember className={memberClassName} team={content.team} activeIndex={content.activeIndex}/>
+                <ActiveMember renderHobbies={renderHobbies} className={memberClassName} team={content.team} activeIndex={content.activeIndex}/>
             </div>
             {children}
             {content.opponent && <div>
-                <ActiveMember className={memberClassName} team={content.opponentTeam} activeIndex={content.opponentActiveIndex}/>
+                <ActiveMember renderHobbies={renderHobbies} className={memberClassName} team={content.opponentTeam} activeIndex={content.opponentActiveIndex}/>
             </div>}
         </div>;
     }

@@ -82,15 +82,15 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderTaskNotActive(activeMember) {
-        const {content} = this.props;
+        const {content, screen} = this.props;
         const {opponentTeam, opponentActiveIndex} = content;
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
         const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
-                <div>
+                <div style={{width: '12rem'}}>
                     <Wisie
-                        className='justifyCenter'
+                        className='justifyStart'
                         detailsClassName='justifyStart'
                         nearImgChildren={<WisieActions
                             className='textAlignStart paddingLeftRem'
@@ -100,8 +100,9 @@ class RivalPageAnswering extends React.PureComponent {
                         renderDetails={true}/>
                     <AvailableSkills className='justifyStart' skills={content.skills}/>
                 </div>
-                <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
-                {content.opponent && <div>
+                <div className='justifyStart flexColumn'
+                     style={{width: screen.isSmallHeight ? '10rem' : '20rem'}}>{this.renderTaskDescription()}</div>
+                {content.opponent && <div style={{width: '12rem'}}>
                     {isTeamMemberWisie(opponentActiveMember)
                         ? [<Wisie
                             key='w'
@@ -110,13 +111,14 @@ class RivalPageAnswering extends React.PureComponent {
                             nearImgChildren={<WisieActions
                                 className='textAlignEnd paddingRightRem'
                                 actions={content.opponentWisieActions}/>}
-                            className='pointer justifyCenter'
+                            className='pointer justifyEnd'
                             onClick={this.handleWaterPistolClick}
                             imgHeight={imgHeight}
                             {...opponentActiveMember.content}
                             renderDetails={true}/>,
-                            <AvailableSkills className='justifyEnd' key='s' skills={content.opponentSkills}/>]
-                        : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
+                            <AvailableSkills key='a' className='justifyEnd' skills={content.opponentSkills}/>]
+                        : <Profile className='justifyEnd'
+                                   imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}
             </div>
             {this.renderTask(this.handleHintClick)}

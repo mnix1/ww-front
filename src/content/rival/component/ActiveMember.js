@@ -20,9 +20,9 @@ class ActiveMember extends React.PureComponent {
     }
 
     renderWisie(wisie) {
+        const {renderHobbies} = this.props;
         return <Wisie
-            isOwned={true}
-            renderHobbies={true}
+            renderHobbies={renderHobbies}
             key={wisie.type}
             imgHeight={this.imgHeight}
             renderDetails={true}

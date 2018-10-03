@@ -8,24 +8,34 @@ import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
 import Profiles from "../component/Profiles";
 
 class RivalPagePreparingNextTask extends React.PureComponent {
-    render() {
+
+    renderTaskDescription() {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
-        return <div className='pageContent warPagePreparingNextTask'>
-            <TaskDescription
-                content={content}
-                renderTaskPoints={battle}
-                renderTaskCount={battle}
-                small={screen.isSmallHeight}
-                className='justifyCenter flexColumn pageHeader'
-            />
+        return <TaskDescription
+            content={content}
+            renderTaskPoints={battle}
+            renderTaskCount={battle}
+            small={screen.isSmallHeight}
+            className='justifyCenter flexColumn pageHeader'>
             <div className='pageHeader'>
                 <div>{getText(TEXT_QUESTION_PREPARING) + ' '}
                     <br/>
                     <Timer from={content.nextTaskInterval}/>
                 </div>
             </div>
-            {battle ? <Profiles content={content} className='absolute'/> : <ActiveMembers content={content}/>}
+        </TaskDescription>
+
+    }
+
+    render() {
+        const {content} = this.props;
+        const battle = content.type === RIVAL_TYPE_BATTLE;
+        return <div className='pageContent warPagePreparingNextTask'>
+            {battle && this.renderTaskDescription()}
+
+            {battle ? <Profiles content={content} className='absolute'/> :
+                <ActiveMembers renderHobbies={false} content={content}>{this.renderTaskDescription()}</ActiveMembers>}
         </div>;
     }
 }
