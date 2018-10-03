@@ -75,7 +75,7 @@ class RivalPageAnswering extends React.PureComponent {
         const {content} = this.props;
         return <div className='width100 height100 absolute'>
             <ActiveMembers content={content}>
-                <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
+                {content.opponent && <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>}
             </ActiveMembers>
             {this.renderTask(this.handleAnswerClick)}
         </div>;
@@ -100,7 +100,7 @@ class RivalPageAnswering extends React.PureComponent {
                         isOwned={true}/>
                     <AvailableSkills skills={content.skills}/>
                 </div>
-                <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>
+                {content.opponent && <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>}
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
                         ? [<Wisie
@@ -161,7 +161,7 @@ class RivalPageAnswering extends React.PureComponent {
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div
             className={`pageContent warPageAnswering ${!battle ? this.addTransitionClass : ''}`}>
-            {battle && this.renderTaskDescription()}
+            {(battle || !content.opponent) && this.renderTaskDescription()}
             {this.renderContent()}
         </div>;
     }
@@ -171,7 +171,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         socket: state.socket.socket,
-        // opponentProfile: state.war.opponent,
         profile: state.profile.profile,
         content: state.rival.content,
         questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,

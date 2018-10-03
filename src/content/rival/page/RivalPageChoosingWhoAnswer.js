@@ -64,8 +64,8 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
             </TaskDescription>
             <div className='pageHeader'>{getText(TEXT_CHOOSE_WHO_ANSWER)}</div>
             {this.renderTeamBig()}
-            <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>
-            {this.renderOpponentTeamBig()}
+            {content.opponent && <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>}
+            {content.opponent && this.renderOpponentTeamBig()}
         </div>;
     }
 }
