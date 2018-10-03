@@ -75,7 +75,7 @@ class RivalPageAnswering extends React.PureComponent {
         const {content} = this.props;
         return <div className='width100 height100 absolute'>
             <ActiveMembers content={content}>
-                {content.opponent && <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>}
+                <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
             </ActiveMembers>
             {this.renderTask(this.handleAnswerClick)}
         </div>;
@@ -98,9 +98,9 @@ class RivalPageAnswering extends React.PureComponent {
                         {...activeMember.content}
                         renderDetails={true}
                         isOwned={true}/>
-                    <AvailableSkills skills={content.skills}/>
+                    <AvailableSkills className='justifyStart' skills={content.skills}/>
                 </div>
-                {content.opponent && <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>}
+                <div className='justifyStart flexColumn width100'>{this.renderTaskDescription()}</div>
                 {content.opponent && <div>
                     {isTeamMemberWisie(opponentActiveMember)
                         ? [<Wisie
@@ -115,7 +115,7 @@ class RivalPageAnswering extends React.PureComponent {
                             {...opponentActiveMember.content}
                             renderDetails={true}
                             isOwned={true}/>,
-                            <AvailableSkills key='s' skills={content.opponentSkills}/>]
+                            <AvailableSkills className='justifyEnd' key='s' skills={content.opponentSkills}/>]
                         : <Profile imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>}
                 </div>}
             </div>
@@ -161,7 +161,7 @@ class RivalPageAnswering extends React.PureComponent {
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div
             className={`pageContent warPageAnswering ${!battle ? this.addTransitionClass : ''}`}>
-            {(battle || !content.opponent) && this.renderTaskDescription()}
+            {battle && this.renderTaskDescription()}
             {this.renderContent()}
         </div>;
     }

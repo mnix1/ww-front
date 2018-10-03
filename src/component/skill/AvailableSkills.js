@@ -8,16 +8,18 @@ export default class AvailableSkills extends React.PureComponent {
 
     static propTypes = {
         skills: PropTypes.object,
+        className: PropTypes.string,
     };
 
     static defaultProps = {
-        skills: {}
+        skills: {},
+        className: 'justifyCenter',
     };
 
     render() {
-        const {skills} = this.props;
+        const {skills, className} = this.props;
         const keys = _.sortBy(_.keys(skills));
-        return <div className='justifyCenter'>
+        return <div className={className}>
             <div className='justifyCenter'>
                 {keys.map(e => <Skill key={e} imgSrc={getSkill(e)}>{skills[e]}</Skill>)}
             </div>

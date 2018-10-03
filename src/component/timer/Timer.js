@@ -132,7 +132,7 @@ export default class Timer extends React.PureComponent {
         const {to, from} = this.props;
         const {value} = this.state;
         const percent = value / (from - to) * 100;
-        return <Line style={{width: 80}} percent={percent} strokeWidth="8" strokeColor="#FFFFFF"/>
+        return <Line style={{width: 50}} percent={percent} strokeWidth="8" strokeColor="#FFFFFF"/>
     }
 
     render() {

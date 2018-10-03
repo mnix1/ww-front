@@ -25,7 +25,7 @@ export default class WisieActions extends React.PureComponent {
 
     render() {
         const {actions} = this.props;
-        return <div className='fontSize08Rem justifyEnd flexColumn' style={{minWidth: remToPixels(6)}}>
+        return <div className='fontSize07Rem justifyEnd flexColumn width100'>
             {_.takeRight(actions, 2).map(e => this.renderAction(e))}
         </div>
     }

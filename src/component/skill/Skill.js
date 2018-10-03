@@ -9,7 +9,7 @@ export const SKILL_MEDIUM = 'skillMedium';
 export const SKILL_BIG = 'skillBig';
 
 export const IMG_HEIGHT = {
-    [SKILL_VERY_SMALL]: 15,
+    [SKILL_VERY_SMALL]: 20,
     [SKILL_SMALL]: 30,
     [SKILL_MEDIUM]: 40,
     [SKILL_BIG]: 50,
@@ -28,7 +28,7 @@ export default class Skill extends React.PureComponent {
     };
 
     static defaultProps = {
-        size: SKILL_SMALL,
+        size: SKILL_VERY_SMALL,
         onClick: _.noop,
         column: true,
         margin: true,
@@ -54,7 +54,7 @@ export default class Skill extends React.PureComponent {
         const {size, column, margin, className, onClick} = this.props;
         const customClassName = cn('inlineBlock fontSize08Rem relative pointer', {
             [className]: className,
-            'marginRem': margin,
+            'marginLeftRem marginRightRem': margin,
             [size]: size
         });
         return <div className={customClassName} onClick={onClick}>
