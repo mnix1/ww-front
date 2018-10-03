@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {getWisieActionLabel} from "../../lang/langWisieAction";
 import _ from 'lodash';
-import {remToPixels} from "../../util/fontHelper";
 
 export default class WisieActions extends React.PureComponent {
 
@@ -18,7 +17,7 @@ export default class WisieActions extends React.PureComponent {
 
     renderAction(action) {
         const {className} = this.props;
-        return <div key={action} className={`${className} flexWrap paddingBottomRem`}>
+        return <div key={action} className={`${className} flexWrap`}>
             {getWisieActionLabel(action)}
         </div>
     }

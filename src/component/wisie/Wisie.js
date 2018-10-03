@@ -17,6 +17,8 @@ export default class Wisie extends React.PureComponent {
         children: PropTypes.node,
         outsideChildren: PropTypes.node,
         outsideChildrenAfter: PropTypes.bool,
+        nearImgChildren: PropTypes.node,
+        nearImgChildrenAfter: PropTypes.bool,
         imgHeight: PropTypes.number,
         style: PropTypes.object,
         onClick: PropTypes.func,
@@ -34,6 +36,7 @@ export default class Wisie extends React.PureComponent {
 
     static defaultProps = {
         outsideChildrenAfter: true,
+        nearImgChildrenAfter: true,
         renderHobbies: true,
         renderDetails: true,
         renderImg: true,
@@ -90,11 +93,15 @@ export default class Wisie extends React.PureComponent {
     }
 
     renderContent() {
-        const {type, isOwned, imgHeight, children, renderImg, renderDetails} = this.props;
+        const {type, isOwned, imgHeight, children, renderImg, renderDetails, nearImgChildrenAfter, nearImgChildren} = this.props;
         return <div className='relative justifyCenter flexColumn'>
             {renderDetails && (isOwned ? this.renderWisieDetailsOwned() : this.renderWisieDetailsNotOwned())}
             {renderImg &&
-            <div className='justifyCenter'><img alt='' src={getWisie(type)} height={imgHeight}/></div>}
+            <div className='justifyCenter'>
+                {!nearImgChildrenAfter && nearImgChildren}
+                <img alt='' src={getWisie(type)} height={imgHeight}/>
+                {nearImgChildrenAfter && nearImgChildren}
+            </div>}
             {children}
         </div>
     }

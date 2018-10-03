@@ -25,8 +25,8 @@ export default class TaskDescription extends React.PureComponent {
         const taskCount = renderTaskCount ? `/${content.taskCount}` : '';
         const taskNumber = renderTask && <div>{`${getText(TEXT_QUESTION)} ${task.id || taskId}${taskCount}`}</div>;
         const taskCategory = task.category &&
-            <div>{small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
-                <img alt='' key={task.category} height={remToPixels(1)}
+            <div className='justifyCenter flexWrap'>{small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
+                <img alt='' className='marginLeftRem' key={task.category} height={remToPixels(1)}
                      src={getCategory(task.category)}/>
             </div>;
         const taskDifficulty = task.difficultyLevel && <div className='justifyCenter'>

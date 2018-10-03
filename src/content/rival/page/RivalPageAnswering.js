@@ -91,7 +91,7 @@ class RivalPageAnswering extends React.PureComponent {
                 <div>
                     <Wisie
                         className='justifyCenter'
-                        outsideChildren={<WisieActions
+                        nearImgChildren={<WisieActions
                             className='textAlignStart paddingLeftRem'
                             actions={content.wisieActions}/>}
                         imgHeight={imgHeight}
@@ -105,8 +105,8 @@ class RivalPageAnswering extends React.PureComponent {
                     {isTeamMemberWisie(opponentActiveMember)
                         ? [<Wisie
                             key='w'
-                            outsideChildrenAfter={false}
-                            outsideChildren={<WisieActions
+                            nearImgChildrenAfter={false}
+                            nearImgChildren={<WisieActions
                                 className='textAlignEnd paddingRightRem'
                                 actions={content.opponentWisieActions}/>}
                             className='pointer justifyCenter'
