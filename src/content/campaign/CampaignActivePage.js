@@ -72,7 +72,7 @@ class CampaignActivePage extends React.PureComponent {
             return null;
         }
         const {onStartClick} = this.props;
-        return <Button className='paddingBottomRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}
+        return <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onStartClick}
                        icon={<IoMdPlay/>}>{getText(TEXT_START)}</Button>
     }
 
@@ -120,8 +120,8 @@ class CampaignActivePage extends React.PureComponent {
             {this.renderPhases()}
             <div className='justifyCenter'>{getText(TEXT_YOUR_TEAM)}</div>
             {this.renderTeam()}
-            <div className='justifyCenter'>{this.renderStart()}</div>
             <div className='justifyCenter'>{this.renderEnd()}</div>
+            <div className='justifyCenter paddingTopRem'>{this.renderStart()}</div>
         </div>;
     }
 }
