@@ -17,38 +17,33 @@ export default class RivalCommunication {
     send(message) {
         this.communicationWebSocket.send(message);
     }
-
     sendSurrender() {
         this.send(JSON.stringify({id: 'SURRENDER'}));
     }
-
     sendAnswer(answerId) {
         this.send(JSON.stringify({id: 'ANSWER', answerId}));
     }
-
     sendHint(answerId) {
         this.send(JSON.stringify({id: 'HINT', answerId}));
     }
-
     sendWaterPistol() {
         this.send(JSON.stringify({id: 'WATER_PISTOL'}));
     }
     sendKidnapping() {
         this.send(JSON.stringify({id: 'KIDNAPPING'}));
     }
-
+    sendGhost() {
+        this.send(JSON.stringify({id: 'GHOST'}));
+    }
     sendLifebuoy(index) {
         this.send(JSON.stringify({id: 'LIFEBUOY', index}));
     }
-
     sendWhoAnswer(activeIndex) {
         this.send(JSON.stringify({id: 'CHOOSE_WHO_ANSWER', activeIndex}));
     }
-
     sendChosenDifficulty(difficultyLevel) {
         this.send(JSON.stringify({id: 'CHOOSE_TASK_PROPS', difficultyLevel}));
     }
-
     sendChosenCategory(category) {
         this.send(JSON.stringify({id: 'CHOOSE_TASK_PROPS', category}));
     }

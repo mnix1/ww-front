@@ -34,6 +34,7 @@ class WisiePickPage extends WisieListPageComponent {
         const {onWisiePickClick, pickWisies, screen} = this.props;
         const className = cn('pointer');
         return <Wisie
+            renderHobbies={false}
             value={this.prepareWisieValue(wisie)}
             active={_.includes(pickWisies, wisie.type)}
             blackBackground={true}

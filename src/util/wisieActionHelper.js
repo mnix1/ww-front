@@ -38,15 +38,15 @@ export const HUNG_UP = 'HUNG_UP';
 export const NEED_GO_TO_TOILET = 'NEED_GO_TO_TOILET';
 
 //skills
-
+//hint
 export const HINT_RECEIVED = 'HINT_RECEIVED';
 export const THINKING_IF_USE_HINT = 'THINKING_IF_USE_HINT';
 export const WILL_USE_HINT = 'WILL_USE_HINT';
 export const WONT_USE_HINT = 'WONT_USE_HINT';
-
+//waterPistol
 export const WATER_PISTOL_USED_ON_IT = 'WATER_PISTOL_USED_ON_IT';
 export const CLEANING = 'CLEANING';
-
+//kidnapping
 export const PREPARING_KIDNAPPING = 'PREPARING_KIDNAPPING';
 export const TRYING_TO_KIDNAP = 'TRYING_TO_KIDNAP';
 export const KIDNAPPING_SUCCEEDED = 'KIDNAPPING_SUCCEEDED';
@@ -54,4 +54,16 @@ export const KIDNAPPING_FAILED = 'KIDNAPPING_FAILED';
 export const TRYING_TO_DEFEND = 'TRYING_TO_DEFEND';
 export const WAS_KIDNAPPED = 'WAS_KIDNAPPED';
 export const WAS_NOT_KIDNAPPED = 'WAS_NOT_KIDNAPPED';
+export const CHANGING_CLOTHES = 'CHANGING_CLOTHES';
+//ghost
+export const PREPARING_DISGUISE = 'PREPARING_DISGUISE';
+export const TRYING_TO_SCARE = 'TRYING_TO_SCARE';
+export const SCARE_SUCCEEDED = 'SCARE_SUCCEEDED';
+export const SCARE_FAILED = 'SCARE_FAILED';
+export const REMOVING_DISGUISE = 'REMOVING_DISGUISE';
+export const WAS_CAUGHT = 'WAS_CAUGHT';
+export const WAS_NOT_CAUGHT = 'WAS_NOT_CAUGHT';
+export const SCARING_ON_IT = 'SCARING_ON_IT';
+export const RUN_AWAY = 'RUN_AWAY';
+export const WAS_NOT_SCARED = 'WAS_NOT_SCARED';
 

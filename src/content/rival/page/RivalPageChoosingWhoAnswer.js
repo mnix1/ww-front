@@ -25,7 +25,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         });
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
-                renderLifebuoyChoose={content.skills[SKILL_LIFEBUOY] > 0}
+                renderLifebuoyChoose={content.skills[SKILL_LIFEBUOY].canUse}
                 onLifebuoyClick={this.handleLifebuoyClick}
                 className={className}
                 contentClassName='overflowXAuto justifyStart'

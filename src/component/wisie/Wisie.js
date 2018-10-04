@@ -6,11 +6,13 @@ import cross from '../../media/image/icon/cross.svg';
 import {getName} from "../../lang/langText";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
+import {getDisguise} from "../../util/disguiseHelper";
 
 export default class Wisie extends React.PureComponent {
 
     static propTypes = {
         type: PropTypes.string,
+        disguise: PropTypes.string,
         value: PropTypes.number,
         className: PropTypes.string,
         detailsClassName: PropTypes.string,
@@ -61,7 +63,8 @@ export default class Wisie extends React.PureComponent {
             return customHobbies;
         }
         return <div className={hobbiesUnderName ? 'justifyStart' : 'justifyCenter'}>
-            {hobbies.map(e => <img alt='' className={hobbiesUnderName ? 'paddingRightRem' : 'paddingLeftRem'} key={e} height={imgHobbyHeight}
+            {hobbies.map(e => <img alt='' className={hobbiesUnderName ? 'paddingRightRem' : 'paddingLeftRem'} key={e}
+                                   height={imgHobbyHeight}
                                    src={getCategory(e)}/>)}
         </div>;
     }
@@ -88,13 +91,13 @@ export default class Wisie extends React.PureComponent {
     }
 
     renderContent() {
-        const {type, imgHeight, children, renderImg, renderDetails, nearImgChildrenAfter, nearImgChildren} = this.props;
+        const {type, imgHeight, disguise, children, renderImg, renderDetails, nearImgChildrenAfter, nearImgChildren} = this.props;
         return <div className='relative justifyCenter flexColumn'>
             {renderDetails && this.renderWisieDetailsOwned()}
             {renderImg &&
             <div className='justifyCenter'>
                 {!nearImgChildrenAfter && nearImgChildren}
-                <img alt='' src={getWisie(type)} height={imgHeight}/>
+                <img alt='' src={disguise ? getDisguise(disguise) : getWisie(type)} height={imgHeight}/>
                 {nearImgChildrenAfter && nearImgChildren}
             </div>}
             {children}

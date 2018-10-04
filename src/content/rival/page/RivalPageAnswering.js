@@ -16,7 +16,7 @@ import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE} from "../../../util/r
 import Profiles from "../component/Profiles";
 import {rivalScreen} from "../../../util/screenHelper";
 import AvailableSkills from "../../../component/skill/AvailableSkills";
-import {SKILL_KIDNAPPING, SKILL_WATER_PISTOL} from "../../../util/skillHelper";
+import {SKILL_GHOST, SKILL_HINT, SKILL_KIDNAPPING, SKILL_LIFEBUOY, SKILL_WATER_PISTOL} from "../../../util/skillHelper";
 
 class RivalPageAnswering extends React.PureComponent {
 
@@ -48,6 +48,11 @@ class RivalPageAnswering extends React.PureComponent {
     handleKidnappingClick = () => {
         const {communication} = this.props;
         communication.sendKidnapping();
+    };
+
+    handleGhostClick = () => {
+        const {communication} = this.props;
+        communication.sendGhost();
     };
 
     renderTask(onAnswerClick) {
@@ -89,6 +94,10 @@ class RivalPageAnswering extends React.PureComponent {
         const {content} = this.props;
         const {opponentTeam, opponentActiveIndex} = content;
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
+        const isOpponentWisie = content.opponent && isTeamMemberWisie(opponentActiveMember);
+        const mySkills = isOpponentWisie
+            ? _.pickBy(content.skills, (v, k) => k !== SKILL_LIFEBUOY)
+            : _.pickBy(content.skills, (v, k) => k === SKILL_HINT);
         const imgHeight = this.imgHeight;
         return <div className='width100 height100 absolute'>
             <div className='width100 justifyBetween absolute'>
@@ -102,14 +111,17 @@ class RivalPageAnswering extends React.PureComponent {
                         imgHeight={imgHeight}
                         {...activeMember.content}
                         renderDetails={true}/>
-                    <AvailableSkills className='justifyStart' skills={content.skills} skillClickHandlers={{
-                      [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
-                      [SKILL_KIDNAPPING]: this.handleKidnappingClick,
-                    }}/>
+                    <AvailableSkills className='justifyStart'
+                                     skills={mySkills}
+                                     skillClickHandlers={{
+                                         [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
+                                         [SKILL_KIDNAPPING]: this.handleKidnappingClick,
+                                         [SKILL_GHOST]: this.handleGhostClick,
+                                     }}/>
                 </div>
                 {this.renderWarTaskDescription()}
                 <div style={{width: '12rem'}}>
-                    {content.opponent && (isTeamMemberWisie(opponentActiveMember)
+                    {content.opponent && (isOpponentWisie
                         ? [<Wisie
                             key='w'
                             detailsClassName='justifyEnd'
@@ -122,7 +134,8 @@ class RivalPageAnswering extends React.PureComponent {
                             imgHeight={imgHeight}
                             {...opponentActiveMember.content}
                             renderDetails={true}/>,
-                            <AvailableSkills key='a' className='justifyEnd' skills={content.opponentSkills}/>]
+                            <AvailableSkills key='a' className='justifyEnd'
+                                             skills={_.pickBy(content.opponentSkills, (v, k) => k !== SKILL_LIFEBUOY)}/>]
                         : <Profile className='justifyEnd'
                                    imgHeight={imgHeight + remToPixels(0.85)} {...opponentActiveMember.content}/>)}
                 </div>
@@ -149,10 +162,10 @@ class RivalPageAnswering extends React.PureComponent {
         return content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
     }
 
-    renderWarTaskDescription(){
+    renderWarTaskDescription() {
         const {screen} = this.props;
         return <div className='justifyStart flexColumn'
-             style={{width: screen.isSmallHeight ? '10rem' : '20rem'}}>{this.renderTaskDescription()}</div>
+                    style={{width: screen.isSmallHeight ? '10rem' : '20rem'}}>{this.renderTaskDescription()}</div>
     }
 
     renderTaskDescription() {

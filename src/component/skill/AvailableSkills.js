@@ -33,8 +33,12 @@ export default class AvailableSkills extends React.PureComponent {
         const keys = _.sortBy(_.keys(skills));
         return <div className={className}>
             <div className='justifyCenter'>
-                {keys.map(e => <Skill onClick={() => this.handleSkillClick(e)} key={e}
-                                      imgSrc={getSkill(e)}>{skills[e]}</Skill>)}
+                {keys.map(e => <Skill
+                    disabled={!skills[e].canUse}
+                    used={skills[e].used}
+                    onClick={() => this.handleSkillClick(e)} key={e}
+                    imgSrc={getSkill(e)}>{skills[e].count}
+                </Skill>)}
             </div>
         </div>
     }
