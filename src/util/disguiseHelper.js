@@ -8,7 +8,7 @@ import chairGreen from '../media/image/disguise/chairGreen.svg';
 const DISGUISE = {
     'NINJA': ninja,
     'GHOST': ghost,
-    'RAIN': rain,
+    'PENGUIN_RAIN': rain,
     'CHAIR_RED': chairRed,
     'CHAIR_SIMPLE': chairSimple,
     'CHAIR_GREEN': chairGreen,
