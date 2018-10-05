@@ -7,7 +7,7 @@ import {
 } from "../../../util/rivalHelper";
 import RivalPageAnswered from "./RivalPageAnswered";
 import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
-import RivalPageAnswering from "./RivalPageAnswering";
+import RivalPageAnswering from "./answering/RivalPageAnswering";
 
 class RivalMultiPageAnswer extends React.PureComponent {
 
