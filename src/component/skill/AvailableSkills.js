@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {getSkill} from "../../util/skillHelper";
+import {getSkill, SKILL_HINT} from "../../util/skillHelper";
 import Skill from "./Skill";
 import _ from "lodash";
 
@@ -36,7 +36,7 @@ export default class AvailableSkills extends React.PureComponent {
         return <div className={className}>
             <div className='justifyCenter'>
                 {keys.map(e => <Skill
-                    disabled={disabled || !skills[e].canUse}
+                    disabled={(disabled && e !== SKILL_HINT) || !skills[e].canUse}
                     used={skills[e].used}
                     onClick={() => this.handleSkillClick(e)} key={e}
                     imgSrc={getSkill(e)}>{skills[e].count}
