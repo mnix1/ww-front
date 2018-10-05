@@ -33,8 +33,8 @@ class RivalPageAnswered extends React.PureComponent {
             meAnswered = !meAnswered;
         }
         return meAnswered
-            ? {activeIndex: content.activeIndex, team: content.team}
-            : {activeIndex: content.opponentActiveIndex, team: content.opponentTeam};
+            ? {activeIndex: content.activeIndex, team: content.team, activeMemberAddOn: content.activeMemberAddOn}
+            : {activeIndex: content.opponentActiveIndex, team: content.opponentTeam, activeMemberAddOn: content.opponentActiveMemberAddOn};
     }
 
     renderWhoAnsweredWar() {

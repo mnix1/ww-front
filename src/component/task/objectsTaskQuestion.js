@@ -70,7 +70,7 @@ function prepareQuestionTextHtmlTile(question) {
     return [textTile({question, xTarget: .3, widthFactor: 0.9}), {
         id: 'questionHtml', onClick: _.noop,
         contentHtml: getHtmlContent(question),
-        yTarget: .5, xTarget: .65, widthFactor: 1.2
+        yTarget: .5, xTarget: .7, widthFactor: 1.2
     }];
 }
 

@@ -39,8 +39,8 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
 
     renderAvailableSkills(isOpponentWisie) {
         const {content} = this.props;
-        const {opponentActiveMember} = content;
-        const isOpponentPresent = _.isNil(opponentActiveMember) ? true : opponentActiveMember.present;
+        const {opponentActiveMemberAddOn} = content;
+        const isOpponentPresent = _.isNil(opponentActiveMemberAddOn) ? true : opponentActiveMemberAddOn.present;
         const mySkills = isOpponentWisie
             ? _.pickBy(content.skills, (v, k) => k !== SKILL_LIFEBUOY)
             : _.pickBy(content.skills, (v, k) => k === SKILL_HINT);
@@ -69,7 +69,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                     actions={content.wisieActions}/>}
                 imgHeight={imgHeight}
                 {...activeMember.content}
-                disguise={_.get(content, 'activeMember.disguise')}
+                disguise={_.get(content, 'activeMemberAddOn.disguise')}
                 renderDetails={true}
             />,
             this.renderAvailableSkills(isOpponentWisie)
@@ -78,8 +78,8 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
 
     renderOpponentAvailableSkills() {
         const {content} = this.props;
-        const {activeMember} = content;
-        const isActivePresent = _.isNil(activeMember) ? true : activeMember.present;
+        const {activeMemberAddOn} = content;
+        const isActivePresent = _.isNil(activeMemberAddOn) ? true : activeMemberAddOn.present;
         return <AvailableSkills
             key='as2'
             disabled={!isActivePresent}
@@ -105,7 +105,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                 key='w2'
                 detailsClassName='justifyEnd'
                 nearImgChildrenAfter={false}
-                disguise={_.get(content, 'opponentActiveMember.disguise')}
+                disguise={_.get(content, 'opponentActiveMemberAddOn.disguise')}
                 nearImgChildren={<WisieActions
                     className='textAlignEnd paddingRightRem'
                     actions={content.opponentWisieActions}/>}
