@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import cn from 'classnames';
 import _ from 'lodash';
-import {DARK_GREEN_COLOR, DARK_RED_COLOR, GREEN_COLOR, ORANGE_COLOR} from "../../util/style/constant";
+import {ORANGE_COLOR} from "../../util/style/constant";
 
 export const SKILL_VERY_SMALL = 'skillVerySmall';
 export const SKILL_SMALL = 'skillSmall';
