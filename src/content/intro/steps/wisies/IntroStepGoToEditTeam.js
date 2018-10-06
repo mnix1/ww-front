@@ -23,7 +23,7 @@ class IntroStepGoToEditTeam extends React.PureComponent {
     }
 
     render() {
-        return <IntroStep stepId={INTRO_STEP_GO_TO_EDIT_TEAM} renderContinue={false}>
+        return <IntroStep stepId={INTRO_STEP_GO_TO_EDIT_TEAM} renderContinue={false} renderHide={true}>
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_0)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_GO_TO_EDIT_TEAM_TEXT_1)}</div>

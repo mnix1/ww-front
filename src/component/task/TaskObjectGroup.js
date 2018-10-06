@@ -54,7 +54,7 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     questionHeight() {
         const {screen} = this.props;
-        if(screen.moreHeightThanWidth){
+        if (screen.moreHeightThanWidth) {
             return this.contentHeight() * 13 / 48;
         }
         return this.contentHeight() * 17 / 48;
@@ -62,7 +62,7 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     answerHeight() {
         const {screen} = this.props;
-        if(screen.moreHeightThanWidth){
+        if (screen.moreHeightThanWidth) {
             return this.contentHeight() * 35 / 48;
         }
         return this.contentHeight() * 31 / 48;
@@ -106,18 +106,26 @@ export default class TaskObjectGroup extends React.PureComponent {
         });
     }
 
+    prepareCount(forWidth) {
+        const {answerObjects, screen} = this.props;
+        const screenFactor = forWidth
+            ? (screen.moreHeightThanWidth ? 4 : 2)
+            : (screen.moreHeightThanWidth ? 2 : 4);
+        return Math.ceil(Math.max(answerObjects.length, 5)/ screenFactor);
+    }
+
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
         const {contentWidth, isSmallHeight, isSmallWidth} = screen;
         const answerObjectWidth = calculateObjectDimension({
             dim: contentWidth,
-            count: Math.ceil((answerObjects.length) / (screen.moreHeightThanWidth ? 4 : 2)),
+            count: this.prepareCount(true),
             max: isSmallWidth ? 150 : 200
         });
         return answerObjects.map(o => {
             const objectHeight = calculateObjectDimension({
                 dim: this.answerHeight(),
-                count: Math.ceil((answerObjects.length) / (screen.moreHeightThanWidth ? 2 : 4)),
+                count: this.prepareCount(false),
                 min: 30,
                 max: isSmallHeight ? 90 : 100
             }) * _.defaultTo(o.heightFactor, 1);

@@ -11,15 +11,6 @@ import {PICK_WISIE_COUNT} from "../intro/introHelper";
 
 class WisiePickPage extends WisieListPageComponent {
 
-    prepareWisieValue(wisie) {
-        const {pickWisies} = this.props;
-        const index = _.indexOf(pickWisies, wisie.type);
-        if (index === -1) {
-            return undefined;
-        }
-        return `~${(3 - index) * 50 + 5}`
-    }
-
     renderOwned() {
         return null;
     }
@@ -35,7 +26,6 @@ class WisiePickPage extends WisieListPageComponent {
         const className = cn('pointer');
         return <Wisie
             renderHobbies={false}
-            value={this.prepareWisieValue(wisie)}
             active={_.includes(pickWisies, wisie.type)}
             blackBackground={true}
             imgHeight={screen.wisieImgHeight + 20}
