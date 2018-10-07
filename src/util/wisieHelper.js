@@ -1,10 +1,10 @@
 import ant from '../media/image/wisie/ant.svg';
-import bee from '../media/image/wisie/bee.png';
+import bee from '../media/image/wisie/bee.svg';
 import catBlue from '../media/image/wisie/catBlue.png';
 import gorilla from '../media/image/wisie/gorilla.png';
 import sheep from '../media/image/wisie/sheep.png';
 import lion from '../media/image/wisie/lion.png';
-import snake from '../media/image/wisie/snake.svg';
+import snake from '../media/image/wisie/snake.png';
 import eagle from '../media/image/wisie/eagle.png';
 import horse from '../media/image/wisie/horse.png';
 import raccoon from '../media/image/wisie/raccoon.svg';
@@ -51,7 +51,7 @@ import owlHappy from '../media/image/wisie/owlHappy.svg';
 import alligator from '../media/image/wisie/alligator.png';
 import giraffe from '../media/image/wisie/giraffe.png';
 import koala from '../media/image/wisie/koala.svg';
-import monkey from '../media/image/wisie/monkey.png';
+import monkey from '../media/image/wisie/monkey.svg';
 import raccoonBrown from '../media/image/wisie/raccoonBrown.png';
 import worm from '../media/image/wisie/worm.png';
 
