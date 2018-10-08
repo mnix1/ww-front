@@ -5,7 +5,11 @@ import shield from '../media/image/skill/shield.svg';
 import ghost from '../media/image/skill/ghost.svg';
 import ninja from '../media/image/skill/shuriken.svg';
 import pizza from '../media/image/skill/pizza.png';
+import blackboard from '../media/image/skill/blackboard.png';
+import box from '../media/image/skill/box.svg';
 
+export const SKILL_TEACHER = 'TEACHER';
+export const SKILL_MOTIVATOR = 'MOTIVATOR';
 export const SKILL_HINT = 'HINT';
 export const SKILL_WATER_PISTOL = 'WATER_PISTOL';
 export const SKILL_KIDNAPPING = 'KIDNAPPING';
@@ -15,6 +19,8 @@ export const SKILL_SHIELD = 'SHIELD';
 export const SKILL_PIZZA = 'PIZZA';
 
 const SKILLS = {
+    [SKILL_TEACHER]: blackboard,
+    [SKILL_MOTIVATOR]: box,
     [SKILL_HINT]: hint,
     [SKILL_WATER_PISTOL]: waterPistol,
     [SKILL_KIDNAPPING]: ninja,

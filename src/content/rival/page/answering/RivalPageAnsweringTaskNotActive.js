@@ -47,8 +47,8 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         const {opponentActiveMemberAddOn} = content;
         const isOpponentPresent = _.isNil(opponentActiveMemberAddOn) ? true : opponentActiveMemberAddOn.present;
         const mySkills = isOpponentWisie
-            ? _.pickBy(content.skills, (v, k) => k !== SKILL_LIFEBUOY)
-            : _.pickBy(content.skills, (v, k) => k === SKILL_HINT);
+            ? _.pickBy(content.skills, (v, k) => k !== SKILL_LIFEBUOY && v.type !== 'PASSIVE')
+            : _.pickBy(content.skills, (v, k) => k === SKILL_HINT && v.type !== 'PASSIVE');
         return <AvailableSkills
             key={'as1'}
             className='justifyStart'
@@ -91,7 +91,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
             key='as2'
             disabled={!isActivePresent}
             className='justifyEnd'
-            skills={_.pickBy(content.opponentSkills, (v, k) => k !== SKILL_LIFEBUOY)}
+            skills={_.pickBy(content.opponentSkills, (v, k) => k !== SKILL_LIFEBUOY && v.type !== 'PASSIVE')}
         />;
     }
 
