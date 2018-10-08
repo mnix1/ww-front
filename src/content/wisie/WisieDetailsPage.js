@@ -4,7 +4,7 @@ import Modal from "../../component/modal/Modal";
 import WisieAttribute from "../../component/wisie/WisieAttribute";
 import {FaMinusCircle, FaPlusCircle, FaRetweet} from "react-icons/fa";
 import {
-    COMBINING_FACTS,
+    CUNNING,
     CONCENTRATION,
     CONFIDENCE,
     COUNTING,
@@ -120,7 +120,6 @@ class WisieDetailsPage extends React.PureComponent {
                 {this.renderWisieAttribute(wisie, LOGIC, WISIE_WISDOM_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, PERCEPTIVITY, WISIE_WISDOM_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, COUNTING, WISIE_WISDOM_UPGRADE_COST)}
-                {this.renderWisieAttribute(wisie, COMBINING_FACTS, WISIE_WISDOM_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, PATTERN_RECOGNITION, WISIE_WISDOM_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, IMAGINATION, WISIE_WISDOM_UPGRADE_COST)}
             </div>
@@ -131,6 +130,7 @@ class WisieDetailsPage extends React.PureComponent {
                 </div>
                 {this.renderWisieAttribute(wisie, SPEED, WISIE_MENTAL_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, REFLEX, WISIE_MENTAL_UPGRADE_COST)}
+                {this.renderWisieAttribute(wisie, CUNNING, WISIE_MENTAL_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, CONCENTRATION, WISIE_MENTAL_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, CONFIDENCE, WISIE_MENTAL_UPGRADE_COST)}
                 {this.renderWisieAttribute(wisie, INTUITION, WISIE_MENTAL_UPGRADE_COST)}
