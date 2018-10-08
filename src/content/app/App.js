@@ -7,7 +7,7 @@ import FriendListFetch from "../friend/fetch/FriendListFetch";
 import CommunicationWebSocket from "./CommunicationWebSocket";
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
-import background from '../../media/image/background/backgroundWithWisiesProd2.jpg';
+import background from '../../media/image/background/backgroundWithWisiesProd3.jpg';
 import {push} from 'connected-react-router'
 import {LOGIN_ROUTE} from "../routes";
 import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
