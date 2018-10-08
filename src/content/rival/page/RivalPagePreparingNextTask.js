@@ -36,8 +36,8 @@ class RivalPagePreparingNextTask extends React.PureComponent {
         return <div className='pageContent warPagePreparingNextTask'>
             {battle && this.renderTaskDescription()}
 
-            {battle ? <Profiles content={content} className='absolute'/> :
-                <ActiveMembers renderHobbies={false} content={content}>{this.renderTaskDescription()}</ActiveMembers>}
+            {battle ? <Profiles className='absolute'/> :
+                <ActiveMembers renderHobbies={false}>{this.renderTaskDescription()}</ActiveMembers>}
         </div>;
     }
 }

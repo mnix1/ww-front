@@ -7,7 +7,7 @@ import {renderBattleElo, renderWarElo} from "../../../util/rivalHelper";
 class Profiles extends React.PureComponent {
 
     static defaultProps = {
-        renderScore: true
+        renderScore: true,
     };
 
     renderProfile(profile, score, color, eloStyle) {
@@ -42,6 +42,12 @@ class Profiles extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        content: state.rival.content,
     }),
-    (dispatch) => ({})
+    (dispatch) => ({}),
+    (stateProps, dispatchProps, ownProps) => ({
+        ...stateProps,
+        ...dispatchProps,
+        ...ownProps,
+    })
 )(Profiles);

@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import _ from 'lodash';
 import Task from "../../../../component/task/Task";
 import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/rival";
 import TaskDescription from "../../component/TaskDescription";
@@ -23,41 +22,27 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     handleAnswerClick = (answerId) => {
-        const {content, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
-        const {task} = content;
+        const {task, onAnswerClick, questionIdAnswerIdMap, communication} = this.props;
         communication.sendAnswer(answerId);
         onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
     };
 
     renderTask = (onAnswerClick) => {
-        const {content, onSkipAnimationChange, questionIdSkipAnimationMap, screen} = this.props;
-        const {task, type, correctAnswerId} = content;
-        const battle = type === RIVAL_TYPE_BATTLE;
+        const {task, battle, onSkipAnimationChange, questionIdSkipAnimationMap, screen} = this.props;
         return <Task
             className={battle ? this.addTransitionClass : ''}
             screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
-            skipAnimation={!_.isNil(correctAnswerId) || questionIdSkipAnimationMap[task.id] === true}
-            onSkipAnimationChange={() => {
-                if (!_.isNil(correctAnswerId)) {
-                    return;
-                }
-                onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})
-            }}
+            skipAnimation={questionIdSkipAnimationMap[task.id] === true}
+            onSkipAnimationChange={() => onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})}
             question={task}
             answers={task.answers}
-            onAnswerClick={(answerId) => {
-                if (!_.isNil(correctAnswerId)) {
-                    return;
-                }
-                onAnswerClick(answerId);
-            }}
+            onAnswerClick={(answerId) => onAnswerClick(answerId)}
         />;
     };
 
     renderTaskActive() {
-        const {content} = this.props;
         return <div className='width100 height100 absolute'>
-            <ActiveMembers content={content}>
+            <ActiveMembers>
                 {this.renderWarTaskDescription()}
             </ActiveMembers>
             {this.renderTask(this.handleAnswerClick)}
@@ -65,14 +50,14 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderContent() {
-        const {content} = this.props;
-        if (content.type === RIVAL_TYPE_BATTLE) {
+        const {battle, team, activeIndex} = this.props;
+        if (battle) {
             return <div className='width100 height100 absolute'>
-                <Profiles content={content} className='absolute'/>
+                <Profiles className='absolute'/>
                 {this.renderTask(this.handleAnswerClick)}
             </div>;
         }
-        const activeMember = content.team[content.activeIndex];
+        const activeMember = team[activeIndex];
         const isMyWisieAnswering = isTeamMemberWisie(activeMember);
         return isMyWisieAnswering
             ? <RivalPageAnsweringTaskNotActive
@@ -85,8 +70,8 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     get addTransitionClass() {
-        const {content} = this.props;
-        return content.status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
+        const {status} = this.props;
+        return status !== RIVAL_CONTENT_STATUS_ANSWERING ? 'answeringToAnswered' : '';
     }
 
     renderWarTaskDescription() {
@@ -96,11 +81,10 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderTaskDescription() {
-        const {content, screen} = this.props;
-        const battle = content.type === RIVAL_TYPE_BATTLE;
+        const {battle, task, taskCount, screen} = this.props;
         return <TaskDescription
-            task={content.task}
-            taskCount={content.taskCount}
+            task={task}
+            taskCount={taskCount}
             renderTaskPoints={battle}
             renderTaskCount={battle}
             small={screen.isSmallHeight}
@@ -110,8 +94,7 @@ class RivalPageAnswering extends React.PureComponent {
 
     render() {
         console.log('RivalPageAnswering render');
-        const {content} = this.props;
-        const battle = content.type === RIVAL_TYPE_BATTLE;
+        const {battle} = this.props;
         return <div
             className={`pageContent warPageAnswering ${!battle ? this.addTransitionClass : ''}`}>
             {battle && this.renderTaskDescription()}
@@ -121,13 +104,22 @@ class RivalPageAnswering extends React.PureComponent {
 }
 
 export default connect(
-    (state) => ({
-        communication: state.socket.rivalCommunication,
-        screen: state.screen,
-        content: state.rival.content,
-        questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
-        questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
-    }),
+    (state) => {
+        const {type, taskCount, status, task, team, activeIndex} = state.rival.content;
+        const battle = type === RIVAL_TYPE_BATTLE;
+        return {
+            battle,
+            task,
+            taskCount,
+            team,
+            activeIndex,
+            status,
+            communication: state.socket.rivalCommunication,
+            screen: state.screen,
+            questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,
+            questionIdSkipAnimationMap: state.rival.questionIdSkipAnimationMap,
+        }
+    },
     (dispatch) => ({
         onAnswerClick: questionIdAnswerIdMap => dispatch(questionIdAnswerIdMapChanged(questionIdAnswerIdMap)),
         onSkipAnimationChange: questionIdSkipAnimationMap => dispatch(questionIdSkipAnimationMapChanged(questionIdSkipAnimationMap))

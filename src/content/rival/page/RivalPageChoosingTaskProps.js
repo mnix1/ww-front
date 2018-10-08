@@ -62,7 +62,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
         const {choosingTaskPropsTag, profile} = content;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageChoosingTaskProps'>
-            {battle ? <Profiles content={content} className='absolute'/>
+            {battle ? <Profiles className='absolute'/>
                 : choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
             {!_.isNil(choosingTaskPropsTag) &&
             <TaskDescription

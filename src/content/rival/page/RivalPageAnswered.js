@@ -112,7 +112,7 @@ class RivalPageAnswered extends React.PureComponent {
                 score: {value: content.newScore, duration: 1500, delay: 4500},
                 opponentScore: {value: content.newOpponentScore, duration: 1500, delay: 4500}
             }}>
-            <Profiles content={content} className={'absolute'} screen={screen}
+            <Profiles className={'absolute'} screen={screen}
                       scoreColor={scoreColor}
                       opponentScoreColor={opponentScoreColor}/>
         </Anime>;

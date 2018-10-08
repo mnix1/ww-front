@@ -37,6 +37,7 @@ class ActiveMembers extends React.PureComponent {
 export default connect(
     (state) => ({
         profile: state.profile.profile,
+        content: state.rival.content,
     }),
     (dispatch) => ({})
 )(ActiveMembers);
