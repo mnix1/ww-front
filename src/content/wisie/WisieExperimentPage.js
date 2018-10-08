@@ -15,8 +15,8 @@ import {isRepFulfilled} from "../../util/repositoryHelper";
 class WisieExperimentPage extends React.PureComponent {
 
     render() {
-        const {profile, onExperimentClick, profileWisieListRep} = this.props;
-        if (!isRepFulfilled(profileWisieListRep)) {
+        const {profile, onExperimentClick, profileWisieListRep, wisieListRep} = this.props;
+        if (!isRepFulfilled(profileWisieListRep) || !isRepFulfilled(wisieListRep) || profileWisieListRep.value.length === wisieListRep.value.length) {
             return null;
         }
         const cost = experimentCost(profile, profileWisieListRep.value.length);
@@ -44,6 +44,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         profile: state.profile.profile,
+        wisieListRep: state.repository.wisieList,
         profileWisieListRep: state.repository.profileWisieList,
         path: state.router.location.pathname,
     }),
