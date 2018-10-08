@@ -127,7 +127,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
     }
 
     render() {
-        console.log('RivalPageAnsweringTaskNotActive render');
+        // console.log('RivalPageAnsweringTaskNotActive render');
         const {content, taskDescription, renderTaskFunction} = this.props;
         const {opponentTeam, opponentActiveIndex} = content;
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];

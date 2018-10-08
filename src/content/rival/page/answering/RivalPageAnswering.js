@@ -93,7 +93,7 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     render() {
-        console.log('RivalPageAnswering render');
+        // console.log('RivalPageAnswering render');
         const {battle} = this.props;
         return <div
             className={`pageContent warPageAnswering ${!battle ? this.addTransitionClass : ''}`}>

@@ -122,7 +122,7 @@ class RivalPageClosed extends React.PureComponent {
     }
 
     render() {
-        console.log('RivalPageClosed render');
+        // console.log('RivalPageClosed render');
         const {onExitClick} = this.props;
         return <div className='pageContent warPageClosed'>
             {this.renderProfilesWithNewScore()}

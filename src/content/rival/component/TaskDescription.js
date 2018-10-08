@@ -65,7 +65,7 @@ export default class TaskDescription extends React.PureComponent {
     }
 
     render() {
-        console.log('TaskDescription render');
+        // console.log('TaskDescription render');
         const {className, children} = this.props;
         return <div className={`${className}`}>
             {this.renderTaskNumber()}

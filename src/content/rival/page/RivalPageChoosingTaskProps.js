@@ -57,7 +57,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
     }
 
     render() {
-        console.log('RivalPageChoosingTaskProps render');
+        // console.log('RivalPageChoosingTaskProps render');
         const {content} = this.props;
         const {choosingTaskPropsTag, profile} = content;
         const battle = content.type === RIVAL_TYPE_BATTLE;

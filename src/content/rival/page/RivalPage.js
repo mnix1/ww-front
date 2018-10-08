@@ -50,7 +50,7 @@ class RivalPage extends React.PureComponent {
     }
 
     render() {
-        console.log('RivalPage render');
+        // console.log('RivalPage render');
         const {screen} = this.props;
         const style = {
             height: screen.isSmallHeight ? screen.height : screen.contentHeight,

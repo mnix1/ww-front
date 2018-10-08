@@ -25,7 +25,7 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
     }
 
     render() {
-        console.log('RivalPageAnsweringTimeout render');
+        // console.log('RivalPageAnsweringTimeout render');
         const {content} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageAnsweringTimeout'>
