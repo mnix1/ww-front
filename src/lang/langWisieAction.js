@@ -48,7 +48,18 @@ import {
     REMOVING_DISGUISE,
     WAS_CAUGHT,
     WAS_NOT_CAUGHT,
-    SCARING_ON_IT, RUN_AWAY, WAS_NOT_SCARED, CHANGING_CLOTHES
+    SCARING_ON_IT,
+    RUN_AWAY,
+    WAS_NOT_SCARED,
+    CHANGING_CLOTHES,
+    ORDERING_PIZZA,
+    PROPOSING_PIZZA,
+    WAITING_FOR_OPPONENT_EAT_PIZZA,
+    CLEANING_AFTER_PIZZA,
+    EATING_PIZZA,
+    THINKING_IF_GET_PIZZA,
+    SERVES_PIZZA,
+    PREPARING_FOR_EAT_PIZZA
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -83,6 +94,15 @@ const HERO_ACTION_LABELS = {
 
         [THINKING_WHICH_ANSWER_MATCH]: "Która odpowiedź pasuje?",
         [THINKING_IF_GIVE_RANDOM_ANSWER]: "Może będę strzelać?",
+
+        [ORDERING_PIZZA]: "(Zamawia pizzę...)",
+        [PROPOSING_PIZZA]: "Może pizzuni?",
+        [SERVES_PIZZA]: "(Serwije pizzę...)",
+        [PREPARING_FOR_EAT_PIZZA]: "Pewnie, ale będzie wyżerka!",
+        [THINKING_IF_GET_PIZZA]: "(Myśli czy wziąć pizzę...)",
+        [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Czeka aż przeciwnik zje...)",
+        [CLEANING_AFTER_PIZZA]: "Ale bałagan! Muszę posprzątać...",
+        [EATING_PIZZA]: "Omomomom, pychotka!",
 
         [HINT_RECEIVED]: "(Podpowiedziano)",
         [THINKING_IF_USE_HINT]: "To dobra podpowiedź?",
@@ -147,6 +167,15 @@ const HERO_ACTION_LABELS = {
 
         [THINKING_WHICH_ANSWER_MATCH]: "Which answer match?",
         [THINKING_IF_GIVE_RANDOM_ANSWER]: "Give random answer?",
+
+        [ORDERING_PIZZA]: "(Ordering pizza...)",
+        [PROPOSING_PIZZA]: "Do you want a pizza?",
+        [SERVES_PIZZA]: "(Serves pizza...)",
+        [PREPARING_FOR_EAT_PIZZA]: "Sure, I can not wait!",
+        [THINKING_IF_GET_PIZZA]: "(Thinking if get pizza...)",
+        [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Waiting for the opponent to eat...)",
+        [CLEANING_AFTER_PIZZA]: "I have to clean up here",
+        [EATING_PIZZA]: "This is delicious!",
 
         [HINT_RECEIVED]: "(Hint received)",
         [THINKING_IF_USE_HINT]: "Is hint correct?",

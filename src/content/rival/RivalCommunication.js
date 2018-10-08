@@ -35,6 +35,9 @@ export default class RivalCommunication {
     sendGhost() {
         this.send(JSON.stringify({id: 'GHOST'}));
     }
+    sendPizza() {
+        this.send(JSON.stringify({id: 'PIZZA'}));
+    }
     sendLifebuoy(index) {
         this.send(JSON.stringify({id: 'LIFEBUOY', index}));
     }

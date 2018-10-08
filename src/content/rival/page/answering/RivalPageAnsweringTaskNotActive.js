@@ -12,6 +12,7 @@ import {
     SKILL_HINT,
     SKILL_KIDNAPPING,
     SKILL_LIFEBUOY,
+    SKILL_PIZZA,
     SKILL_WATER_PISTOL
 } from "../../../../util/skillHelper";
 
@@ -36,6 +37,10 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         const {communication} = this.props;
         communication.sendGhost();
     };
+    handlePizzaClick = () => {
+        const {communication} = this.props;
+        communication.sendPizza();
+    };
 
     renderAvailableSkills(isOpponentWisie) {
         const {content} = this.props;
@@ -53,6 +58,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                 [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
                 [SKILL_KIDNAPPING]: this.handleKidnappingClick,
                 [SKILL_GHOST]: this.handleGhostClick,
+                [SKILL_PIZZA]: this.handlePizzaClick,
             }}
         />;
     }
