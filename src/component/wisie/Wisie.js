@@ -7,12 +7,14 @@ import {getName} from "../../lang/langText";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
 import {getDisguise} from "../../util/disguiseHelper";
+import {GREEN_COLOR, ORANGE_COLOR} from "../../util/style/constant";
 
 export default class Wisie extends React.PureComponent {
 
     static propTypes = {
         type: PropTypes.string,
         disguise: PropTypes.string,
+        valueChange: PropTypes.string,
         value: PropTypes.number,
         className: PropTypes.string,
         detailsClassName: PropTypes.string,
@@ -83,9 +85,14 @@ export default class Wisie extends React.PureComponent {
     }
 
     renderValue() {
-        const {value} = this.props;
+        const {value, valueChange} = this.props;
+        const color = _.isNil(valueChange) || valueChange === 'NONE'
+            ? '#999'
+            : valueChange === 'DECREASE'
+                ? ORANGE_COLOR
+                : GREEN_COLOR;
         return !_.isNil(value) &&
-            <div className='justifyStart' style={{fontSize: '0.8em', color: '#999'}}>
+            <div className='justifyStart' style={{fontSize: '0.8em', color}}>
                 {value}
             </div>;
     }
