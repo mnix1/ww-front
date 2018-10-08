@@ -68,6 +68,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         return [
             <Wisie
                 key={'w1'}
+                renderSkills={false}
                 className='justifyStart'
                 detailsClassName='justifyStart'
                 nearImgChildren={<WisieActions
@@ -111,6 +112,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                 key='w2'
                 detailsClassName='justifyEnd'
                 nearImgChildrenAfter={false}
+                renderSkills={false}
                 disguise={_.get(content, 'opponentActiveMemberAddOn.disguise')}
                 nearImgChildren={<WisieActions
                     className='textAlignEnd paddingRightRem'

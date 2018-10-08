@@ -33,6 +33,9 @@ const categories = [
         id: CATEGORY_ELEMENT,
     },
     {
+        id: CATEGORY_OLYMPIC_GAMES,
+    },
+    {
         id: CATEGORY_RIDDLE,
     },
     {
@@ -43,9 +46,6 @@ const categories = [
     },
     {
         id: CATEGORY_TIME,
-    },
-    {
-        id: CATEGORY_OLYMPIC_GAMES,
     },
     {
         id: CATEGORY_MEMORY,

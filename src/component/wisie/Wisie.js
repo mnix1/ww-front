@@ -8,6 +8,8 @@ import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
 import {getDisguise} from "../../util/disguiseHelper";
 import {GREEN_COLOR, ORANGE_COLOR} from "../../util/style/constant";
+import {getSkill} from "../../util/skillHelper";
+import cn from 'classnames';
 
 export default class Wisie extends React.PureComponent {
 
@@ -26,61 +28,94 @@ export default class Wisie extends React.PureComponent {
         imgHeight: PropTypes.number,
         style: PropTypes.object,
         onClick: PropTypes.func,
-        renderHobbies: PropTypes.bool,
-        hobbiesUnderName: PropTypes.bool,
-        customHobbies: PropTypes.node,
         renderImg: PropTypes.bool,
-        imgHobbyHeight: PropTypes.number,
+        imgHobbyAndSkillHeight: PropTypes.number,
         renderDetails: PropTypes.bool,
         active: PropTypes.bool,
         disabled: PropTypes.bool,
         blackBackground: PropTypes.bool,
         customBackgroundImgSrc: PropTypes.node,
-        hobbies: PropTypes.array
+        renderHobbies: PropTypes.bool,
+        hobbiesAndSkillsUnderName: PropTypes.bool,
+        customHobbies: PropTypes.node,
+        hobbiesAndSkillsWidth100: PropTypes.bool,
+        hobbies: PropTypes.array,
+        renderSkills: PropTypes.bool,
+        customSkills: PropTypes.bool,
+        skills: PropTypes.array
     };
 
     static defaultProps = {
         outsideChildrenAfter: true,
         nearImgChildrenAfter: true,
         renderHobbies: true,
-        hobbiesUnderName: false,
+        hobbiesAndSkillsWidth100: false,
+        hobbiesAndSkillsUnderName: false,
+        renderSkills: false,
         detailsClassName: 'justifyBetween',
         renderDetails: true,
         renderImg: true,
         disabled: false,
         active: false,
         imgHeight: 100,
-        imgHobbyHeight: 18,
+        imgHobbyAndSkillHeight: 18,
         className: '',
         blackBackground: false,
         onClick: _.noop
     };
 
+    renderHobbiesAndSkills() {
+        const {hobbiesAndSkillsWidth100} = this.props;
+        return <div className={`justifyBetween ${hobbiesAndSkillsWidth100 ? 'width100' : ''}`}>
+            {this.renderSkills()}
+            {this.renderHobbies()}
+        </div>
+    }
+
     renderHobbies() {
-        const {hobbies, renderHobbies, hobbiesUnderName, customHobbies, imgHobbyHeight} = this.props;
+        const {hobbies, renderHobbies, renderSkills, hobbiesAndSkillsUnderName, customHobbies, imgHobbyAndSkillHeight} = this.props;
         if (!renderHobbies) {
             return null;
         }
         if (customHobbies) {
             return customHobbies;
         }
-        return <div className={hobbiesUnderName ? 'justifyStart' : 'justifyCenter'}>
-            {hobbies.map(e => <img alt='' className={hobbiesUnderName ? 'paddingRightRem' : 'paddingLeftRem'} key={e}
-                                   height={imgHobbyHeight}
+        const imgClassName = cn({
+            paddingLeftRem: renderSkills || !hobbiesAndSkillsUnderName,
+            paddingRightRem: !renderSkills && hobbiesAndSkillsUnderName,
+        });
+        return <div className='justifyEnd'>
+            {hobbies.map(e => <img alt='' className={imgClassName} key={e}
+                                   height={imgHobbyAndSkillHeight}
                                    src={getCategory(e)}/>)}
         </div>;
     }
 
-    renderWisieDetailsOwned() {
-        const {hobbiesUnderName, detailsClassName} = this.props;
+    renderSkills() {
+        const {skills, renderSkills, hobbiesAndSkillsUnderName, customSkills, imgHobbyAndSkillHeight} = this.props;
+        if (!renderSkills) {
+            return null;
+        }
+        if (customSkills) {
+            return customSkills;
+        }
+        return <div className={hobbiesAndSkillsUnderName ? 'justifyStart' : 'paddingLeftRem justifyStart'}>
+            {skills.map(e => <img alt='' className='' key={e}
+                                  height={imgHobbyAndSkillHeight}
+                                  src={getSkill(e)}/>)}
+        </div>;
+    }
+
+    renderWisieDetails() {
+        const {hobbiesAndSkillsUnderName, renderSkills, detailsClassName} = this.props;
         const name = getName(this.props);
         return <div className={`wisieDetails fontSize08Rem ${detailsClassName}`}>
-            <div className='justifyCenter flexColumn'>
+            <div className={`justifyStart flexColumn ${hobbiesAndSkillsUnderName && renderSkills ? 'width100' : ''}`}>
                 <div className='justifyStart'><span className='name flexColumn justifyCenter'>{name}</span></div>
-                {hobbiesUnderName && this.renderHobbies()}
+                {hobbiesAndSkillsUnderName && this.renderHobbiesAndSkills()}
                 {this.renderValue()}
             </div>
-            {!hobbiesUnderName && this.renderHobbies()}
+            {!hobbiesAndSkillsUnderName && this.renderHobbiesAndSkills()}
         </div>;
     }
 
@@ -93,14 +128,14 @@ export default class Wisie extends React.PureComponent {
                 : GREEN_COLOR;
         return !_.isNil(value) &&
             <div className='justifyStart' style={{fontSize: '0.8em', color}}>
-                {value}
+                <span className='justifyCenter flexColumn'>{value}</span>
             </div>;
     }
 
     renderContent() {
         const {type, imgHeight, disguise, children, renderImg, renderDetails, nearImgChildrenAfter, nearImgChildren} = this.props;
-        return <div className='relative justifyCenter flexColumn'>
-            {renderDetails && this.renderWisieDetailsOwned()}
+        return <div className='relative justifyCenter flexColumn width100'>
+            {renderDetails && this.renderWisieDetails()}
             {renderImg &&
             <div className='justifyCenter'>
                 {!nearImgChildrenAfter && nearImgChildren}

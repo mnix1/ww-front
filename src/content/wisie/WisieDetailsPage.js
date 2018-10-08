@@ -71,14 +71,14 @@ class WisieDetailsPage extends React.PureComponent {
                               onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, null)} size={24}/>}
             </div>
             <div className='justifyStart flexColumn paddingLeftRem'>
-                <div className='justifyCenter '>
+                <div className='justifyCenter'>
                     {wisie.hobbies.map(e => {
-                        const img = <img alt='' className='paddingLeftRem' key={e} height={24}
+                        const img = <img alt='' key={e} height={24}
                                          src={getCategory(e)}/>;
                         if (renderAdd) {
                             return img;
                         }
-                        return <div className='justifyCenter flexColumn'>
+                        return <div className='justifyCenter flexColumn paddingRightRem'>
                             {img}
                             {cost.isEnoughResource &&
                             <div className='justifyCenter'>
@@ -94,7 +94,7 @@ class WisieDetailsPage extends React.PureComponent {
 
     renderWisie(wisie) {
         const {screen, upgrade} = this.props;
-        return <Wisie imgHeight={screen.wisieImgHeight + 30} {...wisie}
+        return <Wisie renderSkills={true} hobbiesAndSkillsWidth100={true} imgHeight={screen.wisieImgHeight + 30} imgHobbyAndSkillHeight={upgrade ? 24 : undefined} {...wisie}
                       customHobbies={upgrade && this.renderWisieCustomHobbies(wisie)}>
             {this.renderWisieAttributes(wisie)}
         </Wisie>;

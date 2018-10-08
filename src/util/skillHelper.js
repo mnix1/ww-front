@@ -1,4 +1,4 @@
-import helpButton from '../media/image/skill/helpButton.svg';
+import hint from '../media/image/skill/hint.svg';
 import waterPistol from '../media/image/skill/waterPistol.svg';
 import lifebuoy from '../media/image/skill/lifebuoy.svg';
 import shield from '../media/image/skill/shield.svg';
@@ -15,7 +15,7 @@ export const SKILL_SHIELD = 'SHIELD';
 export const SKILL_PIZZA = 'PIZZA';
 
 const SKILLS = {
-    [SKILL_HINT]: helpButton,
+    [SKILL_HINT]: hint,
     [SKILL_WATER_PISTOL]: waterPistol,
     [SKILL_KIDNAPPING]: ninja,
     [SKILL_LIFEBUOY]: lifebuoy,

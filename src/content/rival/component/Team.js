@@ -17,6 +17,7 @@ class Team extends React.PureComponent {
         renderLifebuoyChoose: false,
         renderImg: true,
         onClick: _.noop,
+        renderSkills: false,
         onLifebuoyClick: _.noop,
     };
 
@@ -50,11 +51,13 @@ class Team extends React.PureComponent {
 
     renderWisie(teamMember) {
         const wisie = teamMember.content;
-        const {renderLifebuoyChoose, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
+        const {renderLifebuoyChoose, renderSkills, onClick, renderImg, memberClassName, activeIndex, presentIndexes} = this.props;
         const disabled = !_.includes(presentIndexes, teamMember.index);
         const canUseLifebuoy = disabled && renderLifebuoyChoose;
         return <Wisie
-            hobbiesUnderName={true}
+            renderSkills={renderSkills}
+            hobbiesAndSkillsWidth100={renderSkills}
+            hobbiesAndSkillsUnderName={true}
             onClick={() => onClick(teamMember.index)}
             disabled={disabled}
             className={memberClassName}

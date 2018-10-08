@@ -63,7 +63,7 @@ class CampaignActivePage extends React.PureComponent {
 
     renderTeam() {
         const {team, presentIndexes} = this.props.campaignActiveRep.value;
-        return <Team team={team} presentIndexes={presentIndexes}/>
+        return <Team renderSkills={true} team={team} presentIndexes={presentIndexes}/>
     }
 
     renderStart() {

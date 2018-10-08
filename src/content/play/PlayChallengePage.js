@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
-import clock from '../../media/image/category/clock.png';
+import clock from '../../media/image/icon/clock.png';
 import notebook from '../../media/image/menu/notes.svg';
 import {CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
