@@ -119,6 +119,7 @@ class RivalPageAnswered extends React.PureComponent {
     }
 
     render() {
+        console.log('RivalPageAnswered render');
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div key='answered' className='pageContent warPageAnswered'>

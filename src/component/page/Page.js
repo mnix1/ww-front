@@ -139,6 +139,7 @@ class Page extends React.PureComponent {
     }
 
     render() {
+        console.log('Page render');
         const {screen, rivalStatus} = this.props;
         const {height, width: screenWidth, contentWidth} = screen;
         const fullScreen = (rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight;

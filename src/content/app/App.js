@@ -80,7 +80,7 @@ class App extends React.PureComponent {
 
     maybeRedirectToLogin() {
         const {onRouteChange, path, testSignInRep} = this.props;
-        if (isRepRejected(testSignInRep) && path !== LOGIN_ROUTE) {
+        if (path !== LOGIN_ROUTE && isRepRejected(testSignInRep)) {
             onRouteChange(LOGIN_ROUTE);
             return true;
         }
@@ -125,6 +125,7 @@ class App extends React.PureComponent {
     }
 
     render() {
+        console.log('App render');
         const {enable, signedIn, history} = this.props;
         return <div className='app'>
             {this.renderBackground()}

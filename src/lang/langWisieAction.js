@@ -103,7 +103,7 @@ const HERO_ACTION_LABELS = {
         [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Czeka aż przeciwnik zje...)",
         [CLEANING_AFTER_PIZZA]: "Ale bałagan! Muszę posprzątać...",
         [EATING_PIZZA]: "Omomomom, pychotka!",
-        [EATEN_PIZZA]: "Pojadłem. Teraz jestem trochę śpiący...",
+        [EATEN_PIZZA]: "Pojadłem. Teraz jestem śpiący...",
 
         [HINT_RECEIVED]: "(Podpowiedziano)",
         [THINKING_IF_USE_HINT]: "To dobra podpowiedź?",
@@ -174,7 +174,7 @@ const HERO_ACTION_LABELS = {
         [SERVES_PIZZA]: "(Serves pizza...)",
         [PREPARING_FOR_EAT_PIZZA]: "Sure, I can not wait!",
         [THINKING_IF_GET_PIZZA]: "(Thinking if get pizza...)",
-        [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Waiting for the opponent to eat...)",
+        [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Waiting for the to finish eating...)",
         [CLEANING_AFTER_PIZZA]: "I have to clean up here",
         [EATING_PIZZA]: "This is delicious!",
         [EATEN_PIZZA]: "I ate, but now I would sleep...!",

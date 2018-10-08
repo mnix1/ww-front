@@ -19,38 +19,38 @@ import {
     RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK
 } from "../../../util/rivalHelper";
 import RivalMultiPageAnswer from "./RivalMultiPageAnswer";
+import _ from 'lodash';
 
 class RivalPage extends React.PureComponent {
 
     renderContent() {
-        const {content, communication} = this.props;
-        if (!content) {
+        const {rivalStatus, communication} = this.props;
+        if (!rivalStatus) {
             return null;
         }
-        const {status} = content;
-        if (status === RIVAL_CONTENT_STATUS_INTRO) {
-            return <RivalPageIntro/>
-        }
-        if (status === RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK || status === RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS) {
-            return <RivalPagePreparingNextTask/>
-        }
-        if (status === RIVAL_CONTENT_STATUS_ANSWERING || status === RIVAL_CONTENT_STATUS_ANSWERED || status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
+        if (rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
             return <RivalMultiPageAnswer communication={communication}/>
         }
-        if (status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS) {
+        if (rivalStatus === RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK || rivalStatus === RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS) {
+            return <RivalPagePreparingNextTask/>
+        }
+        if (rivalStatus === RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS) {
             return <RivalPageChoosingTaskProps communication={communication}/>
         }
-        if (status === RIVAL_CONTENT_STATUS_CHOOSING_WHO_ANSWER) {
+        if (rivalStatus === RIVAL_CONTENT_STATUS_CHOOSING_WHO_ANSWER) {
             return <RivalPageChoosingWhoAnswer communication={communication}/>
         }
-        if (status === RIVAL_CONTENT_STATUS_CLOSED) {
+        if (rivalStatus === RIVAL_CONTENT_STATUS_INTRO) {
+            return <RivalPageIntro/>
+        }
+        if (rivalStatus === RIVAL_CONTENT_STATUS_CLOSED) {
             return <RivalPageClosed/>
         }
-        return <div className='pageContent'>
-        </div>;
+        return <div className='pageContent'/>;
     }
 
     render() {
+        console.log('RivalPage render');
         const {screen} = this.props;
         const style = {
             height: screen.isSmallHeight ? screen.height : screen.contentHeight,
@@ -66,7 +66,7 @@ class RivalPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        content: state.rival.content,
+        rivalStatus: _.get(state.rival.content, 'status'),
     }),
     (dispatch) => ({})
 )(RivalPage);

@@ -6,7 +6,7 @@ import ghost from '../media/image/skill/ghost.svg';
 import ninja from '../media/image/skill/shuriken.svg';
 import pizza from '../media/image/skill/pizza.png';
 import blackboard from '../media/image/skill/blackboard.png';
-import box from '../media/image/skill/box.svg';
+import box from '../media/image/skill/box.png';
 
 export const SKILL_TEACHER = 'TEACHER';
 export const SKILL_MOTIVATOR = 'MOTIVATOR';

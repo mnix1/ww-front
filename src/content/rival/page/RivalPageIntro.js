@@ -28,6 +28,7 @@ class RivalPageIntro extends React.PureComponent {
     }
 
     render() {
+        console.log('RivalPageIntro render');
         const {content} = this.props;
         return <div className='pageContent warPageIntro'>
              <div>

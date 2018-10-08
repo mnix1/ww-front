@@ -31,6 +31,7 @@ class RivalMultiPageAnswer extends React.PureComponent {
     }
 
     render() {
+        console.log('RivalMultiPageAnswer render');
         const {component} = this.state;
         const {content, communication} = this.props;
         if (component === 2 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERED)) {

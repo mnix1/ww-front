@@ -50,6 +50,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
     }
 
     render() {
+        console.log('RivalPageChoosingWhoAnswer render');
         const {content} = this.props;
         return <div className='pageContent'>
             <TaskDescription

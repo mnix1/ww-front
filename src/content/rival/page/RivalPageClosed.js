@@ -82,20 +82,6 @@ class RivalPageClosed extends React.PureComponent {
         </div>;
     }
 
-    render() {
-        const {onExitClick} = this.props;
-        return <div className='pageContent warPageClosed'>
-            {this.renderProfilesWithNewScore()}
-            <div className='height100 width100 justifyCenter flexColumn'>
-                {this.renderContent()}
-                <div className='paddingTopRem justifyCenter'>
-                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}
-                            icon={<IoMdExit/>}>{getText(TEXT_EXIT)} </Button>
-                </div>
-            </div>
-        </div>;
-    }
-
     renderProfilesWithNewScore() {
         const {content, screen} = this.props;
         if (content.importance !== RIVAL_IMPORTANCE_RANKING) {
@@ -133,6 +119,21 @@ class RivalPageClosed extends React.PureComponent {
                 opponentEloStyle={{color: opponentScoreColor}}
             />
         </Anime>;
+    }
+
+    render() {
+        console.log('RivalPageClosed render');
+        const {onExitClick} = this.props;
+        return <div className='pageContent warPageClosed'>
+            {this.renderProfilesWithNewScore()}
+            <div className='height100 width100 justifyCenter flexColumn'>
+                {this.renderContent()}
+                <div className='paddingTopRem justifyCenter'>
+                    <Button material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onExitClick}
+                            icon={<IoMdExit/>}>{getText(TEXT_EXIT)} </Button>
+                </div>
+            </div>
+        </div>;
     }
 }
 
