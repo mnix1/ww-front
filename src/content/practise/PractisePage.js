@@ -23,6 +23,8 @@ import {getWisor} from "../../util/wisorHelper";
 import MeshBackground, {MESH_4} from "../../component/background/MeshBackground";
 import TaskDescription from "../rival/component/TaskDescription";
 import {remToPixels} from "../../util/fontHelper";
+import {Loading} from "../../component/loading/Loading";
+import {isRepFulfilled} from "../../util/repositoryHelper";
 
 class PractisePage extends React.PureComponent {
 
@@ -43,13 +45,14 @@ class PractisePage extends React.PureComponent {
 
     renderTask() {
         const {screen, practiseStartRep, practiseEndRep, skipAnimation, onSkipAnimationChange, answerId, onAnswerClick} = this.props;
-        if (!practiseStartRep || !practiseStartRep.fulfilled) {
-            return null;
+        if (!isRepFulfilled(practiseStartRep)) {
+            return <Loading/>;
         }
         const question = practiseStartRep.value.practise.question;
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
         return <div className='pageContent'>
-            <TaskDescription className='justifyCenter flexColumn pageHeader' renderTask={false} renderTaskPoints={false} content={{task: question}}/>
+            <TaskDescription className='justifyCenter flexColumn pageHeader' renderTask={false} renderTaskPoints={false}
+                             content={{task: question}}/>
             {answerId && correctAnswerId && this.renderPlayAgain()}
             <Task key='task'
                   offsetHeight={remToPixels(3)}

@@ -25,7 +25,7 @@ class Auto extends React.Component {
     }
 
     get communication() {
-        return this.props.communication;
+        return this.props.redux.socket.rivalCommunication;
     }
 
     async start() {

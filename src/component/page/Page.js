@@ -139,7 +139,7 @@ class Page extends React.PureComponent {
     }
 
     render() {
-        console.log('Page render');
+        // console.log('Page render');
         const {screen, rivalStatus} = this.props;
         const {height, width: screenWidth, contentWidth} = screen;
         const fullScreen = (rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight;
@@ -157,8 +157,8 @@ export default connect(
     (state) => ({
         path: state.router.location.pathname,
         screen: state.screen,
-        profile: state.profile.profile,
         lang: state.language.lang,
+        communication: state.socket.rivalCommunication,
         rivalStatus: state.rival.status,
     }),
     (dispatch) => ({

@@ -32,7 +32,6 @@ class ConnectionProblem extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        screen: state.screen,
         socketOpen: state.socket.open,
         socket: state.socket.socket,
         signedIn: state.profile.signedIn,

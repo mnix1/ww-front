@@ -5,9 +5,6 @@ import SettingsChangeNickFetch from "./SettingsChangeNickFetch";
 import _ from 'lodash';
 
 class SettingsFetchContainer extends React.PureComponent {
-    componentDidUpdate(prevProps) {
-    }
-
     render() {
         const {path, chosenWisor, chosenNick, chosenNickAccept} = this.props;
         return <div>
@@ -21,7 +18,7 @@ export default connect(
     (state) => ({
         path: state.router.location.pathname,
         chosenWisor: state.settings.chosenWisor,
-        chosenNick: _.defaultTo(state.settings.chosenNick, state.profile.profile.name),
+        chosenNick: _.defaultTo(state.settings.chosenNick, _.get(state, 'profile.profile.name')),
         chosenNickAccept: state.settings.chosenNickAccept,
     }),
     (dispatch) => ({})

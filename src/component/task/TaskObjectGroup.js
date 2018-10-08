@@ -1,6 +1,5 @@
 import React from 'react';
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
-import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
@@ -25,26 +24,6 @@ export default class TaskObjectGroup extends React.PureComponent {
             const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
             return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
         }
-    };
-
-    rendererTransformerCreator = (o) => {
-        const {screen, anime} = this.props;
-        const {resolution} = screen;
-        const fontSize = objectFontSize(resolution);
-        if (!anime) {
-            return (rendered) => <div key={o.id} style={{fontSize}}>{rendered}</div>;
-        }
-        return (rendered) => <Anime
-            key={o.id}
-            from={{
-                opacity: 0,
-                fontSize: 0
-            }}
-            to={{
-                opacity: {value: 1, duration: 500},
-                fontSize: {value: fontSize, duration: 100, delay: 100}
-            }}
-        >{rendered}</Anime>;
     };
 
     contentHeight() {
@@ -78,7 +57,8 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     prepareQuestionObjects() {
         const {questionObjects, screen} = this.props;
-        const {contentWidth} = screen;
+        const {contentWidth, resolution} = screen;
+        const fontSize = objectFontSize(resolution);
         const questionObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: questionObjects.length,
@@ -91,10 +71,10 @@ export default class TaskObjectGroup extends React.PureComponent {
             const left = o.xTarget * contentWidth - (questionObjectWidth * widthFactor) / 2;
             const background = _.defaultTo(o.background, DARK_BLUE_COLOR);
             return {
-                rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,
                 content: this.prepareContent(o, background),
                 objectStyle: {
+                    fontSize,
                     background: null,
                     height: objectHeight,
                     width: questionObjectWidth * widthFactor,
@@ -111,12 +91,13 @@ export default class TaskObjectGroup extends React.PureComponent {
         const screenFactor = forWidth
             ? (screen.moreHeightThanWidth ? 4 : 2)
             : (screen.moreHeightThanWidth ? 2 : 4);
-        return Math.ceil(Math.max(answerObjects.length, 5)/ screenFactor);
+        return Math.ceil(Math.max(answerObjects.length, 5) / screenFactor);
     }
 
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
-        const {contentWidth, isSmallHeight, isSmallWidth} = screen;
+        const {contentWidth, resolution, isSmallHeight, isSmallWidth} = screen;
+        const fontSize = objectFontSize(resolution);
         const answerObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: this.prepareCount(true),
@@ -133,10 +114,11 @@ export default class TaskObjectGroup extends React.PureComponent {
             const left = o.xTarget * contentWidth - answerObjectWidth / 2;
             const background = _.get(o, 'material.background', BLUE_COLOR);
             return {
-                rendererTransformer: this.rendererTransformerCreator(o),
+                // rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,
                 content: this.prepareContent(o, background),
                 objectStyle: {
+                    fontSize,
                     border: o.border,
                     borderColor: o.borderColor,
                     background: null,

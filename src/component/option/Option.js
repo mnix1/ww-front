@@ -32,6 +32,7 @@ class Option extends React.PureComponent {
 export default connect(
     (state) => ({
         path: state.router.location.pathname,
+        communication: state.socket.rivalCommunication,
         screen: state.screen,
         show: state.option.show,
     }),

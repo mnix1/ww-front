@@ -1,7 +1,6 @@
 import React from 'react';
 import {getCategoryLabel} from "../../lang/langCategory";
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
-import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {objectFontSize} from "../../component/object-group/objectHelper";
 import './styles.css';
@@ -28,17 +27,6 @@ export default class SimpleObjectGroup extends React.PureComponent {
         const objectHeight = screen.wisieImgHeight;
         const {contentHeight, contentWidth, resolution} = screen;
         const fontSize = objectFontSize(resolution);
-        const rendererTransformerCreator = (o) => (rendered) => <Anime
-            key={o.id}
-            from={{
-                width: 0,
-                fontSize: 0
-            }}
-            to={{
-                width: {value: objectWidth, duration: 100},
-                fontSize: {value: fontSize, duration: 100, delay: 100}
-            }}
-        >{rendered}</Anime>;
         return <ObjectGroup
             height={setHeight ? contentHeight : 'auto'}
             width={contentWidth}
@@ -48,13 +36,14 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 const left = o.xTarget * contentWidth - objectWidth / 2;
                 let objectStyle = {
                     height: objectHeight,
+                    width: objectWidth,
                     top,
                     left,
+                    fontSize,
                 };
                 if (selectedId === o.id) {
                     objectStyle = {
                         ...objectStyle,
-                        // background: LIGHT_BLUE_COLOR,
                         borderRadius: '0.5rem',
                         boxShadow: `0 0 4px #cccccc`,
                     };
@@ -63,10 +52,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
                         <span style={{zIndex: 1}}>{getCategoryLabel([o.id])}</span>
-                        {/*<img alt='' src={o.imgSrc} height={objectHeight / 1.7}/>*/}
                         <img alt='' src={o.imgSrc} height={objectHeight - remToPixels(2)}/>
                     </div>,
-                    rendererTransformer: rendererTransformerCreator(o),
                     objectStyle
                 }
             })}

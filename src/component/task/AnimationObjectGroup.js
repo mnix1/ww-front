@@ -1,6 +1,5 @@
 import React from 'react';
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
-import {Anime} from "../../component/anime/Anime";
 import PropTypes from "prop-types";
 import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
@@ -26,26 +25,6 @@ export default class AnimationObjectGroup extends React.PureComponent {
         }
     };
 
-    rendererTransformerCreator = (o) => {
-        const {screen, anime} = this.props;
-        const {resolution} = screen;
-        const fontSize = objectFontSize(resolution);
-        if (!anime) {
-            return (rendered) => <div style={{fontSize}}>{rendered}</div>;
-        }
-        return (rendered) => <Anime
-            key={o.id}
-            from={{
-                opacity: 0,
-                fontSize: 0
-            }}
-            to={{
-                opacity: {value: 1, duration: 500},
-                fontSize: {value: fontSize, duration: 100, delay: 100}
-            }}
-        >{rendered}</Anime>;
-    };
-
     contentHeight() {
         const {screen, contentHeightCalculator} = this.props;
         return contentHeightCalculator(screen);
@@ -61,7 +40,8 @@ export default class AnimationObjectGroup extends React.PureComponent {
 
     prepareQuestionObjects() {
         const {questionObjects, screen} = this.props;
-        const {contentWidth} = screen;
+        const {contentWidth, resolution} = screen;
+        const fontSize = objectFontSize(resolution);
         const questionObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: questionObjects.length,
@@ -72,9 +52,9 @@ export default class AnimationObjectGroup extends React.PureComponent {
             const top = o.yTarget * this.questionHeight() - objectHeight / 2;
             const left = o.xTarget * contentWidth - questionObjectWidth / 2;
             return {
-                rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,
                 objectStyle: {
+                    fontSize,
                     background: null,
                     height: objectHeight,
                     width: questionObjectWidth,

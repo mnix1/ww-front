@@ -23,7 +23,6 @@ class Connecting extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        screen: state.screen,
         signedIn: state.profile.signedIn,
         socketOpen: state.socket.open,
         socket: state.socket.socket,

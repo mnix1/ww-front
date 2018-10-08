@@ -11,10 +11,8 @@ import {LOGIN_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
 
 export default class CommunicationWebSocket {
-    constructor(onInit) {
-        this.onInit = onInit;
+    constructor() {
         this.init();
-        this.onInit(this);
         this.onRivalMessage = _.noop;
     }
 
