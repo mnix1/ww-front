@@ -76,6 +76,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
+        communication: state.socket.rivalCommunication,
     }),
     (dispatch) => ({
         onCategoryChange: (categoryObject) => dispatch(rivalInProgressContent({

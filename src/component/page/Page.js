@@ -91,7 +91,7 @@ class Page extends React.PureComponent {
     }
 
     renderContent() {
-        const {history, testSignInRep, communication} = this.props;
+        const {history, testSignInRep} = this.props;
         if (isRepPending(testSignInRep)) {
             return <Loading/>;
         }
@@ -108,21 +108,21 @@ class Page extends React.PureComponent {
                 <Route exact path={PLAY_BATTLE_ROUTE} render={() => <PlayBattlePage/>}/>
                 <Route exact path={PLAY_CHALLENGE_ROUTE} render={() => <PlayChallengePage/>}/>
 
-                <Route exact path={WAR_ROUTE} render={() => <RivalPage communication={communication}/>}/>
+                <Route exact path={WAR_ROUTE} render={() => <RivalPage/>}/>
                 <Route exact path={WAR_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={WAR_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={BATTLE_ROUTE} render={() => <RivalPage communication={communication}/>}/>
+                <Route exact path={BATTLE_ROUTE} render={() => <RivalPage/>}/>
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
-                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <RivalPage communication={communication}/>}/>
+                <Route exact path={CAMPAIGN_WAR_ROUTE} render={() => <RivalPage/>}/>
                 <Route path={CAMPAIGN_ROUTE} render={() => <CampaignPage/>}/>
 
                 <Route path={TRAINING_ROUTE} render={() => <PractisePage/>}/>
 
                 <Route exact path={CHALLENGE_FRIEND_INIT_ROUTE} render={() => <ChallengeFriendInit/>}/>
-                <Route exact path={CHALLENGE_ROUTE} render={() => <RivalPage communication={communication}/>}/>
+                <Route exact path={CHALLENGE_ROUTE} render={() => <RivalPage/>}/>
 
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
                 <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
@@ -158,7 +158,6 @@ export default connect(
         path: state.router.location.pathname,
         screen: state.screen,
         lang: state.language.lang,
-        communication: state.socket.rivalCommunication,
         rivalStatus: state.rival.status,
     }),
     (dispatch) => ({

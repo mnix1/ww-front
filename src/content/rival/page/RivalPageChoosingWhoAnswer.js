@@ -73,6 +73,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         content: state.rival.content,
+        communication: state.socket.rivalCommunication,
     }),
     (dispatch) => ({
         onTeamClick: (index, communication) => {

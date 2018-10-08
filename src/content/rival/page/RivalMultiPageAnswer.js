@@ -14,15 +14,15 @@ class RivalMultiPageAnswer extends React.PureComponent {
     state = {component: undefined};
 
     componentDidMount() {
-        if (this.props.content.status === RIVAL_CONTENT_STATUS_ANSWERING) {
+        if (this.props.rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING) {
             this.setState({component: 0});
         }
     }
 
     componentDidUpdate() {
-        const status = this.props.content.status;
-        if (this.state.component === 0 && status !== RIVAL_CONTENT_STATUS_ANSWERING) {
-            const component = status === RIVAL_CONTENT_STATUS_ANSWERED ? 2 : status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT ? 3 : 0;
+        const {rivalStatus} = this.props;
+        if (this.state.component === 0 && rivalStatus !== RIVAL_CONTENT_STATUS_ANSWERING) {
+            const component = rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED ? 2 : rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT ? 3 : 0;
             this.setState({component: 1});
             setTimeout(() => {
                 this.setState({component});
@@ -33,20 +33,20 @@ class RivalMultiPageAnswer extends React.PureComponent {
     render() {
         console.log('RivalMultiPageAnswer render');
         const {component} = this.state;
-        const {content, communication} = this.props;
-        if (component === 2 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERED)) {
+        const {rivalStatus} = this.props;
+        if (component === 2 || (component === undefined && rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED)) {
             return <RivalPageAnswered/>;
         }
-        if (component === 3 || (component === undefined && content.status === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT)) {
+        if (component === 3 || (component === undefined && rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT)) {
             return <RivalPageAnsweringTimeout/>
         }
-        return <RivalPageAnswering communication={communication}/>;
+        return <RivalPageAnswering/>;
     }
 }
 
 export default connect(
     (state) => ({
-        content: state.rival.content,
+        rivalStatus: state.rival.content.status,
     }),
     (dispatch) => ({})
 )(RivalMultiPageAnswer);

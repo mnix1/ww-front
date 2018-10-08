@@ -114,6 +114,7 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     render() {
+        console.log('RivalPageAnswering render');
         const {content} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div
@@ -126,6 +127,7 @@ class RivalPageAnswering extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        communication: state.socket.rivalCommunication,
         screen: state.screen,
         content: state.rival.content,
         questionIdAnswerIdMap: state.rival.questionIdAnswerIdMap,

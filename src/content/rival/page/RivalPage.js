@@ -24,21 +24,21 @@ import _ from 'lodash';
 class RivalPage extends React.PureComponent {
 
     renderContent() {
-        const {rivalStatus, communication} = this.props;
+        const {rivalStatus} = this.props;
         if (!rivalStatus) {
             return null;
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
-            return <RivalMultiPageAnswer communication={communication}/>
+            return <RivalMultiPageAnswer/>
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK || rivalStatus === RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS) {
             return <RivalPagePreparingNextTask/>
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS) {
-            return <RivalPageChoosingTaskProps communication={communication}/>
+            return <RivalPageChoosingTaskProps/>
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_CHOOSING_WHO_ANSWER) {
-            return <RivalPageChoosingWhoAnswer communication={communication}/>
+            return <RivalPageChoosingWhoAnswer/>
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_INTRO) {
             return <RivalPageIntro/>
