@@ -65,8 +65,11 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
             {battle ? <Profiles content={content} className='absolute'/>
                 : choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
             {!_.isNil(choosingTaskPropsTag) &&
-            <TaskDescription content={content} className='justifyCenter flexColumn pageHeader' taskId={content.taskId}
-                             renderTaskCount={battle}/>}
+            <TaskDescription
+                taskCount={content.taskCount}
+                className='justifyCenter flexColumn pageHeader'
+                taskId={content.taskId}
+                renderTaskCount={battle}/>}
             {this.renderContent()}
         </div>;
     }

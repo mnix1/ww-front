@@ -52,7 +52,7 @@ class PractisePage extends React.PureComponent {
         const correctAnswerId = _.get(practiseEndRep, 'value.correctAnswerId');
         return <div className='pageContent'>
             <TaskDescription className='justifyCenter flexColumn pageHeader' renderTask={false} renderTaskPoints={false}
-                             content={{task: question}}/>
+                             task={question}/>
             {answerId && correctAnswerId && this.renderPlayAgain()}
             <Task key='task'
                   offsetHeight={remToPixels(3)}

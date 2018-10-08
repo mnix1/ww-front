@@ -4,8 +4,6 @@ import _ from 'lodash';
 import Task from "../../../../component/task/Task";
 import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from "../../../../redux/reducer/rival";
 import TaskDescription from "../../component/TaskDescription";
-import Timer from "../../../../component/timer/Timer";
-import {getText, TEXT_TIME} from "../../../../lang/langText";
 import ActiveMembers from "../../component/ActiveMembers";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
@@ -67,7 +65,7 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderContent() {
-        const {content, communication} = this.props;
+        const {content} = this.props;
         if (content.type === RIVAL_TYPE_BATTLE) {
             return <div className='width100 height100 absolute'>
                 <Profiles content={content} className='absolute'/>
@@ -80,7 +78,6 @@ class RivalPageAnswering extends React.PureComponent {
             ? <RivalPageAnsweringTaskNotActive
                 imgHeight={this.imgHeight}
                 activeMember={activeMember}
-                communication={communication}
                 renderTaskFunction={this.renderTask}
                 taskDescription={this.renderWarTaskDescription()}
             />
@@ -102,15 +99,13 @@ class RivalPageAnswering extends React.PureComponent {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <TaskDescription
-            content={content}
+            task={content.task}
+            taskCount={content.taskCount}
             renderTaskPoints={battle}
             renderTaskCount={battle}
             small={screen.isSmallHeight}
             className={`justifyCenter flexColumn pageHeader ${battle ? this.addTransitionClass : ''}`}
-        >
-            <div>{screen.isSmallHeight ? '' : `${getText(TEXT_TIME)}: `}<Timer from={content.endAnsweringInterval}/>
-            </div>
-        </TaskDescription>
+        />;
     }
 
     render() {

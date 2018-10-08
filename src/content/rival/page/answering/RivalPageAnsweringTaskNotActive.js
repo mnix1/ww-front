@@ -149,6 +149,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        communication: state.socket.rivalCommunication,
         screen: state.screen,
         content: state.rival.content,
     }),

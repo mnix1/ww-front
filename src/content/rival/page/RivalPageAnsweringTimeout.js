@@ -30,7 +30,8 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageAnsweringTimeout'>
             <TaskDescription
-                content={content}
+                task={content.task}
+                taskCount={content.taskCount}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
                 className='justifyCenter flexColumn contentHeader warTaskDescription'

@@ -13,7 +13,8 @@ class RivalPagePreparingNextTask extends React.PureComponent {
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <TaskDescription
-            content={content}
+            task={content.task}
+            taskCount={content.taskCount}
             renderTaskPoints={battle}
             renderTaskCount={battle}
             small={screen.isSmallHeight}

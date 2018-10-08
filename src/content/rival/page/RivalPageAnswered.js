@@ -125,7 +125,8 @@ class RivalPageAnswered extends React.PureComponent {
         return <div key='answered' className='pageContent warPageAnswered'>
             {battle && this.renderWhoAnsweredBattle()}
             <TaskDescription
-                content={content}
+                task={content.task}
+                taskCount={content.taskCount}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
                 small={screen.isSmallHeight}

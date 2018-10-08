@@ -54,13 +54,14 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         const {content} = this.props;
         return <div className='pageContent'>
             <TaskDescription
-                content={content}
+                task={content.task}
+                taskCount={content.taskCount}
                 renderTaskPoints={false}
                 renderTaskCount={false}
+                renderTimer={true}
+                interval={content.choosingWhoAnswerInterval}
                 className='justifyCenter flexColumn pageHeader'
-            >
-                <div>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingWhoAnswerInterval}/></div>
-            </TaskDescription>
+            />
             <div className='pageHeader'>{getText(TEXT_CHOOSE_WHO_ANSWER)}</div>
             {this.renderTeamBig()}
             {content.opponent && <div className='pageHeader'>{getText(TEXT_OPPONENT_TEAM)}</div>}
