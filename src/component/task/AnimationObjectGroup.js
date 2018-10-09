@@ -79,7 +79,6 @@ export default class AnimationObjectGroup extends React.PureComponent {
             const top = o.yTarget * this.animationHeight() - objectHeight / 2 - 20;
             const left = o.xTarget * contentWidth - animationObjectWidth / 2;
             return {
-                rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,
                 objectStyle: {
                     background: null,

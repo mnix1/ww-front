@@ -7,7 +7,7 @@ import ninja from '../media/image/skill/shuriken.svg';
 import pizza from '../media/image/skill/pizza.png';
 import blackboard from '../media/image/skill/blackboard.png';
 import box from '../media/image/skill/box.png';
-import coverall from '../media/image/skill/coverall.svg';
+import coverall from '../media/image/skill/coverall.png';
 
 export const SKILL_TEACHER = 'TEACHER';
 export const SKILL_MOTIVATOR = 'MOTIVATOR';
