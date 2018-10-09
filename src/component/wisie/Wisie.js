@@ -41,7 +41,7 @@ export default class Wisie extends React.PureComponent {
         hobbiesAndSkillsWidth100: PropTypes.bool,
         hobbies: PropTypes.array,
         renderSkills: PropTypes.bool,
-        customSkills: PropTypes.bool,
+        customSkills: PropTypes.node,
         skills: PropTypes.array
     };
 

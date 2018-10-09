@@ -85,7 +85,7 @@ class WisieDetailsPage extends React.PureComponent {
                         if (renderAdd) {
                             return img;
                         }
-                        return <div className='justifyCenter flexColumn paddingRightRem'>
+                        return <div key={e} className='justifyCenter flexColumn paddingRightRem'>
                             {img}
                             {cost.isEnoughResource &&
                             <div className='justifyCenter'>
@@ -120,7 +120,7 @@ class WisieDetailsPage extends React.PureComponent {
                     {wisie.skills.map(e => {
                         const img = <img alt='' key={e} height={24}
                                          src={getSkill(e)}/>;
-                        return <div className='justifyCenter flexColumn paddingRightRem'>
+                        return <div key={e} className='justifyCenter flexColumn paddingRightRem'>
                             {img}
                             {cost.isEnoughResource &&
                             <div className='justifyCenter'>
