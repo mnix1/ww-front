@@ -26,7 +26,7 @@ class IntroStepGoToAppFromOptions extends React.PureComponent {
     }
 
     render() {
-        return <IntroStep stepId={INTRO_STEP_GO_TO_APP_FROM_OPTIONS} renderContinue={false}>
+        return <IntroStep stepId={INTRO_STEP_GO_TO_APP_FROM_OPTIONS} renderContinue={true}>
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_0)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_GO_TO_APP_FROM_OPTIONS_TEXT_1)}</div>

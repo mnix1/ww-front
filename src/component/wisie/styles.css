@@ -1,3 +1,6 @@
 .wisie .wisieDetails .absoluteBackgroundMix {
     background: #888;
 }
+.wisie .name {
+    white-space: nowrap;
+}

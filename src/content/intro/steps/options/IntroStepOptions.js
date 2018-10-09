@@ -3,7 +3,7 @@ import {
     INTRO_STEP_OPTIONS,
     INTRO_STEP_OPTIONS_TEXT_0,
     INTRO_STEP_OPTIONS_TEXT_1,
-    INTRO_STEP_OPTIONS_TEXT_2, INTRO_STEP_OPTIONS_TEXT_3,
+    INTRO_STEP_OPTIONS_TEXT_2,
     STEP_ID_TO_NEXT_STEP_INDEX,
     STEP_INDEX_TO_STEP_ID
 } from "../../introHelper";
@@ -25,7 +25,7 @@ class IntroStepOptions extends React.PureComponent {
     }
 
     render() {
-        return <IntroStep stepId={INTRO_STEP_OPTIONS}>
+        return <IntroStep stepId={INTRO_STEP_OPTIONS} renderContinue={false} renderHide={true}>
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_OPTIONS_TEXT_0)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_OPTIONS_TEXT_1)}</div>
@@ -33,7 +33,6 @@ class IntroStepOptions extends React.PureComponent {
                     {getIntroText(INTRO_STEP_OPTIONS_TEXT_2)}
                     <div className='inlineBlock paddingLeftRem'><FaCheckCircle/></div>.
                 </div>
-                <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_OPTIONS_TEXT_3)}</div>
             </div>
         </IntroStep>
     }

@@ -10,7 +10,8 @@ import MeshBackground, {MESH_4} from "../../../component/background/MeshBackgrou
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
     RIVAL_CONTENT_STATUS_ANSWERING,
-    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT, RIVAL_CONTENT_STATUS_CHANGING_TASK,
+    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT,
+    RIVAL_CONTENT_STATUS_CHANGING_TASK,
     RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS,
     RIVAL_CONTENT_STATUS_CHOOSING_WHO_ANSWER,
     RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS,
@@ -20,7 +21,6 @@ import {
 } from "../../../util/rivalHelper";
 import RivalMultiPageAnswer from "./RivalMultiPageAnswer";
 import _ from 'lodash';
-import RivalPageChangingTask from "./RivalPageChangingTask";
 
 class RivalPage extends React.PureComponent {
 

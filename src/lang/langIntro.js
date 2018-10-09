@@ -30,7 +30,7 @@ import {
     INTRO_STEP_NEW_WISIE_TEXT_3,
     INTRO_STEP_OPTIONS_TEXT_0,
     INTRO_STEP_OPTIONS_TEXT_1,
-    INTRO_STEP_OPTIONS_TEXT_2, INTRO_STEP_OPTIONS_TEXT_3,
+    INTRO_STEP_OPTIONS_TEXT_2,
     INTRO_STEP_WELCOME_TEXT_0,
     INTRO_STEP_WELCOME_TEXT_1,
     INTRO_STEP_WELCOME_TEXT_2,
@@ -63,7 +63,6 @@ const INTRO_TEXT = {
         [INTRO_STEP_OPTIONS_TEXT_0]: 'W ustawieniach możesz zmienić swój nick oraz wiedzora.',
         [INTRO_STEP_OPTIONS_TEXT_1]: 'Jeśli chcesz zmienić swój nick możesz to zrobić teraz.',
         [INTRO_STEP_OPTIONS_TEXT_2]: 'Wpisz swoje nick i kliknij',
-        [INTRO_STEP_OPTIONS_TEXT_3]: 'W innym przypadku kliknij "Kontynuuj".',
 
         [INTRO_STEP_GO_TO_WISOR_TEXT_0]: 'Proszę kiliknij tutaj, aby przejść do wyboru wiedzora.',
         [INTRO_STEP_GO_TO_WISOR_TEXT_1]: 'Będziesz mógł to zrobić klikając na jego portret.',
@@ -120,7 +119,6 @@ const INTRO_TEXT = {
         [INTRO_STEP_OPTIONS_TEXT_0]: "In Settings you can change your nickname and your Wisor.",
         [INTRO_STEP_OPTIONS_TEXT_1]: "You can change your nickname right now if you wish.",
         [INTRO_STEP_OPTIONS_TEXT_2]: "Enter your nickname and click",
-        [INTRO_STEP_OPTIONS_TEXT_3]: "Otherwise press 'Continue'.",
 
         [INTRO_STEP_GO_TO_WISOR_TEXT_0]: "Please click here to choose your Wisor.",
         [INTRO_STEP_GO_TO_WISOR_TEXT_1]: "You can do it by pressing it's photo.",
