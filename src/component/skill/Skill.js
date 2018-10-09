@@ -4,24 +4,12 @@ import cn from 'classnames';
 import _ from 'lodash';
 import {ORANGE_COLOR} from "../../util/style/constant";
 
-export const SKILL_VERY_SMALL = 'skillVerySmall';
-export const SKILL_SMALL = 'skillSmall';
-export const SKILL_MEDIUM = 'skillMedium';
-export const SKILL_BIG = 'skillBig';
-
-export const IMG_HEIGHT = {
-    [SKILL_VERY_SMALL]: 20,
-    [SKILL_SMALL]: 30,
-    [SKILL_MEDIUM]: 40,
-    [SKILL_BIG]: 50,
-};
-
 export default class Skill extends React.PureComponent {
 
     static propTypes = {
         children: PropTypes.node,
-        size: PropTypes.string,
         imgSrc: PropTypes.string,
+        imgHeight: PropTypes.number,
         column: PropTypes.bool,
         margin: PropTypes.bool,
         onClick: PropTypes.func,
@@ -31,7 +19,6 @@ export default class Skill extends React.PureComponent {
     };
 
     static defaultProps = {
-        size: SKILL_VERY_SMALL,
         onClick: _.noop,
         disabled: false,
         used: false,
@@ -45,18 +32,18 @@ export default class Skill extends React.PureComponent {
     }
 
     renderColumn() {
-        const {children, imgSrc, size} = this.props;
+        const {children, imgSrc, imgHeight} = this.props;
         return <div className='justifyCenter flexColumn'>
-            <img alt='' src={imgSrc} height={IMG_HEIGHT[size]}/>
+            <img alt='' src={imgSrc} height={imgHeight}/>
             <div className='justifyCenter' style={this.childrenStyle}>{children}</div>
         </div>
     }
 
     renderRow() {
-        const {children, imgSrc, size} = this.props;
+        const {children, imgSrc, imgHeight} = this.props;
         return <div className='justifyCenter'>
             <div className='justifyCenter flexColumn' style={this.childrenStyle}>{children}</div>
-            <div className='justifyCenter flexColumn'><img alt='' src={imgSrc} height={IMG_HEIGHT[size]}/></div>
+            <div className='justifyCenter flexColumn'><img alt='' src={imgSrc} height={imgHeight}/></div>
         </div>
     }
 

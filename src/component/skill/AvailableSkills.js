@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import {getSkill, SKILL_HINT} from "../../util/skillHelper";
 import Skill from "./Skill";
 import _ from "lodash";
+import connect from "react-redux/es/connect/connect";
 
-export default class AvailableSkills extends React.PureComponent {
+class AvailableSkills extends React.PureComponent {
 
     static propTypes = {
         disabled: PropTypes.bool,
@@ -31,17 +32,28 @@ export default class AvailableSkills extends React.PureComponent {
     }
 
     render() {
-        const {skills, className, disabled} = this.props;
+        const {skills, className, disabled, screen} = this.props;
         const keys = _.sortBy(_.keys(skills), key => skills[key].type + key);
         return <div className={className}>
             <div className='justifyCenter'>
                 {keys.map(e => <Skill
+                    key={e}
+                    imgHeight={screen.wisieImgHeight / 2 - 5}
                     disabled={(disabled && e !== SKILL_HINT) || !skills[e].canUse}
                     used={skills[e].used}
-                    onClick={() => this.handleSkillClick(e)} key={e}
+                    onClick={() => this.handleSkillClick(e)}
                     imgSrc={getSkill(e)}>{skills[e].count}
                 </Skill>)}
             </div>
         </div>
     }
 }
+
+
+export default connect(
+    (state) => ({
+        screen: state.screen,
+    }),
+    (dispatch) => ({})
+)(AvailableSkills);
+
