@@ -32,7 +32,7 @@ export default class AvailableSkills extends React.PureComponent {
 
     render() {
         const {skills, className, disabled} = this.props;
-        const keys = _.sortBy(_.keys(skills));
+        const keys = _.sortBy(_.keys(skills), key => skills[key].type + key);
         return <div className={className}>
             <div className='justifyCenter'>
                 {keys.map(e => <Skill

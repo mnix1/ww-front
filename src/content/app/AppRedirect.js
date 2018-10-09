@@ -49,7 +49,7 @@ class AppRedirect extends React.PureComponent {
         const {onInit, socket, profileRep} = this.props;
         if (_.isNil(socket) && isRepFulfilled(profileRep)) {
             const socket = new CommunicationWebSocket();
-            const rivalCommunication = new RivalCommunication(socket, this);
+            const rivalCommunication = new RivalCommunication(socket, () => this.props);
             onInit(socket, rivalCommunication);
         }
     }

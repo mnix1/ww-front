@@ -3,9 +3,9 @@ import {RIVAL_STATUS_CLOSED, RIVAL_TYPE_ROUTE} from "../../util/rivalHelper";
 import _ from 'lodash';
 
 export default class RivalCommunication {
-    constructor(communicationWebSocket, app) {
+    constructor(communicationWebSocket, propsGetter) {
         this.communicationWebSocket = communicationWebSocket;
-        this.app = app;
+        this.propsGetter = propsGetter;
         this.communicationWebSocket.onRivalMessage = this.onMessage;
         this.onMessageEvent = _.noop;
     }
@@ -69,7 +69,7 @@ export default class RivalCommunication {
     };
 
     changeRivalTypeIfDifferenct(type) {
-        if (this.app.props.rivalType !== type) {
+        if (this.propsGetter().rivalType !== type) {
             this.communicationWebSocket.dispatch(rivalTypeChanged(type));
         }
     }
