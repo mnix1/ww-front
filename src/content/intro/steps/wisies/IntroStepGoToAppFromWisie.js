@@ -5,7 +5,7 @@ import {
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1,
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_2,
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_3,
-    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4, INTRO_STEP_WELCOME
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
@@ -54,6 +54,7 @@ const IntroStepGoToAppFromWisieRedux = connect(
 export function prepareIntroStepGoToAppFromWisie(afterReload) {
     return prepareIntroStep(afterReload, {
         stepId: INTRO_STEP_GO_TO_APP_FROM_WISIE,
+        selector: `.${INTRO_STEP_WELCOME}`,
         content: <IntroStepGoToAppFromWisieRedux/>
     });
 }
