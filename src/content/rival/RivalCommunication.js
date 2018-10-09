@@ -41,6 +41,9 @@ export default class RivalCommunication {
     sendCoverall() {
         this.send(JSON.stringify({id: 'COVERALL'}));
     }
+    sendChangeTask() {
+        this.send(JSON.stringify({id: 'CHANGE_TASK'}));
+    }
     sendLifebuoy(index) {
         this.send(JSON.stringify({id: 'LIFEBUOY', index}));
     }

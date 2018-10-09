@@ -8,6 +8,7 @@ import pizza from '../media/image/skill/pizza.png';
 import blackboard from '../media/image/skill/blackboard.png';
 import box from '../media/image/skill/box.png';
 import coverall from '../media/image/skill/coverall.png';
+import changeTask from '../media/image/skill/changeTask.svg';
 
 export const SKILL_TEACHER = 'TEACHER';
 export const SKILL_MOTIVATOR = 'MOTIVATOR';
@@ -19,6 +20,7 @@ export const SKILL_GHOST = 'GHOST';
 export const SKILL_SHIELD = 'SHIELD';
 export const SKILL_PIZZA = 'PIZZA';
 export const SKILL_COVERALL = 'COVERALL';
+export const SKILL_CHANGE_TASK = 'CHANGE_TASK';
 
 const SKILLS = {
     [SKILL_TEACHER]: blackboard,
@@ -31,6 +33,7 @@ const SKILLS = {
     [SKILL_SHIELD]: shield,
     [SKILL_PIZZA]: pizza,
     [SKILL_COVERALL]: coverall,
+    [SKILL_CHANGE_TASK]: changeTask,
 };
 
 export function getSkill(skill) {

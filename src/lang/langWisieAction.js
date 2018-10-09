@@ -59,7 +59,7 @@ import {
     EATING_PIZZA,
     THINKING_IF_GET_PIZZA,
     SERVES_PIZZA,
-    PREPARING_FOR_EAT_PIZZA, EATEN_PIZZA, PUTTING_ON_COVERALL, COVERALL_READY
+    PREPARING_FOR_EAT_PIZZA, EATEN_PIZZA, PUTTING_ON_COVERALL, COVERALL_READY, WANTS_TO_CHANGE_TASK, SUBMITS_APPLICATION
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -104,6 +104,9 @@ const HERO_ACTION_LABELS = {
         [CLEANING_AFTER_PIZZA]: "Ale bałagan! Muszę posprzątać...",
         [EATING_PIZZA]: "Omomomom, pychotka!",
         [EATEN_PIZZA]: "Pojadłem. Teraz jestem śpiący...",
+
+        [WANTS_TO_CHANGE_TASK]: "(Chce zmienić pytanie...)",
+        [SUBMITS_APPLICATION]: "Składam wniosek...",
 
         [HINT_RECEIVED]: "(Podpowiedziano)",
         [THINKING_IF_USE_HINT]: "To dobra podpowiedź?",
@@ -171,6 +174,9 @@ const HERO_ACTION_LABELS = {
 
         [THINKING_WHICH_ANSWER_MATCH]: "Which answer match?",
         [THINKING_IF_GIVE_RANDOM_ANSWER]: "Give random answer?",
+
+        [WANTS_TO_CHANGE_TASK]: "(Wants to change the question)",
+        [SUBMITS_APPLICATION]: "Submits the application...",
 
         [ORDERING_PIZZA]: "(Ordering pizza...)",
         [PROPOSING_PIZZA]: "Do you want a pizza?",

@@ -37,6 +37,9 @@ export const HAS_MUSCLE_SPASM = 'HAS_MUSCLE_SPASM';
 export const HUNG_UP = 'HUNG_UP';
 export const NEED_GO_TO_TOILET = 'NEED_GO_TO_TOILET';
 //skills
+//changeTask
+export const WANTS_TO_CHANGE_TASK = 'WANTS_TO_CHANGE_TASK';
+export const SUBMITS_APPLICATION = 'SUBMITS_APPLICATION';
 //coverall
 export const PUTTING_ON_COVERALL = 'PUTTING_ON_COVERALL';
 export const COVERALL_READY = 'COVERALL_READY';

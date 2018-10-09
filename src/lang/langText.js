@@ -88,6 +88,7 @@ export const TEXT_OWNED_WISIES = 'TEXT_OWNED_WISIES';
 export const TEXT_NOT_OWNED_WISIES = 'TEXT_NOT_OWNED_WISIES';
 export const TEXT_ANSWERED = 'TEXT_ANSWERED';
 export const TEXT_NO_ANSWER = 'TEXT_NO_ANSWER';
+export const TEXT_CHANGE_TASK_ACCEPTED = 'TEXT_CHANGE_TASK_ACCEPTED';
 export const TEXT_CORRECT = 'TEXT_CORRECT';
 export const TEXT_WRONG = 'TEXT_WRONG';
 export const TEXT_READ = 'TEXT_READ';
@@ -146,6 +147,7 @@ export const TEXT_MENTALITY = 'TEXT_MENTALITY';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CHANGE_TASK_ACCEPTED]: 'Wniosek o zmianę pytania zaakceptowany',
         [TEXT_WISDOM]: 'Wiedza',
         [TEXT_MENTALITY]: 'Mentalność',
         [TEXT_GUARANTEED_REWARD]: 'Gwarantowana nagroda',
@@ -288,6 +290,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CHANGE_TASK_ACCEPTED]: 'Request for changing the question accepted',
         [TEXT_WISDOM]: 'Wisdom',
         [TEXT_MENTALITY]: 'Mentality',
         [TEXT_GUARANTEED_REWARD]: 'Guaranteed reward',

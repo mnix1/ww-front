@@ -28,7 +28,7 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
         // console.log('RivalPageAnsweringTimeout render');
         const {content} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
-        return <div className='pageContent warPageAnsweringTimeout'>
+        return <div className='pageContent'>
             <TaskDescription
                 task={content.task}
                 taskCount={content.taskCount}

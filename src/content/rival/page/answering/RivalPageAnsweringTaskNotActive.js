@@ -8,6 +8,7 @@ import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
 import AvailableSkills from "../../../../component/skill/AvailableSkills";
 import {
+    SKILL_CHANGE_TASK,
     SKILL_COVERALL,
     SKILL_GHOST,
     SKILL_HINT,
@@ -49,13 +50,18 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         communication.sendCoverall();
     };
 
+    handleChangeTaskClick = () => {
+        const {communication} = this.props;
+        communication.sendChangeTask();
+    };
+
     renderAvailableSkills(isOpponentWisie) {
         const {content} = this.props;
         const {opponentActiveMemberAddOn} = content;
         const isOpponentPresent = _.isNil(opponentActiveMemberAddOn) ? true : opponentActiveMemberAddOn.present;
         const mySkills = isOpponentWisie
             ? _.pickBy(content.skills, (v, k) => k !== SKILL_LIFEBUOY && v.type !== 'PASSIVE')
-            : _.pickBy(content.skills, (v, k) => k === SKILL_HINT && v.type !== 'PASSIVE');
+            : _.pickBy(content.skills, (v, k) => (k === SKILL_HINT || k === SKILL_CHANGE_TASK) && v.type !== 'PASSIVE');
         return <AvailableSkills
             key={'as1'}
             className='justifyStart'
@@ -67,6 +73,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                 [SKILL_GHOST]: this.handleGhostClick,
                 [SKILL_PIZZA]: this.handlePizzaClick,
                 [SKILL_COVERALL]: this.handleCoverallClick,
+                [SKILL_CHANGE_TASK]: this.handleChangeTaskClick,
             }}
         />;
     }
