@@ -6,7 +6,7 @@ import _ from 'lodash';
 import {campaignCloseChanged} from "../../../redux/reducer/campaign";
 import {checkRepValueCode, isRepValueCode1} from "../../../util/repositoryHelper";
 import {push} from "connected-react-router";
-import {clearProfileFetch} from "../../app/ProfileFetch";
+import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
 import {noticeError} from "../../../component/notification/noticeError";
 import {ERROR_NO_SPACE_FOR_BOOK} from "../../../lang/langError";
 

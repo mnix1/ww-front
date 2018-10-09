@@ -4,7 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
 import {claimRewardBookIdChanged} from "../../../redux/reducer/profile";
-import {clearProfileFetch} from "../../app/ProfileFetch";
+import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
 
 class ProfileClaimRewardBookFetch extends React.PureComponent {
 

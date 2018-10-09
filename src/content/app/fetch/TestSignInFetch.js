@@ -1,9 +1,9 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {LOGIN_ROUTE} from "../routes";
-import {isRepFulfilled, isRepRejected} from "../../util/repositoryHelper";
-import {signedInChanged} from "../../redux/reducer/profile";
+import {LOGIN_ROUTE} from "../../routes";
+import {isRepFulfilled, isRepRejected} from "../../../util/repositoryHelper";
+import {signedInChanged} from "../../../redux/reducer/profile";
 
 class TestSignInFetch extends React.PureComponent {
 

@@ -12,8 +12,8 @@ import Intro from "../intro/Intro";
 import IntroUpdate from "../intro/IntroUpdate";
 import Connecting from "./connection/Connecting";
 import ConnectionProblem from "./connection/ConnectionProblem";
-import Page from "../../component/page/Page";
-import ShowOption from "../../component/page/ShowOption";
+import Page from "./AppPages";
+import ShowOption from "./ShowOption";
 import AppFetch from "./AppFetch";
 import AppRedirect from "./AppRedirect";
 

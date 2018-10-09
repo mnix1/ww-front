@@ -1,11 +1,11 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {profileChanged, signedInChanged} from "../../redux/reducer/profile";
-import {langChanged} from "../../redux/reducer/language";
-import {LOGIN_ROUTE} from "../routes";
-import {enableChanged, stepIndexChanged} from "../../redux/reducer/intro";
-import {isRepFulfilled, isRepRejected} from "../../util/repositoryHelper";
+import {profileChanged, signedInChanged} from "../../../redux/reducer/profile";
+import {langChanged} from "../../../redux/reducer/language";
+import {LOGIN_ROUTE} from "../../routes";
+import {enableChanged, stepIndexChanged} from "../../../redux/reducer/intro";
+import {isRepFulfilled, isRepRejected} from "../../../util/repositoryHelper";
 
 class ProfileFetch extends React.PureComponent {
 

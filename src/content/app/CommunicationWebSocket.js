@@ -2,7 +2,7 @@ import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
 import {rivalCleared, rivalInvited} from "../../redux/reducer/rival";
 import {noticeReward} from "../../component/notification/noticeReward";
-import {clearProfileFetch} from "./ProfileFetch";
+import {clearProfileFetch} from "./fetch/ProfileFetch";
 import {openChanged} from "../../redux/reducer/socket";
 import {signedInChanged} from "../../redux/reducer/profile";
 import {noticeError} from "../../component/notification/noticeError";

@@ -4,7 +4,7 @@ import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE, SHOP_ROUTE} from "../../routes";
 import _ from 'lodash';
 import {buyBookIdChanged} from "../../../redux/reducer/shop";
-import {clearProfileFetch} from "../../app/ProfileFetch";
+import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
 import {noticeBuy} from "../../../component/notification/noticeBuy";
 import {isRepValueCode1} from "../../../util/repositoryHelper";
 import {push} from 'connected-react-router';

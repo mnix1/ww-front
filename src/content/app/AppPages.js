@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {ConnectedRouter, push} from "connected-react-router";
-import TopBar from "../top-bar/TopBar";
+import TopBar from "../../component/top-bar/TopBar";
 import {
     APP_ROUTE,
     BATTLE_FAST_ROUTE,
@@ -30,32 +30,32 @@ import {
     WAR_RANKING_ROUTE,
     WAR_ROUTE,
     WISIES_ROUTE
-} from "../../content/routes";
+} from "../routes";
 import {isRepPending} from "../../util/repositoryHelper";
-import {INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../../content/intro/introHelper";
-import MenuItem from "../menu/MenuItem";
-import Menu from "../menu/Menu";
-import {Loading} from "../loading/Loading";
+import {INTRO_STEP_GO_TO_PROFILE, INTRO_STEP_GO_TO_WISIES} from "../intro/introHelper";
+import MenuItem from "../../component/menu/MenuItem";
+import Menu from "../../component/menu/Menu";
+import {Loading} from "../../component/loading/Loading";
 import {Route, Switch} from "react-router";
-import PlayPage from "../../content/play/PlayPage";
-import FriendPage from "../../content/friend/FriendPage";
-import ProfilePage from "../../content/profile/ProfilePage";
-import WisiePage from "../../content/wisie/WisiePage";
-import ShopPage from "../../content/shop/ShopPage";
-import PlayWarPage from "../../content/play/PlayWarPage";
-import PlayBattlePage from "../../content/play/PlayBattlePage";
-import PlayChallengePage from "../../content/play/PlayChallengePage";
-import RivalPage from "../../content/rival/page/RivalPage";
-import RivalSearchOpponentPage from "../../content/rival/RivalSearchOpponentPage";
-import PractisePage from "../../content/practise/PractisePage";
-import CampaignPage from "../../content/campaign/CampaignPage";
-import ChallengeFriendInit from "../../content/challenge/create/ChallengeFriendInit";
-import ChallengeSummaryPage from "../../content/challenge/list/ChallengeSummaryPage";
-import ChallengeListPage from "../../content/challenge/list/ChallengeListPage";
-import ChallengeHistoryPage from "../../content/challenge/list/ChallengeHistoryPage";
-import ClassificationPage from "../../content/rival/classification/ClassificationPage";
-import SettingsPage from "../../content/settings/SettingsPage";
-import LoginPage from "../auth/LoginPage";
+import PlayPage from "../play/PlayPage";
+import FriendPage from "../friend/FriendPage";
+import ProfilePage from "../profile/ProfilePage";
+import WisiePage from "../wisie/WisiePage";
+import ShopPage from "../shop/ShopPage";
+import PlayWarPage from "../play/PlayWarPage";
+import PlayBattlePage from "../play/PlayBattlePage";
+import PlayChallengePage from "../play/PlayChallengePage";
+import RivalPage from "../rival/page/RivalPage";
+import RivalSearchOpponentPage from "../rival/RivalSearchOpponentPage";
+import PractisePage from "../practise/PractisePage";
+import CampaignPage from "../campaign/CampaignPage";
+import ChallengeFriendInit from "../challenge/create/ChallengeFriendInit";
+import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
+import ChallengeListPage from "../challenge/list/ChallengeListPage";
+import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
+import ClassificationPage from "../rival/classification/ClassificationPage";
+import SettingsPage from "../settings/SettingsPage";
+import LoginPage from "../../component/auth/LoginPage";
 import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
@@ -63,7 +63,7 @@ import shop from '../../media/image/menu/shop.png';
 import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
 
-class Page extends React.PureComponent {
+class AppPages extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, className) {
         const {screen, lang, onRouteChange} = this.props;
@@ -139,7 +139,7 @@ class Page extends React.PureComponent {
     }
 
     render() {
-        // console.log('Page render');
+        // console.log('AppPages render');
         const {screen, rivalStatus} = this.props;
         const {height, width: screenWidth, contentWidth} = screen;
         const fullScreen = (rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight;
@@ -165,6 +165,6 @@ export default connect(
             dispatch(push(e));
         },
     })
-)(Page);
+)(AppPages);
 
 

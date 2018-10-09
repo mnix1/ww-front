@@ -7,12 +7,12 @@ import FriendListFetch from "../friend/fetch/FriendListFetch";
 import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
 import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
 import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
-import ProfileFetch from "./ProfileFetch";
+import ProfileFetch from "./fetch/ProfileFetch";
 import WisieFetchContainer from "../wisie/fetch/WisieFetchContainer";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
 import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
-import TestSignInFetch from "./TestSignInFetch";
+import TestSignInFetch from "./fetch/TestSignInFetch";
 
 class AppFetch extends React.PureComponent {
 

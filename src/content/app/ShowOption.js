@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
 import {optionShowChanged} from "../../redux/reducer/option";
-import {INTRO_STEP_GO_TO_OPTIONS} from "../../content/intro/introHelper";
-import {SETTINGS_ROUTE} from "../../content/routes";
+import {INTRO_STEP_GO_TO_OPTIONS} from "../intro/introHelper";
+import {SETTINGS_ROUTE} from "../routes";
 import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS, ROUTE_RIVAL_TYPE} from "../../util/rivalHelper";
 import {FaCogs} from "react-icons/fa";
 

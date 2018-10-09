@@ -5,7 +5,7 @@ import Modal from "../../../component/modal/Modal";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Button";
 import {getText, TEXT_RECONNECT} from "../../../lang/langText";
 import {Loading} from "../../../component/loading/Loading";
-import {clearProfileFetch} from "../ProfileFetch";
+import {clearProfileFetch} from "../fetch/ProfileFetch";
 
 class ConnectionProblem extends React.PureComponent {
     render() {
