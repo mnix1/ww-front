@@ -1,7 +1,7 @@
 import React from 'react';
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import PropTypes from "prop-types";
-import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
+import {calculateObjectDimension} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
 
 export default class AnimationObjectGroup extends React.PureComponent {
@@ -41,7 +41,6 @@ export default class AnimationObjectGroup extends React.PureComponent {
     prepareQuestionObjects() {
         const {questionObjects, screen} = this.props;
         const {contentWidth, resolution} = screen;
-        const fontSize = objectFontSize(resolution);
         const questionObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: questionObjects.length,
@@ -54,7 +53,6 @@ export default class AnimationObjectGroup extends React.PureComponent {
             return {
                 ...o,
                 objectStyle: {
-                    fontSize,
                     background: null,
                     height: objectHeight,
                     width: questionObjectWidth,

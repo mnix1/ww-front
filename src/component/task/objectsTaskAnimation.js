@@ -1,11 +1,10 @@
 import {getAnimationContent} from "../../util/taskRenderer";
 import _ from "lodash";
 import React from 'react';
-import {objectFontSize} from "../object-group/objectHelper";
 import {getText, TEXT_CLICK_ON_ANY_TO_CONTINUE, TEXT_REMEMBER_DETAILS} from "../../lang/langText";
 
 export function prepareAnimationTiles(rival) {
-    const {question, screen} = rival.props;
+    const {question} = rival.props;
     const objects = JSON.parse(atob(getAnimationContent(question)));
     const objectsCount = objects.length;
     const df = 2 * Math.PI / objectsCount;
@@ -15,7 +14,7 @@ export function prepareAnimationTiles(rival) {
         let imageData = atob(object.shape);
         imageData = imageData.replace('svg', `svg fill="${object.backgroundColor}"`).replace(/#/g, '%23');
         const content = <div style={{height: '100%', width: '100%'}}>
-            <span style={{fontSize: objectFontSize(screen.resolution, 1, 18)}}>{object.key}</span>
+            <span>{object.key}</span>
             <img alt='' src={'data:image/svg+xml,' + imageData} height='100%' width='100%'/>
         </div>;
         let f = i * df;

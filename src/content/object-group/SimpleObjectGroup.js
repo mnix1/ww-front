@@ -2,7 +2,6 @@ import React from 'react';
 import {getCategoryLabel} from "../../lang/langCategory";
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import PropTypes from "prop-types";
-import {objectFontSize} from "../../component/object-group/objectHelper";
 import './styles.css';
 import {remToPixels} from "../../util/fontHelper";
 
@@ -25,8 +24,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
         const {objects, onObjectClick, screen, setHeight, selectedId} = this.props;
         const objectWidth = screen.wisieImgHeight;
         const objectHeight = screen.wisieImgHeight;
-        const {contentHeight, contentWidth, resolution} = screen;
-        const fontSize = objectFontSize(resolution);
+        const {contentHeight, contentWidth} = screen;
         return <ObjectGroup
             height={setHeight ? contentHeight : 'auto'}
             width={contentWidth}
@@ -39,7 +37,6 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     width: objectWidth,
                     top,
                     left,
-                    fontSize,
                 };
                 if (selectedId === o.id) {
                     objectStyle = {
@@ -51,7 +48,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                 return {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
-                        <span style={{zIndex: 1}}>{getCategoryLabel([o.id])}</span>
+                        <span className='fontSize08Rem'>{getCategoryLabel([o.id])}</span>
                         <img alt='' src={o.imgSrc} height={objectHeight - remToPixels(2)}/>
                     </div>,
                     objectStyle

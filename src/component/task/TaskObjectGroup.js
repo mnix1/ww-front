@@ -1,7 +1,7 @@
 import React from 'react';
 import {ObjectGroup} from "../../component/object-group/ObjectGroup";
 import PropTypes from "prop-types";
-import {calculateObjectDimension, objectFontSize} from "../../component/object-group/objectHelper";
+import {calculateObjectDimension} from "../../component/object-group/objectHelper";
 import _ from 'lodash';
 import {BLUE_COLOR, DARK_BLUE_COLOR} from "../../util/style/constant";
 
@@ -57,8 +57,7 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     prepareQuestionObjects() {
         const {questionObjects, screen} = this.props;
-        const {contentWidth, resolution} = screen;
-        const fontSize = objectFontSize(resolution);
+        const {contentWidth} = screen;
         const questionObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: questionObjects.length,
@@ -74,7 +73,6 @@ export default class TaskObjectGroup extends React.PureComponent {
                 ...o,
                 content: this.prepareContent(o, background),
                 objectStyle: {
-                    fontSize,
                     background: null,
                     height: objectHeight,
                     width: questionObjectWidth * widthFactor,
@@ -96,8 +94,7 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
-        const {contentWidth, resolution, isSmallHeight, isSmallWidth} = screen;
-        const fontSize = objectFontSize(resolution);
+        const {contentWidth, isSmallHeight, isSmallWidth} = screen;
         const answerObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: this.prepareCount(true),
@@ -118,7 +115,6 @@ export default class TaskObjectGroup extends React.PureComponent {
                 ...o,
                 content: this.prepareContent(o, background),
                 objectStyle: {
-                    fontSize,
                     border: o.border,
                     borderColor: o.borderColor,
                     background: null,
