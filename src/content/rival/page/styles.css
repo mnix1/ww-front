@@ -120,3 +120,8 @@
     animation: fadein 0.5s 4.5s;
     animation-fill-mode: forwards;
 }
+.warPage .randomTaskProps {
+    opacity: 0;
+    animation: fadein 0.2s 0s;
+    animation-fill-mode: forwards;
+}

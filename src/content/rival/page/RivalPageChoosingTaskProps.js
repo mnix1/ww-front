@@ -36,7 +36,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
         const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
         const {choosingTaskPropsTag} = content;
         if (_.isNil(choosingTaskPropsTag)) {
-            return <RandomTaskProps content={content}/>;
+            return <RandomTaskProps className='randomTaskProps' content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
             return <ChoosingTaskProps
