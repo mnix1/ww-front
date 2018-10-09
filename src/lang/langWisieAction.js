@@ -59,7 +59,7 @@ import {
     EATING_PIZZA,
     THINKING_IF_GET_PIZZA,
     SERVES_PIZZA,
-    PREPARING_FOR_EAT_PIZZA, EATEN_PIZZA
+    PREPARING_FOR_EAT_PIZZA, EATEN_PIZZA, PUTTING_ON_COVERALL, COVERALL_READY
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -97,7 +97,7 @@ const HERO_ACTION_LABELS = {
 
         [ORDERING_PIZZA]: "(Zamawia pizzę...)",
         [PROPOSING_PIZZA]: "Może pizzuni?",
-        [SERVES_PIZZA]: "(Serwije pizzę...)",
+        [SERVES_PIZZA]: "(Serwuje pizzę...)",
         [PREPARING_FOR_EAT_PIZZA]: "Pewnie, ale będzie wyżerka!",
         [THINKING_IF_GET_PIZZA]: "(Myśli czy wziąć pizzę...)",
         [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Czeka aż przeciwnik zje...)",
@@ -109,6 +109,9 @@ const HERO_ACTION_LABELS = {
         [THINKING_IF_USE_HINT]: "To dobra podpowiedź?",
         [WILL_USE_HINT]: "Chyba tak",
         [WONT_USE_HINT]: "Raczej nie",
+
+        [PUTTING_ON_COVERALL]: "(Zakłada kombinezon...)",
+        [COVERALL_READY]: "Teraz jestem bezpieczny",
 
         [WATER_PISTOL_USED_ON_IT]: "(Spryskano wodą)",
         [CLEANING]: "(Sprząta...)",
@@ -183,6 +186,9 @@ const HERO_ACTION_LABELS = {
         [THINKING_IF_USE_HINT]: "Is hint correct?",
         [WILL_USE_HINT]: "I guess so",
         [WONT_USE_HINT]: "I don't think so",
+
+        [PUTTING_ON_COVERALL]: "(Putting on coverall...)",
+        [COVERALL_READY]: "Now I'm safe",
 
         [WATER_PISTOL_USED_ON_IT]: "(Sprayed with water)",
         [CLEANING]: "(Cleaning...)",

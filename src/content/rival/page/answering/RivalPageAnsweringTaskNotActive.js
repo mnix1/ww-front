@@ -8,6 +8,7 @@ import {isTeamMemberWisie} from "../../../../util/heroHelper";
 import {remToPixels} from "../../../../util/fontHelper";
 import AvailableSkills from "../../../../component/skill/AvailableSkills";
 import {
+    SKILL_COVERALL,
     SKILL_GHOST,
     SKILL_HINT,
     SKILL_KIDNAPPING,
@@ -37,9 +38,15 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         const {communication} = this.props;
         communication.sendGhost();
     };
+
     handlePizzaClick = () => {
         const {communication} = this.props;
         communication.sendPizza();
+    };
+
+    handleCoverallClick = () => {
+        const {communication} = this.props;
+        communication.sendCoverall();
     };
 
     renderAvailableSkills(isOpponentWisie) {
@@ -59,6 +66,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                 [SKILL_KIDNAPPING]: this.handleKidnappingClick,
                 [SKILL_GHOST]: this.handleGhostClick,
                 [SKILL_PIZZA]: this.handlePizzaClick,
+                [SKILL_COVERALL]: this.handleCoverallClick,
             }}
         />;
     }

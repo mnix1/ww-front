@@ -7,6 +7,7 @@ import ninja from '../media/image/skill/shuriken.svg';
 import pizza from '../media/image/skill/pizza.png';
 import blackboard from '../media/image/skill/blackboard.png';
 import box from '../media/image/skill/box.png';
+import coverall from '../media/image/skill/coverall.svg';
 
 export const SKILL_TEACHER = 'TEACHER';
 export const SKILL_MOTIVATOR = 'MOTIVATOR';
@@ -17,6 +18,7 @@ export const SKILL_LIFEBUOY = 'LIFEBUOY';
 export const SKILL_GHOST = 'GHOST';
 export const SKILL_SHIELD = 'SHIELD';
 export const SKILL_PIZZA = 'PIZZA';
+export const SKILL_COVERALL = 'COVERALL';
 
 const SKILLS = {
     [SKILL_TEACHER]: blackboard,
@@ -28,6 +30,7 @@ const SKILLS = {
     [SKILL_GHOST]: ghost,
     [SKILL_SHIELD]: shield,
     [SKILL_PIZZA]: pizza,
+    [SKILL_COVERALL]: coverall,
 };
 
 export function getSkill(skill) {

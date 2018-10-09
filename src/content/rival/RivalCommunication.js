@@ -38,6 +38,9 @@ export default class RivalCommunication {
     sendPizza() {
         this.send(JSON.stringify({id: 'PIZZA'}));
     }
+    sendCoverall() {
+        this.send(JSON.stringify({id: 'COVERALL'}));
+    }
     sendLifebuoy(index) {
         this.send(JSON.stringify({id: 'LIFEBUOY', index}));
     }

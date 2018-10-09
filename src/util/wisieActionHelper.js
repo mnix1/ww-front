@@ -36,8 +36,10 @@ export const WATCHES_THE_AUDIENCE = 'WATCHES_THE_AUDIENCE';
 export const HAS_MUSCLE_SPASM = 'HAS_MUSCLE_SPASM';
 export const HUNG_UP = 'HUNG_UP';
 export const NEED_GO_TO_TOILET = 'NEED_GO_TO_TOILET';
-
 //skills
+//coverall
+export const PUTTING_ON_COVERALL = 'PUTTING_ON_COVERALL';
+export const COVERALL_READY = 'COVERALL_READY';
 //pizza
 export const ORDERING_PIZZA = 'ORDERING_PIZZA';
 export const PROPOSING_PIZZA = 'PROPOSING_PIZZA';

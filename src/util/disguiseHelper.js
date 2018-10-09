@@ -4,6 +4,7 @@ import penguinRain from '../media/image/disguise/penguinRain.png';
 import judge from '../media/image/disguise/judge.png';
 import pizzaMan from '../media/image/disguise/pizzaMan.png';
 import turkeyPizza from '../media/image/disguise/turkeyPizza.png';
+import coverall from '../media/image/skill/coverall.svg';
 import chairRed from '../media/image/disguise/chairRed.svg';
 import chairSimple from '../media/image/disguise/chairSimple.svg';
 import chairGreen from '../media/image/disguise/chairGreen.svg';
@@ -12,6 +13,7 @@ const DISGUISE = {
     'NINJA': ninja,
     'GHOST': ghost,
     'JUDGE': judge,
+    'COVERALL': coverall,
     'PIZZA_COOK': turkeyPizza,
     'PIZZA_MAN': pizzaMan,
     'PENGUIN_RAIN': penguinRain,
