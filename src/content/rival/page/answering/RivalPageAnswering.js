@@ -81,12 +81,14 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderTaskDescription() {
-        const {battle, task, taskCount, screen} = this.props;
+        const {battle, task, taskCount, screen, endAnsweringInterval} = this.props;
         return <TaskDescription
             task={task}
             taskCount={taskCount}
             renderTaskPoints={battle}
             renderTaskCount={battle}
+            renderTimer={true}
+            interval={endAnsweringInterval}
             small={screen.isSmallHeight}
             className={`justifyCenter flexColumn pageHeader ${battle ? this.addTransitionClass : ''}`}
         />;
@@ -105,13 +107,14 @@ class RivalPageAnswering extends React.PureComponent {
 
 export default connect(
     (state) => {
-        const {type, taskCount, status, task, team, activeIndex} = state.rival.content;
+        const {type, taskCount, status, task, team, activeIndex, endAnsweringInterval} = state.rival.content;
         const battle = type === RIVAL_TYPE_BATTLE;
         return {
             battle,
             task,
             taskCount,
             team,
+            endAnsweringInterval,
             activeIndex,
             status,
             communication: state.socket.rivalCommunication,
