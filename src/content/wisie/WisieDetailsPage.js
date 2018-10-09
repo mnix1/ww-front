@@ -4,10 +4,10 @@ import Modal from "../../component/modal/Modal";
 import WisieAttribute from "../../component/wisie/WisieAttribute";
 import {FaMinusCircle, FaPlusCircle, FaRetweet} from "react-icons/fa";
 import {
-    CUNNING,
     CONCENTRATION,
     CONFIDENCE,
     COUNTING,
+    CUNNING,
     IMAGINATION,
     INTUITION,
     LOGIC,
@@ -20,6 +20,7 @@ import {
 import Wisie from "../../component/wisie/Wisie";
 import {
     changeHobbyPropsChanged,
+    changeSkillPropsChanged,
     teamChanged,
     upgradeAttributePropsChanged,
     wisieDetailsChanged
@@ -35,9 +36,15 @@ import {clearWisieUpgradeAttributeFetch} from "./fetch/WisieUpgradeAttributeFetc
 import {INTRO_STEP_WISIE_DETAILS, INTRO_STEP_WISIE_DETAILS_CLOSE} from "../intro/introHelper";
 import {getCategory} from "../../util/categoryHelper";
 import {isRepPending} from "../../util/repositoryHelper";
-import {WISIE_MENTAL_UPGRADE_COST, WISIE_WISDOM_UPGRADE_COST, wisieChangeHobbyCost} from "../../util/resourceHelper";
+import {
+    WISIE_MENTAL_UPGRADE_COST,
+    WISIE_WISDOM_UPGRADE_COST,
+    wisieChangeHobbyCost,
+    wisieChangeSkillCost
+} from "../../util/resourceHelper";
 import Crystal from "../../component/resource/Crystal";
 import Elixir from "../../component/resource/Elixir";
+import {getSkill} from "../../util/skillHelper";
 
 class WisieDetailsPage extends React.PureComponent {
 
@@ -82,8 +89,44 @@ class WisieDetailsPage extends React.PureComponent {
                             {img}
                             {cost.isEnoughResource &&
                             <div className='justifyCenter'>
-                                <FaRetweet className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR} size={20}
+                                <FaRetweet className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
+                                           size={20}
                                            onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, e)}/>
+                            </div>}
+                        </div>
+                    })}
+                </div>
+            </div>
+        </div>;
+    }
+
+    renderWisieCustomSkills(wisie) {
+        const {onChangeSkillClick, profile} = this.props;
+        const cost = wisieChangeSkillCost(profile);
+        const pending = this.pending;
+        return <div className='justifyCenter paddingLeftRem'>
+            <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>
+                    <div className='justifyCenter'>
+                        <Crystal notEnough={profile.crystal < cost.crystal} margin={false}
+                                 size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
+                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} margin={false}
+                                size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
+                    </div>
+                </div>
+            </div>
+            <div className='justifyStart flexColumn paddingLeftRem'>
+                <div className='justifyCenter'>
+                    {wisie.skills.map(e => {
+                        const img = <img alt='' key={e} height={24}
+                                         src={getSkill(e)}/>;
+                        return <div className='justifyCenter flexColumn paddingRightRem'>
+                            {img}
+                            {cost.isEnoughResource &&
+                            <div className='justifyCenter'>
+                                <FaRetweet className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
+                                           size={20}
+                                           onClick={pending ? _.noop : () => onChangeSkillClick(wisie, e)}/>
                             </div>}
                         </div>
                     })}
@@ -94,8 +137,15 @@ class WisieDetailsPage extends React.PureComponent {
 
     renderWisie(wisie) {
         const {screen, upgrade} = this.props;
-        return <Wisie renderSkills={true} hobbiesAndSkillsWidth100={true} imgHeight={screen.wisieImgHeight + 30} imgHobbyAndSkillHeight={upgrade ? 24 : undefined} {...wisie}
-                      customHobbies={upgrade && this.renderWisieCustomHobbies(wisie)}>
+        return <Wisie
+            renderSkills={true
+            } hobbiesAndSkillsWidth100={true}
+            imgHeight={screen.wisieImgHeight + 30}
+            imgHobbyAndSkillHeight={upgrade ? 24 : undefined}
+            {...wisie}
+            customHobbies={upgrade && this.renderWisieCustomHobbies(wisie)}
+            customSkills={upgrade && this.renderWisieCustomSkills(wisie)}
+        >
             {this.renderWisieAttributes(wisie)}
         </Wisie>;
     }
@@ -220,6 +270,9 @@ export default connect(
         },
         onChangeHobbyClick: (wisie, hobby) => {
             dispatch(changeHobbyPropsChanged({id: wisie.id, hobby}));
+        },
+        onChangeSkillClick: (wisie, skill) => {
+            dispatch(changeSkillPropsChanged({id: wisie.id, skill}));
         }
     })
 )(WisieDetailsPage);

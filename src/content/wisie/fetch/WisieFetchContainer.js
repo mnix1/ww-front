@@ -6,14 +6,16 @@ import WisieExperimentFetch from "./WisieExperimentFetch";
 import WisieTeamSaveFetch from "./WisieTeamSaveFetch";
 import WisieUpgradeAttributeFetch from "./WisieUpgradeAttributeFetch";
 import WisieChangeHobbyFetch from "./WisieChangeHobbyFetch";
+import WisieChangeSkillFetch from "./WisieChangeSkillFetch";
 
 class WisieFetchContainer extends React.PureComponent {
     render() {
-        const {path, upgradeAttributeProps, changeHobbyProps, experiment, teamSave, team} = this.props;
+        const {path, upgradeAttributeProps, changeHobbyProps, changeSkillProps, experiment, teamSave, team} = this.props;
         return <div>
             <WisieListFetch/>
             <WisieUpgradeAttributeFetch upgradeAttributeProps={upgradeAttributeProps}/>
             <WisieChangeHobbyFetch changeHobbyProps={changeHobbyProps}/>
+            <WisieChangeSkillFetch changeSkillProps={changeSkillProps}/>
             <ProfileWisieListFetch path={path}/>
             <WisieExperimentFetch experiment={experiment}/>
             <WisieTeamSaveFetch teamSave={teamSave} team={team}/>
@@ -28,6 +30,7 @@ export default connect(
         team: state.wisie.team,
         upgradeAttributeProps: state.wisie.upgradeAttributeProps,
         changeHobbyProps: state.wisie.changeHobbyProps,
+        changeSkillProps: state.wisie.changeSkillProps,
         teamSave: state.wisie.teamSave,
     }),
     (dispatch) => ({})

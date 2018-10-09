@@ -12,6 +12,15 @@ export function wisieChangeHobbyCost(profile, wisie) {
     }
 }
 
+export function wisieChangeSkillCost(profile) {
+    const crystal = 50;
+    const elixir = 25;
+    return {
+        isEnoughResource: profile.crystal >= crystal && profile.elixir >= elixir,
+        crystal,
+        elixir
+    }
+}
 
 export function experimentCost(profile, wisiesCount) {
     const experimentCostImpact = wisiesCount <= 5 ? 0 : (wisiesCount - 5) * 10;

@@ -8,6 +8,7 @@ export const TEAM_CHANGED = 'wisie/team/changed';
 export const TEAM_SAVE_CHANGED = 'wisie/team-save/changed';
 export const UPGRADE_ATTRIBUTE_PROPS_CHANGED = 'wisie/upgrade-attribute-props/changed';
 export const HOBBY_CHANGE_PROPS_CHANGED = 'wisie/hobby-change-props/changed';
+export const SKILL_CHANGE_PROPS_CHANGED = 'wisie/skill-change-props/changed';
 export const PROFILE_WISIES_CHANGED = 'wisie/profile-wisies/changed';
 export const IS_PROFILE_WISIES_ACTUAL_CHANGED = 'wisie/is-profile-wisies-actual/changed';
 
@@ -46,6 +47,8 @@ export default function reducer(state = initialState, action) {
             return {...state, upgradeAttributeProps: action.upgradeAttributeProps};
         case HOBBY_CHANGE_PROPS_CHANGED:
             return {...state, changeHobbyProps: action.changeHobbyProps};
+        case SKILL_CHANGE_PROPS_CHANGED:
+            return {...state, changeSkillProps: action.changeSkillProps};
         case IS_PROFILE_WISIES_ACTUAL_CHANGED:
             return {...state, isProfileWisiesActual: action.isProfileWisiesActual};
         case PROFILE_WISIES_CHANGED: {
@@ -87,6 +90,10 @@ export function upgradeAttributePropsChanged(upgradeAttributeProps) {
 
 export function changeHobbyPropsChanged(changeHobbyProps) {
     return {type: HOBBY_CHANGE_PROPS_CHANGED, changeHobbyProps};
+}
+
+export function changeSkillPropsChanged(changeSkillProps) {
+    return {type: SKILL_CHANGE_PROPS_CHANGED, changeSkillProps};
 }
 
 export function profileWisiesChanged(profileWisies) {
