@@ -28,7 +28,7 @@ class WisiePickPage extends WisieListPageComponent {
             renderHobbies={false}
             active={_.includes(pickWisies, wisie.type)}
             blackBackground={true}
-            imgHeight={screen.wisieImgHeight + 20}
+            imgHeight={screen.standardImgHeight + 20}
             key={wisie.type}
             style={{width: this.wisieWidth}} {...wisie}
             className={className}

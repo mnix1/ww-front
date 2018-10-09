@@ -1,46 +1,24 @@
 import {GOLDEN_RATIO_FACTOR} from "../../util/style/constant";
 import MobileDetect from 'mobile-detect';
 import _ from 'lodash';
+import {remToPixels} from "../../util/fontHelper";
+import {TOP_BAR_HEIGHT_FONT_SIZE_FACTOR} from "../../util/screenHelper";
 
 export const RESIZE = 'screen/resize';
 
-export const SHSW = 'SHSW';
-export const MHSW = 'MHSW';
-export const BHSW = 'BHSW';
-export const SHMW = 'SHMW';
-export const SHBW = 'SHBW';
-export const MHMW = 'MHMW';
-export const BHMW = 'BHMW';
-export const MHBW = 'MHBW';
-export const BHBW = 'BHBW';
-
-export function getResolutionFactor(resolution) {
-    if (SHSW === resolution)
-        return 1;
-    if (SHMW === resolution || MHSW === resolution)
-        return 1.2;
-    if (MHMW === resolution || SHBW === resolution || BHSW === resolution)
-        return 1.4;
-    if (MHBW === resolution || BHMW === resolution)
-        return 1.6;
-    if (BHBW === resolution)
-        return 1.8;
-
-}
-
 function prepareResolution(height, width) {
     let heightPart;
-    if (height < 800) {
+    if (height < 600) {
         heightPart = 'SH';
-    } else if (height < 1000) {
+    } else if (height < 800) {
         heightPart = 'MH';
     } else {
         heightPart = 'BH'
     }
     let widthPart;
-    if (width < 1024) {
+    if (width < 800) {
         widthPart = 'SW';
-    } else if (width < 1440) {
+    } else if (width < 1240) {
         widthPart = 'MW';
     } else {
         widthPart = 'BW'
@@ -48,88 +26,95 @@ function prepareResolution(height, width) {
     return heightPart + widthPart;
 }
 
-function checkSmallWidth(resolution) {
-    return _.includes(resolution, 'SW');
-}
-
-function checkMoreHeightThanWidth(height, width) {
-    return height > width;
-}
-
 export function checkSmallHeight(resolution) {
     return _.includes(resolution, 'SH');
 }
 
-export function checkNotBigHeight(resolution) {
-    return !_.includes(resolution, 'BH');
+export function checkBigHeight(resolution) {
+    return _.includes(resolution, 'BH');
 }
 
-function calculateContentWidth(width, isSmallWidth, moreHeightThanWidth) {
-    if (moreHeightThanWidth) {
+export function checkSmallWidth(resolution) {
+    return _.includes(resolution, 'SW');
+}
+
+export function checkBigWidth(resolution) {
+    return _.includes(resolution, 'BW');
+}
+
+function calculateContentWidth(width, isBigWidth, isSmallWidth, verticalOrientation) {
+    if (verticalOrientation) {
+        if (isBigWidth) {
+            return width * 9 / 10;
+        }
         return width;
     }
     if (isSmallWidth) {
-        return width * 5.5 / 6;
+        return width * 9 / 10;
     }
     return width * GOLDEN_RATIO_FACTOR;
 }
 
-function calculateContentHeight(height, isSmallHeight, moreHeightThanWidth) {
-    // if (moreHeightThanWidth) {
-    //     return height * 8 / 10;
-    // }
-    if (isSmallHeight) {
-        return height * 8.8 / 10;
+function calculateContentHeight(height, isBigHeight, isSmallHeight, topBarHeight, verticalOrientation) {
+    if (verticalOrientation) {
+        if (isBigHeight) {
+            return height - topBarHeight * 2;
+        }
+        return height - topBarHeight;
     }
-    return height * 4 / 5;
+    if (isSmallHeight) {
+        return height - topBarHeight;
+    }
+    return height - topBarHeight * 2;
+}
+
+function prepareState(height, width) {
+    const fontSizeRem = remToPixels(1);
+    const resolution = prepareResolution(height, width);
+    const isSmallHeight = checkSmallHeight(resolution);
+    const isBigHeight = checkBigHeight(resolution);
+    const isSmallWidth = checkSmallWidth(resolution);
+    const isBigWidth = checkBigWidth(resolution);
+    const isBigScreen = isBigHeight && isBigWidth;
+    const isSmallScreen = isSmallHeight && isSmallWidth;
+    const verticalOrientation = height > width;
+    const topBarFontSizeRem = (isSmallWidth ? 2 : 3) * fontSizeRem;
+    const topBarHeight = topBarFontSizeRem * TOP_BAR_HEIGHT_FONT_SIZE_FACTOR;
+    const standardImgHeight = verticalOrientation
+        ? (isSmallScreen ? fontSizeRem * 3.5 : fontSizeRem * 4.5)
+        : (isSmallScreen ? fontSizeRem * 2.5 : fontSizeRem * 3.5);
+    return {
+        isBigScreen,
+        isSmallScreen,
+        fontSizeRem,
+        topBarFontSizeRem,
+        height,
+        width,
+        contentHeight: calculateContentHeight(height, isBigHeight, isSmallHeight, topBarHeight, verticalOrientation),
+        contentWidth: calculateContentWidth(width, isBigWidth, isSmallWidth, verticalOrientation),
+        resolution,
+        isSmallHeight,
+        isBigHeight,
+        isSmallWidth,
+        isBigWidth,
+        verticalOrientation,
+        standardImgHeight,
+    };
 }
 
 const isMobile = new MobileDetect(window.navigator.userAgent).mobile() !== null;
-
 const initialHeight = isMobile ? window.outerHeight : window.innerHeight;
 const initialWidth = isMobile ? window.outerWidth : window.innerWidth;
-
-const resolution = prepareResolution(initialHeight, initialWidth);
-const isSmallHeight = checkSmallHeight(resolution);
-const isSmallWidth = checkSmallWidth(resolution);
-const isNotBigHeight = checkNotBigHeight(resolution);
-const moreHeightThanWidth = checkMoreHeightThanWidth(initialHeight, initialWidth);
-const initialState = {
-    height: initialHeight,
-    width: initialWidth,
-    resolution,
-    isSmallHeight,
-    isSmallWidth,
-    isNotBigHeight,
-    moreHeightThanWidth,
-    wisieImgHeight: isSmallHeight ? moreHeightThanWidth ? 60 : 50 : 80,
-    contentHeight: calculateContentHeight(initialHeight, isSmallHeight, moreHeightThanWidth),
-    contentWidth: calculateContentWidth(initialWidth, isSmallWidth, moreHeightThanWidth),
-    isMobile
-};
+const initialState = {isMobile, ...prepareState(initialHeight, initialWidth)};
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case RESIZE: {
             const height = isMobile ? window.outerHeight : window.innerHeight;
             const width = isMobile ? window.outerWidth : window.innerWidth;
-            const resolution = prepareResolution(height, initialWidth);
-            const isSmallHeight = checkSmallHeight(resolution);
-            const isSmallWidth = checkSmallWidth(resolution);
-            const isNotBigHeight = checkNotBigHeight(resolution);
-            const moreHeightThanWidth = checkMoreHeightThanWidth(height, width);
             return {
                 ...state,
-                height,
-                width,
-                isSmallHeight,
-                isSmallWidth,
-                isNotBigHeight,
-                moreHeightThanWidth,
-                wisieImgHeight: isSmallHeight ? moreHeightThanWidth ? 60 : 50 : 80,
-                contentHeight: calculateContentHeight(height, isSmallHeight, moreHeightThanWidth),
-                contentWidth: calculateContentWidth(width, isSmallWidth, moreHeightThanWidth),
-                resolution
+                ...prepareState(height, width)
             };
         }
         default:

@@ -19,15 +19,12 @@ export class AddFriend extends React.PureComponent {
         onAddClick: PropTypes.func,
         onClearClick: PropTypes.func,
         addFriendRep: PropTypes.object,
-        screen: PropTypes.object,
     };
 
     addFriendInputRef = React.createRef();
 
     render() {
-        const {onAddClick, onClearClick, addFriendRep, screen} = this.props;
-        const fontSize = screen.isSmallHeight || screen.isSmallWidth
-            ? 14 : 20;
+        const {onAddClick, onClearClick, addFriendRep} = this.props;
         if (addFriendRep === undefined) {
             return <div className='addFriend boxShadow paddingRem'>
                 <div>{getText(TEXT_ADD_FRIEND)}</div>
@@ -37,7 +34,7 @@ export class AddFriend extends React.PureComponent {
                            type='text'
                            maxLength={8}
                            style={{width: 120}}/>
-                    <FaPlusCircle color="#fffdf1" size={fontSize + 4}
+                    <FaPlusCircle color="#fffdf1"
                                   onClick={() => onAddClick(this.addFriendInputRef.current.value)}/>
                 </div>
             </div>;
@@ -53,7 +50,7 @@ export class AddFriend extends React.PureComponent {
             {code === 1 && <span>{getText(TEXT_REQUEST_SENT)}</span>}
             {code === -2 && <span>{getText(TEXT_WRONG_TAG)}</span>}
             {(code === -1 || code === -3) && <span>{getText(TEXT_ADD_FRIEND_ALREADY)}</span>}
-            <IoMdSync size={fontSize} color="#fffdf1" onClick={onClearClick}/>
+            <IoMdSync color="#fffdf1" onClick={onClearClick}/>
         </div>;
     }
 

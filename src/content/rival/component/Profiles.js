@@ -17,7 +17,7 @@ class Profiles extends React.PureComponent {
             renderBattleElo={battleElo && renderBattleElo(content)}
             renderWarElo={warElo && renderWarElo(content)}
             {...profile}
-            imgHeight={screen.wisieImgHeight}
+            imgHeight={screen.standardImgHeight}
         >
             {renderScore && <div className='' style={{color}}>{prepareScoreMessage(score)}</div>}
         </Profile>

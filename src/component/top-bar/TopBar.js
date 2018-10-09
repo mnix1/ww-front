@@ -5,19 +5,14 @@ import {getText, TEXT_APP_NAME} from "../../lang/langText";
 import {push} from "connected-react-router";
 import {APP_ROUTE} from "../../content/routes";
 import {INTRO_STEP_WELCOME} from "../../content/intro/introHelper";
-import {RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
 
 class TopBar extends React.PureComponent {
 
     renderLogo() {
-        const {screen, onAppNameClick, rivalStatus} = this.props;
-        const {contentWidth, height} = screen;
-        if (rivalStatus === RIVAL_STATUS_IN_PROGRESS && screen.isSmallHeight) {
-            return null;
-        }
-        const fontSize = Math.min(contentWidth / 14, height / 14);
-        return <div className='justifyCenter'>
-            <span style={{fontSize}} onClick={onAppNameClick}
+        const {screen, onAppNameClick} = this.props;
+        const {topBarFontSizeRem} = screen;
+        return <div className='textAlignCenter'>
+            <span style={{fontSize: topBarFontSizeRem}} onClick={onAppNameClick}
                   className={`topBarContentValue ${INTRO_STEP_WELCOME}`}>
                 {getText(TEXT_APP_NAME)}
                 </span>
@@ -34,8 +29,7 @@ class TopBar extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
-        rivalStatus: state.rival.status,
+        lang: state.language.lang
     }),
     (dispatch) => ({
         onAppNameClick: () => {

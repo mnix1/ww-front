@@ -3,45 +3,45 @@
     padding: 0;
     outline: none;
 }
-
 body {
     font-family: 'Roboto', sans-serif;
 }
 ul {
     list-style-type: none;
 }
-
 svg {
     display: inline-block;
 }
-
-/*@media only screen and (max-width: 1024px) {*/
-/*html { font-size: 62.5%; }*/
-/*}*/
 html {
-    font-size: 20px;
+    font-size: 22px;
 }
-
 @media only screen and (max-height: 800px) {
     html {
-        font-size: 90%;
+        font-size: 95%;
     }
 }
-
 @media only screen and (max-width: 1440px) {
     html {
+        font-size: 95%;
+    }
+}
+@media only screen and (max-height: 600px) {
+    html {
         font-size: 90%;
     }
 }
-
-@media only screen and (max-height: 600px) {
-    html {
-        font-size: 80%;
-    }
-}
-
 @media only screen and (max-width: 1024px) {
     html {
-        font-size: 80%;
+        font-size: 90%;
+    }
+}
+@media only screen and (max-height: 500px) {
+    html {
+        font-size: 85%;
+    }
+}
+@media only screen and (max-width: 800px) {
+    html {
+        font-size: 85%;
     }
 }

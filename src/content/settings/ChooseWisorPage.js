@@ -22,7 +22,7 @@ class ChooseWisorPage extends React.PureComponent {
 
     render() {
         const {screen} = this.props;
-        const height = screen.wisieImgHeight * 2;
+        const height = screen.standardImgHeight * 2;
         const groupCount = Math.floor(Math.min(Math.max(screen.contentWidth / height / 1.5, 1), 4));
         const wisorWidth = screen.contentWidth / groupCount;
         const wisors = allPossibleWisors();

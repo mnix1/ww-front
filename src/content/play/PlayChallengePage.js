@@ -14,7 +14,7 @@ class PlayChallengePage extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
-        const iconHeight = screen.wisieImgHeight + 10;
+        const iconHeight = screen.standardImgHeight + 10;
         return <MenuItem
             imgSrc={imgSrc}
             iconHeight={iconHeight}

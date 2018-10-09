@@ -12,7 +12,6 @@ import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
-import MeshBackground from "../../../component/background/MeshBackground";
 import ScreenPage from "../../../component/page/ScreenPage";
 
 class ChallengeHistoryPage extends React.PureComponent {

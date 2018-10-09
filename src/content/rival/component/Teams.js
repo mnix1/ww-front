@@ -10,7 +10,7 @@ class Teams extends React.PureComponent {
 
     renderRelative() {
         const {content, screen, children} = this.props;
-        if (screen.isSmallHeight && !screen.moreHeightThanWidth) {
+        if (!screen.isBigScreen && !screen.verticalOrientation) {
             return this.renderAbsolute();
         }
         return <div>

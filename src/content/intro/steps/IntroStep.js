@@ -50,7 +50,7 @@ class IntroStep extends React.PureComponent {
         if (!_.isNil(wisorHeightFactor)) {
             return wisorHeightFactor;
         }
-        if (!screen.moreHeightThanWidth && screen.isSmallHeight) {
+        if (!screen.verticalOrientation && screen.isSmallHeight) {
             return 3;
         }
         if (screen.isSmallHeight) {
@@ -64,7 +64,7 @@ class IntroStep extends React.PureComponent {
         if (!_.isNil(maxWidth)) {
             return maxWidth;
         }
-        if (screen.moreHeightThanWidth) {
+        if (screen.verticalOrientation) {
             return Math.min(screen.contentWidth * 0.9, 800);
         }
         return Math.min(screen.contentWidth * 0.7, 800);
@@ -83,7 +83,7 @@ class IntroStep extends React.PureComponent {
         const {screen, stepId, children, onContinueClick, renderContinue, renderHide, render, width, enableOpacity} = this.props;
         const {hidden} = this.state;
         const style = {width, maxWidth: this.maxWidth};
-        const wisorHeight = screen.wisieImgHeight * this.wisorHeightFactor;
+        const wisorHeight = screen.standardImgHeight * this.wisorHeightFactor;
         const wisorWidth = wisorHeight * .68;
         return render && !hidden && <div className='boxShadow relative paddingRem'
                                          style={style}>

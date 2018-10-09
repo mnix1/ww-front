@@ -67,7 +67,7 @@ class AppPages extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, className) {
         const {screen, lang, onRouteChange} = this.props;
-        const iconHeight = screen.wisieImgHeight + 10;
+        const iconHeight = screen.standardImgHeight + 10;
         return <MenuItem className={className} onClick={onRouteChange} lang={lang} imgSrc={imgSrc}
                          iconHeight={iconHeight} route={route}/>
     }

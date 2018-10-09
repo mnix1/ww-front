@@ -38,7 +38,7 @@ class AvailableSkills extends React.PureComponent {
             <div className='justifyCenter'>
                 {keys.map(e => <Skill
                     key={e}
-                    imgHeight={screen.wisieImgHeight / 2 - 5}
+                    imgHeight={screen.standardImgHeight / 2 - 5}
                     disabled={(disabled && e !== SKILL_HINT) || !skills[e].canUse}
                     used={skills[e].used}
                     onClick={() => this.handleSkillClick(e)}

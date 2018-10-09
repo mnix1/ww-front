@@ -71,7 +71,7 @@ class RivalPageAnswered extends React.PureComponent {
         const {content, screen} = this.props;
         const {opponent, profile} = content;
         const answeredProfile = this.meAnswered ? profile : opponent;
-        const imgHeight = screen.wisieImgHeight;
+        const imgHeight = screen.standardImgHeight;
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageCenterVertical'>
                 <Profile {...answeredProfile}/>

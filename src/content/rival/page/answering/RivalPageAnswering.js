@@ -18,7 +18,7 @@ class RivalPageAnswering extends React.PureComponent {
         if (imgHeight) {
             return imgHeight;
         }
-        return screen.wisieImgHeight - 10;
+        return screen.standardImgHeight - 10;
     }
 
     handleAnswerClick = (answerId) => {

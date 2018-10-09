@@ -71,7 +71,7 @@ class RivalPageClosed extends React.PureComponent {
             </div>
             <div className='pageHeader'>
                 {battle && <Profile
-                    imgHeight={screen.wisieImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
+                    imgHeight={screen.standardImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
                 {!battle && <Team
                     className='justifyCenter overflowHidden width100'
                     contentClassName='overflowXAuto justifyStart'

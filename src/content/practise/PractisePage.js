@@ -22,7 +22,6 @@ import Rating from "../../component/rating/Rating";
 import {getWisor} from "../../util/wisorHelper";
 import {MESH_4} from "../../component/background/MeshBackground";
 import TaskDescription from "../rival/component/TaskDescription";
-import {remToPixels} from "../../util/fontHelper";
 import {Loading} from "../../component/loading/Loading";
 import {isRepFulfilled} from "../../util/repositoryHelper";
 import ScreenPage from "../../component/page/ScreenPage";
@@ -36,10 +35,10 @@ class PractisePage extends React.PureComponent {
             <div className="pageHeader"><Rating valueString={difficultyLevel} onChange={onDifficultLevelChange}/></div>
             <div className="pageHeader">{getText(TEXT_CHOOSE_CATEGORY)}</div>
             <SimpleObjectGroup
-                setHeight={false}
                 objects={OBJECTS_CATEGORY_CIRCLE_WITH_RANDOM}
                 onObjectClick={onCategoryChange}
-                screen={{...screen, contentHeight: screen.contentHeight - 70}}
+                remOffsetHeight={5}
+                screen={screen}
             />
         </div>;
     }
@@ -56,7 +55,7 @@ class PractisePage extends React.PureComponent {
                              task={question}/>
             {answerId && correctAnswerId && this.renderPlayAgain()}
             <Task key='task'
-                  offsetHeight={remToPixels(3)}
+                  contentHeightCalculator={(screen) => screen.contentHeight - screen.fontSizeRem * 4}
                   screen={screen}
                   skipAnimation={skipAnimation}
                   onSkipAnimationChange={onSkipAnimationChange}
@@ -103,6 +102,7 @@ export default connect(
         skipAnimation: state.practise.skipAnimation,
         practiseStartRep: state.repository.practiseStart,
         practiseEndRep: state.repository.practiseEnd,
+        path: state.router.location.pathname
     }),
     (dispatch) => ({
         onCategoryChange: (e) => {

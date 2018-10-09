@@ -39,7 +39,7 @@ export default class ChoosingTaskProps extends React.PureComponent {
 
     renderChooseCategory() {
         const {screen, content, communication, onCategoryChange} = this.props;
-        const objects = screen.moreHeightThanWidth ? OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM : OBJECTS_CATEGORY_WIDTH_WITH_RANDOM;
+        const objects = screen.verticalOrientation ? OBJECTS_CATEGORY_HEIGHT_WITH_RANDOM : OBJECTS_CATEGORY_WIDTH_WITH_RANDOM;
         return <SimpleObjectGroup
             setHeight={false}
             objects={objects}

@@ -13,7 +13,7 @@ class ShowOption extends React.PureComponent {
         if (path === SETTINGS_ROUTE || ((rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight)) {
             return null;
         }
-        const imgHeight = screen.isSmallHeight ? 30 : 40;
+        const imgHeight = screen.topBarFontSizeRem;
         return <div className={`showOption ${INTRO_STEP_GO_TO_OPTIONS}`}>
             <FaCogs size={imgHeight} onClick={ROUTE_RIVAL_TYPE[path] ? onOptionShowChange : () => onRouteChange(SETTINGS_ROUTE)}/>
         </div>;

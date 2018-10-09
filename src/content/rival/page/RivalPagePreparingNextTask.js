@@ -17,7 +17,7 @@ class RivalPagePreparingNextTask extends React.PureComponent {
             taskCount={content.taskCount}
             renderTaskPoints={battle}
             renderTaskCount={battle}
-            small={screen.isSmallHeight}
+            small={!screen.isBigScreen}
             className='justifyCenter flexColumn pageHeader'>
             <div className='pageHeader'>
                 <div>{getText(TEXT_QUESTION_PREPARING) + ' '}

@@ -12,7 +12,7 @@ class ActiveMember extends React.PureComponent {
         if (imgHeight) {
             return imgHeight;
         }
-        return screen.wisieImgHeight - 10;
+        return screen.standardImgHeight - 10;
     }
 
     renderProfile(profile) {

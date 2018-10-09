@@ -18,6 +18,7 @@ import Clock from "react-clock";
 import {Equation} from "react-equation";
 import {getTextContent} from "../../lang/langText";
 import DigitalClock from "../digital-clock/DigitalClock";
+import {clockRemSize} from "../../util/screenHelper";
 
 export function prepareQuestionTiles(rival) {
     const {question, screen} = rival.props;
@@ -85,7 +86,7 @@ function prepareQuestionTextEquationTile(question) {
 function prepareQuestionTextAnalogClockTile(question, screen) {
     return [textTile({question, xTarget: .3, widthFactor: 1.2}), {
         id: 'questionDate', onClick: _.noop,
-        content: <Clock size={screen.isSmallHeight ? 80 : 130} value={new Date(getDateContent(question))}/>,
+        content: <Clock size={clockRemSize(screen) * screen.fontSizeRem} value={new Date(getDateContent(question))}/>,
         yTarget: .5, xTarget: .7, widthFactor: 0.9
     }];
 }

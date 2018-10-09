@@ -11,17 +11,15 @@ export default class AnimationObjectGroup extends React.PureComponent {
         animationObjects: PropTypes.array,
         screen: PropTypes.object,
         onObjectClick: PropTypes.func,
-        anime: PropTypes.bool,
         contentHeightCalculator: PropTypes.func
     };
 
     static defaultProps = {
         questionObjects: [],
         animationObjects: [],
-        anime: true,
         contentHeightCalculator: (screen) => {
-            const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
-            return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
+            const {contentHeight, verticalOrientation, isSmallHeight} = screen;
+            return contentHeight / 10 * ((!verticalOrientation && isSmallHeight) ? 7 : 8);
         }
     };
 
@@ -40,11 +38,10 @@ export default class AnimationObjectGroup extends React.PureComponent {
 
     prepareQuestionObjects() {
         const {questionObjects, screen} = this.props;
-        const {contentWidth, resolution} = screen;
+        const {contentWidth} = screen;
         const questionObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: questionObjects.length,
-            max: 400
         });
         return questionObjects.map(o => {
             const objectHeight = this.questionHeight();
@@ -72,7 +69,6 @@ export default class AnimationObjectGroup extends React.PureComponent {
             const objectHeight = calculateObjectDimension({
                 dim: this.animationHeight(),
                 count: (animationObjects.length) / 1.5,
-                min: 40
             }) * _.defaultTo(o.heightFactor, 1);
             const top = o.yTarget * this.animationHeight() - objectHeight / 2 - 20;
             const left = o.xTarget * contentWidth - animationObjectWidth / 2;

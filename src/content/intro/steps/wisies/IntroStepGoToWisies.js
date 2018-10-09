@@ -32,7 +32,7 @@ class IntroStepGoToWisies extends React.PureComponent {
     render() {
         const {screen, profile} = this.props;
         const {name} = profile;
-        const width = !screen.moreHeightThanWidth ? screen.contentWidth * 0.5 : undefined;
+        const width = !screen.verticalOrientation ? screen.contentWidth * 0.5 : undefined;
         return <IntroStep stepId={INTRO_STEP_GO_TO_WISIES} renderContinue={false} width={width}>
             <div>
                 <div

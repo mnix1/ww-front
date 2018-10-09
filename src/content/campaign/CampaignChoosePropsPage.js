@@ -29,9 +29,9 @@ class CampaignChoosePropsPage extends React.PureComponent {
     get imgHeight() {
         const {screen} = this.props;
         if (screen.isSmallHeight) {
-            return screen.wisieImgHeight;
+            return screen.standardImgHeight;
         }
-        return screen.wisieImgHeight * 1.5;
+        return screen.standardImgHeight * 1.5;
     }
 
     renderCampaignTypes() {

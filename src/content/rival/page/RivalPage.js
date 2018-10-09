@@ -6,7 +6,6 @@ import RivalPagePreparingNextTask from "./RivalPagePreparingNextTask";
 import RivalPageClosed from "./RivalPageClosed";
 import RivalPageChoosingTaskProps from "./RivalPageChoosingTaskProps";
 import RivalPageChoosingWhoAnswer from "./RivalPageChoosingWhoAnswer";
-import MeshBackground, {MESH_4} from "../../../component/background/MeshBackground";
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
     RIVAL_CONTENT_STATUS_ANSWERING,

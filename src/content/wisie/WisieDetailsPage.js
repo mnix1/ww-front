@@ -140,7 +140,7 @@ class WisieDetailsPage extends React.PureComponent {
         return <Wisie
             renderSkills={true
             } hobbiesAndSkillsWidth100={true}
-            imgHeight={screen.wisieImgHeight + 30}
+            imgHeight={screen.standardImgHeight + 30}
             imgHobbyAndSkillHeight={upgrade ? 24 : undefined}
             {...wisie}
             customHobbies={upgrade && this.renderWisieCustomHobbies(wisie)}

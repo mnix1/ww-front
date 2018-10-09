@@ -10,7 +10,7 @@ class RivalPageChangingTask extends React.PureComponent {
         return <div className='pageCenterHorizontal whoAnswered'>
             <div className='pageCenterVertical'>
                 <div className='paddingBottomRem'>{getText(TEXT_CHANGE_TASK_ACCEPTED)}...</div>
-                <img alt='' src={getSkill(SKILL_CHANGE_TASK)} height={screen.wisieImgHeight}/>
+                <img alt='' src={getSkill(SKILL_CHANGE_TASK)} height={screen.standardImgHeight}/>
             </div>
         </div>
     }

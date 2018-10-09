@@ -22,6 +22,7 @@ export default class Task extends React.PureComponent {
         onSkipAnimationChange: PropTypes.func,
         style: PropTypes.object,
         className: PropTypes.string,
+        contentHeightCalculator: PropTypes.func,
     };
 
     static defaultProps = {
@@ -31,8 +32,9 @@ export default class Task extends React.PureComponent {
     };
 
     renderTask() {
-        const {onAnswerClick, answerId, screen} = this.props;
+        const {onAnswerClick, contentHeightCalculator, answerId, screen} = this.props;
         return <TaskObjectGroup
+            contentHeightCalculator={contentHeightCalculator}
             questionObjects={prepareQuestionTiles(this)}
             answerObjects={prepareAnswerTiles(this)}
             onObjectClick={(e) => !_.isNil(e.id) && !answerId && onAnswerClick(e.id)}
@@ -41,8 +43,9 @@ export default class Task extends React.PureComponent {
     }
 
     renderAnimation() {
-        const {onSkipAnimationChange, screen} = this.props;
+        const {onSkipAnimationChange, screen, contentHeightCalculator} = this.props;
         return <AnimationObjectGroup
+            contentHeightCalculator={contentHeightCalculator}
             onObjectClick={() => onSkipAnimationChange(true)}
             questionObjects={prepareAnimationDescription(this)}
             animationObjects={prepareAnimationTiles(this)}
@@ -63,9 +66,9 @@ export default class Task extends React.PureComponent {
     }
 
     render() {
-        const {style, screen, className} = this.props;
-        return <div className={`${className ? className : ''} task`} style={{height: screen.contentHeight, ...style}}>
-            <div className='taskContent'>{this.renderContent()}</div>
+        const {style, className} = this.props;
+        return <div className={`${className ? className : ''} task`} style={{...style}}>
+            {this.renderContent()}
         </div>
     }
 }

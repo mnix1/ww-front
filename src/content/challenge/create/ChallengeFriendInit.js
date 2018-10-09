@@ -14,7 +14,6 @@ import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
 import {MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
-import MeshBackground from "../../../component/background/MeshBackground";
 import ScreenPage from "../../../component/page/ScreenPage";
 
 class ChallengeFriendPage extends React.PureComponent {
@@ -23,7 +22,7 @@ class ChallengeFriendPage extends React.PureComponent {
         const {tags, screen, onFriendToggle} = this.props;
         return <Profile
             blackBackground={true}
-            imgHeight={screen.wisieImgHeight}
+            imgHeight={screen.standardImgHeight}
             key={friend.tag}
             {...friend}
             actions={

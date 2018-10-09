@@ -16,6 +16,7 @@ import Clock from "react-clock";
 import {Equation} from "react-equation";
 import {getTextContent} from "../../lang/langText";
 import DigitalClock from "../digital-clock/DigitalClock";
+import {clockRemSize} from "../../util/screenHelper";
 
 export function prepareAnswerTiles(rival) {
     const {answers, answerId, correctAnswerId, screen} = rival.props;
@@ -45,7 +46,7 @@ function prepareContent(answerRenderer, ans, screen) {
     } else if (asContentHtml) {
         content = getHtmlContent(ans);
     } else if (asContentAnalogClock) {
-        content = <Clock size={screen.isSmallHeight ? 80 : 120} value={new Date(getDateContent(ans))}/>
+        content = <Clock size={clockRemSize(screen) * screen.fontSizeRem} value={new Date(getDateContent(ans))}/>
     } else if (asContentEquation) {
         content = <Equation className='equation'>{getTextContent(ans)}</Equation>
     } else if (asContentDigitalClock) {
@@ -62,7 +63,7 @@ function prepareStyle(ans, i, answerId, correctAnswerId, answerRenderer, screen)
     const isUserAnswer = answerId === ans.id;
     const isCorrectAnswer = correctAnswerId === ans.id;
     return {
-        heightFactor: answerRenderer === ANALOG_CLOCK ? (screen.moreHeightThanWidth ? 1.16 : 1.32) : answerRenderer === DIGITAL_CLOCK ? 1.1 : 1,
+        heightFactor: answerRenderer === ANALOG_CLOCK ? (screen.verticalOrientation ? 1.16 : 1.32) : answerRenderer === DIGITAL_CLOCK ? 1.1 : 1,
         material: prepareAnswerMaterial(i, ans.id, answerId, correctAnswerId),
         border: isUserAnswer ? '4px solid' : isCorrectAnswer ? '4px dotted' : undefined,
         borderColor: isUserAnswer ? CREAM_COLOR : isCorrectAnswer ? CREAM_COLOR : undefined
@@ -86,8 +87,8 @@ function preparePositionTargetCreator(screen, answers) {
         const v1 = 0.5 + _.toInteger(Math.cos(f) * 4) / 4 * factor1;
         const v2 = 0.5 - (sin < 0 ? -1 : 1) * factor2;
         return {
-            xTarget: screen.moreHeightThanWidth || answersCount === 2 ? v2 : v1,
-            yTarget: screen.moreHeightThanWidth || answersCount === 2 ? v1 : v2
+            xTarget: screen.verticalOrientation || answersCount === 2 ? v2 : v1,
+            yTarget: screen.verticalOrientation || answersCount === 2 ? v1 : v2
         }
     }
 }

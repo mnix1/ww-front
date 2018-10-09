@@ -11,11 +11,8 @@
     opacity: 0;
     animation: fadein 0.2s 0s;
     animation-fill-mode: forwards;
-    font-size: 1rem;
+    font-size: 0.9rem;
     justify-content: center;
-}
-
-.task .taskContent {
     bottom: 0;
     position: absolute;
 }

@@ -53,6 +53,7 @@ class App extends React.PureComponent {
                 <IntroUpdate/>
                 <Intro/>
             </div>}
+            {/*<div className='absolute right0 bottom0 blackBackground'>{JSON.stringify(screen)}</div>*/}
             {window.auto && React.createElement(window.auto, {
                 ...window.prepareAuto()
             })}

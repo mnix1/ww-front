@@ -12,17 +12,15 @@ export default class TaskObjectGroup extends React.PureComponent {
         answerObjects: PropTypes.array,
         screen: PropTypes.object,
         onObjectClick: PropTypes.func,
-        anime: PropTypes.bool,
         contentHeightCalculator: PropTypes.func
     };
 
     static defaultProps = {
         questionObjects: [],
         answerObjects: [],
-        anime: true,
         contentHeightCalculator: (screen) => {
-            const {contentHeight, moreHeightThanWidth, isSmallHeight} = screen;
-            return contentHeight / 10 * ((!moreHeightThanWidth && isSmallHeight) ? 7 : 8);
+            const {contentHeight, verticalOrientation, isSmallHeight} = screen;
+            return contentHeight / 10 * ((!verticalOrientation && isSmallHeight) ? 7 : 8);
         }
     };
 
@@ -33,7 +31,7 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     questionHeight() {
         const {screen} = this.props;
-        if (screen.moreHeightThanWidth) {
+        if (screen.verticalOrientation) {
             return this.contentHeight() * 13 / 48;
         }
         return this.contentHeight() * 17 / 48;
@@ -41,7 +39,7 @@ export default class TaskObjectGroup extends React.PureComponent {
 
     answerHeight() {
         const {screen} = this.props;
-        if (screen.moreHeightThanWidth) {
+        if (screen.verticalOrientation) {
             return this.contentHeight() * 35 / 48;
         }
         return this.contentHeight() * 31 / 48;
@@ -61,7 +59,6 @@ export default class TaskObjectGroup extends React.PureComponent {
         const questionObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: questionObjects.length,
-            max: 400
         });
         return questionObjects.map(o => {
             const widthFactor = _.defaultTo(o.widthFactor, 1);
@@ -87,31 +84,27 @@ export default class TaskObjectGroup extends React.PureComponent {
     prepareCount(forWidth) {
         const {answerObjects, screen} = this.props;
         const screenFactor = forWidth
-            ? (screen.moreHeightThanWidth ? 4 : 2)
-            : (screen.moreHeightThanWidth ? 2 : 4);
+            ? (screen.verticalOrientation ? 4 : 2)
+            : (screen.verticalOrientation ? 2 : 4);
         return Math.ceil(Math.max(answerObjects.length, 5) / screenFactor);
     }
 
     prepareAnswerObjects() {
         const {answerObjects, screen} = this.props;
-        const {contentWidth, isSmallHeight, isSmallWidth} = screen;
+        const {contentWidth} = screen;
         const answerObjectWidth = calculateObjectDimension({
             dim: contentWidth,
             count: this.prepareCount(true),
-            max: isSmallWidth ? 150 : 200
         });
         return answerObjects.map(o => {
             const objectHeight = calculateObjectDimension({
                 dim: this.answerHeight(),
                 count: this.prepareCount(false),
-                min: 30,
-                max: isSmallHeight ? 90 : 100
             }) * _.defaultTo(o.heightFactor, 1);
             const top = o.yTarget * this.answerHeight() - objectHeight / 2;
             const left = o.xTarget * contentWidth - answerObjectWidth / 2;
             const background = _.get(o, 'material.background', BLUE_COLOR);
             return {
-                // rendererTransformer: this.rendererTransformerCreator(o),
                 ...o,
                 content: this.prepareContent(o, background),
                 objectStyle: {
