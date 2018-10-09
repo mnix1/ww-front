@@ -220,7 +220,7 @@ const TEXTS = {
         [TEXT_DRAW_CATEGORY]: 'Losowanie kategorii',
         [TEXT_DRAW_DIFFICULT]: 'Losowanie trudności',
         [TEXT_ANSWER]: 'Odpowiedz',
-        [TEXT_ANSWERED]: 'Odpowiedział(a)',
+        [TEXT_ANSWERED]: 'Odpowiada',
         [TEXT_CORRECT]: 'Poprawnie',
         [TEXT_WRONG]: 'Błędnie',
         [TEXT_CONTINUE]: 'Kontynuuj',

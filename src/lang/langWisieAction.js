@@ -78,7 +78,7 @@ const HERO_ACTION_LABELS = {
         [LOOKING_FOR_ANSWER]: 'Tylko która to?',
 
         [NO_FOUND_ANSWER_LOOKING_FOR]: 'Nie ma takiej',
-        [FOUND_ANSWER_LOOKING_FOR]: 'Znalazłem odpowiedź',
+        [FOUND_ANSWER_LOOKING_FOR]: 'To chyba ta odpowiedź',
 
         [NOT_SURE_OF_ANSWER]: 'Ale o co chodzi?',
         [RECOGNIZING_ANSWERS]: 'Poznaję odpowiedzi',
@@ -103,7 +103,7 @@ const HERO_ACTION_LABELS = {
         [WAITING_FOR_OPPONENT_EAT_PIZZA]: "(Czeka aż przeciwnik zje...)",
         [CLEANING_AFTER_PIZZA]: "Ale bałagan! Muszę posprzątać...",
         [EATING_PIZZA]: "Omomomom, pychotka!",
-        [EATEN_PIZZA]: "Pojadłem. Teraz jestem śpiący...",
+        [EATEN_PIZZA]: "Pojedzone. Teraz tylko spać...",
 
         [WANTS_TO_CHANGE_TASK]: "(Chce zmienić pytanie...)",
         [SUBMITS_APPLICATION]: "Składam wniosek...",
@@ -114,26 +114,26 @@ const HERO_ACTION_LABELS = {
         [WONT_USE_HINT]: "Raczej nie",
 
         [PUTTING_ON_COVERALL]: "(Zakłada kombinezon...)",
-        [COVERALL_READY]: "Teraz jestem bezpieczny",
+        [COVERALL_READY]: "Teraz jest bezpiecznie",
 
         [WATER_PISTOL_USED_ON_IT]: "(Spryskano wodą)",
         [CLEANING]: "(Sprząta...)",
 
         [PREPARING_KIDNAPPING]: "(Przygotowuje porwanie...)",
         [TRYING_TO_KIDNAP]: "(Próbuje porwać przeciwnika...)",
-        [KIDNAPPING_SUCCEEDED]: "Porwałem przeciwnika!",
+        [KIDNAPPING_SUCCEEDED]: "Porwanie się udało!",
         [KIDNAPPING_FAILED]: "Nie udało mi się",
         [TRYING_TO_DEFEND]: "Co się dzieje?!",
-        [WAS_KIDNAPPED]: "Zostałem porwany",
+        [WAS_KIDNAPPED]: "Porwano mnie!",
         [WAS_NOT_KIDNAPPED]: "Ufff, było blisko",
         [CHANGING_CLOTHES]: "Przebieram się...",
 
         [PREPARING_DISGUISE]: "(Przebiera się w ducha...)",
         [TRYING_TO_SCARE]: "BUUUUUU!!!",
-        [SCARE_SUCCEEDED]: "Przestraszyłem przeciwnika",
+        [SCARE_SUCCEEDED]: "(Przestraszono przeciwnika)",
         [SCARE_FAILED]: "Nic to nie dało",
         [REMOVING_DISGUISE]: "Może zdejmę to przebranie...",
-        [WAS_CAUGHT]: "O nie, zostałem zdyskwalifikowany",
+        [WAS_CAUGHT]: "O nie, dyskwalifikacja!",
         [WAS_NOT_CAUGHT]: "Nikt się nie zorientował",
         [SCARING_ON_IT]: "Jeju, co to?!",
         [RUN_AWAY]: "Ratuj się kto może!",
@@ -148,7 +148,7 @@ const HERO_ACTION_LABELS = {
         [YAWNING]: '(Ziewa...)',
         [HUMMING_A_SONG]: '(Nuci piosenkę...)',
         [WATCHES_THE_AUDIENCE]: '(Ogląda publiczność...)',
-        [HUNG_UP]: '(Zawiesił się...)',
+        [HUNG_UP]: 'A może tak wyjechać w Bieszczady?',
         [HAS_MUSCLE_SPASM]: '(Ma skurcz mięśni...)',
         [NEED_GO_TO_TOILET]: '(Musi do toalety...)',
     },
