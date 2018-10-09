@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Loading} from "../../../component/loading/Loading";
 import Profile from "../../../component/profile/Profile";
-import MeshBackground from "../../../component/background/MeshBackground";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
-import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR, CLASSIFICATION_ROUTE_RIVAL_TYPE} from "../../../util/rivalHelper";
+import {CLASSIFICATION_ROUTE_RIVAL_TYPE, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../../util/rivalHelper";
 import {getText, TEXT_RANKING} from "../../../lang/langText";
 import position1 from '../../../media/image/position/position1.svg';
 import position2 from '../../../media/image/position/position2.svg';
@@ -13,6 +12,7 @@ import positionLow from '../../../media/image/position/positionLow.svg';
 import _ from 'lodash';
 import cn from 'classnames';
 import ClassificationListFetch from "./ClassificationListFetch";
+import ScreenPage from "../../../component/page/ScreenPage";
 
 class ClassificationPage extends React.PureComponent {
 
@@ -68,22 +68,17 @@ class ClassificationPage extends React.PureComponent {
     };
 
     render() {
-        const {screen, path} = this.props;
-        return <div className='page classificationPage'
-                    style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
-            <div className='pageContent overflowAuto'>
-                <div className='pageHeader'>{getText(TEXT_RANKING)}</div>
-                {this.renderContent()}
-            </div>
+        const {path} = this.props;
+        return <ScreenPage>
+            <div className='pageHeader'>{getText(TEXT_RANKING)}</div>
+            {this.renderContent()}
             <ClassificationListFetch path={path}/>
-        </div>;
+        </ScreenPage>;
     }
 }
 
 export default connect(
     (state) => ({
-        screen: state.screen,
         profile: state.profile.profile,
         path: state.router.location.pathname,
         classificationListRep: state.repository.classificationList,

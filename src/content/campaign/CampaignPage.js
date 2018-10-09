@@ -1,7 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './styles.css';
-import MeshBackground from "../../component/background/MeshBackground";
 import {isRepFulfilled} from "../../util/repositoryHelper";
 import {Loading} from "../../component/loading/Loading";
 import CampaignChoosePropsPage from "./CampaignChoosePropsPage";
@@ -14,6 +12,7 @@ import {campaignInitChanged} from "../../redux/reducer/campaign";
 import _ from 'lodash';
 import CampaignActivePage from "./CampaignActivePage";
 import {statusChanged} from "../../redux/reducer/rival";
+import ScreenPage from "../../component/page/ScreenPage";
 
 class CampaignPage extends React.PureComponent {
 
@@ -46,21 +45,17 @@ class CampaignPage extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
-        return <div className='page campaignPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
+        return <ScreenPage customContent={true}>
             <Switch>
                 <Route exact path={CAMPAIGN_ROUTE} render={() => this.renderContent()}/>
                 <Route exact path={CAMPAIGN_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
             </Switch>
-        </div>;
+        </ScreenPage>;
     }
 }
 
 export default connect(
     (state) => ({
-        screen: state.screen,
-        path: state.router.location.pathname,
         campaignListRep: state.repository.campaignList,
         campaignActiveRep: state.repository.campaignActive,
     }),

@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './styles.css';
 import _ from 'lodash';
 import {Loading} from "../../component/loading/Loading";
 import {getText, TEXT_BOOKSHELF} from "../../lang/langText";
@@ -9,10 +8,9 @@ import ShopBook from "../../component/book/ShopBook";
 import {bookFilterLevelChanged, buyBookIdChanged, showBooksChanged} from "../../redux/reducer/shop";
 import {ERROR_NO_SPACE_FOR_BOOK, ERROR_NOT_ENOUGH_RESOURCES} from "../../lang/langError";
 import {noticeError} from "../../component/notification/noticeError";
-import {checkRepValueCode} from "../../util/repositoryHelper";
+import {checkRepValueCode, isRepFulfilled} from "../../util/repositoryHelper";
 import Rating from "../../component/rating/Rating";
-import {FaPlusCircle, FaMinusCircle} from "react-icons/fa";
-import {isRepFulfilled} from "../../util/repositoryHelper";
+import {FaMinusCircle, FaPlusCircle} from "react-icons/fa";
 import {push} from "connected-react-router";
 import {PROFILE_ROUTE} from "../routes";
 
@@ -39,7 +37,7 @@ class ShopPageBook extends React.PureComponent {
     }
 
     renderBooksGroup(books, i) {
-        return <div key={i} className='justifyAround booksGroup'>
+        return <div key={i} className='justifyAround booksGroup' style={{marginBottom: '1rem'}}>
             {books.map(e => this.renderBook(e))}
         </div>;
     }
@@ -94,7 +92,10 @@ class ShopPageBook extends React.PureComponent {
                     {!showBooks
                     && <FaPlusCircle className={iconClassName} onClick={() => onShowBookChanged(true)}/>}
                     {showBooks
-                    && <FaMinusCircle className={iconClassName} onClick={() => {onShowBookChanged(false);onBookFilterLevelChanged(undefined)}}/>}
+                    && <FaMinusCircle className={iconClassName} onClick={() => {
+                        onShowBookChanged(false);
+                        onBookFilterLevelChanged(undefined)
+                    }}/>}
                 </div>
             </div>
             {this.renderBooks()}

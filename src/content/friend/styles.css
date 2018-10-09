@@ -1,19 +1,5 @@
-.suggestedFriendsContainer {
-    margin-top: 0.25rem;
-    display: inline-block;
-}
-.friendContent {
-    overflow: auto;
-}
-.rightTopContainer {
-    float: right;
-    margin: 0.25rem;
-}
 .rightTopContainer:after {
     content: "";
     clear: both;
     display: block;
-}
-.rightTopContainer .button {
-    float: right;
 }

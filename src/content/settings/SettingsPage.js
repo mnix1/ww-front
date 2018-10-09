@@ -10,9 +10,9 @@ import ChooseWisorPage from "./ChooseWisorPage";
 import {FaCheckCircle, FaSignOutAlt} from 'react-icons/fa';
 import {chosenNickAcceptChanged, chosenNickChanged} from "../../redux/reducer/settings";
 import _ from 'lodash';
-import MeshBackground from "../../component/background/MeshBackground";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {INTRO_STEP_GO_TO_WISOR, INTRO_STEP_OPTIONS, INTRO_STEP_WISOR} from "../intro/introHelper";
+import ScreenPage from "../../component/page/ScreenPage";
 
 export const NAME_MAX_LENGTH = 20;
 
@@ -61,16 +61,12 @@ class SettingsPage extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
-        return <div className='page settingsPage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
-            <div className={`pageContent overflowAuto ${INTRO_STEP_WISOR}`}>
-                <Switch>
-                    <Route exact path={SETTINGS_CHOOSE_WISOR_ROUTE} render={() => <ChooseWisorPage/>}/>
-                    <Route exact path={SETTINGS_ROUTE} render={() => this.renderContent()}/>
-                </Switch>
-            </div>
-        </div>;
+        return <ScreenPage contentClassName={INTRO_STEP_WISOR}>
+            <Switch>
+                <Route exact path={SETTINGS_CHOOSE_WISOR_ROUTE} render={() => <ChooseWisorPage/>}/>
+                <Route exact path={SETTINGS_ROUTE} render={() => this.renderContent()}/>
+            </Switch>
+        </ScreenPage>
     }
 }
 

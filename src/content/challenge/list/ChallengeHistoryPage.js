@@ -13,6 +13,7 @@ import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import MeshBackground from "../../../component/background/MeshBackground";
+import ScreenPage from "../../../component/page/ScreenPage";
 
 class ChallengeHistoryPage extends React.PureComponent {
 
@@ -54,19 +55,14 @@ class ChallengeHistoryPage extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
-        return <div className="page" style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
-            <div className="pageContent overflowAuto">
-                {this.renderContent()}
-            </div>
-        </div>
+        return <ScreenPage>
+            {this.renderContent()}
+        </ScreenPage>;
     }
 }
 
 export default connect(
     (state) => ({
-        screen: state.screen,
         challengeListRep: state.repository.challengeList
     }),
     (dispatch) => ({

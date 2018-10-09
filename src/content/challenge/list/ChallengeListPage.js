@@ -20,9 +20,9 @@ import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
 import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
-import MeshBackground from "../../../component/background/MeshBackground";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
+import ScreenPage from "../../../component/page/ScreenPage";
 
 class ChallengeListPage extends React.PureComponent {
 
@@ -73,19 +73,14 @@ class ChallengeListPage extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
-        return <div className="page" style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
-            <div className="pageContent overflowAuto">
-                {this.renderContent()}
-            </div>
-        </div>
+        return <ScreenPage>
+            {this.renderContent()}
+        </ScreenPage>;
     }
 }
 
 export default connect(
     (state) => ({
-        screen: state.screen,
         challengeListRep: state.repository.challengeList,
         profile: state.profile.profile
     }),

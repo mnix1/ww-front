@@ -34,7 +34,7 @@ import Profile from "../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_FRIEND_INIT_ROUTE} from "../routes";
 import {FRIEND_STATUS_ACCEPTED, FRIEND_STATUS_REQUESTED, FRIEND_STATUS_SUGGESTED} from "../../util/friendHelper";
-import MeshBackground from "../../component/background/MeshBackground";
+import ScreenPage from "../../component/page/ScreenPage";
 
 class FriendPage extends React.PureComponent {
 
@@ -121,7 +121,7 @@ class FriendPage extends React.PureComponent {
         }
         const friendsMap = _.keyBy(friends, 'tag');
         const filteredSuggestedFriends = suggestedFriends.filter(e => !friendsMap[e.tag]);
-        return <div className='contentFragment suggestedFriendsContainer'>
+        return <div className='contentFragment marginTopRem inlineBlock'>
             <div
                 className='title'>{getText(_.isEmpty(filteredSuggestedFriends) ? TEXT_NONE_SUGGESTED_FRIENDS : TEXT_SUGGESTED_FRIENDS)}</div>
             {this.renderFriends(filteredSuggestedFriends)}
@@ -130,10 +130,10 @@ class FriendPage extends React.PureComponent {
 
     renderContent() {
         const {onSuggestFriendClick} = this.props;
-        return <div className="pageContent friendContent">
-            <div className='rightTopContainer'>
+        return <div className="pageContent overflowAuto">
+            <div className='marginRem right rightTopContainer'>
                 {this.renderAddFriend()}
-                <Button style={{marginTop: '0.25rem'}} material={BUTTON_MATERIAL_BOX_SHADOW}
+                <Button className='marginTopRem right' material={BUTTON_MATERIAL_BOX_SHADOW}
                         onClick={onSuggestFriendClick}>{getText(TEXT_SUGGEST_FRIENDS)}</Button>
             </div>
             {this.renderActualFriends()}
@@ -144,12 +144,11 @@ class FriendPage extends React.PureComponent {
 
     render() {
         const {addTag, addFriendRep, friendSuggestRep, suggest} = this.props;
-        return <div className="page">
-            <MeshBackground/>
+        return <ScreenPage customContent={true}>
             {this.renderContent()}
             <AddFriendFetch rep={addFriendRep} addTag={addTag}/>
             <FriendSuggestFetch rep={friendSuggestRep} suggest={suggest}/>
-        </div>;
+        </ScreenPage>;
     }
 }
 
@@ -162,7 +161,6 @@ export default connect(
         friendSuggestRep: state.repository.friendSuggest,
         addTag: state.friend.addTag,
         suggest: state.friend.suggest,
-        profile: state.profile.profile,
     }),
     (dispatch) => ({
         onRivalFriendClick: (tag, type) => {

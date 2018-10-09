@@ -21,6 +21,7 @@ import {
 } from "../../../util/rivalHelper";
 import RivalMultiPageAnswer from "./RivalMultiPageAnswer";
 import _ from 'lodash';
+import FullScreenPage from "../../../component/page/FullScreenPage";
 
 class RivalPage extends React.PureComponent {
 
@@ -54,16 +55,9 @@ class RivalPage extends React.PureComponent {
     }
 
     render() {
-        // console.log('RivalPage render');
-        const {screen} = this.props;
-        const style = {
-            height: screen.isSmallHeight ? screen.height : screen.contentHeight,
-            width: screen.isSmallHeight ? screen.width : screen.contentWidth,
-        };
-        return <div className='page warPage overflowHidden' style={style}>
-            <MeshBackground mesh={MESH_4} fullScreen={screen.isSmallHeight}/>
+        return <FullScreenPage className='warPage' customContent={true}>
             {this.renderContent()}
-        </div>
+        </FullScreenPage>
     }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 import './commonStyles.css';
-import './pageStyles.css';
+import '../../component/page/styles.css';
 import {connect} from 'react-redux';
 import CommunicationWebSocket from "./CommunicationWebSocket";
 import {push} from 'connected-react-router'

@@ -15,6 +15,7 @@ import {
     RIVAL_STATUS_CANCELED_RANDOM_OPPONENT,
     RIVAL_STATUS_CLOSED, RIVAL_STATUS_START_RANDOM_OPPONENT,
 } from "../../util/rivalHelper";
+import FragmentPage from "../../component/page/FragmentPage";
 
 class RivalSearchOpponentPage extends React.PureComponent {
 
@@ -49,18 +50,14 @@ class RivalSearchOpponentPage extends React.PureComponent {
     }
 
     render() {
-        return <div className='page'>
-            <div className='pageBackground absoluteBackgroundMix'/>
-            <div className='pageContent'>
-                {this.renderContent()}
-            </div>
-        </div>
+        return <FragmentPage>
+            {this.renderContent()}
+        </FragmentPage>
     }
 }
 
 export default connect(
     (state) => ({
-        screen: state.screen,
         profile: state.profile.profile,
         status: state.rival.status,
         importance: state.rival.rivalImportance,

@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.css';
 import './commonStyles.css';
-import './pageStyles.css';
 import {connect} from 'react-redux';
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";

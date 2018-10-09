@@ -25,6 +25,7 @@ import TaskDescription from "../rival/component/TaskDescription";
 import {remToPixels} from "../../util/fontHelper";
 import {Loading} from "../../component/loading/Loading";
 import {isRepFulfilled} from "../../util/repositoryHelper";
+import ScreenPage from "../../component/page/ScreenPage";
 
 class PractisePage extends React.PureComponent {
 
@@ -79,9 +80,8 @@ class PractisePage extends React.PureComponent {
     }
 
     render() {
-        const {category, difficultyLevel, answerId, screen, practiseStartRep} = this.props;
-        return <div className='page' style={{height: screen.contentHeight}}>
-            <MeshBackground mesh={MESH_4}/>
+        const {category, difficultyLevel, answerId, practiseStartRep} = this.props;
+        return <ScreenPage customContent={true} mesh={MESH_4}>
             <Switch>
                 <Route exact path={TRAINING_ROUTE} render={() => this.renderChooseCategory()}/>
                 <Route path={TRAINING_TASK_ROUTE} render={() => this.renderTask()}/>
@@ -89,7 +89,7 @@ class PractisePage extends React.PureComponent {
             <PractiseStartFetch category={category} difficultyLevel={difficultyLevel}
                                 practiseStartRep={practiseStartRep}/>
             <PractiseEndFetch answerId={answerId} practiseStartRep={practiseStartRep}/>
-        </div>
+        </ScreenPage>
     }
 }
 
@@ -103,7 +103,6 @@ export default connect(
         skipAnimation: state.practise.skipAnimation,
         practiseStartRep: state.repository.practiseStart,
         practiseEndRep: state.repository.practiseEnd,
-        path: state.router.location.pathname
     }),
     (dispatch) => ({
         onCategoryChange: (e) => {

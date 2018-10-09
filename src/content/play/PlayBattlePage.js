@@ -11,6 +11,7 @@ import {push} from "connected-react-router";
 import _ from 'lodash';
 import {RIVAL_IMPORTANCE_FAST, RIVAL_IMPORTANCE_RANKING, RIVAL_TYPE_BATTLE} from "../../util/rivalHelper";
 import {startRandomOpponent} from "../../redux/reducer/rival";
+import FragmentPage from "../../component/page/FragmentPage";
 
 class PlayBattlePage extends React.PureComponent {
 
@@ -41,19 +42,15 @@ class PlayBattlePage extends React.PureComponent {
     }
 
     render() {
-        return <div className='page'>
-            <div className='pageBackground absoluteBackgroundMix'/>
-            <div className='pageContent'>
-                {this.renderMenu()}
-            </div>
-        </div>;
+        return <FragmentPage>
+            {this.renderMenu()}
+        </FragmentPage>
     }
 }
 
 export default connect(
     (state) => ({
         screen: state.screen,
-        path: state.router.location.pathname
     }),
     (dispatch) => ({
         onBattleRandomOpponentClick: (importance) => {

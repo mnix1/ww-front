@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import './styles.css';
 import WisieListPage from "./WisieListPage";
 import WisieExperimentPage from "./WisieExperimentPage";
@@ -9,11 +8,11 @@ import WisieDetailsPage from "./WisieDetailsPage";
 import WisieTeamPage from "./WisieTeamPage";
 import {WISIES_PICK_ROUTE, WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../routes";
 import {Route, Switch} from 'react-router'
-import MeshBackground from "../../component/background/MeshBackground";
 import WisiePickPage from "./WisiePickPage";
 import {INTRO_STEP_EDIT_TEAM, INTRO_STEP_PICK_WISIES} from "../intro/introHelper";
+import ScreenPage from "../../component/page/ScreenPage";
 
-class WisiePage extends React.PureComponent {
+export default class WisiePage extends React.PureComponent {
 
     renderContentList() {
         return <div className='pageContent overflowAuto'>
@@ -42,22 +41,12 @@ class WisiePage extends React.PureComponent {
     }
 
     render() {
-        const {screen} = this.props;
-        return <div className='page wisiePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
+        return <ScreenPage customContent={true}>
             <Switch>
                 <Route exact path={WISIES_ROUTE} render={() => this.renderContentList()}/>
                 <Route path={WISIES_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
                 <Route path={WISIES_PICK_ROUTE} render={() => this.renderContentPick()}/>
             </Switch>
-        </div>;
+        </ScreenPage>
     }
 }
-
-export default connect(
-    (state) => ({
-        screen: state.screen,
-        path: state.router.location.pathname,
-    }),
-    (dispatch) => ({})
-)(WisiePage);

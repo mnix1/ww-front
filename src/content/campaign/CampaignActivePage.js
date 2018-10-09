@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import './styles.css';
 import {getCampaignLabel} from "../../lang/langCampaign";
 import {
     getText,

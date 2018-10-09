@@ -11,6 +11,7 @@ import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import _ from 'lodash';
+import FragmentPage from "../../component/page/FragmentPage";
 
 class PlayPage extends React.PureComponent {
 
@@ -53,12 +54,9 @@ class PlayPage extends React.PureComponent {
     }
 
     render() {
-        return <div className='page'>
-            <div className='pageBackground absoluteBackgroundMix'/>
-            <div className='pageContent'>
-                {this.renderMenu()}
-            </div>
-        </div>;
+        return <FragmentPage>
+            {this.renderMenu()}
+        </FragmentPage>
     }
 }
 
@@ -66,7 +64,6 @@ export default connect(
     (state) => ({
         profile: state.profile.profile,
         screen: state.screen,
-        path: state.router.location.pathname
     }),
     (dispatch) => ({
         onRouteChange: (e) => {

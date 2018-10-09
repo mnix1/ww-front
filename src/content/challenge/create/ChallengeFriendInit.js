@@ -15,6 +15,7 @@ import {MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
 import MeshBackground from "../../../component/background/MeshBackground";
+import ScreenPage from "../../../component/page/ScreenPage";
 
 class ChallengeFriendPage extends React.PureComponent {
 
@@ -62,19 +63,18 @@ class ChallengeFriendPage extends React.PureComponent {
     }
 
     render() {
-        const {tags, friends, screen} = this.props;
+        const {tags, friends} = this.props;
         if (_.isEmpty(friends)) {
             return <div className="pageHeader">{getText(TEXT_NONE_FRIENDS)}</div>;
         }
         const friendsCounter = `(${tags.length}/${Math.min(friends.length, MAX_CHALLENGE_FRIENDS)})`;
-        return <div className='page challengePage' style={{height: screen.contentHeight, width: screen.contentWidth}}>
-            <MeshBackground/>
+        return <ScreenPage customContent={true}>
             <div className="pageHeader">
                 <span>{getText(TEXT_CHALLENGE_ADD_FRIENDS)} {friendsCounter}</span>
             </div>
             {this.renderFriends()}
             {this.renderStartChallenge()}
-        </div>;
+        </ScreenPage>;
     }
 }
 
