@@ -11,8 +11,9 @@ import {Route, Switch} from 'react-router'
 import WisiePickPage from "./WisiePickPage";
 import {INTRO_STEP_EDIT_TEAM, INTRO_STEP_PICK_WISIES} from "../intro/introHelper";
 import ScreenPage from "../../component/page/ScreenPage";
+import {connect} from "react-redux";
 
-export default class WisiePage extends React.PureComponent {
+class WisiePage extends React.PureComponent {
 
     renderContentList() {
         return <div className='pageContent overflowAuto'>
@@ -50,3 +51,11 @@ export default class WisiePage extends React.PureComponent {
         </ScreenPage>
     }
 }
+
+
+export default connect(
+    (state) => ({
+        path: state.router.location.pathname,
+    }),
+    (dispatch) => ({})
+)(WisiePage);

@@ -20,7 +20,7 @@ import ContentWithImage from "../../component/content-with-image/ContentWithImag
 import {DIFFICULT_LEVEL_TO_NAME,} from "../../util/difficultyHelper";
 import Rating from "../../component/rating/Rating";
 import {getWisor} from "../../util/wisorHelper";
-import MeshBackground, {MESH_4} from "../../component/background/MeshBackground";
+import {MESH_4} from "../../component/background/MeshBackground";
 import TaskDescription from "../rival/component/TaskDescription";
 import {remToPixels} from "../../util/fontHelper";
 import {Loading} from "../../component/loading/Loading";

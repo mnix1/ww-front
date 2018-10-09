@@ -58,6 +58,7 @@ export default connect(
     (state) => ({
         campaignListRep: state.repository.campaignList,
         campaignActiveRep: state.repository.campaignActive,
+        path: state.router.location.pathname,
     }),
     (dispatch) => ({
         onStatusChange: () => dispatch(statusChanged(undefined)),

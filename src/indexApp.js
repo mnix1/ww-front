@@ -18,7 +18,7 @@ const store = createStore(
     connectRouter(history)(app), // new root reducer with router state
     compose(applyMiddleware(fetchMiddleware),
         applyMiddleware(routerMiddleware(history)),
-        // window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a
+        window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a
     )
 );
 document.title = getText(TEXT_APP_NAME);
