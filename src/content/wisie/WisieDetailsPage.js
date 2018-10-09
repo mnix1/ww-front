@@ -160,9 +160,9 @@ class WisieDetailsPage extends React.PureComponent {
 
     renderWisieAttributes(wisie) {
         const {upgrade} = this.props;
-        return <div className={`justifyEvenly fontSize08Rem ${INTRO_STEP_WISIE_DETAILS}`}>
+        return <div className={`justifyEvenly ${INTRO_STEP_WISIE_DETAILS}`}>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
-                <div className='justifyCenter'>
+                <div className='justifyCenter fontSize08Rem'>
                     {getText(TEXT_WISDOM)}
                     {upgrade && this.renderUpgradeAttributeCost(WISIE_WISDOM_UPGRADE_COST)}
                 </div>
@@ -174,7 +174,7 @@ class WisieDetailsPage extends React.PureComponent {
                 {this.renderWisieAttribute(wisie, IMAGINATION, WISIE_WISDOM_UPGRADE_COST)}
             </div>
             <div className='flexColumn flex paddingRem marginRem boxShadow'>
-                <div className='justifyCenter'>
+                <div className='justifyCenter fontSize08Rem'>
                     {getText(TEXT_MENTALITY)}
                     {upgrade && this.renderUpgradeAttributeCost(WISIE_MENTAL_UPGRADE_COST)}
                 </div>
@@ -193,11 +193,11 @@ class WisieDetailsPage extends React.PureComponent {
         let change = undefined;
         const pending = this.pending;
         if (!pending && wisie.id === _.get(upgradeAttributeProps, 'id') && upgradeAttributeProps.attribute === attribute) {
-            change = <div className='paddingRightRem' style={{color: GREEN_COLOR}}>(+{this.change})</div>;
+            change = <div className='paddingRightRem fontSize06Rem' style={{color: GREEN_COLOR}}>(+{this.change})</div>;
         } else {
-            change = <div className='paddingRightRem opacity0'>(+0.00)</div>
+            change = <div className='paddingRightRem fontSize06Rem opacity0'>(+0.00)</div>
         }
-        return <div className='justifyBetween paddingTopRem paddingBottomRem'>
+        return <div className='justifyBetween paddingTopRem paddingBottomRem fontSize07Rem'>
             <div className='width100'>
                 <WisieAttribute change={change} wisie={wisie} attribute={attribute}/>
             </div>
