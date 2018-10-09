@@ -1,4 +1,16 @@
+@keyframes fadein {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
 .task {
+    opacity: 0;
+    animation: fadein 0.2s 0s;
+    animation-fill-mode: forwards;
     font-size: 1rem;
     justify-content: center;
 }

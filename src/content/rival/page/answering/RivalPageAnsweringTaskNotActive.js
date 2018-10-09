@@ -148,7 +148,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         const opponentActiveMember = opponentTeam && opponentTeam[opponentActiveIndex];
         const isOpponentWisie = content.opponent && isTeamMemberWisie(opponentActiveMember);
         return <div className='width100 height100 absolute'>
-            <div className='width100 justifyBetween absolute'>
+            <div className='width100 justifyBetween absolute zIndex1'>
                 <div style={{width: '14rem'}}>
                     {this.renderTeamMember(isOpponentWisie)}
                 </div>
