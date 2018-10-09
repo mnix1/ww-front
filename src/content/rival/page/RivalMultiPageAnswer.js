@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
     RIVAL_CONTENT_STATUS_ANSWERING,
-    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT
+    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT, RIVAL_CONTENT_STATUS_CHANGING_TASK
 } from "../../../util/rivalHelper";
 import RivalPageAnswered from "./RivalPageAnswered";
 import RivalPageAnsweringTimeout from "./RivalPageAnsweringTimeout";
 import RivalPageAnswering from "./answering/RivalPageAnswering";
+import RivalPageChangingTask from "./RivalPageChangingTask";
 
 class RivalMultiPageAnswer extends React.PureComponent {
 
@@ -22,7 +23,10 @@ class RivalMultiPageAnswer extends React.PureComponent {
     componentDidUpdate() {
         const {rivalStatus} = this.props;
         if (this.state.component === 0 && rivalStatus !== RIVAL_CONTENT_STATUS_ANSWERING) {
-            const component = rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED ? 2 : rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT ? 3 : 0;
+            const component = rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED
+                ? 2 : rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT
+                    ? 3 : rivalStatus === RIVAL_CONTENT_STATUS_CHANGING_TASK
+                        ? 4 : 0;
             this.setState({component: 1});
             setTimeout(() => {
                 this.setState({component});
@@ -39,6 +43,9 @@ class RivalMultiPageAnswer extends React.PureComponent {
         }
         if (component === 3 || (component === undefined && rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT)) {
             return <RivalPageAnsweringTimeout/>
+        }
+        if (component === 4 || (component === undefined && rivalStatus === RIVAL_CONTENT_STATUS_CHANGING_TASK)) {
+            return <RivalPageChangingTask/>
         }
         return <RivalPageAnswering/>;
     }

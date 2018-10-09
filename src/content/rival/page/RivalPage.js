@@ -10,7 +10,7 @@ import MeshBackground, {MESH_4} from "../../../component/background/MeshBackgrou
 import {
     RIVAL_CONTENT_STATUS_ANSWERED,
     RIVAL_CONTENT_STATUS_ANSWERING,
-    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT, RIVAL_CONTENT_STATUS_CHANGE_TASK,
+    RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT, RIVAL_CONTENT_STATUS_CHANGING_TASK,
     RIVAL_CONTENT_STATUS_CHOOSING_TASK_PROPS,
     RIVAL_CONTENT_STATUS_CHOOSING_WHO_ANSWER,
     RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS,
@@ -29,7 +29,10 @@ class RivalPage extends React.PureComponent {
         if (!rivalStatus) {
             return null;
         }
-        if (rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
+        if (rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING
+            || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERED
+            || rivalStatus === RIVAL_CONTENT_STATUS_CHANGING_TASK
+            || rivalStatus === RIVAL_CONTENT_STATUS_ANSWERING_TIMEOUT) {
             return <RivalMultiPageAnswer/>
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_PREPARING_NEXT_TASK || rivalStatus === RIVAL_CONTENT_STATUS_CHOSEN_TASK_PROPS) {
@@ -46,9 +49,6 @@ class RivalPage extends React.PureComponent {
         }
         if (rivalStatus === RIVAL_CONTENT_STATUS_CLOSED) {
             return <RivalPageClosed/>
-        }
-        if (rivalStatus === RIVAL_CONTENT_STATUS_CHANGE_TASK) {
-            return <RivalPageChangingTask/>
         }
         return <div className='pageContent'/>;
     }

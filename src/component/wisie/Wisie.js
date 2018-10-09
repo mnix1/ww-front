@@ -159,7 +159,7 @@ export default class Wisie extends React.PureComponent {
         if (!disabled) {
             return null;
         }
-        return <div className='absoluteBackgroundMix opacity1 zIndex1'>
+        return <div className='absoluteBackgroundMix zIndex1'>
             <img alt='' src={_.defaultTo(customBackgroundImgSrc, cross)} className='height100 width100'/>
         </div>;
     }
