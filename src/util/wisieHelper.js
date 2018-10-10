@@ -122,7 +122,7 @@ export function getWisie(wisieType) {
     return WISIE[wisieType];
 }
 
-const MIN_WISIE_WIDTH = 100;
+const MIN_WISIE_WIDTH = 150;
 export const MAX_WISIE_WIDTH = 230;
 
 const wisieWidthCache = {};

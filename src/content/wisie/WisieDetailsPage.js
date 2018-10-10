@@ -77,15 +77,15 @@ class WisieDetailsPage extends React.PureComponent {
                 <FaPlusCircle className={`paddingLeftRem pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
                               onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, null)} size={24}/>}
             </div>
-            <div className='justifyStart flexColumn paddingLeftRem'>
+            <div className='justifyStart flexColumn'>
                 <div className='justifyCenter'>
                     {wisie.hobbies.map(e => {
                         const img = <img alt='' key={e} height={24}
                                          src={getCategory(e)}/>;
                         if (renderAdd) {
-                            return img;
+                            return <div className='paddingLeftRem'>{img}</div>;
                         }
-                        return <div key={e} className='justifyCenter flexColumn paddingRightRem'>
+                        return <div key={e} className='justifyCenter flexColumn paddingLeftRem'>
                             {img}
                             {cost.isEnoughResource &&
                             <div className='justifyCenter'>
