@@ -12,6 +12,8 @@ class AvailableSkills extends React.PureComponent {
         skills: PropTypes.object,
         className: PropTypes.string,
         onClick: PropTypes.func,
+        groupCount: PropTypes.number,
+        screen: PropTypes.object,
         skillClickHandlers: PropTypes.object,
     };
 
@@ -31,20 +33,40 @@ class AvailableSkills extends React.PureComponent {
         onClick(skill);
     }
 
+    renderSkill = (key) => {
+        const {skills, disabled, screen} = this.props;
+        return <Skill
+            key={key}
+            imgHeight={Math.min(Math.max(screen.standardImgHeight / 2, 25), 40)}
+            disabled={(disabled && key !== SKILL_HINT) || !skills[key].canUse}
+            used={skills[key].used}
+            onClick={() => this.handleSkillClick(key)}
+            imgSrc={getSkill(key)}>{skills[key].count}
+        </Skill>;
+    };
+
+    renderGroups(keys, groupCount) {
+        if (keys.length < groupCount) {
+            return this.renderOneRow(keys);
+        }
+        const groups = _.chunk(keys, groupCount);
+        return <div className='justifyCenter flexColumn'>
+            {groups.map(e => this.renderOneRow(e))}
+        </div>
+    }
+
+    renderOneRow(keys) {
+        return <div key={keys[0]} className='justifyStart'>{keys.map(this.renderSkill)}</div>
+    }
+
     render() {
-        const {skills, className, disabled, screen} = this.props;
+        const {skills, className, groupCount} = this.props;
+        if (_.isEmpty(skills)) {
+            return null;
+        }
         const keys = _.sortBy(_.keys(skills), key => skills[key].type + key);
         return <div className={className}>
-            <div className='justifyCenter'>
-                {keys.map(e => <Skill
-                    key={e}
-                    imgHeight={screen.standardImgHeight / 2 - 5}
-                    disabled={(disabled && e !== SKILL_HINT) || !skills[e].canUse}
-                    used={skills[e].used}
-                    onClick={() => this.handleSkillClick(e)}
-                    imgSrc={getSkill(e)}>{skills[e].count}
-                </Skill>)}
-            </div>
+            {_.isNil(groupCount) ? this.renderOneRow(keys) : this.renderGroups(keys, groupCount)}
         </div>
     }
 }

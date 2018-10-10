@@ -17,6 +17,7 @@ import {
     SKILL_PIZZA,
     SKILL_WATER_PISTOL
 } from "../../../../util/skillHelper";
+import {defaultContentHeightCalculator} from "../../../../component/task/Task";
 
 class RivalPageAnsweringTaskNotActive extends React.PureComponent {
 
@@ -56,7 +57,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
     };
 
     renderAvailableSkills(isOpponentWisie) {
-        const {content} = this.props;
+        const {content, screen} = this.props;
         const {opponentActiveMemberAddOn} = content;
         const isOpponentPresent = _.isNil(opponentActiveMemberAddOn) ? true : opponentActiveMemberAddOn.present;
         const mySkills = isOpponentWisie
@@ -67,6 +68,8 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
             className='justifyStart'
             disabled={!isOpponentPresent}
             skills={mySkills}
+            groupCount={screen.verticalOrientation ? Math.ceil(_.size(mySkills) / 2) : undefined}
+            // groupCount={2}
             skillClickHandlers={{
                 [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
                 [SKILL_KIDNAPPING]: this.handleKidnappingClick,
@@ -99,14 +102,17 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
     }
 
     renderOpponentAvailableSkills() {
-        const {content} = this.props;
+        const {content, screen} = this.props;
         const {activeMemberAddOn} = content;
         const isActivePresent = _.isNil(activeMemberAddOn) ? true : activeMemberAddOn.present;
+        const skills = _.pickBy(content.opponentSkills, (v, k) => k !== SKILL_LIFEBUOY && v.type !== 'PASSIVE');
         return <AvailableSkills
             key='as2'
+            // groupCount={2}
+            groupCount={screen.verticalOrientation ? Math.ceil(_.size(skills) / 2) : undefined}
             disabled={!isActivePresent}
             className='justifyEnd'
-            skills={_.pickBy(content.opponentSkills, (v, k) => k !== SKILL_LIFEBUOY && v.type !== 'PASSIVE')}
+            skills={skills}
         />;
     }
 
@@ -141,6 +147,11 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         ];
     }
 
+    taskContentHeightCalculator = (screen) => {
+        const {verticalOrientation} = screen;
+        return defaultContentHeightCalculator(screen) - (verticalOrientation ? 2 * screen.fontSizeRem : screen.fontSizeRem);
+    };
+
     render() {
         // console.log('RivalPageAnsweringTaskNotActive render');
         const {content, taskDescription, renderTaskFunction} = this.props;
@@ -157,7 +168,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
                     {this.renderOpponentTeamMember(isOpponentWisie, opponentActiveMember)}
                 </div>
             </div>
-            {renderTaskFunction(this.handleHintClick)}
+            {renderTaskFunction(this.handleHintClick, this.taskContentHeightCalculator)}
         </div>;
     }
 }

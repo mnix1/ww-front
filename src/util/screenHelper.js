@@ -1,10 +1,20 @@
+import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS} from "./rivalHelper";
+
 export function rivalScreen({screen, offsetHeight = 0, offsetWidth = 0}) {
-    const contentHeight = screen.isSmallHeight ? screen.height - offsetHeight : screen.contentHeight - offsetHeight;
-    const contentWidth = screen.isSmallHeight ? screen.width - offsetWidth : screen.contentWidth - offsetWidth;
+    const contentHeight = fullScreenCondition(screen) ? screen.height - offsetHeight : screen.contentHeight - offsetHeight;
+    const contentWidth = fullScreenCondition(screen) ? screen.width - offsetWidth : screen.contentWidth - offsetWidth;
     return {...screen, contentHeight, contentWidth}
 }
 
 export const TOP_BAR_HEIGHT_FONT_SIZE_FACTOR = 1.25;
+
+export function isFullScreen(rivalStatus, screen){
+    return (rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && fullScreenCondition(screen);
+}
+
+export function fullScreenCondition(screen){
+    return !screen.isBigScreen;
+}
 
 export function clockRemSize(screen){
     if(screen.isBigScreen){

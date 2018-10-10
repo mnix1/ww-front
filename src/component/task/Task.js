@@ -9,6 +9,11 @@ import {prepareAnimationDescription, prepareAnimationTiles} from "./objectsTaskA
 import _ from 'lodash';
 import AnimationObjectGroup from "./AnimationObjectGroup";
 
+export function defaultContentHeightCalculator(screen){
+    const {contentHeight, verticalOrientation, isSmallHeight} = screen;
+    return contentHeight / 10 * ((!verticalOrientation && isSmallHeight) ? 7 : 8);
+}
+
 export default class Task extends React.PureComponent {
 
     static propTypes = {
@@ -28,7 +33,8 @@ export default class Task extends React.PureComponent {
     static defaultProps = {
         canChangeAnswer: false,
         onAnswerClick: _.noop,
-        onSkipAnimationChange: _.noop
+        onSkipAnimationChange: _.noop,
+        contentHeightCalculator: defaultContentHeightCalculator
     };
 
     renderTask() {

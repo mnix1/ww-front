@@ -3,6 +3,7 @@ import './styles.css';
 import connect from "react-redux/es/connect/connect";
 import MeshBackground, {MESH_4} from "../background/MeshBackground";
 import PropTypes from 'prop-types';
+import {fullScreenCondition} from "../../util/screenHelper";
 
 class FullScreenPage extends React.PureComponent {
 
@@ -30,11 +31,11 @@ class FullScreenPage extends React.PureComponent {
     render() {
         const {className, children, customContent, screen} = this.props;
         const style = {
-            height: screen.isSmallHeight ? screen.height : screen.contentHeight,
-            width: screen.isSmallHeight ? screen.width : screen.contentWidth,
+            height: fullScreenCondition(screen) ? screen.height : screen.contentHeight,
+            width: fullScreenCondition(screen) ? screen.width : screen.contentWidth,
         };
         return <div className={`page ${className} overflowHidden`} style={style}>
-            <MeshBackground mesh={MESH_4} fullScreen={screen.isSmallHeight}/>
+            <MeshBackground mesh={MESH_4} fullScreen={!screen.isBigScreen}/>
             {customContent ? children : this.renderContent()}
         </div>;
     }

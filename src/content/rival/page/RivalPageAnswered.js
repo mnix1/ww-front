@@ -129,7 +129,7 @@ class RivalPageAnswered extends React.PureComponent {
                 taskCount={content.taskCount}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
-                small={screen.isSmallHeight}
+                small={!screen.isBigScreen}
                 className='pageHeader warTaskDescription'/>
             {battle ? this.renderProfilesWithNewScore() : this.renderWhoAnsweredWar()}
             <TaskMarkedAnswer content={content}/>

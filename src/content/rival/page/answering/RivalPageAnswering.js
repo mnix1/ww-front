@@ -5,20 +5,16 @@ import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from ".
 import TaskDescription from "../../component/TaskDescription";
 import ActiveMembers from "../../component/ActiveMembers";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
-import {remToPixels} from "../../../../util/fontHelper";
 import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
-import {rivalScreen} from "../../../../util/screenHelper";
 import RivalPageAnsweringTaskNotActive from "./RivalPageAnsweringTaskNotActive";
+import {rivalScreen} from "../../../../util/screenHelper";
 
 class RivalPageAnswering extends React.PureComponent {
 
     get imgHeight() {
-        const {screen, imgHeight} = this.props;
-        if (imgHeight) {
-            return imgHeight;
-        }
-        return screen.standardImgHeight - 10;
+        const {screen} = this.props;
+        return screen.standardImgHeight;
     }
 
     handleAnswerClick = (answerId) => {
@@ -27,11 +23,12 @@ class RivalPageAnswering extends React.PureComponent {
         onAnswerClick({...questionIdAnswerIdMap, [task.id]: answerId});
     };
 
-    renderTask = (onAnswerClick) => {
+    renderTask = (onAnswerClick, contentHeightCalculator) => {
         const {task, battle, onSkipAnimationChange, questionIdSkipAnimationMap, screen} = this.props;
         return <Task
+            contentHeightCalculator={contentHeightCalculator}
             className={battle ? this.addTransitionClass : ''}
-            screen={rivalScreen({screen, offsetHeight: remToPixels(1.6)})}
+            screen={rivalScreen({screen, offsetHeight: screen.fontSizeRem * 2})}
             skipAnimation={questionIdSkipAnimationMap[task.id] === true}
             onSkipAnimationChange={() => onSkipAnimationChange({...questionIdSkipAnimationMap, [task.id]: true})}
             question={task}
@@ -89,7 +86,7 @@ class RivalPageAnswering extends React.PureComponent {
             renderTaskCount={battle}
             renderTimer={true}
             interval={endAnsweringInterval}
-            small={screen.isSmallHeight}
+            small={!screen.isBigScreen}
             className={`justifyCenter flexColumn pageHeader ${battle ? this.addTransitionClass : ''}`}
         />;
     }

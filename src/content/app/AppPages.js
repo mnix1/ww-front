@@ -62,6 +62,7 @@ import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
 import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
+import {isFullScreen} from "../../util/screenHelper";
 
 class AppPages extends React.PureComponent {
 
@@ -141,10 +142,10 @@ class AppPages extends React.PureComponent {
     render() {
         // console.log('AppPages render');
         const {screen, rivalStatus} = this.props;
-        const {height, width: screenWidth, contentWidth} = screen;
-        const fullScreen = (rivalStatus === RIVAL_STATUS_IN_PROGRESS || rivalStatus === RIVAL_STATUS_CLOSED) && screen.isSmallHeight;
+        const {height, width: fullWidth, contentWidth} = screen;
+        const fullScreen = isFullScreen(rivalStatus, screen);
         const width = fullScreen
-            ? screenWidth
+            ? fullWidth
             : contentWidth;
         return <div style={{height, width}} className='content'>
             {!fullScreen && <TopBar/>}

@@ -17,10 +17,6 @@ export default class AnimationObjectGroup extends React.PureComponent {
     static defaultProps = {
         questionObjects: [],
         animationObjects: [],
-        contentHeightCalculator: (screen) => {
-            const {contentHeight, verticalOrientation, isSmallHeight} = screen;
-            return contentHeight / 10 * ((!verticalOrientation && isSmallHeight) ? 7 : 8);
-        }
     };
 
     contentHeight() {

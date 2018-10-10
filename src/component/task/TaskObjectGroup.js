@@ -18,10 +18,6 @@ export default class TaskObjectGroup extends React.PureComponent {
     static defaultProps = {
         questionObjects: [],
         answerObjects: [],
-        contentHeightCalculator: (screen) => {
-            const {contentHeight, verticalOrientation, isSmallHeight} = screen;
-            return contentHeight / 10 * ((!verticalOrientation && isSmallHeight) ? 7 : 8);
-        }
     };
 
     contentHeight() {
