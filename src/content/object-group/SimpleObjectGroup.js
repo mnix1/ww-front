@@ -23,9 +23,9 @@ export default class SimpleObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen, setHeight, selectedId, remOffsetHeight} = this.props;
-        const objectWidth = screen.rivalImgHeight;
-        const objectHeight = screen.rivalImgHeight;
         const {contentHeight, fontSizeRem, contentWidth} = screen;
+        const objectWidth = screen.rivalImgHeight + fontSizeRem;
+        const objectHeight = screen.rivalImgHeight + fontSizeRem;
         const height = contentHeight - remOffsetHeight * fontSizeRem;
         return <ObjectGroup
             height={setHeight ? height: 'auto'}
@@ -51,7 +51,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
                         <span className='fontSize08Rem justifyCenter'>{getCategoryLabel([o.id])}</span>
-                        <img alt='' src={o.imgSrc} height={objectHeight - fontSizeRem}/>
+                        <img alt='' src={o.imgSrc} height={objectHeight - 2 * fontSizeRem}/>
                     </div>,
                     objectStyle
                 }

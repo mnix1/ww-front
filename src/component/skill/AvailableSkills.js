@@ -12,7 +12,7 @@ class AvailableSkills extends React.PureComponent {
         skills: PropTypes.object,
         className: PropTypes.string,
         onClick: PropTypes.func,
-        groupCount: PropTypes.number,
+        preferredGroupCount: PropTypes.number,
         screen: PropTypes.object,
         skillClickHandlers: PropTypes.object,
     };
@@ -45,11 +45,11 @@ class AvailableSkills extends React.PureComponent {
         </Skill>;
     };
 
-    renderGroups(keys, groupCount) {
-        if (keys.length < groupCount) {
+    renderGroups(keys, preferredGroupCount) {
+        if (keys.length < preferredGroupCount) {
             return this.renderOneRow(keys);
         }
-        const groups = _.chunk(keys, groupCount);
+        const groups = _.chunk(keys, preferredGroupCount);
         return <div className='justifyCenter flexColumn'>
             {groups.map(e => this.renderOneRow(e))}
         </div>
@@ -60,13 +60,13 @@ class AvailableSkills extends React.PureComponent {
     }
 
     render() {
-        const {skills, className, groupCount} = this.props;
+        const {skills, className, preferredGroupCount} = this.props;
         if (_.isEmpty(skills)) {
             return null;
         }
         const keys = _.sortBy(_.keys(skills), key => skills[key].type + key);
         return <div className={className}>
-            {_.isNil(groupCount) ? this.renderOneRow(keys) : this.renderGroups(keys, groupCount)}
+            {_.isNil(preferredGroupCount) ? this.renderOneRow(keys) : this.renderGroups(keys, preferredGroupCount)}
         </div>
     }
 }

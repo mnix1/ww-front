@@ -49,9 +49,12 @@ export class WisieListPageComponent extends React.PureComponent {
                     ? onTeamAddClick(team, wisie)
                     : _.noop}
             {...wisie}>
-            <div className='left'>
+            <div className='justifyStart'>
                 {!isInTeam
                 && <Button
+                    padding={false}
+                    iconMarginLeft={false}
+                    className='paddingRightRem paddingTopRem'
                     disabled={team.length >= WISIE_TEAM_COUNT}
                     icon={<FaPlusCircle size={16}/>}
                     onClick={(e) => {
@@ -60,12 +63,23 @@ export class WisieListPageComponent extends React.PureComponent {
                     }}/>}
                 {isInTeam
                 && <Button
+                    className='paddingRightRem paddingTopRem'
+                    padding={false}
+                    iconMarginLeft={false}
                     icon={<FaMinusCircle size={16}/>}
                     onClick={(e) => {
                         e.stopPropagation();
                         onTeamRemoveClick(team, wisie);
                     }}/>}
-                <Button onClick={() => onWisieDetailsClick(wisie)} icon={<MdDescription size={16}/>}/>
+                <Button
+                    className='paddingRightRem paddingTopRem'
+                    padding={false}
+                    iconMarginLeft={false}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onWisieDetailsClick(wisie)
+                    }}
+                    icon={<MdDescription size={16}/>}/>
             </div>
         </Wisie>
     }

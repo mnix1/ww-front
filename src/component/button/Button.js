@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import _ from 'lodash';
-import './styles.css';
 import {
     CREAM_COLOR,
     GREEN_COLOR,
@@ -20,23 +19,28 @@ export class Button extends React.PureComponent {
         icon: PropTypes.node,
         className: PropTypes.string,
         disabled: PropTypes.bool,
+        padding: PropTypes.bool,
+        iconMarginLeft: PropTypes.bool,
         children: PropTypes.oneOfType([PropTypes.string, PropTypes.node])
     };
 
     static defaultProps = {
         material: BUTTON_MATERIAL_ACCEPT,
         disabled: false,
+        className: '',
+        padding: true,
+        iconMarginLeft: true,
         onClick: _.noop,
     };
 
     render() {
-        const {onClick, children, icon, style, material, className, disabled} = this.props;
+        const {onClick, children, icon, style, material, className, disabled, padding, iconMarginLeft} = this.props;
         return <div
-            className={`${maybeDisabledClassName(disabled)} button borderRadiusRem paddingRem inlineBlock pointer ${className}`}
+            className={`${maybeDisabledClassName(disabled)} button borderRadiusRem ${padding ? 'paddingRem' : ''} inlineBlock pointer ${className}`}
             onClick={disabled ? _.noop : onClick}
             style={{...material, ...style}}>
             <div className='content flex'>{children}{icon &&
-            <div className='icon justifyCenter flexColumn'>{icon}</div>}</div>
+            <div className={`icon ${iconMarginLeft ? 'marginLeftRem' : ''} justifyCenter flexColumn`}>{icon}</div>}</div>
         </div>
     }
 }

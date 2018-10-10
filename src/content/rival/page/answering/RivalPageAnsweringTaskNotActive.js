@@ -68,8 +68,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
             className='justifyStart'
             disabled={!isOpponentPresent}
             skills={mySkills}
-            groupCount={screen.verticalOrientation ? Math.ceil(_.size(mySkills) / 2) : undefined}
-            // groupCount={2}
+            preferredGroupCount={screen.verticalOrientation ? 4 : undefined}
             skillClickHandlers={{
                 [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
                 [SKILL_KIDNAPPING]: this.handleKidnappingClick,
@@ -108,8 +107,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         const skills = _.pickBy(content.opponentSkills, (v, k) => k !== SKILL_LIFEBUOY && v.type !== 'PASSIVE');
         return <AvailableSkills
             key='as2'
-            // groupCount={2}
-            groupCount={screen.verticalOrientation ? Math.ceil(_.size(skills) / 2) : undefined}
+            preferredGroupCount={screen.verticalOrientation ? 4 : undefined}
             disabled={!isActivePresent}
             className='justifyEnd'
             skills={skills}
