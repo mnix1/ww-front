@@ -5,7 +5,6 @@ import Wisie from "../../../../component/wisie/Wisie";
 import Profile from "../../../../component/profile/Profile";
 import WisieActions from "../../../../component/wisie/WisieActions";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
-import {remToPixels} from "../../../../util/fontHelper";
 import AvailableSkills from "../../../../component/skill/AvailableSkills";
 import {
     SKILL_CHANGE_TASK,
@@ -18,6 +17,7 @@ import {
     SKILL_WATER_PISTOL
 } from "../../../../util/skillHelper";
 import {defaultContentHeightCalculator} from "../../../../component/task/Task";
+import {profileImgHeightAdd} from "../../../../util/screenHelper";
 
 class RivalPageAnsweringTaskNotActive extends React.PureComponent {
 
@@ -117,14 +117,14 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
     }
 
     renderOpponentTeamMember(isOpponentWisie, opponentActiveMember) {
-        const {content, imgHeight} = this.props;
+        const {content, imgHeight, screen} = this.props;
         if (!content.opponent) {
             return null;
         }
         if (!isOpponentWisie) {
             return <Profile
                 className='justifyEnd'
-                imgHeight={imgHeight + remToPixels(0.85)}
+                imgHeight={imgHeight + profileImgHeightAdd(screen)}
                 {...opponentActiveMember.content}
             />
         }

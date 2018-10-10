@@ -5,7 +5,6 @@ import {getCategoryLabel} from "../../../lang/langCategory";
 import Rating from "../../../component/rating/Rating";
 import {getCategory} from "../../../util/categoryHelper";
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
-import {remToPixels} from "../../../util/fontHelper";
 import Timer from "../../../component/timer/Timer";
 import connect from "react-redux/es/connect/connect";
 

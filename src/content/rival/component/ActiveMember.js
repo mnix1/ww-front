@@ -3,7 +3,7 @@ import Wisie from "../../../component/wisie/Wisie";
 import Profile from "../../../component/profile/Profile";
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
-import {remToPixels} from "../../../util/fontHelper";
+import {profileImgHeightAdd} from "../../../util/screenHelper";
 
 class ActiveMember extends React.PureComponent {
 
@@ -16,7 +16,8 @@ class ActiveMember extends React.PureComponent {
     }
 
     renderProfile(profile) {
-        return <Profile {...profile} imgHeight={this.imgHeight + remToPixels(0.85)}/>;
+        const {screen} = this.props;
+        return <Profile {...profile} imgHeight={this.imgHeight + profileImgHeightAdd(screen)}/>;
     }
 
     renderWisie(wisie) {

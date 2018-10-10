@@ -5,7 +5,7 @@ import _ from 'lodash';
 import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
 import {getSkill, SKILL_LIFEBUOY} from "../../../util/skillHelper";
-import {remToPixels} from "../../../util/fontHelper";
+import {profileImgHeightAdd} from "../../../util/screenHelper";
 
 class Team extends React.PureComponent {
 
@@ -71,14 +71,14 @@ class Team extends React.PureComponent {
     }
 
     renderProfile(teamMember) {
-        const {onClick, activeIndex, memberClassName, presentIndexes} = this.props;
+        const {onClick, activeIndex, memberClassName, presentIndexes, screen} = this.props;
         return <Profile
             key={teamMember.type}
             onClick={() => onClick(teamMember.index)}
             disabled={!_.includes(presentIndexes, teamMember.index)}
             active={activeIndex === teamMember.index}
             {...teamMember.content}
-            imgHeight={this.imgHeight + remToPixels(0.85) + 18}
+            imgHeight={this.imgHeight + profileImgHeightAdd(screen) + 18}
             className={memberClassName}
         />;
     }
