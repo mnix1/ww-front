@@ -11,6 +11,10 @@
     bottom: 0;
 }
 
+.nowrap {
+    white-space: nowrap
+}
+
 .absoluteBackgroundMix {
     border-radius: 0.5rem;
     opacity: 0.5;

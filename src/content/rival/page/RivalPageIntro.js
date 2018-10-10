@@ -11,10 +11,10 @@ class RivalPageIntro extends React.PureComponent {
     renderProfilesBig() {
         const {screen, content} = this.props;
         return <div className='profilesBig justifyCenter'>
-            <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.standardImgHeight} {...content.profile}/>
-            <img alt='' src={swordShield} height={screen.standardImgHeight}/>
+            <Profile renderBattleElo={renderBattleElo(content)} imgHeight={screen.rivalImgHeight} {...content.profile}/>
+            <img alt='' src={swordShield} height={screen.rivalImgHeight}/>
             <Profile renderBattleElo={renderBattleElo(content)}
-                     imgHeight={screen.standardImgHeight} {...content.opponent}/>
+                     imgHeight={screen.rivalImgHeight} {...content.opponent}/>
         </div>;
     }
 
@@ -22,7 +22,7 @@ class RivalPageIntro extends React.PureComponent {
         const {content, screen} = this.props;
         return <div className='team justifyCenter flexColumn'>
             <Teams renderElo={isRanking(content)} content={content}>
-                {content.opponent && <img alt='' src={swordShield} height={screen.standardImgHeight}/>}
+                {content.opponent && <img alt='' src={swordShield} height={screen.rivalImgHeight}/>}
             </Teams>
         </div>;
     }

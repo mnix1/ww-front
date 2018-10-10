@@ -7,8 +7,9 @@ import {getCategory} from "../../../util/categoryHelper";
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
 import {remToPixels} from "../../../util/fontHelper";
 import Timer from "../../../component/timer/Timer";
+import connect from "react-redux/es/connect/connect";
 
-export default class TaskDescription extends React.PureComponent {
+class TaskDescription extends React.PureComponent {
 
     static defaultProps = {
         renderTask: true,
@@ -30,13 +31,13 @@ export default class TaskDescription extends React.PureComponent {
     }
 
     renderTaskCategory() {
-        const {task, small} = this.props;
+        const {task, small, screen} = this.props;
         if (!task.category) {
             return null;
         }
-        return <div
-            className='justifyCenter flexWrap'>{small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
-            <img alt='' className='marginLeftRem' key={task.category} height={remToPixels(1)}
+        return <div className='justifyCenter'>
+            {small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
+            <img alt='' className='marginLeftRem' key={task.category} height={screen.fontSizeRem}
                  src={getCategory(task.category)}/>
         </div>;
     }
@@ -76,3 +77,11 @@ export default class TaskDescription extends React.PureComponent {
         </div>
     }
 }
+
+export default connect(
+    (state) => ({
+        screen: state.screen,
+    }),
+    (dispatch) => ({})
+)(TaskDescription);
+

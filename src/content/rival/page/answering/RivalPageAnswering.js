@@ -14,7 +14,7 @@ class RivalPageAnswering extends React.PureComponent {
 
     get imgHeight() {
         const {screen} = this.props;
-        return screen.standardImgHeight;
+        return screen.rivalImgHeight;
     }
 
     handleAnswerClick = (answerId) => {
@@ -72,9 +72,7 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderWarTaskDescription() {
-        const {screen} = this.props;
-        return <div className='justifyStart flexColumn'
-                    style={{width: screen.isSmallHeight ? '10rem' : '20rem'}}>{this.renderTaskDescription()}</div>
+        return <div className='justifyStart flexColumn'>{this.renderTaskDescription()}</div>
     }
 
     renderTaskDescription() {

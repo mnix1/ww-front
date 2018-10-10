@@ -20,6 +20,7 @@ export default class Rating extends React.PureComponent {
         const {style, valueString, value, onChange} = this.props;
         const marginTop = onChange ? '-0.7rem' : '-0.2rem';
         return <Rate
+            className='nowrap'
             style={{...style, fontSize: onChange ? '2rem' : '1.3rem', marginTop}}
             disabled={_.isNil(onChange)}
             allowHalf={true}

@@ -19,7 +19,7 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
                 <ActiveMembers addWidthStyle={false} className={content.opponent ? 'justifyBetween' : 'justifyCenter'}
                                memberClassName='wrongAnswer'/>}
                 <div>{getText(TEXT_NO_ANSWER)}...</div>
-                <img alt='' src={thumbDown} height={screen.standardImgHeight}/>
+                <img alt='' src={thumbDown} height={screen.rivalImgHeight}/>
             </div>
         </div>
     }

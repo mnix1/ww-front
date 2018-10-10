@@ -37,7 +37,7 @@ class AvailableSkills extends React.PureComponent {
         const {skills, disabled, screen} = this.props;
         return <Skill
             key={key}
-            imgHeight={Math.min(Math.max(screen.standardImgHeight / 2, 25), 40)}
+            imgHeight={Math.min(Math.max(screen.rivalImgHeight / 2, 20), 40)}
             disabled={(disabled && key !== SKILL_HINT) || !skills[key].canUse}
             used={skills[key].used}
             onClick={() => this.handleSkillClick(key)}
