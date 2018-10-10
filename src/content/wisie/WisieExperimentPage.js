@@ -15,7 +15,7 @@ import {isRepFulfilled} from "../../util/repositoryHelper";
 class WisieExperimentPage extends React.PureComponent {
 
     render() {
-        const {profile, onExperimentClick, profileWisieListRep, wisieListRep} = this.props;
+        const {profile, onExperimentClick, profileWisieListRep, wisieListRep, screen} = this.props;
         if (!isRepFulfilled(profileWisieListRep) || !isRepFulfilled(wisieListRep) || profileWisieListRep.value.length === wisieListRep.value.length) {
             return null;
         }
@@ -24,7 +24,8 @@ class WisieExperimentPage extends React.PureComponent {
             <div onClick={cost.isEnoughResource ? onExperimentClick : null}
                  className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!cost.isEnoughResource)}`}>
                 <div className='justifyCenter paddingRem'>{getText(TEXT_EXPERIMENT)}</div>
-                <div className='justifyCenter'><img alt='' src={experiment} height={60}/></div>
+                <div className='justifyCenter'><img alt='' src={experiment}
+                                                    height={Math.min(60, screen.standardImgHeight)}/></div>
                 <div className='justifyCenter'>
                     <div className='justifyCenter flexColumn paddingRem'>{getText(TEXT_COST)}:</div>
                     <Crystal notEnough={profile.crystal < cost.crystal}

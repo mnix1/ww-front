@@ -40,7 +40,7 @@ export class WisieListPageComponent extends React.PureComponent {
             renderSkills={true}
             hobbiesAndSkillsWidth100={true}
             blackBackground={true}
-            imgHeight={screen.standardImgHeight + 20}
+            imgHeight={screen.standardImgHeight + screen.fontSizeRem / 2}
             key={wisie.type} className='pointer '
             style={{width: this.wisieWidth}}
             onClick={() => isInTeam
@@ -84,7 +84,7 @@ export class WisieListPageComponent extends React.PureComponent {
             hobbiesAndSkillsWidth100={wisie.isOwned === true}
             renderHobbies={wisie.isOwned === true}
             blackBackground={true}
-            imgHeight={screen.standardImgHeight + 20}
+            imgHeight={screen.standardImgHeight + screen.fontSizeRem / 2}
             key={wisie.type}
             style={{width: this.wisieWidth}} {...wisie}
             className={className}

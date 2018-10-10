@@ -23,8 +23,8 @@ export default class SimpleObjectGroup extends React.PureComponent {
 
     render() {
         const {objects, onObjectClick, screen, setHeight, selectedId, remOffsetHeight} = this.props;
-        const objectWidth = screen.standardImgHeight;
-        const objectHeight = screen.standardImgHeight;
+        const objectWidth = screen.rivalImgHeight;
+        const objectHeight = screen.rivalImgHeight;
         const {contentHeight, fontSizeRem, contentWidth} = screen;
         const height = contentHeight - remOffsetHeight * fontSizeRem;
         return <ObjectGroup

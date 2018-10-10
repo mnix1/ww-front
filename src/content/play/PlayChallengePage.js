@@ -9,12 +9,13 @@ import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
 import _ from 'lodash';
 import FragmentPage from "../../component/page/FragmentPage";
+import {menuItemHeight} from "../../util/screenHelper";
 
 class PlayChallengePage extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
-        const iconHeight = screen.standardImgHeight + 10;
+        const iconHeight = menuItemHeight(screen);
         return <MenuItem
             imgSrc={imgSrc}
             iconHeight={iconHeight}

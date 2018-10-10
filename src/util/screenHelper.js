@@ -16,6 +16,10 @@ export function fullScreenCondition(screen){
     return !screen.isBigScreen;
 }
 
+export function menuItemHeight(screen){
+    return screen.standardImgHeight;//Math.min(100, screen.standardImgHeight + (screen.verticalOrientation ? screen.fontSizeRem / 2 : 2 * screen.fontSizeRem));
+}
+
 export function clockRemSize(screen){
     if(screen.isBigScreen){
         return 7;

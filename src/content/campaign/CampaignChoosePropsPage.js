@@ -28,10 +28,10 @@ class CampaignChoosePropsPage extends React.PureComponent {
 
     get imgHeight() {
         const {screen} = this.props;
-        if (screen.isSmallHeight) {
-            return screen.standardImgHeight;
+        if (screen.isBigHeight) {
+            return screen.standardImgHeight * 1.5;
         }
-        return screen.standardImgHeight * 1.5;
+        return screen.standardImgHeight;
     }
 
     renderCampaignTypes() {
@@ -77,7 +77,6 @@ class CampaignChoosePropsPage extends React.PureComponent {
             return null;
         }
         return <div className='paddingTopRem justifyCenter flexColumn'>
-
             <div className='justifyCenter'>{getText(TEXT_CHOOSE_DESTINATION)}</div>
             <div className='justifyCenter'>
                 {_.filter(campaignListRep.value, e => e.type === campaignType).map(this.renderCampaignDestination)}

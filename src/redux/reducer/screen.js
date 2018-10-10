@@ -68,7 +68,7 @@ function calculateContentHeight(height, isBigHeight, isSmallHeight, topBarHeight
     return height - topBarHeight * 2;
 }
 
-function prepareState(height, width) {
+function prepareState(height, width, isMobile) {
     const fontSizeRem = remToPixels(1);
     const resolution = prepareResolution(height, width);
     const isSmallHeight = checkSmallHeight(resolution);
@@ -76,22 +76,28 @@ function prepareState(height, width) {
     const isSmallWidth = checkSmallWidth(resolution);
     const isBigWidth = checkBigWidth(resolution);
     const isBigScreen = isBigHeight && isBigWidth;
-    const isSmallScreen = isSmallHeight && isSmallWidth;
+    const isSmallScreen = isSmallHeight || isSmallWidth;
     const verticalOrientation = height > width;
     const topBarFontSizeRem = (isSmallWidth ? 2 : 3) * fontSizeRem;
     const topBarHeight = topBarFontSizeRem * TOP_BAR_HEIGHT_FONT_SIZE_FACTOR;
-    const standardImgHeight = verticalOrientation
+    const contentHeight = calculateContentHeight(height, isBigHeight, isSmallHeight, topBarHeight, verticalOrientation);
+    const contentWidth = calculateContentWidth(width, isBigWidth, isSmallWidth, verticalOrientation);
+    const standardImgHeight = Math.min(90, verticalOrientation
+        ? (isSmallScreen ? fontSizeRem * 4.5 : fontSizeRem * 4.5)
+        : (isSmallScreen ? fontSizeRem * 4.5 : fontSizeRem * 4.5));
+    const rivalImgHeight = verticalOrientation
         ? (isSmallScreen ? fontSizeRem * 3.5 : fontSizeRem * 4.5)
         : (isSmallScreen ? fontSizeRem * 2.5 : fontSizeRem * 3.5);
     return {
+        isMobile,
         isBigScreen,
         isSmallScreen,
         fontSizeRem,
         topBarFontSizeRem,
         height,
         width,
-        contentHeight: calculateContentHeight(height, isBigHeight, isSmallHeight, topBarHeight, verticalOrientation),
-        contentWidth: calculateContentWidth(width, isBigWidth, isSmallWidth, verticalOrientation),
+        contentHeight,
+        contentWidth,
         resolution,
         isSmallHeight,
         isBigHeight,
@@ -99,13 +105,14 @@ function prepareState(height, width) {
         isBigWidth,
         verticalOrientation,
         standardImgHeight,
+        rivalImgHeight,
     };
 }
 
 const isMobile = new MobileDetect(window.navigator.userAgent).mobile() !== null;
 const initialHeight = isMobile ? window.outerHeight : window.innerHeight;
 const initialWidth = isMobile ? window.outerWidth : window.innerWidth;
-const initialState = {isMobile, ...prepareState(initialHeight, initialWidth)};
+const initialState = prepareState(initialHeight, initialWidth, isMobile);
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -114,7 +121,7 @@ export default function reducer(state = initialState, action) {
             const width = isMobile ? window.outerWidth : window.innerWidth;
             return {
                 ...state,
-                ...prepareState(height, width)
+                ...prepareState(height, width, isMobile)
             };
         }
         default:

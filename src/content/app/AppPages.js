@@ -56,19 +56,18 @@ import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ClassificationPage from "../rival/classification/ClassificationPage";
 import SettingsPage from "../settings/SettingsPage";
 import LoginPage from "../../component/auth/LoginPage";
-import {RIVAL_STATUS_CLOSED, RIVAL_STATUS_IN_PROGRESS} from "../../util/rivalHelper";
 import play from '../../media/image/menu/swordShield.svg';
 import friend from '../../media/image/menu/friend.svg';
 import shop from '../../media/image/menu/shop.png';
 import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
-import {isFullScreen} from "../../util/screenHelper";
+import {isFullScreen, menuItemHeight} from "../../util/screenHelper";
 
 class AppPages extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, className) {
         const {screen, lang, onRouteChange} = this.props;
-        const iconHeight = screen.standardImgHeight + 10;
+        const iconHeight = menuItemHeight(screen);
         return <MenuItem className={className} onClick={onRouteChange} lang={lang} imgSrc={imgSrc}
                          iconHeight={iconHeight} route={route}/>
     }

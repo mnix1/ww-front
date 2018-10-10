@@ -12,12 +12,13 @@ import _ from 'lodash';
 import {RIVAL_IMPORTANCE_FAST, RIVAL_IMPORTANCE_RANKING, RIVAL_TYPE_WAR} from "../../util/rivalHelper";
 import {startRandomOpponent} from "../../redux/reducer/rival";
 import FragmentPage from "../../component/page/FragmentPage";
+import {menuItemHeight} from "../../util/screenHelper";
 
 class PlayWarPage extends React.PureComponent {
 
     renderMenuItem(route, imgSrc, onClick = _.noop) {
         const {screen, onRouteChange} = this.props;
-        const iconHeight = screen.standardImgHeight + 10;
+        const iconHeight = menuItemHeight(screen);
         return <MenuItem
             imgSrc={imgSrc}
             iconHeight={iconHeight}

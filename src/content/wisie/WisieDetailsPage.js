@@ -235,7 +235,7 @@ class WisieDetailsPage extends React.PureComponent {
         if (!wisieDetails) {
             return null;
         }
-        return <Modal exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE} header={this.renderModalHeader()}
+        return <Modal className='overflowAuto' exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE} header={this.renderModalHeader()}
                       onExitClick={onExitClick}>
             {this.renderWisie(wisieDetails)}
         </Modal>;
