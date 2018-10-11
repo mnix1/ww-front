@@ -25,6 +25,8 @@ export class AvailableResourcesComponent extends React.PureComponent {
 
     static defaultProps = {
         size: RESOURCE_BIG,
+        styleBoxShadow: true,
+        stylePadding: true,
         renderTitle: true,
         showGold: true,
         showCrystal: true,

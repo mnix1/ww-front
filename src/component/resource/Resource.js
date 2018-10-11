@@ -32,8 +32,8 @@ export default class Resource extends React.PureComponent {
         notEnough: false,
         column: true,
         margin: true,
-        stylePadding: true,
-        styleBoxShadow: true,
+        stylePadding: false,
+        styleBoxShadow: false,
     };
 
     renderColumn(style) {
