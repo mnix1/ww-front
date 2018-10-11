@@ -45,35 +45,35 @@
     }
 }
 
-.warPage .warPageIntro .title {
-    opacity: 0;
-    animation: fadein 0.5s 0s, fadeout 0.5s 5s;
-    animation-fill-mode: forwards;
-}
+/*.warPage .warPageIntro .title {*/
+    /*opacity: 0;*/
+    /*animation: fadein 0.5s 0s, fadeout 0.5s 5s;*/
+    /*animation-fill-mode: forwards;*/
+/*}*/
 
-.warPage .warPageIntro .team {
-    opacity: 0;
-    animation: fadein 0.5s 1s, fadeout 0.5s 5s;
-    animation-fill-mode: forwards;
-}
+/*.warPage .warPageIntro .team {*/
+    /*opacity: 0;*/
+    /*animation: fadein 0.5s 1s, fadeout 0.5s 5s;*/
+    /*animation-fill-mode: forwards;*/
+/*}*/
 
-.warPage .warPageIntro .profilesBig {
-    opacity: 0;
-    animation: fadein 0.5s 1s, fadeout 0.5s 3s;
-    animation-fill-mode: forwards;
-}
+/*.warPage .warPageIntro .profilesBig {*/
+    /*opacity: 0;*/
+    /*animation: fadein 0.5s 1s, fadeout 0.5s 3s;*/
+    /*animation-fill-mode: forwards;*/
+/*}*/
 
-.warPage .warPageIntro .task {
-    opacity: 0;
-    animation: fadein 0.5s 0s, fadeout 0.5s 9s;
-    animation-fill-mode: forwards;
-}
+/*.warPage .warPageIntro .task {*/
+    /*opacity: 0;*/
+    /*animation: fadein 0.5s 0s, fadeout 0.5s 9s;*/
+    /*animation-fill-mode: forwards;*/
+/*}*/
 
-.warPage .warPageIntro .taskProps {
-    opacity: 0;
-    animation: fadein 0.5s 0s;
-    animation-fill-mode: forwards;
-}
+/*.warPage .warPageIntro .taskProps {*/
+    /*opacity: 0;*/
+    /*animation: fadein 0.5s 0s;*/
+    /*animation-fill-mode: forwards;*/
+/*}*/
 
 .warPage .whoAnswered {
     opacity: 0;

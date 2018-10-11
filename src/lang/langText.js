@@ -101,6 +101,7 @@ export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
 export const TEXT_BUY = 'TEXT_BUY';
 export const TEXT_POSSIBLE_REWARD = 'TEXT_POSSIBLE_REWARD';
 export const TEXT_REWARD = 'TEXT_REWARD';
+export const TEXT_SEASON_REWARDS = 'TEXT_SEASON_REWARDS';
 export const TEXT_BOUGHT = 'TEXT_BOUGHT';
 export const TEXT_TIME_LEFT = 'TEXT_TIME_LEFT';
 export const TEXT_READ_FINISHED = 'TEXT_READ_FINISHED';
@@ -125,6 +126,8 @@ export const TEXT_CHANGE_NICK = 'TEXT_CHANGE_NICK';
 export const TEXT_CHANGE_WISOR = 'TEXT_CHANGE_WISOR';
 export const TEXT_FILTER = 'TEXT_FILTER';
 export const TEXT_RANKING = 'TEXT_RANKING';
+export const TEXT_NO_PLAYERS_YET = 'TEXT_NO_PLAYERS_YET';
+export const TEXT_SEASON = 'TEXT_SEASON';
 export const TEXT_READ_NOW = 'TEXT_READ_NOW';
 export const TEXT_START = 'TEXT_START';
 export const TEXT_EXIT = 'TEXT_EXIT';
@@ -147,6 +150,8 @@ export const TEXT_MENTALITY = 'TEXT_MENTALITY';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_NO_PLAYERS_YET]: 'Jeszcze nikt nie został sklasyfikowany',
+        [TEXT_SEASON]: 'Sezon',
         [TEXT_CHANGE_TASK_ACCEPTED]: 'Wniosek o zmianę pytania zaakceptowany',
         [TEXT_WISDOM]: 'Wiedza',
         [TEXT_MENTALITY]: 'Mentalność',
@@ -286,10 +291,13 @@ const TEXTS = {
         [TEXT_YOU]: 'Ty',
         [TEXT_NO_ANSWER]: 'Nie udzielono odpowiedzi',
         [TEXT_REWARD]: 'Nagroda',
+        [TEXT_SEASON_REWARDS]: 'Nagrody za sezon',
         [TEXT_START]: 'Rozpocznij',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_NO_PLAYERS_YET]: 'Nobody has been classified yet',
+        [TEXT_SEASON]: 'Season',
         [TEXT_CHANGE_TASK_ACCEPTED]: 'Request for changing the question accepted',
         [TEXT_WISDOM]: 'Wisdom',
         [TEXT_MENTALITY]: 'Mentality',
@@ -427,6 +435,7 @@ const TEXTS = {
         [TEXT_YOU]: 'You',
         [TEXT_NO_ANSWER]: 'No answer',
         [TEXT_REWARD]: 'Reward',
+        [TEXT_SEASON_REWARDS]: 'Season rewards',
         [TEXT_START]: 'Start',
     },
 };

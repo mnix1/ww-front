@@ -1,9 +1,10 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {getText, TEXT_OPPONENT_TEAM, TEXT_POINTS, TEXT_YOUR_TEAM} from "../../../lang/langText";
+import {getText, TEXT_OPPONENT_TEAM, TEXT_YOUR_TEAM} from "../../../lang/langText";
 import Team from "./Team";
-import trophy from '../../../media/image/icon/trophy.svg';
 import AvailableSkills from "../../../component/skill/AvailableSkills";
+import Elo from "../../../component/elo/Elo";
+import Grade from "../../../component/grade/Grade";
 
 class Teams extends React.PureComponent {
 
@@ -83,14 +84,10 @@ class Teams extends React.PureComponent {
         if (!renderElo) {
             return null;
         }
-        return <div className='justifyCenter flexColumn paddingLeftRem'>
-            <div className='justifyCenter'>
-                <div className='justifyCenter flexColumn'>{profileSeason.elo}</div>
-                <div className='justifyCenter flexColumn'>
-                    <img className='paddingLeftRem' alt={getText(TEXT_POINTS)} src={trophy} height={20}/>
-                </div>
-            </div>
-        </div>;
+        return <div className='justifyCenter'>
+            <Grade className='paddingRightRem' grade={profileSeason.grade}/>
+            <Elo elo={profileSeason.elo}/>
+        </div>
     }
 
     render() {

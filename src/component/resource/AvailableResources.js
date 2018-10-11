@@ -8,17 +8,24 @@ import Wisdom from "../../component/resource/Wisdom";
 import {RESOURCE_BIG} from "../../component/resource/Resource";
 import PropTypes from "prop-types";
 
-class AvailableResources extends React.PureComponent {
+export class AvailableResourcesComponent extends React.PureComponent {
     static propTypes = {
         size: PropTypes.string,
         showGold: PropTypes.bool,
         showCrystal: PropTypes.bool,
         showElixir: PropTypes.bool,
         showWisdom: PropTypes.bool,
+        gold: PropTypes.number,
+        crystal: PropTypes.number,
+        wisdom: PropTypes.number,
+        elixir: PropTypes.number,
+        renderTitle: PropTypes.bool,
+        styleBoxShadow: PropTypes.bool
     };
 
     static defaultProps = {
         size: RESOURCE_BIG,
+        renderTitle: true,
         showGold: true,
         showCrystal: true,
         showElixir: true,
@@ -26,22 +33,20 @@ class AvailableResources extends React.PureComponent {
     };
 
     render() {
-        const {profile, size, showGold, showCrystal, showElixir, showWisdom} = this.props;
+        const {gold, crystal, wisdom, elixir, showGold, showCrystal, showElixir, showWisdom, renderTitle} = this.props;
         return <div className='contentFragment textAlignCenter availableResources'>
-            <div className='title'>{getText(TEXT_AVAILABLE_RESOURCES)} </div>
+            {renderTitle && <div className='title'>{getText(TEXT_AVAILABLE_RESOURCES)} </div>}
             <div className='resources justifyEvenly'>
-                {showGold && <Gold size={size}>{profile.gold}</Gold>}
-                {showCrystal && <Crystal size={size}>{profile.crystal}</Crystal>}
-                {showElixir && <Wisdom size={size}>{profile.wisdom}</Wisdom>}
-                {showWisdom && <Elixir size={size}>{profile.elixir}</Elixir>}
+                {showGold && <Gold {...this.props}>{gold}</Gold>}
+                {showCrystal && <Crystal {...this.props}>{crystal}</Crystal>}
+                {showElixir && <Wisdom {...this.props}>{wisdom}</Wisdom>}
+                {showWisdom && <Elixir {...this.props}>{elixir}</Elixir>}
             </div>
         </div>
     }
 }
 
 export default connect(
-    (state) => ({
-        profile: state.profile.profile,
-    }),
+    (state) => state.profile.profile,
     (dispatch) => ({})
-)(AvailableResources);
+)(AvailableResourcesComponent);

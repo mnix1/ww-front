@@ -14,6 +14,7 @@ export default class Timer extends React.PureComponent {
         work: PropTypes.bool,
         from: PropTypes.number,
         to: PropTypes.number,
+        lineWidth: PropTypes.number,
         down: PropTypes.bool,
         showNumber: PropTypes.bool,
         showChart: PropTypes.bool,
@@ -30,6 +31,7 @@ export default class Timer extends React.PureComponent {
         work: true,
         down: true,
         to: 0,
+        lineWidth: 50,
         numberFillHours0: true,
         numberSeconds: true,
         numberMinutes: true,
@@ -129,10 +131,10 @@ export default class Timer extends React.PureComponent {
     }
 
     renderChart() {
-        const {to, from} = this.props;
+        const {to, from, lineWidth} = this.props;
         const {value} = this.state;
         const percent = value / (from - to) * 100;
-        return <Line style={{width: 50}} percent={percent} strokeWidth="8" strokeColor="#FFFFFF"/>
+        return <Line style={{width: lineWidth}} percent={percent} strokeWidth="8" strokeColor="#FFFFFF"/>
     }
 
     render() {

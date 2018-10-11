@@ -3,7 +3,14 @@ import {connect} from 'react-redux';
 import {Loading} from "../../../component/loading/Loading";
 import Profile from "../../../component/profile/Profile";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
-import {getText, TEXT_RANKING} from "../../../lang/langText";
+import {
+    getText,
+    TEXT_NO_PLAYERS_YET,
+    TEXT_RANKING,
+    TEXT_REWARDS,
+    TEXT_SEASON,
+    TEXT_SEASON_REWARDS
+} from "../../../lang/langText";
 import position1 from '../../../media/image/position/position1.svg';
 import position2 from '../../../media/image/position/position2.svg';
 import position3 from '../../../media/image/position/position3.svg';
@@ -12,6 +19,11 @@ import _ from 'lodash';
 import cn from 'classnames';
 import ClassificationListFetch from "./ClassificationListFetch";
 import ScreenPage from "../../../component/page/ScreenPage";
+import Line from "rc-progress/es/Line";
+import Grade from "../../../component/grade/Grade";
+import {GRADE_A, GRADE_B, GRADE_C, GRADE_D, GRADE_E, GRADE_F} from "../../../util/gradeHelper";
+import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
+import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
 
 class ClassificationPage extends React.PureComponent {
 
@@ -20,58 +32,126 @@ class ClassificationPage extends React.PureComponent {
         if (!isRepFulfilled(classificationListRep)) {
             return <Loading/>;
         }
-        return <div className='justifyCenter flexColumn'>
-            {this.renderClassification(classificationListRep.value)}
+        return <div className='justifyStart'>
+            <div className='width100 justifyStart flexColumn'>
+                {this.renderSeason(classificationListRep.value)}
+                {this.renderClassification(classificationListRep.value.positions)}
+            </div>
+            <div>
+                {this.renderRewards(classificationListRep.value.rewards)}
+            </div>
+        </div>
+    }
+
+    renderSeason(season) {
+        const {screen} = this.props;
+        return <div className='marginRem justifyCenter'>
+            <div className='boxShadow paddingRem relative'>
+                <div className='blackBackground absoluteBackgroundMix'/>
+                <div className='relative'>
+                    <div>{`${getText(TEXT_SEASON)} ${season.name}`}</div>
+                    <div className='paddingTopRem justifyCenter'>
+                        <div className='justifyCenter flexColumn'>
+                            <Line style={{width: screen.contentWidth / 2}} percent={season.done} strokeWidth="7"/>
+                        </div>
+                        <div className='justifyCenter flexColumn'>{season.done}%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    renderRewards(rewards) {
+        return <div className='marginRem justifyCenter'>
+            <div className='boxShadow paddingRem relative'>
+                <div className='blackBackground absoluteBackgroundMix'/>
+                <div className='relative'>
+                    <div className='textAlignCenter'>{getText(TEXT_SEASON_REWARDS)}</div>
+                    <div className='paddingTopRem justifyCenter flexColumn'>
+                        {this.renderReward(GRADE_A, rewards[GRADE_A])}
+                        {this.renderReward(GRADE_B, rewards[GRADE_B])}
+                        {this.renderReward(GRADE_C, rewards[GRADE_C])}
+                        {this.renderReward(GRADE_D, rewards[GRADE_D])}
+                        {this.renderReward(GRADE_E, rewards[GRADE_E])}
+                        {this.renderReward(GRADE_F, rewards[GRADE_F])}
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    renderReward(grade, rewards) {
+        return <div className='justifyCenter marginRem '>
+            <div className='boxShadow width100'>
+                <Grade styleMargin={true} className='justifyCenter' grade={grade}/>
+                <AvailableResourcesComponent
+                    stylePadding={false}
+                    styleBoxShadow={false}
+                    size={RESOURCE_VERY_SMALL}
+                    renderTitle={false}
+                    {...rewards}
+                />
+            </div>
         </div>
     }
 
     renderClassification(positions) {
         if (_.isEmpty(positions)) {
-            return null;
+            return <div className='justifyCenter flexColumn'>
+                <div className='justifyCenter'>{getText(TEXT_NO_PLAYERS_YET)}</div>
+            </div>
         }
         const {profile} = this.props;
         const me = positions.filter(e => e.profile.tag === profile.tag)[0];
         const isPresent = !_.isNil(me);
         const isLast = isPresent && profile.tag === _.last(positions).profile.tag;
         positions = isLast
-            ? positions.filter(e => e.tag !== profile.tag)
+            ? positions.filter(e => e.profile.tag !== profile.tag)
             : positions;
-        return <div className='justifyCenter flexColumn'>
+        return <div className='justifyCenter flexColumn overflowAuto'>
+            <div className='justifyCenter'>{getText(TEXT_RANKING)}</div>
             {positions.map(e => this.renderPosition(e))}
             {isPresent && isLast && this.renderPosition(me)}
         </div>
     }
 
-    renderPositionImage(profile) {
+    renderPositionImage(position) {
         let src = positionLow;
-        if (profile.position === 1) {
+        if (position.position === 1) {
             src = position1;
-        } else if (profile.position === 2) {
+        } else if (position.position === 2) {
             src = position2;
-        } else if (profile.position === 3) {
+        } else if (position.position === 3) {
             src = position3;
         }
         return <img alt='' src={src} height={src === positionLow ? 30 : 50}/>;
     }
 
-    renderPosition = (profile) => {
+    renderPosition = (position) => {
+        const {profile} = position;
         const {tag} = this.props.profile;
         const className = cn('justifyCenter relative boxShadow paddingRem marginRem', {
-            'active': profile.tag === tag,
+            'active': position.profile.tag === tag,
         });
-        return <div className='justifyCenter'>
+        return <div className='justifyStart' key={position.position}>
             <div className={className}>
                 <div className='blackBackground absoluteBackgroundMix'/>
                 <div className='justifyCenter relative paddingRightRem'>
-                    <div className='justifyCenter'>{profile.position}</div>
-                    <div className='paddingLeftRem'> {this.renderPositionImage(profile)}</div>
+                    <div className='justifyCenter'>{position.position}</div>
+                    <div className='paddingLeftRem'> {this.renderPositionImage(position)}</div>
                 </div>
-                <Profile defaultClassNames={false} defaultDetailsClassNames={false}
-                         detailsContainerClassName='justifyBetween'
-                         detailsInsideContainerClassName='paddingLeftRem'
-                         renderElo={true}
-                         key={profile.tag} {...profile}>
-                </Profile>
+                <Profile
+                    defaultClassNames={false}
+                    defaultDetailsClassNames={false}
+                    detailsContainerClassName='justifyBetween'
+                    detailsInsideContainerClassName='paddingLeftRem'
+                    renderElo={true}
+                    renderGrade={true}
+                    elo={position.elo}
+                    grade={position.grade}
+                    key={profile.tag}
+                    {...profile}
+                />
             </div>
         </div>
     };
@@ -79,8 +159,7 @@ class ClassificationPage extends React.PureComponent {
     render() {
         const {path} = this.props;
         return <ScreenPage>
-            <div className='pageHeader'>{getText(TEXT_RANKING)}</div>
-            {this.renderClassification()}
+            {this.renderContent()}
             <ClassificationListFetch path={path}/>
         </ScreenPage>;
     }
@@ -88,6 +167,7 @@ class ClassificationPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
+        screen: state.screen,
         profile: state.profile.profile,
         path: state.router.location.pathname,
         classificationListRep: state.repository.classificationList,

@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles.css';
 import PropTypes from "prop-types";
 import {ORANGE_COLOR} from "../../util/style/constant";
 import cn from 'classnames';
@@ -23,7 +22,9 @@ export default class Resource extends React.PureComponent {
         notEnough: PropTypes.bool,
         column: PropTypes.bool,
         margin: PropTypes.bool,
+        stylePadding: PropTypes.bool,
         className: PropTypes.string,
+        styleBoxShadow: PropTypes.bool
     };
 
     static defaultProps = {
@@ -31,6 +32,8 @@ export default class Resource extends React.PureComponent {
         notEnough: false,
         column: true,
         margin: true,
+        stylePadding: true,
+        styleBoxShadow: true,
     };
 
     renderColumn(style) {
@@ -50,10 +53,12 @@ export default class Resource extends React.PureComponent {
     }
 
     render() {
-        const {notEnough, size, column, margin, className} = this.props;
-        const customClassName = cn('resource inlineBlock fontSize08Rem relative', {
+        const {notEnough, size, column, styleBoxShadow, margin, stylePadding, className} = this.props;
+        const customClassName = cn('inlineBlock fontSize08Rem relative', {
             [className]: className,
             'marginRem': margin,
+            'paddingRem': stylePadding,
+            'boxShadow': styleBoxShadow,
             [size]: size
         });
         const style = notEnough ? {color: ORANGE_COLOR} : undefined;

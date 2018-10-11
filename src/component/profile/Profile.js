@@ -9,6 +9,8 @@ import {getText, TEXT_POINTS} from "../../lang/langText";
 import cross from '../../media/image/icon/cross.svg';
 import trophy from '../../media/image/icon/trophy.svg';
 import cn from 'classnames';
+import Grade from "../grade/Grade";
+import Elo from "../elo/Elo";
 
 export default class Profile extends React.PureComponent {
 
@@ -20,6 +22,7 @@ export default class Profile extends React.PureComponent {
         isAdded: PropTypes.bool,
         imgHeight: PropTypes.number,
         elo: PropTypes.number,
+        grade: PropTypes.string,
         active: PropTypes.bool,
         renderElo: PropTypes.bool,
         renderTag: PropTypes.bool,
@@ -45,6 +48,7 @@ export default class Profile extends React.PureComponent {
         disabled: false,
         renderTag: false,
         renderElo: false,
+        renderGrade: false,
         blackBackground: false,
         onClick: _.noop,
         detailsClassName: 'justifyCenter',
@@ -59,8 +63,7 @@ export default class Profile extends React.PureComponent {
     }
 
     renderDetails() {
-        const {wisorType, imgHeight, isOnline, name, renderTag, tag, renderElo, elo,
-            defaultDetailsClassNames, detailsContainerClassName, detailsClassName, detailsInsideContainerClassName} = this.props;
+        const {wisorType, imgHeight, isOnline, name, renderTag, tag, defaultDetailsClassNames, detailsContainerClassName, detailsClassName, detailsInsideContainerClassName} = this.props;
         const customClassName = cn({
             'fontSize08Rem': defaultDetailsClassNames,
             [detailsContainerClassName]: detailsContainerClassName
@@ -74,16 +77,19 @@ export default class Profile extends React.PureComponent {
                     {name && <div className={`name width100 ${detailsClassName}`}>{name}</div>}
                 </div>
                 {renderTag && <div className={`tag ${detailsClassName}`}>#{tag}</div>}
-                {renderElo && <div className={detailsClassName}>{this.renderElo(elo)}</div>}
+                {<div className={detailsClassName}>{this.renderEloAndGrade()}</div>}
             </div>
         </div>;
     }
 
-    renderElo(elo) {
-        const {eloStyle} = this.props;
-        return <div className={`justifyBetween`} style={eloStyle}>
-            <div className='justifyCenter flexColumn'>{elo}</div>
-            <img className='paddingLeftRem' alt={getText(TEXT_POINTS)} src={trophy} height={20}/>
+    renderEloAndGrade() {
+        const {eloStyle, elo, renderElo, renderGrade, grade} = this.props;
+        if (!renderElo) {
+            return null;
+        }
+        return <div className={`justifyBetween`}>
+            {renderGrade && <Grade className='paddingRightRem' grade={grade}/>}
+            <Elo style={eloStyle} elo={elo}/>
         </div>;
     }
 

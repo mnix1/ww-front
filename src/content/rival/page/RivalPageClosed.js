@@ -90,8 +90,18 @@ class RivalPageClosed extends React.PureComponent {
             targetTransformer={t => ({
                 content: {
                     ...content,
-                    profile: {...content.profile, elo: _.round(t.points)},
-                    opponent: {...content.opponent, elo: _.round(t.opponentPoints)},
+                    profile: {
+                        ...content.profile,
+                        renderGrade: t.points === newProfileElo,
+                        grade: content.profileSeason.grade,
+                        elo: _.round(t.points)
+                    },
+                    opponent: {
+                        ...content.opponent,
+                        renderGrade: t.opponentPoints === newOpponentElo,
+                        grade: content.opponentSeason.grade,
+                        elo: _.round(t.opponentPoints)
+                    },
                 },
             })}
             targetAsChildProp={null}
