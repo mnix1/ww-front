@@ -13,12 +13,3 @@ export const GRADE_STYLE = {
     [GRADE_E]: {backgroundColor: '#009fff', color: '#000'},
     [GRADE_F]: {backgroundColor: '#000000', color: '#FFF'},
 };
-
-export const GRADE_ELO_RANGE_FROM = {
-    [GRADE_A]: 1600,
-    [GRADE_B]: 800,
-    [GRADE_C]: 400,
-    [GRADE_D]: 200,
-    [GRADE_E]: 100,
-    [GRADE_F]: 0,
-};

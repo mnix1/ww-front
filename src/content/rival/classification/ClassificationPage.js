@@ -21,7 +21,7 @@ import ClassificationListFetch from "./ClassificationListFetch";
 import ScreenPage from "../../../component/page/ScreenPage";
 import Line from "rc-progress/es/Line";
 import Grade from "../../../component/grade/Grade";
-import {GRADE_A, GRADE_B, GRADE_C, GRADE_D, GRADE_E, GRADE_ELO_RANGE_FROM, GRADE_F} from "../../../util/gradeHelper";
+import {GRADE_A, GRADE_B, GRADE_C, GRADE_D, GRADE_E, GRADE_F} from "../../../util/gradeHelper";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
 import Elo from "../../../component/elo/Elo";
@@ -39,7 +39,7 @@ class ClassificationPage extends React.PureComponent {
                 {this.renderClassification(classificationListRep.value.positions)}
             </div>
             <div>
-                {this.renderRewards(classificationListRep.value.rewards)}
+                {this.renderGrades(classificationListRep.value.grades)}
             </div>
         </div>
     }
@@ -62,38 +62,33 @@ class ClassificationPage extends React.PureComponent {
         </div>
     }
 
-    renderRewards(rewards) {
+    renderGrades(grades) {
         return <div className='marginRem justifyCenter'>
             <div className='boxShadow paddingRem relative'>
                 <div className='blackBackground absoluteBackgroundMix'/>
                 <div className='relative'>
                     <div className='textAlignCenter'>{getText(TEXT_SEASON_REWARDS)}</div>
                     <div className='paddingTopRem justifyCenter flexColumn'>
-                        {this.renderReward(GRADE_A, rewards[GRADE_A])}
-                        {this.renderReward(GRADE_B, rewards[GRADE_B])}
-                        {this.renderReward(GRADE_C, rewards[GRADE_C])}
-                        {this.renderReward(GRADE_D, rewards[GRADE_D])}
-                        {this.renderReward(GRADE_E, rewards[GRADE_E])}
-                        {this.renderReward(GRADE_F, rewards[GRADE_F])}
+                        {_.sortBy(grades, 'grade').map(e => this.renderGrade(e))}
                     </div>
                 </div>
             </div>
         </div>
     }
 
-    renderReward(grade, rewards) {
+    renderGrade(grade) {
         return <div className='justifyCenter marginRem '>
             <div className='boxShadow width100'>
                 <div className='justifyCenter'>
-                    <Grade styleMargin={true} className='justifyCenter' grade={grade}/>
-                    <Elo elo={GRADE_ELO_RANGE_FROM[grade]}/>
+                    <Grade styleMargin={true} className='justifyCenter' grade={grade.grade}/>
+                    <Elo elo={grade.rangeFrom}/>
                 </div>
                 <AvailableResourcesComponent
                     stylePadding={false}
                     styleBoxShadow={false}
                     size={RESOURCE_VERY_SMALL}
                     renderTitle={false}
-                    {...rewards}
+                    {...grade.rewards}
                 />
             </div>
         </div>
