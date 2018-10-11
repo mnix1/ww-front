@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import {Loading} from "../../../component/loading/Loading";
 import Profile from "../../../component/profile/Profile";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
-import {CLASSIFICATION_ROUTE_RIVAL_TYPE, RIVAL_TYPE_BATTLE, RIVAL_TYPE_WAR} from "../../../util/rivalHelper";
 import {getText, TEXT_RANKING} from "../../../lang/langText";
 import position1 from '../../../media/image/position/position1.svg';
 import position2 from '../../../media/image/position/position2.svg';
@@ -17,19 +16,29 @@ import ScreenPage from "../../../component/page/ScreenPage";
 class ClassificationPage extends React.PureComponent {
 
     renderContent() {
-        const {classificationListRep, path, profile} = this.props;
+        const {classificationListRep} = this.props;
         if (!isRepFulfilled(classificationListRep)) {
             return <Loading/>;
         }
-        const type = CLASSIFICATION_ROUTE_RIVAL_TYPE[path];
-        const myProfile = classificationListRep.value.filter(e => e.tag === profile.tag)[0];
-        const isLast = myProfile.tag === _.last(classificationListRep.value).tag;
-        const profilesToList = isLast
-            ? classificationListRep.value.filter(e => e.tag !== profile.tag)
-            : classificationListRep.value;
         return <div className='justifyCenter flexColumn'>
-            {profilesToList.map(e => this.renderPosition(e, type === RIVAL_TYPE_WAR, type === RIVAL_TYPE_BATTLE))}
-            {isLast && this.renderPosition(myProfile, type === RIVAL_TYPE_WAR, type === RIVAL_TYPE_BATTLE)}
+            {this.renderClassification(classificationListRep.value)}
+        </div>
+    }
+
+    renderClassification(positions) {
+        if (_.isEmpty(positions)) {
+            return null;
+        }
+        const {profile} = this.props;
+        const me = positions.filter(e => e.profile.tag === profile.tag)[0];
+        const isPresent = !_.isNil(me);
+        const isLast = isPresent && profile.tag === _.last(positions).profile.tag;
+        positions = isLast
+            ? positions.filter(e => e.tag !== profile.tag)
+            : positions;
+        return <div className='justifyCenter flexColumn'>
+            {positions.map(e => this.renderPosition(e))}
+            {isPresent && isLast && this.renderPosition(me)}
         </div>
     }
 
@@ -45,7 +54,7 @@ class ClassificationPage extends React.PureComponent {
         return <img alt='' src={src} height={src === positionLow ? 30 : 50}/>;
     }
 
-    renderPosition = (profile, renderWarElo, renderBattleElo) => {
+    renderPosition = (profile) => {
         const {tag} = this.props.profile;
         const className = cn('justifyCenter relative boxShadow paddingRem marginRem', {
             'active': profile.tag === tag,
@@ -60,7 +69,7 @@ class ClassificationPage extends React.PureComponent {
                 <Profile defaultClassNames={false} defaultDetailsClassNames={false}
                          detailsContainerClassName='justifyBetween'
                          detailsInsideContainerClassName='paddingLeftRem'
-                         renderWarElo={renderWarElo} renderBattleElo={renderBattleElo}
+                         renderElo={true}
                          key={profile.tag} {...profile}>
                 </Profile>
             </div>
@@ -71,7 +80,7 @@ class ClassificationPage extends React.PureComponent {
         const {path} = this.props;
         return <ScreenPage>
             <div className='pageHeader'>{getText(TEXT_RANKING)}</div>
-            {this.renderContent()}
+            {this.renderClassification()}
             <ClassificationListFetch path={path}/>
         </ScreenPage>;
     }

@@ -19,11 +19,9 @@ export default class Profile extends React.PureComponent {
         isOnline: PropTypes.bool,
         isAdded: PropTypes.bool,
         imgHeight: PropTypes.number,
-        battleElo: PropTypes.number,
-        warElo: PropTypes.number,
+        elo: PropTypes.number,
         active: PropTypes.bool,
-        renderBattleElo: PropTypes.bool,
-        renderWarElo: PropTypes.bool,
+        renderElo: PropTypes.bool,
         renderTag: PropTypes.bool,
         blackBackground: PropTypes.bool,
         style: PropTypes.object,
@@ -46,8 +44,7 @@ export default class Profile extends React.PureComponent {
         active: false,
         disabled: false,
         renderTag: false,
-        renderBattleElo: false,
-        renderWarElo: false,
+        renderElo: false,
         blackBackground: false,
         onClick: _.noop,
         detailsClassName: 'justifyCenter',
@@ -62,7 +59,7 @@ export default class Profile extends React.PureComponent {
     }
 
     renderDetails() {
-        const {wisorType, imgHeight, isOnline, name, renderTag, tag, renderBattleElo, battleElo, renderWarElo, warElo,
+        const {wisorType, imgHeight, isOnline, name, renderTag, tag, renderElo, elo,
             defaultDetailsClassNames, detailsContainerClassName, detailsClassName, detailsInsideContainerClassName} = this.props;
         const customClassName = cn({
             'fontSize08Rem': defaultDetailsClassNames,
@@ -77,8 +74,7 @@ export default class Profile extends React.PureComponent {
                     {name && <div className={`name width100 ${detailsClassName}`}>{name}</div>}
                 </div>
                 {renderTag && <div className={`tag ${detailsClassName}`}>#{tag}</div>}
-                {renderBattleElo && <div className={detailsClassName}>{this.renderElo(battleElo)}</div>}
-                {renderWarElo && <div className={detailsClassName}>{this.renderElo(warElo)}</div>}
+                {renderElo && <div className={detailsClassName}>{this.renderElo(elo)}</div>}
             </div>
         </div>;
     }

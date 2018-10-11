@@ -92,26 +92,6 @@ export const CLASSIFICATION_ROUTE_RIVAL_TYPE = {
     [CLASSIFICATION_WAR_ROUTE]: RIVAL_TYPE_WAR,
 };
 
-export function renderBattleElo({importance, type}) {
-    return importance === RIVAL_IMPORTANCE_RANKING && type === RIVAL_TYPE_BATTLE;
-}
-
-export function renderWarElo({importance, type}) {
-    return importance === RIVAL_IMPORTANCE_RANKING && type === RIVAL_TYPE_WAR;
-}
-
-export function getElo(profile, type) {
-    return profile[getEloProp(type)];
-}
-
-export function getEloProp(type) {
-    if (type === RIVAL_TYPE_BATTLE) {
-        return 'battleElo';
-    } else if (type === RIVAL_TYPE_WAR) {
-        return 'warElo';
-    }
-}
-
 export function isRanking({importance}) {
     return importance === RIVAL_IMPORTANCE_RANKING;
 }

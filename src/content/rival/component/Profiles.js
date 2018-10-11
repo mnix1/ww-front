@@ -2,20 +2,20 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {prepareScoreMessage} from "../../../util/textHelper";
 import Profile from "../../../component/profile/Profile";
-import {renderBattleElo, renderWarElo} from "../../../util/rivalHelper";
+import {isRanking} from "../../../util/rivalHelper";
 
 class Profiles extends React.PureComponent {
 
     static defaultProps = {
         renderScore: true,
+        renderElo: false,
     };
 
     renderProfile(profile, score, color, eloStyle) {
-        const {screen, battleElo, warElo, renderScore, content} = this.props;
+        const {screen, renderElo, renderScore, content} = this.props;
         return <Profile
             eloStyle={eloStyle}
-            renderBattleElo={battleElo && renderBattleElo(content)}
-            renderWarElo={warElo && renderWarElo(content)}
+            renderElo={renderElo && isRanking(content)}
             {...profile}
             imgHeight={screen.standardImgHeight}
         >

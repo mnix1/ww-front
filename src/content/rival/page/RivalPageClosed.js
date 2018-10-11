@@ -9,14 +9,7 @@ import {
     TEXT_YOU_SURRENDER
 } from "../../../lang/langText";
 import Team from "../component/Team";
-import {
-    getElo,
-    getEloProp,
-    RIVAL_IMPORTANCE_RANKING,
-    RIVAL_TYPE_BATTLE,
-    RIVAL_TYPE_CHALLENGE,
-    RIVAL_TYPE_FAREWELL_MSG
-} from "../../../util/rivalHelper";
+import {isRanking, RIVAL_TYPE_BATTLE, RIVAL_TYPE_CHALLENGE, RIVAL_TYPE_FAREWELL_MSG} from "../../../util/rivalHelper";
 import {GREEN_COLOR, RED_COLOR} from "../../../util/style/constant";
 import _ from "lodash";
 import Profiles from "../component/Profiles";
@@ -84,22 +77,22 @@ class RivalPageClosed extends React.PureComponent {
 
     renderProfilesWithNewScore() {
         const {content, screen} = this.props;
-        if (content.importance !== RIVAL_IMPORTANCE_RANKING) {
+        if (!isRanking(content)) {
             return null;
         }
-        const oldProfileElo = getElo(content.profile, content.type);
-        const newProfileElo = getElo(content.newProfile, content.type);
-        const oldOpponentElo = getElo(content.opponent, content.type);
-        const newOpponentElo = getElo(content.newOpponent, content.type);
+        const oldProfileElo = content.profileSeason.previousElo;
+        const newProfileElo = content.profileSeason.elo;
+        const oldOpponentElo = content.opponentSeason.previousElo;
+        const newOpponentElo = content.opponentSeason.elo;
         const scoreColor = newProfileElo === oldProfileElo ? undefined : (newProfileElo > oldProfileElo ? GREEN_COLOR : RED_COLOR);
         const opponentScoreColor = newOpponentElo === oldOpponentElo ? undefined : (newOpponentElo > oldOpponentElo ? GREEN_COLOR : RED_COLOR);
         return <Anime
             targetTransformer={t => ({
                 content: {
                     ...content,
-                    profile: {...content.profile, [getEloProp(content.type)]: _.round(t.points)},
-                    opponent: {...content.opponent, [getEloProp(content.type)]: _.round(t.opponentPoints)},
-                }
+                    profile: {...content.profile, elo: _.round(t.points)},
+                    opponent: {...content.opponent, elo: _.round(t.opponentPoints)},
+                },
             })}
             targetAsChildProp={null}
             from={{
@@ -112,7 +105,7 @@ class RivalPageClosed extends React.PureComponent {
             }}>
             <Profiles
                 renderScore={false}
-                warElo
+                renderElo={true}
                 className='absolute'
                 screen={screen}
                 eloStyle={{color: scoreColor}}

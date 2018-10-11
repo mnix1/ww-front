@@ -10,8 +10,6 @@ import {push} from 'connected-react-router'
 import {APP_ROUTE, PLAY_ROUTE} from "../routes";
 import {statusChanged} from "../../redux/reducer/rival";
 import {
-    renderBattleElo,
-    renderWarElo,
     RIVAL_STATUS_CANCELED_RANDOM_OPPONENT,
     RIVAL_STATUS_CLOSED, RIVAL_STATUS_START_RANDOM_OPPONENT,
 } from "../../util/rivalHelper";
@@ -43,8 +41,7 @@ class RivalSearchOpponentPage extends React.PureComponent {
         </div>;
         const content = <div>
             <div className='justifyCenter'>{getText(TEXT_SEARCHING_OPPONENT)}...</div>
-            <Profile renderBattleElo={renderBattleElo(this.props)} renderWarElo={renderWarElo(this.props)} {...profile}
-                     actions={actions}/>
+            <Profile {...profile} actions={actions}/>
         </div>;
         return <Modal renderExit={false} content={content}/>;
     }
