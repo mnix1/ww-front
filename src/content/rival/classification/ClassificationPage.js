@@ -21,9 +21,10 @@ import ClassificationListFetch from "./ClassificationListFetch";
 import ScreenPage from "../../../component/page/ScreenPage";
 import Line from "rc-progress/es/Line";
 import Grade from "../../../component/grade/Grade";
-import {GRADE_A, GRADE_B, GRADE_C, GRADE_D, GRADE_E, GRADE_F} from "../../../util/gradeHelper";
+import {GRADE_A, GRADE_B, GRADE_C, GRADE_D, GRADE_E, GRADE_ELO_RANGE_FROM, GRADE_F} from "../../../util/gradeHelper";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
+import Elo from "../../../component/elo/Elo";
 
 class ClassificationPage extends React.PureComponent {
 
@@ -83,7 +84,10 @@ class ClassificationPage extends React.PureComponent {
     renderReward(grade, rewards) {
         return <div className='justifyCenter marginRem '>
             <div className='boxShadow width100'>
-                <Grade styleMargin={true} className='justifyCenter' grade={grade}/>
+                <div className='justifyCenter'>
+                    <Grade styleMargin={true} className='justifyCenter' grade={grade}/>
+                    <Elo elo={GRADE_ELO_RANGE_FROM[grade]}/>
+                </div>
                 <AvailableResourcesComponent
                     stylePadding={false}
                     styleBoxShadow={false}

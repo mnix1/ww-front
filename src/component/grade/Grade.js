@@ -28,8 +28,15 @@ export default class Grade extends React.PureComponent {
         return <div className={customClassName}>
             <div className='justifyCenter relative'>
                 <div className='absolute'
-                     style={{...GRADE_STYLE[grade], borderRadius: '50%', height: 28, width: 28, left: 1, top: 1}}/>
-                <img alt='' src={seal} height={30} style={{opacity: GRADE_STYLE[grade].imgOpacity}}/>
+                     style={{
+                         backgroundColor: GRADE_STYLE[grade].backgroundColor,
+                         borderRadius: '50%',
+                         height: 28,
+                         width: 28,
+                         left: 1,
+                         top: 1
+                     }}/>
+                <img alt='' src={seal} height={30} style={{opacity: 0.1}}/>
                 <div className='absolute width100 height100 textAlignCenter'>
                     <div className='relative' style={{
                         color: GRADE_STYLE[grade].color,
