@@ -7,7 +7,6 @@ import {
     getText,
     TEXT_NO_PLAYERS_YET,
     TEXT_RANKING,
-    TEXT_REWARDS,
     TEXT_SEASON,
     TEXT_SEASON_REWARDS
 } from "../../../lang/langText";
@@ -21,7 +20,6 @@ import ClassificationListFetch from "./ClassificationListFetch";
 import ScreenPage from "../../../component/page/ScreenPage";
 import Line from "rc-progress/es/Line";
 import Grade from "../../../component/grade/Grade";
-import {GRADE_A, GRADE_B, GRADE_C, GRADE_D, GRADE_E, GRADE_F} from "../../../util/gradeHelper";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
 import Elo from "../../../component/elo/Elo";

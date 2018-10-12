@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import rating from '../../media/image/menu/rating.svg';
 import randomPerson from '../../media/image/menu/dices.svg';
 import ranking from '../../media/image/menu/award.png';
-import {BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE, CLASSIFICATION_BATTLE_ROUTE, WAR_FAST_ROUTE} from "../routes";
+import {BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE, CLASSIFICATION_BATTLE_ROUTE} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
