@@ -1,6 +1,7 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
 import {NAME_MAX_LENGTH} from "../content/settings/SettingsPage";
+import React from 'react';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
 export const TEXT_CAMPAIGN_OVER = 'TEXT_CAMPAIGN_OVER';
@@ -33,7 +34,7 @@ export const TEXT_WRONG_ANSWER = 'TEXT_WRONG_ANSWER';
 export const TEXT_IS_WRONG = 'TEXT_IS_WRONG';
 export const TEXT_FRIENDS = 'TEXT_FRIENDS';
 export const TEXT_ADD_FRIEND = 'TEXT_ADD_FRIEND';
-export const TEXT_ADD_FRIEND_TAG = 'TEXT_ADD_FRIEND_TAG';
+export const TEXT_ENTER_TAG_HERE = 'TEXT_ENTER_TAG_HERE';
 export const TEXT_WRONG_TAG = 'TEXT_WRONG_TAG';
 export const TEXT_REQUEST_SENT = 'TEXT_REQUEST_SENT';
 export const TEXT_ADD_FRIEND_ALREADY = 'TEXT_ADD_FRIEND_ALREADY';
@@ -62,6 +63,7 @@ export const TEXT_PRIVATE_CHALLENGES = 'TEXT_PRIVATE_CHALLENGES';
 export const TEXT_NONE_CLOSED_CHALLENGES = 'TEXT_NONE_CLOSED_CHALLENGES';
 export const TEXT_CLOSED_CHALLENGES = 'TEXT_CLOSED_CHALLENGES';
 export const TEXT_INVITES = 'TEXT_INVITES';
+export const TEXT_CREATED = 'TEXT_CREATED';
 export const TEXT_IN_PROGRESS = 'TEXT_IN_PROGRESS';
 export const TEXT_POSITION = 'TEXT_POSITION';
 export const TEXT_WAITING_FOR_RESPONSE = 'TEXT_WAITING_FOR_RESPONSE';
@@ -147,7 +149,7 @@ export const TEXT_CHOOSE_WISIES = 'TEXT_CHOOSE_WISIES';
 export const TEXT_THIS_WINDOW = 'TEXT_THIS_WINDOW';
 export const TEXT_YOUR_REWARD = 'TEXT_YOUR_REWARD';
 export const TEXT_GUARANTEED_REWARD = 'TEXT_GUARANTEED_REWARD';
-export const TEXT_NO_REWARD = 'TEXT_NO_REWARD';
+export const TEXT_NO_REWARDS = 'TEXT_NO_REWARDS';
 export const TEXT_WISDOM = 'TEXT_WISDOM';
 export const TEXT_MENTALITY = 'TEXT_MENTALITY';
 export const TEXT_CREATE_CHALLENGE = 'TEXT_CREATE_CHALLENGE';
@@ -164,10 +166,13 @@ export const TEXT_CREATION_DATE = 'TEXT_CREATION_DATE';
 export const TEXT_CLOSE_DATE = 'TEXT_CLOSE_DATE';
 export const TEXT_FREE_ENTRY = 'TEXT_FREE_ENTRY';
 export const TEXT_PRIZE_POOL = 'TEXT_PRIZE_POOL';
+export const TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN = 'TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CREATED]: 'Utworzone',
+        [TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN]: <span>To wyzwanie jest zabezpieczone.<br/>Aby do niego dołączyć podaj tag twórcy.</span>,
         [TEXT_IN_PROGRESS]: 'W trakcie',
         [TEXT_PRIZE_POOL]: 'Pula nagród',
         [TEXT_PLAY]: 'Graj',
@@ -192,7 +197,7 @@ const TEXTS = {
         [TEXT_WISDOM]: 'Wiedza',
         [TEXT_MENTALITY]: 'Mentalność',
         [TEXT_GUARANTEED_REWARD]: 'Gwarantowana nagroda',
-        [TEXT_NO_REWARD]: 'Brak nagrody',
+        [TEXT_NO_REWARDS]: 'Brak nagród',
         [TEXT_CONNECTING]: 'Łączenie',
         [TEXT_CLAIM_AND_EXIT]: 'Odbierz i wyjdź',
         [TEXT_POSSIBLE_REWARD]: 'Możliwa nagroda',
@@ -279,7 +284,7 @@ const TEXTS = {
         [TEXT_IS_WRONG]: 'jest błędna',
         [TEXT_FRIENDS]: 'Znajomi',
         [TEXT_ADD_FRIEND]: 'Dodaj znajomego',
-        [TEXT_ADD_FRIEND_TAG]: 'wpisz tag tutaj',
+        [TEXT_ENTER_TAG_HERE]: 'wpisz tag tutaj',
         [TEXT_WRONG_TAG]: 'nieistniejący tag',
         [TEXT_REQUEST_SENT]: 'wysłano',
         [TEXT_ADD_FRIEND_ALREADY]: 'już wysłano prośbę o dodanie',
@@ -332,6 +337,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CREATED]: 'Created',
+        [TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN]: <span>This challenge is secured.<br/>To join it, enter the creator tag.</span>,
         [TEXT_IN_PROGRESS]: 'In progress',
         [TEXT_PRIZE_POOL]: 'Prize pool',
         [TEXT_PLAY]: 'Play',
@@ -356,7 +363,7 @@ const TEXTS = {
         [TEXT_WISDOM]: 'Wisdom',
         [TEXT_MENTALITY]: 'Mentality',
         [TEXT_GUARANTEED_REWARD]: 'Guaranteed reward',
-        [TEXT_NO_REWARD]: 'No reward',
+        [TEXT_NO_REWARDS]: 'No rewards',
         [TEXT_CONNECTING]: 'Connecting',
         [TEXT_CLAIM_AND_EXIT]: 'Claim and exit',
         [TEXT_YOUR_REWARD]: 'Your reward',
@@ -441,7 +448,7 @@ const TEXTS = {
         [TEXT_IS_WRONG]: 'is wrong',
         [TEXT_FRIENDS]: 'Friends',
         [TEXT_ADD_FRIEND]: 'Add friend',
-        [TEXT_ADD_FRIEND_TAG]: 'put tag here',
+        [TEXT_ENTER_TAG_HERE]: 'enter tag here',
         [TEXT_WRONG_TAG]: 'not existing tag',
         [TEXT_REQUEST_SENT]: 'sent',
         [TEXT_ADD_FRIEND_ALREADY]: 'already requested',

@@ -4,7 +4,7 @@ import {
     getText,
     TEXT_ADD_FRIEND,
     TEXT_ADD_FRIEND_ALREADY,
-    TEXT_ADD_FRIEND_TAG,
+    TEXT_ENTER_TAG_HERE,
     TEXT_REQUEST_SENT,
     TEXT_WRONG_TAG
 } from "../../lang/langText";
@@ -30,12 +30,11 @@ export class AddFriend extends React.PureComponent {
                 <div>{getText(TEXT_ADD_FRIEND)}</div>
                 <div className='addFriendActions'>
                     <input ref={this.addFriendInputRef}
-                           placeholder={getText(TEXT_ADD_FRIEND_TAG)}
+                           placeholder={getText(TEXT_ENTER_TAG_HERE)}
                            type='text'
                            maxLength={8}
                            style={{width: 120}}/>
-                    <FaPlusCircle color="#fffdf1"
-                                  onClick={() => onAddClick(this.addFriendInputRef.current.value)}/>
+                    <FaPlusCircle onClick={() => onAddClick(this.addFriendInputRef.current.value)}/>
                 </div>
             </div>;
         }

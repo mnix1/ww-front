@@ -4,7 +4,7 @@ import {getCampaignLabel} from "../../lang/langCampaign";
 import {
     getText,
     TEXT_CLAIM_AND_EXIT,
-    TEXT_EXIT, TEXT_GUARANTEED_REWARD, TEXT_NO_REWARD,
+    TEXT_EXIT, TEXT_GUARANTEED_REWARD, TEXT_NO_REWARDS,
     TEXT_START,
     TEXT_YOUR_REWARD,
     TEXT_YOUR_TEAM
@@ -96,7 +96,7 @@ class CampaignActivePage extends React.PureComponent {
         const {bookGain, goldGain, crystalGain, wisdomGain, elixirGain, rewardNotEmpty} = this.props.campaignActiveRep.value;
         if (finished && !rewardNotEmpty) {
             return <div className='justifyCenter flexColumn paddingRightRem'>
-                <div className='justifyCenter'>{getText(TEXT_NO_REWARD)}</div>
+                <div className='justifyCenter'>{getText(TEXT_NO_REWARDS)}</div>
             </div>
         }
         return rewardNotEmpty && <div className='justifyCenter flexColumn paddingRightRem'>

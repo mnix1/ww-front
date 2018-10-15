@@ -3,12 +3,11 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import _ from 'lodash';
 import {checkRepValueCode, isRepFulfilled, isRepValueCode1} from "../../../util/repositoryHelper";
-import {joinIdChanged} from "../../../redux/reducer/challenge";
+import {creatorTagChanged, joinIdChanged} from "../../../redux/reducer/challenge";
 import {push} from "connected-react-router";
 import {CHALLENGE_ACTIVE_ROUTE} from "../../routes";
-import {clearChallengeListFetch} from "./ChallengeListFetch";
 import {noticeError} from "../../../component/notification/noticeError";
-import {ERROR_NOT_ENOUGH_RESOURCES} from "../../../lang/langError";
+import {ERROR_NOT_ENOUGH_RESOURCES, ERROR_WRONG_CREATOR_TAG} from "../../../lang/langError";
 
 class ChallengeJoinFetch extends React.PureComponent {
 
@@ -18,16 +17,20 @@ class ChallengeJoinFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {challengeJoinFetch, dispatch, path, id} = this.props;
-        if (isRepFulfilled(challengeJoinFetch) && !_.isNil(id)) {
-            dispatch(joinIdChanged(undefined));
+        const {challengeJoinFetch, dispatch, path, id, creatorTag} = this.props;
+        if (isRepFulfilled(challengeJoinFetch) && !_.isNil(id) && !_.isNil(creatorTag)) {
+            clearChallengeJoinFetch(dispatch);
             if (isRepValueCode1(challengeJoinFetch)) {
                 if (path !== CHALLENGE_ACTIVE_ROUTE) {
                     dispatch(push(CHALLENGE_ACTIVE_ROUTE));
                 }
-            } else if(checkRepValueCode(challengeJoinFetch, -3)) {
+            } else if (checkRepValueCode(challengeJoinFetch, -3)) {
                 noticeError(ERROR_NOT_ENOUGH_RESOURCES);
+            } else if (checkRepValueCode(challengeJoinFetch, -4)) {
+                noticeError(ERROR_WRONG_CREATOR_TAG);
             }
+            dispatch(joinIdChanged(undefined));
+            dispatch(creatorTagChanged(undefined));
         }
     }
 
@@ -36,9 +39,9 @@ class ChallengeJoinFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {id, dispatchChallengeJoinPost} = this.props;
-        if (!_.isNil(id) && id !== prevProps.id) {
-            dispatchChallengeJoinPost(id);
+        const {id, creatorTag, dispatchChallengeJoinPost} = this.props;
+        if (!_.isNil(id) && !_.isNil(creatorTag) && (id !== prevProps.id  || creatorTag !== prevProps.creatorTag)) {
+            dispatchChallengeJoinPost(id, creatorTag);
         }
     }
 
@@ -54,8 +57,8 @@ export function clearChallengeJoinFetch(dispatch) {
 export default connect([{
     resource: 'challengeJoin',
     method: 'post',
-    request: (id) => ({
+    request: (id, creatorTag) => ({
         url: `/challenge/join`,
-        body: {id}
+        body: {id, creatorTag}
     })
 }])(ChallengeJoinFetch);

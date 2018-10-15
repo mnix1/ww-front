@@ -2,10 +2,12 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CHALLENGE_ACTIVE_ROUTE, CHALLENGE_CREATE_ROUTE} from "../../routes";
-import {isRepFulfilled, isRepValueCode1} from "../../../util/repositoryHelper";
+import {checkRepValueCode, isRepFulfilled, isRepValueCode1} from "../../../util/repositoryHelper";
 import {initChanged} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
 import _ from "lodash";
+import {noticeError} from "../../../component/notification/noticeError";
+import {ERROR_NO_FRIENDS_SPECIFIED} from "../../../lang/langError";
 
 class ChallengeCreateFetch extends React.PureComponent {
 
@@ -17,10 +19,13 @@ class ChallengeCreateFetch extends React.PureComponent {
         this.maybeFetch(prevProps);
         const {challengeCreateFetch, dispatch} = this.props;
         if (isRepFulfilled(challengeCreateFetch)) {
+            dispatch(initChanged(undefined));
             if (isRepValueCode1(challengeCreateFetch)) {
                 dispatch(push(CHALLENGE_ACTIVE_ROUTE));
-                dispatch(initChanged(undefined));
+            } else if(checkRepValueCode(challengeCreateFetch, -2)) {
+                noticeError(ERROR_NO_FRIENDS_SPECIFIED);
             }
+            clearChallengeCreateFetch(dispatch);
         }
     }
 

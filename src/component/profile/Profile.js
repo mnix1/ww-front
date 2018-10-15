@@ -74,7 +74,7 @@ export default class Profile extends React.PureComponent {
                     {isOnline === false && <div className={detailsClassName}><TiWiFi style={{color: RED_COLOR}}/></div>}
                     {name && <div className={`name width100 ${detailsClassName}`}>{name}</div>}
                 </div>
-                {renderTag && <div className={`tag ${detailsClassName}`}>#{tag}</div>}
+                {renderTag && <div className={`tag ${detailsClassName}`}>tag: #{tag}</div>}
                 {<div className={detailsClassName}>{this.renderEloAndGrade()}</div>}
             </div>
         </div>;

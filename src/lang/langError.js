@@ -9,6 +9,8 @@ export const ERROR_NOT_ALLOWED_CHARS_IN_NICK = 'ERROR_NOT_ALLOWED_CHARS_IN_NICK'
 export const ERROR_FRIEND_CANT_PLAY_RIGHT_NOW = 'ERROR_FRIEND_CANT_PLAY_RIGHT_NOW';
 export const ERROR_FRIEND_RIVAL_CANCELED = 'ERROR_FRIEND_RIVAL_CANCELED';
 export const ERROR_FRIEND_RIVAL_REJECTED = 'ERROR_FRIEND_RIVAL_REJECTED';
+export const ERROR_WRONG_CREATOR_TAG = 'ERROR_WRONG_CREATOR_TAG';
+export const ERROR_NO_FRIENDS_SPECIFIED = 'ERROR_NO_FRIENDS_SPECIFIED';
 
 const TEXTS = {
     [POLISH]: {
@@ -20,6 +22,8 @@ const TEXTS = {
         [ERROR_FRIEND_CANT_PLAY_RIGHT_NOW]: 'Znajomy nie może grać w tym momencie',
         [ERROR_FRIEND_RIVAL_CANCELED]: 'Znajomy anulował grę',
         [ERROR_FRIEND_RIVAL_REJECTED]: 'Znajomy odrzucił grę',
+        [ERROR_WRONG_CREATOR_TAG]: 'Niepoprawny tag twórcy',
+        [ERROR_NO_FRIENDS_SPECIFIED]: 'Nie dodano znajomych',
     },
     [ENGLISH]: {
         [ERROR_CONNECTION_PROBLEM]: 'No connection to the server...',
@@ -30,6 +34,8 @@ const TEXTS = {
         [ERROR_FRIEND_CANT_PLAY_RIGHT_NOW]: "Friend can't play right now",
         [ERROR_FRIEND_RIVAL_CANCELED]: 'Friend canceled the game',
         [ERROR_FRIEND_RIVAL_REJECTED]: 'Friend rejected the game',
+        [ERROR_WRONG_CREATOR_TAG]: 'Wrong creator tag',
+        [ERROR_NO_FRIENDS_SPECIFIED]: 'No friends specified',
     },
 };
 

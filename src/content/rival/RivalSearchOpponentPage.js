@@ -39,11 +39,12 @@ class RivalSearchOpponentPage extends React.PureComponent {
         const actions = <div className='actions'>
             <div onClick={onCancel}><span>{getText(TEXT_CANCEL)}</span><FaTimesCircle color={CREAM_COLOR}/></div>
         </div>;
-        const content = <div>
-            <div className='justifyCenter'>{getText(TEXT_SEARCHING_OPPONENT)}...</div>
-            <Profile {...profile} actions={actions}/>
-        </div>;
-        return <Modal renderExit={false} content={content}/>;
+        return <Modal renderExit={false}>
+            <div>
+                <div className='justifyCenter'>{getText(TEXT_SEARCHING_OPPONENT)}...</div>
+                <Profile {...profile} actions={actions}/>
+            </div>
+        </Modal>;
     }
 
     render() {

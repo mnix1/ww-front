@@ -8,17 +8,20 @@ import {CHALLENGE_ACCESS_INVITE, CHALLENGE_ACCESS_LOCK} from "../../util/challen
 import {AvailableResourcesComponent} from "../resource/AvailableResources";
 import {
     getText,
-    TEXT_ACCESS, TEXT_CHALLENGE,
-    TEXT_CHALLENGE_JOIN_COST, TEXT_CLOSE_DATE,
+    TEXT_ACCESS,
+    TEXT_CHALLENGE,
+    TEXT_CHALLENGE_JOIN_COST,
+    TEXT_CLOSE_DATE,
     TEXT_CREATION_DATE,
     TEXT_CREATOR,
     TEXT_FREE_ENTRY,
     TEXT_INVITES,
     TEXT_JOIN,
     TEXT_LOCK,
+    TEXT_NO_REWARDS,
     TEXT_PARTICIPANTS,
     TEXT_PLAY,
-    TEXT_POSSIBLE_REWARD, TEXT_PRIZE_POOL,
+    TEXT_PRIZE_POOL,
     TEXT_SUMMARY,
     TEXT_TIME_LEFT,
     TEXT_UNLOCK
@@ -112,10 +115,9 @@ export default class Challenge extends React.PureComponent {
         if (!renderCost) {
             return null;
         }
-        return cost.empty ?
-            <div className='justifyCenter'>{getText(TEXT_FREE_ENTRY)}</div>
-            :
-            <div className='justifyCenter'>
+        return cost.empty
+            ? <div className='justifyCenter'>{getText(TEXT_FREE_ENTRY)}</div>
+            : <div className='justifyCenter'>
                 <div className='marginRightRem justifyCenter flexColumn'>{getText(TEXT_CHALLENGE_JOIN_COST)}:</div>
                 <AvailableResourcesComponent
                     column={false}
@@ -134,18 +136,20 @@ export default class Challenge extends React.PureComponent {
         if (!renderGain) {
             return null;
         }
-        return !gain.empty && <div className='justifyCenter'>
-            <div className='marginRightRem justifyCenter flexColumn'>{getText(TEXT_PRIZE_POOL)}:</div>
-            <AvailableResourcesComponent
-                column={false}
-                autoHide0={true}
-                size={RESOURCE_VERY_SMALL}
-                styleMargin={false}
-                stylePadding={false}
-                styleBoxShadow={false}
-                renderTitle={false}
-                {...gain}
-            /></div>
+        return gain.empty
+            ? <div className='justifyCenter'>{getText(TEXT_NO_REWARDS)}</div>
+            : <div className='justifyCenter'>
+                <div className='marginRightRem justifyCenter flexColumn'>{getText(TEXT_PRIZE_POOL)}:</div>
+                <AvailableResourcesComponent
+                    column={false}
+                    autoHide0={true}
+                    size={RESOURCE_VERY_SMALL}
+                    styleMargin={false}
+                    stylePadding={false}
+                    styleBoxShadow={false}
+                    renderTitle={false}
+                    {...gain}
+                /></div>
     }
 
     renderWisor() {

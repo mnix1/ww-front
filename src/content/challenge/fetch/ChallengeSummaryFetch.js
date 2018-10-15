@@ -2,7 +2,7 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import _ from 'lodash';
-import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
+
 class ChallengeSummaryFetch extends React.PureComponent {
 
     componentDidMount() {

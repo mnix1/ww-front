@@ -11,6 +11,7 @@ export const INIT_CHANGED = 'challenge/init/changed';
 export const RESPONSE_ID_CHANGED = 'challenge/response-id/changed';
 export const SUMMARY_ID_CHANGED = 'challenge/summary-id/changed';
 export const JOIN_ID_CHANGED = 'challenge/join-id/changed';
+export const CREATOR_TAG_CHANGED = 'challenge/creator-tag/changed';
 export const ACCESS_CHANGED = 'challenge/access/changed';
 export const RESOURCE_COST_CHANGED = 'challenge/resource-cost/changed';
 export const RESOURCE_TYPE_CHANGED = 'challenge/resource-type/changed';
@@ -25,6 +26,7 @@ const initialState = {
     duration: CHALLENGE_DURATION_8,
     responseId: undefined,
     joinId: undefined,
+    creatorTag: undefined,
     summaryId: undefined,
 };
 
@@ -42,6 +44,8 @@ export default function reducer(state = initialState, action) {
             return {...state, summaryId: action.summaryId};
         case JOIN_ID_CHANGED:
             return {...state, joinId: action.joinId};
+        case CREATOR_TAG_CHANGED:
+            return {...state, creatorTag: action.creatorTag};
         case ACCESS_CHANGED:
             return {...state, access: action.access};
         case RESOURCE_COST_CHANGED:
@@ -73,6 +77,10 @@ export function summaryIdChanged(summaryId) {
 
 export function joinIdChanged(joinId) {
     return {type: JOIN_ID_CHANGED, joinId};
+}
+
+export function creatorTagChanged(creatorTag) {
+    return {type: CREATOR_TAG_CHANGED, creatorTag};
 }
 
 export function responseIdChanged(responseId) {

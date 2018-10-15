@@ -7,12 +7,12 @@ import ChallengeJoinFetch from "./ChallengeJoinFetch";
 class ChallengeFetchContainer extends React.PureComponent {
 
     render() {
-        const {path, challenge, status} = this.props;
-        const {responseId, joinId} = challenge;
+        const {path, challenge, status, challengeJoinRep} = this.props;
+        const {responseId, joinId, creatorTag} = challenge;
         return <div>
             <ChallengeResponseFetch path={path} status={status} id={responseId}/>
-            <ChallengeListFetch path={path} id={joinId}/>
-            <ChallengeJoinFetch path={path} id={joinId}/>
+            <ChallengeListFetch path={path} id={joinId} challengeJoinRep={challengeJoinRep}/>
+            <ChallengeJoinFetch path={path} id={joinId} creatorTag={creatorTag}/>
         </div>;
     }
 }
@@ -20,6 +20,7 @@ class ChallengeFetchContainer extends React.PureComponent {
 export default connect(
     (state) => ({
         path: state.router.location.pathname,
+        challengeJoinRep: state.repository.challengeJoin,
         status: state.rival.status,
         challenge: state.challenge,
     }),

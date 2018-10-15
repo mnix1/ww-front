@@ -26,12 +26,13 @@ class InviteToRival extends React.PureComponent {
         const actions = <div className='actions'>
             <div onClick={onCancel}><span>{getText(TEXT_CANCEL)}</span><FaTimesCircle color={CREAM_COLOR}/></div>
         </div>;
-        const content = <div>
-            <div className='justifyCenter'>{getText(RIVAL_TYPE_INVITE_TEXT[rivalType])}</div>
-            <Profile {...friend} actions={actions}/>
-            <div className='justifyCenter'>{getText(TEXT_WAITING_FOR_RESPONSE)}</div>
-        </div>;
-        return <Modal renderExit={false} content={content}/>
+        return <Modal renderExit={false}>
+            <div>
+                <div className='justifyCenter'>{getText(RIVAL_TYPE_INVITE_TEXT[rivalType])}</div>
+                <Profile {...friend} actions={actions}/>
+                <div className='justifyCenter'>{getText(TEXT_WAITING_FOR_RESPONSE)}</div>
+            </div>
+        </Modal>
     }
 }
 

@@ -54,6 +54,6 @@ export class AvailableResourcesComponent extends React.PureComponent {
 }
 
 export default connect(
-    (state) => state.profile.profile,
+    (state) => ({...state.profile.profile}),
     (dispatch) => ({})
 )(AvailableResourcesComponent);

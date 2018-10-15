@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import './styles.css';
 import {
-    getText, TEXT_IN_PROGRESS,
+    getText, TEXT_CREATED, TEXT_IN_PROGRESS,
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_INVITES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES
 } from "../../../lang/langText";
-import {joinIdChanged, responseIdChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
+import {creatorTagChanged, joinIdChanged, responseIdChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
 import {CHALLENGE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
@@ -52,7 +52,8 @@ class ChallengeActivePage extends React.PureComponent {
             <div className="pageHeader">
                 <span>{getText(_.isEmpty(challenges) ? TEXT_NONE_IN_PROGRESS_CHALLENGES : TEXT_IN_PROGRESS_CHALLENGES)}</span>
             </div>
-            {this.renderChallenges(challenges.filter(e => !e.joined), TEXT_INVITES)}
+            {this.renderChallenges(challenges.filter(e => !e.joined && e.type === 'CREATOR'), TEXT_CREATED)}
+            {this.renderChallenges(challenges.filter(e => !e.joined && e.type === 'INVITED'), TEXT_INVITES)}
             {this.renderChallenges(challenges.filter(e => e.joined), TEXT_IN_PROGRESS)}
         </div>;
     }
@@ -85,7 +86,7 @@ export default connect(
         },
         onChallengeJoinClick: (id) => {
             dispatch(joinIdChanged(id));
-            // dispatch(push(CHALLENGE_ACTIVE_ROUTE));
+            dispatch(creatorTagChanged(''));
         },
     })
 )(ChallengeActivePage);

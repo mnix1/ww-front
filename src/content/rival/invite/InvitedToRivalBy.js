@@ -41,10 +41,12 @@ class InvitedToRivalBy extends React.PureComponent {
             <div onClick={onAccept}><span>{getText(TEXT_ACCEPT)}</span><FaCheckCircle color={CREAM_COLOR}/></div>
             <div onClick={onReject}><span>{getText(TEXT_REJECT)}</span><FaTimesCircle color={CREAM_COLOR}/></div>
         </div>;
-        const content = <div>
-            <div className='justifyCenter'>{getText(RIVAL_TYPE_INVITED_TO_BY_TEXT[invitedToRivalBy.type])}</div>
-            <Profile {...invitedToRivalBy.friend} actions={actions}/></div>;
-        return <Modal renderExit={false} content={content}/>
+        return <Modal renderExit={false}>
+            <div>
+                <div className='justifyCenter'>{getText(RIVAL_TYPE_INVITED_TO_BY_TEXT[invitedToRivalBy.type])}</div>
+                <Profile {...invitedToRivalBy.friend} actions={actions}/>
+            </div>
+        </Modal>
     }
 }
 

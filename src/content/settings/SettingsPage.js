@@ -19,6 +19,9 @@ export const NAME_MAX_LENGTH = 20;
 class SettingsPage extends React.PureComponent {
 
     renderContent() {
+        if (_.isNil(this.props.profile)) {
+            return null;
+        }
         return <div>
             <a href='/logout'><Button
                 className='marginRem right'
@@ -47,6 +50,9 @@ class SettingsPage extends React.PureComponent {
 
     renderActualNick() {
         const {profile, chosenNick, onChoose, onChooseAccept} = this.props;
+        if (_.isNil(profile)) {
+            return null;
+        }
         return <div className={`left marginRem boxShadow paddingRem ${INTRO_STEP_OPTIONS}`}>
             <div>{getText(TEXT_CHANGE_NICK)}</div>
             <div className='justifyCenter'>

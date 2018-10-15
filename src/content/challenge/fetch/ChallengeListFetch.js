@@ -1,9 +1,9 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_HISTORY_ROUTE, CHALLENGE_ACTIVE_ROUTE, CHALLENGE_PRIVATE_ROUTE} from "../../routes";
+import {CHALLENGE_ACTIVE_ROUTE, CHALLENGE_HISTORY_ROUTE, CHALLENGE_PRIVATE_ROUTE} from "../../routes";
 import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
-import _ from 'lodash';
+import {isRepValueCode1} from "../../../util/repositoryHelper";
 
 class ChallengeListFetch extends React.PureComponent {
 
@@ -20,8 +20,8 @@ class ChallengeListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, id, dispatchChallengeListPost} = this.props;
-        if ((_.isNil(id) && prevProps.id !== id) || prevProps.path !== path) {
+        const {path, dispatchChallengeListPost, challengeJoinRep} = this.props;
+        if ((isRepValueCode1(challengeJoinRep) && path !== CHALLENGE_PRIVATE_ROUTE) || prevProps.path !== path) {
             if (path === CHALLENGE_HISTORY_ROUTE) {
                 dispatchChallengeListPost(CHALLENGE_STATUS_CLOSED, true);
             } else if (path === CHALLENGE_ACTIVE_ROUTE) {
