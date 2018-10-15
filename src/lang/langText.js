@@ -56,6 +56,8 @@ export const TEXT_ACTUAL_FRIENDS = 'TEXT_ACTUAL_FRIENDS';
 export const TEXT_NONE_SUGGESTED_FRIENDS = 'TEXT_NONE_SUGGESTED_FRIENDS';
 export const TEXT_NONE_IN_PROGRESS_CHALLENGES = 'TEXT_NONE_IN_PROGRESS_CHALLENGES';
 export const TEXT_IN_PROGRESS_CHALLENGES = 'TEXT_IN_PROGRESS_CHALLENGES';
+export const TEXT_NO_PRIVATE_CHALLENGES = 'TEXT_NO_PRIVATE_CHALLENGES';
+export const TEXT_PRIVATE_CHALLENGES = 'TEXT_PRIVATE_CHALLENGES';
 export const TEXT_NONE_CLOSED_CHALLENGES = 'TEXT_NONE_CLOSED_CHALLENGES';
 export const TEXT_CLOSED_CHALLENGES = 'TEXT_CLOSED_CHALLENGES';
 export const TEXT_INVITES = 'TEXT_INVITES';
@@ -146,10 +148,36 @@ export const TEXT_GUARANTEED_REWARD = 'TEXT_GUARANTEED_REWARD';
 export const TEXT_NO_REWARD = 'TEXT_NO_REWARD';
 export const TEXT_WISDOM = 'TEXT_WISDOM';
 export const TEXT_MENTALITY = 'TEXT_MENTALITY';
+export const TEXT_CREATE_CHALLENGE = 'TEXT_CREATE_CHALLENGE';
+export const TEXT_CREATE = 'TEXT_CREATE';
+export const TEXT_LOCK = 'TEXT_LOCK';
+export const TEXT_UNLOCK = 'TEXT_UNLOCK';
+export const TEXT_CHALLENGE_JOIN_COST = 'TEXT_CHALLENGE_JOIN_COST';
+export const TEXT_ACCESS = 'TEXT_ACCESS';
+export const TEXT_DURATION = 'TEXT_DURATION';
+export const TEXT_CREATOR = 'TEXT_CREATOR';
+export const TEXT_JOIN = 'TEXT_JOIN';
+export const TEXT_PARTICIPANTS = 'TEXT_PARTICIPANTS';
+export const TEXT_CREATION_DATE = 'TEXT_CREATION_DATE';
+export const TEXT_FREE_ENTRY = 'TEXT_FREE_ENTRY';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_FREE_ENTRY]: 'Darmowy wstęp',
+        [TEXT_CREATION_DATE]: 'Data utworzenia',
+        [TEXT_PARTICIPANTS]: 'Uczestnicy',
+        [TEXT_JOIN]: 'Dołącz',
+        [TEXT_CREATOR]: 'Twórca',
+        [TEXT_PRIVATE_CHALLENGES]: 'Prywatne wyzwania',
+        [TEXT_NO_PRIVATE_CHALLENGES]: 'Brak prywatnych wyzwań',
+        [TEXT_DURATION]: 'Czas trwania',
+        [TEXT_ACCESS]: 'Dostęp',
+        [TEXT_CHALLENGE_JOIN_COST]: 'Koszt dołączenia',
+        [TEXT_LOCK]: 'Zamknięty',
+        [TEXT_UNLOCK]: 'Otwarty',
+        [TEXT_CREATE_CHALLENGE]: 'Utwórz wyzwanie',
+        [TEXT_CREATE]: 'Utwórz',
         [TEXT_NO_PLAYERS_YET]: 'Jeszcze nikt nie został sklasyfikowany',
         [TEXT_SEASON]: 'Sezon',
         [TEXT_CHANGE_TASK_ACCEPTED]: 'Wniosek o zmianę pytania zaakceptowany',
@@ -296,6 +324,20 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_FREE_ENTRY]: 'Free entry',
+        [TEXT_CREATION_DATE]: 'Creation date',
+        [TEXT_PARTICIPANTS]: 'Participants',
+        [TEXT_JOIN]: 'Join',
+        [TEXT_CREATOR]: 'Creator',
+        [TEXT_PRIVATE_CHALLENGES]: 'Private challenges',
+        [TEXT_NO_PRIVATE_CHALLENGES]: 'No private challenges',
+        [TEXT_DURATION]: 'Duration',
+        [TEXT_ACCESS]: 'Access',
+        [TEXT_CHALLENGE_JOIN_COST]: 'Join cost',
+        [TEXT_LOCK]: 'Locked',
+        [TEXT_UNLOCK]: 'Unlocked',
+        [TEXT_CREATE_CHALLENGE]: 'Create challenge',
+        [TEXT_CREATE]: 'Create',
         [TEXT_NO_PLAYERS_YET]: 'Nobody has been classified yet',
         [TEXT_SEASON]: 'Season',
         [TEXT_CHANGE_TASK_ACCEPTED]: 'Request for changing the question accepted',

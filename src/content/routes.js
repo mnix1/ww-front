@@ -25,7 +25,10 @@ export const CHALLENGE_ROUTE = '/challenge';
 export const CHALLENGE_FRIEND_INIT_ROUTE = '/challengeFriendInit';
 export const CHALLENGE_RESPONSE_ROUTE = '/challengeResponse';
 export const CHALLENGE_SUMMARY_ROUTE = '/challengeSummary';
-export const CHALLENGE_LIST_ROUTE = '/challengeList';
+export const CHALLENGE_ACTIVE_ROUTE = '/challengeActive';
+export const CHALLENGE_CREATE_ROUTE = '/challengeCreate';
+export const CHALLENGE_PRIVATE_ROUTE = '/challengePrivate';
+export const CHALLENGE_GLOBAL_ROUTE = '/challengeGlobal';
 export const CHALLENGE_HISTORY_ROUTE = '/challengeHistory';
 
 export const CAMPAIGN_ROUTE = '/campaign';

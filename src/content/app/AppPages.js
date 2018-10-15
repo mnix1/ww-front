@@ -9,9 +9,12 @@ import {
     BATTLE_ROUTE,
     CAMPAIGN_ROUTE,
     CAMPAIGN_WAR_ROUTE,
+    CHALLENGE_ACTIVE_ROUTE,
+    CHALLENGE_CREATE_ROUTE,
     CHALLENGE_FRIEND_INIT_ROUTE,
+    CHALLENGE_GLOBAL_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
-    CHALLENGE_LIST_ROUTE,
+    CHALLENGE_PRIVATE_ROUTE,
     CHALLENGE_ROUTE,
     CHALLENGE_SUMMARY_ROUTE,
     CLASSIFICATION_BATTLE_ROUTE,
@@ -51,7 +54,7 @@ import PractisePage from "../practise/PractisePage";
 import CampaignPage from "../campaign/CampaignPage";
 import ChallengeFriendInit from "../challenge/create/ChallengeFriendInit";
 import ChallengeSummaryPage from "../challenge/list/ChallengeSummaryPage";
-import ChallengeListPage from "../challenge/list/ChallengeListPage";
+import ChallengePrivatePage from "../challenge/list/ChallengePrivatePage";
 import ChallengeHistoryPage from "../challenge/list/ChallengeHistoryPage";
 import ClassificationPage from "../rival/classification/ClassificationPage";
 import SettingsPage from "../settings/SettingsPage";
@@ -62,6 +65,9 @@ import shop from '../../media/image/menu/shop.png';
 import wisie from '../../media/image/menu/robot.svg';
 import owl from '../../media/image/menu/owl.svg';
 import {isFullScreen, menuItemHeight} from "../../util/screenHelper";
+import ChallengeGlobalPage from "../challenge/list/ChallengeGlobalPage";
+import ChallengeCreatePage from "../challenge/list/ChallengeCreatePage";
+import ChallengeActivePage from "../challenge/list/ChallengeActivePage";
 
 class AppPages extends React.PureComponent {
 
@@ -124,8 +130,11 @@ class AppPages extends React.PureComponent {
                 <Route exact path={CHALLENGE_FRIEND_INIT_ROUTE} render={() => <ChallengeFriendInit/>}/>
                 <Route exact path={CHALLENGE_ROUTE} render={() => <RivalPage/>}/>
 
+                <Route exact path={CHALLENGE_CREATE_ROUTE} render={() => <ChallengeCreatePage/>}/>
+                <Route exact path={CHALLENGE_GLOBAL_ROUTE} render={() => <ChallengeGlobalPage/>}/>
+                <Route exact path={CHALLENGE_PRIVATE_ROUTE} render={() => <ChallengePrivatePage/>}/>
                 <Route exact path={CHALLENGE_SUMMARY_ROUTE} render={() => <ChallengeSummaryPage/>}/>
-                <Route exact path={CHALLENGE_LIST_ROUTE} render={() => <ChallengeListPage/>}/>
+                <Route exact path={CHALLENGE_ACTIVE_ROUTE} render={() => <ChallengeActivePage/>}/>
                 <Route exact path={CHALLENGE_HISTORY_ROUTE} render={() => <ChallengeHistoryPage/>}/>
 
                 <Route exact path={CLASSIFICATION_WAR_ROUTE} render={() => <ClassificationPage/>}/>

@@ -20,7 +20,9 @@ export class AvailableResourcesComponent extends React.PureComponent {
         wisdom: PropTypes.number,
         elixir: PropTypes.number,
         renderTitle: PropTypes.bool,
-        styleBoxShadow: PropTypes.bool
+        styleBoxShadow: PropTypes.bool,
+        autoHide0: PropTypes.bool,
+        customTitle: PropTypes.string
     };
 
     static defaultProps = {
@@ -32,17 +34,20 @@ export class AvailableResourcesComponent extends React.PureComponent {
         showCrystal: true,
         showElixir: true,
         showWisdom: true,
+        autoHide0: false,
     };
 
     render() {
-        const {gold, crystal, wisdom, elixir, showGold, showCrystal, showElixir, showWisdom, renderTitle} = this.props;
+        const {gold, crystal, wisdom, elixir, showGold, showCrystal, showElixir, showWisdom, renderTitle, autoHide0, customTitle} = this.props;
         return <div className='contentFragment textAlignCenter availableResources'>
-            {renderTitle && <div className='title'>{getText(TEXT_AVAILABLE_RESOURCES)} </div>}
+            {renderTitle &&
+            (customTitle ? customTitle : <div className='title'>{getText(TEXT_AVAILABLE_RESOURCES)}</div>)}
             <div className='resources justifyEvenly'>
-                {showGold && <Gold {...this.props}>{gold}</Gold>}
-                {showCrystal && <Crystal {...this.props}>{crystal}</Crystal>}
-                {showElixir && <Wisdom {...this.props}>{wisdom}</Wisdom>}
-                {showWisdom && <Elixir {...this.props}>{elixir}</Elixir>}
+                {showGold && (!autoHide0 || (autoHide0 && gold > 0)) && <Gold {...this.props}>{gold}</Gold>}
+                {showCrystal && (!autoHide0 || (autoHide0 && crystal > 0)) &&
+                <Crystal {...this.props}>{crystal}</Crystal>}
+                {showElixir && (!autoHide0 || (autoHide0 && wisdom > 0)) && <Wisdom {...this.props}>{wisdom}</Wisdom>}
+                {showWisdom && (!autoHide0 || (autoHide0 && elixir > 0)) && <Elixir {...this.props}>{elixir}</Elixir>}
             </div>
         </div>
     }

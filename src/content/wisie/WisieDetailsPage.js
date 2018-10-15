@@ -67,9 +67,9 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>
                     <div className='justifyCenter'>
-                        <Crystal notEnough={profile.crystal < cost.crystal} margin={false}
+                        <Crystal notEnough={profile.crystal < cost.crystal} styleMargin={false}
                                  size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
-                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} margin={false}
+                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} styleMargin={false}
                                 size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                     </div>
                 </div>
@@ -108,9 +108,9 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>
                     <div className='justifyCenter'>
-                        <Crystal notEnough={profile.crystal < cost.crystal} margin={false}
+                        <Crystal notEnough={profile.crystal < cost.crystal} styleMargin={false}
                                  size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
-                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} margin={false}
+                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} styleMargin={false}
                                 size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ class WisieDetailsPage extends React.PureComponent {
     renderUpgradeAttributeCost(cost) {
         const {profile} = this.props;
         return <div className='justifyCenter marginLeftRem'>
-            (<Wisdom notEnough={profile.wisdom < cost} margin={false} column={false}
+            (<Wisdom notEnough={profile.wisdom < cost} styleMargin={false} column={false}
                      size={RESOURCE_VERY_SMALL}>{cost}</Wisdom>)
         </div>;
     }

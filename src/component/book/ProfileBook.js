@@ -74,7 +74,7 @@ export default class ProfileBook extends React.PureComponent {
                     onClick={onSpeedUpClick}
             >
                 <div className='justifyCenter'>
-                    <Crystal size={RESOURCE_VERY_SMALL} margin={false} notEnough={!isBuyEnable}>{crystalCost}</Crystal>
+                    <Crystal size={RESOURCE_VERY_SMALL} styleMargin={false} notEnough={!isBuyEnable}>{crystalCost}</Crystal>
                     <div className='justifyCenter flexColumn paddingLeftRem'>{getText(TEXT_READ_NOW)}</div>
                 </div>
             </Button>

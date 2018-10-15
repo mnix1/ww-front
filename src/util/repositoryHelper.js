@@ -3,6 +3,9 @@ import _ from 'lodash';
 export function isRepValueCode1(e) {
     return checkRepValueCode(e, 1);
 }
+export function isRepValueCodeNot1(e) {
+    return !checkRepValueCode(e, 1);
+}
 
 export function isRepFulfilledOnceWithCode1(e, prevE) {
     return isRepFulfilled(e) && !isRepFulfilled(prevE) && isRepValueCode1(e);

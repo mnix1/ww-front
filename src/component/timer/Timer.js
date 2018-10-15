@@ -122,7 +122,7 @@ export default class Timer extends React.PureComponent {
     renderDigital() {
         const {hours, minutes, seconds} = this.state;
         const time = `${datePartFormatter(hours)}:${datePartFormatter(minutes)}:${datePartFormatter(seconds)}`;
-        return <DigitalClock time={time}/>
+        return <DigitalClock fontSize='0.8rem' time={time}/>
     }
 
     renderAnalog() {

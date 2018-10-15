@@ -1,9 +1,18 @@
 import React from 'react';
 import './styles.css';
 import {connect} from 'react-redux';
-import clock from '../../media/image/icon/clock.png';
+import clock from '../../media/image/menu/clock.png';
+import add from '../../media/image/menu/add.svg';
+import global from '../../media/image/menu/global.svg';
+import padlock from '../../media/image/menu/padlock.svg';
 import notebook from '../../media/image/menu/notes.svg';
-import {CHALLENGE_HISTORY_ROUTE, CHALLENGE_LIST_ROUTE} from "../routes";
+import {
+    CHALLENGE_CREATE_ROUTE,
+    CHALLENGE_GLOBAL_ROUTE,
+    CHALLENGE_HISTORY_ROUTE,
+    CHALLENGE_ACTIVE_ROUTE,
+    CHALLENGE_PRIVATE_ROUTE
+} from "../routes";
 import Menu from "../../component/menu/Menu";
 import MenuItem from "../../component/menu/MenuItem";
 import {push} from "connected-react-router";
@@ -30,7 +39,14 @@ class PlayChallengePage extends React.PureComponent {
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(CHALLENGE_LIST_ROUTE, clock)}
+                    {this.renderMenuItem(CHALLENGE_GLOBAL_ROUTE, global)}
+                    {this.renderMenuItem(CHALLENGE_PRIVATE_ROUTE, padlock)}
+                    {this.renderMenuItem(CHALLENGE_ACTIVE_ROUTE, clock)}
+                </div>
+            </Menu>
+            <Menu className='menuRight'>
+                <div className='menuItems'>
+                    {this.renderMenuItem(CHALLENGE_CREATE_ROUTE, add)}
                     {this.renderMenuItem(CHALLENGE_HISTORY_ROUTE, notebook)}
                 </div>
             </Menu>

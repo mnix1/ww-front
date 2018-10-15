@@ -3,14 +3,14 @@ import {
     BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE,
     BATTLE_ROUTE, CAMPAIGN_ROUTE, CAMPAIGN_WAR_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
-    CHALLENGE_LIST_ROUTE,
+    CHALLENGE_ACTIVE_ROUTE,
     FRIEND_ROUTE,
     HISTORY_ROUTE, PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE, PLAY_WAR_ROUTE,
     PROFILE_ROUTE, CLASSIFICATION_WAR_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE, WAR_FAST_ROUTE, WAR_RANKING_ROUTE,
-    WISIES_ROUTE, CLASSIFICATION_BATTLE_ROUTE
+    WISIES_ROUTE, CLASSIFICATION_BATTLE_ROUTE, CHALLENGE_GLOBAL_ROUTE, CHALLENGE_CREATE_ROUTE, CHALLENGE_PRIVATE_ROUTE
 } from "../content/routes";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -38,8 +38,11 @@ const ROUTE_LABELS = {
         [BATTLE_RANKING_ROUTE]: <span>Bitwa<br/>rankingowa</span>,
         [WAR_FAST_ROUTE]: <span>Szybka<br/>wojna</span>,
         [WAR_RANKING_ROUTE]: <span>Wojna<br/>rankingowa</span>,
-        [CHALLENGE_LIST_ROUTE]: <span>Aktywne<br/>wyzwania</span>,
-        [CHALLENGE_HISTORY_ROUTE]: <span>Historia<br/>wyzwań</span>,
+        [CHALLENGE_GLOBAL_ROUTE]: <span>Globalne</span>,
+        [CHALLENGE_PRIVATE_ROUTE]: <span>Prywatne</span>,
+        [CHALLENGE_CREATE_ROUTE]: <span>Utwórz</span>,
+        [CHALLENGE_ACTIVE_ROUTE]: <span>Aktywne</span>,
+        [CHALLENGE_HISTORY_ROUTE]: <span>Historia</span>,
         [CLASSIFICATION_WAR_ROUTE]: 'Klasyfikacja',
         [CLASSIFICATION_BATTLE_ROUTE]: 'Klasyfikacja',
     },
@@ -61,8 +64,11 @@ const ROUTE_LABELS = {
         [BATTLE_RANKING_ROUTE]: <span>Ranking<br/>battle</span>,
         [WAR_FAST_ROUTE]: <span>Fast<br/>war</span>,
         [WAR_RANKING_ROUTE]: <span>Ranking<br/>war</span>,
-        [CHALLENGE_LIST_ROUTE]: <span>Active<br/>challenge</span>,
-        [CHALLENGE_HISTORY_ROUTE]: <span>Challenge<br/>history</span>,
+        [CHALLENGE_GLOBAL_ROUTE]: <span>Global</span>,
+        [CHALLENGE_PRIVATE_ROUTE]: <span>Private</span>,
+        [CHALLENGE_CREATE_ROUTE]: <span>Create</span>,
+        [CHALLENGE_ACTIVE_ROUTE]: <span>Active</span>,
+        [CHALLENGE_HISTORY_ROUTE]: <span>History</span>,
         [CLASSIFICATION_WAR_ROUTE]: 'Classification',
         [CLASSIFICATION_BATTLE_ROUTE]: 'Classification',
     }

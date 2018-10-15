@@ -1,19 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {CREAM_COLOR} from "../../../util/style/constant";
-import {FaGavel, FaListOl} from "react-icons/fa";
 import './styles.css';
-import {
-    getText,
-    TEXT_ANSWER,
-    TEXT_CONTINUE,
-    TEXT_IN_PROGRESS_CHALLENGES,
-    TEXT_NONE_IN_PROGRESS_CHALLENGES,
-    TEXT_SUMMARY
-} from "../../../lang/langText";
-import {responseIdChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
-import Profile from "../../../component/profile/Profile";
+import {getText, TEXT_IN_PROGRESS_CHALLENGES, TEXT_NONE_IN_PROGRESS_CHALLENGES} from "../../../lang/langText";
+import {joinIdChanged, responseIdChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
 import {CHALLENGE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
@@ -23,39 +13,22 @@ import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRa
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ScreenPage from "../../../component/page/ScreenPage";
+import Challenge from "../../../component/challenge/Challenge";
 
-class ChallengeListPage extends React.PureComponent {
+class ChallengeActivePage extends React.PureComponent {
 
-    renderChallenges() {
-        const {challengeListRep} = this.props;
-        const challenges = _.sortBy(challengeListRep.value, 'inProgressDate');
+    renderChallenges(challenges) {
         return <div>
             <div className='contentFragment challengesContainer'>
-                {challenges.map(e => this.renderChallenge(e))}
+                {_.sortBy(challenges, 'timeoutInterval').map(e => this.renderChallenge(e))}
             </div>
         </div>;
     }
 
     renderChallenge(challenge) {
-        const {onChallengeResponseClick, onChallengeSummaryClick, profile} = this.props;
-        const creator = challenge.creatorProfile;
-        const isProfileCreator = profile.tag === creator.tag;
-        const date = new Date(challenge.inProgressDate);
+        const {onChallengeJoinClick, onChallengeResponseClick, onChallengeSummaryClick} = this.props;
         return <div key={challenge.id} className='challenge'>
-            <Profile {...{
-                ...creator,
-                tag: creator.tag,
-                name: creator.name
-            }} actions={<div className='actions'>
-                {challenge.canResponse &&
-                <div onClick={() => onChallengeResponseClick(challenge.id)}>
-                    <span>{getText(isProfileCreator ? TEXT_CONTINUE : TEXT_ANSWER)}</span><FaGavel
-                    color={CREAM_COLOR}/></div>}
-                <div onClick={() => onChallengeSummaryClick(challenge.id)}><span>{getText(TEXT_SUMMARY)}</span><FaListOl
-                    color={CREAM_COLOR}/></div>
-            </div>}>
-                <div>{`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}</div>
-            </Profile>
+            <Challenge {...challenge} onJoinClick={() => onChallengeJoinClick(challenge.id)}/>
         </div>
     }
 
@@ -64,11 +37,12 @@ class ChallengeListPage extends React.PureComponent {
         if (!isRepFulfilled(challengeListRep)) {
             return <Loading/>
         }
+        const challenges = challengeListRep.value;
         return <div>
             <div className="pageHeader">
-                <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_IN_PROGRESS_CHALLENGES : TEXT_IN_PROGRESS_CHALLENGES)}</span>
+                <span>{getText(_.isEmpty(challenges) ? TEXT_NONE_IN_PROGRESS_CHALLENGES : TEXT_IN_PROGRESS_CHALLENGES)}</span>
             </div>
-            {this.renderChallenges()}
+            {this.renderChallenges(challenges)}
         </div>;
     }
 
@@ -82,7 +56,6 @@ class ChallengeListPage extends React.PureComponent {
 export default connect(
     (state) => ({
         challengeListRep: state.repository.challengeList,
-        profile: state.profile.profile
     }),
     (dispatch) => ({
         onChallengeResponseClick: (id) => {
@@ -98,6 +71,10 @@ export default connect(
             dispatch(summaryIdChanged(id));
             clearChallengeSummaryFetch(dispatch);
             dispatch(push(CHALLENGE_SUMMARY_ROUTE));
-        }
+        },
+        onChallengeJoinClick: (id) => {
+            dispatch(joinIdChanged(id));
+            // dispatch(push(CHALLENGE_ACTIVE_ROUTE));
+        },
     })
-)(ChallengeListPage);
+)(ChallengeActivePage);

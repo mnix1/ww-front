@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
-import _ from 'lodash';
 import {datePartFormatter} from "../../util/dateHelper";
 
 export default class DigitalClock extends React.PureComponent {
@@ -25,7 +24,7 @@ export default class DigitalClock extends React.PureComponent {
             <div className="outer" style={{fontSize}}>
                 <div className="inner justifyCenter flexColumn">
                     <div className="most-inner">
-                        <span className='time'>{_.defaultTo(time, this.convertDateToTime(date))}</span>
+                        <span className='time'>{time || this.convertDateToTime(date)}</span>
                     </div>
                 </div>
             </div>

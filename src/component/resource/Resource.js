@@ -21,7 +21,7 @@ export default class Resource extends React.PureComponent {
         imgSrc: PropTypes.string,
         notEnough: PropTypes.bool,
         column: PropTypes.bool,
-        margin: PropTypes.bool,
+        styleMargin: PropTypes.bool,
         stylePadding: PropTypes.bool,
         className: PropTypes.string,
         styleBoxShadow: PropTypes.bool
@@ -31,7 +31,7 @@ export default class Resource extends React.PureComponent {
         size: RESOURCE_SMALL,
         notEnough: false,
         column: true,
-        margin: true,
+        styleMargin: true,
         stylePadding: false,
         styleBoxShadow: false,
     };
@@ -47,16 +47,16 @@ export default class Resource extends React.PureComponent {
     renderRow(style) {
         const {children, imgSrc, size} = this.props;
         return <div className='justifyCenter' style={style}>
-            <div className='justifyCenter flexColumn'>{children}</div>
+            <div className='justifyCenter flexColumn paddingRightRem'>{children}</div>
             <div className='justifyCenter flexColumn'><img alt='' src={imgSrc} height={IMG_HEIGHT[size]}/></div>
         </div>
     }
 
     render() {
-        const {notEnough, size, column, styleBoxShadow, margin, stylePadding, className} = this.props;
+        const {notEnough, size, column, styleBoxShadow, styleMargin, stylePadding, className} = this.props;
         const customClassName = cn('inlineBlock fontSize08Rem relative', {
             [className]: className,
-            'marginRem': margin,
+            'marginRem': styleMargin,
             'paddingRem': stylePadding,
             'boxShadow': styleBoxShadow,
             [size]: size

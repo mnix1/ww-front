@@ -1,20 +1,16 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {
-    getText,
-    TEXT_ADD,
-    TEXT_ADDED,
-    TEXT_CHALLENGE_ADD_FRIENDS,
-    TEXT_NONE_FRIENDS,
-    TEXT_START_CHALLENGE
-} from "../../../lang/langText";
+import {getText, TEXT_ADD, TEXT_ADDED, TEXT_CHALLENGE_ADD_FRIENDS, TEXT_NONE_FRIENDS} from "../../../lang/langText";
 import _ from 'lodash';
-import {initChanged, tagsChanged} from "../../../redux/reducer/challenge";
+import {tagsChanged} from "../../../redux/reducer/challenge";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
 import {MAX_CHALLENGE_FRIENDS} from "../../../util/challengeHelper";
 import Profile from "../../../component/profile/Profile";
 import {FRIEND_STATUS_ACCEPTED} from "../../../util/friendHelper";
 import ScreenPage from "../../../component/page/ScreenPage";
+import {push} from "connected-react-router";
+import {CHALLENGE_CREATE_ROUTE} from "../../routes";
+import {FaArrowCircleRight} from "react-icons/fa";
 
 class ChallengeFriendPage extends React.PureComponent {
 
@@ -51,11 +47,11 @@ class ChallengeFriendPage extends React.PureComponent {
         </div>;
     }
 
-    renderStartChallenge() {
-        const {tags, onStartChallengeClick} = this.props;
-        const label = getText(TEXT_START_CHALLENGE);
+    renderGoToCreateChallenge() {
+        const {tags, onGoToCreateChallengeClick} = this.props;
+        const label = getText(TEXT_ADD);
         if (tags.length > 0) {
-            return <Button className='marginRem relative' onClick={onStartChallengeClick}
+            return <Button className='marginRem relative' icon={<FaArrowCircleRight/>} onClick={onGoToCreateChallengeClick}
                            material={BUTTON_MATERIAL_ACCEPT}>{label}</Button>;
         }
         return null;
@@ -72,7 +68,7 @@ class ChallengeFriendPage extends React.PureComponent {
                 <span>{getText(TEXT_CHALLENGE_ADD_FRIENDS)} {friendsCounter}</span>
             </div>
             {this.renderFriends()}
-            {this.renderStartChallenge()}
+            {this.renderGoToCreateChallenge()}
         </ScreenPage>;
     }
 }
@@ -84,8 +80,9 @@ export default connect(
         friends: state.friend.friends
     }),
     (dispatch) => ({
-        onStartChallengeClick: () => {
-            dispatch(initChanged(true));
+        onGoToCreateChallengeClick: () => {
+            dispatch(push(CHALLENGE_CREATE_ROUTE));
+            // dispatch(initChanged(true));
         },
         onFriendToggle: (tag, tags) => {
             const newTags = _.filter(tags, (e) => e !== tag);

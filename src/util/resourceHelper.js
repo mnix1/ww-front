@@ -1,6 +1,11 @@
 export const WISIE_WISDOM_UPGRADE_COST = 1;
 export const WISIE_MENTAL_UPGRADE_COST = 2;
 
+export const RESOURCE_GOLD = 'GOLD';
+export const RESOURCE_CRYSTAL = 'CRYSTAL';
+export const RESOURCE_WISDOM = 'WISDOM';
+export const RESOURCE_ELIXIR = 'ELIXIR';
+
 export function wisieChangeHobbyCost(profile, wisie) {
     const hobbiesCount = wisie.hobbies.length;
     const crystal = hobbiesCount * 20;

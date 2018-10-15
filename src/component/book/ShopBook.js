@@ -35,8 +35,8 @@ export default class ProfileBook extends React.PureComponent {
     renderBuyButtonContent() {
         const {canBuyByGold, isBuyEnable, goldCost, canBuyByCrystal, crystalCost} = this.props;
         return <div className='justifyCenter'>
-            {canBuyByGold && <Gold size={RESOURCE_VERY_SMALL} margin={false} notEnough={!isBuyEnable}>{goldCost}</Gold>}
-            {canBuyByCrystal && <Crystal size={RESOURCE_VERY_SMALL} margin={false} notEnough={!isBuyEnable}>{crystalCost}</Crystal>}
+            {canBuyByGold && <Gold size={RESOURCE_VERY_SMALL} styleMargin={false} notEnough={!isBuyEnable}>{goldCost}</Gold>}
+            {canBuyByCrystal && <Crystal size={RESOURCE_VERY_SMALL} styleMargin={false} notEnough={!isBuyEnable}>{crystalCost}</Crystal>}
             <div className='justifyCenter flexColumn paddingLeftRem'>{getText(TEXT_BUY)}</div>
         </div>;
     }
