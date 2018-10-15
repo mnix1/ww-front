@@ -10,6 +10,32 @@ import {
     RED_COLOR
 } from "../../util/style/constant";
 
+
+export const BUTTON_MATERIAL_ACCEPT = {
+    background: GREEN_COLOR,
+    boxShadow: '0 0 4px',
+    color: CREAM_COLOR
+};
+export const BUTTON_MATERIAL_DANGER = {
+    background: RED_COLOR,
+    boxShadow: '0 0 4px',
+    color: CREAM_COLOR
+};
+export const BUTTON_MATERIAL_NORMAL = {
+    background: LIGHT_BLUE_COLOR,
+    boxShadow: '0 0 4px',
+    color: CREAM_COLOR
+};
+export const BUTTON_MATERIAL_WARNING = {
+    background: ORANGE_COLOR,
+    boxShadow: '0 0 4px',
+    color: CREAM_COLOR
+};
+export const BUTTON_MATERIAL_BOX_SHADOW = {
+    boxShadow: '0 0 4px',
+    color: CREAM_COLOR
+};
+
 export class Button extends React.PureComponent {
 
     static propTypes = {
@@ -44,28 +70,3 @@ export class Button extends React.PureComponent {
         </div>
     }
 }
-
-export const BUTTON_MATERIAL_ACCEPT = {
-    background: GREEN_COLOR,
-    boxShadow: '0 0 4px',
-    color: CREAM_COLOR
-};
-export const BUTTON_MATERIAL_DANGER = {
-    background: RED_COLOR,
-    boxShadow: '0 0 4px',
-    color: CREAM_COLOR
-};
-export const BUTTON_MATERIAL_NORMAL = {
-    background: LIGHT_BLUE_COLOR,
-    boxShadow: '0 0 4px',
-    color: CREAM_COLOR
-};
-export const BUTTON_MATERIAL_WARNING = {
-    background: ORANGE_COLOR,
-    boxShadow: '0 0 4px',
-    color: CREAM_COLOR
-};
-export const BUTTON_MATERIAL_BOX_SHADOW = {
-    boxShadow: '0 0 4px',
-    color: CREAM_COLOR
-};

@@ -31,7 +31,7 @@ export default class WakeLockIOS extends React.PureComponent {
         if (preventSleep && !this.timer) {
             this.timer = setInterval(() => {
                 if (!document.hidden) {
-                    window.location.href = window.location.href;
+                    // window.location.href = window.location.href;
                     setTimeout(window.stop, 0);
                 }
             }, 15000);

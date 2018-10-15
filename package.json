@@ -5,28 +5,28 @@
   "dependencies": {
     "animejs": "^2.2.0",
     "classnames": "^2.2.6",
-    "connected-react-router": "^4.3.0",
+    "connected-react-router": "^4.5.0",
     "history": "^4.7.2",
-    "lodash": "^4.17.10",
-    "mobile-detect": "^1.4.2",
+    "lodash": "^4.17.11",
+    "mobile-detect": "^1.4.3",
     "prop-types": "^15.6.2",
     "rc-notification": "^3.2.0",
-    "rc-progress": "^2.2.5",
-    "rc-slider": "^8.6.1",
-    "react": "^16.4.1",
-    "react-anime": "^2.1.0",
+    "rc-progress": "^2.2.6",
+    "rc-slider": "^8.6.3",
+    "react": "^16.5.2",
+    "react-anime": "^2.2.0",
     "react-clock": "^2.3.0",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.5.2",
     "react-equation": "0.0.2",
-    "react-icons": "^3.0.5",
+    "react-icons": "^3.2.0",
     "react-redux": "^5.0.7",
-    "react-redux-fetch": "^0.13.0",
+    "react-redux-fetch": "^0.14.1",
     "react-router": "^4.3.1",
-    "react-scripts": "1.1.5",
-    "react-transition-group": "^2.4.0",
-    "redux": "^4.0.0",
-    "styled-components": "^3.4.6",
-    "scroll-smooth": "^1.0.1",
+    "react-scripts": "2.0.5",
+    "react-transition-group": "^2.5.0",
+    "redux": "^4.0.1",
+    "styled-components": "^3.4.10",
+    "scroll-smooth": "^1.1.0",
     "scrollparent": "^2.0.1",
     "exenv": "^1.2.2",
     "uuid": "^3.3.2"
@@ -39,16 +39,12 @@
     "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "eslint": "^5.2.0",
-    "eslint-plugin-react": "^7.11.1"
-  },
-  "proxy": {
-    "/": {
-      "target": "http://localhost:8080",
-      "pathRewrite": {
-        "^/api": ""
-      }
-    }
-  }
+  "devDependencies": {},
+  "proxy": "http://localhost:8080",
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
