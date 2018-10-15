@@ -21,6 +21,7 @@ export const TEXT_DRAW_DIFFICULT = 'TEXT_DRAW_DIFFICULT';
 export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
 export const TEXT_CHOOSE_DIFFICULT = 'TEXT_CHOOSE_DIFFICULT';
 export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
+export const TEXT_PLAY = 'TEXT_PLAY';
 export const TEXT_QUESTION = 'TEXT_QUESTION';
 export const TEXT_REMEMBER_DETAILS = 'TEXT_REMEMBER_DETAILS';
 export const TEXT_CLICK_ON_ANY_TO_CONTINUE = 'TEXT_CLICK_ON_ANY_TO_CONTINUE';
@@ -160,10 +161,13 @@ export const TEXT_JOIN = 'TEXT_JOIN';
 export const TEXT_PARTICIPANTS = 'TEXT_PARTICIPANTS';
 export const TEXT_CREATION_DATE = 'TEXT_CREATION_DATE';
 export const TEXT_FREE_ENTRY = 'TEXT_FREE_ENTRY';
+export const TEXT_PRIZE_POOL = 'TEXT_PRIZE_POOL';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_PRIZE_POOL]: 'Pula nagród',
+        [TEXT_PLAY]: 'Graj',
         [TEXT_FREE_ENTRY]: 'Darmowy wstęp',
         [TEXT_CREATION_DATE]: 'Data utworzenia',
         [TEXT_PARTICIPANTS]: 'Uczestnicy',
@@ -324,6 +328,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_PRIZE_POOL]: 'Prize pool',
+        [TEXT_PLAY]: 'Play',
         [TEXT_FREE_ENTRY]: 'Free entry',
         [TEXT_CREATION_DATE]: 'Creation date',
         [TEXT_PARTICIPANTS]: 'Participants',

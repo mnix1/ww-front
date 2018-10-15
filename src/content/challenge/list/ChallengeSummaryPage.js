@@ -9,6 +9,7 @@ import {prepareScoreMessage} from "../../../util/textHelper";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ScreenPage from "../../../component/page/ScreenPage";
+import Challenge from "../../../component/challenge/Challenge";
 
 class ChallengeSummaryPage extends React.PureComponent {
 
@@ -39,11 +40,13 @@ class ChallengeSummaryPage extends React.PureComponent {
         if (!isRepFulfilled(challengeSummaryRep)) {
             return <Loading/>
         }
+        const challenge = challengeSummaryRep.value;
         return <div>
             <div className="pageHeader">
                 <span>{getText(TEXT_SUMMARY)}</span>
             </div>
-            {this.renderPositions(challengeSummaryRep.value.positions)}
+            <Challenge {...challenge}/>
+            {this.renderPositions(challenge.positions)}
         </div>
     }
 

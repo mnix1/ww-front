@@ -28,7 +28,11 @@ class ChallengeActivePage extends React.PureComponent {
     renderChallenge(challenge) {
         const {onChallengeJoinClick, onChallengeResponseClick, onChallengeSummaryClick} = this.props;
         return <div key={challenge.id} className='challenge'>
-            <Challenge {...challenge} onJoinClick={() => onChallengeJoinClick(challenge.id)}/>
+            <Challenge {...challenge}
+                       onJoinClick={challenge.joined ? undefined : () => onChallengeJoinClick(challenge.id)}
+                       onResponseClick={challenge.canResponse ? () => onChallengeResponseClick(challenge.id) : undefined}
+                       onSummaryClick={() => onChallengeSummaryClick(challenge.id)}
+            />
         </div>
     }
 

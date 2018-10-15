@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import {TiArrowForward, TiLockClosed, TiLockOpen} from "react-icons/ti";
 import {MdContactMail} from "react-icons/md";
+import {FaGavel, FaListOl} from "react-icons/fa";
 import {CHALLENGE_ACCESS_INVITE, CHALLENGE_ACCESS_LOCK} from "../../util/challengeHelper";
 import {AvailableResourcesComponent} from "../resource/AvailableResources";
 import {
@@ -16,14 +17,16 @@ import {
     TEXT_JOIN,
     TEXT_LOCK,
     TEXT_PARTICIPANTS,
-    TEXT_POSSIBLE_REWARD,
+    TEXT_PLAY,
+    TEXT_POSSIBLE_REWARD, TEXT_PRIZE_POOL,
+    TEXT_SUMMARY,
     TEXT_TIME_LEFT,
     TEXT_UNLOCK
 } from "../../lang/langText";
 import {RESOURCE_VERY_SMALL} from "../resource/Resource";
 import Timer from "../timer/Timer";
 import {getWisor} from "../../util/wisorHelper";
-import {Button} from "../button/Button";
+import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../button/Button";
 
 export default class Challenge extends React.PureComponent {
 
@@ -36,6 +39,8 @@ export default class Challenge extends React.PureComponent {
         styleMargin: PropTypes.bool,
         stylePadding: PropTypes.bool,
         onJoinClick: PropTypes.func,
+        onResponseClick: PropTypes.func,
+        onSummaryClick: PropTypes.func,
         renderAccess: PropTypes.bool,
         renderCost: PropTypes.bool,
         renderGain: PropTypes.bool,
@@ -112,7 +117,7 @@ export default class Challenge extends React.PureComponent {
             return null;
         }
         return !gain.empty && <div className='justifyCenter'>
-            <div className='marginRightRem justifyCenter flexColumn'>{getText(TEXT_POSSIBLE_REWARD)}:</div>
+            <div className='marginRightRem justifyCenter flexColumn'>{getText(TEXT_PRIZE_POOL)}:</div>
             <AvailableResourcesComponent
                 column={false}
                 autoHide0={true}
@@ -128,7 +133,7 @@ export default class Challenge extends React.PureComponent {
     renderWisor() {
         const {wisorType} = this.props;
         return <div>
-            <img src={getWisor(wisorType)} height={80}/>
+            <img alt='' src={getWisor(wisorType)} height={80}/>
         </div>
     }
 
@@ -140,9 +145,11 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderActions() {
-        const {onJoinClick} = this.props;
+        const {onJoinClick, onResponseClick, onSummaryClick} = this.props;
         return <div>
-            {onJoinClick && <Button onClick={onJoinClick} icon={<TiArrowForward/>}>{getText(TEXT_JOIN)}</Button>}
+            {onJoinClick && <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onJoinClick} icon={<TiArrowForward/>}>{getText(TEXT_JOIN)}</Button>}
+            {onResponseClick && <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onResponseClick} icon={<FaGavel/>}>{getText(TEXT_PLAY)}</Button>}
+            {onSummaryClick && <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onSummaryClick} icon={<FaListOl/>}>{getText(TEXT_SUMMARY)}</Button>}
         </div>
     }
 
