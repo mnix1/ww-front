@@ -98,12 +98,11 @@ class ClassificationPage extends React.PureComponent {
                 <div className='justifyCenter'>{getText(TEXT_NO_PLAYERS_YET)}</div>
             </div>
         }
-        const {profile} = this.props;
-        const me = positions.filter(e => e.profile.tag === profile.tag)[0];
+        const me = positions.filter(e => e.me)[0];
         const isPresent = !_.isNil(me);
-        const isLast = isPresent && profile.tag === _.last(positions).profile.tag;
+        const isLast = isPresent && _.last(positions).profile.me;
         positions = isLast
-            ? positions.filter(e => e.profile.tag !== profile.tag)
+            ? positions.filter(e => !e.me)
             : positions;
         return <div className='justifyCenter flexColumn overflowAuto'>
             <div className='justifyCenter'>{getText(TEXT_RANKING)}</div>
@@ -126,9 +125,8 @@ class ClassificationPage extends React.PureComponent {
 
     renderPosition = (position) => {
         const {profile} = position;
-        const {tag} = this.props.profile;
         const className = cn('justifyCenter relative boxShadow paddingRem marginRem', {
-            'active': position.profile.tag === tag,
+            'active': position.me,
         });
         return <div className='justifyStart' key={position.position}>
             <div className={className}>
@@ -165,7 +163,6 @@ class ClassificationPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
         path: state.router.location.pathname,
         classificationListRep: state.repository.classificationList,
     }),

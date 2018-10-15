@@ -8,8 +8,8 @@ import {CHALLENGE_ACCESS_INVITE, CHALLENGE_ACCESS_LOCK} from "../../util/challen
 import {AvailableResourcesComponent} from "../resource/AvailableResources";
 import {
     getText,
-    TEXT_ACCESS,
-    TEXT_CHALLENGE_JOIN_COST,
+    TEXT_ACCESS, TEXT_CHALLENGE,
+    TEXT_CHALLENGE_JOIN_COST, TEXT_CLOSE_DATE,
     TEXT_CREATION_DATE,
     TEXT_CREATOR,
     TEXT_FREE_ENTRY,
@@ -44,6 +44,8 @@ export default class Challenge extends React.PureComponent {
         renderAccess: PropTypes.bool,
         renderCost: PropTypes.bool,
         renderGain: PropTypes.bool,
+        renderTimeoutInterval: PropTypes.bool,
+        renderCloseDate: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -52,6 +54,8 @@ export default class Challenge extends React.PureComponent {
         renderAccess: true,
         renderCost: true,
         renderGain: true,
+        renderTimeoutInterval: true,
+        renderCloseDate: false,
     };
 
     renderAccess() {
@@ -74,7 +78,10 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderTimeoutInterval() {
-        const {timeoutInterval} = this.props;
+        const {timeoutInterval, renderTimeoutInterval} = this.props;
+        if (!renderTimeoutInterval) {
+            return null;
+        }
         return <div className='justifyCenter'>
             <div className='paddingRightRem'>{getText(TEXT_TIME_LEFT)}:</div>
             <Timer from={timeoutInterval} showChart={false} showNumber={true}/>
@@ -86,6 +93,17 @@ export default class Challenge extends React.PureComponent {
         return <div className='justifyCenter'>
             <div className='paddingRightRem'>{getText(TEXT_CREATION_DATE)}:</div>
             {new Date(creationDate).toLocaleString()}
+        </div>
+    }
+
+    renderClosedDate() {
+        const {closeDate, renderCloseDate} = this.props;
+        if (!renderCloseDate) {
+            return null;
+        }
+        return <div className='justifyCenter'>
+            <div className='paddingRightRem'>{getText(TEXT_CLOSE_DATE)}:</div>
+            {new Date(closeDate).toLocaleString()}
         </div>
     }
 
@@ -147,14 +165,20 @@ export default class Challenge extends React.PureComponent {
     renderActions() {
         const {onJoinClick, onResponseClick, onSummaryClick} = this.props;
         return <div>
-            {onJoinClick && <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onJoinClick} icon={<TiArrowForward/>}>{getText(TEXT_JOIN)}</Button>}
-            {onResponseClick && <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onResponseClick} icon={<FaGavel/>}>{getText(TEXT_PLAY)}</Button>}
-            {onSummaryClick && <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onSummaryClick} icon={<FaListOl/>}>{getText(TEXT_SUMMARY)}</Button>}
+            {onJoinClick &&
+            <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onJoinClick}
+                    icon={<TiArrowForward/>}>{getText(TEXT_JOIN)}</Button>}
+            {onResponseClick &&
+            <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onResponseClick}
+                    icon={<FaGavel/>}>{getText(TEXT_PLAY)}</Button>}
+            {onSummaryClick &&
+            <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onSummaryClick}
+                    icon={<FaListOl/>}>{getText(TEXT_SUMMARY)}</Button>}
         </div>
     }
 
     render() {
-        const {name, styleMargin, stylePadding, className} = this.props;
+        const {name, id, styleMargin, stylePadding, className} = this.props;
         const customClassName = cn('justifyCenter relative flexColumn boxShadow fontSize08Rem', {
             [className]: className,
             'marginRem': styleMargin,
@@ -163,14 +187,16 @@ export default class Challenge extends React.PureComponent {
         return <div className={customClassName}>
             <div className='blackBackground absoluteBackgroundMix'/>
             <div className='relative'>
+                <div className='justifyCenter'>{getText(TEXT_CHALLENGE)}: {id}</div>
                 <div className='justifyCenter'>{getText(TEXT_CREATOR)}: {name}</div>
                 <div className='justifyCenter'>{this.renderWisor()}</div>
                 <div className='justifyCenter'>{this.renderAccess()}</div>
                 <div className='justifyCenter'>{this.renderCreationDate()}</div>
+                <div className='justifyCenter'>{this.renderClosedDate()}</div>
                 <div className='justifyCenter'>{this.renderTimeoutInterval()}</div>
                 <div className='justifyCenter'>{this.renderParticipants()}</div>
-                <div className='justifyCenter'>{this.renderCost()}</div>
                 <div className='justifyCenter'>{this.renderGain()}</div>
+                <div className='justifyCenter'>{this.renderCost()}</div>
                 <div className='justifyCenter marginTopRem fontSize08Rem'>{this.renderActions()}</div>
             </div>
         </div>;

@@ -1,42 +1,31 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-import {CREAM_COLOR} from "../../../util/style/constant";
-import {FaListOl} from "react-icons/fa";
 import './styles.css';
-import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES, TEXT_SUMMARY} from "../../../lang/langText";
+import {getText, TEXT_CLOSED_CHALLENGES, TEXT_NONE_CLOSED_CHALLENGES} from "../../../lang/langText";
 import {challengeCleared, summaryIdChanged} from "../../../redux/reducer/challenge";
-import Profile from "../../../component/profile/Profile";
 import {push} from 'connected-react-router'
 import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ScreenPage from "../../../component/page/ScreenPage";
+import Challenge from "../../../component/challenge/Challenge";
 
 class ChallengeHistoryPage extends React.PureComponent {
 
-    renderChallenges() {
-        const {challengeListRep} = this.props;
-        const challenges = _.sortBy(challengeListRep.value, 'inProgressDate');
+    renderChallenges(challenges) {
         return <div>
             <div className='contentFragment challengesContainer'>
-                {challenges.map(e => this.renderChallenge(e))}
+                {_.sortBy(challenges, 'creationDate').map(e => this.renderChallenge(e))}
             </div>
         </div>;
     }
 
     renderChallenge(challenge) {
         const {onChallengeSummaryClick} = this.props;
-        const creator = challenge.creatorProfile;
-        const date = new Date(challenge.inProgressDate);
         return <div key={challenge.id} className='challenge'>
-            <Profile {...creator} actions={<div className='actions'>
-                <div onClick={() => onChallengeSummaryClick(challenge.id)}><span>{getText(TEXT_SUMMARY)}</span><FaListOl
-                    color={CREAM_COLOR}/></div>
-            </div>}>
-                <div>{`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}</div>
-            </Profile>
+            <Challenge {...challenge} renderTimeoutInterval={false} renderCloseDate={true} onSummaryClick={() => onChallengeSummaryClick(challenge.id)}/>
         </div>
     }
 
@@ -45,12 +34,13 @@ class ChallengeHistoryPage extends React.PureComponent {
         if (!isRepFulfilled(challengeListRep)) {
             return <Loading/>
         }
+        const challenges = challengeListRep.value;
         return <div>
             <div className="pageHeader">
-                <span>{getText(_.isEmpty(_.get(challengeListRep, 'value')) ? TEXT_NONE_CLOSED_CHALLENGES : TEXT_CLOSED_CHALLENGES)}</span>
+                <span>{getText(_.isEmpty(challenges) ? TEXT_NONE_CLOSED_CHALLENGES : TEXT_CLOSED_CHALLENGES)}</span>
             </div>
-            {this.renderChallenges()}
-        </div>
+            {this.renderChallenges(challenges)}
+        </div>;
     }
 
     render() {

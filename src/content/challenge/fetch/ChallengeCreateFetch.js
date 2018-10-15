@@ -21,7 +21,6 @@ class ChallengeCreateFetch extends React.PureComponent {
                 dispatch(push(CHALLENGE_ACTIVE_ROUTE));
                 dispatch(initChanged(undefined));
             }
-            clearChallengeCreateFetch(dispatch);
         }
     }
 

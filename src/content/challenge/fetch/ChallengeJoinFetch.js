@@ -2,8 +2,13 @@ import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import _ from 'lodash';
-import {isRepFulfilled, isRepValueCode1} from "../../../util/repositoryHelper";
+import {checkRepValueCode, isRepFulfilled, isRepValueCode1} from "../../../util/repositoryHelper";
 import {joinIdChanged} from "../../../redux/reducer/challenge";
+import {push} from "connected-react-router";
+import {CHALLENGE_ACTIVE_ROUTE} from "../../routes";
+import {clearChallengeListFetch} from "./ChallengeListFetch";
+import {noticeError} from "../../../component/notification/noticeError";
+import {ERROR_NOT_ENOUGH_RESOURCES} from "../../../lang/langError";
 
 class ChallengeJoinFetch extends React.PureComponent {
 
@@ -13,11 +18,15 @@ class ChallengeJoinFetch extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
         this.maybeFetch(prevProps);
-        const {challengeJoinFetch, dispatch} = this.props;
-        if (isRepFulfilled(challengeJoinFetch)) {
+        const {challengeJoinFetch, dispatch, path, id} = this.props;
+        if (isRepFulfilled(challengeJoinFetch) && !_.isNil(id)) {
             dispatch(joinIdChanged(undefined));
             if (isRepValueCode1(challengeJoinFetch)) {
-                dispatch(joinIdChanged(undefined));
+                if (path !== CHALLENGE_ACTIVE_ROUTE) {
+                    dispatch(push(CHALLENGE_ACTIVE_ROUTE));
+                }
+            } else if(checkRepValueCode(challengeJoinFetch, -3)) {
+                noticeError(ERROR_NOT_ENOUGH_RESOURCES);
             }
         }
     }

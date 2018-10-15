@@ -3,6 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {CHALLENGE_HISTORY_ROUTE, CHALLENGE_ACTIVE_ROUTE, CHALLENGE_PRIVATE_ROUTE} from "../../routes";
 import {CHALLENGE_STATUS_CLOSED, CHALLENGE_STATUS_IN_PROGRESS} from "../../../util/challengeHelper";
+import _ from 'lodash';
 
 class ChallengeListFetch extends React.PureComponent {
 
@@ -19,13 +20,15 @@ class ChallengeListFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchChallengeListPost} = this.props;
-        if (prevProps.path !== path && path === CHALLENGE_HISTORY_ROUTE) {
-            dispatchChallengeListPost(CHALLENGE_STATUS_CLOSED, true);
-        } else if (prevProps.path !== path && path === CHALLENGE_ACTIVE_ROUTE) {
-            dispatchChallengeListPost(CHALLENGE_STATUS_IN_PROGRESS, true);
-        }else if (prevProps.path !== path && path === CHALLENGE_PRIVATE_ROUTE) {
-            dispatchChallengeListPost(CHALLENGE_STATUS_IN_PROGRESS, false);
+        const {path, id, dispatchChallengeListPost} = this.props;
+        if ((_.isNil(id) && prevProps.id !== id) || prevProps.path !== path) {
+            if (path === CHALLENGE_HISTORY_ROUTE) {
+                dispatchChallengeListPost(CHALLENGE_STATUS_CLOSED, true);
+            } else if (path === CHALLENGE_ACTIVE_ROUTE) {
+                dispatchChallengeListPost(CHALLENGE_STATUS_IN_PROGRESS, true);
+            } else if (path === CHALLENGE_PRIVATE_ROUTE) {
+                dispatchChallengeListPost(CHALLENGE_STATUS_IN_PROGRESS, false);
+            }
         }
     }
 

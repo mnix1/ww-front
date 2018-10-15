@@ -18,9 +18,9 @@ class ChallengeSummaryFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {challengeId, path, dispatchChallengeSummaryPost} = this.props;
-        if (!_.isNil(challengeId) && path === CHALLENGE_SUMMARY_ROUTE && prevProps.path !== path) {
-            dispatchChallengeSummaryPost(challengeId);
+        const {id, dispatchChallengeSummaryPost} = this.props;
+        if (!_.isNil(id) && prevProps.id !== id) {
+            dispatchChallengeSummaryPost(id);
         }
     }
 
@@ -36,8 +36,8 @@ export function clearChallengeSummaryFetch(dispatch) {
 export default connect([{
     resource: 'challengeSummary',
     method: 'post',
-    request: (challengeId) => ({
+    request: (id) => ({
         url: `/challenge/summary`,
-        body: {challengeId}
+        body: {id}
     })
 }])(ChallengeSummaryFetch);

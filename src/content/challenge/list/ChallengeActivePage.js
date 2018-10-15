@@ -2,7 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import _ from 'lodash';
 import './styles.css';
-import {getText, TEXT_IN_PROGRESS_CHALLENGES, TEXT_NONE_IN_PROGRESS_CHALLENGES} from "../../../lang/langText";
+import {
+    getText, TEXT_IN_PROGRESS,
+    TEXT_IN_PROGRESS_CHALLENGES,
+    TEXT_INVITES,
+    TEXT_NONE_IN_PROGRESS_CHALLENGES
+} from "../../../lang/langText";
 import {joinIdChanged, responseIdChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
 import {CHALLENGE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
@@ -17,8 +22,9 @@ import Challenge from "../../../component/challenge/Challenge";
 
 class ChallengeActivePage extends React.PureComponent {
 
-    renderChallenges(challenges) {
-        return <div>
+    renderChallenges(challenges, title) {
+        return !_.isEmpty(challenges) && <div className=''>
+            <div className='title marginRem'>{getText(title)}</div>
             <div className='contentFragment challengesContainer'>
                 {_.sortBy(challenges, 'timeoutInterval').map(e => this.renderChallenge(e))}
             </div>
@@ -46,7 +52,8 @@ class ChallengeActivePage extends React.PureComponent {
             <div className="pageHeader">
                 <span>{getText(_.isEmpty(challenges) ? TEXT_NONE_IN_PROGRESS_CHALLENGES : TEXT_IN_PROGRESS_CHALLENGES)}</span>
             </div>
-            {this.renderChallenges(challenges)}
+            {this.renderChallenges(challenges.filter(e => !e.joined), TEXT_INVITES)}
+            {this.renderChallenges(challenges.filter(e => e.joined), TEXT_IN_PROGRESS)}
         </div>;
     }
 

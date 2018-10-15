@@ -62,6 +62,7 @@ export const TEXT_PRIVATE_CHALLENGES = 'TEXT_PRIVATE_CHALLENGES';
 export const TEXT_NONE_CLOSED_CHALLENGES = 'TEXT_NONE_CLOSED_CHALLENGES';
 export const TEXT_CLOSED_CHALLENGES = 'TEXT_CLOSED_CHALLENGES';
 export const TEXT_INVITES = 'TEXT_INVITES';
+export const TEXT_IN_PROGRESS = 'TEXT_IN_PROGRESS';
 export const TEXT_POSITION = 'TEXT_POSITION';
 export const TEXT_WAITING_FOR_RESPONSE = 'TEXT_WAITING_FOR_RESPONSE';
 export const TEXT_WAITING = 'TEXT_WAITING';
@@ -160,15 +161,18 @@ export const TEXT_CREATOR = 'TEXT_CREATOR';
 export const TEXT_JOIN = 'TEXT_JOIN';
 export const TEXT_PARTICIPANTS = 'TEXT_PARTICIPANTS';
 export const TEXT_CREATION_DATE = 'TEXT_CREATION_DATE';
+export const TEXT_CLOSE_DATE = 'TEXT_CLOSE_DATE';
 export const TEXT_FREE_ENTRY = 'TEXT_FREE_ENTRY';
 export const TEXT_PRIZE_POOL = 'TEXT_PRIZE_POOL';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_IN_PROGRESS]: 'W trakcie',
         [TEXT_PRIZE_POOL]: 'Pula nagród',
         [TEXT_PLAY]: 'Graj',
         [TEXT_FREE_ENTRY]: 'Darmowy wstęp',
+        [TEXT_CLOSE_DATE]: 'Data zakończenia',
         [TEXT_CREATION_DATE]: 'Data utworzenia',
         [TEXT_PARTICIPANTS]: 'Uczestnicy',
         [TEXT_JOIN]: 'Dołącz',
@@ -328,9 +332,11 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_IN_PROGRESS]: 'In progress',
         [TEXT_PRIZE_POOL]: 'Prize pool',
         [TEXT_PLAY]: 'Play',
         [TEXT_FREE_ENTRY]: 'Free entry',
+        [TEXT_CLOSE_DATE]: 'Close date',
         [TEXT_CREATION_DATE]: 'Creation date',
         [TEXT_PARTICIPANTS]: 'Participants',
         [TEXT_JOIN]: 'Join',
