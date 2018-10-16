@@ -24,8 +24,9 @@ class ChallengeHistoryPage extends React.PureComponent {
 
     renderChallenge(challenge) {
         const {onChallengeSummaryClick} = this.props;
+        const closed = !_.isNil(challenge.closeDate);
         return <div key={challenge.id} className='challenge'>
-            <Challenge {...challenge} renderTimeoutInterval={false} renderCloseDate={true} onSummaryClick={() => onChallengeSummaryClick(challenge.id)}/>
+            <Challenge {...challenge} renderTimeoutInterval={!closed} renderCloseDate={closed} onSummaryClick={() => onChallengeSummaryClick(challenge.id)}/>
         </div>
     }
 

@@ -33,6 +33,7 @@ export default class Profile extends React.PureComponent {
         onClick: PropTypes.func,
         actions: PropTypes.node,
         children: PropTypes.node,
+        childrenAfterContent: PropTypes.node,
         eloStyle: PropTypes.object,
         disabled: PropTypes.bool,
         defaultClassNames: PropTypes.bool,
@@ -99,7 +100,7 @@ export default class Profile extends React.PureComponent {
     }
 
     render() {
-        const {onClick, tag, children, className, style, active, disabled, blackBackground, defaultClassNames} = this.props;
+        const {onClick, tag, children, childrenAfterContent, className, style, active, disabled, blackBackground, defaultClassNames} = this.props;
         const customClassName = cn({
             'profileContainer relative inlineBlock marginRem paddingRem boxShadow': defaultClassNames,
             [className]: className,
@@ -115,6 +116,7 @@ export default class Profile extends React.PureComponent {
             </div>}
             {children}
             {this.renderContent()}
+            {childrenAfterContent}
         </div>
     }
 
