@@ -27,7 +27,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
                 renderLifebuoyChoose={content.skills[SKILL_LIFEBUOY].canUse}
                 onLifebuoyClick={this.handleLifebuoyClick}
                 className={className}
-                contentClassName='overflowXAuto justifyStart'
+                contentClassName='overflowXAuto overflowYHidden justifyStart'
                 memberClassName={chosen ? '' : 'pointer'}
                 onClick={chosen ? _.noop : i => onTeamClick(i, communication)}
                 presentIndexes={content.presentIndexes}
@@ -41,7 +41,7 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
         const {content} = this.props;
         return <div className='team justifyCenter flexColumn fontSize08Rem'>
             <Team
-                contentClassName='overflowXAuto justifyStart'
+                contentClassName='overflowXAuto overflowYHidden justifyStart'
                 presentIndexes={content.opponentPresentIndexes}
                 team={content.opponentTeam}/>
             <AvailableSkills skills={content.opponentSkills}/>

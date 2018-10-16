@@ -115,6 +115,10 @@
     overflow-x: auto;
 }
 
+.overflowYHidden{
+    overflow-y: hidden;
+}
+
 .overflowHidden {
     overflow: hidden;
 }

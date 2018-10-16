@@ -22,7 +22,7 @@ class Teams extends React.PureComponent {
                 <Team
                     team={content.team}
                     className='justifyCenter overflowHidden width100'
-                    contentClassName='overflowXAuto justifyStart'
+                    contentClassName='overflowXAuto overflowYHidden justifyStart'
                     presentIndexes={content.presentIndexes}
                 />
             </div>
@@ -37,7 +37,7 @@ class Teams extends React.PureComponent {
                 <Team
                     team={content.opponentTeam}
                     className='justifyCenter overflowHidden width100'
-                    contentClassName='overflowXAuto justifyStart'
+                    contentClassName='overflowXAuto overflowYHidden justifyStart'
                     presentIndexes={content.opponentPresentIndexes}
                 />
             </div>}

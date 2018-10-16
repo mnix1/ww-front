@@ -12,7 +12,7 @@ class Team extends React.PureComponent {
     static defaultProps = {
         className: 'justifyCenter',
         memberClassName: '',
-        contentClassName: '',
+        contentClassName: 'justifyCenter',
         renderHorizontal: false,
         renderLifebuoyChoose: false,
         renderImg: true,
@@ -88,7 +88,7 @@ class Team extends React.PureComponent {
         const customClassName = `${className} ${renderHorizontal ? 'justifyStart' : ''}`;
         const customContentClassName = `${contentClassName} ${renderHorizontal ? 'flexColumn' : ''}`;
         return <div className={customClassName}>
-            <div className={`justifyCenter ${customContentClassName} `}>
+            <div className={customContentClassName}>
                 {this.renderTeam()}
             </div>
         </div>

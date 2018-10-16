@@ -67,7 +67,7 @@ class RivalPageClosed extends React.PureComponent {
                     imgHeight={screen.rivalImgHeight} {...winnerTag === content.profile.tag ? content.profile : content.opponent}/>}
                 {!battle && <Team
                     className='justifyCenter overflowHidden width100'
-                    contentClassName='overflowXAuto justifyStart'
+                    contentClassName='overflowXAuto overflowYHidden justifyStart'
                     {...meWinner
                         ? {presentIndexes: content.presentIndexes, team: content.team}
                         : {presentIndexes: content.opponentPresentIndexes, team: content.opponentTeam}}/>}
