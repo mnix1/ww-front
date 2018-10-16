@@ -115,11 +115,15 @@ export default class Timer extends React.PureComponent {
     renderNumber() {
         const {numberMinutes, numberSeconds, numberFillHours0, numberAutoHide0} = this.props;
         const {hours, minutes, seconds} = this.state;
-        const h = <span>{numberFillHours0 ? datePartFormatter(hours) : hours}h</span>;
-        const m = numberMinutes && <span>{datePartFormatter(minutes)}m</span>;
-        const s = numberSeconds && <span>{datePartFormatter(seconds)}s</span>;
-        if(numberAutoHide0){
-            return <span>{hours > 0 && h} {hours === 0 && minutes > 0 && m} {s}</span>
+        let h, m, s;
+        if (numberAutoHide0) {
+            h = hours > 0 && <span>{hours}h</span>;
+            m = h ? <span>{datePartFormatter(minutes)}m</span> : minutes > 0 && <span>{minutes}m</span>;
+            s = m ? <span>{datePartFormatter(seconds)}s</span> : seconds > 0 && <span>{seconds}s</span>;
+        } else {
+            h = <span>{numberFillHours0 ? datePartFormatter(hours) : hours}h</span>;
+            m = numberMinutes && <span>{datePartFormatter(minutes)}m</span>;
+            s = numberSeconds && <span>{datePartFormatter(seconds)}s</span>;
         }
         return <span>{h} {m} {s}</span>
     }

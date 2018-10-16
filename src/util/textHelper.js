@@ -25,7 +25,7 @@ export function wordsByLength(string, maxLength) {
 }
 
 export function prepareAnswerIntervalMessage(answerInterval) {
-    return <div className='justifyCenter'>{getText(TEXT_TIME)}: <Timer numberAutoHide0={true} className='paddingLeftRem' showNumber={true} showChart={false} work={false} from={answerInterval}/></div>;
+    return <div className='justifyStart'>{getText(TEXT_TIME)}: <Timer numberAutoHide0={true} className='paddingLeftRem' showNumber={true} showChart={false} work={false} from={answerInterval}/></div>;
 }
 
 export function prepareScoreMessage(score) {
