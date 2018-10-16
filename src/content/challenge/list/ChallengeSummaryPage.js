@@ -25,7 +25,7 @@ class ChallengeSummaryPage extends React.PureComponent {
     }
 
     renderPositions(positions) {
-        return <div className='positions'>
+        return <div className='inlineBlock'>
             {positions.map((e, i) => this.renderPosition(e, i))}
         </div>
     }
@@ -57,7 +57,6 @@ class ChallengeSummaryPage extends React.PureComponent {
                         key={_.uniqueId('summaryProfile')} {...position.profile}>
             {content}
         </Profile>
-
     }
 
     renderContent() {

@@ -35,6 +35,7 @@ export default class Challenge extends React.PureComponent {
 
     static propTypes = {
         className: PropTypes.string,
+        id: PropTypes.number,
         name: PropTypes.string,
         access: PropTypes.string,
         gain: PropTypes.object,
@@ -49,6 +50,9 @@ export default class Challenge extends React.PureComponent {
         renderGain: PropTypes.bool,
         renderTimeoutInterval: PropTypes.bool,
         renderCloseDate: PropTypes.bool,
+        renderCreationDate: PropTypes.bool,
+        renderCreator: PropTypes.bool,
+        renderId: PropTypes.bool,
     };
 
     static defaultProps = {
@@ -59,6 +63,9 @@ export default class Challenge extends React.PureComponent {
         renderGain: true,
         renderTimeoutInterval: true,
         renderCloseDate: false,
+        renderCreationDate: true,
+        renderCreator: true,
+        renderId: true,
     };
 
     renderAccess() {
@@ -92,7 +99,10 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderCreationDate() {
-        const {creationDate} = this.props;
+        const {creationDate, renderCreateDate} = this.props;
+        if (!renderCreateDate) {
+            return null;
+        }
         return <div className='justifyCenter'>
             <div className='paddingRightRem'>{getText(TEXT_CREATION_DATE)}:</div>
             {new Date(creationDate).toLocaleString()}
@@ -153,7 +163,10 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderWisor() {
-        const {wisorType} = this.props;
+        const {wisorType, renderCreator} = this.props;
+        if(!renderCreator){
+            return null;
+        }
         return <div>
             <img alt='' src={getWisor(wisorType)} height={80}/>
         </div>
@@ -182,7 +195,7 @@ export default class Challenge extends React.PureComponent {
     }
 
     render() {
-        const {name, id, styleMargin, stylePadding, className} = this.props;
+        const {name, id, styleMargin, stylePadding, className, renderCreator,renderId} = this.props;
         const customClassName = cn('justifyCenter relative flexColumn boxShadow fontSize08Rem', {
             [className]: className,
             'marginRem': styleMargin,
@@ -191,8 +204,8 @@ export default class Challenge extends React.PureComponent {
         return <div className={customClassName}>
             <div className='blackBackground absoluteBackgroundMix'/>
             <div className='relative'>
-                <div className='justifyCenter'>{getText(TEXT_CHALLENGE)}: {id}</div>
-                <div className='justifyCenter'>{getText(TEXT_CREATOR)}: {name}</div>
+                {renderId && <div className='justifyCenter'>{getText(TEXT_CHALLENGE)}: {id}</div>}
+                {renderCreator && <div className='justifyCenter'>{getText(TEXT_CREATOR)}: {name}</div>}
                 <div className='justifyCenter'>{this.renderWisor()}</div>
                 <div className='justifyCenter'>{this.renderAccess()}</div>
                 <div className='justifyCenter'>{this.renderCreationDate()}</div>

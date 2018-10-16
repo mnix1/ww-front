@@ -1,7 +1,8 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {CHALLENGE_GLOBAL_ROUTE} from "../../routes";
+import {CHALLENGE_GLOBAL_ROUTE, CHALLENGE_PRIVATE_ROUTE} from "../../routes";
+import {isRepValueCode1} from "../../../util/repositoryHelper";
 
 class ChallengeGlobalFetch extends React.PureComponent {
 
@@ -18,8 +19,8 @@ class ChallengeGlobalFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, dispatchChallengeGlobalPost} = this.props;
-        if (prevProps.path !== path && path === CHALLENGE_GLOBAL_ROUTE) {
+        const {path, dispatchChallengeGlobalPost, challengeJoinRep} = this.props;
+        if (path === CHALLENGE_GLOBAL_ROUTE && ((isRepValueCode1(challengeJoinRep) && path !== CHALLENGE_PRIVATE_ROUTE) || prevProps.path !== path)) {
             dispatchChallengeGlobalPost();
         }
     }

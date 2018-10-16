@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from "react-redux/es/connect/connect";
 import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
-import {responseIdChanged} from "../../../redux/reducer/challenge";
+import {creatorTagChanged, joinIdChanged, responseIdChanged} from "../../../redux/reducer/challenge";
 import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
 import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import {push} from "connected-react-router";
@@ -10,23 +10,82 @@ import ScreenPage from "../../../component/page/ScreenPage";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ChallengeGlobalFetch from "../fetch/ChallengeGlobalFetch";
+import Challenge from "../../../component/challenge/Challenge";
+import {getText, TEXT_GLOBAL_CHALLENGE, TEXT_POSITION, TEXT_REWARD, TEXT_WAITING} from "../../../lang/langText";
+import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
+import {prepareScoreMessage} from "../../../util/textHelper";
+import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
+import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
+import Profile from "../../../component/profile/Profile";
+import _ from "lodash";
 
 class ChallengeGlobalPage extends React.PureComponent {
 
     renderContent() {
-        const {challengeGlobalRep} = this.props;
+        const {challengeGlobalRep, onChallengeJoinClick, onChallengeResponseClick} = this.props;
         if (!isRepFulfilled(challengeGlobalRep)) {
             return <Loading/>
         }
+        const challenge = challengeGlobalRep.value;
         return <div>
+            <div className="pageHeader">
+                <span>{getText(TEXT_GLOBAL_CHALLENGE)}</span>
+            </div>
+            <div className='justifyCenter'>
+                <Challenge
+                    renderId={false}
+                    renderAccess={false}
+                    renderCreationDate={false}
+                    renderCreator={false}
+                    {...challenge}
+                    onJoinClick={challenge.joined ? undefined : () => onChallengeJoinClick(challenge.id)}
+                    onResponseClick={challenge.canResponse ? () => onChallengeResponseClick(challenge.id) : undefined}
+                />
+            </div>
+            {this.renderPositions(challenge.positions)}
         </div>;
     }
 
+    renderPositions(positions) {
+        return <div className='inlineBlock'>
+            {positions.map((e, i) => this.renderPosition(e, i))}
+        </div>
+    }
+
+    renderPosition(position, i) {
+        let content;
+        if (position.status !== CHALLENGE_STATUS_CLOSED) {
+            content = <div className='position relative'>
+                <div className='details'>{getText(TEXT_WAITING)}</div>
+            </div>
+        } else {
+            content = <div className='position relative'>
+                <div className='details'>{getText(TEXT_POSITION)}: {position.position}</div>
+                <div className='details fontSize09Rem'>{prepareScoreMessage(position.score)}</div>
+            </div>
+        }
+        const reward = position.reward.empty
+            ? null
+            : <AvailableResourcesComponent
+                customTitle={<div className='relative fontSize08Rem'>{getText(TEXT_REWARD)}</div>}
+                {...position.reward}
+                autoHide0={true}
+                size={RESOURCE_VERY_SMALL}
+                styleBoxShadow={false}
+                styleMargin={false}
+                stylePadding={false}
+            />;
+        return <Profile blackBackground={true} childrenAfterContent={reward}
+                        key={_.uniqueId('summaryProfile')} {...position.profile}>
+            {content}
+        </Profile>
+    }
+
     render() {
-        const {path} = this.props;
+        const {path, challengeJoinRep} = this.props;
         return <ScreenPage>
             {this.renderContent()}
-            <ChallengeGlobalFetch path={path}/>
+            <ChallengeGlobalFetch challengeJoinRep={challengeJoinRep} path={path}/>
         </ScreenPage>;
     };
 }
@@ -34,6 +93,7 @@ class ChallengeGlobalPage extends React.PureComponent {
 export default connect(
     (state) => ({
         challengeGlobalRep: state.repository.challengeGlobal,
+        challengeJoinRep: state.repository.challengeJoin,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
@@ -46,7 +106,9 @@ export default connect(
             dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
             dispatch(push(CHALLENGE_ROUTE));
         },
-        onChallengeSummaryClick: (id) => {
-        }
+        onChallengeJoinClick: (id) => {
+            dispatch(joinIdChanged(id));
+            dispatch(creatorTagChanged(''));
+        },
     })
 )(ChallengeGlobalPage);

@@ -1,7 +1,3 @@
-.positions {
-    display: inline-block;
-}
-
 .challengesContainer {
     display: flex;
     flex-wrap: wrap;

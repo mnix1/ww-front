@@ -5,9 +5,10 @@ import _ from 'lodash';
 import {checkRepValueCode, isRepFulfilled, isRepValueCode1} from "../../../util/repositoryHelper";
 import {creatorTagChanged, joinIdChanged} from "../../../redux/reducer/challenge";
 import {push} from "connected-react-router";
-import {CHALLENGE_ACTIVE_ROUTE} from "../../routes";
+import {CHALLENGE_ACTIVE_ROUTE, CHALLENGE_GLOBAL_ROUTE} from "../../routes";
 import {noticeError} from "../../../component/notification/noticeError";
 import {ERROR_NOT_ENOUGH_RESOURCES, ERROR_WRONG_CREATOR_TAG} from "../../../lang/langError";
+import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
 
 class ChallengeJoinFetch extends React.PureComponent {
 
@@ -21,9 +22,10 @@ class ChallengeJoinFetch extends React.PureComponent {
         if (isRepFulfilled(challengeJoinFetch) && !_.isNil(id) && !_.isNil(creatorTag)) {
             clearChallengeJoinFetch(dispatch);
             if (isRepValueCode1(challengeJoinFetch)) {
-                if (path !== CHALLENGE_ACTIVE_ROUTE) {
+                if (path !== CHALLENGE_ACTIVE_ROUTE && path !== CHALLENGE_GLOBAL_ROUTE) {
                     dispatch(push(CHALLENGE_ACTIVE_ROUTE));
                 }
+                clearProfileFetch(this.dispatch);
             } else if (checkRepValueCode(challengeJoinFetch, -3)) {
                 noticeError(ERROR_NOT_ENOUGH_RESOURCES);
             } else if (checkRepValueCode(challengeJoinFetch, -4)) {
