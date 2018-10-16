@@ -59,7 +59,13 @@ import {
     EATING_PIZZA,
     THINKING_IF_GET_PIZZA,
     SERVES_PIZZA,
-    PREPARING_FOR_EAT_PIZZA, EATEN_PIZZA, PUTTING_ON_COVERALL, COVERALL_READY, WANTS_TO_CHANGE_TASK, SUBMITS_APPLICATION
+    PREPARING_FOR_EAT_PIZZA,
+    EATEN_PIZZA,
+    PUTTING_ON_COVERALL,
+    COVERALL_READY,
+    WANTS_TO_CHANGE_TASK,
+    SUBMITS_APPLICATION,
+    IS_AFRAID_OF_THE_OPPONENT
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
@@ -139,6 +145,7 @@ const HERO_ACTION_LABELS = {
         [RUN_AWAY]: "Ratuj się kto może!",
         [WAS_NOT_SCARED]: "To jakiś przebieraniec...",
 
+        [IS_AFRAID_OF_THE_OPPONENT]: '(Trochę się cyka przeciwnika...)',
         [TALKING_ON_THE_PHONE]: '(Rozmawia przez telefon...)',
         [WRITING_AN_SMS]: "(Pisze SMS'a...)",
         [WOULD_EAT_SOMETHING]: '(Chce coś zjeść...)',
@@ -219,6 +226,7 @@ const HERO_ACTION_LABELS = {
         [RUN_AWAY]: "Save anyone who can!",
         [WAS_NOT_SCARED]: "It's some kind of costume...",
 
+        [IS_AFRAID_OF_THE_OPPONENT]: '(Is afraid of the opponent...)',
         [TALKING_ON_THE_PHONE]: '(Talking on the phone...)',
         [WRITING_AN_SMS]: '(Writing an SMS...)',
         [WOULD_EAT_SOMETHING]: '(Would eat something...)',

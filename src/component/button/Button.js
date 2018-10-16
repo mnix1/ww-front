@@ -51,7 +51,6 @@ export class Button extends React.PureComponent {
     };
 
     static defaultProps = {
-        material: BUTTON_MATERIAL_ACCEPT,
         disabled: false,
         className: '',
         padding: true,
