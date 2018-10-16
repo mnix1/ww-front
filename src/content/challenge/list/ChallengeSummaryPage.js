@@ -5,7 +5,7 @@ import './styles.css';
 import {getText, TEXT_POSITION, TEXT_REWARD, TEXT_SUMMARY, TEXT_WAITING} from "../../../lang/langText";
 import Profile from "../../../component/profile/Profile";
 import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
-import {prepareScoreMessage} from "../../../util/textHelper";
+import {prepareAnswerIntervalMessage, prepareScoreMessage} from "../../../util/textHelper";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ScreenPage from "../../../component/page/ScreenPage";
@@ -39,7 +39,8 @@ class ChallengeSummaryPage extends React.PureComponent {
         } else {
             content = <div className='position relative'>
                 <div className='details'>{getText(TEXT_POSITION)}: {position.position}</div>
-                <div className='details fontSize09Rem'>{prepareScoreMessage(position.score)}</div>
+                <div className='details fontSize08Rem'>{prepareScoreMessage(position.score)}</div>
+                <div className='details fontSize08Rem'>{prepareAnswerIntervalMessage(position.interval)}</div>
             </div>
         }
         const reward = position.reward.empty

@@ -22,7 +22,7 @@ export class AvailableResourcesComponent extends React.PureComponent {
         renderTitle: PropTypes.bool,
         styleBoxShadow: PropTypes.bool,
         autoHide0: PropTypes.bool,
-        customTitle: PropTypes.string
+        customTitle: PropTypes.node
     };
 
     static defaultProps = {

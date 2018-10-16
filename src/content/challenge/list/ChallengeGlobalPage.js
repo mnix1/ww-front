@@ -13,7 +13,7 @@ import ChallengeGlobalFetch from "../fetch/ChallengeGlobalFetch";
 import Challenge from "../../../component/challenge/Challenge";
 import {getText, TEXT_GLOBAL_CHALLENGE, TEXT_POSITION, TEXT_REWARD, TEXT_WAITING} from "../../../lang/langText";
 import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
-import {prepareScoreMessage} from "../../../util/textHelper";
+import {prepareAnswerIntervalMessage, prepareScoreMessage} from "../../../util/textHelper";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
 import Profile from "../../../component/profile/Profile";
@@ -61,7 +61,8 @@ class ChallengeGlobalPage extends React.PureComponent {
         } else {
             content = <div className='position relative'>
                 <div className='details'>{getText(TEXT_POSITION)}: {position.position}</div>
-                <div className='details fontSize09Rem'>{prepareScoreMessage(position.score)}</div>
+                <div className='details fontSize08Rem'>{prepareScoreMessage(position.score)}</div>
+                <div className='details fontSize08Rem'>{prepareAnswerIntervalMessage(position.interval)}</div>
             </div>
         }
         const reward = position.reward.empty

@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import {getText, TEXT_POINTS, TEXT_POSITION, TEXT_SCORE, TEXT_TIME} from "../lang/langText";
+import Timer from "../component/timer/Timer";
+import React from "react";
 
 export function wordsByLength(string, maxLength) {
     const result = [];
@@ -23,7 +25,7 @@ export function wordsByLength(string, maxLength) {
 }
 
 export function prepareAnswerIntervalMessage(answerInterval) {
-    return `${getText(TEXT_TIME)}: ${(answerInterval / 1000).toFixed(1)} s`;
+    return <div className='justifyCenter'>{getText(TEXT_TIME)}: <Timer numberAutoHide0={true} className='paddingLeftRem' showNumber={true} showChart={false} work={false} from={answerInterval}/></div>;
 }
 
 export function prepareScoreMessage(score) {

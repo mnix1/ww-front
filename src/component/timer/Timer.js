@@ -23,6 +23,7 @@ export default class Timer extends React.PureComponent {
         numberFillHours0: PropTypes.bool,
         numberSeconds: PropTypes.bool,
         numberMinutes: PropTypes.bool,
+        numberAutoHide0: PropTypes.bool,
         className: PropTypes.string,
         onDone: PropTypes.func
     };
@@ -31,6 +32,7 @@ export default class Timer extends React.PureComponent {
         work: true,
         down: true,
         to: 0,
+        numberAutoHide0: false,
         lineWidth: 50,
         numberFillHours0: true,
         numberSeconds: true,
@@ -111,11 +113,14 @@ export default class Timer extends React.PureComponent {
     };
 
     renderNumber() {
-        const {numberMinutes, numberSeconds, numberFillHours0} = this.props;
+        const {numberMinutes, numberSeconds, numberFillHours0, numberAutoHide0} = this.props;
         const {hours, minutes, seconds} = this.state;
         const h = <span>{numberFillHours0 ? datePartFormatter(hours) : hours}h</span>;
         const m = numberMinutes && <span>{datePartFormatter(minutes)}m</span>;
         const s = numberSeconds && <span>{datePartFormatter(seconds)}s</span>;
+        if(numberAutoHide0){
+            return <span>{hours > 0 && h} {hours === 0 && minutes > 0 && m} {s}</span>
+        }
         return <span>{h} {m} {s}</span>
     }
 
