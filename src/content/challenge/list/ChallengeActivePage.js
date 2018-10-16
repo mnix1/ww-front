@@ -12,7 +12,7 @@ import {creatorTagChanged, joinIdChanged, responseIdChanged, summaryIdChanged} f
 import {push} from 'connected-react-router'
 import {CHALLENGE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
-import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
+import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
 import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
@@ -76,7 +76,7 @@ export default connect(
             dispatch(rivalCleared());
             dispatch(rivalTypeChanged(RIVAL_TYPE_CHALLENGE));
             dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
+            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
             dispatch(push(CHALLENGE_ROUTE));
         },
         onChallengeSummaryClick: (id) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {RIVAL_STATUS_START_FRIEND} from "../../../util/rivalHelper";
+import {RIVAL_STATUS_START_RANDOM_OPPONENT} from "../../../util/rivalHelper";
 import {CHALLENGE_ROUTE} from "../../routes";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {responseIdChanged} from "../../../redux/reducer/challenge";
@@ -31,7 +31,7 @@ class ChallengeResponseFetch extends React.PureComponent {
         if (path === CHALLENGE_ROUTE
             && !_.isNil(id)
             && prevProps.status !== status
-            && status === RIVAL_STATUS_START_FRIEND) {
+            && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
             dispatchChallengeResponsePost(id);
         }
     }

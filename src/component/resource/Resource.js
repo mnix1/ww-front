@@ -48,7 +48,7 @@ export default class Resource extends React.PureComponent {
         const {children, imgSrc, size} = this.props;
         return <div className='justifyCenter' style={style}>
             <div className='justifyCenter flexColumn paddingRightRem'>{children}</div>
-            <div className='justifyCenter flexColumn'><img alt='' src={imgSrc} height={IMG_HEIGHT[size]}/></div>
+            <div className='justifyCenter flexColumn paddingRightRem'><img alt='' src={imgSrc} height={IMG_HEIGHT[size]}/></div>
         </div>
     }
 

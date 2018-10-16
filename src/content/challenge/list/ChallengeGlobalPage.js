@@ -3,7 +3,7 @@ import connect from "react-redux/es/connect/connect";
 import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
 import {creatorTagChanged, joinIdChanged, responseIdChanged} from "../../../redux/reducer/challenge";
 import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
-import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_FRIEND, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
+import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import {push} from "connected-react-router";
 import {CHALLENGE_ROUTE} from "../../routes";
 import ScreenPage from "../../../component/page/ScreenPage";
@@ -103,7 +103,7 @@ export default connect(
             dispatch(rivalCleared());
             dispatch(rivalTypeChanged(RIVAL_TYPE_CHALLENGE));
             dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_FRIEND));
+            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
             dispatch(push(CHALLENGE_ROUTE));
         },
         onChallengeJoinClick: (id) => {
