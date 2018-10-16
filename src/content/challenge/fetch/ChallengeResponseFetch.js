@@ -1,8 +1,6 @@
 import React from 'react';
 import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
-import {RIVAL_STATUS_START_RANDOM_OPPONENT} from "../../../util/rivalHelper";
-import {CHALLENGE_ROUTE} from "../../routes";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {responseIdChanged} from "../../../redux/reducer/challenge";
 import _ from 'lodash';
@@ -18,20 +16,17 @@ class ChallengeResponseFetch extends React.PureComponent {
         const {challengeResponseFetch, dispatch} = this.props;
         if (isRepFulfilled(challengeResponseFetch)) {
             dispatch(responseIdChanged(undefined));
-            clearCampaignResponseFetch(dispatch);
+            clearChallengeResponseFetch(dispatch);
         }
     }
 
     componentWillUnmount() {
-        clearCampaignResponseFetch(this.props.dispatch);
+        clearChallengeResponseFetch(this.props.dispatch);
     }
 
     maybeFetch(prevProps) {
-        const {path, id, status, dispatchChallengeResponsePost} = this.props;
-        if (path === CHALLENGE_ROUTE
-            && !_.isNil(id)
-            && prevProps.status !== status
-            && status === RIVAL_STATUS_START_RANDOM_OPPONENT) {
+        const {id, dispatchChallengeResponsePost} = this.props;
+        if (!_.isNil(id) && prevProps.id !== id) {
             dispatchChallengeResponsePost(id);
         }
     }
@@ -41,7 +36,7 @@ class ChallengeResponseFetch extends React.PureComponent {
     }
 }
 
-export function clearCampaignResponseFetch(dispatch) {
+export function clearChallengeResponseFetch(dispatch) {
     dispatch({type: CLEAR, resource: {name: 'challengeResponse'}});
 }
 

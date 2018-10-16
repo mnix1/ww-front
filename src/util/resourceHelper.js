@@ -27,6 +27,13 @@ export function wisieChangeSkillCost(profile) {
     }
 }
 
+export function challengeCost(profile, challenge) {
+    return profile.gold >= challenge.cost.gold
+        && profile.crystal >= challenge.cost.crystal
+        && profile.wisdom >= challenge.cost.wisdom
+        && profile.elixir >= challenge.cost.elixir;
+}
+
 export function experimentCost(profile, wisiesCount) {
     const experimentCostImpact = wisiesCount <= 5 ? 0 : (wisiesCount - 5) * 10;
     const crystal = 30 + experimentCostImpact;

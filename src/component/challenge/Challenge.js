@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import {TiArrowForward, TiLockClosed, TiLockOpen} from "react-icons/ti";
-import {MdContactMail} from "react-icons/md";
+import {MdContactMail, MdFilter1, MdFilter9Plus} from "react-icons/md";
 import {FaGavel, FaListOl} from "react-icons/fa";
-import {CHALLENGE_ACCESS_INVITE, CHALLENGE_ACCESS_LOCK} from "../../util/challengeHelper";
+import {CHALLENGE_ACCESS_INVITE, CHALLENGE_ACCESS_LOCK, CHALLENGE_APPROACH_ONE} from "../../util/challengeHelper";
 import {AvailableResourcesComponent} from "../resource/AvailableResources";
 import {
     getText,
     TEXT_ACCESS,
-    TEXT_CHALLENGE, TEXT_CHALLENGE_CLOSED,
+    TEXT_APPROACHES,
+    TEXT_CHALLENGE,
+    TEXT_CHALLENGE_CLOSED,
+    TEXT_CHALLENGE_JOIN_AND_NEXT_APPROACH_COST,
     TEXT_CHALLENGE_JOIN_COST,
     TEXT_CLOSE_DATE,
     TEXT_CREATION_DATE,
@@ -18,12 +21,16 @@ import {
     TEXT_INVITES,
     TEXT_JOIN,
     TEXT_LOCK,
+    TEXT_MANY,
     TEXT_NO_REWARDS,
+    TEXT_ONE,
     TEXT_PARTICIPANTS,
     TEXT_PLAY,
+    TEXT_POSSIBLE_APPROACHES,
     TEXT_PRIZE_POOL,
     TEXT_SUMMARY,
     TEXT_TIME_LEFT,
+    TEXT_TRY_AGAIN,
     TEXT_UNLOCK
 } from "../../lang/langText";
 import {RESOURCE_VERY_SMALL} from "../resource/Resource";
@@ -39,15 +46,22 @@ export default class Challenge extends React.PureComponent {
         className: PropTypes.string,
         id: PropTypes.number,
         name: PropTypes.string,
+        wisorType: PropTypes.string,
         access: PropTypes.string,
+        approach: PropTypes.string,
         gain: PropTypes.object,
         cost: PropTypes.object,
+        creationDate: PropTypes.string,
+        closeDate: PropTypes.string,
+        timeoutInterval: PropTypes.number,
         styleMargin: PropTypes.bool,
         stylePadding: PropTypes.bool,
         onJoinClick: PropTypes.func,
         onResponseClick: PropTypes.func,
         onSummaryClick: PropTypes.func,
+        onTryAgainClick: PropTypes.func,
         renderAccess: PropTypes.bool,
+        renderApproach: PropTypes.bool,
         renderCost: PropTypes.bool,
         renderGain: PropTypes.bool,
         renderTimeoutInterval: PropTypes.bool,
@@ -55,12 +69,14 @@ export default class Challenge extends React.PureComponent {
         renderCreationDate: PropTypes.bool,
         renderCreator: PropTypes.bool,
         renderId: PropTypes.bool,
+        enoughResources: PropTypes.bool
     };
 
     static defaultProps = {
         styleMargin: true,
         stylePadding: true,
         renderAccess: true,
+        renderApproach: true,
         renderCost: true,
         renderGain: true,
         renderTimeoutInterval: true,
@@ -68,6 +84,7 @@ export default class Challenge extends React.PureComponent {
         renderCreationDate: true,
         renderCreator: true,
         renderId: true,
+        enoughResources: true,
     };
 
     renderAccess() {
@@ -89,6 +106,21 @@ export default class Challenge extends React.PureComponent {
         </div>
     }
 
+    renderApproach() {
+        const {approach, renderApproach} = this.props;
+        if (!renderApproach) {
+            return null;
+        }
+        if (approach === CHALLENGE_APPROACH_ONE) {
+            return <div className='justifyCenter'>{getText(TEXT_POSSIBLE_APPROACHES)}: {getText(TEXT_ONE)}
+                <div className='justifyCenter flexColumn paddingLeftRem'><MdFilter1/></div>
+            </div>;
+        }
+        return <div className='justifyCenter'>{getText(TEXT_POSSIBLE_APPROACHES)}: {getText(TEXT_MANY)}
+            <div className='justifyCenter flexColumn paddingLeftRem'><MdFilter9Plus/></div>
+        </div>
+    }
+
     renderTimeoutInterval() {
         const {timeoutInterval, renderTimeoutInterval} = this.props;
         if (!renderTimeoutInterval) {
@@ -105,8 +137,8 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderCreationDate() {
-        const {creationDate, renderCreateDate} = this.props;
-        if (!renderCreateDate) {
+        const {creationDate, renderCreationDate} = this.props;
+        if (!renderCreationDate) {
             return null;
         }
         return <div className='justifyCenter'>
@@ -127,15 +159,18 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderCost() {
-        const {cost, renderCost} = this.props;
+        const {cost, approach, renderCost, enoughResources} = this.props;
         if (!renderCost) {
             return null;
         }
         return cost.empty
             ? <div className='justifyCenter'>{getText(TEXT_FREE_ENTRY)}</div>
             : <div className='justifyCenter'>
-                <div className='marginRightRem justifyCenter flexColumn'>{getText(TEXT_CHALLENGE_JOIN_COST)}:</div>
+                <div
+                    className='marginRightRem justifyCenter flexColumn'>{getText(approach === CHALLENGE_APPROACH_ONE ? TEXT_CHALLENGE_JOIN_COST : TEXT_CHALLENGE_JOIN_AND_NEXT_APPROACH_COST)}:
+                </div>
                 <AvailableResourcesComponent
+                    notEnough={!enoughResources}
                     column={false}
                     autoHide0={true}
                     size={RESOURCE_VERY_SMALL}
@@ -179,22 +214,25 @@ export default class Challenge extends React.PureComponent {
     }
 
     renderParticipants() {
-        const {participants} = this.props;
+        const {participants, approach} = this.props;
         return <div>
-            {getText(TEXT_PARTICIPANTS)}: {participants}
+            {getText(approach === CHALLENGE_APPROACH_ONE ? TEXT_PARTICIPANTS : TEXT_APPROACHES)}: {participants}
         </div>
     }
 
     renderActions() {
-        const {onJoinClick, onResponseClick, onSummaryClick} = this.props;
+        const {onJoinClick, onResponseClick, onTryAgainClick, onSummaryClick, enoughResources} = this.props;
         const {done} = this.state;
         return <div>
             {onJoinClick && !done &&
-            <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onJoinClick}
+            <Button disabled={!enoughResources} className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onJoinClick}
                     icon={<TiArrowForward/>}>{getText(TEXT_JOIN)}</Button>}
             {onResponseClick && !done &&
             <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onResponseClick}
                     icon={<FaGavel/>}>{getText(TEXT_PLAY)}</Button>}
+            {onTryAgainClick && !done &&
+            <Button disabled={!enoughResources} className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onTryAgainClick}
+                    icon={<FaGavel/>}>{getText(TEXT_TRY_AGAIN)}</Button>}
             {onSummaryClick &&
             <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onSummaryClick}
                     icon={<FaListOl/>}>{getText(TEXT_SUMMARY)}</Button>}
@@ -215,6 +253,7 @@ export default class Challenge extends React.PureComponent {
                 {renderCreator && <div className='justifyCenter'>{getText(TEXT_CREATOR)}: {name}</div>}
                 <div className='justifyCenter'>{this.renderWisor()}</div>
                 <div className='justifyCenter'>{this.renderAccess()}</div>
+                <div className='justifyCenter'>{this.renderApproach()}</div>
                 <div className='justifyCenter'>{this.renderCreationDate()}</div>
                 <div className='justifyCenter'>{this.renderClosedDate()}</div>
                 <div className='justifyCenter'>{this.renderTimeoutInterval()}</div>

@@ -7,7 +7,7 @@ import {creatorTagChanged, joinIdChanged} from "../../../redux/reducer/challenge
 import {push} from "connected-react-router";
 import {CHALLENGE_ACTIVE_ROUTE, CHALLENGE_GLOBAL_ROUTE} from "../../routes";
 import {noticeError} from "../../../component/notification/noticeError";
-import {ERROR_NOT_ENOUGH_RESOURCES, ERROR_WRONG_CREATOR_TAG} from "../../../lang/langError";
+import {ERROR_CHALLENGE_CLOSED, ERROR_NOT_ENOUGH_RESOURCES, ERROR_WRONG_CREATOR_TAG} from "../../../lang/langError";
 import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
 
 class ChallengeJoinFetch extends React.PureComponent {
@@ -27,7 +27,7 @@ class ChallengeJoinFetch extends React.PureComponent {
                 }
                 clearProfileFetch(dispatch);
             } else if (checkRepValueCode(challengeJoinFetch, -2)) {
-                noticeError(ERROR_NOT_ENOUGH_RESOURCES);
+                noticeError(ERROR_CHALLENGE_CLOSED);
             } else if (checkRepValueCode(challengeJoinFetch, -3)) {
                 noticeError(ERROR_NOT_ENOUGH_RESOURCES);
             } else if (checkRepValueCode(challengeJoinFetch, -4)) {

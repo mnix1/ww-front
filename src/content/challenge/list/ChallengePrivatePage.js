@@ -16,6 +16,7 @@ import ScreenPage from "../../../component/page/ScreenPage";
 import Challenge from "../../../component/challenge/Challenge";
 import Modal from "../../../component/modal/Modal";
 import {CHALLENGE_ACCESS_LOCK} from "../../../util/challengeHelper";
+import {challengeCost} from "../../../util/resourceHelper";
 
 class ChallengePrivatePage extends React.PureComponent {
 
@@ -30,9 +31,13 @@ class ChallengePrivatePage extends React.PureComponent {
     }
 
     renderChallenge(challenge) {
-        const {onChallengeJoinClick} = this.props;
+        const {onChallengeJoinClick, profile} = this.props;
         return <div key={challenge.id} className='challenge'>
-            <Challenge {...challenge} onJoinClick={() => onChallengeJoinClick(challenge)}/>
+            <Challenge
+                {...challenge}
+                enoughResources={challengeCost(profile, challenge)}
+                onJoinClick={() => onChallengeJoinClick(challenge)}
+            />
         </div>
     }
 
@@ -83,6 +88,7 @@ export default connect(
     (state) => ({
         challengeListRep: state.repository.challengeList,
         joinId: state.challenge.joinId,
+        profile: state.profile.profile,
         creatorTag: state.challenge.creatorTag,
     }),
     (dispatch) => ({

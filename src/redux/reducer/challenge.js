@@ -1,7 +1,7 @@
 import {
     CHALLENGE_DURATION_8,
     CHALLENGE_RESOURCE_COST_1,
-    CHALLENGE_ACCESS_UNLOCK
+    CHALLENGE_ACCESS_UNLOCK, CHALLENGE_APPROACH_MANY
 } from "../../util/challengeHelper";
 import {RESOURCE_GOLD} from "../../util/resourceHelper";
 
@@ -11,8 +11,10 @@ export const INIT_CHANGED = 'challenge/init/changed';
 export const RESPONSE_ID_CHANGED = 'challenge/response-id/changed';
 export const SUMMARY_ID_CHANGED = 'challenge/summary-id/changed';
 export const JOIN_ID_CHANGED = 'challenge/join-id/changed';
+export const TRY_AGAIN_ID_CHANGED = 'challenge/try-again-id/changed';
 export const CREATOR_TAG_CHANGED = 'challenge/creator-tag/changed';
 export const ACCESS_CHANGED = 'challenge/access/changed';
+export const APPROACH_CHANGED = 'challenge/approach/changed';
 export const RESOURCE_COST_CHANGED = 'challenge/resource-cost/changed';
 export const RESOURCE_TYPE_CHANGED = 'challenge/resource-type/changed';
 export const DURATION_CHANGED = 'challenge/duration/changed';
@@ -21,11 +23,13 @@ const initialState = {
     tags: [],
     init: undefined,
     access: CHALLENGE_ACCESS_UNLOCK,
+    approach: CHALLENGE_APPROACH_MANY,
     resourceCost: CHALLENGE_RESOURCE_COST_1,
     resourceType: RESOURCE_GOLD,
     duration: CHALLENGE_DURATION_8,
     responseId: undefined,
     joinId: undefined,
+    tryAgainId: undefined,
     creatorTag: undefined,
     summaryId: undefined,
 };
@@ -44,10 +48,14 @@ export default function reducer(state = initialState, action) {
             return {...state, summaryId: action.summaryId};
         case JOIN_ID_CHANGED:
             return {...state, joinId: action.joinId};
+        case TRY_AGAIN_ID_CHANGED:
+            return {...state, tryAgainId: action.tryAgainId};
         case CREATOR_TAG_CHANGED:
             return {...state, creatorTag: action.creatorTag};
         case ACCESS_CHANGED:
             return {...state, access: action.access};
+        case APPROACH_CHANGED:
+            return {...state, approach: action.approach};
         case RESOURCE_COST_CHANGED:
             return {...state, resourceCost: action.resourceCost};
         case RESOURCE_TYPE_CHANGED:
@@ -78,6 +86,9 @@ export function summaryIdChanged(summaryId) {
 export function joinIdChanged(joinId) {
     return {type: JOIN_ID_CHANGED, joinId};
 }
+export function tryAgainIdChanged(tryAgainId) {
+    return {type: TRY_AGAIN_ID_CHANGED, tryAgainId};
+}
 
 export function creatorTagChanged(creatorTag) {
     return {type: CREATOR_TAG_CHANGED, creatorTag};
@@ -89,6 +100,10 @@ export function responseIdChanged(responseId) {
 
 export function accessChanged(access) {
     return {type: ACCESS_CHANGED, access};
+}
+
+export function approachChanged(approach) {
+    return {type: APPROACH_CHANGED, approach};
 }
 
 export function resourceCostChanged(resourceCost) {

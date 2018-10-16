@@ -3,22 +3,29 @@ import {connect} from 'react-redux';
 import _ from 'lodash';
 import './styles.css';
 import {
-    getText, TEXT_CREATED, TEXT_IN_PROGRESS,
+    getText,
+    TEXT_CREATED,
+    TEXT_IN_PROGRESS,
     TEXT_IN_PROGRESS_CHALLENGES,
     TEXT_INVITES,
     TEXT_NONE_IN_PROGRESS_CHALLENGES
 } from "../../../lang/langText";
-import {creatorTagChanged, joinIdChanged, responseIdChanged, summaryIdChanged} from "../../../redux/reducer/challenge";
+import {
+    creatorTagChanged,
+    joinIdChanged,
+    responseIdChanged,
+    summaryIdChanged,
+    tryAgainIdChanged
+} from "../../../redux/reducer/challenge";
 import {push} from 'connected-react-router'
-import {CHALLENGE_ROUTE, CHALLENGE_SUMMARY_ROUTE} from "../../routes";
+import {CHALLENGE_SUMMARY_ROUTE} from "../../routes";
 import {clearChallengeSummaryFetch} from "../fetch/ChallengeSummaryFetch";
-import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
-import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
+import {rivalCleared} from "../../../redux/reducer/rival";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ScreenPage from "../../../component/page/ScreenPage";
 import Challenge from "../../../component/challenge/Challenge";
+import {challengeCost} from "../../../util/resourceHelper";
 
 class ChallengeActivePage extends React.PureComponent {
 
@@ -32,12 +39,15 @@ class ChallengeActivePage extends React.PureComponent {
     }
 
     renderChallenge(challenge) {
-        const {onChallengeJoinClick, onChallengeResponseClick, onChallengeSummaryClick} = this.props;
+        const {onChallengeJoinClick, onChallengeResponseClick, onChallengeSummaryClick, onChallengeTryAgainClick, profile} = this.props;
         return <div key={challenge.id} className='challenge'>
-            <Challenge {...challenge}
-                       onJoinClick={challenge.joined ? undefined : () => onChallengeJoinClick(challenge.id)}
-                       onResponseClick={challenge.canResponse ? () => onChallengeResponseClick(challenge.id) : undefined}
-                       onSummaryClick={() => onChallengeSummaryClick(challenge.id)}
+            <Challenge
+                enoughResources={challengeCost(profile, challenge)}
+                {...challenge}
+                onJoinClick={challenge.joined ? undefined : () => onChallengeJoinClick(challenge.id)}
+                onResponseClick={challenge.canResponse ? () => onChallengeResponseClick(challenge.id) : undefined}
+                onTryAgainClick={challenge.canTryAgain ? () => onChallengeTryAgainClick(challenge.id) : undefined}
+                onSummaryClick={() => onChallengeSummaryClick(challenge.id)}
             />
         </div>
     }
@@ -68,16 +78,12 @@ class ChallengeActivePage extends React.PureComponent {
 export default connect(
     (state) => ({
         challengeListRep: state.repository.challengeList,
+        profile: state.profile.profile,
     }),
     (dispatch) => ({
         onChallengeResponseClick: (id) => {
-            clearRivalStartRandomOpponentFetch(dispatch);
-            dispatch(responseIdChanged(id));
             dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_CHALLENGE));
-            dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
-            dispatch(push(CHALLENGE_ROUTE));
+            dispatch(responseIdChanged(id));
         },
         onChallengeSummaryClick: (id) => {
             dispatch(summaryIdChanged(id));
@@ -87,6 +93,10 @@ export default connect(
         onChallengeJoinClick: (id) => {
             dispatch(joinIdChanged(id));
             dispatch(creatorTagChanged(''));
+        },
+        onChallengeTryAgainClick: (id) => {
+            dispatch(rivalCleared());
+            dispatch(tryAgainIdChanged(id));
         },
     })
 )(ChallengeActivePage);

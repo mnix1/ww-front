@@ -1,36 +1,25 @@
 import React from 'react';
 import connect from "react-redux/es/connect/connect";
-import {clearRivalStartRandomOpponentFetch} from "../../rival/fetch/RivalStartRandomOpponentFetch";
-import {creatorTagChanged, joinIdChanged, responseIdChanged} from "../../../redux/reducer/challenge";
-import {rivalCleared, rivalImportanceChanged, rivalTypeChanged, statusChanged} from "../../../redux/reducer/rival";
-import {RIVAL_IMPORTANCE_FAST, RIVAL_STATUS_START_RANDOM_OPPONENT, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
-import {push} from "connected-react-router";
-import {CHALLENGE_ROUTE} from "../../routes";
+import {creatorTagChanged, joinIdChanged, responseIdChanged, tryAgainIdChanged} from "../../../redux/reducer/challenge";
+import {rivalCleared} from "../../../redux/reducer/rival";
 import ScreenPage from "../../../component/page/ScreenPage";
 import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ChallengeGlobalFetch from "../fetch/ChallengeGlobalFetch";
 import Challenge from "../../../component/challenge/Challenge";
-import {
-    getText,
-    TEXT_GLOBAL_CHALLENGE,
-    TEXT_POSITION,
-    TEXT_REWARD,
-    TEXT_SCORE,
-    TEXT_WAITING
-} from "../../../lang/langText";
+import {getText, TEXT_GLOBAL_CHALLENGE, TEXT_POSITION, TEXT_REWARD, TEXT_WAITING} from "../../../lang/langText";
 import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
 import {prepareAnswerIntervalMessage, prepareScoreMessage} from "../../../util/textHelper";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
 import Profile from "../../../component/profile/Profile";
 import _ from "lodash";
-import Elo from "../../../component/elo/Elo";
+import {challengeCost} from "../../../util/resourceHelper";
 
 class ChallengeGlobalPage extends React.PureComponent {
 
     renderContent() {
-        const {challengeGlobalRep, onChallengeJoinClick, onChallengeResponseClick} = this.props;
+        const {challengeGlobalRep, onChallengeJoinClick, onChallengeResponseClick, onChallengeTryAgainClick, profile} = this.props;
         if (!isRepFulfilled(challengeGlobalRep)) {
             return <Loading/>
         }
@@ -41,12 +30,14 @@ class ChallengeGlobalPage extends React.PureComponent {
             </div>
             <div className='justifyCenter'>
                 <Challenge
+                    enoughResources={challengeCost(profile, challenge)}
                     renderId={false}
                     renderAccess={false}
                     renderCreationDate={false}
                     renderCreator={false}
                     {...challenge}
                     onJoinClick={challenge.joined ? undefined : () => onChallengeJoinClick(challenge.id)}
+                    onTryAgainClick={challenge.canTryAgain ? () => onChallengeTryAgainClick(challenge.id) : undefined}
                     onResponseClick={challenge.canResponse ? () => onChallengeResponseClick(challenge.id) : undefined}
                 />
             </div>
@@ -103,21 +94,21 @@ export default connect(
     (state) => ({
         challengeGlobalRep: state.repository.challengeGlobal,
         challengeJoinRep: state.repository.challengeJoin,
+        profile: state.profile.profile,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
         onChallengeResponseClick: (id) => {
-            clearRivalStartRandomOpponentFetch(dispatch);
             dispatch(responseIdChanged(id));
             dispatch(rivalCleared());
-            dispatch(rivalTypeChanged(RIVAL_TYPE_CHALLENGE));
-            dispatch(rivalImportanceChanged(RIVAL_IMPORTANCE_FAST));
-            dispatch(statusChanged(RIVAL_STATUS_START_RANDOM_OPPONENT));
-            dispatch(push(CHALLENGE_ROUTE));
         },
         onChallengeJoinClick: (id) => {
             dispatch(joinIdChanged(id));
             dispatch(creatorTagChanged(''));
+        },
+        onChallengeTryAgainClick: (id) => {
+            dispatch(rivalCleared());
+            dispatch(tryAgainIdChanged(id));
         },
     })
 )(ChallengeGlobalPage);

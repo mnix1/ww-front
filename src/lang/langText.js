@@ -23,6 +23,7 @@ export const TEXT_CHOOSE_CATEGORY = 'TEXT_CHOOSE_CATEGORY';
 export const TEXT_CHOOSE_DIFFICULT = 'TEXT_CHOOSE_DIFFICULT';
 export const TEXT_PLAY_AGAIN = 'TEXT_PLAY_AGAIN';
 export const TEXT_PLAY = 'TEXT_PLAY';
+export const TEXT_TRY_AGAIN = 'TEXT_TRY_AGAIN';
 export const TEXT_QUESTION = 'TEXT_QUESTION';
 export const TEXT_REMEMBER_DETAILS = 'TEXT_REMEMBER_DETAILS';
 export const TEXT_CLICK_ON_ANY_TO_CONTINUE = 'TEXT_CLICK_ON_ANY_TO_CONTINUE';
@@ -157,7 +158,11 @@ export const TEXT_CREATE = 'TEXT_CREATE';
 export const TEXT_LOCK = 'TEXT_LOCK';
 export const TEXT_UNLOCK = 'TEXT_UNLOCK';
 export const TEXT_CHALLENGE_JOIN_COST = 'TEXT_CHALLENGE_JOIN_COST';
+export const TEXT_CHALLENGE_JOIN_AND_NEXT_APPROACH_COST = 'TEXT_CHALLENGE_JOIN_AND_NEXT_APPROACH_COST';
 export const TEXT_ACCESS = 'TEXT_ACCESS';
+export const TEXT_POSSIBLE_APPROACHES = 'TEXT_POSSIBLE_APPROACHES';
+export const TEXT_ONE = 'TEXT_ONE';
+export const TEXT_MANY = 'TEXT_MANY';
 export const TEXT_DURATION = 'TEXT_DURATION';
 export const TEXT_CREATOR = 'TEXT_CREATOR';
 export const TEXT_JOIN = 'TEXT_JOIN';
@@ -169,10 +174,15 @@ export const TEXT_PRIZE_POOL = 'TEXT_PRIZE_POOL';
 export const TEXT_GLOBAL_CHALLENGE = 'TEXT_GLOBAL_CHALLENGE';
 export const TEXT_CHALLENGE_CLOSED = 'TEXT_CHALLENGE_CLOSED';
 export const TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN = 'TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN';
+export const TEXT_APPROACHES = 'TEXT_APPROACHES';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_TRY_AGAIN]: 'Spróbuj ponownie',
+        [TEXT_ONE]: 'Jedna',
+        [TEXT_MANY]: 'Wiele',
+        [TEXT_POSSIBLE_APPROACHES]: 'Możliwe próby',
         [TEXT_CHALLENGE_CLOSED]: 'Wyzwanie zakończone',
         [TEXT_GLOBAL_CHALLENGE]: 'Wyzwanie globalne',
         [TEXT_CREATED]: 'Utworzone',
@@ -184,6 +194,7 @@ const TEXTS = {
         [TEXT_CLOSE_DATE]: 'Data zakończenia',
         [TEXT_CREATION_DATE]: 'Data utworzenia',
         [TEXT_PARTICIPANTS]: 'Uczestnicy',
+        [TEXT_APPROACHES]: 'Próby',
         [TEXT_JOIN]: 'Dołącz',
         [TEXT_CREATOR]: 'Twórca',
         [TEXT_PRIVATE_CHALLENGES]: 'Prywatne wyzwania',
@@ -191,6 +202,7 @@ const TEXTS = {
         [TEXT_DURATION]: 'Czas trwania',
         [TEXT_ACCESS]: 'Dostęp',
         [TEXT_CHALLENGE_JOIN_COST]: 'Koszt dołączenia',
+        [TEXT_CHALLENGE_JOIN_AND_NEXT_APPROACH_COST]: 'Koszt dołączenia i następnej próby',
         [TEXT_LOCK]: 'Zamknięty',
         [TEXT_UNLOCK]: 'Otwarty',
         [TEXT_CREATE_CHALLENGE]: 'Utwórz wyzwanie',
@@ -341,6 +353,10 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_TRY_AGAIN]: 'Try again',
+        [TEXT_ONE]: 'One',
+        [TEXT_MANY]: 'Many',
+        [TEXT_POSSIBLE_APPROACHES]: 'Possible approaches',
         [TEXT_CHALLENGE_CLOSED]: 'Challenge closed',
         [TEXT_GLOBAL_CHALLENGE]: 'Global challenge',
         [TEXT_CREATED]: 'Created',
@@ -352,13 +368,15 @@ const TEXTS = {
         [TEXT_CLOSE_DATE]: 'Close date',
         [TEXT_CREATION_DATE]: 'Creation date',
         [TEXT_PARTICIPANTS]: 'Participants',
+        [TEXT_APPROACHES]: 'Approaches',
         [TEXT_JOIN]: 'Join',
         [TEXT_CREATOR]: 'Creator',
         [TEXT_PRIVATE_CHALLENGES]: 'Private challenges',
         [TEXT_NO_PRIVATE_CHALLENGES]: 'No private challenges',
         [TEXT_DURATION]: 'Duration',
         [TEXT_ACCESS]: 'Access',
-        [TEXT_CHALLENGE_JOIN_COST]: 'Join cost',
+        [TEXT_CHALLENGE_JOIN_COST]: 'Cost of join',
+        [TEXT_CHALLENGE_JOIN_AND_NEXT_APPROACH_COST]: 'Cost of join and next approach',
         [TEXT_LOCK]: 'Locked',
         [TEXT_UNLOCK]: 'Unlocked',
         [TEXT_CREATE_CHALLENGE]: 'Create challenge',

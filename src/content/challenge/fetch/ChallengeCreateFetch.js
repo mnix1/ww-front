@@ -22,7 +22,7 @@ class ChallengeCreateFetch extends React.PureComponent {
             dispatch(initChanged(undefined));
             if (isRepValueCode1(challengeCreateFetch)) {
                 dispatch(push(CHALLENGE_ACTIVE_ROUTE));
-            } else if(checkRepValueCode(challengeCreateFetch, -2)) {
+            } else if (checkRepValueCode(challengeCreateFetch, -2)) {
                 noticeError(ERROR_NO_FRIENDS_SPECIFIED);
             }
             clearChallengeCreateFetch(dispatch);
@@ -34,11 +34,11 @@ class ChallengeCreateFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {path, tags, init, access, resourceCost, resourceType, duration, dispatchChallengeCreatePost} = this.props;
+        const {path, tags, init, access, approach, resourceCost, resourceType, duration, dispatchChallengeCreatePost} = this.props;
         if (path === CHALLENGE_CREATE_ROUTE
             && !_.isNil(init)
             && (prevProps.path !== path || prevProps.init !== init)) {
-            dispatchChallengeCreatePost({tags, access, resourceCost, resourceType, duration});
+            dispatchChallengeCreatePost({tags, access, approach, resourceCost, resourceType, duration});
         }
     }
 

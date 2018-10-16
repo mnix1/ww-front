@@ -15,6 +15,7 @@ import {APP_ROUTE} from "../../routes";
 import ChallengeSummaryFetch from "../fetch/ChallengeSummaryFetch";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
+import {challengeCost} from "../../../util/resourceHelper";
 
 class ChallengeSummaryPage extends React.PureComponent {
 
@@ -54,14 +55,18 @@ class ChallengeSummaryPage extends React.PureComponent {
                 styleMargin={false}
                 stylePadding={false}
             />;
-        return <Profile active={position.me} blackBackground={true} childrenAfterContent={reward}
-                        key={_.uniqueId('summaryProfile')} {...position.profile}>
+        return <Profile
+            active={position.me}
+            blackBackground={true}
+            childrenAfterContent={reward}
+            key={_.uniqueId('summaryProfile')}
+            {...position.profile}>
             {content}
         </Profile>
     }
 
     renderContent() {
-        const {challengeSummaryRep} = this.props;
+        const {challengeSummaryRep, profile} = this.props;
         if (!isRepFulfilled(challengeSummaryRep)) {
             return <Loading/>
         }
@@ -71,7 +76,14 @@ class ChallengeSummaryPage extends React.PureComponent {
             <div className="pageHeader">
                 <span>{getText(TEXT_SUMMARY)}</span>
             </div>
-            <div className='justifyCenter'><Challenge renderTimeoutInterval={!closed} renderCloseDate={closed} {...challenge}/></div>
+            <div className='justifyCenter'>
+                <Challenge
+                    enoughResources={challengeCost(profile, challenge)}
+                    renderTimeoutInterval={!closed}
+                    renderCloseDate={closed}
+                    {...challenge}
+                />
+            </div>
             {this.renderPositions(challenge.positions)}
         </div>
     }
@@ -87,7 +99,8 @@ class ChallengeSummaryPage extends React.PureComponent {
 export default connect(
     (state) => ({
         challengeSummaryRep: state.repository.challengeSummary,
-        summaryId: state.challenge.summaryId
+        summaryId: state.challenge.summaryId,
+        profile: state.profile.profile
     }),
     (dispatch) => ({
         onRouteChange: (e) => {

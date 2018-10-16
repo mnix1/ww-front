@@ -3,16 +3,18 @@ import {connect} from 'react-redux';
 import ChallengeListFetch from "./ChallengeListFetch";
 import ChallengeResponseFetch from "./ChallengeResponseFetch";
 import ChallengeJoinFetch from "./ChallengeJoinFetch";
+import ChallengeTryAgainFetch from "./ChallengeTryAgainFetch";
 
 class ChallengeFetchContainer extends React.PureComponent {
 
     render() {
         const {path, challenge, status, challengeJoinRep} = this.props;
-        const {responseId, joinId, creatorTag} = challenge;
+        const {responseId, joinId, creatorTag, tryAgainId} = challenge;
         return <div>
-            <ChallengeResponseFetch path={path} status={status} id={responseId}/>
+            <ChallengeResponseFetch status={status} id={responseId}/>
             <ChallengeListFetch path={path} id={joinId} challengeJoinRep={challengeJoinRep}/>
             <ChallengeJoinFetch path={path} id={joinId} creatorTag={creatorTag}/>
+            <ChallengeTryAgainFetch id={tryAgainId}/>
         </div>;
     }
 }

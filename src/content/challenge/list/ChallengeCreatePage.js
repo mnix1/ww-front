@@ -10,16 +10,21 @@ import {
     TEXT_DURATION,
     TEXT_INVITES,
     TEXT_LOCK,
+    TEXT_MANY,
+    TEXT_ONE,
+    TEXT_POSSIBLE_APPROACHES,
     TEXT_UNLOCK
 } from "../../../lang/langText";
 import {Button, BUTTON_MATERIAL_ACCEPT} from "../../../component/button/Button";
 import {IoMdCreate} from "react-icons/io";
 import {TiLockClosed, TiLockOpen} from "react-icons/ti";
-import {MdContactMail} from "react-icons/md";
+import {MdContactMail, MdFilter1, MdFilter9Plus} from "react-icons/md";
 import {
     CHALLENGE_ACCESS_INVITE,
     CHALLENGE_ACCESS_LOCK,
     CHALLENGE_ACCESS_UNLOCK,
+    CHALLENGE_APPROACH_MANY,
+    CHALLENGE_APPROACH_ONE,
     CHALLENGE_DURATION_24,
     CHALLENGE_DURATION_4,
     CHALLENGE_DURATION_48,
@@ -31,6 +36,7 @@ import {
 } from "../../../util/challengeHelper";
 import {
     accessChanged,
+    approachChanged,
     durationChanged,
     initChanged,
     resourceCostChanged,
@@ -49,6 +55,7 @@ class ChallengeCreatePage extends React.PureComponent {
         return <div className='justifyCenter flexColumn'>
             <div className='marginRem justifyCenter paddingBottomRem'>{getText(TEXT_CREATE_CHALLENGE)}</div>
             {this.renderAccess()}
+            {this.renderApproach()}
             {this.renderResourceCost()}
             {this.renderResourceType()}
             {this.renderDuration()}
@@ -158,6 +165,24 @@ class ChallengeCreatePage extends React.PureComponent {
         </div>
     }
 
+    renderApproach() {
+        const {onApproachClick, challenge} = this.props;
+        const {approach} = challenge;
+        return <div className='justifyCenter flexColumn'>
+            <div className='justifyCenter'>{getText(TEXT_POSSIBLE_APPROACHES)}</div>
+            <div className='justifyCenter'>
+                {this.renderItem(getText(TEXT_ONE),
+                    <MdFilter1/>,
+                    approach === CHALLENGE_APPROACH_ONE,
+                    () => onApproachClick(CHALLENGE_APPROACH_ONE))}
+                {this.renderItem(getText(TEXT_MANY),
+                    <MdFilter9Plus/>,
+                    approach === CHALLENGE_APPROACH_MANY,
+                    () => onApproachClick(CHALLENGE_APPROACH_MANY))}
+            </div>
+        </div>
+    }
+
     renderItem(text, icon, checked, onClick) {
         return <div className='paddingRem boxShadow marginRem justifyCenter pointer'
                     onClick={onClick}>
@@ -194,6 +219,7 @@ export default connect(
     }),
     (dispatch) => ({
         onAccessClick: (access) => dispatch(accessChanged(access)),
+        onApproachClick: (approach) => dispatch(approachChanged(approach)),
         onResourceCostClick: (resourceCost) => dispatch(resourceCostChanged(resourceCost)),
         onResourceTypeClick: (resourceType) => dispatch(resourceTypeChanged(resourceType)),
         onDurationClick: (duration) => dispatch(durationChanged(duration)),
