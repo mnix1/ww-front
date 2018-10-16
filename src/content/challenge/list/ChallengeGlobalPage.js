@@ -11,13 +11,21 @@ import {isRepFulfilled} from "../../../util/repositoryHelper";
 import {Loading} from "../../../component/loading/Loading";
 import ChallengeGlobalFetch from "../fetch/ChallengeGlobalFetch";
 import Challenge from "../../../component/challenge/Challenge";
-import {getText, TEXT_GLOBAL_CHALLENGE, TEXT_POSITION, TEXT_REWARD, TEXT_WAITING} from "../../../lang/langText";
+import {
+    getText,
+    TEXT_GLOBAL_CHALLENGE,
+    TEXT_POSITION,
+    TEXT_REWARD,
+    TEXT_SCORE,
+    TEXT_WAITING
+} from "../../../lang/langText";
 import {CHALLENGE_STATUS_CLOSED} from "../../../util/challengeHelper";
 import {prepareAnswerIntervalMessage, prepareScoreMessage} from "../../../util/textHelper";
 import {AvailableResourcesComponent} from "../../../component/resource/AvailableResources";
 import {RESOURCE_VERY_SMALL} from "../../../component/resource/Resource";
 import Profile from "../../../component/profile/Profile";
 import _ from "lodash";
+import Elo from "../../../component/elo/Elo";
 
 class ChallengeGlobalPage extends React.PureComponent {
 
@@ -76,7 +84,7 @@ class ChallengeGlobalPage extends React.PureComponent {
                 styleMargin={false}
                 stylePadding={false}
             />;
-        return <Profile blackBackground={true} childrenAfterContent={reward}
+        return <Profile active={position.me} blackBackground={true} childrenAfterContent={reward}
                         key={_.uniqueId('summaryProfile')} {...position.profile}>
             {content}
         </Profile>

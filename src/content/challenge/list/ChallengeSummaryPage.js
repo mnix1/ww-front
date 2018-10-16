@@ -54,7 +54,7 @@ class ChallengeSummaryPage extends React.PureComponent {
                 styleMargin={false}
                 stylePadding={false}
             />;
-        return <Profile blackBackground={true} childrenAfterContent={reward}
+        return <Profile active={position.me} blackBackground={true} childrenAfterContent={reward}
                         key={_.uniqueId('summaryProfile')} {...position.profile}>
             {content}
         </Profile>
