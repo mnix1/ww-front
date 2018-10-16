@@ -9,7 +9,7 @@ import {AvailableResourcesComponent} from "../resource/AvailableResources";
 import {
     getText,
     TEXT_ACCESS,
-    TEXT_CHALLENGE,
+    TEXT_CHALLENGE, TEXT_CHALLENGE_CLOSED,
     TEXT_CHALLENGE_JOIN_COST,
     TEXT_CLOSE_DATE,
     TEXT_CREATION_DATE,
@@ -32,6 +32,8 @@ import {getWisor} from "../../util/wisorHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../button/Button";
 
 export default class Challenge extends React.PureComponent {
+
+    state = {done: false};
 
     static propTypes = {
         className: PropTypes.string,
@@ -92,9 +94,13 @@ export default class Challenge extends React.PureComponent {
         if (!renderTimeoutInterval) {
             return null;
         }
+        if (this.state.done) {
+            return <div className='justifyCenter'>{getText(TEXT_CHALLENGE_CLOSED)}</div>
+        }
         return <div className='justifyCenter'>
             <div className='paddingRightRem'>{getText(TEXT_TIME_LEFT)}:</div>
-            <Timer from={timeoutInterval} showChart={false} showNumber={true}/>
+            <Timer onDone={() => this.setState({done: true})} from={timeoutInterval} showChart={false}
+                   showNumber={true}/>
         </div>
     }
 
@@ -164,7 +170,7 @@ export default class Challenge extends React.PureComponent {
 
     renderWisor() {
         const {wisorType, renderCreator} = this.props;
-        if(!renderCreator){
+        if (!renderCreator) {
             return null;
         }
         return <div>
@@ -181,11 +187,12 @@ export default class Challenge extends React.PureComponent {
 
     renderActions() {
         const {onJoinClick, onResponseClick, onSummaryClick} = this.props;
+        const {done} = this.state;
         return <div>
-            {onJoinClick &&
+            {onJoinClick && !done &&
             <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onJoinClick}
                     icon={<TiArrowForward/>}>{getText(TEXT_JOIN)}</Button>}
-            {onResponseClick &&
+            {onResponseClick && !done &&
             <Button className='marginLeftRem' material={BUTTON_MATERIAL_BOX_SHADOW} onClick={onResponseClick}
                     icon={<FaGavel/>}>{getText(TEXT_PLAY)}</Button>}
             {onSummaryClick &&
@@ -195,7 +202,7 @@ export default class Challenge extends React.PureComponent {
     }
 
     render() {
-        const {name, id, styleMargin, stylePadding, className, renderCreator,renderId} = this.props;
+        const {name, id, styleMargin, stylePadding, className, renderCreator, renderId} = this.props;
         const customClassName = cn('justifyCenter relative flexColumn boxShadow fontSize08Rem', {
             [className]: className,
             'marginRem': styleMargin,

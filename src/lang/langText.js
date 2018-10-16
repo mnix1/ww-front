@@ -167,11 +167,13 @@ export const TEXT_CLOSE_DATE = 'TEXT_CLOSE_DATE';
 export const TEXT_FREE_ENTRY = 'TEXT_FREE_ENTRY';
 export const TEXT_PRIZE_POOL = 'TEXT_PRIZE_POOL';
 export const TEXT_GLOBAL_CHALLENGE = 'TEXT_GLOBAL_CHALLENGE';
+export const TEXT_CHALLENGE_CLOSED = 'TEXT_CHALLENGE_CLOSED';
 export const TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN = 'TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CHALLENGE_CLOSED]: 'Wyzwanie zakończone',
         [TEXT_GLOBAL_CHALLENGE]: 'Wyzwanie globalne',
         [TEXT_CREATED]: 'Utworzone',
         [TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN]: <span>To wyzwanie jest zabezpieczone.<br/>Aby do niego dołączyć podaj tag twórcy.</span>,
@@ -339,6 +341,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CHALLENGE_CLOSED]: 'Challenge closed',
         [TEXT_GLOBAL_CHALLENGE]: 'Global challenge',
         [TEXT_CREATED]: 'Created',
         [TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN]: <span>This challenge is secured.<br/>To join it, enter the creator tag.</span>,
