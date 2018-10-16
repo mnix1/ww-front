@@ -18,21 +18,29 @@ export default class CommunicationWebSocket {
 
     init = () => {
         this.connect();
-        this.socket.addEventListener('message', this.onMessage);
-        this.socket.addEventListener('close', this.onClose);
-        this.socket.addEventListener('error', this.onError);
-        this.socket.addEventListener('open', this.onOpen);
+        this.addHandlers();
         if (this.dispatch) {
             this.dispatch(openChanged(undefined));
         }
     };
 
     dispose() {
+        this.removeHandlers();
+        this.dispatch(openChanged(false));
+    }
+
+    addHandlers() {
+        this.socket.addEventListener('message', this.onMessage);
+        this.socket.addEventListener('close', this.onClose);
+        this.socket.addEventListener('error', this.onError);
+        this.socket.addEventListener('open', this.onOpen);
+    }
+
+    removeHandlers() {
         this.socket.removeEventListener('message', this.onMessage);
         this.socket.removeEventListener('close', this.onClose);
         this.socket.removeEventListener('error', this.onError);
         this.socket.removeEventListener('open', this.onOpen);
-        this.dispatch(openChanged(false));
     }
 
     onClose = (e) => {
@@ -40,20 +48,34 @@ export default class CommunicationWebSocket {
         if (e.code === 1008) {
             this.dispatch(push(LOGIN_ROUTE));
             this.dispatch(signedInChanged(false));
+            this.dispose();
+        } else if (this.connected) {
+            this.removeHandlers();
+            this.connect();
+            this.addHandlers();
+        } else {
+            this.dispose();
         }
-        this.dispose();
+        this.connected = false;
     };
 
     onError = (e) => {
+        if (this.connecting) {
+            this.connecting = false;
+            this.dispose();
+        }
         // console.log('onerror', e);
     };
 
     onOpen = (e) => {
+        this.connected = true;
+        this.connecting = false;
         // console.log('onopen', e);
         this.dispatch(openChanged(true));
     };
 
     connect() {
+        this.connecting = true;
         let socket;
         if (_.includes(window.location.host, 'localhost')) {
             socket = new WebSocket("ws://localhost:8080/wisiemaniaWebSocket");
