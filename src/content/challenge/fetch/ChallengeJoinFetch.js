@@ -25,7 +25,7 @@ class ChallengeJoinFetch extends React.PureComponent {
                 if (path !== CHALLENGE_ACTIVE_ROUTE && path !== CHALLENGE_GLOBAL_ROUTE) {
                     dispatch(push(CHALLENGE_ACTIVE_ROUTE));
                 }
-                clearProfileFetch(this.dispatch);
+                clearProfileFetch(dispatch);
             } else if (checkRepValueCode(challengeJoinFetch, -3)) {
                 noticeError(ERROR_NOT_ENOUGH_RESOURCES);
             } else if (checkRepValueCode(challengeJoinFetch, -4)) {
