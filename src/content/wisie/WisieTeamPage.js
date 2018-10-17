@@ -1,11 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_EDIT, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/langText";
+import {getText, TEXT_CANCEL, TEXT_CLEAR, TEXT_EDIT, TEXT_SAVE, TEXT_WISIES_TEAM,} from "../../lang/langText";
 import './styles.css';
 import _ from 'lodash';
 import Wisie from "../../component/wisie/Wisie";
-import {WISIE_TEAM_COUNT} from "../../util/wisieHelper";
-import {FaEdit, FaTimesCircle,FaEraser} from "react-icons/fa";
+import {getWisieName, WISIE_TEAM_COUNT, WISIES} from "../../util/wisieHelper";
+import {FaEdit, FaEraser, FaTimesCircle} from "react-icons/fa";
 import {MdSave} from "react-icons/md";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {goBack, push} from "connected-react-router";
@@ -58,19 +58,16 @@ class WisieTeamPage extends React.PureComponent {
     }
 
     render() {
-        const {wisieListRep, profileWisies, edit, team} = this.props;
-        if (!wisieListRep || !wisieListRep.fulfilled) {
-            return null;
-        }
+        const {profileWisies, edit, team, lang} = this.props;
         if (profileWisies.length < WISIE_TEAM_COUNT) {
             return null;
         }
         const inTeamWisies = edit ? team : profileWisies.filter(e => e.inTeam);
         const inTeamWisiesMap = _.keyBy(inTeamWisies, 'type');
-        const wisies = _.chain(wisieListRep.value.filter(e => inTeamWisiesMap[e.type]))
+        const wisies = _.chain(WISIES.filter(e => inTeamWisiesMap[e]))
             .defaultTo([])
-            .sortBy(e => getName(e))
-            .map(e => ({...e, ...inTeamWisiesMap[e.type], isOwned: true}))
+            .sortBy(e => getWisieName(e, lang))
+            .map(e => ({...e, ...inTeamWisiesMap[e], isOwned: true}))
             .value();
         return <div>
             <div className='title textAlignCenter paddingRem'>
@@ -88,7 +85,7 @@ export default connect(
         screen: state.screen,
         path: state.router.location.pathname,
         team: state.wisie.team,
-        wisieListRep: state.repository.wisieList,
+        lang: state.language.lang,
         profileWisies: state.wisie.profileWisies
     }),
     (dispatch) => ({

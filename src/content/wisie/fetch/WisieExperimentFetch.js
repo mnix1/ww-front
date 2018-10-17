@@ -19,7 +19,7 @@ class WisieExperimentFetch extends React.PureComponent {
         if (!prevProps.wisieExperimentFetch.fulfilled && wisieExperimentFetch.fulfilled && experiment) {
             dispatch(experimentChanged(false));
             if (isRepValueCode1(wisieExperimentFetch)) {
-                noticeExperiment(wisieExperimentFetch.value.wisieType);
+                noticeExperiment(wisieExperimentFetch.value.type);
                 dispatch(profileChanged(wisieExperimentFetch.value.profile));
                 clearProfileWisieListFetch(dispatch);
             }

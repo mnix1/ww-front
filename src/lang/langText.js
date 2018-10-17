@@ -529,21 +529,23 @@ export function getText(id, lang) {
     return TEXTS[lang || getActiveLang()][id];
 }
 
-export function getName(e) {
-    if (getActiveLang() === POLISH) {
+export function getName(e, lang) {
+    const activeLang = lang || getActiveLang();
+    if (activeLang === POLISH) {
         return e.namePolish;
     }
-    if (getActiveLang() === ENGLISH) {
+    if (activeLang === ENGLISH) {
         return e.nameEnglish;
     }
     return null;
 }
 
 export function getTextContent(obj) {
-    if (getActiveLang() === POLISH) {
+    const activeLang = getActiveLang();
+    if (activeLang === POLISH) {
         return obj.textContentPolish;
     }
-    if (getActiveLang() === ENGLISH) {
+    if (activeLang === ENGLISH) {
         return obj.textContentEnglish;
     }
     throw new Error('UNKNOWN LANGUAGE');

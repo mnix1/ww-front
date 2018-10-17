@@ -54,73 +54,81 @@ import koala from '../media/image/wisie/koala.svg';
 import monkey from '../media/image/wisie/monkey.svg';
 import raccoonBrown from '../media/image/wisie/raccoonBrown.png';
 import worm from '../media/image/wisie/worm.png';
+import {getName} from "../lang/langText";
+import _ from 'lodash';
 
 const WISIE = {
-    'ALLIGATOR': alligator,
-    'ANT': ant,
-    'AUROCHS': aurochs,
-    'BEE': bee,
-    'BEAR': bear,
-    'BULL': bull,
-    'BULLDOG': bulldog,
-    'CAMEL': camel,
-    'CAT_BLUE': catBlue,
-    'CAT_PRESENTER': catPresenter,
-    'CAT_TEACHER': catTeacher,
-    'CHICK': chick,
-    'CROCODILE': crocodile,
-    'DOG': dog,
-    'DOG_FAT': dogFat,
-    'DOG_SWEET': dogSweet,
-    'DRAGON': dragon,
-    'DRAGON_BLUE': dragonBlue,
-    'DRAGON_FAT': dragonFat,
-    'DRAGON_RED': dragonRed,
-    'EAGLE': eagle,
-    'ELEPHANT': elephant,
-    'ELEPHANT_CHILD': elephantChild,
-    'FOX': fox,
-    'FOX_MAN': foxMan,
-    'FROG': frog,
-    'GIRAFFE': giraffe,
-    'GORILLA': gorilla,
-    'HORSE': horse,
-    'KANGAROO': kangaroo,
-    'KOALA': koala,
-    'LAMPARD': lampard,
-    'LION': lion,
-    'MONKEY': monkey,
-    'OCTOPUS': octopus,
-    'OSTRICH': ostrich,
-    'OWL': owl,
-    'OWL_HAPPY': owlHappy,
-    'PANDA_EAT': pandaEat,
-    'PARROT': parrot,
-    'PENGUIN': penguin,
-    'POLAR_BEAR': polarBear,
-    'RABBIT': rabbit,
-    'RACCOON': raccoon,
-    'RACCOON_BROWN': raccoonBrown,
-    'SHARK': shark,
-    'SHEEP': sheep,
-    'SNAKE': snake,
-    'STORK': stork,
-    'SQUIRREL': squirrel,
-    'TIGER': tiger,
-    'TURKEY': turkey,
-    'TURTLE': turtle,
-    'WALRUS': walrus,
-    'WORM': worm,
-    'WOLF': wolf,
+    'ALLIGATOR': {imgSrc: alligator, namePolish: 'Ali', nameEnglish: 'Ali'},
+    'ANT': {imgSrc: ant, namePolish: 'Mrówkacz', nameEnglish: 'Anton'},
+    'AUROCHS': {imgSrc: aurochs, namePolish: 'Żubrowar', nameEnglish: 'Biz-on'},
+    'BEE': {imgSrc: bee, namePolish: 'Żądłolot', nameEnglish: 'Beellie'},
+    'BEAR': {imgSrc: bear, namePolish: 'Dźwiedzior', nameEnglish: 'Teddo'},
+    'BULL': {imgSrc: bull, namePolish: 'Byku', nameEnglish: 'Bullo'},
+    'BULLDOG': {imgSrc: bulldog, namePolish: 'Pudziuś', nameEnglish: 'Athlete'},
+    'CAMEL': {imgSrc: camel, namePolish: 'Wielobłąd', nameEnglish: 'Cameleoman'},
+    'CAT_BLUE': {imgSrc: catBlue, namePolish: 'Mruczka', nameEnglish: 'Frisky'},
+    'CAT_PRESENTER': {imgSrc: catPresenter, namePolish: 'Kituś', nameEnglish: 'Kit-O'},
+    'CAT_TEACHER': {imgSrc: catTeacher, namePolish: 'Kicia', nameEnglish: 'Kitty'},
+    'CHICK': {imgSrc: chick, namePolish: 'Piskacz', nameEnglish: 'Shyriek'},
+    'CROCODILE': {imgSrc: crocodile, namePolish: 'Kroczek', nameEnglish: 'Gator'},
+    'DOG': {imgSrc: dog, namePolish: 'Bystruś', nameEnglish: 'Smartie'},
+    'DOG_FAT': {imgSrc: dogFat, namePolish: 'Pulszek', nameEnglish: 'Cuddle'},
+    'DOG_SWEET': {imgSrc: dogSweet, namePolish: 'Słodzik', nameEnglish: 'Cutie'},
+    'DRAGON': {imgSrc: dragon, namePolish: 'Pikełło', nameEnglish: 'Scary-Gary'},
+    'DRAGON_BLUE': {imgSrc: dragonBlue, namePolish: 'Supełło', nameEnglish: 'Kink-knot'},
+    'DRAGON_FAT': {imgSrc: dragonFat, namePolish: 'Grubełło', nameEnglish: 'Chubbo'},
+    'DRAGON_RED': {imgSrc: dragonRed, namePolish: 'Smakełło', nameEnglish: 'Foodie'},
+    'EAGLE': {imgSrc: eagle, namePolish: 'Orłuś', nameEnglish: 'Tomeagle'},
+    'ELEPHANT': {imgSrc: elephant, namePolish: 'Trąbcia', nameEnglish: 'Bugber'},
+    'ELEPHANT_CHILD': {imgSrc: elephantChild, namePolish: 'Słoniu', nameEnglish: 'Ellie'},
+    'FOX': {imgSrc: fox, namePolish: 'Lisiczka', nameEnglish: 'Foxy-Roxy'},
+    'FOX_MAN': {imgSrc: foxMan, namePolish: 'Lizuś', nameEnglish: 'Brownosie'},
+    'FROG': {imgSrc: frog, namePolish: 'Żabcia', nameEnglish: 'Missfroggie'},
+    'GIRAFFE': {imgSrc: giraffe, namePolish: 'Rafcia', nameEnglish: 'Giralla'},
+    'GORILLA': {imgSrc: gorilla, namePolish: 'Goruś', nameEnglish: 'Strongie'},
+    'HORSE': {imgSrc: horse, namePolish: 'Rumo', nameEnglish: 'Pony'},
+    'KANGAROO': {imgSrc: kangaroo, namePolish: 'Skoczka', nameEnglish: 'Cheerful'},
+    'KOALA': {imgSrc: koala, namePolish: 'Kolo', nameEnglish: 'Bro'},
+    'LAMPARD': {imgSrc: lampard, namePolish: 'Pardzio', nameEnglish: 'Lurk'},
+    'LION': {imgSrc: lion, namePolish: 'Bujnogrzyw', nameEnglish: 'Lux-mane'},
+    'MONKEY': {imgSrc: monkey, namePolish: 'Mały', nameEnglish: 'Shortie'},
+    'OCTOPUS': {imgSrc: octopus, namePolish: 'Ośmiornik', nameEnglish: 'Octopush'},
+    'OSTRICH': {imgSrc: ostrich, namePolish: 'Strusior', nameEnglish: 'Ost-rich'},
+    'OWL': {imgSrc: owl, namePolish: 'Sowcia', nameEnglish: 'Owlie'},
+    'OWL_HAPPY': {imgSrc: owlHappy, namePolish: 'Mądruś', nameEnglish: 'Bighead'},
+    'PANDA_EAT': {imgSrc: pandaEat, namePolish: 'Pandziu', nameEnglish: 'Pandice'},
+    'PARROT': {imgSrc: parrot, namePolish: 'Zgapka', nameEnglish: 'Sloppy'},
+    'PENGUIN': {imgSrc: penguin, namePolish: 'Pinguś', nameEnglish: 'Pengpong'},
+    'POLAR_BEAR': {imgSrc: polarBear, namePolish: 'Misiaczek', nameEnglish: 'Littlebear'},
+    'RABBIT': {imgSrc: rabbit, namePolish: 'Kicek', nameEnglish: 'Kitter'},
+    'RACCOON': {imgSrc: raccoon, namePolish: 'Szopuś', nameEnglish: 'Racco'},
+    'RACCOON_BROWN': {imgSrc: raccoonBrown, namePolish: 'Wędrek', nameEnglish: 'Walker'},
+    'SHARK': {imgSrc: shark, namePolish: 'Ząbek', nameEnglish: 'Bittero'},
+    'SHEEP': {imgSrc: sheep, namePolish: 'Wełnuś', nameEnglish: 'Woolly'},
+    'SNAKE': {imgSrc: snake, namePolish: 'Jaduś', nameEnglish: 'Snakiee'},
+    'STORK': {imgSrc: stork, namePolish: 'Bociek', nameEnglish: 'Storkie'},
+    'SQUIRREL': {imgSrc: squirrel, namePolish: 'Wiewcia', nameEnglish: 'Speedo'},
+    'TIGER': {imgSrc: tiger, namePolish: 'Zdzigrys', nameEnglish: 'Petiger'},
+    'TURKEY': {imgSrc: turkey, namePolish: 'Induś', nameEnglish: 'Turk'},
+    'TURTLE': {imgSrc: turtle, namePolish: 'Skorupny', nameEnglish: 'Shello'},
+    'WALRUS': {imgSrc: walrus, namePolish: 'Morsu', nameEnglish: 'Walrus'},
+    'WORM': {imgSrc: worm, namePolish: 'Robcio', nameEnglish: 'Robo'},
+    'WOLF': {imgSrc: wolf, namePolish: 'Wilku', nameEnglish: 'Wolfart'},
 };
 
 export const WISIE_TEAM_COUNT = 4;
 
 export const WISIE_MAX_HOBBY_COUNT = 3;
 
-export function getWisie(wisieType) {
-    return WISIE[wisieType];
+export function getWisieImgSrc(wisieType) {
+    return WISIE[wisieType].imgSrc;
 }
+
+export function getWisieName(wisieType, lang) {
+    return getName(WISIE[wisieType], lang);
+}
+
+export const WISIES = _.map(WISIE, (v, k) => k);
 
 const MIN_WISIE_WIDTH = 150;
 export const MAX_WISIE_WIDTH = 230;

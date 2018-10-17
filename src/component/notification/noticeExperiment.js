@@ -2,7 +2,7 @@ import React from 'react';
 import {notice} from "./notice";
 import {getText, TEXT_WISIE_DISCOVERED} from "../../lang/langText";
 import experiment from '../../media/image/icon/experiment.svg';
-import {getWisie} from "../../util/wisieHelper";
+import {getWisieImgSrc} from "../../util/wisieHelper";
 
 export function noticeExperiment(wisieType) {
     notice(
@@ -14,7 +14,7 @@ export function noticeExperiment(wisieType) {
                 </div>
             </div>
             <div className='justifyCenter marginRem'>
-                <img alt='' src={getWisie(wisieType)} height={80}/>
+                <img alt='' src={getWisieImgSrc(wisieType)} height={80}/>
             </div>
         </div>
     );

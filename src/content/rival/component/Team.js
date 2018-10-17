@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {isTeamMemberWisie} from "../../../util/heroHelper";
 import {getSkill, SKILL_LIFEBUOY} from "../../../util/skillHelper";
 import {profileImgHeightAdd} from "../../../util/screenHelper";
+import {getWisieName} from "../../../util/wisieHelper";
 
 class Team extends React.PureComponent {
 
@@ -30,8 +31,14 @@ class Team extends React.PureComponent {
     }
 
     renderTeam() {
-        const {team} = this.props;
-        return team.map(this.renderProfileOrWisie);
+        const {team, lang} = this.props;
+        return _.sortBy(team, e => {
+            const isWisie = isTeamMemberWisie(e);
+            if (!isWisie) {
+                return e.index;
+            }
+            return getWisieName(e.content.type, lang);
+        }).map(this.renderProfileOrWisie);
     }
 
     renderProfileOrWisie = (teamMember) => {
@@ -45,7 +52,7 @@ class Team extends React.PureComponent {
         const {onLifebuoyClick} = this.props;
         return <div className='absoluteBackgroundMix opacity1 pointer'
                     onClick={() => onLifebuoyClick(teamMember.index)}>
-                <img className='height100 width100' alt='' src={getSkill(SKILL_LIFEBUOY)}/>
+            <img className='height100 width100' alt='' src={getSkill(SKILL_LIFEBUOY)}/>
         </div>;
     }
 
@@ -99,6 +106,7 @@ class Team extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        lang: state.language.lang,
     }),
     (dispatch) => ({})
 )(Team);

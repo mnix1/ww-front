@@ -1,9 +1,8 @@
 import React from 'react';
-import {getWisie} from "../../util/wisieHelper";
+import {getWisieImgSrc, getWisieName} from "../../util/wisieHelper";
 import PropTypes from "prop-types";
 import _ from 'lodash';
 import cross from '../../media/image/icon/cross.svg';
-import {getName} from "../../lang/langText";
 import {getCategory} from "../../util/categoryHelper";
 import './styles.css';
 import {getDisguise} from "../../util/disguiseHelper";
@@ -15,6 +14,7 @@ export default class Wisie extends React.PureComponent {
 
     static propTypes = {
         type: PropTypes.string,
+        name: PropTypes.string,
         disguise: PropTypes.string,
         valueChange: PropTypes.string,
         value: PropTypes.number,
@@ -107,11 +107,10 @@ export default class Wisie extends React.PureComponent {
     }
 
     renderWisieDetails() {
-        const {hobbiesAndSkillsUnderName, renderSkills, detailsClassName} = this.props;
-        const name = getName(this.props);
+        const {hobbiesAndSkillsUnderName, renderSkills, detailsClassName, type, name} = this.props;
         return <div className={`wisieDetails fontSize08Rem ${detailsClassName}`}>
             <div className={`justifyStart flexColumn ${hobbiesAndSkillsUnderName && renderSkills ? 'width100' : ''}`}>
-                <div className='justifyStart'><span className='name flexColumn justifyCenter'>{name}</span></div>
+                <div className='justifyStart'><span className='name flexColumn justifyCenter'>{name || getWisieName(type)}</span></div>
                 {hobbiesAndSkillsUnderName && this.renderHobbiesAndSkills()}
                 {this.renderValue()}
             </div>
@@ -139,7 +138,7 @@ export default class Wisie extends React.PureComponent {
             {renderImg &&
             <div className='justifyCenter'>
                 {!nearImgChildrenAfter && nearImgChildren}
-                <img alt='' src={disguise ? getDisguise(disguise) : getWisie(type)} height={imgHeight}/>
+                <img alt='' src={disguise ? getDisguise(disguise) : getWisieImgSrc(type)} height={imgHeight}/>
                 {nearImgChildrenAfter && nearImgChildren}
             </div>}
             {children}

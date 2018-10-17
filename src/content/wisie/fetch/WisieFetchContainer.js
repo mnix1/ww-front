@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import WisieListFetch from "./WisieListFetch";
 import ProfileWisieListFetch from "./ProfileWisieListFetch";
 import WisieExperimentFetch from "./WisieExperimentFetch";
 import WisieTeamSaveFetch from "./WisieTeamSaveFetch";
@@ -12,7 +11,6 @@ class WisieFetchContainer extends React.PureComponent {
     render() {
         const {path, upgradeAttributeProps, changeHobbyProps, changeSkillProps, experiment, teamSave, team} = this.props;
         return <div>
-            <WisieListFetch/>
             <WisieUpgradeAttributeFetch upgradeAttributeProps={upgradeAttributeProps}/>
             <WisieChangeHobbyFetch changeHobbyProps={changeHobbyProps}/>
             <WisieChangeSkillFetch changeSkillProps={changeSkillProps}/>

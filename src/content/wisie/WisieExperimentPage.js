@@ -11,12 +11,13 @@ import {experimentChanged} from "../../redux/reducer/wisie";
 import {INTRO_STEP_EXPERIMENT} from "../intro/introHelper";
 import {experimentCost} from "../../util/resourceHelper";
 import {isRepFulfilled} from "../../util/repositoryHelper";
+import {WISIES} from "../../util/wisieHelper";
 
 class WisieExperimentPage extends React.PureComponent {
 
     render() {
-        const {profile, onExperimentClick, profileWisieListRep, wisieListRep, screen} = this.props;
-        if (!isRepFulfilled(profileWisieListRep) || !isRepFulfilled(wisieListRep) || profileWisieListRep.value.length === wisieListRep.value.length) {
+        const {profile, onExperimentClick, profileWisieListRep, screen} = this.props;
+        if (!isRepFulfilled(profileWisieListRep) || profileWisieListRep.value.length === WISIES.length) {
             return null;
         }
         const cost = experimentCost(profile, profileWisieListRep.value.length);
@@ -45,7 +46,6 @@ export default connect(
     (state) => ({
         screen: state.screen,
         profile: state.profile.profile,
-        wisieListRep: state.repository.wisieList,
         profileWisieListRep: state.repository.profileWisieList,
         path: state.router.location.pathname,
     }),

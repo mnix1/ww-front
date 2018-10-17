@@ -83,7 +83,7 @@ class WisieDetailsPage extends React.PureComponent {
                         const img = <img alt='' key={e} height={24}
                                          src={getCategory(e)}/>;
                         if (renderAdd) {
-                            return <div className='paddingLeftRem'>{img}</div>;
+                            return <div key={e} className='paddingLeftRem'>{img}</div>;
                         }
                         return <div key={e} className='justifyCenter flexColumn paddingLeftRem'>
                             {img}

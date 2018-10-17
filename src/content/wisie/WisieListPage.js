@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getName, getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/langText";
+import {getText, TEXT_HIDE, TEXT_NOT_OWNED_WISIES, TEXT_OWNED_WISIES, TEXT_SHOW} from "../../lang/langText";
 import './styles.css';
 import _ from 'lodash';
-import {calculateWisieWidth, WISIE_TEAM_COUNT} from "../../util/wisieHelper";
+import {calculateWisieWidth, getWisieName, WISIE_TEAM_COUNT, WISIES} from "../../util/wisieHelper";
 import {Loading} from "../../component/loading/Loading";
 import {showNotOwnedChanged, teamChanged, wisieDetailsChanged} from "../../redux/reducer/wisie";
 import Wisie from "../../component/wisie/Wisie";
@@ -100,7 +100,8 @@ export class WisieListPageComponent extends React.PureComponent {
             blackBackground={true}
             imgHeight={screen.standardImgHeight + screen.fontSizeRem / 2}
             key={wisie.type}
-            style={{width: this.wisieWidth}} {...wisie}
+            style={{width: this.wisieWidth}}
+            {...wisie}
             className={className}
             onClick={wisie.isOwned ? () => onWisieDetailsClick(wisie) : _.noop}
         />;
@@ -108,8 +109,8 @@ export class WisieListPageComponent extends React.PureComponent {
 
     renderOwned(wisies, ownedWisiesMap, groupCount) {
         const ownedWisies = _.chain(wisies.owned).defaultTo([])
-            .sortBy(e => getName(e))
-            .map(e => ({...e, ...ownedWisiesMap[e.type], isOwned: true}))
+            .map(e => ({...ownedWisiesMap[e], name: getWisieName(e), isOwned: true}))
+            .sortBy('name')
             .value();
         return !_.isEmpty(ownedWisies) && <div className='contentFragment'>
             <div className='title textAlignCenter'>{getText(TEXT_OWNED_WISIES)}</div>
@@ -138,14 +139,14 @@ export class WisieListPageComponent extends React.PureComponent {
     }
 
     render() {
-        const {wisieListRep, profileWisieListRep, profileWisies, screen, className} = this.props;
-        if (!isRepFulfilled(wisieListRep) || !isRepFulfilled(profileWisieListRep)) {
+        const {profileWisieListRep, profileWisies, screen, className} = this.props;
+        if (!isRepFulfilled(profileWisieListRep)) {
             return <Loading/>;
         }
         const ownedWisiesMap = _.keyBy(profileWisies, 'type');
         const groupCount = Math.floor(screen.contentWidth / this.wisieWidth);
-        const wisies = _.groupBy(wisieListRep.value, e => ownedWisiesMap[e.type] ? 'owned' : 'notOwned');
-        const notOwnedWisies = _.chain(wisies.notOwned).defaultTo([]).sortBy(e => getName(e)).value();
+        const wisies = _.groupBy(WISIES, e => ownedWisiesMap[e] ? 'owned' : 'notOwned');
+        const notOwnedWisies = _.chain(wisies.notOwned).defaultTo([]).map(e => ({type: e, name: getWisieName(e)})).sortBy('name').value();
         return <div className={className}>
             {this.renderOwned(wisies, ownedWisiesMap, groupCount)}
             {this.renderNotOwned(notOwnedWisies, groupCount)}
@@ -162,7 +163,6 @@ export default connect(
         stepIndex: state.intro.stepIndex,
         showNotOwned: state.wisie.showNotOwned,
         path: state.router.location.pathname,
-        wisieListRep: state.repository.wisieList,
         profileWisies: state.wisie.profileWisies,
         profileWisieListRep: state.repository.profileWisieList
     }),

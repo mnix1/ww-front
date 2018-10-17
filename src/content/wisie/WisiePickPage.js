@@ -43,7 +43,6 @@ export default connect(
         showNotOwned: true,
         pickWisies: state.intro.pickWisies,
         path: state.router.location.pathname,
-        wisieListRep: state.repository.wisieList,
         profileWisies: state.wisie.profileWisies,
         profileWisieListRep: state.repository.profileWisieList
     }),
