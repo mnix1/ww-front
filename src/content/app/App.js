@@ -16,7 +16,6 @@ import AppFetch from "./AppFetch";
 import AppRedirect from "./AppRedirect";
 import bg4000x2000 from '../../media/image/background/bg4000x2000.jpg';
 import bg2000x1000 from '../../media/image/background/bg2000x1000.jpg';
-import bg1600x800 from '../../media/image/background/bg1600x800.jpg';
 
 class App extends React.PureComponent {
 
@@ -25,8 +24,6 @@ class App extends React.PureComponent {
         let bg = bg2000x1000;
         if (screen.height > 1000 || screen.width > 2000) {
             bg = bg4000x2000;
-        } else if (screen.height <= 800 && screen.width <= 1600) {
-            bg = bg1600x800;
         }
         return <img alt='' src={bg} height={screen.height} width={screen.width}
                     className="fixedBackgroundMix"/>;
