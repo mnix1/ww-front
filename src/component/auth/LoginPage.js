@@ -15,7 +15,7 @@ class LoginPage extends React.PureComponent {
                     <div className='justifyCenter paddingTopRem'>{getText(TEXT_LOGIN)}</div>
                     <div className='justifyCenter flexColumn height100'>
                         <div className='justifyCenter'>
-                            <a href="/login/google" className='justifyCenter boxShadow paddingRem'
+                            <a href="/_login/google" className='justifyCenter boxShadow paddingRem'
                                style={{color: CREAM_COLOR, textDecoration: 'none'}}>
                                 <img alt='' src={googleLogo} height={30}/>
                                 <div className='justifyCenter flexColumn paddingLeftRem'>Google</div>

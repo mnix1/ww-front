@@ -10,6 +10,7 @@
     "history": "^4.7.2",
     "lodash": "^4.17.11",
     "mobile-detect": "^1.4.3",
+    "ncp": "^2.0.0",
     "prop-types": "^15.6.2",
     "rc-notification": "^3.2.0",
     "rc-progress": "^2.2.6",
@@ -29,7 +30,7 @@
     "scroll-smooth": "^1.1.0",
     "scrollparent": "^2.0.1",
     "source-map-explorer": "^1.6.0",
-    "styled-components": "^4.0.0",
+    "styled-components": "^3.4.10",
     "uuid": "^3.3.2"
   },
   "scripts": {
@@ -37,7 +38,7 @@
     "analyze": "source-map-explorer build/static/js/main.*",
     "clean": "rm -rf build && mkdir build",
     "start": "node ./scripts/setup && react-scripts start",
-    "build": "node ./scripts/setup && react-scripts build",
+    "build": "node ./scripts/setup && react-scripts build && node ./scripts/copy",
     "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

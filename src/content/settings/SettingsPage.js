@@ -23,7 +23,7 @@ class SettingsPage extends React.PureComponent {
             return null;
         }
         return <div>
-            <a href='/logout'><Button
+            <a href='/_logout'><Button
                 className='marginRem right'
                 icon={<FaSignOutAlt/>}
                 material={BUTTON_MATERIAL_BOX_SHADOW}>

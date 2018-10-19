@@ -4,7 +4,6 @@ import './commonStyles.css';
 import {connect} from 'react-redux';
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
-import background from '../../media/image/background/backgroundWithWisiesProd3.jpg';
 import WakeLock from "../../component/wake-lock/WakeLock";
 import Option from "../../component/option/Option";
 import Intro from "../intro/Intro";
@@ -15,12 +14,21 @@ import Page from "./AppPages";
 import ShowOption from "./ShowOption";
 import AppFetch from "./AppFetch";
 import AppRedirect from "./AppRedirect";
+import bg4000x2000 from '../../media/image/background/bg4000x2000.jpg';
+import bg2000x1000 from '../../media/image/background/bg2000x1000.jpg';
+import bg1600x800 from '../../media/image/background/bg1600x800.jpg';
 
 class App extends React.PureComponent {
 
     renderBackground() {
         const {screen} = this.props;
-        return <img alt='' src={background} height={screen.height} width={screen.width}
+        let bg = bg2000x1000;
+        if (screen.height > 1000 || screen.width > 2000) {
+            bg = bg4000x2000;
+        } else if (screen.height <= 800 && screen.width <= 1600) {
+            bg = bg1600x800;
+        }
+        return <img alt='' src={bg} height={screen.height} width={screen.width}
                     className="fixedBackgroundMix"/>;
     }
 
