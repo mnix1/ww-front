@@ -29,7 +29,7 @@ export function prepareAnswerIntervalMessage(answerInterval) {
 }
 
 export function prepareScoreMessage(score) {
-    return `${getText(TEXT_SCORE)}: ${_.toInteger(score)}${getText(TEXT_POINTS)}`;
+    return `${getText(TEXT_SCORE)}: ${_.toInteger(score)} ${getText(TEXT_POINTS)}`;
 }
 
 export function preparePositionMessage(position) {
@@ -37,7 +37,7 @@ export function preparePositionMessage(position) {
 }
 
 export function prepareRatingPointsMessage(points) {
-    return `(${points}${getText(TEXT_POINTS)})`;
+    return `(${points} ${getText(TEXT_POINTS)})`;
 }
 
 export function round2(n){

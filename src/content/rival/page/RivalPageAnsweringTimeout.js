@@ -5,7 +5,7 @@ import {getText, TEXT_NO_ANSWER} from "../../../lang/langText";
 import thumbDown from '../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../component/TaskMarkedAnswer";
 import ActiveMembers from "../component/ActiveMembers";
-import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import Profiles from "../component/Profiles";
 
 class RivalPageAnsweringTimeout extends React.PureComponent {
@@ -28,10 +28,13 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
         // console.log('RivalPageAnsweringTimeout render');
         const {content} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
+        const challenge = content.type === RIVAL_TYPE_CHALLENGE;
         return <div className='pageContent'>
             <TaskDescription
                 task={content.task}
                 taskCount={content.taskCount}
+                renderScore={challenge}
+                score={content.score}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
                 className='justifyCenter flexColumn contentHeader warTaskDescription'

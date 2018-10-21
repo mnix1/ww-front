@@ -6,7 +6,7 @@ import thumbDown from '../../../media/image/icon/thumbDown.svg';
 import TaskMarkedAnswer from "../component/TaskMarkedAnswer";
 import ActiveMember from "../component/ActiveMember";
 import TaskDescription from "../component/TaskDescription";
-import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import {GREEN_COLOR, RED_COLOR} from "../../../util/style/constant";
 import {Anime} from "../../../component/anime/Anime";
 import Profiles from "../component/Profiles";
@@ -34,7 +34,11 @@ class RivalPageAnswered extends React.PureComponent {
         }
         return meAnswered
             ? {activeIndex: content.activeIndex, team: content.team, activeMemberAddOn: content.activeMemberAddOn}
-            : {activeIndex: content.opponentActiveIndex, team: content.opponentTeam, activeMemberAddOn: content.opponentActiveMemberAddOn};
+            : {
+                activeIndex: content.opponentActiveIndex,
+                team: content.opponentTeam,
+                activeMemberAddOn: content.opponentActiveMemberAddOn
+            };
     }
 
     renderWhoAnsweredWar() {
@@ -122,11 +126,15 @@ class RivalPageAnswered extends React.PureComponent {
         // console.log('RivalPageAnswered render');
         const {content, screen} = this.props;
         const battle = content.type === RIVAL_TYPE_BATTLE;
+        const challenge = content.type === RIVAL_TYPE_CHALLENGE;
         return <div key='answered' className='pageContent warPageAnswered'>
             {battle && this.renderWhoAnsweredBattle()}
             <TaskDescription
                 task={content.task}
                 taskCount={content.taskCount}
+                renderScore={challenge}
+                score={content.newScore}
+                scoreColor={content.score < content.newScore ? GREEN_COLOR : undefined}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
                 small={!screen.isBigScreen}

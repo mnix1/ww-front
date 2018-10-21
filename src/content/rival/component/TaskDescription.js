@@ -1,6 +1,14 @@
 import React from 'react';
 import '../page/styles.css';
-import {getText, TEXT_CATEGORY, TEXT_DIFFICULT, TEXT_QUESTION, TEXT_TIME} from "../../../lang/langText";
+import {
+    getText,
+    TEXT_CATEGORY,
+    TEXT_DIFFICULT,
+    TEXT_POINTS,
+    TEXT_QUESTION,
+    TEXT_SCORE,
+    TEXT_TIME
+} from "../../../lang/langText";
 import {getCategoryLabel} from "../../../lang/langCategory";
 import Rating from "../../../component/rating/Rating";
 import {getCategory} from "../../../util/categoryHelper";
@@ -16,38 +24,50 @@ class TaskDescription extends React.PureComponent {
         renderTaskPoints: true,
         renderTimer: false,
         small: false,
+        renderScore: false,
         task: {},
     };
 
     renderTaskNumber() {
-        const {task, taskCount, taskId, renderTaskCount, renderTask} = this.props;
+        const {task, taskCount, taskId, renderTaskCount, renderTask, lang} = this.props;
         if (!renderTask) {
             return null;
         }
         return <div>
-            {`${getText(TEXT_QUESTION)} ${task.id || taskId}${renderTaskCount ? `/${taskCount}` : ''}`}
+            {`${getText(TEXT_QUESTION, lang)} ${task.id || taskId}${renderTaskCount ? `/${taskCount}` : ''}`}
+        </div>;
+    }
+
+    renderScore() {
+        const {score, renderScore, scoreColor, lang} = this.props;
+        if (!renderScore) {
+            return null;
+        }
+        return <div className='nowrap'>
+            {`${getText(TEXT_SCORE, lang)}: `}
+            <span style={{color: scoreColor}}>{score} {getText(TEXT_POINTS, lang)}</span>
         </div>;
     }
 
     renderTaskCategory() {
-        const {task, small, screen} = this.props;
+        const {task, small, screen, lang} = this.props;
         if (!task.category) {
             return null;
         }
         return <div className='justifyCenter'>
-            {small ? '' : `${getText(TEXT_CATEGORY)}: `} {`${getCategoryLabel(task.category)} `}
+            {small ? '' : `${getText(TEXT_CATEGORY, lang)}: `} {`${getCategoryLabel(task.category, lang)} `}
             <img alt='' className='marginLeftRem' key={task.category} height={screen.fontSizeRem}
-                 src={getCategory(task.category)}/>
+                 src={getCategory(task.category, lang)}/>
         </div>;
     }
 
     renderTaskDifficulty() {
-        const {task, renderTaskPoints, small} = this.props;
+        const {task, renderTaskPoints, small, lang} = this.props;
         if (!task.difficultyLevel) {
             return null;
         }
         return <div className='justifyCenter'>
-            {!small && <div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT)}:`}</div>}
+            {!small && <div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT, lang)}:`}</div>}
             &nbsp;<Rating valueString={task.difficultyLevel}/>&nbsp;
             {renderTaskPoints && <div className='justifyCenter flexColumn'>
                 {prepareRatingPointsMessage(task.points)}
@@ -56,11 +76,11 @@ class TaskDescription extends React.PureComponent {
     }
 
     renderTimer() {
-        const {renderTimer, interval, small} = this.props;
+        const {renderTimer, interval, small, lang} = this.props;
         if (!renderTimer) {
             return null;
         }
-        return <div>{small ? '' : `${getText(TEXT_TIME)}: `}<Timer from={interval}/>
+        return <div>{small ? '' : `${getText(TEXT_TIME, lang)}: `}<Timer from={interval}/>
         </div>
     }
 
@@ -68,6 +88,7 @@ class TaskDescription extends React.PureComponent {
         // console.log('TaskDescription render');
         const {className, children} = this.props;
         return <div className={`${className}`}>
+            {this.renderScore()}
             {this.renderTaskNumber()}
             {this.renderTaskCategory()}
             {this.renderTaskDifficulty()}
@@ -80,6 +101,7 @@ class TaskDescription extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
+        lang: state.language.lang,
     }),
     (dispatch) => ({})
 )(TaskDescription);

@@ -14,8 +14,8 @@ import {
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../indexApp";
 
-export function getCategoryLabel(id) {
-    return CATEGORY_LABELS[getActiveLang()][id];
+export function getCategoryLabel(id, lang) {
+    return CATEGORY_LABELS[lang || getActiveLang()][id];
 }
 
 const CATEGORY_LABELS = {

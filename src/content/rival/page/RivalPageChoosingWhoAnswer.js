@@ -8,6 +8,7 @@ import _ from 'lodash';
 import cn from 'classnames';
 import AvailableSkills from "../../../component/skill/AvailableSkills";
 import {SKILL_LIFEBUOY} from "../../../util/skillHelper";
+import {RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 
 class RivalPageChoosingWhoAnswer extends React.PureComponent {
 
@@ -51,10 +52,13 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
     render() {
         // console.log('RivalPageChoosingWhoAnswer render');
         const {content} = this.props;
+        const challenge = content.type === RIVAL_TYPE_CHALLENGE;
         return <div className='pageContent'>
             <TaskDescription
                 task={content.task}
                 taskCount={content.taskCount}
+                renderScore={challenge}
+                score={content.score}
                 renderTaskPoints={false}
                 renderTaskCount={false}
                 renderTimer={true}

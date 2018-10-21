@@ -5,7 +5,7 @@ import {questionIdAnswerIdMapChanged, questionIdSkipAnimationMapChanged} from ".
 import TaskDescription from "../../component/TaskDescription";
 import ActiveMembers from "../../component/ActiveMembers";
 import {isTeamMemberWisie} from "../../../../util/heroHelper";
-import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE} from "../../../../util/rivalHelper";
+import {RIVAL_CONTENT_STATUS_ANSWERING, RIVAL_TYPE_BATTLE, RIVAL_TYPE_CHALLENGE} from "../../../../util/rivalHelper";
 import Profiles from "../../component/Profiles";
 import RivalPageAnsweringTaskNotActive from "./RivalPageAnsweringTaskNotActive";
 import {rivalScreen} from "../../../../util/screenHelper";
@@ -76,9 +76,11 @@ class RivalPageAnswering extends React.PureComponent {
     }
 
     renderTaskDescription() {
-        const {battle, task, taskCount, screen, endAnsweringInterval} = this.props;
+        const {battle, challenge, score,task, taskCount, screen, endAnsweringInterval} = this.props;
         return <TaskDescription
             task={task}
+            renderScore={challenge}
+            score={score}
             taskCount={taskCount}
             renderTaskPoints={battle}
             renderTaskCount={battle}
@@ -102,10 +104,13 @@ class RivalPageAnswering extends React.PureComponent {
 
 export default connect(
     (state) => {
-        const {type, taskCount, status, task, team, activeIndex, endAnsweringInterval} = state.rival.content;
+        const {type, taskCount, status, score, task, team, activeIndex, endAnsweringInterval} = state.rival.content;
         const battle = type === RIVAL_TYPE_BATTLE;
+        const challenge = type === RIVAL_TYPE_CHALLENGE;
         return {
             battle,
+            challenge,
+            score,
             task,
             taskCount,
             team,
