@@ -13,6 +13,7 @@ import _ from 'lodash';
 import CampaignActivePage from "./CampaignActivePage";
 import {statusChanged} from "../../redux/reducer/rival";
 import ScreenPage from "../../component/page/ScreenPage";
+import CampaignFetchContainer from "./fetch/CampaignFetchContainer";
 
 class CampaignPage extends React.PureComponent {
 
@@ -50,6 +51,7 @@ class CampaignPage extends React.PureComponent {
                 <Route exact path={CAMPAIGN_ROUTE} render={() => this.renderContent()}/>
                 <Route exact path={CAMPAIGN_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
             </Switch>
+            <CampaignFetchContainer/>
         </ScreenPage>;
     }
 }

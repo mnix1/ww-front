@@ -5,14 +5,10 @@ import '../../component/page/styles.css';
 import {connect} from 'react-redux';
 import FriendListFetch from "../friend/fetch/FriendListFetch";
 import ChallengeFetchContainer from "../challenge/fetch/ChallengeFetchContainer";
-import ShopFetchContainer from "../shop/fetch/ShopFetchContainer";
-import ProfileFetchContainer from "../profile/fetch/ProfileFetchContainer";
 import ProfileFetch from "./fetch/ProfileFetch";
-import WisieFetchContainer from "../wisie/fetch/WisieFetchContainer";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
-import SettingsFetchContainer from "../settings/fetch/SettingsFetchContainer";
-import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 import TestSignInFetch from "./fetch/TestSignInFetch";
+import MailListFetch from "../mail/fetch/MailListFetch";
 
 class AppFetch extends React.PureComponent {
 
@@ -22,13 +18,9 @@ class AppFetch extends React.PureComponent {
         return <div>
             {signedIn && socket && <div>
                 <FriendListFetch path={path} friendListRep={friendListRep}/>
-                <SettingsFetchContainer/>
-                <CampaignFetchContainer/>
                 <RivalFetchContainer/>
                 <ChallengeFetchContainer/>
-                <WisieFetchContainer/>
-                <ShopFetchContainer/>
-                <ProfileFetchContainer/>
+                <MailListFetch path={path}/>
             </div>}
             {signedIn && <ProfileFetch path={path}/>}
             {!signedIn && <TestSignInFetch path={path}/>}

@@ -37,7 +37,7 @@ export default class Grade extends React.PureComponent {
                          top: 1
                      }}/>
                 <img alt='' src={seal} height={30} style={{opacity: 0.1}}/>
-                <div className='absolute width100 height100 textAlignCenter'>
+                <div className='absolute width100 height100 textAlignCenter justifyCenter flexColumn'>
                     <div className='relative' style={{
                         color: GRADE_STYLE[grade].color,
                         fontSize: 24,

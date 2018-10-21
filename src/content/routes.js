@@ -9,6 +9,8 @@ export const SHOP_ROUTE = '/shop';
 export const FRIEND_ROUTE = '/friend';
 export const PROFILE_ROUTE = '/profile';
 
+export const MAIL_ROUTE = '/mail';
+
 export const PLAY_WAR_ROUTE = PLAY_ROUTE + '/war';
 export const PLAY_BATTLE_ROUTE = PLAY_ROUTE + '/battle';
 export const PLAY_CHALLENGE_ROUTE = PLAY_ROUTE + '/challenge';

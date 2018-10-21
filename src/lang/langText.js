@@ -4,6 +4,7 @@ import {NAME_MAX_LENGTH} from "../content/settings/SettingsPage";
 import React from 'react';
 
 export const TEXT_APP_NAME = 'TEXT_APP_NAME';
+export const TEXT_MAIL = 'TEXT_MAIL';
 export const TEXT_CAMPAIGN_OVER = 'TEXT_CAMPAIGN_OVER';
 export const TEXT_CAMPAIGN = 'TEXT_CAMPAIGN';
 export const TEXT_NAME_LENGTH = 'TEXT_NAME_LENGTH';
@@ -175,10 +176,13 @@ export const TEXT_GLOBAL_CHALLENGE = 'TEXT_GLOBAL_CHALLENGE';
 export const TEXT_CHALLENGE_CLOSED = 'TEXT_CHALLENGE_CLOSED';
 export const TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN = 'TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN';
 export const TEXT_APPROACHES = 'TEXT_APPROACHES';
+export const TEXT_NO_MAIL = 'TEXT_NO_MAIL';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_NO_MAIL]: 'Nie masz wiadomości',
+        [TEXT_MAIL]: 'Poczta',
         [TEXT_TRY_AGAIN]: 'Spróbuj ponownie',
         [TEXT_ONE]: 'Jedna',
         [TEXT_MANY]: 'Wiele',
@@ -353,6 +357,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_NO_MAIL]: 'You have no message',
+        [TEXT_MAIL]: 'Mail',
         [TEXT_TRY_AGAIN]: 'Try again',
         [TEXT_ONE]: 'One',
         [TEXT_MANY]: 'Many',

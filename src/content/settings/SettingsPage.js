@@ -13,6 +13,7 @@ import _ from 'lodash';
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
 import {INTRO_STEP_GO_TO_WISOR, INTRO_STEP_OPTIONS, INTRO_STEP_WISOR} from "../intro/introHelper";
 import ScreenPage from "../../component/page/ScreenPage";
+import SettingsFetchContainer from "./fetch/SettingsFetchContainer";
 
 export const NAME_MAX_LENGTH = 20;
 
@@ -72,6 +73,7 @@ class SettingsPage extends React.PureComponent {
                 <Route exact path={SETTINGS_CHOOSE_WISOR_ROUTE} render={() => <ChooseWisorPage/>}/>
                 <Route exact path={SETTINGS_ROUTE} render={() => this.renderContent()}/>
             </Switch>
+            <SettingsFetchContainer/>
         </ScreenPage>
     }
 }

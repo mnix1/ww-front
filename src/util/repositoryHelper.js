@@ -27,6 +27,9 @@ export function fetchOnPathOrIfNotExistsAnymore(prevPath, path, targetPath, prev
     return (path === targetPath && prevPath !== path)
         || (!rep.fulfilled && !rep.pending && prevRep.fulfilled)
 }
+export function fetchOnPath(prevPath, path, targetPath) {
+    return path === targetPath && prevPath !== path;
+}
 
 export function fetchOnPathAndIfNotExists(prevPath, path, targetPath, prevRep, rep) {
     return path === targetPath && prevPath !== path && !rep.fulfilled && !rep.pending;

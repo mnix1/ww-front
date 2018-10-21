@@ -14,6 +14,7 @@ import campaign from "./reducer/campaign";
 import settings from "./reducer/settings";
 import language from "./reducer/language";
 import intro from "./reducer/intro";
+import mail from "./reducer/mail";
 
 const app = combineReducers({
     intro,
@@ -30,6 +31,7 @@ const app = combineReducers({
     option,
     settings,
     campaign,
+    mail,
     repository: fetchReducer
 });
 

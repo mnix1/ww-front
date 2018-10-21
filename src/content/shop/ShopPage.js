@@ -3,6 +3,7 @@ import AvailableResources from "../../component/resource/AvailableResources";
 import ShopPageBook from "./ShopPageBook";
 import {RESOURCE_SMALL} from "../../component/resource/Resource";
 import ScreenPage from "../../component/page/ScreenPage";
+import ShopFetchContainer from "./fetch/ShopFetchContainer";
 
 export default class ShopPage extends React.PureComponent {
     render() {
@@ -11,6 +12,7 @@ export default class ShopPage extends React.PureComponent {
                 <AvailableResources size={RESOURCE_SMALL}/>
                 <ShopPageBook/>
             </div>
+            <ShopFetchContainer/>
         </ScreenPage>
     }
 }

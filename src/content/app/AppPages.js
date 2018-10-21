@@ -20,7 +20,7 @@ import {
     CLASSIFICATION_BATTLE_ROUTE,
     CLASSIFICATION_WAR_ROUTE,
     FRIEND_ROUTE,
-    LOGIN_ROUTE,
+    LOGIN_ROUTE, MAIL_ROUTE,
     PLAY_BATTLE_ROUTE,
     PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE,
@@ -68,6 +68,7 @@ import {isFullScreen, menuItemHeight} from "../../util/screenHelper";
 import ChallengeGlobalPage from "../challenge/list/ChallengeGlobalPage";
 import ChallengeCreatePage from "../challenge/list/ChallengeCreatePage";
 import ChallengeActivePage from "../challenge/list/ChallengeActivePage";
+import MailPage from "../mail/MailPage";
 
 class AppPages extends React.PureComponent {
 
@@ -109,6 +110,8 @@ class AppPages extends React.PureComponent {
                 <Route exact path={PROFILE_ROUTE} render={() => <ProfilePage/>}/>
                 <Route path={WISIES_ROUTE} render={() => <WisiePage/>}/>
                 <Route exact path={SHOP_ROUTE} render={() => <ShopPage/>}/>
+
+                <Route exact path={MAIL_ROUTE} render={() => <MailPage/>}/>
 
                 <Route exact path={PLAY_WAR_ROUTE} render={() => <PlayWarPage/>}/>
                 <Route exact path={PLAY_BATTLE_ROUTE} render={() => <PlayBattlePage/>}/>
