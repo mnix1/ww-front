@@ -32,7 +32,7 @@ class ProfilePage extends React.PureComponent {
         if (pending || noNewMails) {
             style.background = '#444';
         }
-        return <div className={`justifyCenter flexColumn relative ${pending ? 'notAllowed' : 'pointer'}`}
+        return <div className={`justifyStart flexColumn relative ${pending ? 'notAllowed' : 'pointer'}`}
                     onClick={onMailBoxClick}>
             <span className='justifyCenter'>{getText(TEXT_MAIL, lang)}</span>
             <div className='justifyCenter relative'>
@@ -51,10 +51,10 @@ class ProfilePage extends React.PureComponent {
         }
         return <ScreenPage>
             <div className='justifyCenter flexColumn'>
-                <div className='justifyEvenly'>
-                    <div className='justifyCenter'>{this.renderMailBox()}</div>
-                    <div className='justifyCenter'><AvailableResources/></div>
+                <div className='justifyEvenly flexWrap'>
                     <Profile renderTag className='' {...profile}/>
+                    <div className='justifyCenter'><AvailableResources/></div>
+                    <div className='justifyCenter paddingTopRem'>{this.renderMailBox()}</div>
                 </div>
                 <ProfilePageBook/>
             </div>
