@@ -12,7 +12,6 @@ import WisiePickPage from "./WisiePickPage";
 import {INTRO_STEP_EDIT_TEAM, INTRO_STEP_PICK_WISIES} from "../intro/introHelper";
 import ScreenPage from "../../component/page/ScreenPage";
 import {connect} from "react-redux";
-import WisieFetchContainer from "./fetch/WisieFetchContainer";
 
 class WisiePage extends React.PureComponent {
 
@@ -49,7 +48,6 @@ class WisiePage extends React.PureComponent {
                 <Route path={WISIES_TEAM_EDIT_ROUTE} render={() => this.renderContentTeamEdit()}/>
                 <Route path={WISIES_PICK_ROUTE} render={() => this.renderContentPick()}/>
             </Switch>
-            <WisieFetchContainer/>
         </ScreenPage>
     }
 }

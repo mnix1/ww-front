@@ -9,6 +9,8 @@ import ProfileFetch from "./fetch/ProfileFetch";
 import RivalFetchContainer from "../rival/fetch/RivalFetchContainer";
 import TestSignInFetch from "./fetch/TestSignInFetch";
 import MailListFetch from "../mail/fetch/MailListFetch";
+import WisieFetchContainer from "../wisie/fetch/WisieFetchContainer";
+import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
 
 class AppFetch extends React.PureComponent {
 
@@ -20,7 +22,9 @@ class AppFetch extends React.PureComponent {
                 <FriendListFetch path={path} friendListRep={friendListRep}/>
                 <RivalFetchContainer/>
                 <ChallengeFetchContainer/>
+                <CampaignFetchContainer/>
                 <MailListFetch path={path}/>
+                <WisieFetchContainer/>
             </div>}
             {signedIn && <ProfileFetch path={path}/>}
             {!signedIn && <TestSignInFetch path={path}/>}
