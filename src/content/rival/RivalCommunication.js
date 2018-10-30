@@ -51,10 +51,10 @@ export default class RivalCommunication {
         this.send(JSON.stringify({id: 'CHOOSE_WHO_ANSWER', activeIndex}));
     }
     sendChosenDifficulty(difficultyLevel) {
-        this.send(JSON.stringify({id: 'CHOOSE_TASK_PROPS', difficultyLevel}));
+        this.send(JSON.stringify({id: 'CHOOSE_TASK_DIFFICULTY', difficultyLevel}));
     }
     sendChosenCategory(category) {
-        this.send(JSON.stringify({id: 'CHOOSE_TASK_PROPS', category}));
+        this.send(JSON.stringify({id: 'CHOOSE_TASK_CATEGORY', category}));
     }
 
     onMessage = (id, data) => {

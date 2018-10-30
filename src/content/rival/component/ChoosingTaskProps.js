@@ -11,6 +11,10 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../../component/button/Butt
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
 import {NAME_TO_POINTS} from "../../../util/difficultyHelper";
 import {TiInputChecked} from "react-icons/ti";
+import {
+    RIVAL_CONTENT_STATUS_CHOOSING_TASK_CATEGORY,
+    RIVAL_CONTENT_STATUS_CHOOSING_TASK_DIFFICULTY
+} from "../../../util/rivalHelper";
 
 export default class ChoosingTaskProps extends React.PureComponent {
 
@@ -56,15 +60,15 @@ export default class ChoosingTaskProps extends React.PureComponent {
         const {content} = this.props;
         return <div>
             <div className='pageHeader'>
-                <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/></span>
+                <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.nextInterval}/></span>
             </div>
-            {!content.isChosenDifficulty && <div className='pageHeader'>
-                <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
-                {this.renderChooseDifficult()}
-            </div>}
-            {!content.isChosenCategory && content.isChosenDifficulty && <div className='pageHeader'>
+            {content.status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_CATEGORY && <div className='pageHeader'>
                 <div>{getText(TEXT_CHOOSE_CATEGORY)}</div>
                 {this.renderChooseCategory()}
+            </div>}
+            {content.status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_DIFFICULTY && <div className='pageHeader'>
+                <div>{getText(TEXT_CHOOSE_DIFFICULT)}</div>
+                {this.renderChooseDifficult()}
             </div>}
         </div>;
     }

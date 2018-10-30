@@ -29,12 +29,12 @@ class TaskDescription extends React.PureComponent {
     };
 
     renderTaskNumber() {
-        const {task, taskCount, taskId, renderTaskCount, renderTask, lang} = this.props;
+        const {task, taskCount, renderTaskCount, renderTask, lang} = this.props;
         if (!renderTask) {
             return null;
         }
         return <div>
-            {`${getText(TEXT_QUESTION, lang)} ${task.id || taskId}${renderTaskCount ? `/${taskCount}` : ''}`}
+            {`${getText(TEXT_QUESTION, lang)} ${task.id}${renderTaskCount ? `/${taskCount}` : ''}`}
         </div>;
     }
 

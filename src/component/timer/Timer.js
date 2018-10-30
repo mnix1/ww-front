@@ -9,6 +9,10 @@ import {datePartFormatter} from "../../util/dateHelper";
 
 export default class Timer extends React.PureComponent {
 
+    state = {
+
+    };
+
     static propTypes = {
         children: PropTypes.node,
         work: PropTypes.bool,
@@ -46,13 +50,12 @@ export default class Timer extends React.PureComponent {
         onTick: _.noop
     };
 
-    constructor(props) {
-        super(props);
+    init(props) {
         const valueSeconds = props.down ? Math.ceil(props.from / 1000) : Math.floor(props.from / 1000);
         const hours = Math.floor(valueSeconds / 3600);
         const minutes = Math.floor((valueSeconds - hours * 3600) / 60);
         const seconds = Math.floor(valueSeconds - hours * 3600 - minutes * 60);
-        this.state = {
+        this.setState({
             hours,
             minutes,
             seconds,
@@ -60,11 +63,20 @@ export default class Timer extends React.PureComponent {
             value: props.from,
             elapsed: 0,
             lastTimestamp: undefined
-        };
+        });
     }
 
     componentDidMount() {
+        this.init(this.props);
         this.start();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.from !== this.props.from) {
+            this.stop();
+            this.init(this.props);
+            this.start();
+        }
     }
 
     componentWillUnmount() {

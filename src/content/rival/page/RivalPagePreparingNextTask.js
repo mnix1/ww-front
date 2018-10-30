@@ -25,7 +25,7 @@ class RivalPagePreparingNextTask extends React.PureComponent {
             <div className='pageHeader'>
                 <div>{getText(TEXT_QUESTION_PREPARING) + ' '}
                     <br/>
-                    <Timer from={content.nextTaskInterval}/>
+                    <Timer from={content.nextInterval}/>
                 </div>
             </div>
         </TaskDescription>

@@ -4,13 +4,24 @@ import _ from 'lodash';
 import RandomTaskProps from "../component/RandomTaskProps";
 import ChoosingTaskProps from "../component/ChoosingTaskProps";
 import TaskDescription from "../component/TaskDescription";
-import {getText, TEXT_OPPONENT_CHOOSING, TEXT_TIME} from "../../../lang/langText";
+import {
+    getText,
+    TEXT_OPPONENT_CHOOSING,
+    TEXT_OPPONENT_CHOOSING_CATEGORY,
+    TEXT_OPPONENT_CHOOSING_DIFFICULTY,
+    TEXT_TIME
+} from "../../../lang/langText";
 import sleep from '../../../media/image/icon/sleep.svg';
 import Timer from "../../../component/timer/Timer";
 import {DIFFICULT_LEVEL_TO_NAME} from "../../../util/difficultyHelper";
 import {rivalInProgressContent} from "../../../redux/reducer/rival";
 import Teams from "../component/Teams";
-import {RIVAL_TYPE_BATTLE} from "../../../util/rivalHelper";
+import {
+    RIVAL_CONTENT_STATUS_CHOOSING_TASK_CATEGORY,
+    RIVAL_CONTENT_STATUS_CHOOSING_TASK_DIFFICULTY,
+    RIVAL_CONTENT_STATUS_RANDOM_TASK_PROPS,
+    RIVAL_TYPE_BATTLE
+} from "../../../util/rivalHelper";
 import Profiles from "../component/Profiles";
 import {rivalScreen} from "../../../util/screenHelper";
 
@@ -22,11 +33,15 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
         return <div>
             <div className='pageHeader justifyCenter'>
                 <div style={{width: screen.contentWidth / 3}}>
-                    {getText(TEXT_OPPONENT_CHOOSING)}
+                    {getText(content.status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_CATEGORY
+                        ? TEXT_OPPONENT_CHOOSING_CATEGORY
+                        : content.status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_DIFFICULTY
+                            ? TEXT_OPPONENT_CHOOSING_DIFFICULTY
+                            : TEXT_OPPONENT_CHOOSING)}
                 </div>
             </div>
             <div className='pageHeader'><img alt='' className='sleep' src={sleep} height={screen.rivalImgHeight}/></div>
-            <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.choosingTaskPropsInterval}/>
+            <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.nextInterval}/>
             </div>
             {!battle && <Teams content={content}/>}
         </div>
@@ -34,8 +49,8 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
 
     renderContent() {
         const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
-        const {choosingTaskPropsTag} = content;
-        if (_.isNil(choosingTaskPropsTag)) {
+        const {choosingTaskPropsTag, status} = content;
+        if (RIVAL_CONTENT_STATUS_RANDOM_TASK_PROPS === status) {
             return <RandomTaskProps className='randomTaskProps' content={content}/>;
         }
         if (choosingTaskPropsTag === content.profile.tag) {
@@ -68,7 +83,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
             <TaskDescription
                 taskCount={content.taskCount}
                 className='justifyCenter flexColumn pageHeader'
-                taskId={content.taskId}
+                task={content.task}
                 renderTaskCount={battle}/>}
             {this.renderContent()}
         </div>;
