@@ -80,6 +80,7 @@ class RivalPageClosed extends React.PureComponent {
         if (!isRanking(content)) {
             return null;
         }
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         const oldProfileElo = content.profileSeason.previousElo;
         const newProfileElo = content.profileSeason.elo;
         const oldOpponentElo = content.opponentSeason.previousElo;
@@ -114,7 +115,7 @@ class RivalPageClosed extends React.PureComponent {
                 opponentPoints: {value: newOpponentElo, duration: 1500, delay: 1000}
             }}>
             <Profiles
-                renderScore={false}
+                renderScore={battle}
                 renderElo={true}
                 className='absolute'
                 screen={screen}

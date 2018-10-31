@@ -15,6 +15,7 @@ import {getCategory} from "../../../util/categoryHelper";
 import {prepareRatingPointsMessage} from "../../../util/textHelper";
 import Timer from "../../../component/timer/Timer";
 import connect from "react-redux/es/connect/connect";
+import {NAME_TO_POINTS} from "../../../util/difficultyHelper";
 
 class TaskDescription extends React.PureComponent {
 
@@ -70,7 +71,7 @@ class TaskDescription extends React.PureComponent {
             {!small && <div className='justifyCenter flexColumn'>{`${getText(TEXT_DIFFICULT, lang)}:`}</div>}
             &nbsp;<Rating valueString={task.difficultyLevel}/>&nbsp;
             {renderTaskPoints && <div className='justifyCenter flexColumn'>
-                {prepareRatingPointsMessage(task.points)}
+                {prepareRatingPointsMessage(NAME_TO_POINTS[task.difficultyLevel])}
             </div>}
         </div>;
     }
