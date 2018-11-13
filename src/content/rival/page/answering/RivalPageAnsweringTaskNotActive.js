@@ -11,7 +11,7 @@ import {
     SKILL_COVERALL,
     SKILL_GHOST,
     SKILL_HINT,
-    SKILL_KIDNAPPING,
+    SKILL_NINJA,
     SKILL_LIFEBUOY,
     SKILL_PIZZA,
     SKILL_WATER_PISTOL
@@ -31,9 +31,9 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
         communication.sendWaterPistol();
     };
 
-    handleKidnappingClick = () => {
+    handleNinjaClick = () => {
         const {communication} = this.props;
-        communication.sendKidnapping();
+        communication.sendNinja();
     };
 
     handleGhostClick = () => {
@@ -71,7 +71,7 @@ class RivalPageAnsweringTaskNotActive extends React.PureComponent {
             preferredGroupCount={screen.verticalOrientation ? 4 : undefined}
             skillClickHandlers={{
                 [SKILL_WATER_PISTOL]: this.handleWaterPistolClick,
-                [SKILL_KIDNAPPING]: this.handleKidnappingClick,
+                [SKILL_NINJA]: this.handleNinjaClick,
                 [SKILL_GHOST]: this.handleGhostClick,
                 [SKILL_PIZZA]: this.handlePizzaClick,
                 [SKILL_COVERALL]: this.handleCoverallClick,

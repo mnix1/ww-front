@@ -29,8 +29,8 @@ export default class RivalCommunication {
     sendWaterPistol() {
         this.send(JSON.stringify({id: 'WATER_PISTOL'}));
     }
-    sendKidnapping() {
-        this.send(JSON.stringify({id: 'KIDNAPPING'}));
+    sendNinja() {
+        this.send(JSON.stringify({id: 'NINJA'}));
     }
     sendGhost() {
         this.send(JSON.stringify({id: 'GHOST'}));

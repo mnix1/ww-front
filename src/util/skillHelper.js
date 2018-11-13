@@ -14,7 +14,7 @@ export const SKILL_TEACHER = 'TEACHER';
 export const SKILL_MOTIVATOR = 'MOTIVATOR';
 export const SKILL_HINT = 'HINT';
 export const SKILL_WATER_PISTOL = 'WATER_PISTOL';
-export const SKILL_KIDNAPPING = 'KIDNAPPING';
+export const SKILL_NINJA = 'NINJA';
 export const SKILL_LIFEBUOY = 'LIFEBUOY';
 export const SKILL_GHOST = 'GHOST';
 export const SKILL_SHIELD = 'SHIELD';
@@ -27,7 +27,7 @@ const SKILLS = {
     [SKILL_MOTIVATOR]: box,
     [SKILL_HINT]: hint,
     [SKILL_WATER_PISTOL]: waterPistol,
-    [SKILL_KIDNAPPING]: ninja,
+    [SKILL_NINJA]: ninja,
     [SKILL_LIFEBUOY]: lifebuoy,
     [SKILL_GHOST]: ghost,
     [SKILL_SHIELD]: shield,
