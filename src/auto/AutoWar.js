@@ -121,7 +121,7 @@ function answering(auto, content) {
         return false;
     }
     logAuto('answering', 'content', content);
-    const difficulty = (content.task.points - 1);
+    const difficulty = _.random(0, 7);
     const difficultyImpact = auto.props.difficultyImpact * difficulty;
     const isHobbyTask = _.includes(auto.props.hobbies, content.task.category);
     const hobbyImpact = isHobbyTask ? auto.props.hobbyImpact : 0;
