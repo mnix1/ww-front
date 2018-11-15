@@ -9,14 +9,14 @@ import {getText, TEXT_APP_NAME} from "./lang/langText";
 import {applyMiddleware, compose, createStore} from 'redux'
 import {middleware as fetchMiddleware} from 'react-redux-fetch'
 import {createBrowserHistory} from 'history'
-import {connectRouter, routerMiddleware} from 'connected-react-router'
+import {routerMiddleware} from 'connected-react-router'
 import './util/rdHelper';
 import * as serviceWorker from './serviceWorker';
 
 const history = createBrowserHistory();
 
 const store = createStore(
-    connectRouter(history)(app), // new root reducer with router state
+    app(history), // new root reducer with router state
     compose(applyMiddleware(fetchMiddleware),
         applyMiddleware(routerMiddleware(history)),
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : a => a
