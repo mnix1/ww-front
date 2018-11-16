@@ -62,7 +62,8 @@ class RivalPageChoosingWhoAnswer extends React.PureComponent {
                 renderTaskPoints={false}
                 renderTaskCount={false}
                 renderTimer={true}
-                interval={content.nextInterval}
+                timerFrom={content.nextTimeout- content.currentTimeout}
+                timerValue={content.nextTimeout - content.now}
                 className='justifyCenter flexColumn pageHeader'
             />
             <div className='pageHeader'>{getText(TEXT_CHOOSE_WHO_ANSWER)}</div>

@@ -77,11 +77,11 @@ class TaskDescription extends React.PureComponent {
     }
 
     renderTimer() {
-        const {renderTimer, interval, small, lang} = this.props;
+        const {renderTimer, timerFrom, timerValue, small, lang} = this.props;
         if (!renderTimer) {
             return null;
         }
-        return <div>{small ? '' : `${getText(TEXT_TIME, lang)}: `}<Timer from={interval}/>
+        return <div>{small ? '' : `${getText(TEXT_TIME, lang)}: `}<Timer from={timerFrom} value={timerValue}/>
         </div>
     }
 

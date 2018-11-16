@@ -17,6 +17,7 @@ export default class Timer extends React.PureComponent {
         children: PropTypes.node,
         work: PropTypes.bool,
         from: PropTypes.number,
+        value: PropTypes.number,
         to: PropTypes.number,
         lineWidth: PropTypes.number,
         down: PropTypes.bool,
@@ -60,8 +61,7 @@ export default class Timer extends React.PureComponent {
             minutes,
             seconds,
             valueSeconds,
-            value: props.from,
-            elapsed: 0,
+            value: props.value || props.from,
             lastTimestamp: undefined
         });
     }
@@ -88,7 +88,7 @@ export default class Timer extends React.PureComponent {
     };
 
     tick = (timestamp) => {
-        const {elapsed, lastTimestamp, value} = this.state;
+        const {lastTimestamp, value} = this.state;
         const {to, down, work, onDone, onTick} = this.props;
         if (!work) {
             return this.stop();
@@ -111,7 +111,6 @@ export default class Timer extends React.PureComponent {
             seconds,
             valueSeconds,
             value: newValue,
-            elapsed: delta + elapsed,
             lastTimestamp: timestamp
         };
         this.setState(state,

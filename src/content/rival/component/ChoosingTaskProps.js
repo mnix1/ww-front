@@ -60,7 +60,7 @@ export default class ChoosingTaskProps extends React.PureComponent {
         const {content} = this.props;
         return <div>
             <div className='pageHeader'>
-                <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.nextInterval}/></span>
+                <span>{`${getText(TEXT_TIME)}: `}<Timer from={content.nextTimeout - content.currentTimeout} value={content.nextTimeout - content.now}/></span>
             </div>
             {content.status === RIVAL_CONTENT_STATUS_CHOOSING_TASK_CATEGORY && <div className='pageHeader'>
                 <div>{getText(TEXT_CHOOSE_CATEGORY)}</div>
