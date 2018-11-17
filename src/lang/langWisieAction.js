@@ -26,7 +26,7 @@ import {
     WATER_PISTOL_USED_ON_IT,
     CLEANING,
     NOW_KNOW_ANSWER,
-    DOESNT_KNOW_ANSWER,
+    NO_KNOW_ANSWER,
     HUMMING_A_SONG,
     WATCHES_THE_AUDIENCE,
     HAS_MUSCLE_SPASM,
@@ -91,7 +91,7 @@ const HERO_ACTION_LABELS = {
         [RECOGNIZING_ANSWERS]: 'Poznaję odpowiedzi',
 
         [NOW_KNOW_ANSWER]: 'Teraz wiem o co chodzi',
-        [DOESNT_KNOW_ANSWER]: 'Nie wiem o co chodzi',
+        [NO_KNOW_ANSWER]: 'Nie wiem o co chodzi',
 
         [ANSWERED]: 'Odpowiadam',
         [SURRENDER]: 'Nie, poddaję się',

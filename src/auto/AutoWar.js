@@ -56,8 +56,7 @@ function initWar(auto) {
 
 function taskProps(auto, content) {
     logAuto('taskProps', 'content', content);
-    const meChoosing = auto.redux.profile.profile.tag === content.choosingTaskPropsTag;
-    if (!meChoosing) {
+    if (!content.meChoosingTaskProps) {
         return;
     }
     const interval = Math.random() * 1000 + 2000;

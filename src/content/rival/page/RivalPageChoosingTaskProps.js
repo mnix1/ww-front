@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import _ from 'lodash';
 import RandomTaskProps from "../component/RandomTaskProps";
 import ChoosingTaskProps from "../component/ChoosingTaskProps";
 import TaskDescription from "../component/TaskDescription";
@@ -49,11 +48,11 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
 
     renderContent() {
         const {content, screen, communication, onCategoryChange, onDifficultLevelChange, onDifficultLevelAcceptChange} = this.props;
-        const {choosingTaskPropsTag, status} = content;
+        const {meChoosingTaskProps, status} = content;
         if (RIVAL_CONTENT_STATUS_RANDOM_TASK_PROPS === status) {
             return <RandomTaskProps className='randomTaskProps' content={content}/>;
         }
-        if (choosingTaskPropsTag === content.profile.tag) {
+        if (meChoosingTaskProps) {
             return <ChoosingTaskProps
                 screen={rivalScreen({
                     screen,
@@ -74,12 +73,12 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
     render() {
         // console.log('RivalPageChoosingTaskProps render');
         const {content} = this.props;
-        const {choosingTaskPropsTag, profile, status} = content;
+        const {meChoosingTaskProps, status} = content;
         const battle = content.type === RIVAL_TYPE_BATTLE;
         return <div className='pageContent warPageChoosingTaskProps'>
             {battle ? <Profiles className='absolute'/>
-                : choosingTaskPropsTag === profile.tag && <Teams forceAbsolute={true} content={content}/>}
-            {!_.isNil(choosingTaskPropsTag) && RIVAL_CONTENT_STATUS_RANDOM_TASK_PROPS !== status &&
+                : meChoosingTaskProps && <Teams forceAbsolute={true} content={content}/>}
+            {RIVAL_CONTENT_STATUS_RANDOM_TASK_PROPS !== status &&
             <TaskDescription
                 taskCount={content.taskCount}
                 className='justifyCenter flexColumn pageHeader'
