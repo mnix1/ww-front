@@ -60,7 +60,7 @@ class WisieDetailsPage extends React.PureComponent {
 
     renderWisieCustomHobbies(wisie) {
         const {onChangeHobbyClick, profile} = this.props;
-        const renderAdd = wisie.hobbies.length < WISIE_MAX_HOBBY_COUNT;
+        const enableAdd = wisie.hobbies.length < WISIE_MAX_HOBBY_COUNT;
         const cost = wisieChangeHobbyCost(profile, wisie);
         const pending = this.pending;
         return <div className='justifyCenter'>
@@ -73,26 +73,29 @@ class WisieDetailsPage extends React.PureComponent {
                                 size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                     </div>
                 </div>
-                {cost.isEnoughResource && renderAdd &&
-                <FaPlusCircle className={`paddingLeftRem pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
-                              onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, null)} size={24}/>}
+                {enableAdd &&
+                <FaPlusCircle
+                    className={`paddingLeftRem pointer ${pending || !cost.isEnoughResource ? 'disabled' : ''}`}
+                    color={GREEN_COLOR}
+                    onClick={pending || !cost.isEnoughResource ? _.noop : () => onChangeHobbyClick(wisie, null)}
+                    size={24}/>}
             </div>
             <div className='justifyStart flexColumn'>
                 <div className='justifyCenter'>
                     {wisie.hobbies.map(e => {
                         const img = <img alt='' key={e} height={24}
                                          src={getCategory(e)}/>;
-                        if (renderAdd) {
+                        if (enableAdd) {
                             return <div key={e} className='paddingLeftRem'>{img}</div>;
                         }
                         return <div key={e} className='justifyCenter flexColumn paddingLeftRem'>
                             {img}
-                            {cost.isEnoughResource &&
                             <div className='justifyCenter'>
-                                <FaRetweet className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
+                                <FaRetweet className={`pointer ${pending || !cost.isEnoughResource ? 'disabled' : ''}`}
+                                           color={GREEN_COLOR}
                                            size={20}
-                                           onClick={pending ? _.noop : () => onChangeHobbyClick(wisie, e)}/>
-                            </div>}
+                                           onClick={pending || !cost.isEnoughResource ? _.noop : () => onChangeHobbyClick(wisie, e)}/>
+                            </div>
                         </div>
                     })}
                 </div>
@@ -122,12 +125,12 @@ class WisieDetailsPage extends React.PureComponent {
                                          src={getSkill(e)}/>;
                         return <div key={e} className='justifyCenter flexColumn paddingRightRem'>
                             {img}
-                            {cost.isEnoughResource &&
                             <div className='justifyCenter'>
-                                <FaRetweet className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
+                                <FaRetweet className={`pointer ${pending || !cost.isEnoughResource ? 'disabled' : ''}`}
+                                           color={GREEN_COLOR}
                                            size={20}
-                                           onClick={pending ? _.noop : () => onChangeSkillClick(wisie, e)}/>
-                            </div>}
+                                           onClick={pending || !cost.isEnoughResource ? _.noop : () => onChangeSkillClick(wisie, e)}/>
+                            </div>
                         </div>
                     })}
                 </div>
@@ -235,7 +238,8 @@ class WisieDetailsPage extends React.PureComponent {
         if (!wisieDetails) {
             return null;
         }
-        return <Modal className='overflowAuto' exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE} header={this.renderModalHeader()}
+        return <Modal className='overflowAuto' exitClassName={INTRO_STEP_WISIE_DETAILS_CLOSE}
+                      header={this.renderModalHeader()}
                       onExitClick={onExitClick}>
             {this.renderWisie(wisieDetails)}
         </Modal>;
