@@ -77,6 +77,9 @@ export default class RivalCommunication {
 
     onMessage = (data) => {
         const content = JSON.parse(data.content);
+        if (content.status === 'INTRO') {
+            this.communicationWebSocket.dispatch(rivalCleared());
+        }
         if (content.type) {
             this.changeRivalTypeIfDifferenct(content.type);
         }
@@ -91,9 +94,6 @@ export default class RivalCommunication {
     }
 
     rivalInProgress(content) {
-        if (content.status === 'INTRO') {
-            this.communicationWebSocket.dispatch(rivalCleared());
-        }
         this.communicationWebSocket.dispatch(rivalInProgressContent(content));
         if (content.status === 'CLOSED') {
             this.communicationWebSocket.dispatch(rivalStatusChanged(RIVAL_STATUS_CLOSED));
