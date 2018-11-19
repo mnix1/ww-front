@@ -3,15 +3,15 @@ import {connect} from "react-redux";
 import {FaFacebook, FaGoogle} from 'react-icons/fa';
 import {getText, TEXT_LOGIN} from "../../lang/langText";
 import {CREAM_COLOR} from "../../util/style/constant";
-import {getFullWisor, getIntroWisor, getWisor} from "../../util/wisorHelper";
+import {getIntroWisor} from "../../util/wisorHelper";
 
 class LoginPage extends React.PureComponent {
 
     renderButton(href, backgroundColor, text, logo) {
-        return <div className='justifyCenter paddingTopRem'>
+        return <div className='justifyCenter paddingTopRem' style={{height: '2rem'}}>
             <a href={href} className='justifyStart paddingRem borderRadiusRem'
                style={{color: CREAM_COLOR, textDecoration: 'none', backgroundColor, width: '10rem'}}>
-                <div className='justifyCenter'>
+                <div className='justifyCenter flexColumn'>
                     {logo}
                 </div>
                 <div className='justifyCenter width100'>

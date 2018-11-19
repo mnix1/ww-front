@@ -36,4 +36,4 @@ ReactDOM.render(<Provider store={store}>
     <App history={history}/>
 </Provider>, document.getElementById('root'));
 
-serviceWorker.unregister();
+serviceWorker.register();
