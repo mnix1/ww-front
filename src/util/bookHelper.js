@@ -36,7 +36,7 @@ import scienceArticlePl from '../media/image/book/pl/scienceArticle.svg';
 import mysteriousBookPl from '../media/image/book/pl/mysteriousBook.png';
 import secretBookPl from '../media/image/book/pl/secretBook.png';
 import {POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../indexApp";
+import {getActiveLang} from "../index";
 
 export const BOOK_LEAFLET = 'LEAFLET';
 export const BOOK_FAIRY_TALE = 'FAIRY_TALE';

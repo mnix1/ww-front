@@ -1,5 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../indexApp";
+import {getActiveLang} from "../index";
 import {NAME_MAX_LENGTH} from "../content/settings/SettingsPage";
 import React from 'react';
 

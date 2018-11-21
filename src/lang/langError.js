@@ -1,5 +1,5 @@
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../indexApp";
+import {getActiveLang} from "../index";
 
 export const ERROR_CONNECTION_PROBLEM = 'ERROR_CONNECTION_PROBLEM';
 export const ERROR_NOT_ENOUGH_RESOURCES = 'ERROR_NOT_ENOUGH_RESOURCES';

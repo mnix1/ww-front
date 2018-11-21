@@ -5,7 +5,7 @@ import {
 } from "../util/campaignHelper";
 import _ from 'lodash';
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../indexApp";
+import {getActiveLang} from "../index";
 
 export function getCampaignLabel(type, destination, phase) {
     const t = CAMPAIGN_LABELS[getActiveLang()][type];

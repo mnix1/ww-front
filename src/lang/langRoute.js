@@ -13,7 +13,7 @@ import {
     WISIES_ROUTE, CLASSIFICATION_BATTLE_ROUTE, CHALLENGE_GLOBAL_ROUTE, CHALLENGE_CREATE_ROUTE, CHALLENGE_PRIVATE_ROUTE
 } from "../content/routes";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../indexApp";
+import {getActiveLang} from "../index";
 
 export function getRouteLabel(id) {
     return ROUTE_LABELS[getActiveLang()][id];

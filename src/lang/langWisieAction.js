@@ -69,7 +69,7 @@ import {
     IS_AFRAID_OF_THE_OPPONENT
 } from "../util/wisieActionHelper";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
-import {getActiveLang} from "../indexApp";
+import {getActiveLang} from "../index";
 
 export function getWisieActionLabel(id) {
     return HERO_ACTION_LABELS[getActiveLang()][id];
