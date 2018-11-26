@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from "prop-types";
-import {getSkill, SKILL_HINT} from "../../util/skillHelper";
+import {getSkill, SKILL_CHANGE_TASK, SKILL_HINT} from "../../util/skillHelper";
 import Skill from "./Skill";
 import _ from "lodash";
 import connect from "react-redux/es/connect/connect";
@@ -38,7 +38,7 @@ class AvailableSkills extends React.PureComponent {
         return <Skill
             key={key}
             imgHeight={Math.min(Math.max(screen.rivalImgHeight / 2, 20), 40)}
-            disabled={(disabled && key !== SKILL_HINT) || !skills[key].canUse}
+            disabled={(disabled && key !== SKILL_HINT && key !== SKILL_CHANGE_TASK) || !skills[key].canUse}
             used={skills[key].used}
             onClick={() => this.handleSkillClick(key)}
             imgSrc={getSkill(key)}>{skills[key].count}
