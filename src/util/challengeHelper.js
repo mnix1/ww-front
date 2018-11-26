@@ -15,8 +15,11 @@ export const CHALLENGE_APPROACH_MANY = 'MANY';
 
 export const CHALLENGE_RESOURCE_COST_0 = 0;
 export const CHALLENGE_RESOURCE_COST_1 = 1;
+export const CHALLENGE_RESOURCE_COST_2 = 2;
+export const CHALLENGE_RESOURCE_COST_3 = 3;
+export const CHALLENGE_RESOURCE_COST_4 = 4;
 export const CHALLENGE_RESOURCE_COST_5 = 5;
-export const CHALLENGE_RESOURCE_COST_10 = 10;
+export const CHALLENGE_RESOURCE_COST_6 = 6;
 
 export const CHALLENGE_DURATION_4 = 4;
 export const CHALLENGE_DURATION_8 = 8;

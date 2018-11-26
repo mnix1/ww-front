@@ -7,6 +7,7 @@ import TaskMarkedAnswer from "../component/TaskMarkedAnswer";
 import ActiveMembers from "../component/ActiveMembers";
 import {RIVAL_TYPE_BATTLE, RIVAL_TYPE_CHALLENGE} from "../../../util/rivalHelper";
 import Profiles from "../component/Profiles";
+import {GREEN_COLOR} from "../../../util/style/constant";
 
 class RivalPageAnsweringTimeout extends React.PureComponent {
 
@@ -34,7 +35,8 @@ class RivalPageAnsweringTimeout extends React.PureComponent {
                 task={content.task}
                 taskCount={content.taskCount}
                 renderScore={challenge}
-                score={content.score}
+                score={content.newScore}
+                scoreColor={content.score < content.newScore ? GREEN_COLOR : undefined}
                 renderTaskPoints={battle}
                 renderTaskCount={battle}
                 className='justifyCenter flexColumn contentHeader warTaskDescription'

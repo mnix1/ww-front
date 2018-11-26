@@ -31,7 +31,10 @@ import {
     CHALLENGE_DURATION_8,
     CHALLENGE_RESOURCE_COST_0,
     CHALLENGE_RESOURCE_COST_1,
-    CHALLENGE_RESOURCE_COST_10,
+    CHALLENGE_RESOURCE_COST_2,
+    CHALLENGE_RESOURCE_COST_3,
+    CHALLENGE_RESOURCE_COST_4,
+    CHALLENGE_RESOURCE_COST_6,
     CHALLENGE_RESOURCE_COST_5
 } from "../../../util/challengeHelper";
 import {
@@ -99,18 +102,18 @@ class ChallengeCreatePage extends React.PureComponent {
                     undefined,
                     resourceCost === CHALLENGE_RESOURCE_COST_0,
                     () => onResourceCostClick(CHALLENGE_RESOURCE_COST_0))}
-                {this.renderItem(CHALLENGE_RESOURCE_COST_1,
+                {this.renderItem(CHALLENGE_RESOURCE_COST_2,
                     undefined,
-                    resourceCost === CHALLENGE_RESOURCE_COST_1,
-                    () => onResourceCostClick(CHALLENGE_RESOURCE_COST_1))}
-                {this.renderItem(CHALLENGE_RESOURCE_COST_5,
+                    resourceCost === CHALLENGE_RESOURCE_COST_2,
+                    () => onResourceCostClick(CHALLENGE_RESOURCE_COST_2))}
+                {this.renderItem(CHALLENGE_RESOURCE_COST_4,
                     undefined,
-                    resourceCost === CHALLENGE_RESOURCE_COST_5,
-                    () => onResourceCostClick(CHALLENGE_RESOURCE_COST_5))}
-                {this.renderItem(CHALLENGE_RESOURCE_COST_10,
+                    resourceCost === CHALLENGE_RESOURCE_COST_4,
+                    () => onResourceCostClick(CHALLENGE_RESOURCE_COST_4))}
+                {this.renderItem(CHALLENGE_RESOURCE_COST_6,
                     undefined,
-                    resourceCost === CHALLENGE_RESOURCE_COST_10,
-                    () => onResourceCostClick(CHALLENGE_RESOURCE_COST_10))}
+                    resourceCost === CHALLENGE_RESOURCE_COST_6,
+                    () => onResourceCostClick(CHALLENGE_RESOURCE_COST_6))}
             </div>
         </div>
     }
