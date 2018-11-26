@@ -9,6 +9,11 @@ const initialState = {
     lang: ENGLISH,
 };
 
+const LANG_SHORT = {
+    [POLISH]: 'pl',
+    [ENGLISH]: 'en',
+};
+
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case LANG_CHANGED:
@@ -20,5 +25,6 @@ export default function reducer(state = initialState, action) {
 
 export const langChanged = (lang) => {
     document.title = getText(TEXT_APP_NAME, lang);
+    document.documentElement.lang = LANG_SHORT[lang];
     return {type: LANG_CHANGED, lang}
 };
