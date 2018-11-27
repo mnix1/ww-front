@@ -4,7 +4,6 @@ import './styles.css';
 import {getWisor} from "../../util/wisorHelper";
 import {
     getText,
-    TEXT_CHANGE_LANGUAGE,
     TEXT_CHANGE_NICK,
     TEXT_CHANGE_WISOR,
     TEXT_CONFIRM_TO_SUBMIT,
@@ -29,10 +28,7 @@ import SettingsFetchContainer from "./fetch/SettingsFetchContainer";
 import request from "../../util/fetchHelper";
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
-import gbFlag from '../../media/image/flag/GB.svg';
-import plFlag from '../../media/image/flag/PL.svg';
-import {ENGLISH, langChanged, POLISH} from "../../redux/reducer/language";
-import {isCode1} from "../../util/repositoryHelper";
+import ChangeLanguage from "../../component/change-language/ChangeLanguage";
 
 export const NAME_MAX_LENGTH = 20;
 
@@ -58,29 +54,6 @@ class SettingsPage extends React.PureComponent {
                 }
             ]
         })
-    };
-
-    renderChangeLanguage() {
-        return <div className='left boxShadow marginRem paddingRem'>
-            <div>
-                {getText(TEXT_CHANGE_LANGUAGE, this.props.lang)}
-            </div>
-            <div className='justifyCenter'>
-                <img className='paddingRightRem cover pointer' alt='' src={gbFlag} height={25} width={40}
-                     onClick={() => this.handleLanguageClick(ENGLISH)}/>
-                <img className='cover pointer' alt='' src={plFlag} height={25} width={40}
-                     onClick={() => this.handleLanguageClick(POLISH)}/>
-            </div>
-        </div>
-    }
-
-    handleLanguageClick = (lang) => {
-        const {onLangChange} = this.props;
-        request('/profile/changeLanguage', {lang}).then((json) => {
-            if (isCode1(json)) {
-                onLangChange(json.lang);
-            }
-        });
     };
 
     renderRight() {
@@ -120,7 +93,7 @@ class SettingsPage extends React.PureComponent {
             {this.renderRight()}
             {this.renderActualNick()}
             {this.renderActualWisor()}
-            {this.renderChangeLanguage()}
+            <ChangeLanguage className='left marginRem'/>
         </div>
     }
 
@@ -182,7 +155,6 @@ export default connect(
             }
         },
         onChooseAccept: () => dispatch(chosenNickAcceptChanged(true)),
-        onLangChange: (lang) => dispatch(langChanged(lang)),
         onRouteChange: (e) => {
             dispatch(push(e));
         },

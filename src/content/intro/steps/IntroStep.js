@@ -8,6 +8,7 @@ import {getText, TEXT_CONTINUE, TEXT_HIDE, TEXT_THIS_WINDOW} from "../../../lang
 import {FaArrowRight, FaWindowClose} from 'react-icons/fa';
 import {stepIndexChanged} from "../../../redux/reducer/intro";
 import _ from 'lodash';
+import ChangeLanguage from "../../../component/change-language/ChangeLanguage";
 
 export function prepareIntroStep(afterReload, {stepId, content, selector, position}) {
     return {
@@ -22,6 +23,7 @@ class IntroStep extends React.PureComponent {
     static propTypes = {
         renderContinue: PropTypes.bool,
         renderHide: PropTypes.bool,
+        renderChangeLanguage: PropTypes.bool,
         render: PropTypes.bool,
         enableOpacity: PropTypes.bool,
         screen: PropTypes.object,
@@ -31,11 +33,13 @@ class IntroStep extends React.PureComponent {
         wisorHeightFactor: PropTypes.number,
         width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
         maxWidth: PropTypes.number,
+        lang: PropTypes.string,
     };
 
     static defaultProps = {
         renderContinue: true,
         renderHide: false,
+        renderChangeLanguage: false,
         enableOpacity: false,
         render: true,
         width: 'auto',
@@ -80,7 +84,7 @@ class IntroStep extends React.PureComponent {
     }
 
     render() {
-        const {screen, stepId, children, onContinueClick, renderContinue, renderHide, render, width, enableOpacity} = this.props;
+        const {screen, stepId, children, onContinueClick, renderContinue, renderHide, renderChangeLanguage, render, width, enableOpacity, lang} = this.props;
         const {hidden} = this.state;
         const style = {width, maxWidth: this.maxWidth};
         const wisorHeight = screen.standardImgHeight * this.wisorHeightFactor;
@@ -96,22 +100,26 @@ class IntroStep extends React.PureComponent {
                     <div className='fontSize09Rem'>
                         {children}
                     </div>
-                    {renderContinue && <div>
-                        <Button
-                            onClick={() => onContinueClick(STEP_ID_TO_NEXT_STEP_INDEX[stepId])}
-                            material={BUTTON_MATERIAL_BOX_SHADOW}
-                            icon={<FaArrowRight/>}>
-                            {getText(TEXT_CONTINUE)}
-                        </Button>
-                    </div>}
-                    {renderHide && <div>
-                        <Button
-                            onClick={() => this.setState({hidden: true})}
-                            material={BUTTON_MATERIAL_BOX_SHADOW}
-                            icon={<FaWindowClose/>}>
-                            {`${getText(TEXT_HIDE)} ${getText(TEXT_THIS_WINDOW).toLowerCase()}`}
-                        </Button>
-                    </div>}
+                    <div className='justifyStart'>
+                        {renderChangeLanguage && <ChangeLanguage className='marginRightRem'/>}
+                        {renderContinue && <div>
+                            <Button
+                                onClick={() => onContinueClick(STEP_ID_TO_NEXT_STEP_INDEX[stepId])}
+                                material={BUTTON_MATERIAL_BOX_SHADOW}
+                                icon={<FaArrowRight/>}>
+                                {getText(TEXT_CONTINUE, lang)}
+                            </Button>
+                        </div>}
+                        {renderHide && <div>
+                            <Button
+                                onClick={() => this.setState({hidden: true})}
+                                material={BUTTON_MATERIAL_BOX_SHADOW}
+                                icon={<FaWindowClose/>}>
+                                {`${getText(TEXT_HIDE, lang)} ${getText(TEXT_THIS_WINDOW).toLowerCase()}`}
+                            </Button>
+                        </div>}
+
+                    </div>
                 </div>
             </div>
         </div>;
@@ -123,6 +131,7 @@ export default connect(
         screen: state.screen,
         profile: state.profile.profile,
         stepIndex: state.intro.stepIndex,
+        lang: state.language.lang,
     }),
     (dispatch) => ({
         onContinueClick: (stepIndex) => dispatch(stepIndexChanged(stepIndex))

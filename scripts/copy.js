@@ -1,6 +1,5 @@
 var path = require('path');
 var ncp = require('ncp').ncp;
-var moveFile = require('move-file');
 var rimraf = require('rimraf');
 
 var destPath = path.dirname(require.main.filename) + '/../../ww-server/src/main/resources/static';
@@ -15,7 +14,7 @@ rimraf(destPath, function () {
         if (err) {
             return console.error(err);
         }
-        moveFile(destPath + '/index.html', destPath.replace('static', 'templates/index.html'));
+        ncp(destPath + '/index.html', destPath.replace('static', 'templates/index.html'));
         console.log('Copying build files complete.');
 
     });

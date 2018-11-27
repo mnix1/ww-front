@@ -46,8 +46,8 @@ import {
     PICK_WISIE_COUNT,
 } from "../content/intro/introHelper";
 
-export function getIntroText(id) {
-    return INTRO_TEXT[getActiveLang()][id];
+export function getIntroText(id, lang) {
+    return INTRO_TEXT[lang || getActiveLang()][id];
 }
 
 const INTRO_TEXT = {
