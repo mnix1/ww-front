@@ -15,7 +15,7 @@ rimraf(destPath, function () {
         if (err) {
             return console.error(err);
         }
-        moveFile(destPath + '/index.html', destPath.replace('static', 'template/index.html'));
+        moveFile(destPath + '/index.html', destPath.replace('static', 'templates/index.html'));
         console.log('Copying build files complete.');
 
     });

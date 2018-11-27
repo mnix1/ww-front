@@ -16,14 +16,17 @@ export function csrf() {
 
 export default function request(url, data) {
     const securityCsrf = csrf();
-    const opts = {[securityCsrf.header]: securityCsrf.token};
+    const opts = {};
     if (data) {
         opts.body = JSON.stringify(data);
         opts.method = 'POST';
         opts.headers = {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            [securityCsrf.header]: securityCsrf.token
         };
+    } else {
+        opts.headers = {[securityCsrf.header]: securityCsrf.token};
     }
     return fetch(url, opts)
         .then(res => res.json())
