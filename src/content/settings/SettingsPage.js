@@ -26,7 +26,7 @@ class SettingsPage extends React.PureComponent {
         }
         return <div>
             <Button
-                onClick={() => request()}
+                onClick={() => request('/_logout')}
                 className='marginRem right'
                 icon={<FaSignOutAlt/>}
                 material={BUTTON_MATERIAL_BOX_SHADOW}>
