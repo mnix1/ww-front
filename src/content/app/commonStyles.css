@@ -75,6 +75,14 @@
     justify-content: center;
 }
 
+.contain {
+    object-fit: contain;
+}
+
+.cover {
+    object-fit: cover;
+}
+
 .justifyEnd {
     display: flex;
     justify-content: flex-end;

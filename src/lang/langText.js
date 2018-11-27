@@ -184,10 +184,12 @@ export const TEXT_SURE_TO_DELETE_PROFILE = 'TEXT_SURE_TO_DELETE_PROFILE';
 export const TEXT_YES = 'TEXT_YES';
 export const TEXT_NO = 'TEXT_NO';
 export const TEXT_CONFIRM_TO_SUBMIT = 'TEXT_CONFIRM_TO_SUBMIT';
+export const TEXT_CHANGE_LANGUAGE = 'TEXT_CHANGE_LANGUAGE';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CHANGE_LANGUAGE]: 'Zmień język',
         [TEXT_CONFIRM_TO_SUBMIT]: 'Potwierdź, aby przesłać',
         [TEXT_DELETE_PROFILE]: 'Usuń konto',
         [TEXT_NO_MAIL]: 'Nie masz wiadomości',
@@ -371,6 +373,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CHANGE_LANGUAGE]: 'Change language',
         [TEXT_CONFIRM_TO_SUBMIT]: 'Confirm to submit',
         [TEXT_DELETE_PROFILE]: 'Delete account',
         [TEXT_NO_MAIL]: 'You have no message',
