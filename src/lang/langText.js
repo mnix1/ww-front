@@ -75,6 +75,7 @@ export const TEXT_WAITING = 'TEXT_WAITING';
 export const TEXT_BATTLE = 'TEXT_BATTLE';
 export const TEXT_CHALLENGE = 'TEXT_CHALLENGE';
 export const TEXT_DELETE = 'TEXT_DELETE';
+export const TEXT_DELETE_PROFILE = 'TEXT_DELETE_PROFILE';
 export const TEXT_INVITED_TO_BATTLE_BY = 'TEXT_INVITED_TO_BATTLE_BY';
 export const TEXT_INVITED_TO_WAR_BY = 'TEXT_INVITED_TO_WAR_BY';
 export const TEXT_INVITE_TO_BATTLE = 'TEXT_INVITE_TO_BATTLE';
@@ -179,10 +180,16 @@ export const TEXT_CHALLENGE_CLOSED = 'TEXT_CHALLENGE_CLOSED';
 export const TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN = 'TEXT_ENTER_CREATOR_PROFILE_TAG_TO_JOIN';
 export const TEXT_APPROACHES = 'TEXT_APPROACHES';
 export const TEXT_NO_MAIL = 'TEXT_NO_MAIL';
+export const TEXT_SURE_TO_DELETE_PROFILE = 'TEXT_SURE_TO_DELETE_PROFILE';
+export const TEXT_YES = 'TEXT_YES';
+export const TEXT_NO = 'TEXT_NO';
+export const TEXT_CONFIRM_TO_SUBMIT = 'TEXT_CONFIRM_TO_SUBMIT';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_CONFIRM_TO_SUBMIT]: 'Potwierdź, aby przesłać',
+        [TEXT_DELETE_PROFILE]: 'Usuń konto',
         [TEXT_NO_MAIL]: 'Nie masz wiadomości',
         [TEXT_MAIL]: 'Poczta',
         [TEXT_TRY_AGAIN]: 'Spróbuj ponownie',
@@ -358,9 +365,14 @@ const TEXTS = {
         [TEXT_REWARD]: 'Nagroda',
         [TEXT_SEASON_REWARDS]: 'Nagrody za sezon',
         [TEXT_START]: 'Rozpocznij',
+        [TEXT_SURE_TO_DELETE_PROFILE]: 'Czy na pewno chcesz usunąć konto?',
+        [TEXT_YES]: 'Tak',
+        [TEXT_NO]: 'Nie',
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_CONFIRM_TO_SUBMIT]: 'Confirm to submit',
+        [TEXT_DELETE_PROFILE]: 'Delete account',
         [TEXT_NO_MAIL]: 'You have no message',
         [TEXT_MAIL]: 'Mail',
         [TEXT_TRY_AGAIN]: 'Try again',
@@ -534,6 +546,9 @@ const TEXTS = {
         [TEXT_REWARD]: 'Reward',
         [TEXT_SEASON_REWARDS]: 'Season rewards',
         [TEXT_START]: 'Start',
+        [TEXT_SURE_TO_DELETE_PROFILE]: 'Are you sure you want to delete the account?',
+        [TEXT_YES]: 'Yes',
+        [TEXT_NO]: 'No',
     },
 };
 

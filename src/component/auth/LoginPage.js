@@ -31,7 +31,7 @@ class LoginPage extends React.PureComponent {
                 <div className='flex flexColumn height100 relative'>
                     <div className='justifyCenter paddingTopRem'>{getText(TEXT_LOGIN)}</div>
                     <div className='justifyCenter'>
-                        <img className='paddingRightRem' src={getIntroWisor()} height={screen.contentHeight / 2}/>
+                        <img alt='' className='paddingRightRem' src={getIntroWisor()} height={screen.contentHeight / 2}/>
                         <div className='justifyCenter flexColumn paddingLeftRem'>
                             {this.renderButton('/_login/google', '#4285f4', 'Log in with Google', <FaGoogle/>)}
                             {this.renderButton('/_login/facebook', '#4267b2', 'Log in with Facebook', <FaFacebook/>)}
