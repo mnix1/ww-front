@@ -44,6 +44,7 @@ export class Button extends React.PureComponent {
         style: PropTypes.object,
         icon: PropTypes.node,
         className: PropTypes.string,
+        contentClassName: PropTypes.string,
         disabled: PropTypes.bool,
         padding: PropTypes.bool,
         iconMarginLeft: PropTypes.bool,
@@ -53,18 +54,19 @@ export class Button extends React.PureComponent {
     static defaultProps = {
         disabled: false,
         className: '',
+        contentClassName: '',
         padding: true,
         iconMarginLeft: true,
         onClick: _.noop,
     };
 
     render() {
-        const {onClick, children, icon, style, material, className, disabled, padding, iconMarginLeft} = this.props;
+        const {onClick, children, icon, style, material, className, contentClassName, disabled, padding, iconMarginLeft} = this.props;
         return <div
             className={`${maybeDisabledClassName(disabled)} button borderRadiusRem ${padding ? 'paddingRem' : ''} inlineBlock pointer ${className}`}
             onClick={disabled ? _.noop : onClick}
             style={{...material, ...style}}>
-            <div className='content flex'>{children}{icon &&
+            <div className={`content flex ${contentClassName}`}>{children}{icon &&
             <div className={`icon ${iconMarginLeft ? 'marginLeftRem' : ''} justifyCenter flexColumn`}>{icon}</div>}</div>
         </div>
     }

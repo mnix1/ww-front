@@ -85,8 +85,8 @@ class SettingsPage extends React.PureComponent {
 
     renderRight() {
         return <div className='right justifyCenter flexColumn'>
-            {this.renderLogout()}
             {this.renderDeleteProfile()}
+            {this.renderLogout()}
         </div>
     }
 
@@ -94,6 +94,7 @@ class SettingsPage extends React.PureComponent {
         return <Button
             onClick={this.handleLogoutClick}
             className='marginRem'
+            contentClassName='justifyBetween'
             icon={<FaSignOutAlt/>}
             material={BUTTON_MATERIAL_BOX_SHADOW}>
             {getText(TEXT_LOGOUT, this.props.lang)}
@@ -104,6 +105,7 @@ class SettingsPage extends React.PureComponent {
         return <Button
             onClick={this.handleDeleteProfileClick}
             className='marginRem'
+            contentClassName='justifyBetween'
             icon={<FaTrash/>}
             material={BUTTON_MATERIAL_BOX_SHADOW}>
             {getText(TEXT_DELETE_PROFILE, this.props.lang)}
