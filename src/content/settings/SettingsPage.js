@@ -14,6 +14,7 @@ import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button"
 import {INTRO_STEP_GO_TO_WISOR, INTRO_STEP_OPTIONS, INTRO_STEP_WISOR} from "../intro/introHelper";
 import ScreenPage from "../../component/page/ScreenPage";
 import SettingsFetchContainer from "./fetch/SettingsFetchContainer";
+import request from "../../util/fetchHelper";
 
 export const NAME_MAX_LENGTH = 20;
 
@@ -24,13 +25,13 @@ class SettingsPage extends React.PureComponent {
             return null;
         }
         return <div>
-            <a href='/_logout'><Button
+            <Button
+                onClick={() => request()}
                 className='marginRem right'
                 icon={<FaSignOutAlt/>}
                 material={BUTTON_MATERIAL_BOX_SHADOW}>
                 {getText(TEXT_LOGOUT)}
             </Button>
-            </a>
             {this.renderActualNick()}
             {this.renderActualWisor()}
         </div>

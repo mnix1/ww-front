@@ -42,7 +42,9 @@
     "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "move-file": "^1.0.0"
+  },
   "proxy": "http://localhost:8080",
   "eslintConfig": {
     "extends": "react-app"

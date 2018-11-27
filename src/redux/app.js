@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux';
-import {reducer as fetchReducer} from 'react-redux-fetch';
+import {combineReducers} from 'redux';
+import {container, reducer as fetchReducer} from 'react-redux-fetch';
 import profile from "./reducer/profile";
 import rival from "./reducer/rival";
 import challenge from "./reducer/challenge";
@@ -15,8 +15,11 @@ import settings from "./reducer/settings";
 import language from "./reducer/language";
 import intro from "./reducer/intro";
 import mail from "./reducer/mail";
-import { connectRouter } from 'connected-react-router'
+import {connectRouter} from 'connected-react-router';
+import {csrf} from "../util/fetchHelper";
 
+const csrfSecurity = csrf();
+container.registerRequestHeader(csrfSecurity.header, csrfSecurity.token);
 const app = (history) => combineReducers({
     router: connectRouter(history),
     intro,
