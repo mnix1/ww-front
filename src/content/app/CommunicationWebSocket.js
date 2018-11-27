@@ -45,7 +45,7 @@ export default class CommunicationWebSocket {
 
     onClose = (e) => {
         // console.log('onclose', e);
-        if (e.code === 1008) {
+        if (e.code === 1008 || e.code === 1000) {
             this.dispatch(push(LOGIN_ROUTE));
             this.dispatch(signedInChanged(false));
             this.dispose();
