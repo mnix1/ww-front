@@ -129,7 +129,7 @@ class IntroStep extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
+        profile: state.profile,
         stepIndex: state.intro.stepIndex,
         lang: state.language.lang,
     }),

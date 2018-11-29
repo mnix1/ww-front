@@ -56,7 +56,7 @@ class RivalSearchOpponentPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        profile: state.profile.profile,
+        profile: state.profile,
         status: state.rival.status,
         importance: state.rival.rivalImportance,
         type: state.rival.rivalType,

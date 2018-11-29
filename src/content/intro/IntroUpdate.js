@@ -6,7 +6,6 @@ import {STEP_ID_TO_ROUTE, STEP_INDEX_TO_STEP_ID} from "./introHelper";
 import {push} from "connected-react-router";
 import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
 import IntroPickWisiesFetch from "./fetch/IntroPickWisiesFetch";
-import IntroCompleteFetch from "./fetch/IntroCompleteFetch";
 
 class IntroUpdate extends React.PureComponent {
 
@@ -19,7 +18,7 @@ class IntroUpdate extends React.PureComponent {
     }
 
     update() {
-        const {stepIndex, path, onRouteChange, show, afterReload, onShowChanged} = this.props;
+        const {stepIndex, path, onRouteChange, show, onShowChanged} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
         const introPaths = _.flatten([STEP_ID_TO_ROUTE[stepId]]);
         if ((!show && _.head(introPaths) !== path) || !_.includes(introPaths, path)) {
@@ -28,34 +27,24 @@ class IntroUpdate extends React.PureComponent {
         if (show || this.timeout) {
             return;
         }
-        if (afterReload && stepIndex !== 0) {
-            this.timeout = setTimeout(() => {
-                onShowChanged(true);
-            }, 1000)
-        } else {
-            onShowChanged(true);
-        }
+        onShowChanged(true);
     }
 
     render() {
-        const {stepIndex, complete, profile, pickWisies} = this.props;
+        const {stepIndex, profile, pickWisies} = this.props;
         return <div>
             <IntroChangeStepIndexFetch stepIndex={stepIndex} profile={profile}/>
             <IntroPickWisiesFetch stepIndex={stepIndex} pickWisies={pickWisies}/>
-            <IntroCompleteFetch complete={complete}/>
         </div>;
     }
 }
 
 export default connect(
     (state) => ({
-        afterReload: false,//state.profile.profile.introductionStepIndex === state.intro.stepIndex,
-        profile: state.profile.profile,
+        profile: state.profile,
         stepIndex: state.intro.stepIndex,
         pickWisies: state.intro.pickWisies,
-        enable: state.intro.enable,
         show: state.intro.show,
-        complete: state.intro.complete,
         open: state.socket.open,
         path: state.router.location.pathname,
     }),

@@ -78,7 +78,7 @@ class ChallengeActivePage extends React.PureComponent {
 export default connect(
     (state) => ({
         challengeListRep: state.repository.challengeList,
-        profile: state.profile.profile,
+        profile: state.profile,
     }),
     (dispatch) => ({
         onChallengeResponseClick: (id) => {

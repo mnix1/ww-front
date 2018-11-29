@@ -22,24 +22,24 @@ import {WISIES_ROUTE} from "../routes";
 import {prepareIntroStepEditTeam} from "./steps/wisies/IntroStepEditTeam";
 import {prepareIntroStepGoToAppFromWisie} from "./steps/wisies/IntroStepGoToAppFromWisie";
 
-export function prepareIntroSteps(afterReload) {
+export function prepareIntroSteps() {
     return [
-        prepareIntroStepWelcome(afterReload),
-        prepareIntroStepGoToOptions(afterReload),
-        prepareIntroStepOptions(afterReload),
-        prepareIntroStepGoToWisor(afterReload),
-        prepareIntroStepWisor(afterReload),
-        prepareIntroStepGoToAppFromOptions(afterReload),
-        prepareIntroStepGoToWisies(afterReload),
-        prepareIntroStepWisies(afterReload),
+        prepareIntroStepWelcome(),
+        prepareIntroStepGoToOptions(),
+        prepareIntroStepOptions(),
+        prepareIntroStepGoToWisor(),
+        prepareIntroStepWisor(),
+        prepareIntroStepGoToAppFromOptions(),
+        prepareIntroStepGoToWisies(),
+        prepareIntroStepWisies(),
         prepareIntroStepNewWisie(false),
-        prepareIntroStepWisieDetails(afterReload),
-        prepareIntroStepWisieDetailsClose(afterReload),
-        prepareIntroStepPickWisies(afterReload),
+        prepareIntroStepWisieDetails(),
+        prepareIntroStepWisieDetailsClose(),
+        prepareIntroStepPickWisies(),
         prepareIntroStepGoToEditTeam(false),
-        prepareIntroStepEditTeam(afterReload),
-        prepareIntroStepGoToAppFromWisie(afterReload),
-        // prepareIntroStepGoToProfile(afterReload),
+        prepareIntroStepEditTeam(),
+        prepareIntroStepGoToAppFromWisie(),
+        // prepareIntroStepGoToProfile(),
     ];
 }
 
@@ -48,7 +48,7 @@ class Intro extends React.PureComponent {
     get canRender() {
         const {show, path, isProfileWisiesActual} = this.props;
         return show
-            && (path !== WISIES_ROUTE || (path === WISIES_ROUTE && isProfileWisiesActual ));
+            && (path !== WISIES_ROUTE || (path === WISIES_ROUTE && isProfileWisiesActual));
     }
 
     get isOpen() {
@@ -57,7 +57,7 @@ class Intro extends React.PureComponent {
     }
 
     render() {
-        const {stepIndex, afterReload} = this.props;
+        const {stepIndex, } = this.props;
         if (!this.canRender) {
             return null;
         }
@@ -73,7 +73,7 @@ class Intro extends React.PureComponent {
                 rounded={remToPixels(0.5)}
                 goToStep={stepIndex}
                 startAt={stepIndex}
-                steps={prepareIntroSteps(afterReload)}
+                steps={prepareIntroSteps()}
                 isOpen={this.isOpen}
                 update={stepIndex + ''}
                 onRequestClose={_.noop}/>
@@ -83,10 +83,8 @@ class Intro extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        afterReload: false,
         stepIndex: state.intro.stepIndex,
         isProfileWisiesActual: state.wisie.isProfileWisiesActual,
-        enable: state.intro.enable,
         show: state.intro.show,
         open: state.socket.open,
         path: state.router.location.pathname,

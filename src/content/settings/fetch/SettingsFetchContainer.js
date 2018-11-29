@@ -18,7 +18,7 @@ export default connect(
     (state) => ({
         path: state.router.location.pathname,
         chosenWisor: state.settings.chosenWisor,
-        chosenNick: _.defaultTo(state.settings.chosenNick, _.get(state, 'profile.profile.name')),
+        chosenNick: _.defaultTo(state.settings.chosenNick, _.get(state, 'profile.name')),
         chosenNickAccept: state.settings.chosenNickAccept,
     }),
     (dispatch) => ({})

@@ -94,7 +94,7 @@ export default connect(
     (state) => ({
         challengeGlobalRep: state.repository.challengeGlobal,
         challengeJoinRep: state.repository.challengeJoin,
-        profile: state.profile.profile,
+        profile: state.profile,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({

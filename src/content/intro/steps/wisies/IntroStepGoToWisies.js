@@ -49,7 +49,7 @@ const IntroStepGoToWisiesRedux = connect(
     (state) => ({
         stepIndex: state.intro.stepIndex,
         path: state.router.location.pathname,
-        profile: state.profile.profile,
+        profile: state.profile,
         screen: state.screen,
     }),
     (dispatch) => ({

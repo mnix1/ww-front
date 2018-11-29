@@ -63,7 +63,7 @@ class PlayPage extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        profile: state.profile.profile,
+        profile: state.profile,
         screen: state.screen,
     }),
     (dispatch) => ({

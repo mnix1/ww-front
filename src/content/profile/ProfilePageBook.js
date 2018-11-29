@@ -59,7 +59,7 @@ class ProfilePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
+        profile: state.profile,
         path: state.router.location.pathname,
         profileListBookRep: state.repository.profileListBook
     }),

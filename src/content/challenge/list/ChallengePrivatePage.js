@@ -88,7 +88,7 @@ export default connect(
     (state) => ({
         challengeListRep: state.repository.challengeList,
         joinId: state.challenge.joinId,
-        profile: state.profile.profile,
+        profile: state.profile,
         creatorTag: state.challenge.creatorTag,
     }),
     (dispatch) => ({

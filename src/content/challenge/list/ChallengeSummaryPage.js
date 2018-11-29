@@ -100,7 +100,7 @@ export default connect(
     (state) => ({
         challengeSummaryRep: state.repository.challengeSummary,
         summaryId: state.challenge.summaryId,
-        profile: state.profile.profile
+        profile: state.profile
     }),
     (dispatch) => ({
         onRouteChange: (e) => {

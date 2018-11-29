@@ -95,7 +95,7 @@ class PractisePage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
+        profile: state.profile,
         category: state.practise.category,
         difficultyLevel: state.practise.difficultyLevel,
         answerId: state.practise.answerId,

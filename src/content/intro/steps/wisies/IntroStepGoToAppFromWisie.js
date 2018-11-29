@@ -5,12 +5,12 @@ import {
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1,
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_2,
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_3,
-    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4, INTRO_STEP_WELCOME
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4, INTRO_STEP_WELCOME, STEP_ID_TO_NEXT_STEP_INDEX
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {completeChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
+import {stepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToAppFromWisie extends React.PureComponent {
 
@@ -23,12 +23,10 @@ class IntroStepGoToAppFromWisie extends React.PureComponent {
     // }
 
     render() {
-        const {onStepIndexChange} = this.props;
         return <IntroStep
             stepId={INTRO_STEP_GO_TO_APP_FROM_WISIE}
             renderContinue={true}
-            enableOpacity
-            onContinueClick={onStepIndexChange}>
+            enableOpacity>
             <div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_0)}</div>
                 <div className='paddingBottomRem'>{getIntroText(INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1)}</div>
@@ -46,8 +44,6 @@ const IntroStepGoToAppFromWisieRedux = connect(
         wisieTeamSaveRep: state.repository.wisieTeamSave,
     }),
     (dispatch) => ({
-        // onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
-        onStepIndexChange: (stepIndex) => dispatch(completeChanged(stepIndex))
     })
 )(IntroStepGoToAppFromWisie);
 

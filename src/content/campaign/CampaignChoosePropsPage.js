@@ -169,7 +169,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         path: state.router.location.pathname,
-        profile: state.profile.profile,
+        profile: state.profile,
         campaignType: state.campaign.campaignType,
         campaignDestination: state.campaign.campaignDestination,
         campaignListRep: state.repository.campaignList,

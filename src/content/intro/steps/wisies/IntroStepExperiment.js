@@ -48,7 +48,7 @@ class IntroStepExperiment extends React.PureComponent {
 const IntroStepWisiesRedux = connect(
     (state) => ({
         stepIndex: state.intro.stepIndex,
-        profile: state.profile.profile,
+        profile: state.profile,
         profileWisieListRep: state.repository.profileWisieList,
         wisieExperimentRep: state.repository.wisieExperiment,
     }),

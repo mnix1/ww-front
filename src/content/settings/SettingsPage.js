@@ -143,7 +143,7 @@ export default connect(
     (state) => ({
         screen: state.screen,
         lang: state.language.lang,
-        profile: state.profile.profile,
+        profile: state.profile,
         chosenNick: state.settings.chosenNick,
         path: state.router.location.pathname,
     }),

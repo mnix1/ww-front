@@ -251,7 +251,7 @@ export default connect(
     (state) => ({
         path: state.router.location.pathname,
         screen: state.screen,
-        profile: state.profile.profile,
+        profile: state.profile,
         team: state.wisie.team,
         wisieDetails: state.wisie.wisieDetails,
         upgradeAttributeProps: state.wisie.upgradeAttributeProps,

@@ -110,7 +110,7 @@ export default connect(
         bookFilterLevel: state.shop.bookFilterLevel,
         showBooks: state.shop.showBooks,
         path: state.router.location.pathname,
-        profile: state.profile.profile,
+        profile: state.profile,
         shopListBookRep: state.repository.shopListBook,
         shopBuyBookRep: state.repository.shopBuyBook
     }),

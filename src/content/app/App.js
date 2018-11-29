@@ -16,6 +16,7 @@ import AppFetch from "./AppFetch";
 import AppRedirect from "./AppRedirect";
 import bg4000x2000 from '../../media/image/background/bg4000x2000.jpg';
 import bg2000x1000 from '../../media/image/background/bg2000x1000.jpg';
+import {showIntro} from "../intro/introHelper";
 
 let pwaPrompt = undefined;
 window.addEventListener('beforeinstallprompt', (e) => {
@@ -61,7 +62,7 @@ class App extends React.PureComponent {
 
     render() {
         // console.log('App render');
-        const {enable, signedIn, history, screen} = this.props;
+        const {signedIn, history, screen, level, stepIndex} = this.props;
         return <div className='app'>
             {this.renderBackground()}
             {this.renderConnected()}
@@ -71,9 +72,9 @@ class App extends React.PureComponent {
             <AppFetch/>
             <AppRedirect/>
             {screen.isMobile && <WakeLock/>}
-            {signedIn && enable && <div>
+            {signedIn && <div>
                 <IntroUpdate/>
-                <Intro/>
+                {showIntro(stepIndex, level) && <Intro/>}
             </div>}
             {/*<div className='absolute right0 bottom0 blackBackground'>{JSON.stringify(screen)}</div>*/}
         </div>;
@@ -85,7 +86,8 @@ export default connect(
         screen: state.screen,
         signedIn: state.profile.signedIn,
         socketOpen: state.socket.open,
-        enable: state.intro.enable,
+        stepIndex: state.intro.stepIndex,
+        level: state.profile.level,
     }),
     (dispatch) => ({})
 )(App);

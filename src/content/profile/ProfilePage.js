@@ -65,7 +65,7 @@ class ProfilePage extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        profile: state.profile.profile,
+        profile: state.profile,
         lang: state.language.lang,
         screen: state.screen,
         mailListRep: state.repository.mailList,

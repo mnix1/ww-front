@@ -45,7 +45,7 @@ class WisieExperimentPage extends React.PureComponent {
 export default connect(
     (state) => ({
         screen: state.screen,
-        profile: state.profile.profile,
+        profile: state.profile,
         profileWisieListRep: state.repository.profileWisieList,
         path: state.router.location.pathname,
     }),

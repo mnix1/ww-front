@@ -20,7 +20,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case PROFILE_CHANGED:
-            return {...state, profile: action.profile};
+            return {...state, ...action.profile};
         case SIGNED_IN_CHANGED:
             return {...state, signedIn: action.signedIn};
         case PROFILE_PART_CHANGED:
