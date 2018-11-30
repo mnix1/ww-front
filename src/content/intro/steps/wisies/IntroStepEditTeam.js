@@ -9,7 +9,7 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
 
@@ -24,8 +24,8 @@ class IntroStepEditTeam extends React.PureComponent {
     }
 
     nextStep() {
-        const {wisieTeamSaveRep, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {wisieTeamSaveRep, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_EDIT_TEAM && isRepValueCode1(wisieTeamSaveRep)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -44,11 +44,11 @@ class IntroStepEditTeam extends React.PureComponent {
 
 const IntroStepEditTeamRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         wisieTeamSaveRep: state.repository.wisieTeamSave,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepEditTeam);
 

@@ -11,21 +11,21 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToWisies extends React.PureComponent {
 
     // componentDidUpdate(prevProps) {
-    //     const {path, stepIndex, onStepIndexChange} = this.props;
-    //     const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+    //     const {path, introductionStepIndex, onStepIndexChange} = this.props;
+    //     const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
     //     if (stepId === INTRO_STEP_GO_TO_WISIES && path === WISIES_ROUTE && prevProps.path === APP_ROUTE) {
     //         onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
     //     }
     // }
 
     componentWillUnmount(){
-        const {stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
     }
 
@@ -47,13 +47,13 @@ class IntroStepGoToWisies extends React.PureComponent {
 
 const IntroStepGoToWisiesRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         path: state.router.location.pathname,
         profile: state.profile,
         screen: state.screen,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepGoToWisies);
 

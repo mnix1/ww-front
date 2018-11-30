@@ -15,8 +15,8 @@ import {getIntroText} from "../../../../lang/langIntro";
 class IntroStepGoToAppFromWisie extends React.PureComponent {
 
     // componentDidUpdate(prevProps) {
-    //     const {wisieTeamSaveRep, stepIndex, onStepIndexChange} = this.props;
-    //     const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+    //     const {wisieTeamSaveRep, introductionStepIndex, onStepIndexChange} = this.props;
+    //     const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
     //     if (stepId === INTRO_STEP_GO_TO_APP_FROM_WISIE && isRepFulfilled(wisieTeamSaveRep)) {
     //         onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
     //     }
@@ -40,7 +40,7 @@ class IntroStepGoToAppFromWisie extends React.PureComponent {
 
 const IntroStepGoToAppFromWisieRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         wisieTeamSaveRep: state.repository.wisieTeamSave,
     }),
     (dispatch) => ({

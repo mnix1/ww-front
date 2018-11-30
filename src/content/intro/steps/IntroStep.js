@@ -6,7 +6,7 @@ import {INTRO_STEP_GO_TO_APP_FROM_OPTIONS, STEP_ID_TO_NEXT_STEP_INDEX} from "../
 import {getFullWisor, getIntroWisor} from "../../../util/wisorHelper";
 import {getText, TEXT_CONTINUE, TEXT_HIDE, TEXT_THIS_WINDOW} from "../../../lang/langText";
 import {FaArrowRight, FaWindowClose} from 'react-icons/fa';
-import {stepIndexChanged} from "../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../redux/reducer/intro";
 import _ from 'lodash';
 import ChangeLanguage from "../../../component/change-language/ChangeLanguage";
 
@@ -75,8 +75,8 @@ class IntroStep extends React.PureComponent {
     }
 
     get introWisor() {
-        const {stepIndex} = this.props;
-        if (stepIndex >= STEP_ID_TO_NEXT_STEP_INDEX[INTRO_STEP_GO_TO_APP_FROM_OPTIONS]) {
+        const {introductionStepIndex} = this.props;
+        if (introductionStepIndex >= STEP_ID_TO_NEXT_STEP_INDEX[INTRO_STEP_GO_TO_APP_FROM_OPTIONS]) {
             const {wisorType} = this.props.profile;
             return getFullWisor(wisorType);
         }
@@ -130,11 +130,11 @@ export default connect(
     (state) => ({
         screen: state.screen,
         profile: state.profile,
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         lang: state.language.lang,
     }),
     (dispatch) => ({
-        onContinueClick: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onContinueClick: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     }),
     (stateProps, dispatchProps, ownProps) => ({
         ...stateProps,

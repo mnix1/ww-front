@@ -20,7 +20,7 @@ class ChallengeGlobalPage extends React.PureComponent {
 
     renderContent() {
         const {challengeGlobalRep, onChallengeJoinClick, onChallengeResponseClick, onChallengeTryAgainClick, profile} = this.props;
-        if (!isRepFulfilled(challengeGlobalRep) || _.isNil(profile)) {
+        if (!isRepFulfilled(challengeGlobalRep) || _.isNil(profile.tag)) {
             return <Loading/>
         }
         const challenge = challengeGlobalRep.value;

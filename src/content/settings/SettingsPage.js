@@ -112,7 +112,7 @@ class SettingsPage extends React.PureComponent {
 
     renderActualNick() {
         const {profile, chosenNick, onChoose, onChooseAccept, lang} = this.props;
-        if (_.isNil(profile)) {
+        if (_.isNil(profile.tag)) {
             return null;
         }
         return <div className={`left marginRem boxShadow paddingRem ${INTRO_STEP_OPTIONS}`}>

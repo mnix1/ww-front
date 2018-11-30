@@ -6,14 +6,14 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
 
 class IntroStepWisor extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {settingsChangeWisorRep, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {settingsChangeWisorRep, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_WISOR && isRepValueCode1(settingsChangeWisorRep)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -27,11 +27,11 @@ class IntroStepWisor extends React.PureComponent {
 
 const IntroStepWisorRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         settingsChangeWisorRep: state.repository.settingsChangeWisor,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepWisor);
 

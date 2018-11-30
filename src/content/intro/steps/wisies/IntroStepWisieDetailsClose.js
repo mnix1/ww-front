@@ -7,15 +7,15 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
 import _ from "lodash";
 
 class IntroStepWisieDetailsClose extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {wisieDetails, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {wisieDetails, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_WISIE_DETAILS_CLOSE && _.isNil(wisieDetails)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -34,11 +34,11 @@ class IntroStepWisieDetailsClose extends React.PureComponent {
 
 const IntroStepWisieDetailsCloseRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         wisieDetails: state.wisie.wisieDetails,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepWisieDetailsClose);
 

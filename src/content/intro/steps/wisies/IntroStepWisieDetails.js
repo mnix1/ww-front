@@ -10,7 +10,7 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
 import {GREEN_COLOR} from "../../../../util/style/constant";
 import {FaPlusCircle} from "react-icons/fa";
@@ -19,8 +19,8 @@ import {isRepValueCode1} from "../../../../util/repositoryHelper";
 class IntroStepWisieDetails extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {wisieUpgradeAttributeRep, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {wisieUpgradeAttributeRep, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_WISIE_DETAILS && isRepValueCode1(wisieUpgradeAttributeRep)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -43,11 +43,11 @@ class IntroStepWisieDetails extends React.PureComponent {
 
 const IntroStepWisieDetailsRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         wisieUpgradeAttributeRep: state.repository.wisieUpgradeAttribute,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepWisieDetails);
 

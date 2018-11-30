@@ -14,7 +14,11 @@ import FragmentPage from "../../component/page/FragmentPage";
 import {menuItemHeight} from "../../util/screenHelper";
 import Requirement from "../../component/requirement/Requirement";
 import {getText, TEXT_LEVEL} from "../../lang/langText";
-import {CAMPAIGN_REQUIREMENT_LEVEL, CHALLENGE_REQUIREMENT_LEVEL} from "../../util/requirementHelper";
+import {
+    BATTLE_REQUIREMENT_LEVEL,
+    CAMPAIGN_REQUIREMENT_LEVEL,
+    CHALLENGE_REQUIREMENT_LEVEL, WAR_REQUIREMENT_LEVEL
+} from "../../util/requirementHelper";
 
 class PlayPage extends React.PureComponent {
 
@@ -41,8 +45,8 @@ class PlayPage extends React.PureComponent {
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems relative'>
-                    {this.renderMenuItem(PLAY_WAR_ROUTE, war)}
-                    {this.renderMenuItem(PLAY_BATTLE_ROUTE, battle)}
+                    {this.renderMenuItem(PLAY_WAR_ROUTE, war, WAR_REQUIREMENT_LEVEL)}
+                    {this.renderMenuItem(PLAY_BATTLE_ROUTE, battle, BATTLE_REQUIREMENT_LEVEL)}
                     {this.renderMenuItem(PLAY_CHALLENGE_ROUTE, challenge, CHALLENGE_REQUIREMENT_LEVEL)}
                     {this.renderMenuItem(CAMPAIGN_ROUTE, campaign, CAMPAIGN_REQUIREMENT_LEVEL)}
                     {this.renderMenuItem(TRAINING_ROUTE, practise)}

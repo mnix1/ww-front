@@ -19,8 +19,8 @@ class IntroPickWisiesFetch extends React.PureComponent {
     }
 
     maybeFetch(prevProps) {
-        const {stepIndex, pickWisies, dispatchIntroPickWisiesPost} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {introductionStepIndex, pickWisies, dispatchIntroPickWisiesPost} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (pickWisies.length === PICK_WISIE_COUNT
             && prevProps.pickWisies.length !== PICK_WISIE_COUNT
             && _.includes([INTRO_STEP_PICK_WISIES], stepId)

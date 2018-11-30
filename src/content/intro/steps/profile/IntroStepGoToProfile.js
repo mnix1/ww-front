@@ -9,13 +9,13 @@ import {
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {APP_ROUTE, PROFILE_ROUTE} from "../../../routes";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToProfile extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {path, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {path, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_GO_TO_PROFILE && path === PROFILE_ROUTE && prevProps.path === APP_ROUTE) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -32,11 +32,11 @@ class IntroStepGoToProfile extends React.PureComponent {
 
 const IntroStepGoToProfileRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepGoToProfile);
 

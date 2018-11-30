@@ -10,15 +10,15 @@ import {
 import {getIntroText} from "../../../../lang/langIntro";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 import {isRepValueCode1} from "../../../../util/repositoryHelper";
 import {FaCheckCircle} from "react-icons/fa";
 
 class IntroStepOptions extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {settingsChangeNickRep, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {settingsChangeNickRep, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_OPTIONS && isRepValueCode1(settingsChangeNickRep)) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -40,11 +40,11 @@ class IntroStepOptions extends React.PureComponent {
 
 const IntroStepOptionsRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         settingsChangeNickRep: state.repository.settingsChangeNick,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepOptions);
 

@@ -62,7 +62,7 @@ class App extends React.PureComponent {
 
     render() {
         // console.log('App render');
-        const {signedIn, history, screen, level, stepIndex} = this.props;
+        const {signedIn, history, screen, level, introductionStepIndex} = this.props;
         return <div className='app'>
             {this.renderBackground()}
             {this.renderConnected()}
@@ -74,7 +74,7 @@ class App extends React.PureComponent {
             {screen.isMobile && <WakeLock/>}
             {signedIn && <div>
                 <IntroUpdate/>
-                {showIntro(stepIndex, level) && <Intro/>}
+                {showIntro(introductionStepIndex, level) && <Intro/>}
             </div>}
             {/*<div className='absolute right0 bottom0 blackBackground'>{JSON.stringify(screen)}</div>*/}
         </div>;
@@ -86,7 +86,7 @@ export default connect(
         screen: state.screen,
         signedIn: state.profile.signedIn,
         socketOpen: state.socket.open,
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         level: state.profile.level,
     }),
     (dispatch) => ({})

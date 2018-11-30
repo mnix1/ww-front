@@ -9,13 +9,13 @@ import {getIntroText} from "../../../../lang/langIntro";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {SETTINGS_CHOOSE_WISOR_ROUTE, SETTINGS_ROUTE} from "../../../routes";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToWisor extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {path, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {path, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_GO_TO_WISOR && path === SETTINGS_CHOOSE_WISOR_ROUTE && prevProps.path === SETTINGS_ROUTE) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -33,11 +33,11 @@ class IntroStepGoToWisor extends React.PureComponent {
 
 const IntroStepGoToWisorRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepGoToWisor);
 

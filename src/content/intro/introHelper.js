@@ -69,8 +69,8 @@ export const STEP_ID_TO_ROUTE = {
     [INTRO_STEP_GO_TO_PROFILE]: [APP_ROUTE, PROFILE_ROUTE],
 };
 
-export function showIntro(stepIndex, level) {
-    if (level === 1 && stepIndex < STEP_ID_TO_NEXT_STEP_INDEX[INTRO_STEP_GO_TO_APP_FROM_WISIE]) {
+export function showIntro(introductionStepIndex, level) {
+    if (level === 1 && introductionStepIndex < STEP_ID_TO_NEXT_STEP_INDEX[INTRO_STEP_GO_TO_APP_FROM_WISIE]) {
         return true;
     }
     return false;

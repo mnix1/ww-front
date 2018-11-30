@@ -13,13 +13,13 @@ import {
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {APP_ROUTE, SETTINGS_ROUTE} from "../../../routes";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToAppFromOptions extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {path, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {path, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_GO_TO_APP_FROM_OPTIONS && path === APP_ROUTE && prevProps.path === SETTINGS_ROUTE) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -39,11 +39,11 @@ class IntroStepGoToAppFromOptions extends React.PureComponent {
 
 const IntroStepGoToAppFromOptionsRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepGoToAppFromOptions);
 

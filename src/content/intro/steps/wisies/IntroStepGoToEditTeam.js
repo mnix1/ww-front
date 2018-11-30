@@ -8,15 +8,15 @@ import {
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../../../redux/reducer/intro";
 import {getIntroText} from "../../../../lang/langIntro";
 import {WISIES_ROUTE, WISIES_TEAM_EDIT_ROUTE} from "../../../routes";
 
 class IntroStepGoToEditTeam extends React.PureComponent {
 
     componentDidUpdate(prevProps) {
-        const {path, stepIndex, onStepIndexChange} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {path, introductionStepIndex, onStepIndexChange} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (stepId === INTRO_STEP_GO_TO_EDIT_TEAM && path === WISIES_TEAM_EDIT_ROUTE && prevProps.path === WISIES_ROUTE) {
             onStepIndexChange(STEP_ID_TO_NEXT_STEP_INDEX[stepId]);
         }
@@ -34,11 +34,11 @@ class IntroStepGoToEditTeam extends React.PureComponent {
 
 const IntroStepGoToEditTeamRedux = connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex))
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex))
     })
 )(IntroStepGoToEditTeam);
 

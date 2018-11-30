@@ -3,7 +3,7 @@ export const SHOW_CHANGED = 'intro/show/changed';
 export const PICK_WISIES_CHANGED = 'intro/pick-wisies/changed';
 
 const initialState = {
-    stepIndex: undefined,
+    introductionStepIndex: undefined,
     show: false,
     pickWisies: [],
 };
@@ -11,7 +11,7 @@ const initialState = {
 export default function reducer(state = initialState, action) {
     switch (action.type) {
         case STEP_INDEX_CHANGED:
-            return {...state, stepIndex: action.stepIndex};
+            return {...state, introductionStepIndex: action.introductionStepIndex};
         case SHOW_CHANGED:
             return {...state, show: action.show};
         case PICK_WISIES_CHANGED:
@@ -21,8 +21,8 @@ export default function reducer(state = initialState, action) {
     }
 }
 
-export const stepIndexChanged = (stepIndex) => {
-    return {type: STEP_INDEX_CHANGED, stepIndex}
+export const introductionStepIndexChanged = (introductionStepIndex) => {
+    return {type: STEP_INDEX_CHANGED, introductionStepIndex}
 };
 
 export const showChanged = (show) => {

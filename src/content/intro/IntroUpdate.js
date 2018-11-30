@@ -1,10 +1,10 @@
 import React from 'react';
 import _ from 'lodash';
 import {connect} from "react-redux";
-import {showChanged, stepIndexChanged} from "../../redux/reducer/intro";
+import {showChanged, introductionStepIndexChanged} from "../../redux/reducer/intro";
 import {STEP_ID_TO_ROUTE, STEP_INDEX_TO_STEP_ID} from "./introHelper";
 import {push} from "connected-react-router";
-import IntroChangeStepIndexFetch from "./fetch/IntroChangeStepIndexFetch";
+import IntroChangeStepIndexFetch from "./fetch/IntroChangeIntroductionStepIndexFetch";
 import IntroPickWisiesFetch from "./fetch/IntroPickWisiesFetch";
 
 class IntroUpdate extends React.PureComponent {
@@ -18,8 +18,8 @@ class IntroUpdate extends React.PureComponent {
     }
 
     update() {
-        const {stepIndex, path, onRouteChange, show, onShowChanged} = this.props;
-        const stepId = STEP_INDEX_TO_STEP_ID[stepIndex];
+        const {introductionStepIndex, path, onRouteChange, show, onShowChanged} = this.props;
+        const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         const introPaths = _.flatten([STEP_ID_TO_ROUTE[stepId]]);
         if ((!show && _.head(introPaths) !== path) || !_.includes(introPaths, path)) {
             onRouteChange(_.head(introPaths));
@@ -31,10 +31,10 @@ class IntroUpdate extends React.PureComponent {
     }
 
     render() {
-        const {stepIndex, profile, pickWisies} = this.props;
+        const {introductionStepIndex, profile, pickWisies} = this.props;
         return <div>
-            <IntroChangeStepIndexFetch stepIndex={stepIndex} profile={profile}/>
-            <IntroPickWisiesFetch stepIndex={stepIndex} pickWisies={pickWisies}/>
+            <IntroChangeStepIndexFetch introductionStepIndex={introductionStepIndex} profile={profile}/>
+            <IntroPickWisiesFetch introductionStepIndex={introductionStepIndex} pickWisies={pickWisies}/>
         </div>;
     }
 }
@@ -42,14 +42,14 @@ class IntroUpdate extends React.PureComponent {
 export default connect(
     (state) => ({
         profile: state.profile,
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         pickWisies: state.intro.pickWisies,
         show: state.intro.show,
         open: state.socket.open,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex)),
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex)),
         onRouteChange: (e) => {
             dispatch(push(e))
         },

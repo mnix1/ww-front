@@ -6,7 +6,7 @@ import {remToPixels} from "../../util/fontHelper";
 import {prepareIntroStepWelcome} from "./steps/welcome/IntroStepWelcome";
 import {prepareIntroStepGoToOptions} from "./steps/options/IntroStepGoToOptions";
 import {prepareIntroStepOptions} from "./steps/options/IntroStepOptions";
-import {stepIndexChanged} from "../../redux/reducer/intro";
+import {introductionStepIndexChanged} from "../../redux/reducer/intro";
 import {prepareIntroStepGoToWisor} from "./steps/options/IntroStepGoToWisor";
 import {prepareIntroStepWisor} from "./steps/options/IntroStepWisor";
 import {push} from "connected-react-router";
@@ -57,7 +57,7 @@ class Intro extends React.PureComponent {
     }
 
     render() {
-        const {stepIndex, } = this.props;
+        const {introductionStepIndex, } = this.props;
         if (!this.canRender) {
             return null;
         }
@@ -71,11 +71,11 @@ class Intro extends React.PureComponent {
                 showButtons={false}
                 showClose={false}
                 rounded={remToPixels(0.5)}
-                goToStep={stepIndex}
-                startAt={stepIndex}
+                goToStep={introductionStepIndex}
+                startAt={introductionStepIndex}
                 steps={prepareIntroSteps()}
                 isOpen={this.isOpen}
-                update={stepIndex + ''}
+                update={introductionStepIndex + ''}
                 onRequestClose={_.noop}/>
         </div>
     }
@@ -83,14 +83,14 @@ class Intro extends React.PureComponent {
 
 export default connect(
     (state) => ({
-        stepIndex: state.intro.stepIndex,
+        introductionStepIndex: state.intro.introductionStepIndex,
         isProfileWisiesActual: state.wisie.isProfileWisiesActual,
         show: state.intro.show,
         open: state.socket.open,
         path: state.router.location.pathname,
     }),
     (dispatch) => ({
-        onStepIndexChange: (stepIndex) => dispatch(stepIndexChanged(stepIndex)),
+        onStepIndexChange: (introductionStepIndex) => dispatch(introductionStepIndexChanged(introductionStepIndex)),
         onRouteChange: (e) => dispatch(push(e))
     })
 )(Intro);
