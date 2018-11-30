@@ -24,6 +24,7 @@ export default class Profile extends React.PureComponent {
         active: PropTypes.bool,
         renderElo: PropTypes.bool,
         renderTag: PropTypes.bool,
+        renderGrade: PropTypes.bool,
         blackBackground: PropTypes.bool,
         style: PropTypes.object,
         className: PropTypes.string,

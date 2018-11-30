@@ -5,12 +5,12 @@ import {
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_1,
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_2,
     INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_3,
-    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4, INTRO_STEP_WELCOME, STEP_ID_TO_NEXT_STEP_INDEX
+    INTRO_STEP_GO_TO_APP_FROM_WISIE_TEXT_4,
+    INTRO_STEP_WELCOME
 } from "../../introHelper";
 import IntroStep, {prepareIntroStep} from "../IntroStep";
 import {connect} from "react-redux";
 import {getIntroText} from "../../../../lang/langIntro";
-import {stepIndexChanged} from "../../../../redux/reducer/intro";
 
 class IntroStepGoToAppFromWisie extends React.PureComponent {
 

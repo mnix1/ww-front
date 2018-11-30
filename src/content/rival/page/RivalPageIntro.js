@@ -14,14 +14,18 @@ class RivalPageIntro extends React.PureComponent {
             <Profile
                 renderElo={isRanking}
                 elo={isRanking ? content.profileSeason.elo : undefined}
+                grade={isRanking ? content.profileSeason.grade : undefined}
                 imgHeight={screen.rivalImgHeight}
+                renderGrade={isRanking}
                 {...content.profile}
             />
             <img alt='' src={swordShield} height={screen.rivalImgHeight}/>
             <Profile
                 renderElo={isRanking}
                 elo={isRanking ? content.opponentSeason.elo : undefined}
+                grade={isRanking ? content.opponentSeason.grade : undefined}
                 imgHeight={screen.rivalImgHeight}
+                renderGrade={isRanking}
                 {...content.opponent}
             />
         </div>;

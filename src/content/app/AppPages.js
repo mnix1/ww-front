@@ -20,7 +20,8 @@ import {
     CLASSIFICATION_BATTLE_ROUTE,
     CLASSIFICATION_WAR_ROUTE,
     FRIEND_ROUTE,
-    LOGIN_ROUTE, MAIL_ROUTE,
+    LOGIN_ROUTE,
+    MAIL_ROUTE,
     PLAY_BATTLE_ROUTE,
     PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE,
@@ -69,14 +70,29 @@ import ChallengeGlobalPage from "../challenge/list/ChallengeGlobalPage";
 import ChallengeCreatePage from "../challenge/list/ChallengeCreatePage";
 import ChallengeActivePage from "../challenge/list/ChallengeActivePage";
 import MailPage from "../mail/MailPage";
+import Requirement from "../../component/requirement/Requirement";
+import {getText, TEXT_LEVEL} from "../../lang/langText";
 
 class AppPages extends React.PureComponent {
 
-    renderMenuItem(route, imgSrc, className) {
-        const {screen, lang, onRouteChange} = this.props;
+    renderMenuItem(route, imgSrc, className, requireLevel = 0) {
+        const {screen, lang, onRouteChange, level} = this.props;
         const iconHeight = menuItemHeight(screen);
-        return <MenuItem className={className} onClick={onRouteChange} lang={lang} imgSrc={imgSrc}
-                         iconHeight={iconHeight} route={route}/>
+        const disabled = requireLevel > level;
+        const menuItem = <MenuItem
+            className={className}
+            onClick={(route) => !disabled ? onRouteChange(route) : undefined}
+            lang={lang}
+            imgSrc={imgSrc}
+            iconHeight={iconHeight}
+            route={route}/>;
+        if (!disabled) {
+            return menuItem;
+        }
+        return <div className='relative'>
+            {menuItem}
+            <Requirement text={`${getText(TEXT_LEVEL)} ${requireLevel}`}/>
+        </div>;
     }
 
     renderMenu() {
@@ -170,6 +186,7 @@ export default connect(
         path: state.router.location.pathname,
         screen: state.screen,
         lang: state.language.lang,
+        level: state.profile.level,
         rivalStatus: state.rival.status,
     }),
     (dispatch) => ({

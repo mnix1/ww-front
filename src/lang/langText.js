@@ -146,6 +146,7 @@ export const TEXT_CLAIM_AND_EXIT = 'TEXT_CLAIM_AND_EXIT';
 export const TEXT_CHOOSE_TYPE = 'TEXT_CHOOSE_TYPE';
 export const TEXT_CHOOSE_DESTINATION = 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
+export const TEXT_LEVEL = 'TEXT_LEVEL';
 export const TEXT_LOGIN = 'TEXT_LOGIN';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
@@ -189,6 +190,7 @@ export const TEXT_CHANGE_LANGUAGE = 'TEXT_CHANGE_LANGUAGE';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_LEVEL]: 'poziom',
         [TEXT_CHANGE_LANGUAGE]: 'Zmień język',
         [TEXT_CONFIRM_TO_SUBMIT]: 'Potwierdź, aby przesłać',
         [TEXT_DELETE_PROFILE]: 'Usuń konto',
@@ -251,7 +253,7 @@ const TEXTS = {
         [TEXT_CHANGE_NICK]: 'Zmień nick',
         [TEXT_CHANGE_WISOR]: 'Zmień wiedzora',
         [TEXT_CHOOSE_WISOR]: 'Wybierz swojego wiedzora',
-        [TEXT_REQUIREMENT]: 'Wymaganie',
+        [TEXT_REQUIREMENT]: 'Wymagany',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Wybierz odpowiadającego',
         [TEXT_YOUR_TEAM]: 'Twoja drużyna',
         [TEXT_OPPONENT_TEAM]: 'Drużyna przeciwnika',
@@ -373,6 +375,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_LEVEL]: 'level',
         [TEXT_CHANGE_LANGUAGE]: 'Change language',
         [TEXT_CONFIRM_TO_SUBMIT]: 'Confirm to submit',
         [TEXT_DELETE_PROFILE]: 'Delete account',
@@ -435,7 +438,7 @@ const TEXTS = {
         [TEXT_CHANGE_NICK]: 'Change nick',
         [TEXT_CHANGE_WISOR]: 'Change wisor',
         [TEXT_CHOOSE_WISOR]: 'Choose your wisor',
-        [TEXT_REQUIREMENT]: 'Requirement',
+        [TEXT_REQUIREMENT]: 'Required',
         [TEXT_CHOOSE_WHO_ANSWER]: 'Choose responder',
         [TEXT_DRAW_WHO_ANSWER]: 'Drawing of the responder',
         [TEXT_WAR]: 'War',
