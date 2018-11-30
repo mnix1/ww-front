@@ -3,8 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
-import {claimRewardBookIdChanged} from "../../../redux/reducer/profile";
-import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
+import {claimRewardBookIdChanged, resourcesChanged} from "../../../redux/reducer/profile";
 
 class ProfileClaimRewardBookFetch extends React.PureComponent {
 
@@ -18,7 +17,7 @@ class ProfileClaimRewardBookFetch extends React.PureComponent {
         if (!prevProps.profileClaimRewardBookFetch.fulfilled && profileClaimRewardBookFetch.fulfilled && !_.isNil(bookId)) {
             dispatch(claimRewardBookIdChanged(undefined));
             if (profileClaimRewardBookFetch.value.code === 1) {
-                clearProfileFetch(dispatch);
+                dispatch(resourcesChanged(profileClaimRewardBookFetch.value.resources));
             }
         }
     }

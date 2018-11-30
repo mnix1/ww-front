@@ -25,7 +25,7 @@ class PlayPage extends React.PureComponent {
     renderMenuItem(route, imgSrc, requireLevel = 0) {
         const {screen, lang, onRouteChange, level} = this.props;
         const iconHeight = menuItemHeight(screen);
-        const disabled = requireLevel > level;
+        const disabled = false;//requireLevel > level;
         const menuItem = <MenuItem
             onClick={(route) => !disabled ? onRouteChange(route) : undefined}
             lang={lang}

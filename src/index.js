@@ -29,7 +29,11 @@ window.addEventListener('resize', () => {
 });
 
 export function getActiveLang() {
-    return store.getState().language.lang;
+    return getStore().getState().language.lang;
+}
+
+export function getStore() {
+    return store;
 }
 
 ReactDOM.render(<Provider store={store}>

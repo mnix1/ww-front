@@ -26,7 +26,7 @@ class ProfilePage extends React.PureComponent {
         const {onSpeedUpClick, onClaimRewardClick, onReadingDone, onStartReadClick, onStopReadClick, onDiscardClick, profile} = this.props;
         return <ProfileBook
             key={book.id}
-            crystal={profile.crystal}
+            crystal={profile.resources.crystal}
             {...book}
             onSpeedUpClick={() => onSpeedUpClick(book.id)}
             onReadingDone={() => onReadingDone(book.id)}

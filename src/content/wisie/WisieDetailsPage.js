@@ -67,9 +67,9 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>
                     <div className='justifyCenter'>
-                        <Crystal notEnough={profile.crystal < cost.crystal} styleMargin={false}
+                        <Crystal notEnough={profile.resources.crystal < cost.crystal} styleMargin={false}
                                  size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
-                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} styleMargin={false}
+                        <Elixir className='paddingLeftRem' notEnough={profile.resources.elixir < cost.elixir} styleMargin={false}
                                 size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                     </div>
                 </div>
@@ -111,9 +111,9 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>
                     <div className='justifyCenter'>
-                        <Crystal notEnough={profile.crystal < cost.crystal} styleMargin={false}
+                        <Crystal notEnough={profile.resources.crystal < cost.crystal} styleMargin={false}
                                  size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
-                        <Elixir className='paddingLeftRem' notEnough={profile.elixir < cost.elixir} styleMargin={false}
+                        <Elixir className='paddingLeftRem' notEnough={profile.resources.elixir < cost.elixir} styleMargin={false}
                                 size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                     </div>
                 </div>
@@ -156,7 +156,7 @@ class WisieDetailsPage extends React.PureComponent {
     renderUpgradeAttributeCost(cost) {
         const {profile} = this.props;
         return <div className='justifyCenter marginLeftRem'>
-            (<Wisdom notEnough={profile.wisdom < cost} styleMargin={false} column={false}
+            (<Wisdom notEnough={profile.resources.wisdom < cost} styleMargin={false} column={false}
                      size={RESOURCE_VERY_SMALL}>{cost}</Wisdom>)
         </div>;
     }
@@ -204,7 +204,7 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='width100'>
                 <WisieAttribute change={change} wisie={wisie} attribute={attribute}/>
             </div>
-            {upgrade && cost <= profile.wisdom && <div className='justifyCenter flexColumn'>
+            {upgrade && cost <= profile.resources.wisdom && <div className='justifyCenter flexColumn'>
                 <FaPlusCircle className={`pointer ${pending ? 'disabled' : ''}`} color={GREEN_COLOR}
                               onClick={pending ? _.noop : () => onUpgradeAttributeClick(wisie, attribute)} size={20}/>
             </div>}

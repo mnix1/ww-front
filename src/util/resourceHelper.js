@@ -11,7 +11,7 @@ export function wisieChangeHobbyCost(profile, wisie) {
     const crystal = hobbiesCount * 20;
     const elixir = hobbiesCount * 10;
     return {
-        isEnoughResource: profile.crystal >= crystal && profile.elixir >= elixir,
+        isEnoughResource: profile.resources.crystal >= crystal && profile.resources.elixir >= elixir,
         crystal,
         elixir
     }
@@ -21,17 +21,17 @@ export function wisieChangeSkillCost(profile) {
     const crystal = 50;
     const elixir = 25;
     return {
-        isEnoughResource: profile.crystal >= crystal && profile.elixir >= elixir,
+        isEnoughResource: profile.resources.crystal >= crystal && profile.resources.elixir >= elixir,
         crystal,
         elixir
     }
 }
 
 export function challengeCost(profile, challenge) {
-    return profile.gold >= challenge.cost.gold
-        && profile.crystal >= challenge.cost.crystal
-        && profile.wisdom >= challenge.cost.wisdom
-        && profile.elixir >= challenge.cost.elixir;
+    return profile.resources.gold >= challenge.cost.gold
+        && profile.resources.crystal >= challenge.cost.crystal
+        && profile.resources.wisdom >= challenge.cost.wisdom
+        && profile.resources.elixir >= challenge.cost.elixir;
 }
 
 export function experimentCost(profile, wisiesCount) {
@@ -40,7 +40,7 @@ export function experimentCost(profile, wisiesCount) {
     const wisdom = 20 + experimentCostImpact;
     const elixir = 10 + experimentCostImpact;
     return {
-        isEnoughResource: profile.crystal >= crystal && profile.wisdom >= wisdom && profile.elixir >= elixir,
+        isEnoughResource: profile.resources.crystal >= crystal && profile.resources.wisdom >= wisdom && profile.resources.elixir >= elixir,
         crystal,
         wisdom,
         elixir

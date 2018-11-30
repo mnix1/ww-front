@@ -3,7 +3,7 @@ import connect from 'react-redux-fetch';
 import {CLEAR} from "react-redux-fetch/lib/constants/actionTypes";
 import {PROFILE_ROUTE} from "../../routes";
 import _ from 'lodash';
-import {speedUpBookIdChanged} from "../../../redux/reducer/profile";
+import {resourcesChanged, speedUpBookIdChanged} from "../../../redux/reducer/profile";
 import {clearProfileFetch} from "../../app/fetch/ProfileFetch";
 
 class ProfileSpeedUpBookFetch extends React.PureComponent {
@@ -18,7 +18,7 @@ class ProfileSpeedUpBookFetch extends React.PureComponent {
         if (!prevProps.profileSpeedUpBookFetch.fulfilled && profileSpeedUpBookFetch.fulfilled && !_.isNil(bookId)) {
             dispatch(speedUpBookIdChanged(undefined));
             if (profileSpeedUpBookFetch.value.code === 1) {
-                clearProfileFetch(dispatch);
+                dispatch(resourcesChanged(profileSpeedUpBookFetch.value.resources));
             }
         }
     }

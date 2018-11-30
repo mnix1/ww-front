@@ -46,7 +46,7 @@ class ShopPageBook extends React.PureComponent {
         const {onBuyClick, profile} = this.props;
         return <ShopBook
             key={book.id}
-            isBuyEnable={(book.canBuyByGold && profile.gold >= book.goldCost) || (book.canBuyByCrystal && profile.crystal >= book.crystalCost)}
+            isBuyEnable={(book.canBuyByGold && profile.resources.gold >= book.goldCost) || (book.canBuyByCrystal && profile.resources.crystal >= book.crystalCost)}
             {...book}
             onBuyClick={() => onBuyClick(book.id)}
         />;
@@ -83,7 +83,10 @@ class ShopPageBook extends React.PureComponent {
     }
 
     render() {
-        const {showBooks, onShowBookChanged, onBookFilterLevelChanged} = this.props;
+        const {showBooks, onShowBookChanged, onBookFilterLevelChanged, profile} = this.props;
+        if (_.isNil(profile.tag)) {
+            return <Loading/>;
+        }
         const iconClassName = 'pointer paddingLeftRem';
         return <div className='contentFragment'>
             <div className='title justifyCenter'>

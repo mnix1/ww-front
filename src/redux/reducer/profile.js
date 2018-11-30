@@ -1,14 +1,14 @@
 export const PROFILE_CHANGED = 'profile/profile/changed';
 export const SIGNED_IN_CHANGED = 'profile/signedIn/changed';
-export const PROFILE_PART_CHANGED = 'profile/part/changed';
 export const START_READ_BOOK_ID_CHANGED = 'profile/start-read-book-id/changed';
 export const STOP_READ_BOOK_ID_CHANGED = 'profile/stop-read-book-id/changed';
 export const DISCARD_BOOK_ID_CHANGED = 'profile/discard-book-id/changed';
 export const CLAIM_REWARD_BOOK_ID_CHANGED = 'profile/claim-reward-book-id/changed';
 export const SPEED_UP_BOOK_ID_CHANGED = 'profile/speed-up-book-id/changed';
+export const EXPERIENCE_CHANGED = 'profile/experience/changed';
+export const RESOURCES_CHANGED = 'profile/resources/changed';
 
 const initialState = {
-    profile: undefined,
     signedIn: undefined,
     startReadBookId: undefined,
     stopReadBookId: undefined,
@@ -23,8 +23,6 @@ export default function reducer(state = initialState, action) {
             return {...state, ...action.profile};
         case SIGNED_IN_CHANGED:
             return {...state, signedIn: action.signedIn};
-        case PROFILE_PART_CHANGED:
-            return {...state, profile: {...state.profile, ...action.profile}};
         case START_READ_BOOK_ID_CHANGED:
             return {...state, startReadBookId: action.startReadBookId};
         case STOP_READ_BOOK_ID_CHANGED:
@@ -35,6 +33,10 @@ export default function reducer(state = initialState, action) {
             return {...state, claimRewardBookId: action.claimRewardBookId};
         case SPEED_UP_BOOK_ID_CHANGED:
             return {...state, speedUpBookId: action.speedUpBookId};
+        case EXPERIENCE_CHANGED:
+            return {...state, experience: action.experience, level: action.level};
+        case RESOURCES_CHANGED:
+            return {...state, resources: action.resources};
         default:
             return state
     }
@@ -46,10 +48,6 @@ export function profileChanged(profile) {
 
 export function signedInChanged(signedIn) {
     return {type: SIGNED_IN_CHANGED, signedIn};
-}
-
-export function profilePartChanged(profile) {
-    return {type: PROFILE_PART_CHANGED, profile};
 }
 
 export function startReadBookIdChanged(startReadBookId) {
@@ -72,3 +70,10 @@ export function speedUpBookIdChanged(speedUpBookId) {
     return {type: SPEED_UP_BOOK_ID_CHANGED, speedUpBookId};
 }
 
+export function experienceChanged(experience, level) {
+    return {type: EXPERIENCE_CHANGED, experience, level};
+}
+
+export function resourcesChanged(resources) {
+    return {type: RESOURCES_CHANGED, resources};
+}

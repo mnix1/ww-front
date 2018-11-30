@@ -27,7 +27,7 @@ class IntroChangeIntroductionStepIndexFetch extends React.PureComponent {
         const {introductionStepIndex, profile, dispatchIntroChangeIntroductionStepIndexPost} = this.props;
         const stepId = STEP_INDEX_TO_STEP_ID[introductionStepIndex];
         if (prevProps.introductionStepIndex !== introductionStepIndex
-            && profile.introductionStepIndex !== introductionStepIndex
+            && profile.intro.introductionStepIndex !== introductionStepIndex
             && !_.includes([INTRO_STEP_WISIE_DETAILS, INTRO_STEP_WISIE_DETAILS_CLOSE, INTRO_STEP_GO_TO_EDIT_TEAM], stepId)
         ) {
             dispatchIntroChangeIntroductionStepIndexPost(introductionStepIndex);

@@ -108,10 +108,10 @@ class CampaignChoosePropsPage extends React.PureComponent {
             return null;
         }
         const campaign = campaignListRep.value.find(e => e.type === campaignType && e.destination === campaignDestination);
-        const disabled = campaign.goldCost > profile.gold
-            || campaign.crystalCost > profile.crystal
-            || campaign.wisdomCost > profile.wisdom
-            || campaign.elixirCost > profile.elixir;
+        const disabled = campaign.goldCost > profile.resources.gold
+            || campaign.crystalCost > profile.resources.crystal
+            || campaign.wisdomCost > profile.resources.wisdom
+            || campaign.elixirCost > profile.resources.elixir;
         return <div className='justifyCenter flexColumn'>
             <div className='justifyCenter'>
                 {!campaign.free && <div className='justifyCenter flexColumn'>

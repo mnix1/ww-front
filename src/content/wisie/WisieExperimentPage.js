@@ -29,11 +29,11 @@ class WisieExperimentPage extends React.PureComponent {
                                                     height={Math.min(60, screen.standardImgHeight)}/></div>
                 <div className='justifyCenter'>
                     <div className='justifyCenter flexColumn paddingRem'>{getText(TEXT_COST)}:</div>
-                    <Crystal notEnough={profile.crystal < cost.crystal}
+                    <Crystal notEnough={profile.resources.crystal < cost.crystal}
                              size={RESOURCE_VERY_SMALL}>{cost.crystal}</Crystal>
-                    <Wisdom notEnough={profile.wisdom < cost.wisdom}
+                    <Wisdom notEnough={profile.resources.wisdom < cost.wisdom}
                             size={RESOURCE_VERY_SMALL}>{cost.wisdom}</Wisdom>
-                    <Elixir notEnough={profile.elixir < cost.elixir}
+                    <Elixir notEnough={profile.resources.elixir < cost.elixir}
                             size={RESOURCE_VERY_SMALL}>{cost.elixir}</Elixir>
                 </div>
             </div>

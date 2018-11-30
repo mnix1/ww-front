@@ -2,13 +2,13 @@ import _ from 'lodash';
 import {friendAdded, friendDeleted, friendSignedIn, friendSignedOut} from "../../redux/reducer/friend";
 import {rivalCleared, rivalInvited} from "../../redux/reducer/rival";
 import {noticeReward} from "../../component/notification/noticeReward";
-import {clearProfileFetch} from "./fetch/ProfileFetch";
 import {openChanged} from "../../redux/reducer/socket";
-import {signedInChanged} from "../../redux/reducer/profile";
+import {experienceChanged, resourcesChanged, signedInChanged} from "../../redux/reducer/profile";
 import {noticeError} from "../../component/notification/noticeError";
 import {ERROR_FRIEND_RIVAL_CANCELED, ERROR_FRIEND_RIVAL_REJECTED} from "../../lang/langError";
-import {LOGIN_ROUTE} from "../routes";
+import {LOGIN_ROUTE, PROFILE_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
+import {noticeExperience} from "../../component/notification/noticeExperience";
 
 export default class CommunicationWebSocket {
     constructor() {
@@ -102,9 +102,14 @@ export default class CommunicationWebSocket {
             }
         } else if (id === 'RIVAL_INVITE') {
             this.dispatch(rivalInvited(JSON.parse(data.content)));
+        } else if (id === 'EXPERIENCE') {
+            const obj = JSON.parse(data.content);
+            noticeExperience(obj, () => this.dispatch(push(PROFILE_ROUTE)));
+            this.dispatch(experienceChanged(obj.experience, obj.level));
         } else if (id === 'REWARD') {
-            noticeReward(JSON.parse(data.content));
-            clearProfileFetch(this.dispatch);
+            const obj = JSON.parse(data.content);
+            noticeReward(obj);
+            this.dispatch(resourcesChanged(obj.resources));
         } else if (_.includes(['RIVAL_CANCEL_INVITE', 'RIVAL_REJECT_INVITE', 'RIVAL_ACCEPT_INVITE'], id)) {
             this.dispatch(rivalCleared());
             if (id === 'RIVAL_REJECT_INVITE') {
