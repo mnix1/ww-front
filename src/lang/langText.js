@@ -147,6 +147,7 @@ export const TEXT_CHOOSE_TYPE = 'TEXT_CHOOSE_TYPE';
 export const TEXT_CHOOSE_DESTINATION = 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 export const TEXT_LEVEL = 'TEXT_LEVEL';
+export const TEXT_EXPERIENCE = 'TEXT_EXPERIENCE';
 export const TEXT_LOGIN = 'TEXT_LOGIN';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
@@ -190,6 +191,7 @@ export const TEXT_CHANGE_LANGUAGE = 'TEXT_CHANGE_LANGUAGE';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_EXPERIENCE]: 'Doświadczenie',
         [TEXT_LEVEL]: 'poziom',
         [TEXT_CHANGE_LANGUAGE]: 'Zmień język',
         [TEXT_CONFIRM_TO_SUBMIT]: 'Potwierdź, aby przesłać',
@@ -375,6 +377,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_EXPERIENCE]: 'Experience',
         [TEXT_LEVEL]: 'level',
         [TEXT_CHANGE_LANGUAGE]: 'Change language',
         [TEXT_CONFIRM_TO_SUBMIT]: 'Confirm to submit',

@@ -13,6 +13,8 @@ import ProfileFetchContainer from "./fetch/ProfileFetchContainer";
 import {Loading} from "../../component/loading/Loading";
 import _ from 'lodash';
 import {isRepFulfilled, isRepPending} from "../../util/repositoryHelper";
+import {RESOURCE_SMALL} from "../../component/resource/Resource";
+import Experience from "../../component/experience/Experience";
 
 class ProfilePage extends React.PureComponent {
     renderMailBox() {
@@ -34,7 +36,7 @@ class ProfilePage extends React.PureComponent {
         }
         return <div className={`justifyStart flexColumn relative ${pending ? 'notAllowed' : 'pointer'}`}
                     onClick={onMailBoxClick}>
-            <span className='justifyCenter'>{getText(TEXT_MAIL, lang)}</span>
+            <span className='justifyCenter marginRem'>{getText(TEXT_MAIL, lang)}</span>
             <div className='justifyCenter relative'>
                 <div className='absoluteBackgroundMix' style={style}>
                     {pending && <Loading height={screen.fontSizeRem / 2}/>}
@@ -44,17 +46,23 @@ class ProfilePage extends React.PureComponent {
         </div>
     }
 
+    renderLevel() {
+        const {profile} = this.props;
+        return <Experience level={profile.level} experience={profile.experience}/>
+    }
+
     render() {
         const {profile} = this.props;
-        if (_.isNil(profile)) {
+        if (_.isNil(profile.tag)) {
             return <Loading/>;
         }
         return <ScreenPage>
             <div className='justifyCenter flexColumn'>
                 <div className='justifyEvenly flexWrap'>
-                    <Profile renderTag className='' {...profile}/>
-                    <div className='justifyCenter'><AvailableResources/></div>
-                    <div className='justifyCenter paddingTopRem'>{this.renderMailBox()}</div>
+                    <Profile renderTag renderLevel className='' {...profile}/>
+                    <div className='justifyCenter'>{this.renderLevel()}</div>
+                    <div className='justifyCenter'><AvailableResources size={RESOURCE_SMALL}/></div>
+                    <div className='justifyCenter'>{this.renderMailBox()}</div>
                 </div>
                 <ProfilePageBook/>
             </div>
