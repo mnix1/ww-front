@@ -105,7 +105,7 @@ export default class Profile extends React.PureComponent {
     render() {
         const {onClick, tag, children, childrenAfterContent, className, style, active, disabled, blackBackground, defaultClassNames} = this.props;
         const customClassName = cn({
-            'profileContainer relative inlineBlock marginRem': defaultClassNames,
+            'profileContainer relative inlineBlock marginRem paddingRem boxShadow': defaultClassNames,
             [className]: className,
             active,
             disabled,
@@ -113,15 +113,13 @@ export default class Profile extends React.PureComponent {
         return <div onClick={disabled ? _.noop : onClick} key={tag}
                     className={`${customClassName}`}
                     style={style}>
-            <div className='boxShadow paddingRem'>
-                {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
-                {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
-                    <img alt='' src={cross} className='height100 width100'/>
-                </div>}
-                {children}
-                {this.renderContent()}
-                {childrenAfterContent}
-            </div>
+            {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
+            {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
+                <img alt='' src={cross} className='height100 width100'/>
+            </div>}
+            {children}
+            {this.renderContent()}
+            {childrenAfterContent}
         </div>
     }
 
