@@ -157,20 +157,20 @@ const HERO_ACTION_LABELS = {
     },
     [ENGLISH]: {
         [WAITING_FOR_QUESTION]: 'Waiting for question',
-        [RECOGNIZING_QUESTION]: 'Recognizing question',
+        [RECOGNIZING_QUESTION]: 'Looking at question',
         [THINKING]: 'Thinking',
 
         [THINK_KNOW_ANSWER]: 'Know the answer',
         [LOOKING_FOR_ANSWER]: 'Searching for answer',
 
-        [NO_FOUND_ANSWER_LOOKING_FOR]: 'No found answer',
+        [NO_FOUND_ANSWER_LOOKING_FOR]: 'Answer not found',
         [FOUND_ANSWER_LOOKING_FOR]: 'Found answer',
 
         [NOT_SURE_OF_ANSWER]: 'Not sure of answer',
-        [RECOGNIZING_ANSWERS]: 'Recognizing answers',
+        [RECOGNIZING_ANSWERS]: 'Looking at answers',
 
         [ANSWERED]: 'Answering',
-        [SURRENDER]: 'Surrender',
+        [SURRENDER]: 'No, I surrender',
 
         [WILL_GIVE_RANDOM_ANSWER]: 'Will give random answer',
         [WONT_GIVE_RANDOM_ANSWER]: "Won't give random answer",
