@@ -45,7 +45,8 @@ export default class CommunicationWebSocket {
     }
 
     onClose = (e) => {
-        // console.log('onclose', e);
+        clearTimeout(this.connectionTimeout);
+        // console.log('onclose ' + e.code + ' ' + e.reason, e);
         if (e.code === 1008 || e.code === 1000) {
             this.dispatch(push(LOGIN_ROUTE));
             this.dispatch(signedInChanged(false));
@@ -61,6 +62,7 @@ export default class CommunicationWebSocket {
     };
 
     onError = (e) => {
+        clearTimeout(this.connectionTimeout);
         if (this.connecting) {
             this.connecting = false;
             this.dispose();
@@ -69,14 +71,21 @@ export default class CommunicationWebSocket {
     };
 
     onOpen = (e) => {
+        clearTimeout(this.connectionTimeout);
         this.connected = true;
         this.connecting = false;
         // console.log('onopen', e);
         this.dispatch(openChanged(true));
     };
 
+
     connect() {
         this.connecting = true;
+        this.connectionTimeout = setTimeout(() => {
+            if (!this.connected && this.connecting) {
+                this.socket.close();
+            }
+        }, 5000);
         let socket;
         if (_.includes(window.location.host, 'localhost')) {
             socket = new WebSocket("ws://localhost:8080/wisiemaniaWebSocket");
