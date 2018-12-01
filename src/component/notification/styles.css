@@ -20,12 +20,12 @@
 }
 .rc-notification-notice-close {
     position: absolute;
-    right: 5px;
-    top: 3px;
+    right: 2px;
+    top: 2px;
     color: #fffdf1;
     cursor: pointer;
     outline: none;
-    font-size: 16px;
+    font-size: 0.75rem;
     font-weight: 700;
     line-height: 1;
     filter: alpha(opacity=20);
@@ -60,7 +60,7 @@
 }
 
 .notice {
-    padding: 1rem;
+    padding: 0.75rem 0.25rem 0.25rem 0.25rem;
 }
 
 @keyframes rcNotificationFadeIn {

@@ -8,7 +8,9 @@ export function noticeExperiment(wisieType) {
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
-                <img alt='' src={experiment} height={30}/>
+                <div className='justifyCenter flexColumn'>
+                    <img alt='' src={experiment} height={30}/>
+                </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_WISIE_DISCOVERED)}
                 </div>

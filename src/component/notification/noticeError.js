@@ -6,7 +6,9 @@ import {getError} from "../../lang/langError";
 export function noticeError(error, onClick) {
     notice(
         <div className='relative justifyEvenly'>
-            <img alt='' src={errorSvg} height={30}/>
+            <div className='justifyCenter flexColumn'>
+                <img alt='' src={errorSvg} height={30}/>
+            </div>
             <div className='justifyCenter flexColumn marginRem'>{getError(error)}</div>
         </div>,
         onClick

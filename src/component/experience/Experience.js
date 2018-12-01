@@ -12,18 +12,28 @@ class Experience extends React.PureComponent {
     static propTypes = {
         level: PropTypes.number,
         levelGain: PropTypes.number,
+        lineWidth: PropTypes.number,
         experience: PropTypes.number,
         experienceGain: PropTypes.number,
         lang: PropTypes.string,
         className: PropTypes.string,
         styleMargin: PropTypes.bool,
         stylePadding: PropTypes.bool,
+        styleBoxShadow: PropTypes.bool,
+        styleBackground: PropTypes.bool,
         style: PropTypes.object,
+        renderTitle: PropTypes.bool,
+        renderNumbers: PropTypes.bool,
     };
 
     static defaultProps = {
-        styleMargin: false,
+        styleMargin: true,
         stylePadding: false,
+        lineWidth: 100,
+        styleBoxShadow: true,
+        styleBackground: true,
+        renderTitle: true,
+        renderNumbers: true,
     };
 
     renderLevelGain() {
@@ -31,8 +41,9 @@ class Experience extends React.PureComponent {
         if (!levelGain) {
             return null;
         }
-        return <span className='fontSize08Rem justifyCenter flexColumn'
-                     style={{color: GREEN_COLOR}}>(+{levelGain})</span>
+        return <span className='justifyCenter flexColumn' style={{color: GREEN_COLOR}}>
+            (+{levelGain})
+        </span>
     }
 
     renderExperienceGain() {
@@ -40,30 +51,39 @@ class Experience extends React.PureComponent {
         if (!experienceGain) {
             return null;
         }
-        return <span className='fontSize06Rem justifyCenter flexColumn'
-                     style={{color: GREEN_COLOR}}>(+{experienceGain})</span>
+        return <span className='justifyCenter flexColumn' style={{color: GREEN_COLOR}}>
+            (+{experienceGain})
+        </span>
+    }
+
+    renderExp() {
+        const {level, experience, lineWidth, renderNumbers} = this.props;
+        const nextLevelExp = getNextLevelExperience(level);
+        return <div className='justifyCenter relative paddingTopRem'>
+            <div className='justifyCenter flexColumn'>
+                <Line style={{width: lineWidth}} percent={experience * 100 / nextLevelExp} strokeWidth="7"/>
+            </div>
+            <div className='justifyCenter fontSize08Rem marginLeftRem'>
+                {renderNumbers ? experience : null}
+                {this.renderExperienceGain()}
+                {renderNumbers ? '/' + nextLevelExp : null}
+            </div>
+        </div>
     }
 
     render() {
-        const {level, experience, lang} = this.props;
-        const nextLevelExp = getNextLevelExperience(level);
+        const {level, lang, styleMargin, styleBoxShadow, styleBackground, renderTitle} = this.props;
         return <div className={`justifyStart flexColumn relative`}>
-            <span className='justifyCenter marginRem'>{getText(TEXT_EXPERIENCE, lang)}</span>
-            <div className='boxShadow paddingRem marginRem relative'>
-                <div className='absoluteBackgroundMix blackBackground'/>
+            {renderTitle &&
+            <span className={`justifyCenter ${styleMargin ? 'marginRem' : ''}`}>{getText(TEXT_EXPERIENCE, lang)}</span>}
+            <div
+                className={`paddingRem relative ${styleMargin ? 'marginRem' : ''} ${styleBoxShadow ? 'boxShadow' : ''}`}>
+                {styleBackground && <div className='absoluteBackgroundMix blackBackground'/>}
                 <span className='justifyCenter relative'>
                     {_.upperFirst(getText(TEXT_LEVEL, lang))} {level}
                     {this.renderLevelGain()}
                 </span>
-                <div className='justifyCenter relative'>
-                    <div className='justifyCenter flexColumn'>
-                        <Line style={{width: 100}} percent={experience * 100 / nextLevelExp} strokeWidth="7"/>
-                    </div>
-                    <div
-                        className='justifyCenter fontSize08Rem marginLeftRem'>{experience}{this.renderExperienceGain()}/{nextLevelExp}
-                    </div>
-
-                </div>
+                {this.renderExp()}
             </div>
         </div>;
     }

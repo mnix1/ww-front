@@ -10,13 +10,15 @@ export function noticeReward(reward, onClick) {
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
-                <img alt='' src={presentSvg} height={30}/>
+                <div className='justifyCenter flexColumn'>
+                    <img alt='' src={presentSvg} height={30}/>
+                </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_REWARD)}
                 </div>
             </div>
             <div className='justifyEvenly marginRem'>
-                {reward.goldGain && <Gold>{reward.goldGain}</Gold>}
+                {reward.goldGain && <Gold styleMargin={false}>{reward.goldGain}</Gold>}
                 {reward.bookType && <img alt='' src={getBook(reward.bookType)} height={80}/>}
             </div>
         </div>,

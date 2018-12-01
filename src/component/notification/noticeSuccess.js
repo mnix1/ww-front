@@ -8,7 +8,9 @@ export function noticeSuccess(success) {
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
-                <img alt='' src={successSvg} height={30}/>
+                <div className='justifyCenter flexColumn'>
+                    <img alt='' src={successSvg} height={30}/>
+                </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getSuccess(success)}
                 </div>

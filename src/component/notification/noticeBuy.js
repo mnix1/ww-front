@@ -8,7 +8,9 @@ export function noticeBuy(bookType, onClick) {
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
-                <img alt='' src={shoppingCart} height={30}/>
+                <div className='justifyCenter flexColumn'>
+                    <img alt='' src={shoppingCart} height={30}/>
+                </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_BOUGHT)}
                 </div>
