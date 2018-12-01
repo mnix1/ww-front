@@ -6,7 +6,7 @@ import {isRepFulfilled} from "../../util/repositoryHelper";
 import {Loading} from "../../component/loading/Loading";
 import {prepareMailFromType} from "../../util/mailHelper";
 import {Button, BUTTON_MATERIAL_BOX_SHADOW} from "../../component/button/Button";
-import {FaTrash} from 'react-icons/fa';
+import {FaCheckCircle, FaTrash} from 'react-icons/fa';
 import {claimRewardIdChanged, deleteIdChanged, readIdChanged} from "../../redux/reducer/mail";
 import MailClaimRewardFetch from "./fetch/MailClaimRewardFetch";
 import MailDeleteFetch from "./fetch/MailDeleteFetch";
@@ -27,7 +27,7 @@ class MailPage extends React.PureComponent {
     }
 
     renderMail(mail) {
-        const {lang, readId, onReadMailClick, onDeleteMailClick} = this.props;
+        const {lang, readId, onReadMailClick} = this.props;
         mail = prepareMailFromType(mail, lang);
         return <div className=' marginRem paddingRem boxShadow width100 pointer' key={mail.id}
                     onClick={() => onReadMailClick(readId === mail.id ? undefined : mail.id)}>
@@ -38,11 +38,7 @@ class MailPage extends React.PureComponent {
                         <div
                             className='justifyCenter flexColumn fontSize06Rem marginRightRem'>{new Date(mail.creationDate).toLocaleString()}</div>
                         <div className='justifyCenter flexColumn'>
-                            <Button onClick={(e) => {
-                                e.stopPropagation();
-                                onDeleteMailClick(mail.id);
-                            }} material={BUTTON_MATERIAL_BOX_SHADOW}
-                                    icon={<FaTrash/>}>{getText(TEXT_DELETE, lang)}</Button>
+                            {mail.hasResources && !mail.claimed ? this.renderClaimRewardButton(mail) : this.renderDeleteButton(mail)}
                         </div>
                     </div>
                 </div>
@@ -51,8 +47,32 @@ class MailPage extends React.PureComponent {
         </div>
     }
 
+    renderDeleteButton(mail) {
+        const {lang, onDeleteMailClick} = this.props;
+        return <Button
+            icon={<FaTrash/>}
+            material={BUTTON_MATERIAL_BOX_SHADOW}
+            onClick={(e) => {
+                e.stopPropagation();
+                onDeleteMailClick(mail.id);
+            }}>{getText(TEXT_DELETE, lang)}
+        </Button>
+    }
+
+    renderClaimRewardButton(mail) {
+        const {lang, onClaimMailRewardClick} = this.props;
+        return <Button
+            icon={<FaCheckCircle/>}
+            material={BUTTON_MATERIAL_BOX_SHADOW}
+            onClick={(e) => {
+                e.stopPropagation();
+                onClaimMailRewardClick(mail.id);
+            }}>{getText(TEXT_CLAIM_REWARD, lang)}
+        </Button>
+    }
+
     renderMailContent(mail) {
-        const {screen, onClaimMailRewardClick, lang} = this.props;
+        const {screen} = this.props;
         return <div className='justifyCenter' key={mail.id}>
             <div className='relative'>
                 <div className='marginAuto width100 opacity1 boxShadow marginTopRem'
@@ -62,14 +82,8 @@ class MailPage extends React.PureComponent {
                         {mail.content}
                         {mail.hasResources && !mail.claimed &&
                         <div className='justifyEnd'>
-                            <Button material={BUTTON_MATERIAL_BOX_SHADOW}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        onClaimMailRewardClick(mail.id)
-                                    }}>{getText(TEXT_CLAIM_REWARD, lang)}
-                            </Button>
-                        </div>
-                        }
+                            {this.renderClaimRewardButton(mail)}
+                        </div>}
                     </div>
                 </div>
             </div>

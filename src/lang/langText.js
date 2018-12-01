@@ -112,6 +112,7 @@ export const TEXT_EMPTY_BOOKSHELF = 'TEXT_EMPTY_BOOKSHELF';
 export const TEXT_BUY = 'TEXT_BUY';
 export const TEXT_POSSIBLE_REWARD = 'TEXT_POSSIBLE_REWARD';
 export const TEXT_REWARD = 'TEXT_REWARD';
+export const TEXT_NEW_MAIL = 'TEXT_NEW_MAIL';
 export const TEXT_SEASON_REWARDS = 'TEXT_SEASON_REWARDS';
 export const TEXT_BOUGHT = 'TEXT_BOUGHT';
 export const TEXT_TIME_LEFT = 'TEXT_TIME_LEFT';
@@ -191,6 +192,7 @@ export const TEXT_CHANGE_LANGUAGE = 'TEXT_CHANGE_LANGUAGE';
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_NEW_MAIL]: 'Otrzymano wiadomość',
         [TEXT_EXPERIENCE]: 'Doświadczenie',
         [TEXT_LEVEL]: 'poziom',
         [TEXT_CHANGE_LANGUAGE]: 'Zmień język',
@@ -377,6 +379,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_NEW_MAIL]: 'New message received',
         [TEXT_EXPERIENCE]: 'Experience',
         [TEXT_LEVEL]: 'level',
         [TEXT_CHANGE_LANGUAGE]: 'Change language',

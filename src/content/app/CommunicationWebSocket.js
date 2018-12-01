@@ -6,9 +6,10 @@ import {openChanged} from "../../redux/reducer/socket";
 import {experienceChanged, resourcesChanged, signedInChanged} from "../../redux/reducer/profile";
 import {noticeError} from "../../component/notification/noticeError";
 import {ERROR_FRIEND_RIVAL_CANCELED, ERROR_FRIEND_RIVAL_REJECTED} from "../../lang/langError";
-import {LOGIN_ROUTE, PROFILE_ROUTE} from "../routes";
+import {LOGIN_ROUTE, MAIL_ROUTE, PROFILE_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
 import {noticeExperience} from "../../component/notification/noticeExperience";
+import {noticeMail} from "../../component/notification/noticeMail";
 
 export default class CommunicationWebSocket {
     constructor() {
@@ -110,6 +111,8 @@ export default class CommunicationWebSocket {
             const obj = JSON.parse(data.content);
             noticeReward(obj);
             this.dispatch(resourcesChanged(obj.resources));
+        } else if (id === 'NEW_MAIL') {
+            noticeMail(() => this.dispatch(push(MAIL_ROUTE)));
         } else if (_.includes(['RIVAL_CANCEL_INVITE', 'RIVAL_REJECT_INVITE', 'RIVAL_ACCEPT_INVITE'], id)) {
             this.dispatch(rivalCleared());
             if (id === 'RIVAL_REJECT_INVITE') {

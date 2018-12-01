@@ -41,7 +41,7 @@ class Experience extends React.PureComponent {
         if (!levelGain) {
             return null;
         }
-        return <span className='justifyCenter flexColumn' style={{color: GREEN_COLOR}}>
+        return <span className='justifyCenter flexColumn marginLeftRem' style={{color: GREEN_COLOR}}>
             (+{levelGain})
         </span>
     }
