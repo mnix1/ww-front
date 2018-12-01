@@ -7,6 +7,7 @@ import Grade from "../component/grade/Grade";
 export const MAIL_TYPE_CUSTOM = 'CUSTOM';
 export const MAIL_TYPE_CHALLENGE_ENDED = 'CHALLENGE_ENDED';
 export const MAIL_TYPE_SEASON_ENDED = 'SEASON_ENDED';
+export const MAIL_TYPE_NEW_LEVEL = 'NEW_LEVEL';
 
 export function prepareMailFromType(mail, lang) {
     if (mail.type === MAIL_TYPE_CUSTOM) {
@@ -31,10 +32,35 @@ export function prepareMailFromType(mail, lang) {
             title = `End of season ${mailContent.name}`;
             content = prepareMailContentForSeasonEndedEnglish(mail, mailContent);
         }
+    } else if (mail.type === MAIL_TYPE_NEW_LEVEL) {
+        if (lang === POLISH) {
+            title = `Osiągnięto poziom ${mailContent.level}`;
+            content = prepareMailContentForNewLevelPolish(mail, mailContent);
+        } else {
+            title = `Level ${mailContent.level} reached`;
+            content = prepareMailContentForNewLevelEnglish(mail, mailContent);
+        }
     }
     return {...mail, content, title};
 }
 
+function prepareMailContentForNewLevelPolish(mail, mailContent) {
+    return <div>
+        {`Udało Ci się osiągnąć poziom ${mailContent.level}.`}
+        <br/>
+        <br/>
+        {prepareMailContentEndPolish(mail)}
+    </div>
+}
+
+function prepareMailContentForNewLevelEnglish(mail, mailContent) {
+    return <div>
+        {`You managed to reach level ${mailContent.level}.`}
+        <br/>
+        <br/>
+        {prepareMailContentEndEnglish(mail)}
+    </div>
+}
 function prepareMailContentForChallengeEndedPolish(mail, mailContent) {
     return <div>
         {`Wyzwanie #${mailContent.id} zakończyło się.`}
