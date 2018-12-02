@@ -32,7 +32,7 @@ import {
     TRAINING_ROUTE,
     WAR_FAST_ROUTE,
     WAR_RANKING_ROUTE,
-    WAR_ROUTE,
+    WAR_ROUTE, WAR_TRAINING_ROUTE,
     WISIES_ROUTE
 } from "../routes";
 import {isRepPending} from "../../util/repositoryHelper";
@@ -134,6 +134,7 @@ class AppPages extends React.PureComponent {
                 <Route exact path={PLAY_CHALLENGE_ROUTE} render={() => <PlayChallengePage/>}/>
 
                 <Route exact path={WAR_ROUTE} render={() => <RivalPage/>}/>
+                <Route exact path={WAR_TRAINING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={WAR_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={WAR_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 

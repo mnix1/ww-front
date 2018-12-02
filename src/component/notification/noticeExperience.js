@@ -7,6 +7,7 @@ import flask from "../../media/image/icon/flask.svg";
 import {getText, TEXT_EXPERIENCE} from "../../lang/langText";
 
 export function noticeExperience(obj, onClick) {
+    const nextLevel = obj.levelGain !== 0;
     notice(
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
@@ -18,8 +19,11 @@ export function noticeExperience(obj, onClick) {
                 </div>
             </div>
             <div className='justifyEvenly'>
-                <Experience lineWidth={60} store={getStore()} {...obj} styleBoxShadow={false} styleMargin={false}
-                            styleBackground={false} renderTitle={false} renderNumbers={false}/>
+                <Experience lineWidth={60} store={getStore()} {...{
+                    ...obj,
+                    experienceGain: nextLevel ? 0 : obj.experienceGain
+                }} styleBoxShadow={false} styleMargin={false}
+                            styleBackground={false} renderTitle={false} renderNumbers={nextLevel}/>
             </div>
         </div>,
         onClick

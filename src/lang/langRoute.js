@@ -24,7 +24,7 @@ import {
     CHALLENGE_GLOBAL_ROUTE,
     CHALLENGE_CREATE_ROUTE,
     CHALLENGE_PRIVATE_ROUTE,
-    BATTLE_TRAINING_ROUTE
+    BATTLE_TRAINING_ROUTE, WAR_TRAINING_ROUTE
 } from "../content/routes";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
@@ -51,6 +51,7 @@ const ROUTE_LABELS = {
         [BATTLE_TRAINING_ROUTE]: <span>Bitwa<br/>treningowa</span>,
         [BATTLE_FAST_ROUTE]: <span>Szybka<br/>bitwa</span>,
         [BATTLE_RANKING_ROUTE]: <span>Bitwa<br/>rankingowa</span>,
+        [WAR_TRAINING_ROUTE]: <span>Wojna<br/>treningowa</span>,
         [WAR_FAST_ROUTE]: <span>Szybka<br/>wojna</span>,
         [WAR_RANKING_ROUTE]: <span>Wojna<br/>rankingowa</span>,
         [CHALLENGE_GLOBAL_ROUTE]: <span>Globalne</span>,
@@ -78,6 +79,7 @@ const ROUTE_LABELS = {
         [BATTLE_TRAINING_ROUTE]: <span>Training<br/>battle</span>,
         [BATTLE_FAST_ROUTE]: <span>Fast<br/>battle</span>,
         [BATTLE_RANKING_ROUTE]: <span>Ranked<br/>battle</span>,
+        [WAR_TRAINING_ROUTE]: <span>Training<br/>war</span>,
         [WAR_FAST_ROUTE]: <span>Fast<br/>war</span>,
         [WAR_RANKING_ROUTE]: <span>Ranked<br/>war</span>,
         [CHALLENGE_GLOBAL_ROUTE]: <span>Global</span>,

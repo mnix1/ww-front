@@ -8,7 +8,7 @@ import {getIntroWisor} from "../../util/wisorHelper";
 class LoginPage extends React.PureComponent {
 
     renderButton(href, backgroundColor, text, logo) {
-        return <div className='justifyCenter paddingTopRem' style={{height: '2rem'}}>
+        return <div className='justifyCenter' style={{height: '2rem', paddingTop: '1rem'}}>
             <a href={href} className='justifyStart paddingRem borderRadiusRem'
                style={{color: CREAM_COLOR, textDecoration: 'none', backgroundColor, width: '10rem'}}>
                 <div className='justifyCenter flexColumn'>

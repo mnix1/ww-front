@@ -22,6 +22,7 @@ export const BATTLE_RANKING_ROUTE = '/battleRanking';
 
 export const WAR_ROUTE = '/war';
 export const WAR_FAST_ROUTE = '/warFast';
+export const WAR_TRAINING_ROUTE = '/warTraining';
 export const WAR_RANKING_ROUTE = '/warRanking';
 
 export const CHALLENGE_ROUTE = '/challenge';
