@@ -55,14 +55,14 @@ class PlayWarPage extends React.PureComponent {
         return <div>
             <Menu className='menuLeft'>
                 <div className='menuItems'>
-                    {this.renderMenuItem(WAR_RANKING_ROUTE, ranking, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_RANKING), WAR_FAST_REQUIREMENT_LEVEL)}
+                    {this.renderMenuItem(WAR_RANKING_ROUTE, ranking, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_RANKING), WAR_RANKING_REQUIREMENT_LEVEL)}
                     {this.renderMenuItem(CLASSIFICATION_WAR_ROUTE, rating)}
                 </div>
             </Menu>
             <Menu className='menuRight'>
                 <div className='menuItems'>
                     {this.renderMenuItem(WAR_TRAINING_ROUTE, abc, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_TRAINING))}
-                    {this.renderMenuItem(WAR_FAST_ROUTE, randomPerson, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_FAST), WAR_RANKING_REQUIREMENT_LEVEL)}
+                    {this.renderMenuItem(WAR_FAST_ROUTE, randomPerson, () => onWarRandomOpponentClick(RIVAL_IMPORTANCE_FAST), WAR_FAST_REQUIREMENT_LEVEL)}
                 </div>
             </Menu>
         </div>;
