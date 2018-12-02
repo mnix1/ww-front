@@ -100,9 +100,9 @@ class IntroStep extends React.PureComponent {
                     <div className='fontSize09Rem'>
                         {children}
                     </div>
-                    <div className='justifyStart'>
-                        {renderChangeLanguage && <ChangeLanguage className='marginRightRem'/>}
-                        {renderContinue && <div>
+                    <div className='justifyStart flexWrap'>
+                        {renderChangeLanguage && <ChangeLanguage className='marginRightRem marginBottomRem'/>}
+                        {renderContinue && <div className='marginBottomRem'>
                             <Button
                                 onClick={() => onContinueClick(STEP_ID_TO_NEXT_STEP_INDEX[stepId])}
                                 material={BUTTON_MATERIAL_BOX_SHADOW}
