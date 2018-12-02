@@ -17,7 +17,8 @@ import {getText, TEXT_LEVEL} from "../../lang/langText";
 import {
     BATTLE_REQUIREMENT_LEVEL,
     CAMPAIGN_REQUIREMENT_LEVEL,
-    CHALLENGE_REQUIREMENT_LEVEL, WAR_REQUIREMENT_LEVEL
+    CHALLENGE_REQUIREMENT_LEVEL,
+    WAR_REQUIREMENT_LEVEL
 } from "../../util/requirementHelper";
 
 class PlayPage extends React.PureComponent {

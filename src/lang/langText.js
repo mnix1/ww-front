@@ -290,7 +290,7 @@ const TEXTS = {
         [TEXT_STOP_READING]: 'Przestań czytać',
         [TEXT_DISCARD]: 'Wyrzuć',
         [TEXT_CLAIM_REWARD]: 'Odbierz nagrodę',
-        [TEXT_YOU_SURRENDER]: 'Poddałeś się',
+        [TEXT_YOU_SURRENDER]: 'Poddano się',
         [TEXT_DRAW]: 'Remis',
         [TEXT_OPPONENT_SURRENDER]: 'Przeciwnik się poddał',
         [TEXT_SURRENDER]: 'Poddaj się',

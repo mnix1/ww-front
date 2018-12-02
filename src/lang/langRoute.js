@@ -1,16 +1,30 @@
 import React from 'react';
 import {
-    BATTLE_FAST_ROUTE, BATTLE_RANKING_ROUTE,
-    BATTLE_ROUTE, CAMPAIGN_ROUTE, CAMPAIGN_WAR_ROUTE,
+    BATTLE_FAST_ROUTE,
+    BATTLE_RANKING_ROUTE,
+    BATTLE_ROUTE,
+    CAMPAIGN_ROUTE,
+    CAMPAIGN_WAR_ROUTE,
     CHALLENGE_HISTORY_ROUTE,
     CHALLENGE_ACTIVE_ROUTE,
     FRIEND_ROUTE,
-    HISTORY_ROUTE, PLAY_BATTLE_ROUTE, PLAY_CHALLENGE_ROUTE,
-    PLAY_ROUTE, PLAY_WAR_ROUTE,
-    PROFILE_ROUTE, CLASSIFICATION_WAR_ROUTE,
+    HISTORY_ROUTE,
+    PLAY_BATTLE_ROUTE,
+    PLAY_CHALLENGE_ROUTE,
+    PLAY_ROUTE,
+    PLAY_WAR_ROUTE,
+    PROFILE_ROUTE,
+    CLASSIFICATION_WAR_ROUTE,
     SHOP_ROUTE,
-    TRAINING_ROUTE, WAR_FAST_ROUTE, WAR_RANKING_ROUTE,
-    WISIES_ROUTE, CLASSIFICATION_BATTLE_ROUTE, CHALLENGE_GLOBAL_ROUTE, CHALLENGE_CREATE_ROUTE, CHALLENGE_PRIVATE_ROUTE
+    TRAINING_ROUTE,
+    WAR_FAST_ROUTE,
+    WAR_RANKING_ROUTE,
+    WISIES_ROUTE,
+    CLASSIFICATION_BATTLE_ROUTE,
+    CHALLENGE_GLOBAL_ROUTE,
+    CHALLENGE_CREATE_ROUTE,
+    CHALLENGE_PRIVATE_ROUTE,
+    BATTLE_TRAINING_ROUTE
 } from "../content/routes";
 import {ENGLISH, POLISH} from "../redux/reducer/language";
 import {getActiveLang} from "../index";
@@ -34,6 +48,7 @@ const ROUTE_LABELS = {
         [WISIES_ROUTE]: 'Wiedzaki',
         [FRIEND_ROUTE]: 'Znajomi',
         [PROFILE_ROUTE]: 'Profil',
+        [BATTLE_TRAINING_ROUTE]: <span>Bitwa<br/>treningowa</span>,
         [BATTLE_FAST_ROUTE]: <span>Szybka<br/>bitwa</span>,
         [BATTLE_RANKING_ROUTE]: <span>Bitwa<br/>rankingowa</span>,
         [WAR_FAST_ROUTE]: <span>Szybka<br/>wojna</span>,
@@ -60,6 +75,7 @@ const ROUTE_LABELS = {
         [WISIES_ROUTE]: 'Wisies',
         [FRIEND_ROUTE]: 'Friends',
         [PROFILE_ROUTE]: 'Profile',
+        [BATTLE_TRAINING_ROUTE]: <span>Training<br/>battle</span>,
         [BATTLE_FAST_ROUTE]: <span>Fast<br/>battle</span>,
         [BATTLE_RANKING_ROUTE]: <span>Ranked<br/>battle</span>,
         [WAR_FAST_ROUTE]: <span>Fast<br/>war</span>,
