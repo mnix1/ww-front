@@ -23,10 +23,10 @@ class MailPage extends React.PureComponent {
         if (_.isEmpty(mailListRep.value)) {
             return <div className='pageHeader marginTopRem fontSize08Rem'>{getText(TEXT_NO_MAIL, lang)}</div>
         }
-        return mailListRep.value.map(e => this.renderMail(e));
+        return mailListRep.value.map(e => this.renderMail(e, mailListRep.value.length === 1));
     }
 
-    renderMail(mail) {
+    renderMail(mail, onlyOneMail) {
         const {lang, readId, onReadMailClick} = this.props;
         mail = prepareMailFromType(mail, lang);
         return <div className=' marginRem paddingRem boxShadow width100 pointer' key={mail.id}
@@ -42,7 +42,7 @@ class MailPage extends React.PureComponent {
                         </div>
                     </div>
                 </div>
-                {readId === mail.id && this.renderMailContent(mail)}
+                {(readId === mail.id || onlyOneMail) && this.renderMailContent(mail)}
             </div>
         </div>
     }

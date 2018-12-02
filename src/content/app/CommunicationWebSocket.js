@@ -10,6 +10,7 @@ import {LOGIN_ROUTE, MAIL_ROUTE, PROFILE_ROUTE} from "../routes";
 import {push} from 'connected-react-router'
 import {noticeExperience} from "../../component/notification/noticeExperience";
 import {noticeMail} from "../../component/notification/noticeMail";
+import {clearMailListFetch} from "../mail/fetch/MailListFetch";
 
 export default class CommunicationWebSocket {
     constructor() {
@@ -121,6 +122,7 @@ export default class CommunicationWebSocket {
             noticeReward(obj);
             this.dispatch(resourcesChanged(obj.resources));
         } else if (id === 'NEW_MAIL') {
+            clearMailListFetch(this.dispatch);
             noticeMail(() => this.dispatch(push(MAIL_ROUTE)));
         } else if (_.includes(['RIVAL_CANCEL_INVITE', 'RIVAL_REJECT_INVITE', 'RIVAL_ACCEPT_INVITE'], id)) {
             this.dispatch(rivalCleared());
