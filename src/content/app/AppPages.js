@@ -6,7 +6,7 @@ import {
     APP_ROUTE,
     BATTLE_FAST_ROUTE,
     BATTLE_RANKING_ROUTE,
-    BATTLE_ROUTE,
+    BATTLE_ROUTE, BATTLE_TRAINING_ROUTE,
     CAMPAIGN_ROUTE,
     CAMPAIGN_WAR_ROUTE,
     CHALLENGE_ACTIVE_ROUTE,
@@ -138,6 +138,7 @@ class AppPages extends React.PureComponent {
                 <Route exact path={WAR_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 
                 <Route exact path={BATTLE_ROUTE} render={() => <RivalPage/>}/>
+                <Route exact path={BATTLE_TRAINING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_FAST_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
                 <Route exact path={BATTLE_RANKING_ROUTE} render={() => <RivalSearchOpponentPage/>}/>
 

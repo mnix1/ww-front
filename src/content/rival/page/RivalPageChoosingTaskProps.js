@@ -52,6 +52,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
         if (RIVAL_CONTENT_STATUS_RANDOM_TASK_PROPS === status) {
             return <RandomTaskProps className='randomTaskProps' content={content}/>;
         }
+        const battle = content.type === RIVAL_TYPE_BATTLE;
         if (meChoosingTaskProps) {
             return <ChoosingTaskProps
                 screen={rivalScreen({
@@ -59,7 +60,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
                     offsetHeight: 56,
                     offsetWidth: 0
                 })}
-                renderPoints={false}
+                renderPoints={battle}
                 content={content}
                 onCategoryChange={onCategoryChange}
                 onDifficultLevelChange={onDifficultLevelChange}
