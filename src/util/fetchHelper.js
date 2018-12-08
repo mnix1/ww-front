@@ -34,3 +34,14 @@ export default function request(url, data) {
             console.error(e);
         })
 }
+
+export function requestForm(url, data) {
+    const securityCsrf = csrf();
+    const opts = {};
+    opts.body = data;
+    opts.method = 'POST';
+    opts.headers = {
+        [securityCsrf.header]: securityCsrf.token
+    };
+    return fetch(url, opts);
+}

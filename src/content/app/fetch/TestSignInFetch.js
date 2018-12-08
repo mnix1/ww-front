@@ -27,7 +27,7 @@ class TestSignInFetch extends React.PureComponent {
 
     maybeFetch(prevProps) {
         const {dispatchTestSignInGet, testSignInFetch, path} = this.props;
-        if (!testSignInFetch.fulfilled && !testSignInFetch.pending && !testSignInFetch.rejected && path !== LOGIN_ROUTE) {
+        if (!testSignInFetch.fulfilled && !testSignInFetch.pending && !testSignInFetch.rejected) {
             dispatchTestSignInGet();
         }
     }

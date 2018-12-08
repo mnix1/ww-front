@@ -11,6 +11,7 @@ import TestSignInFetch from "./fetch/TestSignInFetch";
 import MailListFetch from "../mail/fetch/MailListFetch";
 import WisieFetchContainer from "../wisie/fetch/WisieFetchContainer";
 import CampaignFetchContainer from "../campaign/fetch/CampaignFetchContainer";
+import {LOGIN_ROUTE} from "../routes";
 
 class AppFetch extends React.PureComponent {
 
@@ -27,7 +28,7 @@ class AppFetch extends React.PureComponent {
                 <WisieFetchContainer/>
             </div>}
             {signedIn && <ProfileFetch path={path}/>}
-            {!signedIn && <TestSignInFetch path={path}/>}
+            {!signedIn && path !== LOGIN_ROUTE && <TestSignInFetch path={path}/>}
         </div>
     }
 }

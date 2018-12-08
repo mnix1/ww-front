@@ -150,6 +150,7 @@ export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 export const TEXT_LEVEL = 'TEXT_LEVEL';
 export const TEXT_EXPERIENCE = 'TEXT_EXPERIENCE';
 export const TEXT_LOGIN = 'TEXT_LOGIN';
+export const TEXT_PASSWORD = 'TEXT_PASSWORD';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
 export const TEXT_CONNECTING = 'TEXT_CONNECTING';
@@ -188,11 +189,14 @@ export const TEXT_YES = 'TEXT_YES';
 export const TEXT_NO = 'TEXT_NO';
 export const TEXT_CONFIRM_TO_SUBMIT = 'TEXT_CONFIRM_TO_SUBMIT';
 export const TEXT_CHANGE_LANGUAGE = 'TEXT_CHANGE_LANGUAGE';
+export const TEXT_LOG_IN_WITH = 'TEXT_LOG_IN_WITH';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
+        [TEXT_LOG_IN_WITH]: 'Zaloguj z',
         [TEXT_NEW_MAIL]: 'Otrzymano wiadomość',
+        [TEXT_PASSWORD]: 'hasło',
         [TEXT_EXPERIENCE]: 'Doświadczenie',
         [TEXT_LEVEL]: 'poziom',
         [TEXT_CHANGE_LANGUAGE]: 'Zmień język',
@@ -379,6 +383,8 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
+        [TEXT_LOG_IN_WITH]: 'Log in with',
+        [TEXT_PASSWORD]: 'password',
         [TEXT_NEW_MAIL]: 'New message received',
         [TEXT_EXPERIENCE]: 'Experience',
         [TEXT_LEVEL]: 'level',
