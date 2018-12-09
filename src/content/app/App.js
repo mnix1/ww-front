@@ -5,19 +5,18 @@ import {connect} from 'react-redux';
 import InvitedToBattleBy from "../rival/invite/InvitedToRivalBy";
 import InviteToBattle from "../rival/invite/InviteToRival";
 import WakeLock from "../../component/wake-lock/WakeLock";
-import Option from "../../component/option/Option";
 import Intro from "../intro/Intro";
 import IntroUpdate from "../intro/IntroUpdate";
 import Connecting from "./connection/Connecting";
 import ConnectionProblem from "./connection/ConnectionProblem";
 import Page from "./AppPages";
-import ShowOption from "./ShowOption";
 import AppFetch from "./AppFetch";
 import AppRedirect from "./AppRedirect";
 import bg4000x2000 from '../../media/image/background/bg4000x2000.jpg';
 import bg2000x1000 from '../../media/image/background/bg2000x1000.jpg';
 import {showIntro} from "../intro/introHelper";
 import SigningIn from "./connection/SigningIn";
+import ShowOption from "./ShowOption";
 
 // let pwaPrompt = undefined;
 // window.addEventListener('beforeinstallprompt', (e) => {
@@ -48,7 +47,7 @@ class App extends React.PureComponent {
         }
         return <div>
             <ShowOption/>
-            <Option/>
+            {/*<Option/>*/}
             <InvitedToBattleBy/>
             <InviteToBattle/>
         </div>;

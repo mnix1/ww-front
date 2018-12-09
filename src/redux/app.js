@@ -20,7 +20,9 @@ import {connectRouter} from 'connected-react-router';
 import {csrf} from "../util/fetchHelper";
 
 const csrfSecurity = csrf();
-container.registerRequestHeader(csrfSecurity.header, csrfSecurity.token);
+if (csrfSecurity.token) {
+    container.registerRequestHeader(csrfSecurity.header, csrfSecurity.token);
+}
 const app = (history) => combineReducers({
     router: connectRouter(history),
     login,

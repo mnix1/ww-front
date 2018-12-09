@@ -14,19 +14,25 @@ export function csrf() {
     }
 }
 
-export default function request(url, data) {
+function csrfToHeaders() {
     const securityCsrf = csrf();
-    const opts = {};
+    if (!securityCsrf.token) {
+        return {};
+    }
+    return {[securityCsrf.header]: securityCsrf.token};
+}
+
+export default function request(url, data) {
+    const opts = {headers: csrfToHeaders()};
     if (data) {
         opts.body = JSON.stringify(data);
         opts.method = 'POST';
         opts.headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            [securityCsrf.header]: securityCsrf.token
+            ...opts.headers, ...{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            }
         };
-    } else {
-        opts.headers = {[securityCsrf.header]: securityCsrf.token};
     }
     return fetch(url, opts)
         .then(res => res.json())
@@ -36,12 +42,9 @@ export default function request(url, data) {
 }
 
 export function requestForm(url, data) {
-    const securityCsrf = csrf();
     const opts = {};
     opts.body = data;
     opts.method = 'POST';
-    opts.headers = {
-        [securityCsrf.header]: securityCsrf.token
-    };
+    opts.headers = csrfToHeaders();
     return fetch(url, opts);
 }

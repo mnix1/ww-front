@@ -1,17 +1,15 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {push} from "connected-react-router";
-import {optionShowChanged} from "../../redux/reducer/option";
 import {INTRO_STEP_GO_TO_OPTIONS} from "../intro/introHelper";
 import {SETTINGS_ROUTE} from "../routes";
 import {ROUTE_RIVAL_TYPE} from "../../util/rivalHelper";
 import {FaCogs} from "react-icons/fa";
-import {isFullScreen} from "../../util/screenHelper";
 
 class ShowOption extends React.PureComponent {
     render() {
-        const {onOptionShowChange, onRouteChange, screen, path, rivalStatus} = this.props;
-        if (path === SETTINGS_ROUTE || isFullScreen(rivalStatus, screen)) {
+        const {onOptionShowChange, onRouteChange, screen, path} = this.props;
+        if (path === SETTINGS_ROUTE || ROUTE_RIVAL_TYPE[path]) {
             return null;
         }
         const imgHeight = screen.topBarFontSizeRem;
@@ -29,7 +27,7 @@ export default connect(
     }),
     (dispatch) => ({
         onRouteChange: (e) => dispatch(push(e)),
-        onOptionShowChange: () => dispatch(optionShowChanged(true))
+        // onOptionShowChange: () => dispatch(optionShowChanged(true))
     })
 )(ShowOption);
 
