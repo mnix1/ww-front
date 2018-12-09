@@ -123,7 +123,7 @@ export default class ProfileBook extends React.PureComponent {
         const {canClaimReward, onReadingDone, isInProgress, crystalGain, wisdomGain, elixirGain, type} = this.props;
         const isFinished = this.isFinished;
         return <div className='bookDetails justifyCenter'>
-            <img height={160} alt='' src={getBook(type)}/>
+            <img draggable="false" height={160} alt='' src={getBook(type)}/>
             <div className='bookDetailsInside justifyBetween flexColumn'>
                 <div className='justifyCenter flexColumn fontSize08Rem'>
                     {this.renderSpeedUpReading()}

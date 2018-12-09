@@ -34,7 +34,7 @@ export default class Skill extends React.PureComponent {
     renderColumn() {
         const {children, imgSrc, imgHeight} = this.props;
         return <div className='justifyCenter flexColumn'>
-            <img alt='' src={imgSrc} height={imgHeight}/>
+            <img draggable="false" alt='' src={imgSrc} height={imgHeight}/>
             <div className='justifyCenter' style={this.childrenStyle}>{children}</div>
         </div>
     }
@@ -43,7 +43,7 @@ export default class Skill extends React.PureComponent {
         const {children, imgSrc, imgHeight} = this.props;
         return <div className='justifyCenter'>
             <div className='justifyCenter flexColumn' style={this.childrenStyle}>{children}</div>
-            <div className='justifyCenter flexColumn'><img alt='' src={imgSrc} height={imgHeight}/></div>
+            <div className='justifyCenter flexColumn'><img draggable="false" alt='' src={imgSrc} height={imgHeight}/></div>
         </div>
     }
 

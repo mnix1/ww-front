@@ -56,11 +56,11 @@ class RivalPageAnswered extends React.PureComponent {
                         {this.isCorrectAnswer
                             ? <div>
                                 <div>{getText(TEXT_CORRECT)}</div>
-                                <img alt='' src={thumbUp} height={imgHeight}/>
+                                <img draggable="false" alt='' src={thumbUp} height={imgHeight}/>
                             </div>
                             : <div>
                                 <div>{getText(TEXT_WRONG)}</div>
-                                <img alt='' src={thumbDown} height={imgHeight}/>
+                                <img draggable="false" alt='' src={thumbDown} height={imgHeight}/>
                             </div>}
                     </div>
                 </div>
@@ -84,11 +84,11 @@ class RivalPageAnswered extends React.PureComponent {
                     {this.isCorrectAnswer
                         ? <div>
                             <div>{getText(TEXT_CORRECT)}</div>
-                            <img alt='' src={thumbUp} height={imgHeight}/>
+                            <img draggable="false" alt='' src={thumbUp} height={imgHeight}/>
                         </div>
                         : <div>
                             <div>{getText(TEXT_WRONG)}</div>
-                            <img alt='' src={thumbDown} height={imgHeight}/>
+                            <img draggable="false" alt='' src={thumbDown} height={imgHeight}/>
                         </div>}
                 </div>
             </div>

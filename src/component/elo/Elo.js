@@ -30,7 +30,7 @@ export default class Elo extends React.PureComponent {
         return <div className={customClassName}>
             <div className='justifyCenter flexColumn' style={style}>{elo}</div>
             <div className='justifyCenter flexColumn'>
-                <img className='paddingLeftRem' alt='' src={trophy} height={imgHeight}/>
+                <img draggable="false" className='paddingLeftRem' alt='' src={trophy} height={imgHeight}/>
             </div>
         </div>;
     }

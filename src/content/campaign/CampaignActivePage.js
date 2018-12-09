@@ -51,11 +51,11 @@ class CampaignActivePage extends React.PureComponent {
         return <div key={e} className={className}>
             <div className='justifyCenter'>
                 <div className='justifyCenter flexColumn'>{getCampaignLabel(type, destination, e)}</div>
-                {e === phases - 1 && <img alt='' className='paddingLeftRem' height={30} src={goldEgg}/>}
-                {e === phases / 2 - 1 && <img alt='' className='paddingLeftRem' height={30} src={silverEgg}/>}
+                {e === phases - 1 && <img draggable="false" alt='' className='paddingLeftRem' height={30} src={goldEgg}/>}
+                {e === phases / 2 - 1 && <img draggable="false" alt='' className='paddingLeftRem' height={30} src={silverEgg}/>}
             </div>
             {done && <div className='absoluteBackgroundMix opacity1 zIndex1'>
-                <img alt='' src={check} className='height100 width100'/>
+                <img draggable="false" alt='' src={check} className='height100 width100'/>
             </div>}
         </div>
     }
@@ -108,7 +108,7 @@ class CampaignActivePage extends React.PureComponent {
                     {wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{wisdomGain}</Wisdom>}
                     {elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{elixirGain}</Elixir>}
                     {bookGain &&
-                    <div className='justifyCenter flexColumn'><img alt='' src={getBook(bookGain)} height={80}/></div>}
+                    <div className='justifyCenter flexColumn'><img draggable="false" alt='' src={getBook(bookGain)} height={80}/></div>}
                 </div>
             </div>
         </div>

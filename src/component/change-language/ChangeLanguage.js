@@ -42,9 +42,9 @@ class ChangeLanguage extends React.PureComponent {
                 {getText(TEXT_CHANGE_LANGUAGE, lang)}
             </div>
             <div className='justifyCenter'>
-                <img className='paddingRightRem cover pointer' alt='' src={gbFlag} height={25} width={40}
+                <img draggable="false" className='paddingRightRem cover pointer' alt='' src={gbFlag} height={25} width={40}
                      onClick={() => this.handleLanguageClick(ENGLISH)}/>
-                <img className='cover pointer' alt='' src={plFlag} height={25} width={40}
+                <img draggable="false" className='cover pointer' alt='' src={plFlag} height={25} width={40}
                      onClick={() => this.handleLanguageClick(POLISH)}/>
             </div>
         </div>

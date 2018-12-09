@@ -94,7 +94,7 @@ class IntroStep extends React.PureComponent {
             <div className={`blackBackground absoluteBackgroundMix ${enableOpacity ? 'opacity1' : ''}`}/>
             <div className='relative justifyCenter'>
                 <div className='justifyStart'>
-                    <img alt='' src={this.introWisor} width={wisorWidth} height={wisorHeight}/>
+                    <img draggable="false" alt='' src={this.introWisor} width={wisorWidth} height={wisorHeight}/>
                 </div>
                 <div className='paddingLeftRem justifyBetween flexColumn'>
                     <div className='fontSize09Rem'>

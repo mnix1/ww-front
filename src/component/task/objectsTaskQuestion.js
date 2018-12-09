@@ -61,7 +61,7 @@ function textTile({question, xTarget = .5, yTarget = .5, widthFactor = 1}) {
 function imageTile({src, yTarget = .5, xTarget = .7, widthFactor = 1.4, id = 'questionImage'}) {
     return {
         id, onClick: _.noop,
-        content: <img alt='' src={src} height='100%' width='100%'/>,
+        content: <img draggable="false" alt='' src={src} height='100%' width='100%'/>,
         yTarget, xTarget, widthFactor
     };
 }

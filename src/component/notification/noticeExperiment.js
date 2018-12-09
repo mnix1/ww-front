@@ -9,14 +9,14 @@ export function noticeExperiment(wisieType) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <div className='justifyCenter flexColumn'>
-                    <img alt='' src={experiment} height={30}/>
+                    <img draggable="false" alt='' src={experiment} height={30}/>
                 </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_WISIE_DISCOVERED)}
                 </div>
             </div>
             <div className='justifyCenter marginRem'>
-                <img alt='' src={getWisieImgSrc(wisieType)} height={80}/>
+                <img draggable="false" alt='' src={getWisieImgSrc(wisieType)} height={80}/>
             </div>
         </div>
     );

@@ -209,7 +209,7 @@ export default class Challenge extends React.PureComponent {
             return null;
         }
         return <div>
-            <img alt='' src={getWisor(wisorType)} height={80}/>
+            <img draggable="false" alt='' src={getWisor(wisorType)} height={80}/>
         </div>
     }
 

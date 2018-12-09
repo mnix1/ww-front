@@ -32,7 +32,7 @@ class MeshBackground extends React.PureComponent {
             width: fullScreen ? screen.width + 2 : screen.contentWidth
         };
         return <div className='absoluteBackgroundMix' style={{opacity: 1}}>
-            <img alt='' className={fullScreen ? '' : 'borderRadiusRem'}
+            <img draggable="false" alt='' className={fullScreen ? '' : 'borderRadiusRem'}
                  style={style}
                  src={MESHES[mesh]}
             />

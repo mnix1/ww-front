@@ -15,7 +15,7 @@ export function prepareAnimationTiles(rival) {
         imageData = imageData.replace('svg', `svg fill="${object.backgroundColor}"`).replace(/#/g, '%23');
         const content = <div style={{height: '100%', width: '100%'}}>
             <span>{object.key}</span>
-            <img alt='' src={'data:image/svg+xml,' + imageData} height='100%' width='100%'/>
+            <img draggable="false" alt='' src={'data:image/svg+xml,' + imageData} height='100%' width='100%'/>
         </div>;
         let f = i * df;
         if (objectsCount % 2 === 1) {

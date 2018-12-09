@@ -11,7 +11,7 @@ export function noticeReward(reward, onClick) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <div className='justifyCenter flexColumn'>
-                    <img alt='' src={presentSvg} height={30}/>
+                    <img draggable="false" alt='' src={presentSvg} height={30}/>
                 </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_REWARD)}
@@ -19,7 +19,7 @@ export function noticeReward(reward, onClick) {
             </div>
             <div className='justifyEvenly marginRem'>
                 {reward.goldGain && <Gold styleMargin={false}>{reward.goldGain}</Gold>}
-                {reward.bookType && <img alt='' src={getBook(reward.bookType)} height={80}/>}
+                {reward.bookType && <img draggable="false" alt='' src={getBook(reward.bookType)} height={80}/>}
             </div>
         </div>,
         onClick

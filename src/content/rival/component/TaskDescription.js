@@ -57,7 +57,7 @@ class TaskDescription extends React.PureComponent {
         }
         return <div className='justifyCenter'>
             {small ? '' : `${getText(TEXT_CATEGORY, lang)}: `} {`${getCategoryLabel(task.category, lang)} `}
-            <img alt='' className='marginLeftRem' key={task.category} height={screen.fontSizeRem}
+            <img draggable="false" alt='' className='marginLeftRem' key={task.category} height={screen.fontSizeRem}
                  src={getCategory(task.category, lang)}/>
         </div>;
     }

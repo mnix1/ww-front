@@ -9,7 +9,7 @@ export function noticeMail(onClick) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <div className='justifyCenter flexColumn'>
-                    <img alt='' src={letter} height={30}/>
+                    <img draggable="false" alt='' src={letter} height={30}/>
                 </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_NEW_MAIL)}

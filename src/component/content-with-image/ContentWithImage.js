@@ -23,7 +23,7 @@ export default class ContentWithImage extends React.PureComponent {
                 <div className="absoluteBackgroundMix"/>
                 <div className='content'>
                     {children}
-                    <img alt='' src={imgSrc} height={imgHeight}/>
+                    <img draggable="false" alt='' src={imgSrc} height={imgHeight}/>
                 </div>
             </div>
         </div>;

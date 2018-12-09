@@ -41,7 +41,7 @@ class ProfilePage extends React.PureComponent {
                 <div className='absoluteBackgroundMix' style={style}>
                     {pending && <Loading height={screen.fontSizeRem / 2}/>}
                 </div>
-                <img alt='' src={letter} height={screen.standardImgHeight}/>
+                <img draggable="false" alt='' src={letter} height={screen.standardImgHeight}/>
             </div>
         </div>
     }

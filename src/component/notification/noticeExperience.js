@@ -12,7 +12,7 @@ export function noticeExperience(obj, onClick) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <div className='justifyCenter flexColumn'>
-                    <img alt='' src={flask} height={30}/>
+                    <img draggable="false" alt='' src={flask} height={30}/>
                 </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_EXPERIENCE)}

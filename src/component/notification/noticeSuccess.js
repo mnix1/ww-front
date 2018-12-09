@@ -9,7 +9,7 @@ export function noticeSuccess(success) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <div className='justifyCenter flexColumn'>
-                    <img alt='' src={successSvg} height={30}/>
+                    <img draggable="false" alt='' src={successSvg} height={30}/>
                 </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getSuccess(success)}

@@ -23,7 +23,7 @@ class Requirement extends React.PureComponent {
             <div className='justifyCenter flexColumn height100'>
                 <div className='justifyAround relative' style={{padding: '0.25rem 0'}}>
                     <div className={`requirementBackground absoluteBackgroundMix`} style={{opacity: 0.8}}/>
-                    <img className='relative' alt='' src={error} height={screen.fontSizeRem} style={{margin: 'auto 0'}}/>
+                    <img draggable="false" className='relative' alt='' src={error} height={screen.fontSizeRem} style={{margin: 'auto 0'}}/>
                     <div className='justifyCenter relative flexColumn'>
                         <div className=''>{getText(TEXT_REQUIREMENT)}</div>
                         <div className=''>{text}</div>

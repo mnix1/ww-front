@@ -52,7 +52,7 @@ class Team extends React.PureComponent {
         const {onLifebuoyClick} = this.props;
         return <div className='absoluteBackgroundMix opacity1 pointer'
                     onClick={() => onLifebuoyClick(teamMember.index)}>
-            <img className='height100 width100' alt='' src={getSkill(SKILL_LIFEBUOY)}/>
+            <img draggable="false" className='height100 width100' alt='' src={getSkill(SKILL_LIFEBUOY)}/>
         </div>;
     }
 

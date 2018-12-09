@@ -34,7 +34,7 @@ export default class AuthPage extends React.PureComponent {
                 <div className='flex flexColumn height100 relative'>
                     <div className='justifyCenter paddingTopRem'>{getLoginText(this.getTitle(), lang)}</div>
                     <div className='justifyCenter'>
-                        <img alt='' className='paddingRightRem' src={getIntroWisor()}
+                        <img draggable="false" alt='' className='paddingRightRem' src={getIntroWisor()}
                              height={screen.contentHeight / 2}/>
                         <div className='justifyCenter flexColumn paddingLeftRem'>
                             {this.renderContent()}

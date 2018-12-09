@@ -105,7 +105,7 @@ class SettingsPage extends React.PureComponent {
                     onClick={() => onRouteChange(SETTINGS_CHOOSE_WISOR_ROUTE)}>
             <div>{getText(TEXT_CHANGE_WISOR, lang)}</div>
             <div className='justifyCenter'>
-                <img alt='' src={getWisor(profile.wisorType)}
+                <img draggable="false" alt='' src={getWisor(profile.wisorType)}
                      height={screen.standardImgHeight * 2}
                      width={screen.standardImgHeight * 2}/>
             </div>

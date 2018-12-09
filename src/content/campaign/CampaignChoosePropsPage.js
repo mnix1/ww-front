@@ -64,7 +64,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
                 <div className='justifyCenter'><span
                     className='justifyCenter'>{getCampaignLabel(campaign.type, 'label')}</span>
                 </div>
-                <div className='justifyCenter'><img alt='' src={getCampaignImg(campaign.type)} height={this.imgHeight}/>
+                <div className='justifyCenter'><img draggable="false" alt='' src={getCampaignImg(campaign.type)} height={this.imgHeight}/>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
                 <div className='justifyCenter'>{getCampaignLabel(campaign.type, campaign.destination, 'label')}</div>
                 <div className='justifyCenter'><Rating value={campaign.rating / 2}/></div>
                 <div className='justifyCenter'>
-                    <img alt='' src={getCampaignImg(campaign.type, campaign.destination)} height={this.imgHeight}/>
+                    <img draggable="false" alt='' src={getCampaignImg(campaign.type, campaign.destination)} height={this.imgHeight}/>
                 </div>
             </div>
         </div>
@@ -125,7 +125,7 @@ class CampaignChoosePropsPage extends React.PureComponent {
                         {campaign.crystalGain > 0 && <Crystal className='justifyCenter flexColumn'>{campaign.crystalGain}</Crystal>}
                         {campaign.wisdomGain > 0 && <Wisdom className='justifyCenter flexColumn'>{campaign.wisdomGain}</Wisdom>}
                         {campaign.elixirGain > 0 && <Elixir className='justifyCenter flexColumn'>{campaign.elixirGain}</Elixir>}
-                        {<div className='justifyCenter flexColumn'><img alt='' src={randomBook} height={50}/></div>}
+                        {<div className='justifyCenter flexColumn'><img draggable="false" alt='' src={randomBook} height={50}/></div>}
                     </div>
                 </div>
             </div>

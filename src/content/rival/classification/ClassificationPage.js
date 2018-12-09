@@ -120,7 +120,7 @@ class ClassificationPage extends React.PureComponent {
         } else if (position.position === 3) {
             src = position3;
         }
-        return <img alt='' src={src} height={src === positionLow ? 30 : 50}/>;
+        return <img draggable="false" alt='' src={src} height={src === positionLow ? 30 : 50}/>;
     }
 
     renderPosition = (position) => {

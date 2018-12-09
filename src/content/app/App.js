@@ -37,7 +37,7 @@ class App extends React.PureComponent {
         if (screen.height > 1000 || screen.width > 2000) {
             bg = bg4000x2000;
         }
-        return <img alt='' src={bg} height={screen.height} width={screen.width}
+        return <img draggable="false" alt='' src={bg} height={screen.height} width={screen.width}
                     className="fixedBackgroundMix"/>;
     }
 

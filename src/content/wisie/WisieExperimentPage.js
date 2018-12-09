@@ -25,7 +25,7 @@ class WisieExperimentPage extends React.PureComponent {
             <div onClick={cost.isEnoughResource ? onExperimentClick : null}
                  className={`'justifyCenter flexColumn boxShadow marginRem pointer ${maybeDisabledClassName(!cost.isEnoughResource)}`}>
                 <div className='justifyCenter paddingRem'>{getText(TEXT_EXPERIMENT)}</div>
-                <div className='justifyCenter'><img alt='' src={experiment}
+                <div className='justifyCenter'><img draggable="false" alt='' src={experiment}
                                                     height={Math.min(60, screen.standardImgHeight)}/></div>
                 <div className='justifyCenter'>
                     <div className='justifyCenter flexColumn paddingRem'>{getText(TEXT_COST)}:</div>

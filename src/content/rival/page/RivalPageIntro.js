@@ -19,7 +19,7 @@ class RivalPageIntro extends React.PureComponent {
                 renderGrade={isRanking}
                 {...content.profile}
             />
-            <img alt='' src={swordShield} height={screen.rivalImgHeight}/>
+            <img draggable="false" alt='' src={swordShield} height={screen.rivalImgHeight}/>
             <Profile
                 renderElo={isRanking}
                 elo={isRanking ? content.opponentSeason.elo : undefined}
@@ -35,7 +35,7 @@ class RivalPageIntro extends React.PureComponent {
         const {content, screen, isRanking} = this.props;
         return <div className='team justifyCenter flexColumn'>
             <Teams renderElo={isRanking} content={content}>
-                {content.opponent && <img alt='' src={swordShield} height={screen.rivalImgHeight}/>}
+                {content.opponent && <img draggable="false" alt='' src={swordShield} height={screen.rivalImgHeight}/>}
             </Teams>
         </div>;
     }

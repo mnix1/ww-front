@@ -85,7 +85,7 @@ export default class Wisie extends React.PureComponent {
             paddingRightRem: !renderSkills && hobbiesAndSkillsUnderName,
         });
         return <div className='justifyEnd'>
-            {hobbies.map(e => <img alt='' className={imgClassName} key={e}
+            {hobbies.map(e => <img draggable="false" alt='' className={imgClassName} key={e}
                                    height={imgHobbyAndSkillHeight}
                                    src={getCategory(e)}/>)}
         </div>;
@@ -100,7 +100,7 @@ export default class Wisie extends React.PureComponent {
             return customSkills;
         }
         return <div className={hobbiesAndSkillsUnderName ? 'justifyStart' : 'paddingLeftRem justifyStart'}>
-            {skills.map(e => <img alt='' className='' key={e}
+            {skills.map(e => <img draggable="false" alt='' className='' key={e}
                                   height={imgHobbyAndSkillHeight}
                                   src={getSkill(e)}/>)}
         </div>;
@@ -138,7 +138,7 @@ export default class Wisie extends React.PureComponent {
             {renderImg &&
             <div className='justifyCenter'>
                 {!nearImgChildrenAfter && nearImgChildren}
-                <img alt='' src={disguise ? getDisguise(disguise) : getWisieImgSrc(type)} height={imgHeight}/>
+                <img draggable="false" alt='' src={disguise ? getDisguise(disguise) : getWisieImgSrc(type)} height={imgHeight}/>
                 {nearImgChildrenAfter && nearImgChildren}
             </div>}
             {children}
@@ -159,7 +159,7 @@ export default class Wisie extends React.PureComponent {
             return null;
         }
         return <div className='absoluteBackgroundMix zIndex1'>
-            <img alt='' src={_.defaultTo(customBackgroundImgSrc, cross)} className='height100 width100'/>
+            <img draggable="false" alt='' src={_.defaultTo(customBackgroundImgSrc, cross)} className='height100 width100'/>
         </div>;
     }
 

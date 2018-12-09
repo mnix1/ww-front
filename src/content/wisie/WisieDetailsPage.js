@@ -83,7 +83,7 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='justifyStart flexColumn'>
                 <div className='justifyCenter'>
                     {wisie.hobbies.map(e => {
-                        const img = <img alt='' key={e} height={24}
+                        const img = <img draggable="false" alt='' key={e} height={24}
                                          src={getCategory(e)}/>;
                         if (enableAdd) {
                             return <div key={e} className='paddingLeftRem'>{img}</div>;
@@ -121,7 +121,7 @@ class WisieDetailsPage extends React.PureComponent {
             <div className='justifyStart flexColumn paddingLeftRem'>
                 <div className='justifyCenter'>
                     {wisie.skills.map(e => {
-                        const img = <img alt='' key={e} height={24}
+                        const img = <img draggable="false" alt='' key={e} height={24}
                                          src={getSkill(e)}/>;
                         return <div key={e} className='justifyCenter flexColumn paddingRightRem'>
                             {img}

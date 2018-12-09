@@ -16,7 +16,7 @@ class ChooseWisorPage extends React.PureComponent {
             className='justifyCenter marginRem pointer boxShadow'
             style={{width: width}}
         >
-            <img alt='' src={getWisor(wisor)} height={height}/>
+            <img draggable="false" alt='' src={getWisor(wisor)} height={height}/>
         </div>
     }
 

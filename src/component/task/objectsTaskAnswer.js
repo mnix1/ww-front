@@ -42,7 +42,7 @@ function prepareContent(answerRenderer, ans, screen) {
     let content;
     if (asContentImageSvg) {
         const imageData = getImageContent(ans);
-        content = <img alt='' src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
+        content = <img draggable="false" alt='' src={'data:image/svg+xml;base64, ' + imageData} height='100%' width='100%'/>;
     } else if (asContentHtml) {
         content = getHtmlContent(ans);
     } else if (asContentAnalogClock) {

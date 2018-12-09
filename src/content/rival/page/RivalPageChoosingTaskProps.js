@@ -39,7 +39,7 @@ class RivalPageChoosingTaskProps extends React.PureComponent {
                             : TEXT_OPPONENT_CHOOSING)}
                 </div>
             </div>
-            <div className='pageHeader'><img alt='' className='sleep' src={sleep} height={screen.rivalImgHeight}/></div>
+            <div className='pageHeader'><img draggable="false" alt='' className='sleep' src={sleep} height={screen.rivalImgHeight}/></div>
             <div className='pageHeader'>{`${getText(TEXT_TIME)}: `}<Timer from={content.nextTimeout- content.currentTimeout} value={content.nextTimeout - content.now}/>
             </div>
             {!battle && <Teams content={content}/>}

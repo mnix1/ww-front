@@ -7,7 +7,7 @@ export function noticeError(error, onClick) {
     notice(
         <div className='relative justifyEvenly'>
             <div className='justifyCenter flexColumn'>
-                <img alt='' src={errorSvg} height={30}/>
+                <img draggable="false" alt='' src={errorSvg} height={30}/>
             </div>
             <div className='justifyCenter flexColumn marginRem'>{getError(error)}</div>
         </div>,

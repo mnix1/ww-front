@@ -71,7 +71,7 @@ export default class Profile extends React.PureComponent {
             [detailsContainerClassName]: detailsContainerClassName
         });
         return <div className={customClassName}>
-            <div className='justifyCenter'><img alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
+            <div className='justifyCenter'><img draggable="false" alt='' src={getWisor(wisorType)} height={imgHeight}/></div>
             <div className={detailsInsideContainerClassName}>
                 <div className='justifyCenter'>
                     {isOnline && <div className='justifyStart'><TiWiFi style={{color: GREEN_COLOR}}/></div>}
@@ -115,7 +115,7 @@ export default class Profile extends React.PureComponent {
                     style={style}>
             {blackBackground && <div className='blackBackground absoluteBackgroundMix'/>}
             {disabled && <div className='absoluteBackgroundMix opacity1 zIndex1'>
-                <img alt='' src={cross} className='height100 width100'/>
+                <img draggable="false" alt='' src={cross} className='height100 width100'/>
             </div>}
             {children}
             {this.renderContent()}

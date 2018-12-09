@@ -9,14 +9,14 @@ export function noticeBuy(bookType, onClick) {
         <div className='relative justifyCenter flexColumn'>
             <div className='justifyEvenly'>
                 <div className='justifyCenter flexColumn'>
-                    <img alt='' src={shoppingCart} height={30}/>
+                    <img draggable="false" alt='' src={shoppingCart} height={30}/>
                 </div>
                 <div className='justifyCenter flexColumn marginRem'>
                     {getText(TEXT_BOUGHT)}
                 </div>
             </div>
             <div className='justifyCenter marginRem'>
-                <img alt='' src={getBook(bookType)} height={80}/>
+                <img draggable="false" alt='' src={getBook(bookType)} height={80}/>
             </div>
         </div>,
         onClick

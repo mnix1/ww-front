@@ -51,7 +51,7 @@ export default class SimpleObjectGroup extends React.PureComponent {
                     ...o,
                     content: <div className='justifyCenter flexColumn'>
                         <span className='fontSize08Rem justifyCenter'>{getCategoryLabel([o.id])}</span>
-                        <img alt='' src={o.imgSrc} height={objectHeight - 2 * fontSizeRem}/>
+                        <img draggable="false" alt='' src={o.imgSrc} height={objectHeight - 2 * fontSizeRem}/>
                     </div>,
                     objectStyle
                 }

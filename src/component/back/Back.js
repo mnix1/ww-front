@@ -19,7 +19,7 @@
 //             ? 20
 //             : 30;
 //         return <div className={styles.back} onClick={onClick}>
-//             <img src={back} height={size} style={{padding: '0.25rem'}}/>
+//             <img draggable="false" src={back} height={size} style={{padding: '0.25rem'}}/>
 //             {/*<MdArrowBack color="#fffdf1" size={size}/>*/}
 //         </div>;
 //     }

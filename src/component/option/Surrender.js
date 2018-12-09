@@ -12,7 +12,7 @@ export default class Surrender extends React.PureComponent {
             communication.sendSurrender();
             onOptionShowChange(false);
         }}>
-            <Button material={BUTTON_MATERIAL_BOX_SHADOW} icon={<img alt='' src={flag} height={imgHeight}/>}>
+            <Button material={BUTTON_MATERIAL_BOX_SHADOW} icon={<img draggable="false" alt='' src={flag} height={imgHeight}/>}>
                 <div className='justifyCenter flexColumn'>{getText(TEXT_SURRENDER)}</div>
             </Button>
         </div>;
