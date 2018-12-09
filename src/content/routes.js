@@ -1,6 +1,10 @@
+import _ from 'lodash';
+
 export const APP_ROUTE = '/';
 
 export const LOGIN_ROUTE = '/login';
+export const LOGIN_WISIEMANIA_ROUTE = '/login/wisiemania';
+export const REGISTER_ROUTE = '/register';
 
 export const PLAY_ROUTE = '/play';
 export const TRAINING_ROUTE = '/training';
@@ -53,3 +57,7 @@ export const CLASSIFICATION_ROUTE = '/classification';
 
 export const CLASSIFICATION_WAR_ROUTE = CLASSIFICATION_ROUTE + '/war';
 export const CLASSIFICATION_BATTLE_ROUTE = CLASSIFICATION_WAR_ROUTE + '/battle';
+
+export function isLoginPage(route){
+    return _.includes([LOGIN_ROUTE, LOGIN_WISIEMANIA_ROUTE, REGISTER_ROUTE], route);
+}

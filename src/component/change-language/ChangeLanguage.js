@@ -13,20 +13,26 @@ class ChangeLanguage extends React.PureComponent {
     static propTypes = {
         className: PropTypes.string,
         lang: PropTypes.string,
+        withRequest: PropTypes.bool,
         handleLanguageClick: PropTypes.func,
     };
 
     static defaultProps = {
-        className: ''
+        className: '',
+        withRequest: ''
     };
 
     handleLanguageClick = (lang) => {
-        const {onLangChange} = this.props;
-        request('/profile/changeLanguage', {lang}).then((json) => {
-            if (isCode1(json)) {
-                onLangChange(json.lang);
-            }
-        });
+        const {onLangChange, withRequest} = this.props;
+        if (withRequest) {
+            request('/profile/changeLanguage', {lang}).then((json) => {
+                if (isCode1(json)) {
+                    onLangChange(json.lang);
+                }
+            });
+        } else {
+            onLangChange(lang);
+        }
     };
 
     render() {

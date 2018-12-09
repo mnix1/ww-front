@@ -12,7 +12,8 @@ export const ERROR_FRIEND_RIVAL_CANCELED = 'ERROR_FRIEND_RIVAL_CANCELED';
 export const ERROR_FRIEND_RIVAL_REJECTED = 'ERROR_FRIEND_RIVAL_REJECTED';
 export const ERROR_WRONG_CREATOR_TAG = 'ERROR_WRONG_CREATOR_TAG';
 export const ERROR_NO_FRIENDS_SPECIFIED = 'ERROR_NO_FRIENDS_SPECIFIED';
-export const ERROR_NO_EMAIL_OR_PASSWORD = 'ERROR_NO_EMAIL_OR_PASSWORD';
+
+export const ERROR_TYPE = 'error';
 
 const TEXTS = {
     [POLISH]: {
@@ -27,7 +28,6 @@ const TEXTS = {
         [ERROR_FRIEND_RIVAL_REJECTED]: 'Znajomy odrzucił grę',
         [ERROR_WRONG_CREATOR_TAG]: 'Niepoprawny tag twórcy',
         [ERROR_NO_FRIENDS_SPECIFIED]: 'Nie dodano znajomych',
-        [ERROR_NO_EMAIL_OR_PASSWORD]: 'Nieprawidłowe dane do logowania',
     },
     [ENGLISH]: {
         [ERROR_CONNECTION_PROBLEM]: 'No connection to the server...',
@@ -41,7 +41,6 @@ const TEXTS = {
         [ERROR_FRIEND_RIVAL_REJECTED]: 'Friend rejected the game',
         [ERROR_WRONG_CREATOR_TAG]: 'Wrong creator tag',
         [ERROR_NO_FRIENDS_SPECIFIED]: 'No friends specified',
-        [ERROR_NO_EMAIL_OR_PASSWORD]: 'Not correct email or password',
     },
 };
 

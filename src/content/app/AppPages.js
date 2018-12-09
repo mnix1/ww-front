@@ -20,13 +20,13 @@ import {
     CLASSIFICATION_BATTLE_ROUTE,
     CLASSIFICATION_WAR_ROUTE,
     FRIEND_ROUTE,
-    LOGIN_ROUTE,
+    LOGIN_ROUTE, LOGIN_WISIEMANIA_ROUTE,
     MAIL_ROUTE,
     PLAY_BATTLE_ROUTE,
     PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE,
     PLAY_WAR_ROUTE,
-    PROFILE_ROUTE,
+    PROFILE_ROUTE, REGISTER_ROUTE,
     SETTINGS_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
@@ -72,6 +72,8 @@ import ChallengeActivePage from "../challenge/list/ChallengeActivePage";
 import MailPage from "../mail/MailPage";
 import Requirement from "../../component/requirement/Requirement";
 import {getText, TEXT_LEVEL} from "../../lang/langText";
+import LoginWisiemaniaPage from "../../component/auth/LoginWisiemaniaPage";
+import RegisterPage from "../../component/auth/RegisterPage";
 
 class AppPages extends React.PureComponent {
 
@@ -163,6 +165,8 @@ class AppPages extends React.PureComponent {
 
                 <Route path={SETTINGS_ROUTE} render={() => <SettingsPage/>}/>
 
+                <Route path={REGISTER_ROUTE} render={() => <RegisterPage/>}/>
+                <Route path={LOGIN_WISIEMANIA_ROUTE} render={() => <LoginWisiemaniaPage/>}/>
                 <Route path={LOGIN_ROUTE} render={() => <LoginPage/>}/>
             </Switch>
         </ConnectedRouter>;

@@ -15,6 +15,7 @@ import settings from "./reducer/settings";
 import language from "./reducer/language";
 import intro from "./reducer/intro";
 import mail from "./reducer/mail";
+import login from "./reducer/login";
 import {connectRouter} from 'connected-react-router';
 import {csrf} from "../util/fetchHelper";
 
@@ -22,6 +23,7 @@ const csrfSecurity = csrf();
 container.registerRequestHeader(csrfSecurity.header, csrfSecurity.token);
 const app = (history) => combineReducers({
     router: connectRouter(history),
+    login,
     intro,
     language,
     profile,

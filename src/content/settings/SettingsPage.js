@@ -35,7 +35,9 @@ export const NAME_MAX_LENGTH = 20;
 class SettingsPage extends React.PureComponent {
 
     handleLogoutClick = () => {
-        request('/_logout', {});
+        request('/_logout', {}).then(() => {
+            window.location.reload();
+        });
     };
 
     handleDeleteProfileClick = () => {

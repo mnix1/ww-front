@@ -149,8 +149,6 @@ export const TEXT_CHOOSE_DESTINATION = 'TEXT_CHOOSE_DESTINATION';
 export const TEXT_CHOOSE_TEAM = 'TEXT_CHOOSE_TEAM';
 export const TEXT_LEVEL = 'TEXT_LEVEL';
 export const TEXT_EXPERIENCE = 'TEXT_EXPERIENCE';
-export const TEXT_LOGIN = 'TEXT_LOGIN';
-export const TEXT_PASSWORD = 'TEXT_PASSWORD';
 export const TEXT_LOGOUT = 'TEXT_LOGOUT';
 export const TEXT_RECONNECT = 'TEXT_RECONNECT';
 export const TEXT_CONNECTING = 'TEXT_CONNECTING';
@@ -189,14 +187,13 @@ export const TEXT_YES = 'TEXT_YES';
 export const TEXT_NO = 'TEXT_NO';
 export const TEXT_CONFIRM_TO_SUBMIT = 'TEXT_CONFIRM_TO_SUBMIT';
 export const TEXT_CHANGE_LANGUAGE = 'TEXT_CHANGE_LANGUAGE';
-export const TEXT_LOG_IN_WITH = 'TEXT_LOG_IN_WITH';
+export const TEXT_SIGNING_IN = 'TEXT_SIGNING_IN';
 
 const TEXTS = {
     [POLISH]: {
         [TEXT_APP_NAME]: 'Wiedzakomania',
-        [TEXT_LOG_IN_WITH]: 'Zaloguj z',
         [TEXT_NEW_MAIL]: 'Otrzymano wiadomość',
-        [TEXT_PASSWORD]: 'hasło',
+        [TEXT_SIGNING_IN]: 'Logowanie',
         [TEXT_EXPERIENCE]: 'Doświadczenie',
         [TEXT_LEVEL]: 'poziom',
         [TEXT_CHANGE_LANGUAGE]: 'Zmień język',
@@ -247,7 +244,6 @@ const TEXTS = {
         [TEXT_CHOOSE_WISIES]: 'Wybierz wiedzaki',
         [TEXT_LOGOUT]: 'Wyloguj',
         [TEXT_RECONNECT]: 'Połącz ponownie',
-        [TEXT_LOGIN]: 'Zaloguj się',
         [TEXT_CAMPAIGN]: 'Kampania',
         [TEXT_CAMPAIGN_OVER]: 'Zakończono etap kampanii',
         [TEXT_EXIT]: 'Wyjście',
@@ -383,8 +379,7 @@ const TEXTS = {
     },
     [ENGLISH]: {
         [TEXT_APP_NAME]: 'Wisiemania',
-        [TEXT_LOG_IN_WITH]: 'Log in with',
-        [TEXT_PASSWORD]: 'password',
+        [TEXT_SIGNING_IN]: 'Signing in',
         [TEXT_NEW_MAIL]: 'New message received',
         [TEXT_EXPERIENCE]: 'Experience',
         [TEXT_LEVEL]: 'level',
@@ -436,7 +431,6 @@ const TEXTS = {
         [TEXT_CHOOSE_WISIES]: 'Choose wisies',
         [TEXT_LOGOUT]: 'Sign out',
         [TEXT_RECONNECT]: 'Reconnect',
-        [TEXT_LOGIN]: 'Sign in',
         [TEXT_CAMPAIGN]: 'Campaign',
         [TEXT_CAMPAIGN_OVER]: 'Campaign stage ended',
         [TEXT_EXIT]: 'Exit',
@@ -569,6 +563,8 @@ const TEXTS = {
         [TEXT_NO]: 'No',
     },
 };
+
+export const TEXT_TYPE = 'text';
 
 export function getText(id, lang) {
     return TEXTS[lang || getActiveLang()][id];
