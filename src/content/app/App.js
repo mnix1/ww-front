@@ -17,6 +17,7 @@ import bg2000x1000 from '../../media/image/background/bg2000x1000.jpg';
 import {showIntro} from "../intro/introHelper";
 import SigningIn from "./connection/SigningIn";
 import ShowOption from "./ShowOption";
+import ShowHelp from "./ShowHelp";
 
 // let pwaPrompt = undefined;
 // window.addEventListener('beforeinstallprompt', (e) => {
@@ -46,7 +47,10 @@ class App extends React.PureComponent {
             return null;
         }
         return <div>
-            <ShowOption/>
+            <div className='topRightNav justifyEnd'>
+                <ShowOption/>
+                <ShowHelp/>
+            </div>
             {/*<Option/>*/}
             <InvitedToBattleBy/>
             <InviteToBattle/>

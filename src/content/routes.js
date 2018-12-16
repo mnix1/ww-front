@@ -58,6 +58,13 @@ export const CLASSIFICATION_ROUTE = '/classification';
 export const CLASSIFICATION_WAR_ROUTE = CLASSIFICATION_ROUTE + '/war';
 export const CLASSIFICATION_BATTLE_ROUTE = CLASSIFICATION_WAR_ROUTE + '/battle';
 
-export function isLoginPage(route){
+export const HELP_ROUTE = '/help';
+export const HELP_SKILL_ROUTE = HELP_ROUTE + '/skill';
+
+export function isHelpPage(route) {
+    return _.includes(route, HELP_ROUTE);
+}
+
+export function isLoginPage(route) {
     return _.includes([LOGIN_ROUTE, LOGIN_WISIEMANIA_ROUTE, REGISTER_ROUTE], route);
 }

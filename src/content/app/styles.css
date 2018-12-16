@@ -9,7 +9,7 @@ body {
     color: #fffdf1;
 }
 
-.showOption {
+.topRightNav {
     position: fixed;
     cursor: pointer;
     top: 0;

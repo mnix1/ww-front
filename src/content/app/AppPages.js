@@ -6,7 +6,8 @@ import {
     APP_ROUTE,
     BATTLE_FAST_ROUTE,
     BATTLE_RANKING_ROUTE,
-    BATTLE_ROUTE, BATTLE_TRAINING_ROUTE,
+    BATTLE_ROUTE,
+    BATTLE_TRAINING_ROUTE,
     CAMPAIGN_ROUTE,
     CAMPAIGN_WAR_ROUTE,
     CHALLENGE_ACTIVE_ROUTE,
@@ -20,19 +21,23 @@ import {
     CLASSIFICATION_BATTLE_ROUTE,
     CLASSIFICATION_WAR_ROUTE,
     FRIEND_ROUTE,
-    LOGIN_ROUTE, LOGIN_WISIEMANIA_ROUTE,
+    HELP_ROUTE,
+    LOGIN_ROUTE,
+    LOGIN_WISIEMANIA_ROUTE,
     MAIL_ROUTE,
     PLAY_BATTLE_ROUTE,
     PLAY_CHALLENGE_ROUTE,
     PLAY_ROUTE,
     PLAY_WAR_ROUTE,
-    PROFILE_ROUTE, REGISTER_ROUTE,
+    PROFILE_ROUTE,
+    REGISTER_ROUTE,
     SETTINGS_ROUTE,
     SHOP_ROUTE,
     TRAINING_ROUTE,
     WAR_FAST_ROUTE,
     WAR_RANKING_ROUTE,
-    WAR_ROUTE, WAR_TRAINING_ROUTE,
+    WAR_ROUTE,
+    WAR_TRAINING_ROUTE,
     WISIES_ROUTE
 } from "../routes";
 import {isRepPending} from "../../util/repositoryHelper";
@@ -74,6 +79,7 @@ import Requirement from "../../component/requirement/Requirement";
 import {getText, TEXT_LEVEL} from "../../lang/langText";
 import LoginWisiemaniaPage from "../../component/auth/LoginWisiemaniaPage";
 import RegisterPage from "../../component/auth/RegisterPage";
+import HelpPage from "../help/HelpPage";
 
 class AppPages extends React.PureComponent {
 
@@ -168,6 +174,8 @@ class AppPages extends React.PureComponent {
                 <Route path={REGISTER_ROUTE} render={() => <RegisterPage/>}/>
                 <Route path={LOGIN_WISIEMANIA_ROUTE} render={() => <LoginWisiemaniaPage/>}/>
                 <Route path={LOGIN_ROUTE} render={() => <LoginPage/>}/>
+
+                <Route path={HELP_ROUTE} render={() => <HelpPage/>}/>
             </Switch>
         </ConnectedRouter>;
     }

@@ -17,12 +17,12 @@ export const SKILL_WATER_PISTOL = 'WATER_PISTOL';
 export const SKILL_NINJA = 'NINJA';
 export const SKILL_LIFEBUOY = 'LIFEBUOY';
 export const SKILL_GHOST = 'GHOST';
-export const SKILL_SHIELD = 'SHIELD';
+// export const SKILL_SHIELD = 'SHIELD';
 export const SKILL_PIZZA = 'PIZZA';
 export const SKILL_COVERALL = 'COVERALL';
 export const SKILL_CHANGE_TASK = 'CHANGE_TASK';
 
-const SKILLS = {
+export const SKILLS = {
     [SKILL_TEACHER]: blackboard,
     [SKILL_MOTIVATOR]: box,
     [SKILL_HINT]: hint,
@@ -30,7 +30,7 @@ const SKILLS = {
     [SKILL_NINJA]: ninja,
     [SKILL_LIFEBUOY]: lifebuoy,
     [SKILL_GHOST]: ghost,
-    [SKILL_SHIELD]: shield,
+    // [SKILL_SHIELD]: shield,
     [SKILL_PIZZA]: pizza,
     [SKILL_COVERALL]: coverall,
     [SKILL_CHANGE_TASK]: changeTask,
