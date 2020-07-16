@@ -87,7 +87,7 @@ class ChallengeCreatePage extends React.PureComponent {
                     () => onDurationClick(CHALLENGE_DURATION_48))}
             </div>
         </div>
-    };
+    }
 
     renderResourceCost() {
         const {onResourceCostClick, challenge} = this.props;
@@ -209,7 +209,7 @@ class ChallengeCreatePage extends React.PureComponent {
             {this.renderContent()}
             <ChallengeCreateFetch path={path} {...challenge}/>
         </ScreenPage>;
-    };
+    }
 }
 
 export default connect(

@@ -4,7 +4,7 @@ function translate(text) {
     return fetch(`${url}&text=${text}&lang=en-pl`)
         .then(value => value.json())
         .then(value => value.text[0]);
-};
+}
 
 async function translateMulti(words) {
     const result = [];

@@ -87,7 +87,7 @@ class ChallengeGlobalPage extends React.PureComponent {
             {this.renderContent()}
             <ChallengeGlobalFetch challengeJoinRep={challengeJoinRep} path={path}/>
         </ScreenPage>;
-    };
+    }
 }
 
 export default connect(
